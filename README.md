@@ -70,6 +70,7 @@ Push your changes to your branch:
 git push origin your-branch-name
 ```
 
-Create a pull request (PR) from your forked repository to the main repository. You can do this by navigating to the "Pull Requests" tab in the original repository and clicking "New Pull Request."
+**Important**
+**Afterwards, create a pull request (PR) from your forked repository to the main repository. You can do this by navigating to the "Pull Requests" tab in the original repository and clicking "New Pull Request."**
 
 Be sure to describe your changes clearly in the PR description, so the maintainers can understand the purpose and scope of your changes.
