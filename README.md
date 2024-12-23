@@ -71,3 +71,28 @@ You can render and preview the website to see changes you've made.
 quarto render
 quarto preview
 ```
+
+## Contributing
+We welcome contributions to the project! If you would like to contribute, please follow these steps when making changes:
+Assuming you have cloned the repository and have completed the set-up as instructed above,
+
+```bash
+git checkout -b your-branch-name
+```
+Make your changes (e.g., fix a bug, add a feature).
+
+Commit your changes:
+
+```bash
+git add .
+git commit -m "Description of your changes"
+```
+
+Push your changes to your branch:
+```bash
+git push origin your-branch-name
+```
+
+Create a pull request (PR) from your forked repository to the main repository. You can do this by navigating to the "Pull Requests" tab in the original repository and clicking "New Pull Request."
+
+Be sure to describe your changes clearly in the PR description, so the maintainers can understand the purpose and scope of your changes.
