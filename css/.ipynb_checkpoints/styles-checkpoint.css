@@ -3,7 +3,6 @@
 }
 
 
-
 /* Table and general content styling */
 body {
     background-color: var(--quarto-light); /* Light background */
@@ -11,7 +10,6 @@ body {
     margin: 0;
     padding: 0;
 }
-
 
 
 .tooltip { position: relative; 
