@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>A2M——LRP1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for A2M——LRP1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab1702392')">1702392</button><button class="tablinks " onclick="openTab(event, 'tab10652313')">10652313</button><button class="tablinks " onclick="openTab(event, 'tab12194978')">12194978</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab1702392" class="tabcontent active">
+                    <h2>Evidence that the newly cloned low-density-lipoprotein receptor related protein (LRP) is the alpha 2-macroglobulin receptor.</h2>
+                    <h3>FEBS letters; 1990</h3>
+                    <p>The human placental receptor (alpha 2MR) for alpha 2-macroglobulin-proteinase complexes contains 3 polypeptides of approx. 500 kDa, 85 kDa, and 40 kDa. N-terminal sequence analysis of the 500 kDa and 85 kDa polypeptides, analysis of a random selection of peptides convering 536 residues from these polypeptides, and analysis of a 1772 bp cDNA encoding part of the 500 kDa polypeptide provide evidence that the 500 kDa and 85 kDa chains are the alpha- and beta-subunits, respectively, of a recently cloned hepatic membrane protein, termed the low density lipoprotein receptor related protein (LRP) (Herz, J., Hamann, U., Rogne, S., Myklebost, O., Gausepohl, H. and Stanley, K.K. (1988) EMBO J. 7, 4119-4127; Herz, J., Kowal, R.C., Goldstein, J.L. and Brown, M.S. (1990) EMBO J. 9, 1769-1776). N-terminal sequence analysis of the 40 kDa polypeptide shows that it is of distinct genetic origin. It is suggested that LRP is the functional receptor for alpha 2-macroglobulin-proteinase complexes (alpha 2MR) and in addition may have as yet unsettled functions in lipoprotein metabolism.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1702392/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10652313" class="tabcontent ">
+                    <h2>NMR solution structure of complement-like repeat CR3 from the low density lipoprotein receptor-related protein. Evidence for specific binding to the receptor binding domain of human alpha(2)-macroglobulin.</h2>
+                    <h3>The Journal of biological chemistry; 2000</h3>
+                    <p>We have used NMR methods to determine the structure of the calcium complex of complement-like repeat 3 (CR3) from the low density lipoprotein receptor-related protein (LRP) and to examine its specific interaction with the receptor binding domain of human alpha(2)-macroglobulin. CR3 is one of eight related repeats that constitute a major ligand binding region of LRP. The structure is very similar in overall fold to homologous complement-like repeat CR8 from LRP and complement-like repeats LB1, LB2, and LB5 from the low density lipoprotein receptor and contains a short two-strand antiparallel beta-sheet, a one turn alpha-helix, and a high affinity calcium site with coordination from four carboxyls and two backbone carbonyls. The surface electrostatics and topography are, however, quite distinct from each of these other repeats. Two-dimensional (1)H,(15)N-heteronuclear single quantum coherence spectra provide evidence for a specific, though relatively weak (K(d) approximately 140 microM), interaction between CR3 and human alpha2-macroglobulin receptor binding domain that involves a contiguous patch of surface residues in the central region of CR3. This specific interaction is consistent with a mode of LRP binding to ligands that uses contributions from more than one domain to generate a wide array of different binding sites, each with overall high affinity.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10652313/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12194978" class="tabcontent ">
+                    <h2>The role of Grp 78 in alpha 2-macroglobulin-induced signal transduction. Evidence from RNA interference that the low density lipoprotein receptor-related protein is associated with, but not necessary for, GRP 78-mediated signal transduction.</h2>
+                    <h3>The Journal of biological chemistry; 2002</h3>
+                    <p>The low density lipoprotein receptor-related protein (LRP) is a scavenger receptor that binds to many proteins, some of which trigger signal transduction. Receptor-recognized forms of alpha(2)-Macroglobulin (alpha(2)M*) bind to LRP, but the pattern of signal transduction differs significantly from that observed with other LRP ligands. For example, neither Ni(2+) nor the receptor-associated protein, which blocks binding of all known ligands to LRP, block alpha(2)M*-induced signal transduction. In the current study, we employed alpha(2)-macroglobulin (alpha(2)M)-agarose column chromatography to purify cell surface membrane binding proteins from 1-LN human prostate cancer cells and murine macrophages. The predominant binding protein purified from 1-LN prostate cancer cells was Grp 78 with small amounts of LRP, a fact that is consistent with our previous observations that there is little LRP present on the surface of these cells. The ratio of LRP:Grp 78 is much higher in macrophages. Flow cytometry was employed to demonstrate the presence of Grp 78 on the cell surface of 1-LN cells. Purified Grp 78 binds to alpha(2)M* with high affinity (K(d) approximately 150 pm). A monoclonal antibody directed against Grp 78 both abolished alpha(2)M*-induced signal transduction and co-precipitated LRP. Ligand blotting with alpha(2)M* showed binding to both Grp 78 and LRP heavy chains in these preparations. Use of RNA interference to silence LRP expression had no effect on alpha(2)M*-mediated signaling. We conclude that Grp 78 is essential for alpha(2)M*-induced signal transduction and that a "co-receptor" relationship exists with LRP like that seen with several other ligands and receptors such as the uPA/uPAR (urinary type plasminogen activator or urokinase/uPA receptor) system.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12194978/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

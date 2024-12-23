@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CXCL13——CXCR5 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CXCL13——CXCR5</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9463416')">9463416</button><button class="tablinks " onclick="openTab(event, 'tab9486651')">9486651</button><button class="tablinks " onclick="openTab(event, 'tab9463416')">9463416</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9463416" class="tabcontent active">
+                    <h2>B cell-attracting chemokine 1, a human CXC chemokine expressed in lymphoid tissues, selectively attracts B lymphocytes via BLR1/CXCR5.</h2>
+                    <h3>The Journal of experimental medicine; 1998</h3>
+                    <p>Although most leukocytes, T lymphocytes in particular, respond to several different chemokines, there is virtually no information on chemokine activities and chemokine receptors in B lymphocytes. A putative chemokine receptor, BLR1, that is expressed in Burkitt's lymphoma cells and B lymphocytes was cloned a few years ago. Deletion of the gene for BLR1 yielded mice with abnormal primary follicles and germinal centers of the spleen and Peyer's patches, reflecting the inability of B lymphocytes to migrate into B cell areas. By screening expressed sequence tag DNA sequences, we have identified a CXC chemokine, termed B cell-attracting chemokine 1 (BCA-1), that is chemotactic for human B lymphocytes. BCA-1 cDNA encodes a protein of 109 amino acids with a leader sequence of 22 residues. The mature protein shares 23-34% identical amino acids with known CXC chemokines and is constitutively expressed in secondary lymphoid organs. BCA-1 was chemically synthesized and tested for activity on murine pre-B cells 300-19 transfected with BLR1 and on human blood B lymphocytes. In transfected cells, BCA-1 induced chemotaxis and Ca2+ mobilization demonstrating that it acts via BLR1. Under the same conditions, no activity was obtained with 10 CXC and 19 CC chemokines, lymphotactin, neurotactin/fractalkine and several other peptide ligands. BCA-1 was also a highly effective attractant for human blood B lymphocytes (which express BLR1), but was inactive on freshly isolated or IL-2-stimulated T lymphocytes, monocytes, and neutrophils. In agreement with the nomenclature rules for chemokine receptors, we propose the term CXCR5 for BLR1. Together with the observed disturbance of B cell colonization in BLR1/ CXCR5-deficient mice, the present results indicate that chemotactic recruitment by locally produced BCA-1 is important for the development of B cell areas of secondary lymphoid tissues.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9463416/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9486651" class="tabcontent ">
+                    <h2>A B-cell-homing chemokine made in lymphoid follicles activates Burkitt's lymphoma receptor-1.</h2>
+                    <h3>Nature; 1998</h3>
+                    <p>Secondary lymphoid organs (spleen, lymph nodes and Peyer's patches) are divided into compartments, such as B-cell zones (follicles) and T-cell zones, which provide specialized environments for specific steps of the immune response. Migration of lymphocyte subsets into these compartments is essential for normal immune function, yet the molecular cues guiding this cellular traffic are poorly defined. Chemokines constitute a family of chemotactic cytokines that have been shown to direct the migration of leukocytes during inflammation and which may be involved in the constitutive homing of lymphocytes into follicles and T-cell zones. Here we describe a novel chemokine, B-lymphocyte chemoattractant (BLC), that is strongly expressed in the follicles of Peyer's patches, the spleen and lymph nodes. BLC strongly attracts B lymphocytes while promoting migration of only small numbers of T cells and macrophages, and therefore is the first chemokine to be identified that is selective towards B cells. An orphan chemokine receptor, Burkitt's lymphoma receptor 1 (BLR-1), has been found to be required for B-cell migration into lymphoid follicles. We show that BLC stimulates calcium influx into, and chemotaxis of, cells transfected with BLR-1. Our results indicate that BLC functions as a BLR-1 ligand and may guide B lymphocytes to follicles in secondary lymphoid organs.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9486651/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9463416" class="tabcontent ">
+                    <h2>B cell-attracting chemokine 1, a human CXC chemokine expressed in lymphoid tissues, selectively attracts B lymphocytes via BLR1/CXCR5.</h2>
+                    <h3>The Journal of experimental medicine; 1998</h3>
+                    <p>Although most leukocytes, T lymphocytes in particular, respond to several different chemokines, there is virtually no information on chemokine activities and chemokine receptors in B lymphocytes. A putative chemokine receptor, BLR1, that is expressed in Burkitt's lymphoma cells and B lymphocytes was cloned a few years ago. Deletion of the gene for BLR1 yielded mice with abnormal primary follicles and germinal centers of the spleen and Peyer's patches, reflecting the inability of B lymphocytes to migrate into B cell areas. By screening expressed sequence tag DNA sequences, we have identified a CXC chemokine, termed B cell-attracting chemokine 1 (BCA-1), that is chemotactic for human B lymphocytes. BCA-1 cDNA encodes a protein of 109 amino acids with a leader sequence of 22 residues. The mature protein shares 23-34% identical amino acids with known CXC chemokines and is constitutively expressed in secondary lymphoid organs. BCA-1 was chemically synthesized and tested for activity on murine pre-B cells 300-19 transfected with BLR1 and on human blood B lymphocytes. In transfected cells, BCA-1 induced chemotaxis and Ca2+ mobilization demonstrating that it acts via BLR1. Under the same conditions, no activity was obtained with 10 CXC and 19 CC chemokines, lymphotactin, neurotactin/fractalkine and several other peptide ligands. BCA-1 was also a highly effective attractant for human blood B lymphocytes (which express BLR1), but was inactive on freshly isolated or IL-2-stimulated T lymphocytes, monocytes, and neutrophils. In agreement with the nomenclature rules for chemokine receptors, we propose the term CXCR5 for BLR1. Together with the observed disturbance of B cell colonization in BLR1/ CXCR5-deficient mice, the present results indicate that chemotactic recruitment by locally produced BCA-1 is important for the development of B cell areas of secondary lymphoid tissues.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9463416/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

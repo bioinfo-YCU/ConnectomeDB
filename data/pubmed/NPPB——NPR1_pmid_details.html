@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>NPPB——NPR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for NPPB——NPR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab8700153')">8700153</button><button class="tablinks " onclick="openTab(event, 'tab7901875')">7901875</button><button class="tablinks " onclick="openTab(event, 'tab1309330')">1309330</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab8700153" class="tabcontent active">
+                    <h2>Novel natriuretic peptide receptor/guanylyl cyclase A-selective agonist inhibits angiotensin II- and forskolin-evoked aldosterone synthesis in a human zona glomerulosa cell line.</h2>
+                    <h3>Molecular pharmacology; 1996</h3>
+                    <p>We report the production of a novel human natriuretic peptide receptor/guanylyl cyclase A (hNPR-A)-selective agonist ANP [G9T, R11S, G16R] (sANP). This agonist has similar affinity to ANP for hNPR-A and 1,000-10,000-fold reduced affinity for the human natriuretic peptide clearance receptor (hNPR-C). sANP was used to directly test the hypothesis that hNPR-A mediates the inhibitory effect of natriuretic peptides on aldosterone generation in a human zona glomerulosa cell line, H295R. Human type A natriuretic peptide and sANP (10(-11) to 10(-6) M) resulted in concentration-dependent increases in cGMP levels and decreases in forskolin (100 nM)- and angiotensin II (5 nM)-induced aldosterone and pregnenolone production. These results revealed an inhibitory effect of both peptides on the agonist-stimulated conversion of cholesterol to pregnenolone (i.e., cytochrome P-450 cholesterol monooxygenase side-chain cleaving enzyme, EC 1.14.15.6). H295R cells also exhibited angiotensin II- and forskolin-evoked conversion of [3H]cortico-sterone to [3H]aldosterone (i.e., cytochrome P-450 steroid 11 beta-monooxygenase/aldosterone synthase, EC 1.14.15.4). Human type A natriuretic peptide and sANP (10(-7) M) inhibited the angiotensin II-stimulated late pathway but did not affect forskolin-facilitated conversion of corticosterone to aldosterone. Our results directly demonstrate inhibitory effects of hNPR-A-mediated signal transduction on cytochrome P-450 cholesterol monooxygenase side-chain cleaving enzyme and steroid 11 beta-monooxygenase/aldosterone synthase complex depending on the steroidogenic agonist used.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8700153/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7901875" class="tabcontent ">
+                    <h2>Characterization of binding sites in rat for A, B and C-type natriuretic peptides.</h2>
+                    <h3>Regulatory peptides; 1993</h3>
+                    <p>Binding studies, affinity cross-linking and guanylate cyclase assays allowed a comparison of receptors with which the rat forms of atrial/A-type natriuretic peptide (rANP), brain/B-type natriuretic peptide (rBNP) and C-type natriuretic peptide (rCNP) interact in rat kidney cortex and lung. This work represents the first study in which the rat form of BNP (= rBNP-45/iso-rANP(1-45)) has been used as a radiolabelled tracer to further characterize its receptors in these tissues. In addition, these studies stress the use of the same species of natriuretic peptide and assay system, an important experimental des ign given that BNPs show species-specific differences in structure. rBNP-45 bound with lower affinity to rANP (99-126) receptors, namely guanylate cyclase-linked receptor(s) and C-receptor. No receptor which interacted with only rBNP-45 was detectable in lung and kidney cortex. Since rBNP-45 interacted preferentially with the C-receptor and was less potent than rANP(99-126) in stimulating glomerular guanylate cyclase, rBNP-45 may signal through another second messenger in addition to cyclic GMP. Work with truncated analogues of this hormone pinpointed regions of this peptide which may contribute to receptor binding affinity and guanylate cyclase activation. CNP-22 bound to only a subset of ANP receptors and was least effective in stimulating glomerular guanylate cyclase, suggesting a differential mode of action from ANP.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7901875/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab1309330" class="tabcontent ">
+                    <h2>Receptor selectivity of natriuretic peptide family, atrial natriuretic peptide, brain natriuretic peptide, and C-type natriuretic peptide.</h2>
+                    <h3>Endocrinology; 1992</h3>
+                    <p>To elucidate the ligand-receptor relationship of the natriuretic peptide system, which comprises at least three endogenous ligands, atrial natriuretic peptide (ANP), brain natriuretic peptide (BNP), and C-type natriuretic peptide (CNP), and three receptors, the ANP-A receptor or guanylate cyclase-A (GC-A), the ANP-B receptor or guanylate cyclase-B (GC-B), and the clearance receptor (C-receptor), we characterized the receptor preparations from human, bovine, and rat tissues and cultured cells with the aid of the binding assay, Northern blot technique, and the cGMP production method. Using these receptor preparations, we examined the binding affinities of ANP, BNP, and CNP for the C-receptor and their potencies for cGMP production via the ANP-A receptor (GC-A) and the ANP-B receptor (GC-B). These analyses revealed the presence of a marked species difference in the receptor selectivity of the natriuretic peptide family, especially among BNPs. Therefore, we investigated the receptor selectivity of the natriuretic peptide family using the homologous assay system with endogenous ligands and receptors of the same species. The rank order of binding affinity for the C-receptor was ANP greater than CNP greater than BNP in both humans and rats. The rank order of potency for cGMP production via the ANP-A receptor (GC-A) was ANP greater than or equal to BNP much greater than CNP, but that via the ANP-B receptor (GC-B) was CNP greater than ANP greater than or equal to BNP. These findings on the receptor selectivity of the natriuretic peptide family provide a new insight into the understanding of the physiological and clinical implications of the natriuretic peptide system.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1309330/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

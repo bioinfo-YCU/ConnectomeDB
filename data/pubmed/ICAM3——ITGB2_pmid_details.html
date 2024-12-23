@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>ICAM3——ITGB2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for ICAM3——ITGB2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15728350')">15728350</button><button class="tablinks " onclick="openTab(event, 'tab11353828')">11353828</button><button class="tablinks " onclick="openTab(event, 'tab7822326')">7822326</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15728350" class="tabcontent active">
+                    <h2>An atomic resolution view of ICAM recognition in a complex between the binding domains of ICAM-3 and integrin alphaLbeta2.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 2005</h3>
+                    <p>Within the Ig superfamily (IgSF), intercellular adhesion molecules (ICAMs) form a subfamily that binds the leukocyte integrin alphaLbeta2. We report a 1.65-A-resolution crystal structure of the ICAM-3 N-terminal domain (D1) in complex with the inserted domain, the ligand-binding domain of alphaLbeta2. This high-resolution structure and comparisons among ICAM subfamily members establish that the binding of ICAM-3 D1 onto the inserted domain represents a common docking mode for ICAM subfamily members. The markedly different off-rates of ICAM-1, -2, and -3 appear to be determined by the hydrophobicity of residues that surround a metal coordination bond in the alphaLbeta2-binding interfaces. Variation in composition of glycans on the periphery of the interfaces influences on-rate.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15728350/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11353828" class="tabcontent ">
+                    <h2>Reversibly locking a protein fold in an active conformation with a disulfide bond: integrin alphaL I domains with high affinity and antagonist activity in vivo.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 2001</h3>
+                    <p>The integrin alphaLbeta2 has three different domains in its headpiece that have been suggested to either bind ligand or to regulate ligand binding. One of these, the inserted or I domain, has a fold similar to that of small G proteins. The I domain of the alphaM and alpha2 subunits has been crystallized in both open and closed conformations; however, the alphaL I domain has been crystallized in only the closed conformation. We hypothesized that the alphaL domain also would have an open conformation, and that this would be the ligand binding conformation. Therefore, we introduced pairs of cysteine residues to form disulfides that would lock the alphaL I domain in either the open or closed conformation. Locking the I domain open resulted in a 9,000-fold increase in affinity to intercellular adhesion molecule-1 (ICAM-1), which was reversed by disulfide reduction. By contrast, the affinity of the locked closed conformer was similar to wild type. Binding completely depended on Mg(2+). Orders of affinity were ICAM-1 > ICAM-2 > ICAM-3. The k(on), k(off), and K(D) values for the locked open I domain were within 1.5-fold of values previously determined for the alphaLbeta2 complex, showing that the I domain is sufficient for full affinity binding to ICAM-1. The locked open I domain antagonized alphaLbeta2-dependent adhesion in vitro, lymphocyte homing in vivo, and firm adhesion but not rolling on high endothelial venules. The ability to reversibly lock a protein fold in an active conformation with dramatically increased affinity opens vistas in therapeutics and proteomics.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11353828/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7822326" class="tabcontent ">
+                    <h2>Analysis of the binding site on intercellular adhesion molecule 3 for the leukocyte integrin lymphocyte function-associated antigen 1.</h2>
+                    <h3>The Journal of biological chemistry; 1995</h3>
+                    <p>Intercellular adhesion molecule 3 (ICAM-3, CD50) is a member of the immunoglobulin superfamily and is a constitutively expressed ligand for the leukocyte integrin LFA-1 (CD11a/CD18). ICAM-3 is expressed at high levels by all resting leukocyte populations and antigen presenting cells and is a major ligand for LFA-1 in the resting immune system. ICAM-3 is a signal transducer and may play a key role in initiating immune responses. Mutant ICAM-3 Fc-chimeric proteins were quantitatively analyzed for their ability to bind COS cells expressing human LFA-1. The LFA-1-binding site on ICAM-3 is located in the N-terminal 2 Ig domains. Domains 3-5 do not significantly contribute to adhesion. The binding site has been further resolved by rational targeting of 14 point mutations throughout domains 1 and 2, coupled with modeling studies. Within domain 1 a cluster of residues (Glu37, Leu66, Ser68, and Gln75), that are predicted to lie on the CC'FG face of the Ig fold, play a dominant role in LFA-1 binding.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7822326/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

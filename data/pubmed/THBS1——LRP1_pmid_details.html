@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>THBS1——LRP1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for THBS1——LRP1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9045712')">9045712</button><button class="tablinks " onclick="openTab(event, 'tab14991768')">14991768</button><button class="tablinks " onclick="openTab(event, 'tab7775583')">7775583</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9045712" class="tabcontent active">
+                    <h2>Cellular internalization and degradation of thrombospondin-1 is mediated by the amino-terminal heparin binding domain (HBD). High affinity interaction of dimeric HBD with the low density lipoprotein receptor-related protein.</h2>
+                    <h3>The Journal of biological chemistry; 1997</h3>
+                    <p>Thrombospondin-1 (TSP-1) is a large modular trimeric protein that has been proposed to play a diverse role in biological processes. Newly synthesized TSP-1 either is incorporated into the matrix or binds to the cell surface where it is rapidly internalized and degraded. TSP-1 catabolism is mediated by the low density lipoprotein receptor-related protein (LRP), a large endocytic receptor that is a member of the low density lipoprotein receptor family. Using adenovirus-mediated gene transfer experiments, we demonstrate that the very low density lipoprotein receptor can also bind and internalize TSP-1. An objective of the current investigation was to identify the portion of TSP-1 that binds to these endocytic receptors. The current studies found that the amino-terminal heparin binding domain (HBD, residues 1-214) of mouse TSP-1, when prepared as a fusion protein with glutathione S-transferase (GST), bound to purified LRP with an apparent KD ranging from 10 to 25 nM. Recombinant HBD (rHBD) purified following proteolytic cleavage of GST-HBD, also bound to purified LRP, but with an apparent KD of 830 nM. The difference in affinity was attributed to the fact that GST-HBD exists in solution as a dimer, whereas rHBD is a monomer. Like TSP-1, 125I-labeled GST-HBD or 125I-labeled rHBD were internalized and degraded by wild type fibroblasts that express LRP, but not by fibroblasts that are genetically deficient in LRP. The catabolism of both 125I-labeled GST-HBD and rHBD in wild type fibroblast was blocked by the 39-kDa receptor-associated protein, an inhibitor of LRP function. GST-HBD and rHBD both completely blocked catabolism of 125I-labeled TSP-1 in a dose-dependent manner, as did antibodies prepared against the HBD. Taken together, these data provide compelling evidence that the amino-terminal domain of TSP-1 binds to LRP and thus the recognition determinants on TSP-1 for both LRP and for cell surface proteoglycans reside within the same TSP-1 domain. Further, high affinity binding of TSP-1 to LRP likely results from the trimeric structure of TSP-1.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9045712/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab14991768" class="tabcontent ">
+                    <h2>Internalization but not binding of thrombospondin-1 to low density lipoprotein receptor-related protein-1 requires heparan sulfate proteoglycans.</h2>
+                    <h3>Journal of cellular biochemistry; 2004</h3>
+                    <p>The amino-terminal domain of the extracellular matrix (ECM) protein thrombospondin-1 (TSP-1) mediates binding to cell surface heparan sulfate proteoglycans (HSPG) as well as binding to the endocytic receptor, low density lipoprotein-related protein (LRP-1). We previously found that recombinant TSP-1 containing the amino-terminal residues 1-214, retained both of these interactions (Mikhailenko et al. [1997]: J Biol Chem 272:6784-6791). Here, we examined the activity of a recombinant protein containing amino-terminal residues 1-90 of TSP-1 and found that this domain did not retain high-affinity heparin-binding. The loss of heparin-binding correlated with decreased binding to the fibroblast cell surface. However, both ligand blotting and solid phase binding studies indicate that this truncated fragment of TSP-1 retained high-affinity binding to LRP-1. Consistent with this, it also retained the ability to block the uptake and degradation of (125)I-TSP-1. However, TSP-1(1-90) itself was poorly endocytosed and this truncated amino-terminal domain was considerably more effective than the full-length heparin-binding domain (HBD) of TSP-1 in blocking the catabolism of endogenously expressed TSP-1. These results indicate that TSP-1 binding to LRP-1 does not require prior or concomitant interaction with cell surface HSPG but suggest subsequent endocytosis requires high-affinity heparin-binding.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14991768/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7775583" class="tabcontent ">
+                    <h2>Identification of the low density lipoprotein receptor-related protein (LRP) as an endocytic receptor for thrombospondin-1.</h2>
+                    <h3>The Journal of cell biology; 1995</h3>
+                    <p>Thrombospondin-1 (TSP1) has potent biological effects on vasculature smooth muscle cells (SMCs) and endothelial cells. The regulation of extracellular accumulation of TSP1 is mediated by a previously obscure process of endocytosis which leads to its lysosomal degradation. Since members of the low density lipoprotein receptor (LDLR) family have been found to mediate endocytosis which leads to degradation of a diverse array of ligands, we evaluated their possible role in the uptake and degradation of TSP1 by vascular SMCs, endothelial-cells and fibroblasts. 125I-TSP1 was found to be internalized and degraded lysosomally by all these cell types. Both the internalization and degradation of 125I-TSP1 could be inhibited by a specific antagonist of the LDLR family, the 39-kD receptor-associated protein (RAP). Antibodies to the LDLR-related protein (LRP) completely blocked the uptake and degradation of 125I-TSP1 in SMCs and fibroblasts but not endothelial cells. Solid-phase binding assays confirmed that LRP bound to TSP1 and that the interaction was of high affinity (Kd = 5 nM). Neither RAP nor LRP antibodies inhibited the binding of 125I-TSP1 to surfaces of SMCs. However, cell surface binding, as well as, endocytosis and degradation could be blocked by heparin or by pre-treatment of the cells with either heparitinase, chondroitinase or beta-D-xyloside. The data indicates that cell surface proteoglycans are involved in the LRP-mediated clearance of TSP1. A model for the clearance of TSP1 by these cells is that TSP1 bound to proteoglycans is presented to LRP for endocytosis. In endothelial cells, however, the internalization of TSP1 was not mediated by LRP but since RAP inhibited TSP1 uptake and degradation, we postulate that another member of the LDLR family is likely to be involved.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7775583/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

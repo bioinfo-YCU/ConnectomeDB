@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL28——CCR10 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL28——CCR10</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10781587')">10781587</button><button class="tablinks " onclick="openTab(event, 'tab10781587')">10781587</button><button class="tablinks " onclick="openTab(event, 'tab10975800')">10975800</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10781587" class="tabcontent active">
+                    <h2>Identification of a novel chemokine (CCL28), which binds CCR10 (GPR2).</h2>
+                    <h3>The Journal of biological chemistry; 2000</h3>
+                    <p>We report the identification and characterization of a novel CC chemokine designated CCL28 and its receptor CCR10, known previously as orphan G-protein-coupled receptor GPR2. Human and mouse CCL28 share 83% identity at the amino acid and 76% at the nucleic acid levels. We also identified the mouse homologues of CCL28 and of CCR10, which map to mouse chromosomes 13 and 11, respectively. CCL28 is expressed in a variety of human and mouse tissues, and it appears to be predominantly produced by epithelial cells. Both human and mouse CCL28 induce calcium mobilization in human and mouse CCR10-expressing transfectants. CCL28 desensitized the calcium mobilization induced in CCR10 transfectants by CCL27, indicating that these chemokines share this new chemokine receptor. In vitro, recombinant human CCL28 displays chemotactic activity for resting CD4 or CD8 T cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10781587/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10781587" class="tabcontent ">
+                    <h2>Identification of a novel chemokine (CCL28), which binds CCR10 (GPR2).</h2>
+                    <h3>The Journal of biological chemistry; 2000</h3>
+                    <p>We report the identification and characterization of a novel CC chemokine designated CCL28 and its receptor CCR10, known previously as orphan G-protein-coupled receptor GPR2. Human and mouse CCL28 share 83% identity at the amino acid and 76% at the nucleic acid levels. We also identified the mouse homologues of CCL28 and of CCR10, which map to mouse chromosomes 13 and 11, respectively. CCL28 is expressed in a variety of human and mouse tissues, and it appears to be predominantly produced by epithelial cells. Both human and mouse CCL28 induce calcium mobilization in human and mouse CCR10-expressing transfectants. CCL28 desensitized the calcium mobilization induced in CCR10 transfectants by CCL27, indicating that these chemokines share this new chemokine receptor. In vitro, recombinant human CCL28 displays chemotactic activity for resting CD4 or CD8 T cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10781587/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10975800" class="tabcontent ">
+                    <h2>A novel chemokine ligand for CCR10 and CCR3 expressed by epithelial cells in mucosal tissues.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 2000</h3>
+                    <p>Mucosae-associated epithelial chemokine (MEC) is a novel chemokine whose mRNA is most abundant in salivary gland, with strong expression in other mucosal sites, including colon, trachea, and mammary gland. MEC is constitutively expressed by epithelial cells; MEC mRNA is detected in cultured bronchial and mammary gland epithelial cell lines and in epithelia isolated from salivary gland and colon using laser capture microdissection, but not in the endothelial, hemolymphoid, or fibroblastic cell lines tested. Although MEC is poorly expressed in skin, its closest homologue is the keratinocyte-expressed cutaneous T cell-attracting chemokine (CTACK; CCL27), and MEC supports chemotaxis of transfected lymphoid cells expressing CCR10, a known CTACK receptor. In contrast to CTACK, however, MEC also supports migration through CCR3. Consistent with this, MEC attracts eosinophils in addition to memory lymphocyte subsets. These results suggest an important role for MEC in the physiology of extracutaneous epithelial tissues, including diverse mucosal organs.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10975800/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

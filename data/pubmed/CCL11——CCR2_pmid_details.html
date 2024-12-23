@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL11——CCR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL11——CCR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12554737')">12554737</button><button class="tablinks " onclick="openTab(event, 'tab15207250')">15207250</button><button class="tablinks " onclick="openTab(event, 'tab11264152')">11264152</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12554737" class="tabcontent active">
+                    <h2>A highly selective CCR2 chemokine agonist encoded by human herpesvirus 6.</h2>
+                    <h3>The Journal of biological chemistry; 2003</h3>
+                    <p>The chemokine-like, secreted protein product of the U83 gene from human herpesvirus 6, here named vCCL4, was chemically synthesized to be characterized in a complete library of the 18 known human chemokine receptors expressed individually in stably transfected cell lines. vCCL4 was found to cause calcium mobilization as efficiently as the endogenous chemokine ligand CCL2 through the CCR2 receptor, whereas the virally encoded chemokine did not affect any of the other 17 human chemokine receptors tested. Mutual cross-desensitization between CCL2 and vCCL4 was demonstrated in the CCR2-transfected cells. The affinity of vCCL4 for the CCR2 receptor was 79 nm as determined in competition binding against radioactively labeled CCL2. In the murine pre-B lymphocyte cell line L1.2 stably transfected with the CCR2 receptor, vCCL4 acted as a relatively low potency but highly efficacious chemoattractant being equally or more efficacious in causing cell migration than CCL2 and CCL7 and considerably more efficacious than CCL8 and CCL13. It is concluded that human herpesvirus 6 encodes a highly selective and efficacious CCR2 agonist, which will attract CCR2 expressing cells, for example macrophages and monocytes, conceivably for the virus to infect and to establish latency in. It is suggested that vCCL4 during reactivation of the virus in for example monocyte-derived microglia could perhaps be involved in the pathogenesis of the CCR2-dependent disease, multiple sclerosis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12554737/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15207250" class="tabcontent ">
+                    <h2>High level expression, activation, and antagonism of CC chemokine receptors CCR2 and CCR3 in Chinese hamster ovary cells.</h2>
+                    <h3>Cytokine; 2004</h3>
+                    <p>The specificity of leukocyte trafficking in inflammation is controlled by the interactions of chemokines with chemokine receptors. Reliable structure-function studies of chemokine-receptor interactions would benefit from cell lines that express consistent high levels of chemokine receptors. We describe herein two new Chinese hamster ovary (CHO) cell lines in which the genes for chemokine receptors CCR2 and CCR3 have been incorporated into identical positions in the host genome. CCR2 is the primary receptor for the chemokine monocyte chemoattractant protein-1 (MCP-1) whereas CCR3 is the primary receptor for the chemokines eotaxin-1, eotaxin-2 and eotaxin-3. Both receptors are expressed at >5,000,000 copies per cell, substantially higher levels than in previous cell lines, and both are competent for binding and activation by the cognate chemokines for these receptors. Using these cell lines we confirm that eotaxin-1 and eotaxin-3 can act as an agonist and an antagonist, respectively, of CCR2. In addition, we show that eotaxin-2 is an antagonist of CCR2 and MCP-1 is an agonist of CCR3. Comparison of the chemokine sequences reveals several positions that are identical in MCP-1 and eotaxin-1 but different in eotaxin-2 and eotaxin-3, suggesting that these amino acids play a role in CCR2 activation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15207250/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11264152" class="tabcontent ">
+                    <h2>Eotaxin is a natural antagonist for CCR2 and an agonist for CCR5.</h2>
+                    <h3>Blood; 2001</h3>
+                    <p>Eotaxin is a potent inducer of eosinophil chemotaxis and was considered as a selective ligand of the CC chemokine receptor 3 (CCR3), which is expressed on eosinophils, basophils, and Th2 lymphocytes. This study shows that eotaxin also interacts with CCR2 and CCR5 and can, thus, affect the responses of monocytes, which express both receptors. In human monocytes pretreatment with eotaxin decreased responsiveness to MCP-1, a selective ligand for CCR2, as well as to RANTES and MIP-1 beta, which bind to CCR5. Similar effects were obtained with transfected cells expressing CCR2 or CCR5, but here a difference became apparent: Eotaxin triggered CCR5 at a concentration of 100 nM but not CCR2 even at 1 microM, suggesting an antagonistic effect on this receptor. In agreement with this observation, eotaxin induced internalization of CCR5 but not of CCR2 in human monocytes and transfected cells. Binding studies showed that eotaxin displaces (125) I-MCP-1 from monocytes in a concentration-dependent manner, and functional experiments showed that eotaxin inhibits MCP-1-induced chemotaxis and enzyme release. The results demonstrate that eotaxin is a CCR5 agonist and a CCR2 antagonist. The present findings suggest a role of eotaxin in the fine-tuning of cellular responses occurring at sites of allergic inflammation, in which both MCP-1 and eotaxin are produced. (Blood. 2001;97:1920-1924)</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11264152/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

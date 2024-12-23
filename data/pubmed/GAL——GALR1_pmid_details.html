@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>GAL——GALR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for GAL——GALR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10689365')">10689365</button><button class="tablinks " onclick="openTab(event, 'tab11481429')">11481429</button><button class="tablinks " onclick="openTab(event, 'tab9168941')">9168941</button><button class="tablinks " onclick="openTab(event, 'tab9685625')">9685625</button><button class="tablinks " onclick="openTab(event, 'tab9808667')">9808667</button><button class="tablinks " onclick="openTab(event, 'tab9880084')">9880084</button><button class="tablinks " onclick="openTab(event, 'tab7524088')">7524088</button><button class="tablinks " onclick="openTab(event, 'tab11600206')">11600206</button><button class="tablinks " onclick="openTab(event, 'tab8617199')">8617199</button><button class="tablinks " onclick="openTab(event, 'tab9808667')">9808667</button><button class="tablinks " onclick="openTab(event, 'tab7524088')">7524088</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10689365" class="tabcontent active">
+                    <h2>Galanin receptor subtypes.</h2>
+                    <h3>Trends in pharmacological sciences; 2000</h3>
+                    <p>The neuropeptide galanin, which is widely expressed in brain and peripheral tissues, exerts a broad range of physiological effects. Pharmacological studies using peptide analogues have led to speculation about multiple galanin receptor subtypes. Since 1994, a total of three G-protein-coupled receptor (GPCR) subtypes for galanin have been cloned (GAL1, gal2 and gal3). Potent, selective antagonists are yet to be found for any of the cloned receptors. Major challenges in this field include linking the receptor clones with each of the known physiological actions of galanin and evaluating the evidence for additional galanin receptor subtypes.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10689365/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11481429" class="tabcontent ">
+                    <h2>Receptor subtype-specific pronociceptive and analgesic actions of galanin in the spinal cord: selective actions via GalR1 and GalR2 receptors.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 2001</h3>
+                    <p>Galanin is a 29-aa neuropeptide with a complex role in pain processing. Several galanin receptor subtypes are present in dorsal root ganglia and spinal cord with a differential distribution. Here, we describe a generation of a specific galanin R2 (GalR2) agonist, AR-M1896, and its application in studies of a rat neuropathic pain model (Bennett). The results show that in normal rats mechanical and cold allodynia of the hindpaw are induced after intrathecal infusion of low-dose galanin (25 ng per 0.5 microl/h). The same effect is seen with equimolar doses of AR-M1896 or AR-M961, an agonist both at GalR1 and GalR2 receptors. In allodynic Bennett model rats, the mechanical threshold increased dose-dependently after intrathecal injection of a high dose of AR-M961, whereas no effect was observed in the control or AR-M1896 group. No effect of either of the two compounds was observed in nonallodynic Bennett model rats. These data indicate that a low dose of galanin has a nociceptive role at the spinal cord level mediated by GalR2 receptors, whereas the antiallodynic effect of high-dose galanin on neuropathic pain is mediated by the GalR1 receptors. Thus, a selective GalR1 agonist may be used to treat neuropathic pain.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11481429/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9168941" class="tabcontent ">
+                    <h2>Pharmacological characterization and tissue distribution of the human and rat GALR1 receptors.</h2>
+                    <h3>Biochemical and biophysical research communications; 1997</h3>
+                    <p>The diverse biological functions of galanin are mediated via membrane bound high-affinity receptors. In order to identify and characterize potential galanin receptor subtypes, we have examined the specific 125I-galanin binding to the CHP-212 human neuroblastoma cell line. The galanin receptors expressed in CHP-212 cells, like GALR1 have high affinity for galanin (Kd = 0.07 nM) and the potency for inhibition of 125I-galanin binding by galanin peptides parallels that of hGALR1 expressed in a stable CHO cell line. We confirmed that GALR1 is expressed in these cells by RT-PCR. We further determined the tissue expression patterns of hGALR1 which is expressed in a variety of human tissues at a very low level, with the highest levels seen in heart, small intestine and prostate. A species of approximately 70 kDa is recognized by antisera specific for hGALR1 by Western blot analysis and should allow future measurements of receptor protein expression.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9168941/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9685625" class="tabcontent ">
+                    <h2>Molecular characterization, pharmacological properties and chromosomal localization of the human GALR2 galanin receptor.</h2>
+                    <h3>Brain research. Molecular brain research; 1998</h3>
+                    <p>The neuropeptide galanin mediates a diverse spectrum of biological activities by interacting with specific G protein-coupled receptors. We have used homology genomic library screening and polymerase chain reaction (PCR) techniques to isolate both genomic and cDNA clones encoding the human homolog of the recently cloned rat GALR2 galanin receptor. By fluorescence in situ hybridization, the gene encoding human GALR2 (GALNR2) has been localized to chromosome 17q25.3. The two coding exons of the human GALNR2 gene, interrupted by an intron positioned at the end of transmembrane domain III, encode a 387 amino acid G protein-coupled receptor with 87% overall amino acid identity with rat GALR2. In HEK-293 cells stably expressing human GALR2, binding of [125I]porcine galanin is saturable and can be displaced by galanin, amino-terminal galanin fragments and chimeric galanin peptides but not by carboxy-terminal galanin fragments. In HEK-293 cells, human GALR2 couples both to Galphaq/11 to stimulate phospholipase C and increase intracellular calcium levels and to Galphai/o to inhibit forskolin-stimulated intracellular cAMP accumulation. A wide tissue distribution is observed by reverse transcriptase (RT)-PCR analysis, with human GALR2 mRNA being detected in many areas of the human central nervous system as well as in peripheral tissues.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9685625/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9808667" class="tabcontent ">
+                    <h2>Pharmacological and biochemical characterization of a recombinant human galanin GALR1 receptor: agonist character of chimeric galanin peptides.</h2>
+                    <h3>The Journal of pharmacology and experimental therapeutics; 1998</h3>
+                    <p>The galanin neuropeptide system is widely distributed throughout the brain and periphery and is thought to play a role in feeding, pain and reproduction. To evaluate the human galanin receptor 1 as a potential therapeutic target, we fully characterized its interaction with several galanin-like peptides. The human galanin receptor 1 receptor was stably expressed using an episomal system in human embryonic kidney 293E cells. Saturation isotherms using 125I-human galanin revealed two distinct populations of receptor affinity states in membranes and whole cells with picomolar and nanomolar affinities at the high- and low affinity states, respectively. A scintillation proximity assay revealed that 125I-human galanin binding in membranes reached steady-state within 2 to 2.5 hr; however, only 50% of galanin radiolabel dissociated from the receptors by excess galanin or guanosine 5'-O-3-thiotriphosphate even after 20 hr. In contrast, galanin binding in whole cells was completely reversible within 1 hr. Competition binding assays showed that galanin-like peptides bound with picomolar affinities in membranes and whole cells. These peptides behaved as full agonists as determined by the inhibition of forskolin-stimulated cyclic 3'5'-adenosine monophosphate production and the stimulation of guanosine 5'-O-(3-[35S]thiotriphosphate binding. The agonist profile of M40, a representative chimeric peptide, was found not to be the result of receptor reserve because receptor inactivation by partial alkylation experiments confirmed its full intrinsic efficacy under conditions of a "zero" reserve state. These observations suggest that the antagonist effects in vivo of M40, and perhaps other chimeric peptides, are not mediated via direct interactions with the galanin receptor 1 receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9808667/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9880084" class="tabcontent ">
+                    <h2>Cloning and characterization of the human galanin GALR2 receptor.</h2>
+                    <h3>Peptides; 1998</h3>
+                    <p>We present the molecular cloning and characterization of the human galanin receptor, hGALR2. hGALR2 shares 85%, 39%, and 57% amino acid identities to rGALR2, hGALR1, and hGALR3, respectively. hGALR2, along with rGALR2, can be distinguished from the other cloned galanin receptors by a tolerance for both N-terminal extension and C-terminal deletion of galanin, as well as by a primary signaling mechanism involving phosphatidyl inositol hydrolysis and calcium mobilization. By RT-PCR, GALR2 mRNA was abundant in human hippocampus, hypothalamus, heart, kidney, liver, and small intestine. A weak GALR2 mRNA signal was detected in human retina, and no signal was detected in cerebral cortex, lung, spleen, stomach, or pituitary.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9880084/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7524088" class="tabcontent ">
+                    <h2>Molecular cloning of a functional human galanin receptor.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1994</h3>
+                    <p>The ubiquitous neuropeptide galanin controls numerous functions such as endocrine secretions, intestinal motility, and behavioral activities. These regulatory effects of galanin are mediated through the interaction with specific membrane receptors and involve the pertussis toxin-sensitive guanine nucleotide binding proteins Gi/Go as transducing elements. We report here the isolation of a cDNA coding for a human galanin receptor from a Bowes melanoma cell line cDNA expression library, by using a radioligand binding strategy. The nucleotide sequence of the cloned receptor reveals an open reading frame encoding a 349-amino acid protein with seven putative hydrophobic transmembrane domains and significant homology with members of the guanine nucleotide binding protein-coupled neuropeptide receptor family. The cloned receptor expressed in COS cells specifically binds human, porcine, and rat galanin with high affinity (Kd in the nanomolar range) and mediates the galanin inhibition of adenylate cyclase. A 2.8-kb galanin receptor transcript was identified in several human tissues. Cloning of this galanin receptor should enhance our knowledge of its distribution, structure, and function in human physiology and pathophysiology.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7524088/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11600206" class="tabcontent ">
+                    <h2>Characterisation of a new chimeric ligand for galanin receptors: galanin(1-13)-[D-Trp(32)]-neuropeptide Y(25-36)amide.</h2>
+                    <h3>Regulatory peptides; 2001</h3>
+                    <p>In this work, we studied a novel chimeric peptide, M242, galanin(1-13)-[D-Trp(32)]-neuropeptide Y(25-36)amide, and examined its properties in comparison with its parent peptide, M32, galanin(1-13)-neuropeptide Y(25-36)amide, a previously known high-affinity ligand for galanin receptors, and galanin itself. Binding assays performed in Bowes cells known to express human galanin receptor type 1 (hGalR1) and in Chinese hamster ovary cells overexpressing human galanin receptor type 2 (hGalR2) revealed that all three ligands had comparable affinities: at hGalR1<1 nM and at hGalR2<10 nM. However, in rat hippocampal membranes M242 had a 24-fold lower affinity than galanin (9.4 vs. 0.4 nM) and 134-fold lower affinity than M32 (9.4 vs. 0.07 nM). In the same tissue, we also examined the effects of these peptides on adenylate cyclase activity. M32 showed a weak antagonistic behaviour but M242 acted as a potent biphasic regulator of adenylate cyclase. In conclusion, we present and characterise a new peptide M242, which could be a useful tool in studies of galaninergic signalling.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11600206/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8617199" class="tabcontent ">
+                    <h2>Delineation of the peptide binding site of the human galanin receptor.</h2>
+                    <h3>The EMBO journal; 1996</h3>
+                    <p>Galanin, a neuroendocrine peptide of 29 amino acids, binds to Gi/Go-coupled receptors to trigger cellular responses. To determine which amino acids of the recently cloned seven-transmembrane domain-type human galanin receptor are involved in the high-affinity binding of the endogenous peptide ligand, we performed a mutagenesis study. Mutation of the His264 or His267 of transmembrane domain VI to alanine, or of Phe282 of transmembrane domain VII to glycine, results in an apparent loss of galanin binding. The substitution of Glu271 to serine in the extracellular loop III of the receptor causes a 12-fold loss in affinity for galanin. We combined the mutagenesis results with data on the pharmacophores (Trp2, Tyr9) of galanin and with molecular modelling of the receptor using bacteriorhodopsin as a model. Based on these studies, we propose a binding site model for the endogenous peptide ligand in the galanin receptor where the N-terminus of galanin hydrogen bonds with Glu271 of the receptor, Trp2 of galanin interacts with the Zn2+ sensitive pair of His264 and His267 of transmembrane domain VI, and Tyr9 of galanin interacts with Phe282 of transmembrane domain VII, while the C-terminus of galanin is pointing towards the N-terminus of th</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8617199/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9808667" class="tabcontent ">
+                    <h2>Pharmacological and biochemical characterization of a recombinant human galanin GALR1 receptor: agonist character of chimeric galanin peptides.</h2>
+                    <h3>The Journal of pharmacology and experimental therapeutics; 1998</h3>
+                    <p>The galanin neuropeptide system is widely distributed throughout the brain and periphery and is thought to play a role in feeding, pain and reproduction. To evaluate the human galanin receptor 1 as a potential therapeutic target, we fully characterized its interaction with several galanin-like peptides. The human galanin receptor 1 receptor was stably expressed using an episomal system in human embryonic kidney 293E cells. Saturation isotherms using 125I-human galanin revealed two distinct populations of receptor affinity states in membranes and whole cells with picomolar and nanomolar affinities at the high- and low affinity states, respectively. A scintillation proximity assay revealed that 125I-human galanin binding in membranes reached steady-state within 2 to 2.5 hr; however, only 50% of galanin radiolabel dissociated from the receptors by excess galanin or guanosine 5'-O-3-thiotriphosphate even after 20 hr. In contrast, galanin binding in whole cells was completely reversible within 1 hr. Competition binding assays showed that galanin-like peptides bound with picomolar affinities in membranes and whole cells. These peptides behaved as full agonists as determined by the inhibition of forskolin-stimulated cyclic 3'5'-adenosine monophosphate production and the stimulation of guanosine 5'-O-(3-[35S]thiotriphosphate binding. The agonist profile of M40, a representative chimeric peptide, was found not to be the result of receptor reserve because receptor inactivation by partial alkylation experiments confirmed its full intrinsic efficacy under conditions of a "zero" reserve state. These observations suggest that the antagonist effects in vivo of M40, and perhaps other chimeric peptides, are not mediated via direct interactions with the galanin receptor 1 receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9808667/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7524088" class="tabcontent ">
+                    <h2>Molecular cloning of a functional human galanin receptor.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1994</h3>
+                    <p>The ubiquitous neuropeptide galanin controls numerous functions such as endocrine secretions, intestinal motility, and behavioral activities. These regulatory effects of galanin are mediated through the interaction with specific membrane receptors and involve the pertussis toxin-sensitive guanine nucleotide binding proteins Gi/Go as transducing elements. We report here the isolation of a cDNA coding for a human galanin receptor from a Bowes melanoma cell line cDNA expression library, by using a radioligand binding strategy. The nucleotide sequence of the cloned receptor reveals an open reading frame encoding a 349-amino acid protein with seven putative hydrophobic transmembrane domains and significant homology with members of the guanine nucleotide binding protein-coupled neuropeptide receptor family. The cloned receptor expressed in COS cells specifically binds human, porcine, and rat galanin with high affinity (Kd in the nanomolar range) and mediates the galanin inhibition of adenylate cyclase. A 2.8-kb galanin receptor transcript was identified in several human tissues. Cloning of this galanin receptor should enhance our knowledge of its distribution, structure, and function in human physiology and pathophysiology.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7524088/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

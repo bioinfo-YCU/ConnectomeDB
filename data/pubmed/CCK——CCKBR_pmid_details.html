@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCK——CCKBR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCK——CCKBR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10368033')">10368033</button><button class="tablinks " onclick="openTab(event, 'tab10438490')">10438490</button><button class="tablinks " onclick="openTab(event, 'tab8349705')">8349705</button><button class="tablinks " onclick="openTab(event, 'tab7681836')">7681836</button><button class="tablinks " onclick="openTab(event, 'tab10438490')">10438490</button><button class="tablinks " onclick="openTab(event, 'tab12695525')">12695525</button><button class="tablinks " onclick="openTab(event, 'tab15068617')">15068617</button><button class="tablinks " onclick="openTab(event, 'tab15520004')">15520004</button><button class="tablinks " onclick="openTab(event, 'tab15001692')">15001692</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10368033" class="tabcontent active">
+                    <h2>CCK-B receptor: chemistry, molecular biology, biochemistry and pharmacology.</h2>
+                    <h3>Progress in neurobiology; 1999</h3>
+                    <p>Cholecystokinin (CCK) is a peptide originally discovered in the gastrointestinal tract but also found in high density in the mammalian brain. The C-terminal sulphated octapeptide fragment of cholecystokinin (CCK8) constitutes one of the major neuropeptides in the brain; CCK8 has been shown to be involved in numerous physiological functions such as feeding behavior, central respiratory control and cardiovascular tonus, vigilance states, memory processes, nociception, emotional and motivational responses. CCK8 interacts with nanomolar affinities with two different receptors designated CCK-A and CCK-B. The functional role of CCK and its binding sites in the brain and periphery has been investigated thanks to the development of potent and selective CCK receptor antagonists and agonists. In this review, the strategies followed to design these probes, and their use to study the anatomy of CCK pathways, the neurochemical and pharmacological properties of this peptide and the clinical perspectives offered by manipulation of the CCK system will be reported. The physiological and pathological implication of CCK-B receptor will be confirmed in CCK-B receptor deficient mice obtained by gene targeting (Nagata el al., 1996. Proc. Natl. Acad. Sci. USA 93, 11825-11830). Moreover, CCK receptor gene structure, deletion and mutagenesis experiments, and signal transduction mechanisms will be discussed.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10368033/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10438490" class="tabcontent ">
+                    <h2>Evidence for a direct interaction between the penultimate aspartic acid of cholecystokinin and histidine 207, located in the second extracellular loop of the cholecystokinin B receptor.</h2>
+                    <h3>The Journal of biological chemistry; 1999</h3>
+                    <p>Recently, we reported that the mutation of His(207) to Phe located in the second extracellular loop of the cholecystokinin B receptor strongly affected cholecystokinin (CCK) binding (Silvente-Poirot, S., Escrieut, C., and Wank, S. A. (1998) Mol. Pharmacol. 54, 364-371). To characterize the functional group in CCK that interacts with His(207), we first substituted His(207) to Ala. This mutation decreased the affinity and the potency of CCK to produce total inositol phosphates 302-fold and 456-fold without affecting the expression of the mutant receptor. The screening of L-alanine-modified CCK peptides to bind and activate the wild type and mutant receptors allowed the identification of the interaction of the C-terminal Asp(8) of CCK with His(207). The H207A-CCKBR mutant, unlike the wild type receptor, was insensitive to substitution of Asp(8) of CCK to other amino acid residues. This interaction was further confirmed by mutating His(207) to Asp. The affinity of CCK for the H207D-CCKBR mutant was 100-fold lower than for the H207A-CCKBR mutant, consistent with an electrostatic repulsion between the negative charges of the two interacting aspartic acids. Peptides with neutral amino acids in position eight of CCK reversed this effect and displayed a gain of affinity for the H207D mutant compared with CCK. To date, this is the first report concerning the identification of a direct contact point between the CCKB receptor and CCK.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10438490/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8349705" class="tabcontent ">
+                    <h2>Functional characterization of a human brain cholecystokinin-B receptor. A trophic effect of cholecystokinin and gastrin.</h2>
+                    <h3>The Journal of biological chemistry; 1993</h3>
+                    <p>We have cloned a human brain cholecystokinin (CCK)-B receptor cDNA and characterized its function by introducing it into Chinese hamster ovary (CHO) cells. The deduced amino acid sequence was highly conserved as compared with those of the gastrin receptors in Mastomys enterochromaffin-like cells (90%) and canine parietal cells (89%). Human brain CCK-B receptors possessed slightly but significantly higher affinities for CCK-8 than for gastrin I, while both ligands bound equally to Mastomys enterochromaffin-like cell-derived gastrin receptors. Both CCK-8 and gastrin I markedly augmented phosphoinositide hydrolysis and cytosolic free calcium levels in the CHO transfectants, indicating that the cloned CCK-B receptor could functionally couple with intracellular signaling molecules. Moreover, CCK-8 and gastrin I dose-dependently increased [3H]thymidine incorporation of the CHO transfectants in serum-free medium and promoted cell growth. The CCK-B receptor mRNA was abundantly expressed in particular areas of the human brain and stomach, such as the cerebral cortex and mucosa of the gastric fundus. This is the first demonstration of trophic effects of CCK and gastrin through the normal human brain CCK-B receptor. The availability of this receptor cDNA will help to clarify the precise role of CCK in the central nervous system as well as digestive organs.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8349705/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7681836" class="tabcontent ">
+                    <h2>The human brain cholecystokinin-B/gastrin receptor. Cloning and characterization.</h2>
+                    <h3>The Journal of biological chemistry; 1993</h3>
+                    <p>The predominant brain cholecystokinin receptor (CCK-B/gastrin) has been implicated in mediating many of the central effects of cholecystokinin, including anxiety, panic attacks, satiety, and analgesia, suggesting it is an important pharmacologic target. We now report the cloning and characterization of the cDNA encoding the human brain CCK-B/gastrin receptor. The cDNA was isolated from a human brain library by low stringency screening using the canine "gastrin" receptor cDNA as a hybridization probe. Nucleotide sequence analysis revealed an open reading frame encoding a 447-amino-acid protein with seven putative hydrophobic transmembrane domains and significant homology with other known members of the gastrin/cholecystokinin receptor family. Agonist and antagonist affinities of the recombinant human brain receptor expressed in COS-7 cells are consistent with a classical "CCK-B" receptor as defined by the literature. In COS-7 cells expressing the cloned receptor, CCK-8-stimulated phosphatidylinositol hydrolysis and intracellular Ca2+ mobilization suggesting second messenger signaling through phospholipase C. CCK-B/gastrin receptor transcripts were identified in human brain, stomach, and pancreas using high stringency Northern blot analysis. Southern blot hybridization analysis of human genomic DNA indicates that a single gene encodes both the brain and the stomach CCK-B/gastrin receptors. Our data suggest that the CCK-B and gastrin receptors are identical and that the long standing distinction between them may no longer apply.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7681836/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10438490" class="tabcontent ">
+                    <h2>Evidence for a direct interaction between the penultimate aspartic acid of cholecystokinin and histidine 207, located in the second extracellular loop of the cholecystokinin B receptor.</h2>
+                    <h3>The Journal of biological chemistry; 1999</h3>
+                    <p>Recently, we reported that the mutation of His(207) to Phe located in the second extracellular loop of the cholecystokinin B receptor strongly affected cholecystokinin (CCK) binding (Silvente-Poirot, S., Escrieut, C., and Wank, S. A. (1998) Mol. Pharmacol. 54, 364-371). To characterize the functional group in CCK that interacts with His(207), we first substituted His(207) to Ala. This mutation decreased the affinity and the potency of CCK to produce total inositol phosphates 302-fold and 456-fold without affecting the expression of the mutant receptor. The screening of L-alanine-modified CCK peptides to bind and activate the wild type and mutant receptors allowed the identification of the interaction of the C-terminal Asp(8) of CCK with His(207). The H207A-CCKBR mutant, unlike the wild type receptor, was insensitive to substitution of Asp(8) of CCK to other amino acid residues. This interaction was further confirmed by mutating His(207) to Asp. The affinity of CCK for the H207D-CCKBR mutant was 100-fold lower than for the H207A-CCKBR mutant, consistent with an electrostatic repulsion between the negative charges of the two interacting aspartic acids. Peptides with neutral amino acids in position eight of CCK reversed this effect and displayed a gain of affinity for the H207D mutant compared with CCK. To date, this is the first report concerning the identification of a direct contact point between the CCKB receptor and CCK.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10438490/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12695525" class="tabcontent ">
+                    <h2>Identification of tyrosine 189 and asparagine 358 of the cholecystokinin 2 receptor in direct interaction with the crucial C-terminal amide of cholecystokinin by molecular modeling, site-directed mutagenesis, and structure/affinity studies.</h2>
+                    <h3>Molecular pharmacology; 2003</h3>
+                    <p>The cholecystokinin (CCK) receptors CCK1R and CCK2R exert important central and peripheral functions by binding the neuropeptide cholecystokinin. Because these receptors are potential therapeutic targets, great interest has been devoted to the identification of efficient ligands that selectively activate or inhibit these receptors. A complete mapping of the CCK binding site in these receptors would help to design new CCK ligands and to optimize their properties. In this view, a molecular model of the CCK2R occupied by CCK was built to identify CCK2R residues that interact with CCK functional groups. No such study has yet been reported for the CCK2R. Docking of CCK in the receptor was performed by taking into account our previous mutagenesis data and by using, as constraint, the direct interaction that we demonstrated between His207 in the CCK2R and Asp8 of CCK (Mol Pharmacol 54:364-371, 1998; J Biol Chem 274:23191-23197, 1999). Two residues that had not been revealed in our previous mutagenesis studies, Tyr189 (Y4.60) and Asn358 (N6.55), were identified in interaction via hydrogen bonds with the C-terminal amide of CCK, a crucial functional group of the peptide. Mutagenesis of Tyr189 (Y4.60) and Asn358 (N6.55) as well as structure-affinity studies with modified CCK analogs validated these interactions and the involvement of both residues in the CCK binding site. These results indicate that the present molecular model is an important tool to identify direct contact points between CCK and the CCK2R and to rapidly progress in mapping of the CCK2R binding site. Moreover, comparison of the present CCK2R.CCK molecular model with that of CCK1R.CCK, which we have previously published and validated, clearly argues that the positioning of CCK in these receptors is different.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12695525/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15068617" class="tabcontent ">
+                    <h2>In vitro and in vivo characterization of Indium-111 and Technetium-99m labeled CCK-8 derivatives for CCK-B receptor imaging.</h2>
+                    <h3>Cancer biotherapy & radiopharmaceuticals; 2004</h3>
+                    <p>Cholecystokinin (CCK) receptors of the subtype B (CCK-BR) have been shown to be overexpressed in certain neuroendocrine tumors including medullary thyroid cancer. Our recent work has focused on new methods to radiolabel the CCK8 peptide with 111In or 99mTc for CCK-B receptor imaging. Derivatives of CCK8 were obtained by addition at the N-terminus in solid phase of a DTPA derivative (DTPAGlu) linked through a glycine spacer (DTPAGlu-G-CCK8) or cysteine, glycine and a diphenylphosphinopropionyl moiety (PhosGC-CCK8) for labeling with 111In and 99mTc, respectively. CCK-BR overexpressing A431 cancer cell lines were utilized to characterize in vitro properties of the two compounds as well as for generating xenografts in nude mice for in vivo characterization. Both 111In-DTPAGlu-G-CCK8 and 99mTcPhosGC-CCK8 showed similar binding affinities for CCK-BR with dissociation constants of 20-40 nM, were internalized after interaction with the receptor and displayed prolonged cellular retention times. Specific in vivo interaction with the receptor of both CCK8 analogs was observed in our animal model. 111In-DTPAGlu-G-CCK8 showed better target to non-target ratios, although it appeared to be rapidly metabolized after injection and activity cleared through the kidneys. 99mTc-PhosGC-CCK8 was more stable in vivo but showed marked hepatobiliary clearance with resulting high background activity in the bowel. The rapid clearance and lower background obtained with 111In-DTPAGlu-G-CCK8 make this a better candidate for further development.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15068617/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15520004" class="tabcontent ">
+                    <h2>Distinct molecular mechanisms for agonist peptide binding to types A and B cholecystokinin receptors demonstrated using fluorescence spectroscopy.</h2>
+                    <h3>The Journal of biological chemistry; 2005</h3>
+                    <p>Fluorescence spectroscopy provides a direct method for evaluating the environment of a fluorescent ligand bound to its receptor. We utilized this methodology to determine the environment of Alexa within a cholecystokinin (CCK)-like probe (Alexa488-Gly-[(Nle(28,31))CCK-26-33]; CCK-8 probe) bound to the type A CCK receptor (Harikumar, K. G., Pinon, D. L., Wessels, W. S., Prendergast, F. G., and Miller, L. J. (2002) J. Biol. Chem. 277, 18552-18560). Here, we study this probe at the type B CCK receptor and develop another probe with its fluorophore closer to the carboxyl-terminal pharmacophore of type B receptor ligands (Alexa488-Trp-Nle-Asp-Phe-NH2; CCK-4 probe). Both probes bound to type B CCK receptors in a saturable and specific manner and represented full agonists. Similar to the type A receptor, at the type B receptor these probes exhibited shorter lifetimes and lower anisotropy when the receptor was in the active conformation than when it was shifted to its inactive, G protein-uncoupled state using guanosine 5'-[beta,gamma-imido]-triphosphate trisodium salt. Absolute values for lifetime and anisotropy were lower for the CCK-8 probe bound to the type B receptor than for this probe bound to the type A receptor, and Alexa fluorescence was more easily quenched by iodide at the type B receptor. This represents the first direct evidence that, despite having identical affinities for binding and potencies for activating type A and B receptors, CCK is docked via distinct mechanisms, with the amino terminus more exposed to the aqueous milieu when bound to the type B CCK receptor than to the type A CCK receptor. Of interest, despite this difference in binding, activation of both receptors results in analogous direction of movement of the fluorescent indicator probes.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15520004/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15001692" class="tabcontent ">
+                    <h2>In vitro and in vivo evaluation of 111In-DTPAGlu-G-CCK8 for cholecystokinin-B receptor imaging.</h2>
+                    <h3>Journal of nuclear medicine : official publication, Society of Nuclear Medicine; 2004</h3>
+                    <p>Regulatory peptides and their analogs are being extensively investigated as radiopharmaceuticals for cancer imaging and therapy. Receptors of the cholecystokinin family have been shown to be overexpressed in different types of neuroendocrine tumors. The purposes of this study were to evaluate the cholecystokinin octapeptide amide (CCK8) peptide tagged with a diethylenetriaminepentaacetic acid derivative (DTPAGlu) and to test whether a (111)In-labeled conjugate ((111)In-DTPAGlu-G-CCK8, a derivative containing the chelating agent DTPAGlu bound through a glycine linker at the N-terminal end of the bioactive peptide CCK8) is suitable for cholecystokinin-B receptor (CCKBR) imaging.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15001692/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

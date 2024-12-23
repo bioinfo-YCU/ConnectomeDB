@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>C3——CR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for C3——CR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9988761')">9988761</button><button class="tablinks " onclick="openTab(event, 'tab10382758')">10382758</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9988761" class="tabcontent active">
+                    <h2>Identification of residues within the 727-767 segment of human complement component C3 important for its interaction with factor H and with complement receptor 1 (CR1, CD35).</h2>
+                    <h3>The Journal of biological chemistry; 1999</h3>
+                    <p>Mapping approaches employing blocking antibodies and synthetic peptides have implicated the 727-767 segment at the NH2 terminus of C3b alpha'-chain as contributing to the interactions with factor B, factor H, and CR1. Our previous mutagenesis study on the NH2-terminal acidic cluster of this segment identified residues Glu-736 and Glu-737 as contributing to the binding of C3b to factor B and CR1 but not factor H. We have now extended the charged residue mutagenic scan to cover the remainder of the segment (738-767) and have assessed the ability of the C3b-like C3(H2O) form of the mutant molecules to interact with factor H, CR1, and membrane cofactor protein (MCP) using a cofactor-dependent factor I cleavage assay as a surrogate binding assay. We have found that the negatively charged side chains of Glu-744 and Glu-747 are important for the interaction between C3(H2O) and factor H, a result in general agreement with an earlier synthetic peptide study (Fishelson, Z. (1991) Mol. Immunol. 28, 545-552) which implicated residues within the 744-754 segment in H binding. The interactions of the mutants with soluble CR1 (sCR1) revealed two classes of residues. The first are residues required for sCR1 to be an I cofactor for the first two cleavages of alpha-chain. These are all acidic residues and include the Glu-736/Glu-737 pair, Glu-747, and the Glu-754/Asp-755 pairing. The second class affects only the ability of sCR1 to be a cofactor for the third factor I cleavage and include Glu-744 and the Lys-757/Glu-758 pairing. The dominance of acidic residues in the loss-of-function mutants is striking and suggests that H and CR1 contribute basic residues to the interface. Additionally, although there is partial overlap, the contacts required for CR1 binding appear to extend over a wider portion of the 727-767 segment than is the case for factor H. Finally, none of the mutations had any effect on the interaction between soluble MCP and C3(H2O), indicating that despite its functional homology to H and CR1, MCP differs in its mode of binding to C3b/C3(H2O).</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9988761/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10382758" class="tabcontent ">
+                    <h2>Structure-activity relationships within the N-terminal short consensus repeats (SCR) of human CR1 (C3b/C4b receptor, CD35): SCR 3 plays a critical role in inhibition of the classical and alternative pathways of complement activation.</h2>
+                    <h3>European journal of immunology; 1999</h3>
+                    <p>Genes coding for between one and four short consensus repeats (SCR) of the N-terminal region of human complement receptor 1 (CR1) were synthesized from oligonucleotides and those encoding SCR(1-2), SCR(1-3), SCR(1-4), SCR3 and SCR(3-4) were expressed as inclusion bodies in Escherichia coli. Following solubilization in urea, the proteins were partially purified and refolded and the activity of each protein was assessed in both classical and alternative pathway complement assays. All fragments showed a varying degree of activity with the general order being SCR(1-3) = SCR(1-4) > SCR(1-2). Addition of SCR3 to SCR(1-2) significantly improved potency, whereas the addition of SCR4 conferred no additional benefit. This observation, coupled with the ability of the single-domain SCR3 to inhibit classical pathway mediated lysis with an IH50% (inhibition of hemolysis by 50%) of 4.8 microM, demonstrates that SCR3 provides key binding interactions with activated complement components. SCR(1-3) was able to inhibit both classical and alternative pathways of complement activation, showing that the N-terminal SCR of CR1 retain the ability to interact with C3b. Assays for CR1-like cofactor activity for factor I using C4b-like C4 or C3b-like C3 as substrates showed that SCR(1-3) possessed such cofactor activity and that C4b-like C4 was a better substrate. When compared to full-length (30 SCR) soluble CR1 (sCR1), SCR(1-3) was significantly less potent in accord with a model involving multi-valent binding of C3b/C4b to CR1.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10382758/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

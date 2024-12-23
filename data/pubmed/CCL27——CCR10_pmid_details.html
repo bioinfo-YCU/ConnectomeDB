@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL27——CCR10 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL27——CCR10</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12718728')">12718728</button><button class="tablinks " onclick="openTab(event, 'tab10725697')">10725697</button><button class="tablinks " onclick="openTab(event, 'tab11821900')">11821900</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12718728" class="tabcontent active">
+                    <h2>CCL27/PESKY: a novel paradigm for chemokine function.</h2>
+                    <h3>Expert opinion on biological therapy; 2003</h3>
+                    <p>Chemokines play a central role in regulating leukocyte migration. The recently discovered CC chemokine ligand 27 (CCL27), through interaction with its cognate receptor, CC chemokine receptor 10 (CCR10), appears to be involved in attracting a subset of memory T cells to the skin during some cutaneous inflammatory responses. Strangely, CCL27 can also be produced as a non-secreted form, as a result of alternative splicing. This protein, termed PESKY, is targeted to the nucleus where it is able to modulate transcription and alter cell morphology. Specifically, PESKY induces a rearrangement of the actin cytoskeleton, manifest by the disruption of stress fibres. This consequently enhances cell motility. Surprisingly, secreted CCL27 can also reach the nucleus after CCR10-mediated internalisation, where it may also be capable of directly modulating transcription to alter cell behaviour. This review will discuss these unprecedented findings.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12718728/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10725697" class="tabcontent ">
+                    <h2>Cutting edge: the orphan chemokine receptor G protein-coupled receptor-2 (GPR-2, CCR10) binds the skin-associated chemokine CCL27 (CTACK/ALP/ILC).</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 2000</h3>
+                    <p>We recently reported the identification of a chemokine (CTACK), which has been renamed CCL27 according to a new systematic chemokine nomenclature. We report that CCL27 binds the previously orphan chemokine receptor GPR-2, as detected by calcium flux and chemotactic responses of GPR-2 transfectants. We renamed this receptor CCR10. Because of the skin-associated expression pattern of CCL27, we focused on the expression of CCL27 and CCR10 in normal skin compared with inflammatory and autoimmune skin diseases. CCL27 is constitutively produced by keratinocytes but can also be induced upon stimulation with TNF-alpha and IL-1beta. CCR10 is not expressed by keratinocytes and is instead expressed by melanocytes, dermal fibroblasts, and dermal microvascular endothelial cells. CCR10 was also detected in T cells as well as in skin-derived Langerhans cells. Taken together, these observations suggest a role for this novel ligand/receptor pair in both skin homeostasis as well as a potential role in inflammatory responses.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10725697/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11821900" class="tabcontent ">
+                    <h2>CCL27-CCR10 interactions regulate T cell-mediated skin inflammation.</h2>
+                    <h3>Nature medicine; 2002</h3>
+                    <p>The skin-associated chemokine CCL27 (also called CTACK, ALP and ESkine) and its receptor CCR10 (GPR-2) mediate chemotactic responses of skin-homing T cells in vitro. Here we report that most skin-infiltrating lymphocytes in patients suffering from psoriasis, atopic or allergic-contact dermatitis express CCR10. Epidermal basal keratinocytes produced CCL27 protein that bound to extracellular matrix, mediated adhesion and was displayed on the surface of dermal endothelial cells. Tumor necrosis factor-alpha and interleukin-1beta induced CCL27 production whereas the glucocorticosteroid clobetasol propionate suppressed it. Circulating skin-homing CLA+ T cells, dermal microvascular endothelial cells and fibroblasts expressed CCR10 on their cell surface. In vivo, intracutaneous CCL27 injection attracted lymphocytes and, conversely, neutralization of CCL27-CCR10 interactions impaired lymphocyte recruitment to the skin leading to the suppression of allergen-induced skin inflammation. Together, these findings indicate that CCL27-CCR10 interactions have a pivotal role in T cell-mediated skin inflammation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11821900/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CLCF1——CNTFR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CLCF1——CNTFR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10966616')">10966616</button><button class="tablinks " onclick="openTab(event, 'tab10966616')">10966616</button><button class="tablinks " onclick="openTab(event, 'tab11294841')">11294841</button><button class="tablinks " onclick="openTab(event, 'tab11285233')">11285233</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10966616" class="tabcontent active">
+                    <h2>CLF associates with CLC to form a functional heteromeric ligand for the CNTF receptor complex.</h2>
+                    <h3>Nature neuroscience; 2000</h3>
+                    <p>Ciliary neurotrophic factor (CNTF) is a cytokine supporting the differentiation and survival of various cell types in the peripheral and central nervous systems. Its receptor complex consists of a non-signaling alpha chain, CNTFR, and two signaling beta chains, gp130 and the leukemia inhibitory factor receptor (LIFR). Striking phenotypic differences between CNTF- and CNTFR-deficient mice suggest that CNTFR serves as a receptor for a second, developmentally important ligand. We have identified this factor as a stable secreted complex of cardiotrophin-like cytokine (CLC) and the soluble receptor cytokine-like factor-1 (CLF). CLF expression was required for CLC secretion, and the complex acted only on cells expressing functional CNTF receptors. The CLF/CLC complex activated gp130, LIFR and signal transducer and activator of transcription 3 (STAT3) and supported motor neuron survival. Our results indicate that the CLF/CLC complex is a second ligand for CNTFR with potentially important implications in nervous system development.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10966616/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10966616" class="tabcontent ">
+                    <h2>CLF associates with CLC to form a functional heteromeric ligand for the CNTF receptor complex.</h2>
+                    <h3>Nature neuroscience; 2000</h3>
+                    <p>Ciliary neurotrophic factor (CNTF) is a cytokine supporting the differentiation and survival of various cell types in the peripheral and central nervous systems. Its receptor complex consists of a non-signaling alpha chain, CNTFR, and two signaling beta chains, gp130 and the leukemia inhibitory factor receptor (LIFR). Striking phenotypic differences between CNTF- and CNTFR-deficient mice suggest that CNTFR serves as a receptor for a second, developmentally important ligand. We have identified this factor as a stable secreted complex of cardiotrophin-like cytokine (CLC) and the soluble receptor cytokine-like factor-1 (CLF). CLF expression was required for CLC secretion, and the complex acted only on cells expressing functional CNTF receptors. The CLF/CLC complex activated gp130, LIFR and signal transducer and activator of transcription 3 (STAT3) and supported motor neuron survival. Our results indicate that the CLF/CLC complex is a second ligand for CNTFR with potentially important implications in nervous system development.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10966616/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11294841" class="tabcontent ">
+                    <h2>Signaling pathways recruited by the cardiotrophin-like cytokine/cytokine-like factor-1 composite cytokine: specific requirement of the membrane-bound form of ciliary neurotrophic factor receptor alpha component.</h2>
+                    <h3>The Journal of biological chemistry; 2001</h3>
+                    <p>Ciliary neurotrophic factor (CNTF) is a cytokine supporting the differentiation and survival of a number of neural cell types. Its receptor complex consists of a ligand-binding component, CNTF receptor (CNTFR), associated with two signaling receptor components, gp130 and leukemia inhibitory factor receptor (LIFR). Striking phenotypic differences between CNTF- and CNTFR-deficient mice suggest that CNTFR serves as a receptor for a second developmentally important ligand. We recently demonstrated that cardiotrophin-like cytokine (CLC) associates with the soluble orphan receptor cytokine-like factor-1 (CLF) to form a heterodimeric cytokine that displayed activities only on cells expressing the tripartite CNTF receptor on their surface. In this present study we examined the membrane binding of the CLC/CLF composite cytokine and observed a preferential interaction of the cytokine with the CNTFR subunit. Signaling pathways recruited by the CLC/CLF complex in human neuroblastoma cell lines were also analyzed in detail. The results obtained showed an activation of Janus kinases (JAK1, JAK2, and TYK2) leading to a tyrosine phosphorylation of the gp130 and LIFR. The phosphorylated signaling receptors served in turn as docking proteins for signal transducing molecules such as STAT3 and SHP-2. In vitro analysis revealed that the gp130-LIFR pathway could also stimulate the phosphatidylinositol 3-kinase and the mitogen-activated protein kinase pathways. In contrast to that reported before for CNTF, soluble CNTFR failed to promote the action CLC/CLF, and an absolute requirement of the membrane form of CNTFR was required to generate a functional response to the composite cytokine. This study reinforces the functional similarity between CNTF and the CLC/CLF composite cytokine defining the second ligand for CNTFR.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11294841/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11285233" class="tabcontent ">
+                    <h2>The ciliary neurotrophic factor receptor alpha component induces the secretion of and is required for functional responses to cardiotrophin-like cytokine.</h2>
+                    <h3>The EMBO journal; 2001</h3>
+                    <p>Ciliary neurotrophic factor (CNTF) is involved in the survival of a number of different neural cell types, including motor neurons. CNTF functional responses are mediated through a tripartite membrane receptor composed of two signalling receptor chains, gp130 and the leukaemia inhibitory factor receptor (LIFR), associated with a non-signalling CNTF binding receptor alpha component (CNTFR). CNTFR-deficient mice show profound neuronal deficits at birth, leading to a lethal phenotype. In contrast, inactivation of the CNTF gene leads only to a slight muscle weakness, mainly during adulthood, suggesting that CNTFR binds to a second ligand that is important for development. Modelling studies of the interleukin-6 family member cardiotrophin-like cytokine (CLC) revealed structural similarities with CNTF, including the conservation of a site I domain involved in binding to CNTFR. Co-expression of CLC and CNTFR in mammalian cells generates a secreted composite cytokine, displaying activities on cells expressing the gp130-LIFR complex on their surface. Correspondingly, CLC-CNTFR activates gp130, LIFR and STAT3 signalling components, and enhances motor neuron survival. Together, these observations demonstrate that CNTFR induces the secretion of CLC, as well as mediating the functional responses of CLC.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11285233/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>IL16——CD4 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for IL16——CD4</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab1851800')">1851800</button><button class="tablinks " onclick="openTab(event, 'tab7910967')">7910967</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab1851800" class="tabcontent active">
+                    <h2>CD4-mediated stimulation of human eosinophils: lymphocyte chemoattractant factor and other CD4-binding ligands elicit eosinophil migration.</h2>
+                    <h3>The Journal of experimental medicine; 1991</h3>
+                    <p>Lymphocyte chemoattractant factor (LCF) is a tetrameric glycoprotein of 56,000 relative molecular mass produced by activated T lymphocytes. LCF binds to CD4 and has previously been found to stimulate migration of CD4+ lymphocytes and monocytes. Because human eosinophils, like T cells and monocytes, express CD4, we examined functional responses of eosinophils to LCF. Recombinant LCF (rLCF) expressed in COS cells was purified on a CD4 affinity column. Migration of eosinophils was elicited by rLCF at low concentrations: the 50% effective dose (ED50) was 10(-12) to 10(-11) M, concentrations 100- to 1,000-fold lower than the ED50s for the recognized eosinophil chemoattractants C5a and platelet-activating factor. Two other ligands which bound to CD4, human immunodeficiency virus-1 envelope glycoprotein gp120 and monoclonal antibody OKT4, also stimulated eosinophil migration. Monovalent OKT4 Fab competitively inhibited eosinophil responses to rLCF. rLCF did not influence other functional responses of eosinophils tested, including degranulation, superoxide generation, leukotriene C4 production, in vitro survival, or surface expression of the adherence receptor CR3 (CD11b), human histocompatibility leukocyte antigen DR, or interleukin 2 receptor p55 (CD25). We conclude that CD4 on eosinophils is capable of transducing a migratory stimulus and serves as a receptor for a chemoattractant lymphokine LCF. T cell-derived LCF may contribute to recruitment of eosinophils and CD4+ mononuclear cells concomitantly at inflammatory reactions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1851800/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7910967" class="tabcontent ">
+                    <h2>Molecular and functional analysis of a lymphocyte chemoattractant factor: association of biologic function with CD4 expression.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1994</h3>
+                    <p>Lymphocyte chemoattractant factor (LCF) is a lymphocyte cell product that stimulates a migratory response in CD4+ lymphocytes, monocytes, and eosinophils. In concert with its chemoattractant activity, LCF induces human T-lymphocyte expression of interleukin 2 receptor. Here we describe the molecular cloning of cDNA encoding human LCF. It is a novel interleukin with no significant homology to any previously described cytokine families. There is an absolute requirement for both autoaggregation of LCF monomers and for membrane-expressed CD4 molecules for LCF-induced migration in lymphocytes.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7910967/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

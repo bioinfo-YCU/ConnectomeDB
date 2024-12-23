@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>KNG1——GPR135 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for KNG1——GPR135</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab14530218')">14530218</button><button class="tablinks " onclick="openTab(event, 'tab1374385')">1374385</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab14530218" class="tabcontent active">
+                    <h2>Identification and characterisation of GPR100 as a novel human G-protein-coupled bradykinin receptor.</h2>
+                    <h3>British journal of pharmacology; 2003</h3>
+                    <p>G-protein-coupled receptor 100 (GPR100) was discovered by searching the human genome database for novel G-protein-coupled peptide receptors. Full-length GPR100 was amplified from a cDNA library of the neuroendocrine cell line BON, which is derived from a human pancreas carcinoid. The open-reading frame, present on a single exon, coded for a protein of 374 amino acids with highest sequence identity (43%) to the human orphan somatostatin- and angiotensin-like peptide receptor. The analysis of chromosomal localisation mapped the GPR100 gene to chromosome 1q21.2-q21.3. The stable expression of GPR100 in Chinese hamster ovary cells together with aequorin as calcium sensor and the promiscuous G-protein subunit alpha16 as signal transducer revealed bradykinin and kallidin as effectors to elicit a calcium response. Dose-response curves yielded EC50 values for both ligands in the low nanomolar range, while the respective analogues without arginine at the carboxy-terminus were inactive. Calcium mobilisation was inhibited by the phospholipase C blocker U73122, but not by pertussis toxin, suggesting the involvement of the G-protein subunit alphaq and not alphai or alphao in signal transduction. In line with the main function of kinins as peripheral hormones, we found that GPR100 was expressed predominantly in tissues like pancreas, heart, skeletal muscle, salivary gland, bladder, kidney, liver, placenta, stomach, jejunum, thyroid gland, ovary, and bone marrow, but smaller amounts were also detected in the brain and in cell lines derived from tumours of various origins.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14530218/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab1374385" class="tabcontent ">
+                    <h2>The human leukocyte platelet-activating factor receptor. cDNA cloning, cell surface expression, and construction of a novel epitope-bearing analog.</h2>
+                    <h3>The Journal of biological chemistry; 1992</h3>
+                    <p>A human myeloid transcript of approximately 4 kilobases was cloned as a cDNA from an expression library based on homology with the guinea pig cDNA recently described by Honda et al. (Honda, Z-I., Nakamura, M., Miki, I., Minami, M., Watanabe, T., Seyama, Y., Okado, H., Tok, H., Ito, K., Miyamato, T., and Shimizu, T. (1991) Nature 349, 342-346) as a receptor for platelet-activating factor (PAF). The cloned DNA confers high affinity binding sites for platelet-activating factor when transfected into COS-7 cells and has binding and desensitization properties similar to the human leukocyte receptor. Southern analysis using this cDNA indicates that the PAF receptor gene is present as a single copy in the human genome. The deduced protein sequence predicts seven hydrophobic regions for the PAF receptor, characteristic of the rhodopsin gene family, and is 83% identical to the deduced protein sequence of the corresponding guinea pig molecule. A modified human PAF receptor cDNA was constructed by inserting an additional 30 nucleotides after the 5'-ATG, encoding the amino acid sequence MDYKDDDDKEF, which is specifically recognized by a monoclonal antibody. The modified cDNA encodes a functional PAF receptor and is detected by antibody on the membrane of transfected COS-7 cells. The use of this construct supports the structural model for the rhodopsin-like superfamily of receptors which places the NH2-terminal sequence on the extracellular side of the membrane, and should additionally be useful for affinity purification of the receptor protein.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1374385/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

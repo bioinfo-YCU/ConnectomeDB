@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>FASLG——TNFRSF6B - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for FASLG——TNFRSF6B</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab14697332')">14697332</button><button class="tablinks " onclick="openTab(event, 'tab10318773')">10318773</button><button class="tablinks " onclick="openTab(event, 'tab11994433')">11994433</button><button class="tablinks " onclick="openTab(event, 'tab9872321')">9872321</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab14697332" class="tabcontent active">
+                    <h2>Enhanced adhesion of monocytes via reverse signaling triggered by decoy receptor 3.</h2>
+                    <h3>Experimental cell research; 2004</h3>
+                    <p>Decoy receptor 3 (DcR3), a newly identified soluble protein belonging to the tumor necrosis factor receptor (TNFR) superfamily, is a receptor for Fas ligand (FasL), LIGHT and TL1A. It has been demonstrated that DcR3 is frequently overexpressed by malignant tumors arising from lung, gastrointestinal tract, neuronal glia and virus-associated leukemia. Recently, we demonstrated that DcR3 is able to modulate the differentiation and activation of dendritic cells (DCs), and that DcR3-treated DCs skew naive T cell differentiation towards a Th2 phenotype. In this study, we further demonstrate that DcR3 is able to induce actin reorganization and enhance the adhesion of monocytes and THP-1 cells by activating multiple signaling molecules, such as protein kinase C (PKC), phosphatidylinositol 3-kinase (PI3K), focal adhesion kinase (FAK) and Src kinases. This provides the first evidence that the soluble DcR3, like other immobilized members of TNFR superfamily, is able to trigger 'reverse signaling' to modulate cell function.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14697332/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10318773" class="tabcontent ">
+                    <h2>A newly identified member of tumor necrosis factor receptor superfamily (TR6) suppresses LIGHT-mediated apoptosis.</h2>
+                    <h3>The Journal of biological chemistry; 1999</h3>
+                    <p>TR6 (decoy receptor 3 (DcR3)) is a new member of the tumor necrosis factor receptor (TNFR) family. TR6 mRNA is expressed in lung tissues and colon adenocarcinoma, SW480. In addition, the expression of TR6 mRNA was shown in the endothelial cell line and induced by phorbol 12-myristate 13-acetate/ionomycin in Jurkat T leukemia cells. The open reading frame of TR6 encodes 300 amino acids with a 29-residue signal sequence but no transmembrane region. Using histidine-tagged recombinant TR6, we screened soluble forms of TNF-ligand proteins with immunoprecipitation. Here, we demonstrate that TR6 specifically binds two cellular ligands, LIGHT (herpes virus entry mediator (HVEM)-L) and Fas ligand (FasL/CD95L). These bindings were confirmed with HEK 293 EBNA cells transfected with LIGHT cDNA by flow cytometry. TR6 inhibited LIGHT-induced cytotoxicity in HT29 cells. It has been shown that LIGHT triggers apoptosis of various tumor cells including HT29 cells that express both lymphotoxin beta receptor (LTbetaR) and HVEM/TR2 receptors. Our data suggest that TR6 inhibits the interactions of LIGHT with HVEM/TR2 and LTbetaR, thereby suppressing LIGHT- mediated HT29 cell death. Thus, TR6 may play a regulatory role for suppressing in FasL- and LIGHT-mediated cell death.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10318773/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11994433" class="tabcontent ">
+                    <h2>Modulation of dendritic cell differentiation and maturation by decoy receptor 3.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 2002</h3>
+                    <p>Decoy receptor 3 (DcR3), a soluble receptor belonging to the TNFR superfamily, is a receptor for both Fas ligand (FasL) and LIGHT. It has been demonstrated that DcR3 is up-regulated in lung and colon cancers, thus promoting tumor growth by neutralizing the cytotoxic effects of FasL and LIGHT. In this study, we found that DcR3.Fc profoundly modulated dendritic cell differentiation and maturation from CD14(+) monocytes, including the up-regulation of CD86/B7.2, and the down-regulation of CD40, CD54/ICAM-1, CD80/B7.1, CD1a, and HLA-DR. Moreover, DcR3-treated dendritic cells suppressed CD4(+) T cell proliferation in an allogeneic MLR and up-regulated IL-4 secretion of CD4(+)CD45RA(+) T cells. This suggests that DcR3.Fc may act not only as a decoy receptor to FasL and LIGHT, but also as an effector molecule to skew T cell response to the Th2 phenotype.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11994433/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9872321" class="tabcontent ">
+                    <h2>Genomic amplification of a decoy receptor for Fas ligand in lung and colon cancer.</h2>
+                    <h3>Nature; 1998</h3>
+                    <p>Fas ligand (FasL) is produced by activated T cells and natural killer cells and it induces apoptosis (programmed cell death) in target cells through the death receptor Fas/Apol/CD95. One important role of FasL and Fas is to mediate immune-cytotoxic killing of cells that are potentially harmful to the organism, such as virus-infected or tumour cells. Here we report the discovery of a soluble decoy receptor, termed decoy receptor 3 (DcR3), that binds to FasL and inhibits FasL-induced apoptosis. The DcR3 gene was amplified in about half of 35 primary lung and colon tumours studied, and DcR3 messenger RNA was expressed in malignant tissue. Thus, certain tumours may escape FasL-dependent immune-cytotoxic attack by expressing a decoy receptor that blocks FasL.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9872321/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

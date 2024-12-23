@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>HBEGF——CD9 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for HBEGF——CD9</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab1939101')">1939101</button><button class="tablinks " onclick="openTab(event, 'tab11735113')">11735113</button><button class="tablinks " onclick="openTab(event, 'tab11846885')">11846885</button><button class="tablinks " onclick="openTab(event, 'tab8194524')">8194524</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab1939101" class="tabcontent active">
+                    <h2>An antibody that inhibits the binding of diphtheria toxin to cells revealed the association of a 27-kDa membrane protein with the diphtheria toxin receptor.</h2>
+                    <h3>The Journal of biological chemistry; 1991</h3>
+                    <p>A monoclonal antibody that blocks the binding of diphtheria toxin to Vero cells was isolated by immunizing mice with Vero cell membrane. The antibody inhibits the binding of diphtheria toxin and also CRM197, a mutant form of diphtheria toxin, to Vero cells, and consequently inhibits the cytotoxicity of diphtheria toxin. This antibody does not directly react with the receptor molecule of diphtheria toxin (DTR14.5). Immunoprecipitation and immunoblotting studies revealed that this antibody binds to a novel membrane protein of 27 kDa (DRAP27). When diphtheria toxin receptor was passed through an affinity column made with this antibody, the receptor was trapped only in the presence of DRAP27. These results indicate that DRAP27 and DTR14.5 closely associate in Vero cell membrane and that the inhibition of the binding of diphtheria toxin to the receptor is due to the binding of the antibody to the DRAP27 molecule. Binding studies using 125I-labeled antibody showed that there are many more molecules of DRAP27 on the cell surface than diphtheria toxin-binding sites. However, there is a correlation between the sensitivity of a cell line to diphtheria toxin and the number of DRAP27 molecules on the cell surface, suggesting that DRAP27 is involved in the entry of diphtheria toxin into the target cell.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1939101/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11735113" class="tabcontent ">
+                    <h2>CD9 amino acids critical for upregulation of diphtheria toxin binding.</h2>
+                    <h3>Biochemical and biophysical research communications; 2001</h3>
+                    <p>CD9 associates with a diphtheria toxin receptor (DTR) that is identical to the membrane-anchored form of heparin-binding EGF-like growth factor. We determined the region of CD9 important for upregulation activity. Human and monkey CD9 upregulates DT binding activity of DTR, while mouse CD9 has no upregulation activity. Transfection of chimeric constructs comprising monkey and mouse CD9s showed that the human sequence between Ala156 and Asp183 is essential for the upregulation activity. Studies of mutants, replacing a single amino acid within the region between Ala156 and Asp183 of monkey CD9 with the corresponding amino acid residue in mouse CD9, revealed that substitution of Gly158 is critical for the reduction of the upregulation activity and secondly for the substitution of Val159 and Thr175. These three amino acid residues were deduced to be located on the head domain of the second extracellular loop, suggesting that interactions of CD9 with DTR or DT at the domain containing these three amino acids were important for the upregulation of DT binding.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11735113/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11846885" class="tabcontent ">
+                    <h2>Latent transforming growth factor beta-binding protein-3 and fibulin-1C interact with the extracellular domain of the heparin-binding EGF-like growth factor precursor.</h2>
+                    <h3>BMC cell biology; 2002</h3>
+                    <p>The membrane-bound cell-surface precursor and soluble forms of heparin-binding epidermal growth factor-like growth factor (HB-EGF) contribute to many cellular developmental processes. The widespread occurrence of HB-EGF in cell and tissue types has led to observations of its role in such cellular and tissue events as tumor formation, cell migration, extracellular matrix formation, wound healing, and cell adherence. Several studies have reported the involvement of such extracellular matrix proteins as latent transforming growth factor beta-binding protein, TGF-beta, and fibulin-1 in some of these processes. To determine whether HB-EGF interacts with extracellular matrix proteins we used the extracellular domain of proHB-EGF in a yeast two-hybrid system to screen a monkey kidney cDNA library. cDNA clones containing nucleotide sequences encoding domains of two proteins were obtained and their derived amino acid sequences were evaluated.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11846885/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8194524" class="tabcontent ">
+                    <h2>Heparin-binding EGF-like growth factor, which acts as the diphtheria toxin receptor, forms a complex with membrane protein DRAP27/CD9, which up-regulates functional receptors and diphtheria toxin sensitivity.</h2>
+                    <h3>The EMBO journal; 1994</h3>
+                    <p>DRAP27, the monkey homolog of human CD9 antigen (DRAP27/CD9) and diphtheria toxin receptor (DTR) were expressed in mouse L cells. L cells transfected transiently with both DRAP27/CD9 and DTR cDNA bound approximately 10 times more diphtheria toxin (DT) than cells transfected with DTR alone. Stable L cell transfectants expressing both DTR and DRAP27/CD9 (LCH-1 cells) had 15 times more cell surface DT-binding sites and were 20 times more sensitive to DT than were stable L cell transfectants expressing DTR alone (LH-1 cells). Increased DT-binding and DT sensitivity were not due to increased DTR transcription or increased cell surface DTR protein. Co-immunoprecipitation of DRAP27/CD9 with DTR and chemical cross-linking suggest a tight association of these membrane-bound proteins. In addition, the identity of DTR and a growth factor (HB-EGF) was established. Immobilized DT specifically adsorbed HB-EGF precursor solubilized from transfected L cells and [125I]DT bound to immobilized recombinant HB-EGF. We conclude that DRAP27/CD9 associates tightly with DTR/HB-EGF and up-regulates the number of functional DTRs and DT sensitivity, and that HB-EGF is identical to DTR.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8194524/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,93 @@
+---
+title: "ConnectomeDB2025"
+execute:
+  echo: false
+format:
+  html:
+    table: false
+---
+
+### Ligand Receptor (LR) Pairs Database
+
+```{python}
+import sys
+import os
+import pandas as pd
+from itables import init_notebook_mode, show
+from ipywidgets import Button, VBox, Output
+from IPython.display import display
+
+css = """
+.dt-container {
+  font-size: 16px;
+}
+
+.dt-buttons button {
+    font-size: 18px !important;
+    padding: 10px 20px !important;
+    background-color: #007BFF !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 5px !important;
+    margin: 5px !important;
+    cursor: pointer !important;
+}
+
+.dt-buttons button:hover {
+    background-color: #0056b3 !important;
+}
+
+/* Custom placeholder text */
+.dataTables_filter input::placeholder {
+    color: gray;  /* Gray color for the placeholder */
+    font-style: italic;  /* Italic style for the placeholder */
+    text-align: center;  /* Center the placeholder text */
+}
+
+/* Ensure the placeholder text shows in the search box */
+.dataTables_filter input {
+    ::placeholder {
+        content: "Search...";  /* Custom placeholder text */
+    }
+}
+"""
+
+sys.path.append(os.path.abspath("src"))  # Add src directory to path
+
+from importData import gene_pair
+
+# Function to update and display the table
+def update_table():
+    show(
+        gene_pair,
+        keys=True,
+        fixedColumns={"start": 4, "end": 0},
+        scrollX=True,
+        classes="display nowrap compact",
+        select=True,
+        selected_rows=[],
+        theme='grid',
+        search={"regex": True, "caseInsensitive": False, "smart": True},
+        buttons=[
+            "pageLength", 
+            {"extend": "csvHtml5", "title": "Source"},
+            {"extend": "excelHtml5", "title": "Source"},
+            {"extend": "copyHtml5", "title": "Source"},
+            {"extend": "colvis", "text": "Display Columns"},
+        ],
+        columnDefs=[
+            {"className": "dt-center", "targets": [0, 1, 2, 3]},
+            {"width": "100px", "targets": "_all"},
+            {"targets": [-2, -1], "visible": False},  # Hide last two columns by default
+        ],
+        style="100%",
+        autoWidth=False,
+        column_filters="footer",
+        maxBytes=0  # So it does not downsample
+    )
+
+# Call the function to render the table
+update_table()
+
+
+```

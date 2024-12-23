@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>NPVF——NPFFR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for NPVF——NPFFR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab11024015')">11024015</button><button class="tablinks " onclick="openTab(event, 'tab12242085')">12242085</button><button class="tablinks " onclick="openTab(event, 'tab12421602')">12421602</button><button class="tablinks " onclick="openTab(event, 'tab17337079')">17337079</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab11024015" class="tabcontent active">
+                    <h2>Identification and characterization of two G protein-coupled receptors for neuropeptide FF.</h2>
+                    <h3>The Journal of biological chemistry; 2000</h3>
+                    <p>The central nervous system octapeptide, neuropeptide FF (NPFF), is believed to play a role in pain modulation and opiate tolerance. Two G protein-coupled receptors, NPFF1 and NPFF2, were isolated from human and rat central nervous system tissues. NPFF specifically bound to NPFF1 (K(d) = 1.13 nm) and NPFF2 (K(d) = 0.37 nm), and both receptors were activated by NPFF in a variety of heterologous expression systems. The localization of mRNA and binding sites of these receptors in the dorsal horn of the spinal cord, the lateral hypothalamus, the spinal trigeminal nuclei, and the thalamic nuclei supports a role for NPFF in pain modulation. Among the receptors with the highest amino acid sequence homology to NPFF1 and NPFF2 are members of the orexin, NPY, and cholecystokinin families, which have been implicated in feeding. These similarities together with the finding that BIBP3226, an anorexigenic Y1 receptor ligand, also binds to NPFF1 suggest a potential role for NPFF1 in feeding. The identification of NPFF1 and NPFF2 will help delineate their roles in these and other physiological functions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11024015/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12242085" class="tabcontent ">
+                    <h2>Pharmacological characterization of human NPFF(1) and NPFF(2) receptors expressed in CHO cells by using NPY Y(1) receptor antagonists.</h2>
+                    <h3>European journal of pharmacology; 2002</h3>
+                    <p>Neuropeptide FF (NPFF) belongs to an opioid-modulatory system including two precursors (pro-NPFF(A) and pro-NPFF(B)) and two G-protein coupled receptors (NPFF(1) and NPFF(2)). The pharmacological and functional profiles of human NPFF(1) and NPFF(2) receptors expressed in Chinese hamster ovary (CHO) cells were compared by determining the affinity of several peptides derived from both NPFF precursors and by measuring their abilities to inhibit forskolin-induced cAMP accumulation. Each NPFF receptor recognizes peptides from both precursors with nanomolar affinities, however, with a slight preference of pro-NPFF(A) peptides for NPFF(2) receptors and of pro-NPFF(B) peptides for NPFF(1) receptors. BIBP3226 ((R)-N(2)-(diphenylacetyl)-N-[(4-hydroxyphenyl)-methyl]-argininamide) and BIBO3304 ((R)-N(2)-(diphenylacetyl)-N-[4-(aminocarbonylaminomethyl)-benzyl]-argininamide trifluoroacetate), two selective neuropeptide Y (NPY) Y(1) receptor antagonists, display relative high affinities for NPFF receptors and exhibit antagonist properties towards hNPFF(1) receptors. The structural determinants responsible for binding of these molecules to NPFF receptors were investigated and led to the synthesis of hNPFF(1) receptor antagonists with affinities from 40 to 80 nM. Our results demonstrate differences in pharmacological characteristics between NPFF(1) and NPFF(2) receptors and the feasibility of subtype-selective antagonists.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12242085/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12421602" class="tabcontent ">
+                    <h2>Quantitative autoradiographic distribution of NPFF1 neuropeptide FF receptor in the rat brain and comparison with NPFF2 receptor by using [125I]YVP and [(125I]EYF as selective radioligands.</h2>
+                    <h3>Neuroscience; 2002</h3>
+                    <p>The selectivity of two new radioligands, [(125)I]YVP ([(125)I]YVPNLPQRF-NH(2)) and [(125)I]EYF ([(125)I]EYWSLAAPQRF-NH(2)), for neuropeptide FF (NPFF) receptor subtypes was determined using HEK293 cells expressing hNPFF(1) and CHO cells expressing hNPFF(2) receptors. Saturation binding and displacement experiments showed that [(125)I]YVP and [(125)I]EYF bound selectively with a very high affinity, K(D)=0.18 nM and 0.06 nM, to NPFF(1) and NPFF(2) receptors respectively. By using in vitro autoradiography with these radioligands and frog pancreatic polypeptide (PP) as selective unlabelled competitor of NPFF(2) binding sites, NPFF(1) and NPFF(2) receptor distribution was analyzed throughout the rat CNS. The highest densities of [(125)I]EYF binding sites were seen in the most external layers of the dorsal horn of the spinal cord, the parafascicular thalamic nucleus, laterodorsal thalamic nucleus and presubiculum of hippocampus. All specific binding of this radioligand was inhibited by 200 nM frog PP. The density of 0.1 nM [(125)I]YVP binding was much smaller in all brain areas and frog PP-insensitive binding sites (NPFF(1) receptor subtype) were detected in septal, thalamic and hypothalamic areas but were absent in the spinal cord. The restricted distribution of NPFF(1) receptors in the CNS supports its specific role in a limited number of neuronal functions. In contrast to the rat spinal cord where the NPFF(1) system is absent, there is no strict separation between NPFF(1) and NPFF(2) system at the supraspinal level.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12421602/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab17337079" class="tabcontent ">
+                    <h2>Biochemical anti-opioid action of NPFF2 receptors in rat spinal cord.</h2>
+                    <h3>Neuroscience research; 2007</h3>
+                    <p>Neuropeptide FF (NPFF) agonists counteract the cellular opioid actions. We demonstrate for the first time a biochemical anti-opioid effect of NPFF receptors in the rat spinal cord by using the [(35)S]GTPgammaS binding assay in autoradiography. The mu agonist DAMGO as well as the potent and selective NPFF(2) agonist dNPA, stimulated [(35)S]GTPgammaS binding at different optimal GDP concentrations. dNPA decreased the effects induced by DAMGO alone; the maximal of G-protein coupling was decreased but not the potency of opioid agonist. We conclude that NPFF(2) receptors are coupled to G-protein in the rat spinal cord and could exert a molecular anti-opioid effect.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/17337079/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>POMC——OPRK1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for POMC——OPRK1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab8624732')">8624732</button><button class="tablinks " onclick="openTab(event, 'tab9686407')">9686407</button><button class="tablinks " onclick="openTab(event, 'tab7624359')">7624359</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab8624732" class="tabcontent active">
+                    <h2>The cloned mu, delta and kappa receptors and their endogenous ligands: evidence for two opioid peptide recognition cores.</h2>
+                    <h3>Brain research; 1995</h3>
+                    <p>The opioid peptides are derived from three prohormone precursors referred to as proopiomelanocortin (POMC), proenkephalin (ProEnk) and prodynorphin (ProDyn). Following specific cleavage, several biologically active peptides are generated that can bind to the mu, delta and kappa receptors. The present study examines the receptor binding affinities of the POMC, ProEnk and ProDyn peptides to the cloned mu, delta and kappa receptors expressed transiently in transfected COS-1 cells. Consistent with previous findings using brain homogenates, competition studies demonstrate that no opioid peptide family can be exclusively associated with a specific opioid receptor type. Short ProEnk peptides, such as Leu- and Met-enkephalin are selective for delta, but C-terminally extended peptides such as Met-Enk-Arg-Gly-Leu and Met-Enk-Arg-Phe have a high affinity to micro, delta and kappa. Similarly, Peptide E, the BAM peptides, and metorphamide have a high affinity for all three opioid receptor types. While dynorphin A peptides and alpha- and beta-neoendorphin have a preference for kappa, they also bind the cloned delta and mu receptors. Our findings do not easily fit a simple 'message-address' model where the Try-Gly-Gly-Phe core is extended and this gradually alters selectivity. Rather, the pattern appears more discontinuous, and would fit better with the idea of two similar but distinct cores; a Try-Gly-Gly-Phe Met- or Leu core that is necessary and sufficient for mu and delta but not kappa and a Tyr-Gly-Gly-Phe-Met or Leu core with an Arg-X extension that is equally necessary and sufficient for kappa.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8624732/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9686407" class="tabcontent ">
+                    <h2>Standard binding and functional assays related to medications development division testing for potential cocaine and opiate narcotic treatment medications.</h2>
+                    <h3>NIDA research monograph; 1998</h3>
+                    <p>No abstract available</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9686407/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7624359" class="tabcontent ">
+                    <h2>kappa-Opioid receptor in humans: cDNA and genomic cloning, chromosomal assignment, functional expression, pharmacology, and expression pattern in the central nervous system.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1995</h3>
+                    <p>Using the mouse delta-opioid receptor cDNA as a probe, we have isolated genomic clones encoding the human mu- and kappa-opioid receptor genes. Their organization appears similar to that of the human delta receptor gene, with exon-intron boundaries located after putative transmembrane domains 1 and 4. The kappa gene was mapped at position q11-12 in human chromosome 8. A full-length cDNA encoding the human kappa-opioid receptor has been isolated. The cloned receptor expressed in COS cells presents a typical kappa 1 pharmacological profile and is negatively coupled to adenylate cyclase. The expression of kappa-opioid receptor mRNA in human brain, as estimated by reverse transcription-polymerase chain reaction, is consistent with the involvement of kappa-opioid receptors in pain perception, neuroendocrine physiology, affective behavior, and cognition. In situ hybridization studies performed on human fetal spinal cord demonstrate the presence of the transcript specifically in lamina II of the dorsal horn. Some divergences in structural, pharmacological, and anatomical properties are noted between the cloned human and rodent receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7624359/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

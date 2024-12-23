@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CXCL1——CXCR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CXCL1——CXCR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab1379593')">1379593</button><button class="tablinks " onclick="openTab(event, 'tab10188995')">10188995</button><button class="tablinks " onclick="openTab(event, 'tab8940121')">8940121</button><button class="tablinks " onclick="openTab(event, 'tab8550564')">8550564</button><button class="tablinks " onclick="openTab(event, 'tab8940121')">8940121</button><button class="tablinks " onclick="openTab(event, 'tab8702798')">8702798</button><button class="tablinks " onclick="openTab(event, 'tab1379593')">1379593</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab1379593" class="tabcontent active">
+                    <h2>Characterization of two high affinity human interleukin-8 receptors.</h2>
+                    <h3>The Journal of biological chemistry; 1992</h3>
+                    <p>Interleukin 8 (IL-8) and melanocyte growth-stimulatory activity/gro (MGSA) are structurally related proinflammatory cytokines that are chemoattractants and activators of neutrophils. Recently, cDNA clones encoding a high affinity IL-8 receptor (IL-8R-A) and a "low affinity" IL-8 receptor (IL-8R-B) have been isolated from human cDNA libraries. These two receptors have 77% amino acid identity and are members of the G protein-coupled superfamily of receptors with seven transmembrane domains. We have expressed these two receptors in mammalian cells and find that in this system both receptors bind IL-8 with high affinity (Kd approximately 2 nM). The receptor affinities differ for MGSA, however. IL-8R-A binds MGSA with low affinity (Kd approximately 450 nM); IL-8R-B binds MGSA with high affinity (Kd approximately 2 nM). The transfected cells respond to ligand binding with a transient increase in the intracellular Ca2+ concentration. A Ca2+ response is found for IL-8R-A following the binding of IL-8; no response is found for MGSA. A Ca2+ response for IL-8R-B follows the binding of both ligands. Blot hybridization with oligonucleotide probes specific for the two receptors shows that mRNA for both receptors is present in human neutrophils. Analysis of IL-8 and MGSA binding data on neutrophils as well as Ca2+ response and desensitization data shows that the presence of these two IL-8 receptors on the cell surface can account for the profile of these two ligands on neutrophils.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1379593/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10188995" class="tabcontent ">
+                    <h2>Signalling by CXC-chemokine receptors 1 and 2 expressed in CHO cells: a comparison of calcium mobilization, inhibition of adenylyl cyclase and stimulation of GTPgammaS binding induced by IL-8 and GROalpha.</h2>
+                    <h3>British journal of pharmacology; 1999</h3>
+                    <p>The effect of interleukin-8 (IL-8) and growth-related oncogene alpha (GROalpha) on [35S]-guanosine 5'-O-(3-thiotriphosphate) ([35S]GTPgammaS) binding, forskolin-stimulated cyclic AMP accumulation and cytosolic calcium concentration were determined in recombinant CHO cells expressing HA-tagged CXC-chemokine receptors 1 and 2 (CXCR1 and CXCR2). Radioligand binding assays confirmed that the binding profiles of the recombinant receptors were similar to those of the native proteins. IL-8 displaced [125I]-IL-8 binding to CXCR1 and CXCR2 with pKi values of 8.89+/-0.05 and 9.27+/-0.03, respectively. GROalpha, a selective CXCR2 ligand, had a pKi value of 9.66+/-0.39 at CXCR2 but a pKi>8 at CXCR1. Calcium mobilization experiments were also consistent with previous reports on native receptors. Activation of both receptors resulted in stimulation of [35S]GTPgammaS binding and inhibition of adenylyl cyclase. A comparison of the functional data at CXCRI showed that a similar potency order (IL-8> >GROalpha) was obtained in all three assays. However, at CXCR2 whilst the potency orders for calcium mobilization and inhibition of adenylyl cyclase were similar (IL-8 > or = GROalpha), the order was reversed for stimulation of [35S]GTPgammaS binding (GROalpha > IL-8). All of the functional responses at both receptors were inhibited by pertussis toxin (PTX), suggesting coupling to a Gi/Go protein. However, the calcium mobilization induced by IL-8 at CXCR1 was not fully inhibited by PTX, suggesting an interaction with a G-protein of the Gq family. Our results with pertussis toxin also suggested that, in the [35S]GTPgammaS binding assay, CXCR1 displays some constitutive activity. Thus, we have characterized the binding and several functional responses at HA-tagged CXCRs 1 and 2 and have shown that their pharmacology agrees well with that of the native receptors. We also have preliminary evidence that CXCR1 displays constitutive activity in our cell line and that CXCR2 may traffic between different PTX sensitive G-proteins.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10188995/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8940121" class="tabcontent ">
+                    <h2>Discrete steps in binding and signaling of interleukin-8 with its receptor.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>The mechanisms by which chemokines bind and signal through their receptors are complex and poorly understood. In the present study, we sought to dissect these processes and to map important functional domains of the two CXC chemokine (interleukin-8) receptors, CXCR1 (formally IL-8RA) and CXCR2 (formally IL-8RB), using blocking monoclonal antibodies (mAbs) to the receptors and a series of chimeras between CXCR1 and CXCR2. A panel of specific mAbs against CXCR1 or CXCR2, generated by immunizing mice with transfectants expressing either receptor, were shown to effectively block IL-8- and/or growth-related oncogene alpha (GROalpha) -mediated ligand binding, chemotaxis, elastase release, and VCAM-1 binding in CXCR1 and CXCR2 transfectants and/or human neutrophils. Of particular interest was an anti-CXCR1 mAb, 7D9, that inhibited chemotaxis, elastase release, and VCAM-1 binding but had no detectable effects on ligand binding. The epitopes of these blocking mAbs were mapped by using a series of CXCR1/2 chimera transfectants and synthetic peptides. Most of the anti-CXCR1 antibodies, except 7D9, mapped to the amino acid sequence WDFDDL (CXCR1 residues 10-15), and all the anti-CXCR2 antibodies mapped to the amino acid sequence FEDFW (CXCR2 residues 6-10). The epitope of mAb 7D9 mainly involved a region within the first 45 residues of CXCR1, and it appeared to be conformation-sensitive. These results support a model in which the binding and signaling of IL-8 with its receptor occur in at least two discrete steps involving distinct domains of the receptor. This model is consistent with the notion that discrete conformational changes of the receptor secondary to ligand binding are required to trigger various biological responses. Moreover, the ligand binding and chemotaxis properties of each CXCR1/2 chimeric receptor to IL-8 and GROalpha were determined. It was found that each is distinct in its ability to confer ligand binding and chemotactic response to IL-8 and GROalpha, and two conclusions could be made. 1) The N-terminal segment of CXCR1 is a dominant determinant of receptor subtype selectivity, consistent with previous studies using rabbit/human CXCR1/2 chimeras; and 2) the specificity determinant for GROalpha binding in CXCR2 involves sequences in the N terminus, distal to the first 15 residues, as well as other parts of the receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8940121/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8550564" class="tabcontent ">
+                    <h2>CXC chemokines bind to unique sets of selectivity determinants that can function independently and are broadly distributed on multiple domains of human interleukin-8 receptor B. Determinants of high affinity binding and receptor activation are distinct.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>Human interleukin-8 receptors A (IL-8RA) and B (IL-8RB) are seven-transmembrane domain (TMD) neutrophil chemokine receptors with similar sequences (77% amino acid identity) and similar G protein selectivity, but markedly different selectivity for CXC chemokines. IL-8RB is selective for IL-8, growth-related oncogene alpha (GRO alpha) and neutrophil-activating peptide-2 (NAP-2), whereas IL-8RA is selective only for IL-8. To identify selectivity determinants, we made eight chimeric receptors exchanging: 1) the three main regions of sequence divergence between IL-8RA and IL-8RB (the N-terminal segment before TMD1, the region from TMD4 to the end of the second extracellular (e2) loop, and the C-terminal tail), and 2) the N-terminal segment of CC chemokine receptor 1, which does not bind CXC chemokines. Chimeras were tested by direct 125I-IL-8, 125I-GRO alpha, and 125I-NAP-2 binding, heterologous competition binding, and calcium flux assays using human embryonic kidney 293 cells stably transfected with receptor DNAs. The following results were obtained: 1) chimeric receptors had binding sites for IL-8, GRO alpha and NAP-2 distinct from those on IL-8RA and IL-8RB; 2) IL-8, GRO alpha and NAP-2 bound to overlapping but distinct sites that mapped differentially to multiple domains on IL-8RB; 3) high affinity radioligand binding and high agonist potency were separable functions for IL-8, GRO alpha and NAP-2, suggesting that the determinants of high affinity binding may not be critical for receptor activation; and 4) determinants of GRO alpha and NAP-2 selectivity were found in both the N-terminal segment before TMD1 and the region from TMD4 to the end of the e2 loop of IL-8RB, and functioned independently of each other. Stated reciprocally, the N-terminal segment of IL-8RA was not a dominant selectivity determinant. These data suggest that both narrow and broad spectrum chemokine antagonists can be developed to block functions mediated by IL-8RB.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8550564/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8940121" class="tabcontent ">
+                    <h2>Discrete steps in binding and signaling of interleukin-8 with its receptor.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>The mechanisms by which chemokines bind and signal through their receptors are complex and poorly understood. In the present study, we sought to dissect these processes and to map important functional domains of the two CXC chemokine (interleukin-8) receptors, CXCR1 (formally IL-8RA) and CXCR2 (formally IL-8RB), using blocking monoclonal antibodies (mAbs) to the receptors and a series of chimeras between CXCR1 and CXCR2. A panel of specific mAbs against CXCR1 or CXCR2, generated by immunizing mice with transfectants expressing either receptor, were shown to effectively block IL-8- and/or growth-related oncogene alpha (GROalpha) -mediated ligand binding, chemotaxis, elastase release, and VCAM-1 binding in CXCR1 and CXCR2 transfectants and/or human neutrophils. Of particular interest was an anti-CXCR1 mAb, 7D9, that inhibited chemotaxis, elastase release, and VCAM-1 binding but had no detectable effects on ligand binding. The epitopes of these blocking mAbs were mapped by using a series of CXCR1/2 chimera transfectants and synthetic peptides. Most of the anti-CXCR1 antibodies, except 7D9, mapped to the amino acid sequence WDFDDL (CXCR1 residues 10-15), and all the anti-CXCR2 antibodies mapped to the amino acid sequence FEDFW (CXCR2 residues 6-10). The epitope of mAb 7D9 mainly involved a region within the first 45 residues of CXCR1, and it appeared to be conformation-sensitive. These results support a model in which the binding and signaling of IL-8 with its receptor occur in at least two discrete steps involving distinct domains of the receptor. This model is consistent with the notion that discrete conformational changes of the receptor secondary to ligand binding are required to trigger various biological responses. Moreover, the ligand binding and chemotaxis properties of each CXCR1/2 chimeric receptor to IL-8 and GROalpha were determined. It was found that each is distinct in its ability to confer ligand binding and chemotactic response to IL-8 and GROalpha, and two conclusions could be made. 1) The N-terminal segment of CXCR1 is a dominant determinant of receptor subtype selectivity, consistent with previous studies using rabbit/human CXCR1/2 chimeras; and 2) the specificity determinant for GROalpha binding in CXCR2 involves sequences in the N terminus, distal to the first 15 residues, as well as other parts of the receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8940121/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8702798" class="tabcontent ">
+                    <h2>The CXC chemokines growth-regulated oncogene (GRO) alpha, GRObeta, GROgamma, neutrophil-activating peptide-2, and epithelial cell-derived neutrophil-activating peptide-78 are potent agonists for the type B, but not the type A, human interleukin-8 receptor.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>Interleukin-8 (IL-8), growth-related oncogene (GRO) alpha, GRObeta, GROgamma, neutrophil-activating peptide-2 (NAP-2), epithelial cell-derived neutrophil activating peptide- 78 (ENA-78), and granulocyte chemoattractant protein-2 are potent neutrophil chemoattractants 40-90% identical in amino acid sequence that comprise a subgroup of human CXC chemokines defined by the conserved sequence motif glutamic acid-leucine-arginine (ELR). Two human chemotactic receptor subtypes for IL-8, named IL-8 receptors (IL8R) A and B, have been cloned. They are 78% identical in amino acid sequence, coexpressed in neutrophils, and distinguished by their different selectivities for GROalpha and NAP-2. Their selectivity for other ELR+ CXC chemokines has not been previously reported. By measuring calcium flux in human embryonic kidney 293 cells transfected with plasmids encoding IL8RA or IL8RB, we have now defined receptor selectivity for GRObeta, GROgamma, and ENA-78. The rank order of agonist potency, based on inspection of the mean effective concentration values (EC50), for IL8RB was GROgamma (1 nM) > IL-8 (4 nM) approximately GROalpha (5 nM) approximately GRObeta (4 nM) approximately NAP-2 (7 nM) > ENA-78 (11 nM), and for IL8RA was IL-8 (4 nM) >>> ENA-78 (40 nM) approximately NAP-2 (45 nM) > GROalpha (63 nM) approximately GROgamma (65 nM) >> GRObeta. The maximal response of IL8RA to IL-8 was at least 2-fold greater than the other five chemokines. All six agonists for IL8RB competed for high affinity 125I-IL-8, -GROalpha, -NAP-2, and -ENA-78 binding sites at IL8RB. GROalpha, GRObeta, GROgamma, NAP-2, and ENA-78 competed weakly for the high affinity IL-8 binding site at IL8RA. Thus, IL8RA and IL8RB are both highly selective for IL-8 and have similar sequences but differ dramatically in their selectivity for all other ELR+ CXC chemokines tested. These findings have important implications for developing novel neutrophil-specific anti-inflammatory drugs directed against the CXC chemokine signaling system.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8702798/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab1379593" class="tabcontent ">
+                    <h2>Characterization of two high affinity human interleukin-8 receptors.</h2>
+                    <h3>The Journal of biological chemistry; 1992</h3>
+                    <p>Interleukin 8 (IL-8) and melanocyte growth-stimulatory activity/gro (MGSA) are structurally related proinflammatory cytokines that are chemoattractants and activators of neutrophils. Recently, cDNA clones encoding a high affinity IL-8 receptor (IL-8R-A) and a "low affinity" IL-8 receptor (IL-8R-B) have been isolated from human cDNA libraries. These two receptors have 77% amino acid identity and are members of the G protein-coupled superfamily of receptors with seven transmembrane domains. We have expressed these two receptors in mammalian cells and find that in this system both receptors bind IL-8 with high affinity (Kd approximately 2 nM). The receptor affinities differ for MGSA, however. IL-8R-A binds MGSA with low affinity (Kd approximately 450 nM); IL-8R-B binds MGSA with high affinity (Kd approximately 2 nM). The transfected cells respond to ligand binding with a transient increase in the intracellular Ca2+ concentration. A Ca2+ response is found for IL-8R-A following the binding of IL-8; no response is found for MGSA. A Ca2+ response for IL-8R-B follows the binding of both ligands. Blot hybridization with oligonucleotide probes specific for the two receptors shows that mRNA for both receptors is present in human neutrophils. Analysis of IL-8 and MGSA binding data on neutrophils as well as Ca2+ response and desensitization data shows that the presence of these two IL-8 receptors on the cell surface can account for the profile of these two ligands on neutrophils.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1379593/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

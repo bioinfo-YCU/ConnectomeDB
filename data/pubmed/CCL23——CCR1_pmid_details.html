@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL23——CCR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL23——CCR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9886417')">9886417</button><button class="tablinks " onclick="openTab(event, 'tab12381680')">12381680</button><button class="tablinks " onclick="openTab(event, 'tab9558365')">9558365</button><button class="tablinks " onclick="openTab(event, 'tab10660125')">10660125</button><button class="tablinks " onclick="openTab(event, 'tab9886417')">9886417</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9886417" class="tabcontent active">
+                    <h2>Characterization of the signal transduction pathway activated in human monocytes and dendritic cells by MPIF-1, a specific ligand for CC chemokine receptor 1.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 1999</h3>
+                    <p>The receptor specificity and signal transduction pathway has been identified and characterized for a truncated form of myeloid progenitor inhibitory factor-1 (MPIF-1(24-99)). MPIF-1 binds specifically to sites, in particular CCR1, shared with macrophage inflammatory protein-1alpha (MIP-1alpha) on the surface of human monocytes and dendritic cells, as inferred by its ability to compete for [125I]MIP-1alpha, but not for [125I]MIP-1beta or [125I]monocyte chemotactic protein-1(MCP-1) binding to intact cells. Based on calcium flux, MPIF-1 is an agonist on CCR1-transfected HEK-293 cells, monocytes, and dendritic cells, but not on CCR5-, CCR8-, or CX3CR1-transfected cells. The inhibitory effect of guanosine 5'-O-(3-thio-triphosphate) (GTP-gammaS) or pertussis toxin pretreatment on MPIF-1 binding and calcium mobilization, respectively, indicates the involvement of G proteins in the interaction of MPIF-1 and its receptor(s). The increase in intracellular free calcium concentration following MPIF-1 treatment is mainly due to the influx of calcium from an extracellular pool. However, a portion of the intracellular free calcium concentration is derived from a phospholipase C inhibitor-sensitive intracellular pool. MPIF-1 induces a rapid dose-dependent release of [3H]arachidonic acid from monocytes that is dependent on extracellular calcium and is blocked by phospholipase A2 (PLA2) inhibitors. Furthermore, PLA2 activation is shown to be necessary for filamentous actin formation in monocytes. Thus, the MPIF-1 signal transduction pathway appears to include binding to CCR1; transduction by G proteins; effector function by phospholipase C, protein kinase C, calcium flux, and PLA2; and cytoskeletal remodeling.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9886417/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12381680" class="tabcontent ">
+                    <h2>Pharmacological characterization of the chemokine receptor, hCCR1 in a stable transfectant and differentiated HL-60 cells: antagonism of hCCR1 activation by MIP-1beta.</h2>
+                    <h3>British journal of pharmacology; 2002</h3>
+                    <p>C-C chemokine receptor-1 (CCR1) has been implicated in mediating a variety of inflammatory conditions including multiple sclerosis and organ rejection. Although originally referred to as the MIP-1alpha/RANTES receptor, CCR1 is quite promiscuous and can be activated by numerous chemokines. We used radioligand binding and [35S]-GTPgammaS exchange assays in membranes from a cell line transfected to express CCR1 (Ba/F3-hCCR1) to characterize a panel of chemokines (HCC-1, MIP-1alpha, MIP-1beta, MIP-1delta, MPIF-1, MCP-2, MCP-3, and RANTES) as CCR1 ligands. In this recombinant model, these chemokines displaced 125I-MIP-1alpha with a wide range of potencies and, with the exception of MCP-2, acted as full agonists in stimulating [35S]-GTPgammaS exchange. We then assessed the utility of HL-60 cells cultured with known differentiating agents (PMA, DMSO, dibutyryl-cAMP or retinoic acid) for investigating CCR1 pharmacology. In [35S]-GTPgammaS exchange assays, membranes from cells cultured with retinoic acid (4-6 days) were the most responsive to activation by MIP-1alpha and MPIF-1. FACS analysis and comparative pharmacology confirmed that these activities were mediated by CCR1. Using [35S]-GTPgammaS exchange assays, intracellular calcium flux and/or whole cell chemotaxis assays in HL-60(Rx) cells, we validated that MIP-1alpha was the most potent CCR1 ligand (MIP-1alpha>MPIF-1>RANTES>or=MIP-1beta) although the ligands differed in their efficacy as agonists. MPIF-1 was the more efficacious (MPIF-1>RANTES=MIP-1alpha>>MIP-1beta). 125I-MIP-1beta binding in Ba/F3-hCCR1 and HL-60(Rx) membranes was competitively displaced by MIP-1alpha, MPIF-1 and MIP-1beta. The binding K(i) for these chemokines with 125I-MIP-1beta were essentially identical in the two membrane systems. Lastly, MIP-1beta antagonized [35S]-GTPgammaS exchange, Ca2+ flux and chemotaxis in HL-60(Rx) cells in response to robust agonists such as MIP-1alpha, RANTES and MPIF-1. Based on our results, we propose that MIP-1beta could function as an endogenous inhibitor of CCR1 function.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12381680/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9558365" class="tabcontent ">
+                    <h2>Characterization of CKbeta8 and CKbeta8-1: two alternatively spliced forms of human beta-chemokine, chemoattractants for neutrophils, monocytes, and lymphocytes, and potent agonists at CC chemokine receptor 1.</h2>
+                    <h3>Blood; 1998</h3>
+                    <p>Two new members of human beta-chemokine cDNA were isolated based on structural and functional similarities to human leukotactin-1. One of these clones was identical to the previously isolated human beta-chemokine, CKbeta8, whereas the other is a splicing variant of CKbeta8, therefore named CKbeta8-1. CKbeta8 was short in 51 nucleotides (17 amino acids) compared with CKbeta8-1. The mature proteins of CKbeta8-1 and CKbeta8 consisted of 116 and 99 amino acids with calculated molecular weights of 12,500 and 10,950, respectively. Both CKbeta8-1 and CKbeta8 were potent agonists at CCR1. These chemokines chemoattracted neutrophils, monocytes, and lymphocytes. They also significantly suppressed colony formation by human bone marrow, granulocyte-macrophage, erythroid, and multipotential progenitor cells stimulated by combinations of growth factors. To our knowledge, this is the first example that an alternative splicing produces two active beta-chemokines from a single gene.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9558365/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10660125" class="tabcontent ">
+                    <h2>Selective binding of the truncated form of the chemokine CKbeta8 (25-99) to CC chemokine receptor 1(CCR1).</h2>
+                    <h3>Biochemical pharmacology; 2000</h3>
+                    <p>Human CC chemokine receptor 1 (CCR1) has been proposed as a receptor for CKbeta8. To obtain conclusive evidence, binding-displacement studies of 125I-CKbeta8 (25-99) were performed on membranes of Chinese hamster ovary cells expressing human CCR1. The Ic50 for displacement of 125I-CKbeta8 (25-99) with CKbeta8 (25-99) was 0.22 nM. The longer forms of CKbeta8 (24-99 and 1-99) also displaced 125I-CKbeta8, with Ic50 values of 6.5 and 16 nM, respectively. Displacement profiles of 125I-CKbeta8 (25-99) on freshly prepared human monocytes indicated that CCR1 was the major receptor for CKbeta8. We conclude that CCR1 is a receptor for different-length CKbeta8 and that CKbeta8 (25-99) has a similar affinity for CCR1 as macrophage inflammatory protein-1alpha (MIP-1alpha). The longer variants of CKbeta8 are significantly less potent than CKbeta8 (25-99) and MIP-1a on CCR1 and monocytes (P < 0.05).</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10660125/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9886417" class="tabcontent ">
+                    <h2>Characterization of the signal transduction pathway activated in human monocytes and dendritic cells by MPIF-1, a specific ligand for CC chemokine receptor 1.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 1999</h3>
+                    <p>The receptor specificity and signal transduction pathway has been identified and characterized for a truncated form of myeloid progenitor inhibitory factor-1 (MPIF-1(24-99)). MPIF-1 binds specifically to sites, in particular CCR1, shared with macrophage inflammatory protein-1alpha (MIP-1alpha) on the surface of human monocytes and dendritic cells, as inferred by its ability to compete for [125I]MIP-1alpha, but not for [125I]MIP-1beta or [125I]monocyte chemotactic protein-1(MCP-1) binding to intact cells. Based on calcium flux, MPIF-1 is an agonist on CCR1-transfected HEK-293 cells, monocytes, and dendritic cells, but not on CCR5-, CCR8-, or CX3CR1-transfected cells. The inhibitory effect of guanosine 5'-O-(3-thio-triphosphate) (GTP-gammaS) or pertussis toxin pretreatment on MPIF-1 binding and calcium mobilization, respectively, indicates the involvement of G proteins in the interaction of MPIF-1 and its receptor(s). The increase in intracellular free calcium concentration following MPIF-1 treatment is mainly due to the influx of calcium from an extracellular pool. However, a portion of the intracellular free calcium concentration is derived from a phospholipase C inhibitor-sensitive intracellular pool. MPIF-1 induces a rapid dose-dependent release of [3H]arachidonic acid from monocytes that is dependent on extracellular calcium and is blocked by phospholipase A2 (PLA2) inhibitors. Furthermore, PLA2 activation is shown to be necessary for filamentous actin formation in monocytes. Thus, the MPIF-1 signal transduction pathway appears to include binding to CCR1; transduction by G proteins; effector function by phospholipase C, protein kinase C, calcium flux, and PLA2; and cytoskeletal remodeling.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9886417/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

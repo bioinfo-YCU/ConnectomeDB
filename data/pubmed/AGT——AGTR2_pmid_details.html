@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>AGT——AGTR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for AGT——AGTR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab8315512')">8315512</button><button class="tablinks " onclick="openTab(event, 'tab8185599')">8185599</button><button class="tablinks " onclick="openTab(event, 'tab17138938')">17138938</button><button class="tablinks " onclick="openTab(event, 'tab21464395')">21464395</button><button class="tablinks " onclick="openTab(event, 'tab2775266')">2775266</button><button class="tablinks " onclick="openTab(event, 'tab7850406')">7850406</button><button class="tablinks " onclick="openTab(event, 'tab8242249')">8242249</button><button class="tablinks " onclick="openTab(event, 'tab8185599')">8185599</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab8315512" class="tabcontent active">
+                    <h2>Heterogeneity of angiotensin synthetic pathways and receptor subtypes: physiological and pharmacological implications.</h2>
+                    <h3>Journal of hypertension. Supplement : official journal of the International Society of Hypertension; 1993</h3>
+                    <p>To examine the nature of multiple putative enzymatic pathways, review the evidence of angiotensin receptor heterogeneity and speculate on the implications for physiology and pharmacology.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8315512/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8185599" class="tabcontent ">
+                    <h2>Molecular cloning and expression of the gene encoding human angiotensin II type 2 receptor.</h2>
+                    <h3>Biochemical and biophysical research communications; 1994</h3>
+                    <p>The gene of human angiotensin II type 2 (AT2) receptor was isolated from a genomic DNA library prepared from human placenta. The coding region of the human AT2 receptor gene was contained in a single exon coding segment of the gene indicating an intronless structure of the coding region. The amino acid sequence of human AT2 receptor deduced from its nucleotide sequence has 363 amino acids and shows a high degree of sequence identity to rat and mouse receptor sequences. Specific binding of [125I]Sar1Ile8-angiotensin II was demonstrated in COS-7 cells transfected with a plasmid containing the human AT2 sequence. Scatchard analysis and ligand displacement profile were typical of the AT2 receptor. Reverse transcription-polymerase chain reaction analysis showed that AT2 receptor mRNA was expressed in adult uterus and pheochromocytoma.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8185599/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab17138938" class="tabcontent ">
+                    <h2>Mass-spectrometric identification of a novel angiotensin peptide in human plasma.</h2>
+                    <h3>Arteriosclerosis, thrombosis, and vascular biology; 2007</h3>
+                    <p>Angiotensin peptides play a central role in cardiovascular physiology and pathology. Among these peptides, angiotensin II (Ang II) has been investigated most intensively. However, further angiotensin peptides such as Ang 1-7, Ang III, and Ang IV also contribute to vascular regulation, and may elicit additional, different, or even opposite effects to Ang II. Here, we describe a novel Ang II-related, strong vasoconstrictive substance in plasma from healthy humans and end-stage renal failure patients.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/17138938/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab21464395" class="tabcontent ">
+                    <h2>Pressor and renal hemodynamic effects of the novel angiotensin A peptide are angiotensin II type 1A receptor dependent.</h2>
+                    <h3>Hypertension (Dallas, Tex. : 1979); 2011</h3>
+                    <p>Recently, a new derivative of angiotensin (Ang) II, called "Ang A," has been discovered to be present in plasma of healthy humans and, in increased concentrations, in end-stage renal failure patients. The objectives of the study were to investigate the blood pressure and renal hemodynamic responses to Ang A in normotensive and hypertensive rats and in genetically modified mice and the binding properties of Ang A to Ang II type 1 (AT(1)) or Ang II type 2 (AT(2)) receptors. Intravenous and intrarenal administration of Ang A induced dose-dependent pressor and renal vasoconstrictor responses in normotensive rats, which were blocked by the AT(1) receptor antagonist candesartan but were not altered by the AT(2) receptor ligands PD123319, CGP42112A, or compound 21. Similar responses were observed after intravenous administration in spontaneously hypertensive rats. Deletion of AT(1a) receptors in mice almost completely abolished the pressor and renal vasoconstrictor responses to Ang A, indicating that its effects are mediated via AT(1a) receptors. Ang A was less potent than Ang II in vivo. The in vitro study demonstrated that Ang A is a full agonist for AT(1) receptors, with similar affinity for AT(1) and AT(2) receptors as Ang II. Overall, the responses to Ang A and Ang II were similar. Ang A has no physiological role to modulate the pressor and renal hemodynamic effects of Ang II.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/21464395/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab2775266" class="tabcontent ">
+                    <h2>Preliminary biochemical characterization of two angiotensin II receptor subtypes.</h2>
+                    <h3>Biochemical and biophysical research communications; 1989</h3>
+                    <p>Two angiotensin II receptor subtypes (A and B) are described from rat and human tissues. They have been characterised using specific peptidic and non-peptidic ligands with affinities differing by 1000 fold or more. These subtypes are present in adrenal glomerulosa of both species. Human uterus contains only subtype A, whereas both subtypes are found in rat uterus. Vascular smooth muscle cells in culture express only subtype B. Dithio-threitol totally inhibits binding to subtype B, but enhances the affinity to subtype A. There is a good correlation between the affinities of the selected agonists and antagonists for the two subtypes in the various tissues tested which is a usual requirement for receptor classification.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/2775266/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7850406" class="tabcontent ">
+                    <h2>Human angiotensin receptor subtypes.</h2>
+                    <h3>Current opinion in nephrology and hypertension; 1994</h3>
+                    <p>The rapid expansion of our knowledge of angiotensin receptors has been led by the development of subtype-specific angiotensin II receptor antagonists and by the cloning and sequencing of the AT1 receptor in angiotensin II. Although some actions of angiotensin II have been attributed to AT2 subtype receptors, the importance of these binding sites remains elusive. Nonpeptide, AT1-selective antagonists, such as losartan, block virtually all of the well-known effects of angiotensin II in mammalian cells. The effects of losartan are now being confirmed by the rapidly developing class of nonpeptide, AT1-selective angiotensin II receptor antagonists. In rodents, subtypes of the AT1 receptor have been cloned and designated AT1A and AT1B, but they have not been functionally distinguished. Such isoforms have not been identified for human AT1 receptors. Importantly, it now appears that the AT2 receptor has been cloned. The angiotensin receptors undergoing intense study are those in fetal tissue, brain, endothelial cells, and fibroblasts. Angiotensin II-induced growth and cardiovascular hypertrophy are the focus of broad-based research efforts. The clinical relevance of angiotensin II receptor subtypes is unknown, but there is growing evidence that AT1-selective agents are effective inhibitors of the angiotensin system in humans.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7850406/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8242249" class="tabcontent ">
+                    <h2>Pharmacological profile of valsartan: a potent, orally active, nonpeptide antagonist of the angiotensin II AT1-receptor subtype.</h2>
+                    <h3>British journal of pharmacology; 1993</h3>
+                    <p>1. The pharmacological profile of valsartan, (S)-N-valeryl-N-([2'-(1H-tetrazol-5-yl)biphenyl-4-yl]-methyl)-vali ne, a potent, highly selective, and orally active antagonist at the angiotensin II (AII) AT1-receptor, was studied in vitro and in vivo. 2. Valsartan competed with [125I]-AII at its specific binding sites in rat aortic smooth muscle cell membranes (AT1-receptor subtype) with a Ki of 2.38 nM, but was about 30,000 times less active in human myometrial membranes (AT2-receptor subtype). 3. In rabbit aortic rings incubated for 5 min with valsartan, at concentrations of 2, 20 and 200 nM, the concentration-response curve of AII was displaced to the right and the maximum response was reduced by 33%, 36% and 40%, respectively. Prolongation of the incubation time with valsartan to 1 h or 3 h, further reduced the maximum response by 48% or 59% (after 20 nM) and by 59% or 60% (after 200 nM) respectively. After 3 h incubation an apparent pKb value of 9.26 was calculated. Contractions induced by noradrenaline, 5-hydroxytryptamine, or potassium chloride were not affected by valsartan. No agonistic effects were observed in the rabbit aorta at concentrations of valsartan up to 2 microM. 4. In bovine adrenal glomerulosa, valsartan inhibited AII-stimulated aldosterone release without affecting the maximum response (pA2 8.4). 5. In the pithed rat, oral administration of valsartan (10 mg kg-1) shifted the AII-induced pressor response curves to the right, without affecting responses induced by the electrical stimulation of the sympathetic outflow or by noradrenaline. Animals treated with valsartan 24 h before pithing also showed significant inhibition of the response to AII. 6. In conscious, two-kidney, one-clip renal hypertensive rats (2K1C), valsartan decreased blood pressure in a dose-dependent manner after single i.v. or oral administration. The respective ED30 values were 0.06 mg kg-1 (i.v.) and 1.4 mg kg-1 (p.o.). The antihypertensive effect lasted for at least 24 h after either route of administration. After repeated oral administration for 4 days (3 and 10 mg kg-1 daily), in 2K1C renal hypertensive rats, systolic blood pressure was consistently decreased, but heart rate was not significantly affected. 7. In conscious, normotensive, sodium-depleted marmosets, valsartan decreased mean arterial pressure, measured by telemetry, after oral doses of 1-30 mg kg-1. The hypotensive effect persisted up to 12 h after 3 and 10 mg kg-1 and up to 24 h after 30 mg kg-1. 8. In sodium-depleted marmosets, the hypotensive effect of valsartan lasted longer than that of losartan(DuP 753). In renal hypertensive rats, both agents had a similar duration (24 h), but a different onset of action (valsartan at 1 h, losartan between 2 h and 24 h).9. These results demonstrate that valsartan is a potent, specific, highly selective antagonist of AII at theAT1-receptor subtype and does not possess agonistic activity. Furthermore, it is an efficacious, orally active, blood pressure-lowering agent in conscious renal hypertensive rats and in conscious normotensive,sodium-depleted primates.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8242249/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8185599" class="tabcontent ">
+                    <h2>Molecular cloning and expression of the gene encoding human angiotensin II type 2 receptor.</h2>
+                    <h3>Biochemical and biophysical research communications; 1994</h3>
+                    <p>The gene of human angiotensin II type 2 (AT2) receptor was isolated from a genomic DNA library prepared from human placenta. The coding region of the human AT2 receptor gene was contained in a single exon coding segment of the gene indicating an intronless structure of the coding region. The amino acid sequence of human AT2 receptor deduced from its nucleotide sequence has 363 amino acids and shows a high degree of sequence identity to rat and mouse receptor sequences. Specific binding of [125I]Sar1Ile8-angiotensin II was demonstrated in COS-7 cells transfected with a plasmid containing the human AT2 sequence. Scatchard analysis and ligand displacement profile were typical of the AT2 receptor. Reverse transcription-polymerase chain reaction analysis showed that AT2 receptor mRNA was expressed in adult uterus and pheochromocytoma.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8185599/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

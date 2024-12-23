@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>HLA-B——KIR3DL1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for HLA-B——KIR3DL1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15607823')">15607823</button><button class="tablinks " onclick="openTab(event, 'tab8046332')">8046332</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15607823" class="tabcontent active">
+                    <h2>A HLA-Cw6 specific single-chain antibody fragment (scFv) recognizing a natural killer cell receptor epitope.</h2>
+                    <h3>Molecular immunology; 2005</h3>
+                    <p>Major histocompatibility complex (MHC) class I molecules induce inhibitory signals on natural killer (NK) cells via killer cell immunoglobulin-like receptors (KIR). We recently reported a human single-chain antibody (scFv#1), which recognizes an epitope on HLA-Cw6 (genotype: *0602). Flow cytometry showed scFv#1 binding to HLA-Cw6 (strong) and also to HLA-Cw2, 4, 5 (very weak) but not to HLA-Cw1, 3, 7, 8. The presumptive epitope of the antibody fragment, which includes residues Asn77 and Lys80 was verified by introducing point mutations into HLA-Cw6 encoding cDNAs. Asn77 --> Ser77 (N77S) and Lys80- -> Asn80 (K80N) mutants of Cw6 lost scFv#1 binding capacity whereas an additional mutation at aa position 90 (Asp-->Ala, D90A) did not influence scFv#1 binding characteristics. Since residues 77 and 80 of HLA-C are directly involved in KIR/MHC interaction, we expected the induction of target cell lysis upon addition of scFv#1 when bringing NK and HLA-Cw6 positive cells together. To prove this interference, we performed Cr-release assays, using Cw*0602 and mock-transfected K562 erythroleukemia cells as targets and freshly prepared peripheral blood NK cells as effector cells. scFv#1 appeared to influence KIR on ligand binding and restored lysis at low effector to target (E/T) ratios. Pan HLA class I antibody W6/32 did not show such effects. Taken together scFv#1 binding patterns with mutagenized HLA-Cw6 and Cr-release assays are strong evidence that the scFv#1 epitope on HLA-Cw6 is at or close to the binding site of CD158a.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15607823/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8046332" class="tabcontent ">
+                    <h2>NKB1: a natural killer cell receptor involved in the recognition of polymorphic HLA-B molecules.</h2>
+                    <h3>The Journal of experimental medicine; 1994</h3>
+                    <p>Natural killer (NK) cells kill normal and transformed hematopoietic cells that lack expression of major histocompatibility complex (MHC) class I antigens. Lysis of HLA-negative Epstein Barr virus-transformed B lymphoblastoid cell lines (B-LCL) by human NK cell clones can be inhibited by transfection of the target cells with certain HLA-A, -B, or -C alleles. NK cell clones established from an individual demonstrate clonal heterogeneity in HLA recognition and a single NK clone can recognize multiple alleles. We describe a potential human NK cell receptor (NKB1) for certain HLA-B alleles (e.g., HLA-B*5101 and-B*5801) identified by the mAb DX9. NKB1 is a 70-kD glycoprotein that is expressed on a subset of NK cells and NK cell clones. DX9 monoclonal antibody (mAb) specifically inhibits the interaction between NK cell clones and B-LCL targets transfected with certain HLA-B alleles, but does not affect recognition of HLA-A or HLA-C antigens. An individual NK cell clone can independently recognize B-LCL targets transfected with HLA-B or HLA-C antigens; however, DX9 mAb only affects interaction with transfectants expressing certain HLA-B alleles. These findings demonstrate the existence of NK cell receptors involved in the recognition of HLA-B and imply the presence of multiple receptors for MHC on an individual NK clone.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8046332/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

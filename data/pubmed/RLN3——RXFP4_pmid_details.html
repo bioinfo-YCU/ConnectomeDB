@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>RLN3——RXFP4 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for RLN3——RXFP4</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab14522967')">14522967</button><button class="tablinks " onclick="openTab(event, 'tab14522967')">14522967</button><button class="tablinks " onclick="openTab(event, 'tab14522967')">14522967</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab14522967" class="tabcontent active">
+                    <h2>Identification of relaxin-3/INSL7 as a ligand for GPCR142.</h2>
+                    <h3>The Journal of biological chemistry; 2003</h3>
+                    <p>We have recently identified the insulin-like peptide relaxin-3 (aka INSL7) as the endogenous ligand for an orphan G-protein-coupled receptor, GPCR135 (aka somatostatin- and angiotensin-like peptide receptor). Analysis of possible receptors related to GPCR135 revealed a single orphan receptor, GPCR142. Thus, we tested whether GPCR142 could also respond to relaxin-3 or related insulin-like molecules. Surprisingly, GPCR142 was activated by nanomolar concentrations of relaxin-3 but was completely unresponsive to all other known insulin-like peptides. We evaluated by reverse transcriptase-PCR the expression of GPCR142 mRNA in a variety of human tissues and found expression in brain, kidney, testis, thymus, placenta, prostate, salivary gland, thyroid, and colon. In an analysis of other species, we were able to find a full-length mouse homolog of GPCR142, but were unable to detect any complete GPCR142 transcripts in rat. With respect to intracellular signaling, GPCR142 is similar to GPCR135 in that it potently inhibits adenylate cyclase and stimulates 35S-GTPgammaS incorporation in response to relaxin-3. However, whereas GPCR135 signaling could be converted to calcium mobilization using a Gqi5 or Galpha16 G-proteins, GPCR142 was only capable of functioning in the presence of Galpha16. In the accompanying article (Liu, C., Eriste, E., Sutton, S., Chen, J., Roland, B., Kuei, C., Farmer, N., Jörnvall, H., Sillard, R., and Lovenberg, T. W. (2003) J. Biol. Chem. 278, 50754-50764), we present the case that relaxin-3, which has previously been shown to bind to the relaxin receptor LGR7, is most likely the endogenous ligand for GPCR135. In this report, we show an additional receptor, GPCR142, which is also selectively activated by relaxin-3. However, the anatomical localization of GPCR142 suggests that GPCR142 may have different physiological functions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14522967/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab14522967" class="tabcontent ">
+                    <h2>Identification of relaxin-3/INSL7 as a ligand for GPCR142.</h2>
+                    <h3>The Journal of biological chemistry; 2003</h3>
+                    <p>We have recently identified the insulin-like peptide relaxin-3 (aka INSL7) as the endogenous ligand for an orphan G-protein-coupled receptor, GPCR135 (aka somatostatin- and angiotensin-like peptide receptor). Analysis of possible receptors related to GPCR135 revealed a single orphan receptor, GPCR142. Thus, we tested whether GPCR142 could also respond to relaxin-3 or related insulin-like molecules. Surprisingly, GPCR142 was activated by nanomolar concentrations of relaxin-3 but was completely unresponsive to all other known insulin-like peptides. We evaluated by reverse transcriptase-PCR the expression of GPCR142 mRNA in a variety of human tissues and found expression in brain, kidney, testis, thymus, placenta, prostate, salivary gland, thyroid, and colon. In an analysis of other species, we were able to find a full-length mouse homolog of GPCR142, but were unable to detect any complete GPCR142 transcripts in rat. With respect to intracellular signaling, GPCR142 is similar to GPCR135 in that it potently inhibits adenylate cyclase and stimulates 35S-GTPgammaS incorporation in response to relaxin-3. However, whereas GPCR135 signaling could be converted to calcium mobilization using a Gqi5 or Galpha16 G-proteins, GPCR142 was only capable of functioning in the presence of Galpha16. In the accompanying article (Liu, C., Eriste, E., Sutton, S., Chen, J., Roland, B., Kuei, C., Farmer, N., Jörnvall, H., Sillard, R., and Lovenberg, T. W. (2003) J. Biol. Chem. 278, 50754-50764), we present the case that relaxin-3, which has previously been shown to bind to the relaxin receptor LGR7, is most likely the endogenous ligand for GPCR135. In this report, we show an additional receptor, GPCR142, which is also selectively activated by relaxin-3. However, the anatomical localization of GPCR142 suggests that GPCR142 may have different physiological functions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14522967/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab14522967" class="tabcontent ">
+                    <h2>Identification of relaxin-3/INSL7 as a ligand for GPCR142.</h2>
+                    <h3>The Journal of biological chemistry; 2003</h3>
+                    <p>We have recently identified the insulin-like peptide relaxin-3 (aka INSL7) as the endogenous ligand for an orphan G-protein-coupled receptor, GPCR135 (aka somatostatin- and angiotensin-like peptide receptor). Analysis of possible receptors related to GPCR135 revealed a single orphan receptor, GPCR142. Thus, we tested whether GPCR142 could also respond to relaxin-3 or related insulin-like molecules. Surprisingly, GPCR142 was activated by nanomolar concentrations of relaxin-3 but was completely unresponsive to all other known insulin-like peptides. We evaluated by reverse transcriptase-PCR the expression of GPCR142 mRNA in a variety of human tissues and found expression in brain, kidney, testis, thymus, placenta, prostate, salivary gland, thyroid, and colon. In an analysis of other species, we were able to find a full-length mouse homolog of GPCR142, but were unable to detect any complete GPCR142 transcripts in rat. With respect to intracellular signaling, GPCR142 is similar to GPCR135 in that it potently inhibits adenylate cyclase and stimulates 35S-GTPgammaS incorporation in response to relaxin-3. However, whereas GPCR135 signaling could be converted to calcium mobilization using a Gqi5 or Galpha16 G-proteins, GPCR142 was only capable of functioning in the presence of Galpha16. In the accompanying article (Liu, C., Eriste, E., Sutton, S., Chen, J., Roland, B., Kuei, C., Farmer, N., Jörnvall, H., Sillard, R., and Lovenberg, T. W. (2003) J. Biol. Chem. 278, 50754-50764), we present the case that relaxin-3, which has previously been shown to bind to the relaxin receptor LGR7, is most likely the endogenous ligand for GPCR135. In this report, we show an additional receptor, GPCR142, which is also selectively activated by relaxin-3. However, the anatomical localization of GPCR142 suggests that GPCR142 may have different physiological functions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14522967/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

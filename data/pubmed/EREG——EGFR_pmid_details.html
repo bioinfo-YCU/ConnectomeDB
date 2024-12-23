@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>EREG——EGFR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for EREG——EGFR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab8626392')">8626392</button><button class="tablinks " onclick="openTab(event, 'tab9419975')">9419975</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab8626392" class="tabcontent active">
+                    <h2>Epidermal growth factor-related peptides activate distinct subsets of ErbB receptors and differ in their biological activities.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>Numerous epidermal growth factor (EGF)-related peptide binding members of the ErbB family of receptor tyrosine kinases have been described. While several EGF agonists bind and activate ErbB-1/EGF receptor, neu differentiation factor (NDF) functions as a ligand for ErbB-3 and ErbB-4. However, it is currently unknown which specific subsets of ErbB receptors become activated in response to each of these ligands. The present study addresses this issue using the T47D breast tumor cell line, which expresses moderate levels of all the presently known ErbB receptors. We show that all the EGF agonists, but not NDF, stimulated tyrosine phosphorylation of ErbB-1. In contrast, all the EGF-related factors except amphiregulin were able to induce tyrosine phosphorylation of ErbB-2. The ability to induce tyrosine phosphorylation of ErbB-3 varied dramatically among the different EGF-related peptides. While EGF, transforming growth factor (TGF)-alpha, and amphiregulin only had a moderate effect, NDF dramatically increased the ErbB-3 phosphotyrosine content. Most notably, heparin binding EGF-related growth factor (HB-EGF) and betacellulin (BTC) were more effective than other EGF agonists. Consequently, only NDF, HB-EGF, and BTC significantly stimulated association of phosphatidylinositol kinase activity with ErbB-3. Among the EGF agonists, HB-EGF induced a low level of ErbB-4 tyrosine phosphorylation, while BTC was as efficient as NDF in activating ErbB-4. The BTC activation of ErbB-4 appears to be independent of ErbB-1, as shown by pretreatment of cells with an antibody that inhibits binding of EGF agonists to ErbB-1. As a result of the differential activation of ErbB receptors, most of the EGF-related growth factors had distinguishable biological activities on cultured mammary epithelial cell lines.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8626392/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9419975" class="tabcontent ">
+                    <h2>Epiregulin binds to epidermal growth factor receptor and ErbB-4 and induces tyrosine phosphorylation of epidermal growth factor receptor, ErbB-2, ErbB-3 and ErbB-4.</h2>
+                    <h3>Oncogene; 1997</h3>
+                    <p>Epiregulin is a member of the epidermal growth factor (EGF) family, and has certain characteristics that are different from that of EGF, including mitogenic responses and binding to EGF receptor (EGFR). Epiregulin may also have another cell surface receptor and/or induces different receptor heterodimerizations for intracellular signaling. We investigated the binding ability of epiregulin to four ErbB family receptors using four human breast carcinoma cell lines that expressed different subsets of receptors. Chemical cross-linking experiments showed that [125I]epiregulin directly bound to each of EGFR and ErbB-4 but not to ErbB-2 and ErbB-3. Furthermore, although epiregulin stimulated tyrosine phosphorylation of all four ErbB receptors, the main intracellular signal was mediated by ErbB-4 and/or EGFR. The pattern of activation of ErbB family receptors was different from that of other EGF-related ligands. Our findings indicate that ErbB-4 and EGFR are receptors for epiregulin, and suggest that EGF-related ligands transduce signals for different biological responses by the hierarchical mechanism.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9419975/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

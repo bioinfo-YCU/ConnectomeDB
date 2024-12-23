@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>GUCA2A——GUCY2C - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for GUCA2A——GUCY2C</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10845107')">10845107</button><button class="tablinks " onclick="openTab(event, 'tab10601865')">10601865</button><button class="tablinks " onclick="openTab(event, 'tab11889121')">11889121</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10845107" class="tabcontent active">
+                    <h2>Mechanisms of guanylin action via cyclic GMP in the kidney.</h2>
+                    <h3>Annual review of physiology; 2000</h3>
+                    <p>Guanylin, uroguanylin, and lymphoguanylin are small peptides that activate cell-surface guanylate cyclase receptors and influence cellular function via intracellular cGMP. Guanylins activate two receptors, GC-C and OK-GC, which are expressed in intestine and/or kidney. Elevation of cGMP in the intestine elicits an increase in electrolyte and water secretion. Activation of renal receptors by uroguanylin stimulates urine flow and excretion of sodium, chloride, and potassium. Intracellular cGMP pathways for guanylins include activation of PKG-II and/or indirect stimulation of PKA-II. The result is activation of CFTR and/or C1C-2 channel proteins to enhance the electrogenic secretion of chloride and bicarbonate. Similar cellular mechanisms may be involved in the renal responses to guanylin peptides. Uroguanylin serves as an intestinal natriuretic hormone in postprandial states, thus linking the digestive and renal organ systems in a novel endocrine axis. Therefore, uroguanylin participates in the complex physiological processes underlying the saliuresis that is elicited by a salty meal.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10845107/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10601865" class="tabcontent ">
+                    <h2>Homologous desensitization of the human guanylate cyclase C receptor. Cell-specific regulation of catalytic activity.</h2>
+                    <h3>European journal of biochemistry; 2000</h3>
+                    <p>Guanylate Cyclase C (GCC) serves as a receptor for the endogenous ligands, guanylin and uroguanylin, as well as the family of bacterial heat-stable enterotoxins (ST), which are one of the major causes of diarrhoea the world over. We had earlier provided evidence that GCC, present in the human colonic T84 cell line, is desensitized on prolonged exposure to ST, and this desensitization was reflected in a reduced ST-stimulated guanylate cyclase activity of GCC [Bakre, M.M. & Visweswariah, S.S. (1997) FEBS Lett. 408, 345-349]. In this study, we have investigated the mechanisms that underlie this cellular desensitization process. Desensitization of T84 cells was not a result of reduction in GCC present in membranes prepared from desensitized T84 cells, nor due to increased cGMP-phosphodiesterase activity associated with the membrane fraction. The decrease in ST-stimulatable guanylate cyclase activity of GCC was due to a dramatic reduction in the Vmax of the cyclase, which was also seen when MnGTP was used as the substrate. GCC undergoes ligand-induced inactivation in vitro, which is alleviated in the presence of ATP. In vivo desensitized GCC could be further inactivated in vitro when preincubated with ST, indicating that the two mechanisms of GCC inactivation are distinct. Cellular refractoriness as reflected by a reduced responsiveness to further ST-stimulation following prior exposure to IST, coupled with GCC desensitization was also observed in another colonic cell line, Caco2. However, HEK293 cells, stably transfected with GCC cDNA, when exposed to ST for prolonged periods, did not result in GCC desensitization, indicating that desensitization of GCC appeared to be a cell specific phenomenon. GCC expressed in HEK293-GCC cells, however, showed in vitro ligand induced inactivation, suggesting that there are two independent means of ligand-induced desensitization of GCC, perhaps distinct from the mechanisms that have been described earlier for other members of the guanylate cyclase receptor family.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10601865/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11889121" class="tabcontent ">
+                    <h2>Guanylin, uroguanylin, and heat-stable euterotoxin activate guanylate cyclase C and/or a pertussis toxin-sensitive G protein in human proximal tubule cells.</h2>
+                    <h3>The Journal of biological chemistry; 2002</h3>
+                    <p>Membrane guanylate cyclase C (GC-C) is the receptor for guanylin, uroguanylin, and heat-stable enterotoxin (STa) in the intestine. GC-C-deficient mice show resistance to STa in intestine but saluretic and diuretic effects of uroguanylin and STa are not disturbed. Here we describe the cellular effects of these peptides using immortalized human kidney epithelial (IHKE-1) cells with properties of the proximal tubule, analyzed with the slow-whole-cell patch clamp technique. Uroguanylin (10 or 100 nm) either hyperpolarized or depolarized membrane voltages (V(m)). Guanylin and STa (both 10 or 100 nm), as well as 8-Br-cGMP (100 microm), depolarized V(m). All peptide effects were absent in the presence of 1 mm Ba(2+). Uroguanylin and guanylin changed V(m) pH dependently. Pertussis toxin (1 microg/ml, 24 h) inhibited hyperpolarizations caused by uroguanylin. Depolarizations caused by guanylin and uroguanylin were blocked by the tyrosine kinase inhibitor, genistein (10 microm). All three peptides increased cellular cGMP. mRNA for GC-C was detected in IHKE-1 cells and in isolated human proximal tubules. In IHKE-1 cells GC-C was also detected by immunostaining. These findings suggest that GC-C is probably the receptor for guanylin and STa. For uroguanylin two distinct signaling pathways exist in IHKE-1 cells, one involves GC-C and cGMP as second messenger, the other is cGMP-independent and connected to a pertussis toxin-sensitive G protein.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11889121/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

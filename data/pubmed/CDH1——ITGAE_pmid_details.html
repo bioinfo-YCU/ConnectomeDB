@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CDH1——ITGAE - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CDH1——ITGAE</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab7969453')">7969453</button><button class="tablinks " onclick="openTab(event, 'tab12434297')">12434297</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab7969453" class="tabcontent active">
+                    <h2>Adhesion between epithelial cells and T lymphocytes mediated by E-cadherin and the alpha E beta 7 integrin.</h2>
+                    <h3>Nature; 1994</h3>
+                    <p>In contrast to sessile cell types, lymphocytes migrate through the vasculature to become diffusely distributed in tissues or organized in lymphoid structures. A complex array of adhesion molecules including selectins, integrins and their counter-receptors mediate lymphocyte homing and migration into tissues and may be constitutively expressed or induced. However, the molecules that mediate the tissue-specific retention of lymphocytes within the parenchyma have not been identified. Along the epithelium at the basolateral surface of enterocytes, intestinal intraepithelial lymphocytes are found. These T cells of the mucosal immune system serve as a model for the tissue-specific compartmentalization of lymphocytes. We investigated whether the localization of these intestinal intraepithelial lymphocytes could be mediated by specific interactions between adhesion molecules expressed selectively on this subpopulation of T cells and tissue-restricted adhesion molecules on epithelial cells. Here we show that heterotypic adhesive interactions between epithelial cells and intraepithelial lymphocytes in vitro are mediated by E-cadherin and the alpha E beta 7 integrin.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7969453/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12434297" class="tabcontent ">
+                    <h2>T cell adhesion and cytolysis of pancreatic cancer cells: a role for E-cadherin in immunotherapy?</h2>
+                    <h3>British journal of cancer; 2002</h3>
+                    <p>Pancreatic cancer is an aggressive and potent disease, which is largely resistant to conventional forms of treatment. However, the discovery of antigens associated with pancreatic cancer cells has recently suggested the possibility that immunotherapy might become a specific and effective therapeutic option. T cells within many epithelia, including those of the pancreas, are known to express the alphaEbeta7-integrin adhesion molecule, CD103. The only characterised ligand for CD103 is E-cadherin, an epithelial adhesion molecule which exhibits reduced expression in pancreatic cancer. In our study, CD103 was found to be expressed only by activated T cells following exposure to tumour necrosis factor beta 1, a factor produced by many cancer cells. Significantly, the expression of this integrin was restricted mainly to class I major histocompatibility complex-restricted CD8+ T cells. The human pancreatic cancer cell line Panc-1 was transfected with human E-cadherin in order to generate E-cadherin negative (wild type) and positive (transfected) sub-lines. Using a sensitive flow cytometric adhesion assay it was found that the expression of both CD103 (on T cells) and E-cadherin (on cancer cells) was essential for efficient adhesion of activated T cells to pancreatic cancer cells. This adhesion process was inhibited by the addition of antibodies specific for CD103, thereby demonstrating the importance of the CD103-->E-cadherin interaction for T-cell adhesion. Using a 51Cr-release cytotoxicity assay it was found that CD103 expressing T cells lysed E-cadherin expressing Panc-1 target cells following T cell receptor stimulation; addition of antibodies specific for CD103 significantly reduced this lysis. Furthermore, absence of either CD103 from the T cells or E-cadherin expression from the cancer cells resulted in a significant reduction in cancer cell lysis. Therefore, potentially antigenic pancreatic cancer cells could evade a local anti-cancer immune response in vivo as a consequence of their loss of E-cadherin expression; this phenotypic change may also favour metastasis by reducing homotypic adhesion between adjacent cancer cells. We conclude that effective immunotherapy is likely to require upregulation of E-cadherin expression by pancreatic cancer cells or the development of cytotoxic immune cells that are less dependent on this adhesion molecule for efficient effecter function.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12434297/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

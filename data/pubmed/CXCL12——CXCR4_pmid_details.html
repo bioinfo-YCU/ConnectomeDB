@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CXCL12——CXCR4 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CXCL12——CXCR4</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab8752280')">8752280</button><button class="tablinks " onclick="openTab(event, 'tab12714578')">12714578</button><button class="tablinks " onclick="openTab(event, 'tab9551924')">9551924</button><button class="tablinks " onclick="openTab(event, 'tab9712844')">9712844</button><button class="tablinks " onclick="openTab(event, 'tab10233851')">10233851</button><button class="tablinks " onclick="openTab(event, 'tab8752281')">8752281</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab8752280" class="tabcontent active">
+                    <h2>The lymphocyte chemoattractant SDF-1 is a ligand for LESTR/fusin and blocks HIV-1 entry.</h2>
+                    <h3>Nature; 1996</h3>
+                    <p>Chemokines are chemotactic cytokines that activate and direct the migration of leukocytes. There are two subfamilies, the CXC and the CC chemokines. We recently found that the CXC-chemokine stromal cell-derived factor-1 (SDF-1) is a highly efficacious lymphocyte chemoattractant. Chemokines act on responsive leukocyte subsets through G-protein-coupled seven-transmembrane receptors, which are also used by distinct strains of HIV-1 as cofactors for viral entry. Laboratory-adapted and some T-cell-line-tropic (T-tropic) primary viruses use the orphan chemokine receptor LESTR/fusin (also known as fusin), whereas macrophage-tropic primary HIV-1 isolates use CCR-5 and CCR-3 (refs 7-11), which are receptors for known CC chemokines. Testing of potential receptors demonstrated that SDF-1 signalled through, and hence 'adopted', the orphan receptor LESTR, which we therefore designate CXC-chemokine receptor-4 (CXCR-4). SDF-1 induced an increase in intracellular free Ca2+ and chemotaxis in CXCR-4-transfected cells. Because SDF-1 is a biological ligand for the HIV-1 entry cofactor LESTR, we tested whether it inhibited HIV-1. SDF-1 inhibited infection by T-tropic HIV-1 of HeLa-CD4 cells, CXCR-4 transfectants, and peripheral blood mononuclear cells (PBMCs), but did not affect CCR-5-mediated infection by macrophage-tropic (M-tropic) and dual-tropic primary HIV-1.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8752280/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12714578" class="tabcontent ">
+                    <h2>Stromal cell-derived factor-1/CXCL12 directly enhances survival/antiapoptosis of myeloid progenitor cells through CXCR4 and G(alpha)i proteins and enhances engraftment of competitive, repopulating stem cells.</h2>
+                    <h3>Journal of leukocyte biology; 2003</h3>
+                    <p>Stromal cell-derived factor-1 (SDF-1/CXCL12) enhances survival of myeloid progenitor cells. The two main questions addressed by us were whether these effects on the progenitors were direct-acting and if SDF-1/CXCL12 enhanced engrafting capability of competitive, repopulating mouse stem cells subjected to short-term ex vivo culture with other growth factors. SDF-1/CXCL12 had survival-enhancing/antiapoptosis effects on human bone marrow (BM) and cord blood (CB) and mouse BM colony-forming units (CFU)-granulocyte macrophage, burst-forming units-erythroid, and CFU-granulocyte-erythroid-macrophage-megakaryocyte with similar dose responses. The survival effects were direct-acting, as assessed on colony formation by single isolated human BM and CB CD34(+++) cells. Effects were mediated through CXCR4 and G(alpha)i proteins. Moreover, SDF-1/CXCL12 greatly enhanced the engrafting capability of mouse long-term, marrow-competitive, repopulating stem cells cultured ex vivo with interleukin-6 and steel factor for 48 h. These results extend information on the survival effects mediated through the SDF-1/CXCL12-CXCR4 axis and may be of relevance for ex vivo expansion and gene-transduction procedures.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12714578/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9551924" class="tabcontent ">
+                    <h2>Identification and characterization of the CXCR4 chemokine receptor in human T cell lines: ligand binding, biological activity, and HIV-1 infectivity.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 1998</h3>
+                    <p>The CXCR4 chemokine receptor has been shown to respond to the C-X-C chemokine stromal-derived factor (SDF-1) and has recently been shown to be an important coreceptor for HIV-1 infection. In the present paper we have tested a number of human lymphocyte cell lines, including Jurkat, HUT78, CEM, and Sup-T1 for the presence of CXCR4 receptors. We found that these T cell lines bind SDF-1alpha and SDF-1beta with high affinity. The CXCR4 Ab 12G5 inhibited both SDF-1 binding and HIV-1LAI-mediated fusion of CEM. Scatchard analysis revealed the presence of approximately 150,000 SDF-1alpha-binding sites per cell with a Kd between 5 and 10 nM. Cross-competition experiments using unlabeled SDF-1alpha and SDF-1beta revealed that both chemokines are equally capable of displacing their radiolabeled counterparts. Internalization studies with [125]I-SDF-1alpha revealed that Jurkat cells internalized greater than 90% of the ligand by 2 h at 37 degrees C. SDF-1alpha was also chemotactic for Jurkat cells and caused an increase in the rate of extracellular acidification that was half-maximal at 18 nM SDF-1alpha and could be inhibited by pretreatment with the SDF-1 proteins, pertussis toxin, or the Ab 12G5. Finally, SDF-1alpha also caused an increase in the cytosolic Ca2+ concentration in Sup-T1 cells that was abolished by preincubating the cells with pertussis toxin or PMA and inhibited by the Ab 12G5. This molecular characterization of CXCR4 receptors should prove useful in clarifying receptor interaction with SDF-1 proteins and with HIV-1 glycoprotein, with the ultimate aim of targeting the viral interaction for therapeutic intervention.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9551924/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9712844" class="tabcontent ">
+                    <h2>N-terminal peptides of stromal cell-derived factor-1 with CXC chemokine receptor 4 agonist and antagonist activities.</h2>
+                    <h3>The Journal of biological chemistry; 1998</h3>
+                    <p>Peptides corresponding to the N-terminal 9 residues of stromal cell-derived factor-1 (SDF-1) have SDF-1 activity. SDF-1, 1-8, 1-9, 1-9 dimer, and 1-17 induced intracellular calcium and chemotaxis in T lymphocytes and CEM cells and bound to CXC chemokine receptor 4 (CXCR4). The peptides had similar activities to SDF-1 but were less potent. Whereas native SDF-1 had half-maximal chemoattractant activity at 5 nM, the 1-9 dimer required 500 nM and was therefore 100-fold less potent. The 1-17 and a 1-9 monomer analog were 4- and 36-fold, respectively, less potent than the 1-9 dimer. Both the chemotactic and calcium response of the 1-9 dimer was inhibited by an antibody to CXCR4. The basis for the enhanced activity of the dimer form of SDF-1, 1-9 is uncertain, but it could involve an additional fortuitous binding site on the 1-9 peptide in addition to the normal SDF-1, 1-9 site. A 1-9 analog, 1-9[P2G] dimer, was found to be a CXCR4 antagonist. Overall this study shows that the N-terminal peptides are CXCR4 agonists or antagonists, and these could be leads for high affinity ligands.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9712844/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10233851" class="tabcontent ">
+                    <h2>Vascular endothelial growth factor and basic fibroblast growth factor induce expression of CXCR4 on human endothelial cells: In vivo neovascularization induced by stromal-derived factor-1alpha.</h2>
+                    <h3>The American journal of pathology; 1999</h3>
+                    <p>The contribution of chemokines toward angiogenesis is currently a focus of intensive investigation. Certain members of the CXC chemokine family can induce bovine capillary endothelial cell migration in vitro and corneal angiogenesis in vivo, and apparently act via binding to their receptors CXCR1 and CXCR2. We used an RNAse protection assay that permitted the simultaneous detection of mRNA for various CXC chemokine receptors in resting human umbilical vein endothelial cells (HUVECs) and detected low levels of only CXCR4 mRNA. Stimulation of HUVECs with vascular endothelial growth factor (VEGF) or basic fibroblast growth factor (bFGF) up-regulated levels of only CXCR4 mRNA. CXCR4 specifically binds the chemokine stromal-derived factor-1alpha (SDF-1alpha). Competitive binding studies using 125I-labeled SDF-1alpha with Scatchard analysis indicated that VEGF or bFGF induced an average number of approximately 16,600 CXCR4 molecules per endothelial cell, with a Kd = 1.23 x 10(-9) mol/L. These receptors were functional as HUVECs and human aorta endothelial cells (HAECs) migrated toward SDF-1alpha. Although SDF-1alpha-induced chemotaxis was inhibited by the addition of a neutralizing monoclonal CXCR4 antibody, endothelial chemotaxis toward VEGF was not altered; therefore, the angiogenic effect of VEGF is independent of SDF-1alpha. Furthermore, subcutaneous SDF-1alpha injections into mice induced formation of local small blood vessels that was accompanied by leukocytic infiltrates. To test whether these effects were dependent on circulating leukocytes, we successfully obtained SDF-1alpha-induced neovascularization from cross sections of leukocyte-free rat aorta. Taken together, our data indicate that SDF-1alpha acts as a potent chemoattractant for endothelial cells of different origins bearing CXCR4 and is a participant in angiogenesis that is regulated at the receptor level by VEGF and bFGF.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10233851/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8752281" class="tabcontent ">
+                    <h2>The CXC chemokine SDF-1 is the ligand for LESTR/fusin and prevents infection by T-cell-line-adapted HIV-1.</h2>
+                    <h3>Nature; 1996</h3>
+                    <p>A putative chemokine receptor that we previously cloned and termed LESTR has recently been shown to function as a co-receptor (termed fusin) for lymphocyte-tropic HIV-1 strains. Cells expressing CD4 became permissive to infection with T-cell-line-adapted HIV-1 strains of the syncytium-inducing phenotype after transfection with LESTR/fusin complementary DNA. We report here the indentification of a human chemokine of the CXC type, stromal cell-derived factor 1 (SDF-1), as the natural ligand for LESTR/fusin, and we propose the term CXCR-4 for this receptor, in keeping with the new chemokine-receptor nomenclature. SDF-1 activates Chinese hamster ovary (CHO) cells transfected with CXCR-4 cDNA as well as blood leukocytes and lymphocytes. In cell lines expressing CXCR-4 and CD4, and in blood lymphocytes, SDF-1 is a powerful inhibitor of infection by lymphocyte-tropic HIV-1 strains, whereas the CC chemokines RANTES, MIP-1 alpha and MIP-1 beta, which were shown previously to prevent infection with primary, monocyte-tropic viruses, are inactive. In combination with CC chemokines, which block the infection with monocyte/macrophage-tropic viruses, SDF-1 could help to decrease virus load and prevent the emergence of the syncytium-inducing viruses which are characteristic of the late stages of AIDS.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8752281/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

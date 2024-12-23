@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>MADCAM1——CD44 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for MADCAM1——CD44</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab2474557')">2474557</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab2474557" class="tabcontent active">
+                    <h2>Monoclonal antibodies to human lymphocyte homing receptors define a novel class of adhesion molecules on diverse cell types.</h2>
+                    <h3>The Journal of cell biology; 1989</h3>
+                    <p>A 90-kD lymphocyte surface glycoprotein, defined by monoclonal antibodies of the Hermes series, is involved in lymphocyte recognition of high endothelial venules (HEV). Lymphocyte gp90Hermes binds in a saturable, reversible fashion to the mucosal vascular addressin (MAd), a tissue-specific endothelial cell adhesion molecule for lymphocytes. We and others have recently shown that the Hermes antigen is identical to or includes CD44 (In[Lu]-related p80), human Pgp-1, and extracellular matrix receptor III-molecules reportedly expressed on diverse cell types. Here, we examine the relationship between lymphoid and nonlymphoid Hermes antigens using serologic, biochemical, and, most importantly, functional assays. Consistent with studies using mAbs to CD44 or Pgp-1, mAbs against five different epitopes on lymphocyte gp90Hermes reacted with a wide variety of nonhematolymphoid cells in diverse normal human tissues, including many types of epithelium, mesenchymal elements such as fibroblasts and smooth muscle, and a subset of glia in the central nervous system. To ask whether these non-lymphoid molecules might also be functionally homologous to lymphocyte homing receptors, we assessed their ability to interact with purified MAd using fluorescence energy transfer techniques. The Hermes antigen isolated from both glial cells and fibroblasts--which express a predominant 90-kD form similar in relative molecular mass, isoelectric point, and protease sensitivity to lymphocyte gp90Hermes--was able to bind purified MAd. In contrast, a 140-160-kD form of the Hermes antigen isolated from squamous epithelial cells lacked this capability. Like lymphocyte binding to mucosal HEV, the interaction between glial gp90Hermes and MAd is inhibited by mAb Hermes-3, but not Hermes-1, suggesting that similar molecular domains are involved in the two binding events. The observation that the Hermes/CD44 molecules derived from several nonlymphoid cell types display binding domains homologous to those of lymphocyte homing receptors suggests that these glycoproteins represent a novel type of cell adhesion/recognition molecule (H-CAM) potentially mediating cell-cell or cell-matrix interactions in multiple tissues.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/2474557/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

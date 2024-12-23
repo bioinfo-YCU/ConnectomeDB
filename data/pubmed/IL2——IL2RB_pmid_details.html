@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>IL2——IL2RB - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for IL2——IL2RB</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15265897')">15265897</button><button class="tablinks " onclick="openTab(event, 'tab11035066')">11035066</button><button class="tablinks " onclick="openTab(event, 'tab8049354')">8049354</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15265897" class="tabcontent active">
+                    <h2>Natural, proteolytic release of a soluble form of human IL-15 receptor alpha-chain that behaves as a specific, high affinity IL-15 antagonist.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 2004</h3>
+                    <p>IL-15 and IL-2 are two structurally and functionally related cytokines whose high affinity receptors share the IL-2R beta-chain and gamma-chain in association with IL-15R alpha-chain (IL-15R alpha) or IL-2R alpha-chain, respectively. Whereas IL-2 action seems restricted to the adaptative T cells, IL-15 appears to be crucial for the function of the innate immune responses, and the pleiotropic expression of IL-15 and IL-15R alpha hints at a much broader role for the IL-15 system in multiple cell types and tissues. In this report, using a highly sensitive radioimmunoassay, we show the existence of a soluble form of human IL-15R alpha (sIL-15R alpha) that arises from proteolytic shedding of the membrane-anchored receptor. This soluble receptor is spontaneously released from IL-15R alpha-expressing human cell lines as well as from IL-15R alpha transfected COS-7 cells. This release is strongly induced by PMA and ionomycin, and to a lesser extent by IL-1 beta and TNF-alpha. The size of sIL-15R alpha (42 kDa), together with the analysis of deletion mutants in the ectodomain of IL-15R alpha, indicates the existence of cleavage sites that are proximal to the plasma membrane. Whereas shedding induced by PMA was abrogated by the synthetic matrix metalloproteinases inhibitor GM6001, the spontaneous shedding was not, indicating the occurrence of at least two distinct proteolytic mechanisms. The sIL-15R alpha displayed high affinity for IL-15 and behaved as a potent and specific inhibitor of IL-15 binding to the membrane receptor, and of IL-15-induced cell proliferation (IC(50) in the range from 3 to 20 pM). These results suggest that IL-15R alpha shedding may play important immunoregulatory functions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15265897/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11035066" class="tabcontent ">
+                    <h2>IL-2R beta agonist P1-30 acts in synergy with IL-2, IL-4, IL-9, and IL-15: biological and molecular effects.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 2000</h3>
+                    <p>From the sequence of human IL-2 we have recently characterized a peptide (p1-30), which is the first IL-2 mimetic described. P1-30 covers the entire alpha helix A of IL-2 and spontaneously folds into a alpha helical homotetramer mimicking the quaternary structure of a hemopoietin. This neocytokine interacts with a previously undescribed dimeric form of the human IL-2 receptor beta-chain likely to form the p1-30 receptor (p1-30R). P1-30 acts as a specific IL-2Rbeta agonist, selectively inducing activation of CD8 and NK lymphocytes. From human PBMC we have also shown that p1-30 induces the activation of lymphokine-activated killer cells and the production of IFN-gamma. Here we demonstrate the ability of p1-30 to act in synergy with IL-2, -4, -9, and -15. These synergistic effects were analyzed at the functional level by using TS1beta, a murine T cell line endogenously expressing the common cytokine gamma gene and transfected with the human IL-2Rbeta gene. At the receptor level, we show that expression of human IL-2Rbeta is absolutely required to obtain synergistic effects, whereas IL-2Ralpha specifically impedes the synergistic effects obtained with IL-2. The results suggest that overexpression of IL-2Ralpha inhibits p1-30R formation in the presence of IL-2. Finally, concerning the molecular effects, although p1-30 alone induces the antiapoptotic molecule bcl-2, we show that it does not influence mRNA expression of c-myc, c-jun, and c-fos oncogenes. In contrast, p1-30 enhances IL-2-driven expression of these oncogenes. Our data suggest that p1-30R (IL-2Rbeta)(2) and intermediate affinity IL-2R (IL-2Rbetagamma), when simultaneously expressed at the cell surface, may induce complementary signal transduction pathways and act in synergy.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11035066/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8049354" class="tabcontent ">
+                    <h2>Soluble IL-2 receptor beta and gamma subunits: ligand binding and cooperativity.</h2>
+                    <h3>European cytokine network; 1994</h3>
+                    <p>Biologically relevant interleukin-2 receptors (IL-2Rs) are present in two affinity states on responsive cells. High affinity receptors (HAR) apparently exist as heterotrimers (alpha, beta and gamma) while the other functional complex, the intermediate affinity receptor (IAR), is comprised of beta and gamma chains. The mechanisms by which the beta and gamma subunits contribute the formation of HAR and IAR are still unclear. Soluble forms of the beta and gamma chains were cloned, epitope-tagged, expressed in insect cells and purified. IL-2 binding and neutralization of IL-2 bioactivity by beta and gamma extracellular domains (ectodomains) was analyzed by several biochemical and biological approaches. The results indicate that beta clearly binds IL-2 with low affinity (KI-KD = 3 microM) whereas gamma binding is detectable, but of very low affinity (apparent KI > 15 microM) in the absence of beta. Interestingly, combinations of beta and gamma ectodomains interact to bind IL-2 with higher affinity and greater stability than either chain alone. An apparent stable binding complex is formed when beta, gamma, and IL-2 are combined. Ligand binding by the beta and gamma chains in solution is specific for IL-2 and is of sufficient affinity and stability to effectively neutralize IL-2 in biological assays (binding IC50 = biological IC50). Direct analyses of binding kinetics by surface plasmon resonance reveals that the increased affinity and biological neutralizing ability of beta gamma, as compared to beta, is due to a very slow dissociation rate contributed by the gamma ectodomain. While IL-2R beta and gamma cytoplasmic and transmembrane domains are not essential for interactive binding of IL-2, they may contribute to IL2 binding affinity. The recognition and association of IL-2 by the beta gamma IAR appears to be contributed primarily by the beta chain while the stability and dissociation is likely dominated by the gamma chain. It is anticipated that the gamma subunit functions in a similar manner when participating in high affinity IL-4 and IL-7 binding.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8049354/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

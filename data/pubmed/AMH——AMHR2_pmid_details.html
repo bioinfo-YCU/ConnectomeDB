@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>AMH——AMHR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for AMH——AMHR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab7997230')">7997230</button><button class="tablinks " onclick="openTab(event, 'tab8889695')">8889695</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab7997230" class="tabcontent active">
+                    <h2>Cloning, expression, and alternative splicing of the receptor for anti-Müllerian hormone.</h2>
+                    <h3>Molecular endocrinology (Baltimore, Md.); 1994</h3>
+                    <p>Anti-Müllerian hormone, also called Müllerian-inhibiting substance or factor, is a glycoprotein dimer belonging to the transforming growth factor-beta superfamily and synthesized by immature Sertoli cells and postnatal granulosa cells. Anti-Müllerian hormone plays a key role in sex differentiation by inducing the regression of Müllerian ducts in the male fetus. It is also responsible for the stunting and masculinization of fetal ovaries in bovine freemartin fetuses and may be involved in the control of follicular maturation in the postnatal ovary. Using a degenerate probe for a consensus region of the transforming growth factor-beta receptor superfamily to screen a complementary DNA library from rabbit fetal ovaries, we cloned a complementary DNA coding for a transmembrane serine/threonine kinase, which is expressed around the fetal Müllerian duct, in fetal and adult granulosa cells, and in immature Sertoli cells. Two transcripts, generated by alternative splicing of an exon coding for an N-terminal 61-amino acid domain, are strongly expressed in anti-Müllerian hormone target organs and Sertoli cells. The longer, 569-amino acid, isoform binds anti-Müllerian hormone when transiently expressed in COS cells and is believed to encode its functional receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7997230/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8889695" class="tabcontent ">
+                    <h2>Molecular biology of MIS and its receptors.</h2>
+                    <h3>Journal of andrology; 1996</h3>
+                    <p>It is important, given the potential use of MIS as an anticancer agent against tumors of Müllerian duct origin, that the search continue to identify binding isoforms of the MIS type II receptor or to identify other factors in the heteromeric complex that might be required for specific binding of this ligand to be observed. With confidence in binding one can use receptor probes to screen patients with ovarian cancer and to identify those that express receptor. This subgroup can then be examined for binding of the MIS ligand and subsequently for antiproliferative response to MIS, in order to preselect candidate patients for receptor-directed MIS treatment. Thus, a once obscure phenomenon observed in the Freemartin has led to the purification and cloning of MIS and the identification of its receptor components, as well as an understanding of their regulation and expression. Elucidation of these molecular events brings us closer to the use of molecules such as MIS in the clinical setting.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8889695/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

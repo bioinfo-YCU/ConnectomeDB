@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>LRPAP1——SORL1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for LRPAP1——SORL1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab11557679')">11557679</button><button class="tablinks " onclick="openTab(event, 'tab8940146')">8940146</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab11557679" class="tabcontent active">
+                    <h2>LR11, a mosaic LDL receptor family member, mediates the uptake of ApoE-rich lipoproteins in vitro.</h2>
+                    <h3>Arteriosclerosis, thrombosis, and vascular biology; 2001</h3>
+                    <p>Since the molecular identification of the low density lipoprotein receptor (LDLR), an ever increasing number of related proteins have been discovered. These receptors belonging to the LDLR family are thought to play key roles in lipoprotein metabolism in a variety of tissues, including the arterial wall. We have discovered that the expression of a 250-kDa mosaic LDLR-related protein, which we termed LR11 for the presence of 11 LDLR ligand-binding repeats, is markedly induced in smooth muscle cells in the hyperplastic intima of animal models used for the study of atherosclerosis. Here, we demonstrate that the human LR11, when overexpressed in hamster cells, binds and internalizes 39-kDa receptor-associated protein (RAP), an in vitro ligand for all receptors belonging to the LDLR family. Furthermore, LR11 binds the apolipoprotein E (apoE)-rich lipoproteins, beta-very low density lipoproteins (VLDLs), with a high affinity similar to that of other members, such as the LDLR and VLDL receptor. RAP and beta-VLDL compete with each other; however, other serum lipoproteins are not able to inhibit their binding. LR11 shows specific binding of apoE-enriched HDL prepared from human cerebrospinal fluid as well as of beta-VLDL, suggesting that the apoE content of lipoproteins is most likely important for mediating the high-affinity binding to the receptor. LR11-overexpressing cells are able to internalize and degrade the bound beta-VLDL; these cells also show increased accumulation of cholesteryl esters when incubated with beta-VLDL. Incubation for 48 hours with beta-VLDL of LR11-overexpressing cells, but not of control cells, promotes the appearance of numerous intracellular lipid droplets. Taken together, LR11, a mosaic LDLR family member whose expression in smooth muscle cells is markedly induced in atheroma, has all the properties of a receptor for the endocytosis of lipoproteins, particularly for the incorporation of apoE-rich lipoproteins.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11557679/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8940146" class="tabcontent ">
+                    <h2>Molecular characterization of a novel human hybrid-type receptor that binds the alpha2-macroglobulin receptor-associated protein.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>The 39-40-kDa receptor-associated protein (RAP) binds to the members of the low density lipoprotein receptor gene family and functions as a specialized endoplasmic reticulum/Golgi chaperone. Using RAP affinity chromatography, we have purified a novel approximately 250-kDa brain protein and isolated the corresponding cDNA. The gene, designated SORL1, maps to chromosome 11q 23/24 and encodes a 2214-residue type 1 receptor containing a furin cleavage site immediately preceding the N terminus determined in the purified protein. The receptor, designated sorLA-1, has a short cytoplasmic tail containing a tyrosine-based internalization signal and a large external part containing (from the N-terminal): 1) a segment homologous to domains in the yeast vacuolar protein sorting 10 protein, Vps10p, that binds carboxypeptidase Y, 2) five tandemly arranged YWTD repeats and a cluster of 11 class A repeats characteristic of the low density lipoprotein receptor gene family receptors, and 3) six tandemly arranged fibronectin type III repeats also found in certain neural adhesion proteins. sorLA-1 may therefore be classified as a hybrid receptor. Northern blotting revealed specific mRNA transcripts in brain, spinal cord, and testis but not in several major organs. Both RAP and an antibody against a synthetic peptide derived from a sequence determined in the mature protein detected sorLA-1 in crude human brain extracts. The domain structure suggests that sorLA-1 is an endocytic receptor possibly implicated in the uptake of lipoproteins and of proteases.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8940146/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

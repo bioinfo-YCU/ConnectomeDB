@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>LPL——LRP1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for LPL——LRP1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab1281473')">1281473</button><button class="tablinks " onclick="openTab(event, 'tab7510694')">7510694</button><button class="tablinks " onclick="openTab(event, 'tab7989348')">7989348</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab1281473" class="tabcontent active">
+                    <h2>The low density lipoprotein receptor-related protein/alpha 2-macroglobulin receptor binds and mediates catabolism of bovine milk lipoprotein lipase.</h2>
+                    <h3>The Journal of biological chemistry; 1992</h3>
+                    <p>Lipoprotein lipase (LPL), the major lipolytic enzyme involved in the conversion of triglyceride-rich lipoproteins to remnants, was found to compete with binding of activated alpha 2-macroglobulin (alpha 2M*) to the low density lipoprotein receptor-related protein (LRP)/alpha 2-macroglobulin receptor. Bovine milk LPL displaced both 125I-labeled alpha 2M* and 39-kDa alpha 2M receptor-associated protein (RAP) from the surface of cultured mutant fibroblasts lacking LDL receptors with apparent KI values at 4 degrees C of 6.8 and 30 nM, respectively. Furthermore, LPL inhibited the cellular degradation of 125I-alpha 2M* at 37 degrees C. Because both alpha 2M* and RAP interact with LRP, these data suggest that LPL binds specifically to this receptor. This was further supported by observing that an immunoaffinity-isolated polyclonal antibody against LRP blocked cellular degradation of 125I-LPL in a dose-dependent manner. In addition, 125I-LPL bound to highly purified LRP in a solid-phase assay with a KD of 18 nM, and this binding could be partially displaced with alpha 2M* (KI = 7 nM) and RAP (KI = 3 nM). Taken together, these data establish that LPL binds with high affinity to LRP and undergoes LRP-mediated cellular uptake. The implication of these findings for lipoprotein catabolism in vivo may be important if LRP binding is preserved when LPL is attached to lipoproteins. If so, LPL might facilitate LRP-mediated clearance of lipoproteins.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1281473/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7510694" class="tabcontent ">
+                    <h2>The carboxyl-terminal domain of lipoprotein lipase binds to the low density lipoprotein receptor-related protein/alpha 2-macroglobulin receptor (LRP) and mediates binding of normal very low density lipoproteins to LRP.</h2>
+                    <h3>The Journal of biological chemistry; 1994</h3>
+                    <p>Lipoprotein lipase (LPL) binds with high affinity to the low density lipoprotein receptor-related protein/alpha 2-macroglobulin receptor (LRP) and promotes binding, uptake, and degradation of normal triglyceride-rich lipoproteins in a process mediated by LRP (Chappell, D. A., Fry, G. L., Naknitx, M.A., Muhonen, L. E., Pladet, M. W., Iverius, P-H., and Strickland, D. K. (1993) J. Biol. Chem. 268, 14168-14175). To localize the portion of LPL that is responsible for interacting with LRP, fragments of LPL were expressed in bacteria. A fragment of human LPL containing the COOH-terminal domain (residues 313-448, designated LPLC) which lacks the catalytic site was able to bind to LRP. Purified LRP bound specifically to microtiter wells coated with LPL or LPLC with KD values of 2.8 and 5 nM, respectively. The effects of several mutations of LPLC were tested. Mutation of Lys407 to Ala reduced the affinity of LPLC for LRP by approximately 10-fold. Like native LPL, LPLC prevented the binding of activated alpha 2-macroglobulin and the 39-kDa receptor-associated protein to LRP and inhibited the internalization and degradation of activated alpha 2-macroglobulin and receptor-associated protein in cultured fibroblasts. LPLC also bound to 125I-labeled human normal triglyceride-rich lipoproteins and promoted their binding to purified LRP and to cultured cells. Mutation of Trp393 and Trp394 to Ala completely abolished the ability of LPLC to bind to lipoproteins, but had little effect on its interaction with LRP. These data indicate that the COOH-terminal domain of LPL may function both in binding lipoproteins and mediating their interaction with LRP.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7510694/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7989348" class="tabcontent ">
+                    <h2>A carboxyl-terminal fragment of lipoprotein lipase binds to the low density lipoprotein receptor-related protein and inhibits lipase-mediated uptake of lipoprotein in cells.</h2>
+                    <h3>The Journal of biological chemistry; 1994</h3>
+                    <p>It has previously been shown that lipoprotein lipase can mediate uptake of remnant lipoprotein particles via binding to the low density lipoprotein receptor-related protein/alpha 2-macroglobulin receptor (LRP). Binding of lipoprotein lipase, and of triglyceride-rich lipoproteins associated with the lipase, to LRP depends on an intact carboxyl-terminal folding domain of the lipase (Nykjaer, A., Bengtsson-Olivecrona, G., Lookene, A., Moestrup, S. K., Petersen, C. M., Weber, W., Beisiegel, W., and Gliemann, J. (1993) J. Biol. Chem. 268, 15048-15055). Here we show that the site for binding to the receptor is within residues 380-425 of the bovine and residues 378-423 of the human lipoprotein lipase. We demonstrate that a carboxyl-terminal fragment of human lipoprotein lipase (residues 378-448), expressed as fusion protein in Escherichia coli, binds to purified and cellular LRP but not to lipoproteins. Binding of the fragment to purified LRP was blocked by heparin. In addition, the fragment inhibited the binding of lipase and the lipase-mediated binding of lipoproteins to the purified receptor. The fragment exhibited reduced binding to proteoglycan-deficient cells. Moreover, the fragment inhibited the uptake of lipoproteins in cells mediated by the lipase via binding to heparan sulfate proteoglycans and LRP. We conclude that the fragment contains the site for binding to LRP and a candidate site for interaction with heparan sulfate proteoglycans, whereas binding to lipoproteins is inefficient. The fragment can therefore inhibit the lipase-mediated lipoprotein uptake, a process that may promote the development of atherosclerosis when occurring in cells of the arterial wall.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7989348/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

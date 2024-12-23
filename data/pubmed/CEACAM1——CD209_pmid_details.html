@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CEACAM1——CD209 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CEACAM1——CD209</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab16282604')">16282604</button><button class="tablinks " onclick="openTab(event, 'tab16246332')">16246332</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab16282604" class="tabcontent active">
+                    <h2>CEACAM1, an adhesion molecule of human granulocytes, is fucosylated by fucosyltransferase IX and interacts with DC-SIGN of dendritic cells via Lewis x residues.</h2>
+                    <h3>Glycobiology; 2006</h3>
+                    <p>The CEA-related cell adhesion molecule 1, CEACAM1, is a glycoprotein expressed on the surface of human granulocytes and lymphocytes, endothelia, and many epithelia. CEACAM1 is involved in the regulation of important biological processes, such as tumor growth, angiogenesis, and modulation of the immune response. CEACAM1, a member of the immunoglobulin superfamily carries several Lewis x (Lex) structures as we recently demonstrated by mass spectrometry of native CEACAM1 from human granulocytes. Since Lex residues of pathogens bind to the C-type lectin dendritic cell-specific ICAM-3 grabbing nonintegrin (DC-SIGN) expressed on human DCs, we hypothesized that Lex glycans of CEACAM1 are recognized by DC-SIGN. Here, we demonstrate that CEACAM1, the major carrier of Lex residues in human granulocytes, is specifically recognized by DC-SIGN via Lex residues mediating the internalization of CEACAM1 into immature DCs. Expression studies with CEACAM1 in combination with different fucosyltransferases (FUTs) revealed that FUTIX plays a key role in the synthesis of Lex groups of CEACAM1. As Lex groups on CEACAM1 are selectively attached and specifically interact with DC-SIGN, our findings suggest that CEACAM1 participates in immune regulation in physiological conditions and in pathological conditions, such as inflammation, autoimmune disease, and cancer.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16282604/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab16246332" class="tabcontent ">
+                    <h2>Interactions of DC-SIGN with Mac-1 and CEACAM1 regulate contact between dendritic cells and neutrophils.</h2>
+                    <h3>FEBS letters; 2005</h3>
+                    <p>Early during infection neutrophils are the most important immune cells that are involved in killing of pathogenic bacteria and regulation of innate immune responses at the site of infection. It has become clear that neutrophils also modulate adaptive immunity through interactions with dendritic cells (DCs) that are pivotal in the induction of T cell responses. Upon activation, neutrophils release TNF-alpha and induce maturation of DCs that enables these antigen-presenting cells to stimulate T cell proliferation and to induce T helper 1 polarization. DC maturation by neutrophils also requires cellular interactions that are mediated by binding of the DC-specific receptor DC-SIGN to Mac-1 on the neutrophil. Here, we demonstrate that also CEACAM1 is an important ligand for DC-SIGN on neutrophils. Binding of DC-SIGN to both CEACAM1 and Mac-1 is required to establish cellular interactions with neutrophils. DC-SIGN is a C-type lectin that has specificity for Lewis(x), and we show that DC-SIGN mediates binding to CEACAM1 through Lewis(x) moieties that are specifically expressed on CEACAM1 derived from neutrophils. This indicates that glycosylation-driven binding of both Mac-1 and CEACAM1 to DC-SIGN is essential for interactions of neutrophils with DCs and enables neutrophils to modulate T cell responses through interactions with DCs.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16246332/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

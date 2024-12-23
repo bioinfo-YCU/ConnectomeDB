@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>EPO——EPHB4 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for EPO——EPHB4</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab26481148')">26481148</button><button class="tablinks " onclick="openTab(event, 'tab25586589')">25586589</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab26481148" class="tabcontent active">
+                    <h2>Erythropoietin Stimulates Tumor Growth via EphB4.</h2>
+                    <h3>Cancer cell; 2015</h3>
+                    <p>While recombinant human erythropoietin (rhEpo) has been widely used to treat anemia in cancer patients, concerns about its adverse effects on patient survival have emerged. A lack of correlation between expression of the canonical EpoR and rhEpo's effects on cancer cells prompted us to consider the existence of an alternative Epo receptor. Here, we identified EphB4 as an Epo receptor that triggers downstream signaling via STAT3 and promotes rhEpo-induced tumor growth and progression. In human ovarian and breast cancer samples, expression of EphB4 rather than the canonical EpoR correlated with decreased disease-specific survival in rhEpo-treated patients. These results identify EphB4 as a critical mediator of erythropoietin-induced tumor progression and further provide clinically significant dimension to the biology of erythropoietin.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/26481148/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab25586589" class="tabcontent ">
+                    <h2>Erythropoietin promotes bone formation through EphrinB2/EphB4 signaling.</h2>
+                    <h3>Journal of dental research; 2015</h3>
+                    <p>Recent studies have demonstrated that erythropoietin (EPO) has extensive nonhematopoietic biological functions. However, little is known about how EPO regulates bone formation, although several studies suggested that EPO can affect bone homeostasis. In this study, we investigated the effects of EPO on the communication between osteoclasts and osteoblasts through the ephrinB2/EphB4 signaling pathway. We found that EPO slightly promotes osteoblastic differentiation with the increased expression of EphB4 in ST2 cells. However, EPO increased the expression of Nfatc1 and ephrinB2 but decreased the expression of Mmp9 in RAW264.7 cells, resulting in an increase of ephrinB2-expressing osteoclasts and a decrease in resorption activity. The stimulation of ephrinB2/EphB4 signaling via ephrinB2-Fc significantly promoted EPO-mediated osteoblastic differentiation in ST2 cells. EphB4 knockdown through EphB4 shRNA inhibited EPO-mediated osteoblastic phenotypes. Furthermore, in vivo assays clearly demonstrated that EPO efficiently induces new bone formation in the alveolar bone regeneration model. Taken together, these results suggest that ephrinB2/EphB4 signaling may play an important role in EPO-mediated bone formation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/25586589/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

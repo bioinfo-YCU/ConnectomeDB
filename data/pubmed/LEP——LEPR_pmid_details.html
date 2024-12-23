@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>LEP——LEPR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for LEP——LEPR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9463481')">9463481</button><button class="tablinks " onclick="openTab(event, 'tab8608603')">8608603</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9463481" class="tabcontent active">
+                    <h2>Localization of leptin binding domain in the leptin receptor.</h2>
+                    <h3>Molecular pharmacology; 1998</h3>
+                    <p>The leptin receptor is a member of the class I cytokine receptor family and is involved in the control of appetite and body weight. The predicted amino acid sequence of the extracellular region of the cloned leptin receptor differs from that of many other cytokine receptors in that it contains two homologous segments representing potential ligand binding sites. After the analysis of various deletion and substitution mutants of the leptin receptor, we found that the first potential binding motif is not required for leptin binding and receptor activation, whereas modification of the second potential binding motif can lead to inactive receptor mutants. Further deletion analysis generated a minimal binding domain that retains high affinity leptin binding. The leptin binding domain thus has been localized to residues 323-640, which contain the second segment of cytokine receptor domain/fibronectin type 3 domain (residues 428-635). Coexpression of the active isoform of leptin receptor (OB-Rb) with an inactive mutant lacking high affinity leptin binding site led to suppression of the activity mediated by OB-Rb, suggesting that the leptin receptor may exist as a multimeric complex in the absence of leptin.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9463481/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8608603" class="tabcontent ">
+                    <h2>Evidence that the diabetes gene encodes the leptin receptor: identification of a mutation in the leptin receptor gene in db/db mice.</h2>
+                    <h3>Cell; 1996</h3>
+                    <p>OB-R is a high affinity receptor for leptin, an important circulating signal for the regulation of body weight. We identified an alternatively spliced transcript that encodes a form of mouse OB-R with a long intracellular domain. db/db mice also produce this alternatively spliced transcript, but with a 106 nt insertion that prematurely terminates the intracellular domain. We further identified G --> T point mutation in the genomic OB-R sequence in db/db mice. This mutation generates a donor splice site that converts the 106 nt region to a novel exon retained in the OB-R transcript. We predict that the long intracellular domain form of OB-R is crucial for initiating intracellular signal transduction, and as a corollary, the inability to produce this form of OB-R leads to the severe obese phenotype found in db/db mice.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8608603/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

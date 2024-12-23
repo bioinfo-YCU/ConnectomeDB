@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>LRPAP1——LRP1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for LRPAP1——LRP1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab14596620')">14596620</button><button class="tablinks " onclick="openTab(event, 'tab10747918')">10747918</button><button class="tablinks " onclick="openTab(event, 'tab1374383')">1374383</button><button class="tablinks " onclick="openTab(event, 'tab1718973')">1718973</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab14596620" class="tabcontent active">
+                    <h2>All three LDL receptor homology regions of the LDL receptor-related protein bind multiple ligands.</h2>
+                    <h3>Biochemistry; 2003</h3>
+                    <p>The three complete human LDL receptor homology regions of the LDL receptor-related protein (sLRP2, sLRP3, and sLRP4) have been expressed in Pichia pastoris SMD1168 with constitutive coexpression of the receptor-associated protein (RAP). Each sLRP was purified to homogeneity after deglycosylation using a combination of anion-exchange and size exclusion chromatography. Mass spectrometry and N-terminal sequencing confirmed the identity of each fragment at purified yields of several milligrams per liter. Despite the large number of disulfide linkages and glycosylation sites in each LDL receptor homology region (sLRP), all were shown to be competent for binding to several LRP1 ligands. Each sLRP also bound human RAP, which is thought to be a generalized receptor antagonist, in solution-binding experiments. As expected, sLRP2 bound the receptor-binding domain of alpha(2)-macroglobulin (residues 1304-1451). All three sLRPs bound human apolipoprotein-enriched beta very low density lipoprotein, the canonical ligand for this receptor. All three sLRPs also bound lactoferrin and thrombin-protease nexin 1 complexes. Only sLRP4 bound thrombin-antithrombin III complexes. The results show that binding-competent LDL receptor homology regions (sLRPs) can be produced in high yield in P. pastoris and readily purified. Each sLRP has binding sites for multiple ligands, but not all ligand binding could be competed by RAP.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14596620/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10747918" class="tabcontent ">
+                    <h2>The YXXL motif, but not the two NPXY motifs, serves as the dominant endocytosis signal for low density lipoprotein receptor-related protein.</h2>
+                    <h3>The Journal of biological chemistry; 2000</h3>
+                    <p>All members of the low density lipoprotein (LDL) receptor family contain at least one copy of the NPXY sequence within their cytoplasmic tails. For the LDL receptor, it has been demonstrated that the NPXY motif serves as a signal for rapid endocytosis through coated pits. Thus, it is generally believed that the NPXY sequences function as endocytosis signals for all the LDL receptor family members. The primary aim of this study is to define the endocytosis signal(s) within the cytoplasmic tail of LDL receptor-related protein (LRP). By using LRP minireceptors, which mimic the function and trafficking of full-length endogenous LRP, we demonstrate that the YXXL motif, but not the two NPXY motifs, serves as the dominant signal for LRP endocytosis. We also found that the distal di-leucine motif within the LRP tail contributes to its endocytosis, and its function is independent of the YXXL motif. Although the proximal NPXY motif and the proximal di-leucine motif each play a limited role in LRP endocytosis in the context of the full-length tail, these motifs were functional within the truncated receptor tail. In addition, we show that LRP minireceptor mutants defective in endocytosis signal(s) accumulate at the cell surface and are less efficient in delivery of ligand for degradation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10747918/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab1374383" class="tabcontent ">
+                    <h2>A novel mechanism for controlling the activity of alpha 2-macroglobulin receptor/low density lipoprotein receptor-related protein. Multiple regulatory sites for 39-kDa receptor-associated protein.</h2>
+                    <h3>The Journal of biological chemistry; 1992</h3>
+                    <p>The alpha 2-macroglobulin receptor/low density lipoprotein receptor-related protein (alpha 2MR/LRP) consists of two polypeptides, 515 and 85 kDa, that are noncovalently associated. A 39-kDa polypeptide, termed the receptor-associated protein (RAP), interacts with the 515-kDa subunit after biosynthesis of these molecules and remains associated on the cell surface. This molecule regulates ligand binding of alpha 2MR/LRP (Herz, J., Goldstein, J. L., Strickland, D. K., Ho, Y. K., and Brown, M. S. (1991) J. Biol. Chem. 266, 21232-21238). Titration and binding studies indicate that RAP binds to two equivalent binding sites on alpha 2MR/LRP, with a KD of 14 nM. Heterologous ligand displacement experiments demonstrated that RAP completely inhibits the binding of 125I-activated alpha 2M to human fibroblasts and to the purified alpha 2MR/LRP, with a Ki of 23 and 26 nM, respectively. A direct correlation between the degree of binding of RAP to the receptor and the degree of ligand inhibition was observed, indicating that as the RAP binding sites are saturated, alpha 2MR/LRP loses its ability to bind ligands. Thus, the amount of RAP bound to alpha 2MR/LRP dictates the level of receptor activity. A model is proposed in which alpha 2MR/LRP contains multiple ligand binding sites, each regulated by a separate RAP site.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1374383/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab1718973" class="tabcontent ">
+                    <h2>39-kDa protein modulates binding of ligands to low density lipoprotein receptor-related protein/alpha 2-macroglobulin receptor.</h2>
+                    <h3>The Journal of biological chemistry; 1991</h3>
+                    <p>A 39-kDa protein of unknown function has previously been reported to copurify with the low density lipoprotein receptor-related protein (LRP)/alpha 2-macroglobulin receptor. In this study we demonstrate that a recombinant 39-kDa fusion protein can reversibly bind to the 515-kDa subunit of the LRP/alpha 2-macroglobulin receptor. This interaction inhibits the binding and uptake of the receptor's two known ligands: 1) beta-migrating very low density lipoproteins activated by enrichment with apoprotein E and 2) alpha 2-macroglobulin activated by incubation with plasma proteases or methylamine. A potential in vivo role of the 39-kDa protein is to modulate the uptake of apoE-enriched lipoproteins and activated alpha 2-macroglobulin in hepatic and extrahepatic tissues.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1718973/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>OSM——LIFR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for OSM——LIFR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10854424')">10854424</button><button class="tablinks " onclick="openTab(event, 'tab1542794')">1542794</button><button class="tablinks " onclick="openTab(event, 'tab1536831')">1536831</button><button class="tablinks " onclick="openTab(event, 'tab16051226')">16051226</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10854424" class="tabcontent active">
+                    <h2>Receptor subunit-specific action of oncostatin M in hepatic cells and its modulation by leukemia inhibitory factor.</h2>
+                    <h3>The Journal of biological chemistry; 2000</h3>
+                    <p>The related cytokines, interleukin-6 (IL-6), oncostatin M (OSM), and leukemia inhibitory factor (LIF) direct the formation of specific heteromeric receptor complexes to achieve signaling. Each complex includes the common signal-transducing subunit gp130. OSM and LIF also recruit the signaling competent, but structurally distinct OSMRbeta and LIFRalpha subunits, respectively. To test the hypothesis that the particularly prominent cell regulation by OSM is due to signals contributed by OSMRbeta, we introduced stable expression of human or mouse OSMRbeta in rat hepatoma cells which have endogenous receptors for IL-6 and LIF, but not OSM. Both mouse and human OSM engaged gp130 with their respective OSMRbeta subunits, but only human OSM also acted through LIFR. Signaling by OSMRbeta-containing receptors was characterized by highest activation of STAT5 and ERK, recruitment of the insulin receptor substrate and Jun-N-terminal kinase pathways, and induction of a characteristic pattern of acute phase proteins. Since LIF together with LIFRalpha appear to form a more stable complex with gp130 than OSM with gp130 and OSMRbeta, co-activation of LIFR and OSMR resulted in a predominant LIF-like response. These results suggest that signaling by IL-6 cytokines is not identical, and that a hierarchical order of cytokine receptor action exists in which LIFR ranks as dominant member.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10854424/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab1542794" class="tabcontent ">
+                    <h2>The IL-6 signal transducer, gp130: an oncostatin M receptor and affinity converter for the LIF receptor.</h2>
+                    <h3>Science (New York, N.Y.); 1992</h3>
+                    <p>Leukemia inhibitory factor (LIF) and interleukin-6 (IL-6) are multifunctional cytokines with many similar activities. LIF is structurally and functionally related to another cytokine, Oncostatin M (OSM), that binds to the high-affinity LIF receptor but not to the low-affinity LIF receptor. A complementary DNA was isolated that encodes the high-affinity converting subunit of the LIF receptor. The converter conferred high-affinity binding of both LIF and OSM when expressed with the low-affinity LIF receptor and is identical to the signal transducing subunit of the IL-6 receptor, gp130. The gp130 subunit alone confers low-affinity binding of OSM when expressed in COS-7 cells. This receptor system resembles the high-affinity receptors for granulocyte-macrophage colony-stimulating factor, IL-3, and IL-5, which share a common subunit.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1542794/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab1536831" class="tabcontent ">
+                    <h2>Oncostatin M binds the high-affinity leukemia inhibitory factor receptor.</h2>
+                    <h3>The New biologist; 1992</h3>
+                    <p>Oncostatin M (OSM) is a glycoprotein cytokine that was recently demonstrated to be structurally and functionally related to the leukemia inhibitory factor (LIF). We have investigated the binding of each cytokine to a variety of cellular receptors including those on solid tumor lines, leukemic cells, endothelial cells, macrophages, and cells transfected with the recently cloned low-affinity LIF receptor, and to a soluble form of the LIF receptor. LIF is incapable of binding either high- or low-affinity OSM receptors, yet OSM is capable of binding the high-affinity but not the low-affinity LIF receptor. Since the presence of high-affinity LIF receptors correlates with the biological activity of LIF on a wide range of target cells, we predict that OSM should have similar effects on LIF-responsive cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1536831/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab16051226" class="tabcontent ">
+                    <h2>The N-terminal cytokine binding domain of LIFR is required for CNTF binding and signaling.</h2>
+                    <h3>FEBS letters; 2005</h3>
+                    <p>Ciliary neurotrophic factor (CNTF) forms a functional receptor complex containing the CNTF receptor, gp130, and the leukemia inhibitory factor receptor (LIFR). However, the nature and stoichiometry of the receptor-mediated interactions in this complex have not yet been fully resolved. We show here that signaling by CNTF, but not by LIF or oncostatin M (OSM), was abolished in cells overexpressing a LIFR mutant with the N-terminal cytokine binding domain deleted. Our results illustrate molecular differences between the CNTF active receptor complex and those of LIF and OSM and provide further support for the hexameric model of the CNTF receptor complex.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16051226/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

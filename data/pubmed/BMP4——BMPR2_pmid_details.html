@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>BMP4——BMPR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for BMP4——BMPR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab7673243')">7673243</button><button class="tablinks " onclick="openTab(event, 'tab7644468')">7644468</button><button class="tablinks " onclick="openTab(event, 'tab8702914')">8702914</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab7673243" class="tabcontent active">
+                    <h2>Identification of a human type II receptor for bone morphogenetic protein-4 that forms differential heteromeric complexes with bone morphogenetic protein type I receptors.</h2>
+                    <h3>The Journal of biological chemistry; 1995</h3>
+                    <p>Bone morphogenetic proteins (BMPs) comprise the largest subfamily of TGF-beta-related ligands and are known to bind to type I and type II receptor serine/threonine kinases. Although several mammalian BMP type I receptors have been identified, the mammalian BMP type II receptors have remained elusive. We have isolated a cDNA encoding a novel transmembrane serine/threonine kinase from human skin fibroblasts which we demonstrate here to be a type II receptor that binds BMP-4. This receptor (BRK-3) is distantly related to other known type II receptors and is distinguished from them by an extremely long carboxyl-terminal sequence following the intracellular kinase domain. The BRK-3 gene is widely expressed in a variety of adult tissues. When expressed alone in COS cells, BRK-3 specifically binds BMP-4, but cross-linking of BMP-4 to BRK-3 is undetectable in the absence of either the BRK-1 or BRK-2 BMP type I receptors. Cotransfection of BRK-2 with BRK-3 greatly enhanced affinity labeling of BMP-4 to the type I receptor, in contrast to the affinity labeling pattern observed with the BRK-1 + BRK-3 heteromeric complex. Furthermore, a subpopulation of super-high affinity binding sites is formed in COS cells upon cotransfection only of BRK-2 + BRK-3, suggesting that the different heteromeric BMP receptor complexes have different signaling potential.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7673243/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7644468" class="tabcontent ">
+                    <h2>Cloning and characterization of a human type II receptor for bone morphogenetic proteins.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1995</h3>
+                    <p>Bone morphogenetic proteins (BMPs) are members of the transforming growth factor beta superfamily. Several members of this family have been shown to transduce their signals through binding to type I and type II serine-(threonine) kinase receptors. Here we report the cDNA cloning and characterization of a human type II receptor for BMPs (BMPR-II), which is distantly related to DAF-4, a BMP type II receptor from Caenorhabditis elegans. In transfected COS-1 cells, osteogenic protein (OP)-1/BMP-7, and less efficiently BMP-4, bound to BMPR-II. BMPR-II bound ligands only weakly alone, but the binding was facilitated by the presence of previously identified type I receptors for BMPs. Binding of OP-1/BMP-7 to BMPR-II was also observed in nontransfected cell lines. Moreover, a transcriptional activation signal was transduced by BMPR-II in the presence of type I receptors after stimulation by OP-1/BMP-7.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7644468/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8702914" class="tabcontent ">
+                    <h2>Identification of type I and type II serine/threonine kinase receptors for growth/differentiation factor-5.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>Growth/differentiation factor-5 (GDF-5) is a member of the bone morphogenetic protein (BMP) family, which plays an important role in bone development in vivo. Mutations in the GDF-5 gene result in brachypodism in mice and Hunter-Thompson type chondrodysplasia in human. BMPs transduce their effects through binding to two different types of serine/threonine kinase receptors, type I and type II. However, binding abilities appear to be different among the members of the BMP family. BMP-4 binds to two different type I receptors, BMP receptors type IA (BMPR-IA) and type IB (BMPR-IB), and a type II receptor, BMP receptor type II (BMPR-II). In addition to these receptors, osteogenic protein-1 (OP-1, also known as BMP-7) binds to activin type I receptor (ActR-I) as well as activin type II receptors (ActR-II and ActR-IIB). Here we investigate the binding and signaling properties of GDF-5 through type I and type II receptors. GDF-5 induced alkaline phosphatase activity in a rat osteoprogenitor-like cell line, ROB-C26. 125I-GDF-5 bound to BMPR-IB and BMPR-II but not to BMPR-IA in ROB-C26 cells and other nontransfected cell lines. Analysis using COS-1 cells transfected with the receptor cDNAs revealed that GDF-5 bound to BMPR-IB but not to the other type I receptors when expressed alone. When COS-1 cells were transfected with type II receptor cDNAs, GDF-5 bound to ActR-II, ActR-IIB, and BMPR-II but not to transforming growth factor-beta type II receptor. In the presence of type II receptors, GDF-5 bound to different sets of type I receptors, but the binding was most efficient to BMPR-IB compared with the other type I receptors. Moreover, a transcriptional activation signal was efficiently transduced by BMPR-IB in the presence of BMPR-II or ActR-II after stimulation by GDF-5. These results suggest that BMPR-IB mediates certain signals for GDF-5 after forming the heteromeric complex with BMPR-II or ActR-II.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8702914/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>FN1——SDC2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for FN1——SDC2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10772816')">10772816</button><button class="tablinks " onclick="openTab(event, 'tab10772816')">10772816</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10772816" class="tabcontent active">
+                    <h2>Participation of syndecan 2 in the induction of stress fiber formation in cooperation with integrin alpha5beta1: structural characteristics of heparan sulfate chains with avidity to COOH-terminal heparin-binding domain of fibronectin.</h2>
+                    <h3>Experimental cell research; 2000</h3>
+                    <p>The present study provides direct evidence that syndecan 2 participates selectively in the induction of stress fiber formation in cooperation with integrin alpha5beta1 through specific binding of its heparan sulfate side chains to the fibronectin substrate. Our previous study with Lewis lung carcinoma-derived P29 cells demonstrated that the cell surface heparan sulfate proteoglycan, which binds to fibronectin, is syndecan 2 (N. Itano et al., 1996, Biochem. J. 315, 925-930). We here report that in vitro treatment of the cells by antisense oligonucleotide for syndecan 2 resulted in a failure to form stress fibers on fibronectin substrate in association with specific suppression of its cell surface expression. Instead, localization of actin filaments in the cytoplasmic cortex occurred. A similar response of the cells was observed when the cells were treated to eliminate functions of cell surface heparan sulfates, including exogenous addition of heparin and pretreatment with anti-heparan sulfate antibody, F58-10E4, and with proteinase-free heparitinase I. Size- and structure-defined oligosaccharides prepared from heparin and chemically modified heparins were utilized as competitive inhibitors to examine the structural characteristics of the cell surface heparan sulfates involved in organization of the actin cytoskeleton. Their affinity chromatography on a column linked with a recombinant H-271 peptide containing a C-terminal heparin-binding domain of fibronectin demonstrated that 2-O-sulfated iduronates were essential for the binding. Inhibition studies revealed that a heparin-derived dodecasaccharide sample enriched with an IdoA(2OS)-GlcNS(6OS) disaccharide completely blocked binding of the syndecan 2 ectodomain to immobilized H-271 peptide. Finally, the dodecasaccharide sample was shown to inhibit stress fiber formation, triggered by adhesion of P29 cells to a CH-271 polypeptide consisting of both the RGD cell-binding and the C-terminal heparin-binding domains of fibronectin in a fused form. All these results consistently suggest that syndecan 2 proteoglycan interacts with the C-terminal heparin-binding domain of fibronectin at the highly sulfated cluster(s), such as [IdoA(2OS)-GlcNS(6OS)](6) present in its heparan sulfate chains, to result in the induction of stress fiber formation in cooperation with integrin alpha5beta1.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10772816/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10772816" class="tabcontent ">
+                    <h2>Participation of syndecan 2 in the induction of stress fiber formation in cooperation with integrin alpha5beta1: structural characteristics of heparan sulfate chains with avidity to COOH-terminal heparin-binding domain of fibronectin.</h2>
+                    <h3>Experimental cell research; 2000</h3>
+                    <p>The present study provides direct evidence that syndecan 2 participates selectively in the induction of stress fiber formation in cooperation with integrin alpha5beta1 through specific binding of its heparan sulfate side chains to the fibronectin substrate. Our previous study with Lewis lung carcinoma-derived P29 cells demonstrated that the cell surface heparan sulfate proteoglycan, which binds to fibronectin, is syndecan 2 (N. Itano et al., 1996, Biochem. J. 315, 925-930). We here report that in vitro treatment of the cells by antisense oligonucleotide for syndecan 2 resulted in a failure to form stress fibers on fibronectin substrate in association with specific suppression of its cell surface expression. Instead, localization of actin filaments in the cytoplasmic cortex occurred. A similar response of the cells was observed when the cells were treated to eliminate functions of cell surface heparan sulfates, including exogenous addition of heparin and pretreatment with anti-heparan sulfate antibody, F58-10E4, and with proteinase-free heparitinase I. Size- and structure-defined oligosaccharides prepared from heparin and chemically modified heparins were utilized as competitive inhibitors to examine the structural characteristics of the cell surface heparan sulfates involved in organization of the actin cytoskeleton. Their affinity chromatography on a column linked with a recombinant H-271 peptide containing a C-terminal heparin-binding domain of fibronectin demonstrated that 2-O-sulfated iduronates were essential for the binding. Inhibition studies revealed that a heparin-derived dodecasaccharide sample enriched with an IdoA(2OS)-GlcNS(6OS) disaccharide completely blocked binding of the syndecan 2 ectodomain to immobilized H-271 peptide. Finally, the dodecasaccharide sample was shown to inhibit stress fiber formation, triggered by adhesion of P29 cells to a CH-271 polypeptide consisting of both the RGD cell-binding and the C-terminal heparin-binding domains of fibronectin in a fused form. All these results consistently suggest that syndecan 2 proteoglycan interacts with the C-terminal heparin-binding domain of fibronectin at the highly sulfated cluster(s), such as [IdoA(2OS)-GlcNS(6OS)](6) present in its heparan sulfate chains, to result in the induction of stress fiber formation in cooperation with integrin alpha5beta1.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10772816/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

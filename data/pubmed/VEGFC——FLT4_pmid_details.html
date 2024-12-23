@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>VEGFC——FLT4 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for VEGFC——FLT4</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12881528')">12881528</button><button class="tablinks " onclick="openTab(event, 'tab8700872')">8700872</button><button class="tablinks " onclick="openTab(event, 'tab16530705')">16530705</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12881528" class="tabcontent active">
+                    <h2>Ligand-induced vascular endothelial growth factor receptor-3 (VEGFR-3) heterodimerization with VEGFR-2 in primary lymphatic endothelial cells regulates tyrosine phosphorylation sites.</h2>
+                    <h3>The Journal of biological chemistry; 2003</h3>
+                    <p>Vascular endothelial growth factors (VEGFs) regulate the development and growth of the blood and lymphatic vascular systems. Of the three VEGF receptors (VEGFR), VEGFR-1 and -2 are expressed on blood vessels; VEGFR-2 is found also on lymphatic vessels. VEGFR-3 is expressed mainly on lymphatic vessels but it is also up-regulated in tumor angiogenesis. Although VEGFR-3 is essential for proper lymphatic development, its signal transduction mechanisms are still incompletely understood. Trans-phosphorylation of activated, dimerized receptor tyrosine kinases is known to be critical for the regulation of kinase activity and for receptor interaction with signal transduction molecules. In this study, we have identified five tyrosyl phosphorylation sites in the VEGFR-3 carboxyl-terminal tail. These sites were used both in VEGFR-3 overexpressed in 293 cells and when the endogenous VEGFR-3 was activated in lymphatic endothelial cells. Interestingly, VEGF-C stimulation of lymphatic endothelial cells also induced the formation of VEGFR-3/VEGFR-2 heterodimers, in which VEGFR-3 was phosphorylated only at three of the five sites while the two most carboxyl-terminal tyrosine residues appeared not to be accessible for the VEGFR-2 kinase. Our data suggest that the carboxyl-terminal tail of VEGFR-3 provides important regulatory tyrosine phosphorylation sites with potential signal transduction capacity and that these sites are differentially used in ligand-induced homo- and heterodimeric receptor complexes.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12881528/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8700872" class="tabcontent ">
+                    <h2>Vascular endothelial growth factor-related protein: a ligand and specific activator of the tyrosine kinase receptor Flt4.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1996</h3>
+                    <p>The tyrosine kinases Flt4, Flt1, and Flk1 (or KDR) constitute a family of endothelial cell-specific receptors with seven immunoglobulin-like domains and a split kinase domain. Flt1 and Flk1 have been shown to play key roles in vascular development; these two receptors bind and are activated by vascular endothelial growth factor (VEGF). No ligand has been identified for Flt4, whose expression becomes restricted during development to the lymphatic endothelium. We have identified cDNA clones from a human glioma cell line that encode a secreted protein with 32% amino acid identity to VEGF. This protein, designated VEGF-related protein (VRP), specifically binds to the extracellular domain of Flt4, stimulates the tyrosine phosphorylation of Flt4 expressed in mammalian cells, and promotes the mitogenesis of human lung endothelial cells. VRP fails to bind appreciably to the extracellular domain of Flt1 or Flk1. The protein contains a C-terminal, cysteine-rich region of about 180 amino acids that is not found in VEGF. A 2.4-kb VRP mRNA is found in several human tissues including adult heart, placenta, ovary, and small intestine and in fetal lung and kidney.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8700872/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab16530705" class="tabcontent ">
+                    <h2>The VEGF-C/Flt-4 axis promotes invasion and metastasis of cancer cells.</h2>
+                    <h3>Cancer cell; 2006</h3>
+                    <p>Flt-4, a VEGF receptor, is activated by its specific ligand, VEGF-C. The resultant signaling pathway promotes angiogenesis and/or lymphangiogenesis. This report provides evidence that the VEGF-C/Flt-4 axis enhances cancer cell mobility and invasiveness and contributes to the promotion of cancer cell metastasis. VEGF-C/Flt-4-mediated invasion and metastasis of cancer cells were found to require upregulation of the neural cell adhesion molecule contactin-1 through activation of the Src-p38 MAPK-C/EBP-dependent pathway. Examination of tumor tissues from various types of cancers revealed high levels of Flt-4 and VEGF-C expression that correlated closely with clinical metastasis and patient survival. The VEGF-C/Flt-4 axis, through upregulation of contactin-1, may regulate the invasive capacity in different types of cancer cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16530705/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>RARRES2——CMKLR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for RARRES2——CMKLR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab18165312')">18165312</button><button class="tablinks " onclick="openTab(event, 'tab23396314')">23396314</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab18165312" class="tabcontent active">
+                    <h2>The genetic design of signaling cascades to record receptor activation.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 2008</h3>
+                    <p>We have developed an experimental strategy to monitor protein interactions in a cell with a high degree of selectivity and sensitivity. A transcription factor is tethered to a membrane-bound receptor with a linker that contains a cleavage site for a specific protease. Activation of the receptor recruits a signaling protein fused to the protease that then cleaves and releases the transcription factor to activate reporter genes in the nucleus. This strategy converts a transient interaction into a stable and amplifiable reporter gene signal to record the activation of a receptor without interference from endogenous signaling pathways. We have developed this assay for three classes of receptors: G protein-coupled receptors, receptor tyrosine kinases, and steroid hormone receptors. Finally, we use the assay to identify a ligand for the orphan receptor GPR1, suggesting a role for this receptor in the regulation of inflammation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/18165312/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab23396314" class="tabcontent ">
+                    <h2>Screening β-arrestin recruitment for the identification of natural ligands for orphan G-protein-coupled receptors.</h2>
+                    <h3>Journal of biomolecular screening; 2013</h3>
+                    <p>A variety of G-protein-coupled receptor (GPCR) screening technologies have successfully partnered a number of GPCRs with their cognate ligands. GPCR-mediated β-arrestin recruitment is now recognized as a distinct intracellular signaling pathway, and ligand-receptor interactions may show a bias toward β-arrestin over classical GPCR signaling pathways. We hypothesized that the failure to identify native ligands for the remaining orphan GPCRs may be a consequence of biased β-arrestin signaling. To investigate this, we assembled 10 500 candidate ligands and screened 82 GPCRs using PathHunter β-arrestin recruitment technology. High-quality screening assays were validated by the inclusion of liganded receptors and the detection and confirmation of these established ligand-receptor pairings. We describe a candidate endogenous orphan GPCR ligand and a number of novel surrogate ligands. However, for the majority of orphan receptors studied, measurement of β-arrestin recruitment did not lead to the identification of cognate ligands from our screening sets. β-Arrestin recruitment represents a robust GPCR screening technology, and ligand-biased signaling is emerging as a therapeutically exploitable feature of GPCR biology. The identification of cognate ligands for the orphan GPCRs and the extent to which receptors may exist to preferentially signal through β-arrestin in response to their native ligand remain to be determined.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/23396314/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

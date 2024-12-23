@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>TNFSF11——TNFRSF11B - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for TNFSF11——TNFRSF11B</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9568710')">9568710</button><button class="tablinks " onclick="openTab(event, 'tab11733492')">11733492</button><button class="tablinks " onclick="openTab(event, 'tab12221720')">12221720</button><button class="tablinks " onclick="openTab(event, 'tab9520411')">9520411</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9568710" class="tabcontent active">
+                    <h2>Osteoprotegerin ligand is a cytokine that regulates osteoclast differentiation and activation.</h2>
+                    <h3>Cell; 1998</h3>
+                    <p>The ligand for osteoprotegerin has been identified, and it is a TNF-related cytokine that replaces the requirement for stromal cells, vitamin D3, and glucocorticoids in the coculture model of in vitro osteoclastogenesis. OPG ligand (OPGL) binds to a unique hematopoeitic progenitor cell that is committed to the osteoclast lineage and stimulates the rapid induction of genes that typify osteoclast development. OPGL directly activates isolated mature osteoclasts in vitro, and short-term administration into normal adult mice results in osteoclast activation associated with systemic hypercalcemia. These data suggest that OPGL is an osteoclast differentiation and activation factor. The effects of OPGL are blocked in vitro and in vivo by OPG, suggesting that OPGL and OPG are key extracellular regulators of osteoclast development.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9568710/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11733492" class="tabcontent ">
+                    <h2>Crystal structure of the extracellular domain of mouse RANK ligand at 2.2-A resolution.</h2>
+                    <h3>The Journal of biological chemistry; 2002</h3>
+                    <p>Bone remodeling involves the resorption of bone by osteoclasts and the synthesis of bone matrix by osteoblasts. Receptor activator of NF-kappa B ligand (RANKL, also known as ODF and OPGL), a member of the tumor necrosis factor (TNF) family, triggers osteoclastogenesis by forming a complex with its receptor, RANK. We have determined the crystal structure of the extracellular domain of mouse RANKL at 2.2-A resolution. The structure reveals that the RANKL extracellular domain is trimeric, which was also shown by analytical ultracentrifugation, and each subunit has a beta-strand jellyroll topology like the other members of the TNF family. A comparison of RANKL with TNF beta and TNF-related apoptosis-inducing ligand (TRAIL), whose structures were determined to be in the complex form with their respective receptor, reveals conserved and specific features of RANKL in the TNF superfamily and suggests the presence of key residues of RANKL for receptor binding.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11733492/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12221720" class="tabcontent ">
+                    <h2>Regulation of osteoclast differentiation and function by receptor activator of NFkB ligand and osteoprotegerin.</h2>
+                    <h3>The Anatomical record; 2002</h3>
+                    <p>The differentiation and functions of osteoclasts (OCs) are regulated by osteoblast-derived factors. Receptor activator of NFkB ligand (RANKL) is one of the key regulatory molecules in OC formation. Osteoprotegerin (OPG) is a novel secreted member of the TNF receptor superfamily that negatively regulates osteoclastogenesis and binds to RANKL. We examined the biological actions of macrophage-colony-stimulating factor (M-CSF), RANKL, and OPG on the differentiation of OCs isolated from cocultures of mouse osteoblastic cells and bone marrow cells. Preosteoclasts (pOCs) and OCs were characterized by their ultrastructure and the expression of OC markers such as tartrate-resistant acid phosphatase (TRAP) and vacuolar-type H(+)-ATPase. pOCs formed without any additives expressed TRAP, but showed little resorptive activity on cocultured dentine slices. TRAP-positive pOCs treated with M-CSF began to fuse with each other, but lacked a ruffled border (RB) and showed almost no resorptive activity. pOCs treated with RANKL became TRAP-positive multinucleated cells, which expressed intense vacuolar-type H(+)-ATPase along the RB membranes and exhibited prominent resorptive activity. Such effects of RANKL on pOCs were completely inhibited by the addition of OPG. OPG inhibited RB formation in mature OCs and reduced their resorptive activity, and also induced apoptosis of some OCs. These results suggest that 1) RANKL induces differentiation of functional OCs from pOCs, 2) M-CSF induces macrophage-like multinucleated cells, but not OCs, 3) OPG inhibits RB formation and resorptive activity in mature OCs, 4) OPG also induces apoptosis of OCs, and 5) RANKL and OPG are, therefore, important regulators of not only the terminal differentiation of OCs but also their resorptive function.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12221720/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9520411" class="tabcontent ">
+                    <h2>Osteoclast differentiation factor is a ligand for osteoprotegerin/osteoclastogenesis-inhibitory factor and is identical to TRANCE/RANKL.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1998</h3>
+                    <p>Osteoclasts, the multinucleated cells that resorb bone, develop from hematopoietic cells of monocyte/macrophage lineage. Osteoclast-like cells (OCLs) are formed by coculturing spleen cells with osteoblasts or bone marrow stromal cells in the presence of bone-resorbing factors. The cell-to-cell interaction between osteoblasts/stromal cells and osteoclast progenitors is essential for OCL formation. Recently, we purified and molecularly cloned osteoclastogenesis-inhibitory factor (OCIF), which was identical to osteoprotegerin (OPG). OPG/OCIF is a secreted member of the tumor necrosis factor receptor family and inhibits osteoclastogenesis by interrupting the cell-to-cell interaction. Here we report the expression cloning of a ligand for OPG/OCIF from a complementary DNA library of mouse stromal cells. The protein was found to be a member of the membrane-associated tumor necrosis factor ligand family and induced OCL formation from osteoclast progenitors. A genetically engineered soluble form containing the extracellular domain of the protein induced OCL formation from spleen cells in the absence of osteoblasts/stromal cells. OPG/OCIF abolished the OCL formation induced by the protein. Expression of its gene in osteoblasts/stromal cells was up-regulated by bone-resorbing factors. We conclude that the membrane-bound protein is osteoclast differentiation factor (ODF), a long-sought ligand mediating an essential signal to osteoclast progenitors for their differentiation into osteoclasts. ODF was found to be identical to TRANCE/RANKL, which enhances T-cell growth and dendritic-cell function. ODF seems to be an important regulator in not only osteoclastogenesis but also immune system.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9520411/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

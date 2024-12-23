@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CX3CL1——CX3CR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CX3CL1——CX3CR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab11432858')">11432858</button><button class="tablinks " onclick="openTab(event, 'tab14607932')">14607932</button><button class="tablinks " onclick="openTab(event, 'tab9931005')">9931005</button><button class="tablinks " onclick="openTab(event, 'tab9390561')">9390561</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab11432858" class="tabcontent active">
+                    <h2>Molecular determinants of receptor binding and signaling by the CX3C chemokine fractalkine.</h2>
+                    <h3>The Journal of biological chemistry; 2001</h3>
+                    <p>Fractalkine/CX3CL1 is a membrane-tethered chemokine that functions as a chemoattractant and adhesion protein by interacting with the receptor CX3CR1. To understand the molecular basis for the interaction, an extensive mutagenesis study of fractalkine's chemokine domain was undertaken. The results reveal a cluster of basic residues (Lys-8, Lys-15, Lys-37, Arg-45, and Arg-48) and one aromatic (Phe-50) that are critical for binding and/or signaling. The mutant R48A could bind but not induce chemotaxis, demonstrating that Arg-48 is a signaling trigger. This result also shows that signaling residues are not confined to chemokine N termini, as generally thought. F50A showed no detectable binding, underscoring its importance to the stability of the complex. K15A displayed unique signaling characteristics, eliciting a wild-type calcium flux but minimal chemotaxis, suggesting that this mutant can activate some, but not all, pathways required for migration. Fractalkine also binds the human cytomegalovirus receptor US28, and analysis of the mutants indicates that US28 recognizes many of the same epitopes of fractalkine as CX3CR1. Comparison of the binding surfaces of fractalkine and the CC chemokine MCP-1 reveals structural details that may account for their dual recognition by US28 and their selective recognition by host receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11432858/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab14607932" class="tabcontent ">
+                    <h2>Two novel fully functional isoforms of CX3CR1 are potent HIV coreceptors.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 2003</h3>
+                    <p>We identified two novel isoforms of the human chemokine receptor CX3CR1, produced by alternative splicing and with N-terminal regions extended by 7 and 32 aa. Expression of the messengers coding these isoforms, compared with that of previously described V28 messengers, is lower in monocytes and NK cells, but higher in CD4(+) T lymphocytes. CX3CR1 and its extended isoforms were expressed in HEK-293 cells and compared for expression, ligand binding, and cellular responses. In steady state experiments, all three CX3CR1 isoforms bound CX3CL1 with similar affinity. In kinetic binding studies, however, k(on) and k(off) were significantly greater for the extended CX3CR1 isoforms, thereby suggesting that the N-terminal extensions may alter the functions induced by CX3CL1. In signaling studies, all three CX3CR1 isoforms mediated agonist-dependent calcium mobilization, but the EC(50) was lower for the extended than for the standard isoforms. In addition, chemotactic responses for these extended isoforms shifted left, also indicating a more sensitive response. Finally, the longer variants appeared to be more potent HIV coreceptors when tested in fusion and infection assays. In conclusion, we identified and characterized functionally two novel isoforms of CX3CR1 that respond more sensitively to CX3CL1 and HIV viral envelopes. These data reveal new complexity in CX3CR1 cell activation and confirm the critical role of the N-terminal domain of the chemokine receptors in ligand recognition and cellular response.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14607932/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9931005" class="tabcontent ">
+                    <h2>Solution structure and dynamics of the CX3C chemokine domain of fractalkine and its interaction with an N-terminal fragment of CX3CR1.</h2>
+                    <h3>Biochemistry; 1999</h3>
+                    <p>Fractalkine, a novel CX3C chemokine, is unusual because of both its membrane-associated structure and its direct role in cell adhesion. We have solved the solution structure of the chemokine domain of fractalkine (residues 1-76) by heteronuclear NMR methods. The 20 lowest energy structures in the ensemble have an average backbone rmsd of 0.43 A, excluding the termini. In contrast to many other chemokines which form homodimers, fractalkine's chemokine module is monomeric. Comparison of the structure to CC and CXC chemokines reveals interesting differences which are likely to be relevant to receptor binding. These include a bulge formed by the CX3C motif, the relative orientation of the N-terminus and 30's loop (residues 30-38), and the conformation of the N-loop (residues 9-19). 15N backbone relaxation experiments indicate that these same regions of the protein are dynamic. We also titrated 15N-labeled protein with a peptide from the N-terminus of the receptor CX3CR1 and confirmed that this region of the receptor contacts the fractalkine chemokine domain. Interestingly, the binding site maps roughly to the regions of greatest flexibility and structural variability. Together, these data provide a first glimpse of how fractalkine interacts with its receptor and should help guide mutagenesis studies to further elucidate the molecular details of binding and signaling through CX3CR1.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9931005/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9390561" class="tabcontent ">
+                    <h2>Identification and molecular characterization of fractalkine receptor CX3CR1, which mediates both leukocyte migration and adhesion.</h2>
+                    <h3>Cell; 1997</h3>
+                    <p>Leukocyte trafficking at the endothelium requires both cellular adhesion molecules and chemotactic factors. Fractalkine, a novel transmembrane molecule with a CX3C-motif chemokine domain atop a mucin stalk, induces both adhesion and migration of leukocytes. Here we identify a seven-transmembrane high-affinity receptor for fractalkine and show that it mediates both the adhesive and migratory functions of fractalkine. The receptor, now termed CX3CR1, requires pertussis toxin-sensitive G protein signaling to induce migration but not to support adhesion, which also occurs without other adhesion molecules but requires the architecture of a chemokine domain atop the mucin stalk. Natural killer cells predominantly express CX3CR1 and respond to fractalkine in both migration and adhesion. Thus, fractalkine and CX3CR1 represent new types of leukocyte trafficking regulators, performing both adhesive and chemotactic functions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9390561/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

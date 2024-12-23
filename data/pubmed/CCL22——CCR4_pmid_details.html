@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL22——CCR4 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL22——CCR4</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9430724')">9430724</button><button class="tablinks " onclick="openTab(event, 'tab9430724')">9430724</button><button class="tablinks " onclick="openTab(event, 'tab9430724')">9430724</button><button class="tablinks " onclick="openTab(event, 'tab9933589')">9933589</button><button class="tablinks " onclick="openTab(event, 'tab9743322')">9743322</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9430724" class="tabcontent active">
+                    <h2>Macrophage-derived chemokine is a functional ligand for the CC chemokine receptor 4.</h2>
+                    <h3>The Journal of biological chemistry; 1998</h3>
+                    <p>Macrophage-derived chemokine (MDC) is a recently identified member of the CC chemokine family. MDC is not closely related to other chemokines, sharing most similarity with thymus- and activation-regulated chemokine (TARC), which contains 37% identical amino acids. Both chemokines are highly expressed in the thymus, with little expression seen in other tissues. In addition, the genes for MDC and TARC are encoded by human chromosome 16. To explore this relationship in greater detail, we have more precisely localized the MDC gene to chromosome 16q13, the same position reported for the TARC gene. We have also examined the interaction of MDC with CC chemokine receptor 4 (CCR4), recently shown to be a receptor for TARC. Using a fusion protein of MDC with secreted alkaline phosphatase, we observed high affinity binding of MDC-secreted alkaline phosphatase to CCR4-transfected L1.2 cells (Kd = 0.18 nM). MDC and TARC competed for binding to CCR4, while no binding competition was observed for six other chemokines (MCP-1, MCP-3, MCP-4, RANTES (regulated on activation normal T cell expressed and secreted), macrophage inflammatory protein-1 alpha, macrophage inflammatory protein-1 beta). MDC was tested for calcium mobilization in L1.2 cells tranfected with seven different CC chemokine receptors. MDC induced a calcium flux in CCR4-transfected cells, but other receptors did not respond to MDC. TARC, which also induced calcium mobilization in CCR4 transfectants, was unable to desensitize the response to MDC. In contrast, MDC fully desensitized a subsequent response to TARC. Both MDC and TARC functioned as chemoattractants for CCR4 transfectants, confirming that MDC is also a functional ligand for CCR4. Since MDC and TARC are both expressed in the thymus, one role for these chemokines may be to attract CCR4-bearing thymocytes in the process of T cell education and differentiation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9430724/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9430724" class="tabcontent ">
+                    <h2>Macrophage-derived chemokine is a functional ligand for the CC chemokine receptor 4.</h2>
+                    <h3>The Journal of biological chemistry; 1998</h3>
+                    <p>Macrophage-derived chemokine (MDC) is a recently identified member of the CC chemokine family. MDC is not closely related to other chemokines, sharing most similarity with thymus- and activation-regulated chemokine (TARC), which contains 37% identical amino acids. Both chemokines are highly expressed in the thymus, with little expression seen in other tissues. In addition, the genes for MDC and TARC are encoded by human chromosome 16. To explore this relationship in greater detail, we have more precisely localized the MDC gene to chromosome 16q13, the same position reported for the TARC gene. We have also examined the interaction of MDC with CC chemokine receptor 4 (CCR4), recently shown to be a receptor for TARC. Using a fusion protein of MDC with secreted alkaline phosphatase, we observed high affinity binding of MDC-secreted alkaline phosphatase to CCR4-transfected L1.2 cells (Kd = 0.18 nM). MDC and TARC competed for binding to CCR4, while no binding competition was observed for six other chemokines (MCP-1, MCP-3, MCP-4, RANTES (regulated on activation normal T cell expressed and secreted), macrophage inflammatory protein-1 alpha, macrophage inflammatory protein-1 beta). MDC was tested for calcium mobilization in L1.2 cells tranfected with seven different CC chemokine receptors. MDC induced a calcium flux in CCR4-transfected cells, but other receptors did not respond to MDC. TARC, which also induced calcium mobilization in CCR4 transfectants, was unable to desensitize the response to MDC. In contrast, MDC fully desensitized a subsequent response to TARC. Both MDC and TARC functioned as chemoattractants for CCR4 transfectants, confirming that MDC is also a functional ligand for CCR4. Since MDC and TARC are both expressed in the thymus, one role for these chemokines may be to attract CCR4-bearing thymocytes in the process of T cell education and differentiation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9430724/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9430724" class="tabcontent ">
+                    <h2>Macrophage-derived chemokine is a functional ligand for the CC chemokine receptor 4.</h2>
+                    <h3>The Journal of biological chemistry; 1998</h3>
+                    <p>Macrophage-derived chemokine (MDC) is a recently identified member of the CC chemokine family. MDC is not closely related to other chemokines, sharing most similarity with thymus- and activation-regulated chemokine (TARC), which contains 37% identical amino acids. Both chemokines are highly expressed in the thymus, with little expression seen in other tissues. In addition, the genes for MDC and TARC are encoded by human chromosome 16. To explore this relationship in greater detail, we have more precisely localized the MDC gene to chromosome 16q13, the same position reported for the TARC gene. We have also examined the interaction of MDC with CC chemokine receptor 4 (CCR4), recently shown to be a receptor for TARC. Using a fusion protein of MDC with secreted alkaline phosphatase, we observed high affinity binding of MDC-secreted alkaline phosphatase to CCR4-transfected L1.2 cells (Kd = 0.18 nM). MDC and TARC competed for binding to CCR4, while no binding competition was observed for six other chemokines (MCP-1, MCP-3, MCP-4, RANTES (regulated on activation normal T cell expressed and secreted), macrophage inflammatory protein-1 alpha, macrophage inflammatory protein-1 beta). MDC was tested for calcium mobilization in L1.2 cells tranfected with seven different CC chemokine receptors. MDC induced a calcium flux in CCR4-transfected cells, but other receptors did not respond to MDC. TARC, which also induced calcium mobilization in CCR4 transfectants, was unable to desensitize the response to MDC. In contrast, MDC fully desensitized a subsequent response to TARC. Both MDC and TARC functioned as chemoattractants for CCR4 transfectants, confirming that MDC is also a functional ligand for CCR4. Since MDC and TARC are both expressed in the thymus, one role for these chemokines may be to attract CCR4-bearing thymocytes in the process of T cell education and differentiation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9430724/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9933589" class="tabcontent ">
+                    <h2>Truncation of macrophage-derived chemokine by CD26/ dipeptidyl-peptidase IV beyond its predicted cleavage site affects chemotactic activity and CC chemokine receptor 4 interaction.</h2>
+                    <h3>The Journal of biological chemistry; 1999</h3>
+                    <p>The serine protease CD26/dipeptidyl-peptidase IV (CD26/DPP IV) and chemokines are known key players in immunological processes. Surprisingly, CD26/DPP IV not only removed the expected Gly1-Pro2 dipeptide from the NH2 terminus of macrophage-derived chemokine (MDC) but subsequently also the Tyr3-Gly4 dipeptide, generating MDC(5-69). This second cleavage after a Gly residue demonstrated that the substrate specificity of this protease is less restricted than anticipated. The unusual processing of MDC by CD26/DPP IV was confirmed on the synthetic peptides GPYGANMED (MDC(1-9)) and YGANMED (MDC(3-9)). Compared with intact MDC(1-69), CD26/DPP IV-processed MDC(5-69) had reduced chemotactic activity on lymphocytes and monocyte-derived dendritic cells, showed impaired mobilization of intracellular Ca2+ through CC chemokine receptor 4 (CCR4), and was unable to desensitize for MDC-induced Ca2+-responses in CCR4 transfectants. However, MDC(5-69) remained equally chemotactic as intact MDC(1-69) on monocytes. In contrast to the reduced binding to lymphocytes and CCR4 transfectants, MDC(5-69) retained its binding properties to monocytes and its anti-HIV-1 activity. Thus, NH2-terminal truncation of MDC by CD26/DPP IV has profound biological consequences and may be an important regulatory mechanism during the migration of Th2 lymphocytes and dendritic cells to germinal centers and to sites of inflammation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9933589/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9743322" class="tabcontent ">
+                    <h2>Enhanced anti-HIV-1 activity and altered chemotactic potency of NH2-terminally processed macrophage-derived chemokine (MDC) imply an additional MDC receptor.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 1998</h3>
+                    <p>Posttranslational processing of chemokines increases (IL-8) or decreases (monocyte chemotactic protein-1) their chemotactic potency. Macrophage-derived chemokine (MDC) attracts monocytes, dendritic cells, activated lymphocytes, and NK cells and has reportedly anti-HIV-1 activity. Here we report that truncation of MDC by deletion of two NH2-terminal residues resulted in impaired binding to CC chemokine receptor (CCR)4, the only identified MDC receptor so far. Truncated MDC(3-69) failed to desensitize calcium mobilization by MDC(1-69) or thymus- and activation-regulated chemokine (TARC), another CCR4 ligand. MDC(3-69) lacked HUT-78 T cell chemotactic activity but retained its capacity to attract monocytes and to desensitize chemotaxis. Compared with MDC(1-69), MDC(3-69) had weak but enhanced antiviral activity against M- and T-tropic HIV-1 strains. Furthermore, both MDC forms failed to signal through the orphan receptors Bonzo/STRL33 and BOB/GPR15 and to desensitize RANTES and stromal cell-derived factor (SDF)-1 responses in CCR5-transfected and CXC chemokine receptor (CXCR)4-transfected cells, respectively. These findings suggest that MDC recognizes another, yet unidentified, receptor. We conclude that minimal NH2-terminal truncation of MDC differentially affects its various immunologic functions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9743322/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

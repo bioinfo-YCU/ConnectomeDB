@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>DCN——EGFR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for DCN——EGFR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12105206')">12105206</button><button class="tablinks " onclick="openTab(event, 'tab9988678')">9988678</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12105206" class="tabcontent active">
+                    <h2>Decorin binds to a narrow region of the epidermal growth factor (EGF) receptor, partially overlapping but distinct from the EGF-binding epitope.</h2>
+                    <h3>The Journal of biological chemistry; 2002</h3>
+                    <p>Decorin, a small leucine-rich proteoglycan, is a key regulator of tumor growth by acting as an antagonist of the epidermal growth factor receptor (EGFR) tyrosine kinase. To search for cell surface receptors interacting with decorin, we generated a decorin/alkaline phosphatase chimeric protein and used it to screen a cDNA library by expression cloning. We identified two strongly reactive clones that encoded either the full-length EGFR or its ectodomain. A physiologically relevant interaction between decorin and EGFR was confirmed in the yeast two-hybrid system and further validated by experiments using EGF/EGFR interaction and transient cell transfection assays. Using a panel of deletion mutants, decorin binding was mapped to a narrow region of the EGFR within its ligand-binding L2 domain. Moreover, the central leucine-rich repeat 6 of decorin was required for interaction with the EGFR. Site-directed mutagenesis of the EGFR L2 domain showed that a cluster of residues, His(394)-Ile(402), was essential for both decorin and EGF binding. In contrast, K465, previously shown to be cross-linked to epidermal growth factor (EGF), was required for EGF but not for decorin binding. Thus, decorin binds to a discrete region of the EGFR, partially overlapping with but distinct from the EGF-binding domain. These findings could lead to the generation of protein mimetics capable of suppressing EGFR function.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12105206/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9988678" class="tabcontent ">
+                    <h2>Decorin is a biological ligand for the epidermal growth factor receptor.</h2>
+                    <h3>The Journal of biological chemistry; 1999</h3>
+                    <p>Ectopic expression of decorin induces profound cytostatic effects in transformed cells with diverse histogenetic backgrounds. The mechanism of action has only recently begun to be elucidated. Exogenous decorin activates the epidermal growth factor (EGF) receptor, thereby triggering a signaling cascade that leads to phosphorylation of mitogen-activated protein (MAP) kinase, induction of p21, and growth suppression. In this study we demonstrate a direct interaction of decorin with the EGF receptor. Binding of decorin induces dimerization of the EGF receptor and rapid and sustained phosphorylation of MAP kinase in squamous carcinoma cells. In a cell-free system, decorin induces autophosphorylation of purified EGF receptor by activating the receptor tyrosine kinase and can also act as a substrate for the EGF receptor kinase itself. Using radioligand binding assays we show that both immobilized and soluble decorin bind to the EGF receptor ectodomain or to purified EGF receptor. The binding is mediated by the protein core and has relatively low affinity (Kd approximately 87 nM). Thus, decorin should be considered as a novel biological ligand for the EGF receptor, an interaction that could regulate cell growth during remodeling and cancer growth.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9988678/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

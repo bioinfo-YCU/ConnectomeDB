@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>ADAM17——NOTCH1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for ADAM17——NOTCH1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10882063')">10882063</button><button class="tablinks " onclick="openTab(event, 'tab9620803')">9620803</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10882063" class="tabcontent active">
+                    <h2>A novel proteolytic cleavage involved in Notch signaling: the role of the disintegrin-metalloprotease TACE.</h2>
+                    <h3>Molecular cell; 2000</h3>
+                    <p>The Notch1 receptor is presented at the cell membrane as a heterodimer after constitutive processing by a furin-like convertase. Ligand binding induces the proteolytic release of Notch intracellular domain by a gamma-secretase-like activity. This domain translocates to the nucleus and interacts with the DNA-binding protein CSL, resulting in transcriptional activation of target genes. Here we show that an additional processing event occurs in the extracellular part of the receptor, preceding cleavage by the gamma-secretase-like activity. Purification of the activity accounting for this cleavage in vitro shows that it is due to TACE (TNFalpha-converting enzyme), a member of the ADAM (a disintegrin and metalloprotease domain) family of metalloproteases. Furthermore, experiments carried out on TACE-/- bone marrow-derived monocytic precursor cells suggest that this metalloprotease plays a prominent role in the activation of the Notch pathway.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10882063/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9620803" class="tabcontent ">
+                    <h2>Notch-1 signalling requires ligand-induced proteolytic release of intracellular domain.</h2>
+                    <h3>Nature; 1998</h3>
+                    <p>Notch proteins are ligand-activated transmembrane receptors involved in cell-fate selection throughout development. No known enzymatic activity is contained within Notch and the molecular mechanism by which it transduces signals across the cell membrane is poorly understood. In many instances, Notch activation results in transcriptional changes in the nucleus through an association with members of the CSL family of DNA-binding proteins (where CSL stands for CBF1, Su(H), Lag-1). As Notch is located in the plasma membrane and CSL is a nuclear protein, two models have been proposed to explain how they interact. The first suggests that the two interact transiently at the membrane. The second postulates that Notch is cleaved by a protease, enabling the cleaved fragment to enter the nucleus. Here we show that signalling by a constitutively active membrane-bound Notch-1 protein requires the proteolytic release of the Notch intracellular domain (NICD), which interacts preferentially with CSL. Very small amounts of NICD are active, explaining why it is hard to detect in the nucleus in vivo. We also show that it is ligand binding that induces release of NICD.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9620803/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

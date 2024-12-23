@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>FGF23——FGFR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for FGF23——FGFR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab16081635')">16081635</button><button class="tablinks " onclick="openTab(event, 'tab12032146')">12032146</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab16081635" class="tabcontent active">
+                    <h2>Analysis of the biochemical mechanisms for the endocrine actions of fibroblast growth factor-23.</h2>
+                    <h3>Endocrinology; 2005</h3>
+                    <p>Fibroblast growth factor (FGF)-23 has emerged as an endocrine regulator of phosphate and of vitamin D metabolism. It is produced in bone and, unlike other FGFs, circulates in the bloodstream to ultimately regulate phosphate handling and vitamin D production in the kidney. Presently, it is unknown which of the seven principal FGF receptors (FGFRs) transmits FGF23 biological activity. Furthermore, the molecular basis for the endocrine mode of FGF23 action is unclear. Herein, we performed surface plasmon resonance and mitogenesis experiments to comprehensively characterize receptor binding specificity. Our data demonstrate that FGF23 binds and activates the c splice isoforms of FGFR1-3, as well as FGFR4, but not the b splice isoforms of FGFR1-3. Interestingly, highly sulfated and longer glycosaminoglycan (GAG) species were capable of promoting FGF23 mitogenic activity. We also show that FGF23 induces tyrosine phosphorylation and inhibits sodium-phosphate cotransporter Npt2a mRNA expression using opossum kidney cells, a model kidney proximal tubule cell line. Removal of cell surface GAGs abolishes the effects of FGF23, and exogenous highly sulfated GAG is capable of restoring FGF23 activity, suggesting that proximal tubule cells naturally express GAGs that are permissive for FGF23 action. We propose that FGF23 signals through multiple FGFRs and that the unique endocrine actions of FGF23 involve escape from FGF23-producing cells and circulation to the kidney, where highly sulfated GAGs most likely act as cofactors for FGF23 activity. Our biochemical findings provide important insights into the molecular mechanisms by which dysregulated FGF23 signaling leads to disorders of hyper- and hypophosphatemia.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16081635/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12032146" class="tabcontent ">
+                    <h2>Fibroblast growth factor (FGF)-23 inhibits renal phosphate reabsorption by activation of the mitogen-activated protein kinase pathway.</h2>
+                    <h3>The Journal of biological chemistry; 2002</h3>
+                    <p>The homeostasis of the plasma phosphate level is essential for many biological processes including skeletal mineralization. The reabsorption of phosphate in the kidney is a major determinant of the plasma levels of phosphate. Phosphatonin is a hormone-like factor that specifically inhibits phosphate uptake in renal proximal epithelial cells. Recent studies on tumor-induced osteomalacia suggested that phosphatonin was potentially identical to fibroblast growth factor (FGF)-23. However, as purified recombinant FGF-23 could not inhibit phosphate uptake in renal proximal epithelial cells, the mechanism of action of FGF-23 remains to be elucidated. Therefore, we examined the mechanism of action of FGF-23 in cultured renal proximal epithelial cells, opossum kidney cells. FGF-23 was found to require heparin-like molecules for its inhibitory activity on phosphate uptake. FGF-23 binds to the FGF receptor 3c, which is mainly expressed in opossum kidney cells, with high affinity. An inhibitor for tyrosine kinases of the FGF receptor, SU 5402, blocked the activity of FGF-23. FGF-23 activated the mitogen-activated protein kinase (MAPK) pathway, which is the major intracellular signaling pathway of FGF. Inhibitors of the MAPK pathway, PD98059 and SB203580, also blocked the activity of FGF-23. The present findings have revealed a novel MAPK-dependent mechanism of the regulation of phosphate uptake by FGF signaling.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12032146/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

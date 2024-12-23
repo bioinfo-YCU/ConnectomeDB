@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>ARF1——PLD2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for ARF1——PLD2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12519790')">12519790</button><button class="tablinks " onclick="openTab(event, 'tab10801846')">10801846</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12519790" class="tabcontent active">
+                    <h2>ADP-ribosylation factor-dependent phospholipase D2 activation is required for agonist-induced mu-opioid receptor endocytosis.</h2>
+                    <h3>The Journal of biological chemistry; 2003</h3>
+                    <p>Agonist exposure of many G protein-coupled receptors induces a rapid receptor phosphorylation and uncoupling from G proteins. Resensitization of these desensitized receptors requires endocytosis and subsequent dephosphorylation. Using a yeast two-hybrid screen, the rat mu-opioid receptor (MOR1, also termed MOP) was found to be associated with phospholipase D2 (PLD2), a phospholipid-specific phosphodiesterase located in the plasma membrane, which has been implicated in the formation of endocytotic vesicles. Coimmunoprecipitation experiments in HEK293 cells coexpressing MOR1 and PLD2 confirmed that MOR1 constitutively interacts with PLD2. Treatment with the mu receptor agonist DAMGO ([d-Ala(2), Me Phe(4), Glyol(5)]enkephalin) led to an increase in PLD2 activity, whereas morphine, which does not induce MOR1 receptor internalization, failed to induce PLD2 activation. The DAMGO-mediated PLD2 activation was inhibited by brefeldin A, an inhibitor of ADP-ribosylation factor (ARF) but not by the protein kinase C (PKC) inhibitor calphostin C indicating that opioid receptor-mediated activation of PLD2 is ARF- but not PKC-dependent. Furthermore, heterologous stimulation of PLD2 by phorbol ester led to an accelerated internalization of the mu-opioid receptor after both DAMGO and morphine exposure. Conversely the inhibition of PLD2-mediated phosphatidic acid formation by 1-butanol or overexpression of a negative mutant of PLD2 prevented agonist-mediated endocytosis of MOR1. Together, these data suggest that PLD2 play a key role in the regulation of agonist-induced endocytosis of the mu-opioid receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12519790/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10801846" class="tabcontent ">
+                    <h2>Cardiac phospholipase D2 localizes to sarcolemmal membranes and is inhibited by alpha-actinin in an ADP-ribosylation factor-reversible manner.</h2>
+                    <h3>The Journal of biological chemistry; 2000</h3>
+                    <p>Myocardial phospholipase D (PLD) has been implicated in the regulation of Ca(2+) mobilization and contractile performance in the heart. However, the molecular identity of this myocardial PLD and the mechanisms that regulate it are not well understood. Using subcellular fractionation and Western blot analysis, we found that PLD2 is the major myocardial PLD and that it localizes primarily to sarcolemmal membranes. A 100-kDa PLD2-interacting cardiac protein was detected using a protein overlay assay employing purified PLD2 and then identified as alpha-actinin using peptide-mass fingerprinting with matrix-assisted laser desorption/ionization mass spectroscopy. The direct association between PLD2 and alpha-actinin was confirmed using an in vitro binding assay and localized to PLD2's N-terminal 185 amino acids. Purified alpha-actinin potently inhibits PLD2 activity (IC(50) = 80 nm) in an interaction-dependent and ADP-ribosylation factor-reversible manner. Finally, alpha-actinin co-localizes with actin and with PLD2 in the detergent-insoluble fraction from sarcolemmal membranes. These results suggest that PLD2 is reciprocally regulated in sarcolemmal membranes by alpha-actinin and ARF1 and accordingly that a major role for PLD2 in cardiac function may involve reorganization of the actin cytoskeleton.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10801846/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

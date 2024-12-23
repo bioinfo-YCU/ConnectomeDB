@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>GDF9——TGFBR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for GDF9——TGFBR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab14684852')">14684852</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab14684852" class="tabcontent active">
+                    <h2>Growth differentiation factor-9 signaling is mediated by the type I receptor, activin receptor-like kinase 5.</h2>
+                    <h3>Molecular endocrinology (Baltimore, Md.); 2004</h3>
+                    <p>Growth differentiation factor-9 (GDF-9) is an oocyte-derived growth factor and a member of the TGF-beta superfamily that includes TGF-beta, activin, and bone morphogenetic proteins (BMPs). GDF-9 is indispensable for the development of ovarian follicles from the primary stage, and treatment with GDF-9 enhances the progression of early follicles into small preantral follicles. Similar to other TGF-beta family ligands, GDF-9 likely initiates signaling mediated by type I and type II receptors with serine/threonine kinase activity, followed by the phosphorylation of intracellular transcription factors named Smads. We have shown previously that GDF-9 interacts with the BMP type II receptor (BMPRII) in granulosa cells, but the type I receptor involved is unknown. Using P19 cells, we now report that GDF-9 treatment stimulated the CAGA-luciferase reporter known to be responsive to TGF-beta mediated by the type I receptor, activin receptor-like kinase (ALK)5. In contrast, GDF-9 did not stimulate BMP-responsive reporters. In addition, treatment with GDF-9 induced the phosphorylation of Smad2 and Smad3 in P19 cells, and the stimulatory effect of GDF-9 on the CAGA-luciferase reporter was blocked by the inhibitory Smad7, but not Smad6. We further reconstructed the GDF-9 signaling pathway using Cos7 cells that are not responsive to GDF-9. After overexpression of ALK5, with or without exogenous Smad3, the Cos7 cells gained GDF-9 responsiveness based on the CAGA-luciferase reporter assay. The roles of ALK5 and downstream pathway genes in mediating GDF-9 actions were further tested in ovarian cells. In cultured rat granulosa cells from early antral follicles, treatment with GDF-9 stimulated the CAGA-luciferase reporter activity and induced the phosphorylation of Smad3. Furthermore, transfection with small interfering RNA for ALK5 or overexpression of the inhibitory Smad7 resulted in dose-dependent suppression of GDF-9 actions. In conclusion, although GDF-9 binds to the BMP-activated type II receptor, its downstream actions are mediated by the type I receptor, ALK5, and the Smad2 and Smad3 proteins. Because ALK5 is a known receptor for TGF-beta, diverse members of the TGF-beta family of ligands appear to interact with a limited number of receptors in a combinatorial manner to activate two downstream Smad pathways.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14684852/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

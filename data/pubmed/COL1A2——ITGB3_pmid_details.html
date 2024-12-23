@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>COL1A2——ITGB3 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for COL1A2——ITGB3</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab1693626')">1693626</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab1693626" class="tabcontent active">
+                    <h2>Isolation of a novel integrin receptor mediating Arg-Gly-Asp-directed cell adhesion to fibronectin and type I collagen from human neuroblastoma cells. Association of a novel beta 1-related subunit with alpha v.</h2>
+                    <h3>The Journal of cell biology; 1990</h3>
+                    <p>We report the isolation from two human neuroblastoma cell lines of an Arg-Gly-Asp-dependent integrin complex capable of binding to vitronectin, fibronectin, and type I collagen. The two neuroblastoma cell lines, SK-N-SH and IMR-32, exhibit specific attachment to fibronectin and type I collagen. SK-N-SH cells exhibit a much stronger attachment to vitronectin than the IMR-32 cells, which attach poorly to this substrate. Affinity chromatography of octylglucoside extracts of 125I surface-labeled cells on GRGDSPK-Sepharose columns resulted in the specific binding and elution with GRGDSP of three radiolabeled polypeptides with relative molecular masses of 135, 115, and 90 kD when analyzed by SDS-PAGE under nonreducing conditions. In the SK-N-SH cells the 135- and 90-kD polypeptides were more abundant whereas in the IMR-32 cells the 135- and 115-kD polypeptides were more highly expressed. Liposomes prepared from fractions containing all three polypeptides bound to vitronectin, fibronectin, and type I collagen, whereas liposomes prepared from the 135- and 115-kD polypeptides bound only to fibronectin and type I collagen. Polyclonal antibodies against the alpha/beta complexes of both the vitronectin receptor and the fibronectin receptor immunoprecipitated all three polypeptides. A monoclonal antibody against beta 1 immunoprecipitated only the 135- and the 115-kD polypeptides, whereas a monoclonal antibody against beta 3 subunit immunoprecipitated the 135- and 90-kD polypeptides. Although, the 115-kD polypeptide could be recognized by an anti-beta 1 antibody, a comparison of peptide maps generated by V8 protease digestion of the 115-kD polypeptide and beta 1 subunit immunoprecipitated from GRGDSPK-Sepharose flow-through material indicated that these two polypeptides are distinct. Depletion of the 90-kD polypeptide with an anti-beta 3 monoclonal antibody did not effect the ability of the 115- and 135-kD polypeptides to bind to GRGDSPK-Sepharose. These data indicate that the SK-N-SH and IMR-32 neuroblastoma cells express a novel "beta 1-like" integrin subunit that can associate with alpha v and can bind to RGD. We propose to name this beta 1-like subunit beta n. The data reported here thus demonstrate that in these two cell lines alpha v associates with two beta subunits, beta n and beta 3, forming two heterodimers. The alpha v beta n complex mediates binding to fibronectin and type I collagen, whereas the alpha v beta 3 complex mediates binding to vitronectin.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1693626/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

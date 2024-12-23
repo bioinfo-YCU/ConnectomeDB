@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL8——CCR5 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL8——CCR5</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12964882')">12964882</button><button class="tablinks " onclick="openTab(event, 'tab9790730')">9790730</button><button class="tablinks " onclick="openTab(event, 'tab9468473')">9468473</button><button class="tablinks " onclick="openTab(event, 'tab10477718')">10477718</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12964882" class="tabcontent active">
+                    <h2>Unraveling the chemistry of chemokine receptor ligands.</h2>
+                    <h3>Chemical reviews; 2003</h3>
+                    <p>No abstract available</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12964882/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9790730" class="tabcontent ">
+                    <h2>CCR5 has an expanded ligand-binding repertoire and is the primary receptor used by MCP-2 on activated T cells.</h2>
+                    <h3>Cellular immunology; 1998</h3>
+                    <p>CCR5 is a chemokine receptor expressed by T cells and macrophages, which also functions as the principal coreceptor for macrophage (M)-tropic HIV-1 strains to enter the host cells. In this study, we aim to better understand the ligand-binding profiles of CCR5 and the chemokine-receptor usage on leukocyte cells. We found that MCP-2 could bind to CCR5 transfectants with high affinity and cross-compete effectively with RANTES, MIP-1alpha, and MIP-1beta. MCP-2 is a true agonist for CCR5, eliciting a robust chemotactic response in CCR5 transfectants similar to that of the three known CCR5 ligands and exhibiting cross-desensitization with RANTES in the Ca2+ flux response. MCP-4 also bound to CCR5 with high affinity and was efficiently displaced by other CCR5 ligands. However, MCP-4 only partially displaced the binding of radiolabeled MIP-1alpha and caused a chemotactic response only at high concentrations. Furthermore, MCP-2 inhibited the binding of the M-tropic HIV-1 gp120 envelope glycoprotein to CCR5 and HIV-1 infection of peripheral blood mononuclear cells. More importantly, we found that MCP-2 could bind and elicit chemotaxis in CD3-activated and IL-2-maintained T cells, and most of these functions could be specifically inhibited by the anti-CCR5 mAb 2D7, whereas the responses mediated by MIP-1alpha or MCP-4 were only partially inhibited by 2D7. Thus, although MCP-2 can bind to and signal through CCR1, CCR2b, and CCR5, among which both CCR2 and CCR5 are expressed at high levels on activated T cells, it appears to preferably utilize CCR5 on these cells. In contrast, MIP-1alpha and MCP-4 seem to activate multiple receptors on the same cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9790730/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9468473" class="tabcontent ">
+                    <h2>Monocyte chemotactic protein-2 activates CCR5 and blocks CD4/CCR5-mediated HIV-1 entry/replication.</h2>
+                    <h3>The Journal of biological chemistry; 1998</h3>
+                    <p>Human immunodeficiency virus, type I (HIV-1) cell-type tropism is dictated by chemokine receptor usage: T-cell line tropic viruses use CXCR4, whereas monocyte tropic viruses primarily use CCR5 as fusion coreceptors. CC chemokines macrophage inflammatory protein (MIP)-1alpha, MIP-1beta, and RANTES (regulated on activation normal T cell expressed and secreted) inhibit CD4/CCR5-mediated HIV-1 cell fusion. MCP-2 is also a member of the CC chemokine subfamily and has the capacity to interact with at least two receptors including CCR-1 and CCR2B. In an effort to further characterize the binding properties of MCP-2 on leukocytes, we observed that MCP-2, but not MCP-1, effectively competed with MIP-1beta for binding to monocytes, suggesting that MCP-2 may interact with CCR5. As predicted, MCP-2 competitively inhibited MIP-1beta binding to HEK293 cells stably transfected with CCR5 (CCR5/293 cells). MCP-2 also bound to and induced chemotaxis of CCR5/293 cells with a potency comparable with that of MIP-1beta. Confocal microscopy indicates that MCP-2 caused remarkable and dose-dependent internalization of CCR5 in CCR5/293 cells. Furthermore, MCP-2 inhibited the entry/replication of HIV-1ADA in CCR5/293 cells coexpressing CD4. These results indicated that MCP-2 uses CCR5 as one of its functional receptors and is an additional potent natural inhibitor of HIV-1.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9468473/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10477718" class="tabcontent ">
+                    <h2>CCR5 binds multiple CC-chemokines: MCP-3 acts as a natural antagonist.</h2>
+                    <h3>Blood; 1999</h3>
+                    <p>CCR5 was first characterized as a receptor for MIP-1alpha, MIP-1beta, and RANTES, and was rapidly shown to be the main coreceptor for M-tropic human immunodeficiency virus (HIV)-1 strains and simian immunodeficiency virus (SIV). Chemokines constitute a rapidly growing family of proteins and receptor-chemokine interactions are known to be promiscuous and redundant. We have therefore tested whether other CC-chemokines could bind to and activate CCR5. All CC-chemokines currently available were tested for their ability to compete with [(125)I]-MIP-1beta binding on a stable cell line expressing recombinant CCR5, and/or to induce a functional response in these cells. We found that in addition to MIP-1beta, MIP-1alpha, and RANTES, five other CC-chemokines could compete for [(125)I]-MIP-1beta binding: MCP-2, MCP-3, MCP-4, MCP-1, and eotaxin binding was characterized by IC(50) values of 0.22, 2.14, 5.89, 29.9, and 21.7 nmol/L, respectively. Among these ligands, MCP-3 had the remarkable property of binding CCR5 with high affinity without eliciting a functional response, MCP-3 could also inhibit the activation of CCR5 by MIP-1beta and may therefore be considered as a natural antagonist for CCR5. It was unable to induce significant endocytosis of the receptor. Chemokines that could compete with high affinity for MIP-1beta binding could also compete for monomeric gp120 binding, although with variable potencies; maximal gp120 binding inhibition was 80% for MCP-2, but only 30% for MIP-1beta. MCP-3 could compete efficiently for gp120 binding but was, however, found to be a weak inhibitor of HIV infection, probably as a consequence of its inability to downregulate the receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10477718/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

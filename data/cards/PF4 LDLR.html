@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .title {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 24px;
+            background-color: #f4f4f4;
+        }
+        .card-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+        .card {
+            width: 48%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            box-sizing: border-box;
+        }
+        .card-full-row {
+            width: 100%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+        }
+        .card-full-row .column {
+            flex: 1;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+        .card-full-row .column:first-child {
+            margin-left: 0;
+        }
+        .card-full-row .column:last-child {
+            margin-right: 0;
+        }
+        .card-full-row h2 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        .column strong {
+            font-weight: bold;
+        }
+        .column-right {
+            flex: 1; /* Right side */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Align the content to the right */
+        }
+        .column-center {
+            flex: 1; /* Right side */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Align the content to the right */
+        }
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1 style="text-align: center; font-size: 30px; font-weight: bold; width: 100%;">PF4 —— LDLR</h1>
+    <div class="card-container">
+        <!-- Full Row Card -->
+        <div class="card-full-row">
+            <div class="column">
+                <h2>Interaction ID</h2>
+                
+                    <div>
+                        <h3>CDB0692</h3>
+                    </div>
+                
+            </div>
+
+            <!-- Second Column -->
+            <div class="column">
+                <h2>Interaction Type</h2>
+                
+                    <div>
+                        secreted PF4 binds with LDLR in plasma membrane
+                    </div>
+                
+            </div>
+
+        <!-- Second Column -->
+            <div class="column">
+                <h2>Pubmed Support</h2>
+                
+                    <div>
+                        <strong>Pubmed IDs:</strong> <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/pubmed/PF4——LDLR_pmid_details.html" target="_blank">2 PMIDs</a>
+                    </div>
+                
+            </div>
+
+            <!-- Perplexity Column -->
+            <div class="column-center">
+                
+                    <h2>Perplexity</h2>
+                    <div>
+                        <a href="https://www.perplexity.ai/search?q=Does-PF4-bind-LDLR-as-a-ligand-and-receptor-pair" target="_blank"> <img src="https://img.icons8.com/?size=80&id=0NbBuNOxUwps&format=png&color=000000" alt="Perplexity AI" /></a>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="card-container">
+        <div class="card">
+            <h2>Ligand: PF4</h2>
+            
+                <div>
+                    <strong>Ligand name:</strong> 
+                    platelet factor 4
+                </div>
+            
+                <div>
+                    <strong>Ligand HGNC ID:</strong> 
+                    <a href="https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:8861" target="_blank">HGNC:8861</a>
+                </div>
+            
+                <div>
+                    <strong>Ligand location:</strong> 
+                    secreted
+                </div>
+            
+                <div>
+                    <strong>Approved symbol:</strong> 
+                    PF4
+                </div>
+            
+                <div>
+                    <strong>Alias symbol:</strong> 
+                    SCYB4
+                </div>
+            
+                <div>
+                    <strong>Previous symbol:</strong> 
+                    
+                </div>
+            
+                <div>
+                    <strong>Date symbol changed:</strong> 
+                    
+                </div>
+            
+        </div>
+        <div class="card">
+            <h2>Receptor: LDLR</h2>
+            
+                <div>
+                    <strong>Receptor name:</strong> 
+                    low density lipoprotein receptor
+                </div>
+            
+                <div>
+                    <strong>Receptor HGNC ID:</strong> 
+                    <a href="https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:6547" target="_blank">HGNC:6547</a>
+                </div>
+            
+                <div>
+                    <strong>Receptor location:</strong> 
+                    plasma membrane
+                </div>
+            
+                <div>
+                    <strong>Approved symbol:</strong> 
+                    LDLR
+                </div>
+            
+                <div>
+                    <strong>Alias symbol:</strong> 
+                    LDLCQ2
+                </div>
+            
+                <div>
+                    <strong>Previous symbol:</strong> 
+                    
+                </div>
+            
+                <div>
+                    <strong>Date symbol changed:</strong> 
+                    
+                </div>
+            
+        </div>
+    </div>
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>APLN——APLNR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for APLN——APLNR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10617103')">10617103</button><button class="tablinks " onclick="openTab(event, 'tab9792798')">9792798</button><button class="tablinks " onclick="openTab(event, 'tab12603839')">12603839</button><button class="tablinks " onclick="openTab(event, 'tab15341513')">15341513</button><button class="tablinks " onclick="openTab(event, 'tab10777510')">10777510</button><button class="tablinks " onclick="openTab(event, 'tab12939143')">12939143</button><button class="tablinks " onclick="openTab(event, 'tab11336787')">11336787</button><button class="tablinks " onclick="openTab(event, 'tab12603839')">12603839</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10617103" class="tabcontent active">
+                    <h2>Characterization of apelin, the ligand for the APJ receptor.</h2>
+                    <h3>Journal of neurochemistry; 2000</h3>
+                    <p>The apelin peptide was recently discovered and demonstrated to be the endogenous ligand for the G protein-coupled receptor, APJ. A search of the GenBank databases retrieved a rat expressed sequence tag partially encoding the preproapelin sequence. The GenBank search also revealed a human sequence on chromosome Xq25-26.1, containing the gene encoding preproapelin. We have used the rat sequence to screen a rat brain cDNA library to obtain a cDNA encoding the full-length open reading frame of rat preproapelin. This cDNA encoded a protein of 77 amino acids, sharing an identity of 82% with human preproapelin. Northern and in situ hybridization analyses revealed both human and rat apelin and APJ to be expressed in the brain and periphery. Both sequence and mRNA expression distribution analyses revealed similarities between apelin and angiotensin II, suggesting they that share related physiological roles. A synthetic apelin peptide was injected intravenously into male Wistar rats, resulting in immediate lowering of both systolic and diastolic blood pressure, which persisted for several minutes. Intraperitoneal apelin injections induced an increase in drinking behavior within the first 30 min after injection, with a return to baseline within 1 h.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10617103/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9792798" class="tabcontent ">
+                    <h2>Isolation and characterization of a novel endogenous peptide ligand for the human APJ receptor.</h2>
+                    <h3>Biochemical and biophysical research communications; 1998</h3>
+                    <p>In the search for an endogenous ligand of the orphan G protein-coupled receptor APJ, the presence of the ligand in various tissue extracts was examined by measuring the increase in extracellular acidification rate of the cells expressing the APJ receptor as a specific signal induced by the interaction of the receptor and ligand. By monitoring this activity, we isolated an APJ receptor ligand, designated apelin, from bovine stomach extracts. The structures of bovine and human apelin preproproteins were deduced from the sequences of the corresponding cDNAs. The preproproteins consisted of 77 amino acid residues, and the apelin sequence was encoded in the C-terminal regions. Synthetic peptides derived from the C-terminal amino acid sequence of bovine preproapelin were capable of specifically promoting the acidification rate in the cells expressing the APJ receptor in a range from 10(-7) to 10(-10) M, indicating that apelin is an endogenous ligand for the APJ receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9792798/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12603839" class="tabcontent ">
+                    <h2>Pharmacological and immunohistochemical characterization of the APJ receptor and its endogenous ligand apelin.</h2>
+                    <h3>Journal of neurochemistry; 2003</h3>
+                    <p>Apelin peptides have recently been identified to be the endogenous ligands for the G protein-coupled receptor APJ. However, little is known about the physiological roles of this ligand-receptor pairing. In the present study we investigated the pharmacology of several apelin analogues at the human recombinant APJ receptor using radioligand binding and functional assays. This has led to the identification of key residues in the apelin peptide required for functional potency and binding affinity through structure-activity studies. In particular, we have identified that replacement of leucine in position 5, or arginine in position 2 and 4 of the C-terminal apelin peptide, apelin-13, resulted in significant changes in pharmacology. We also investigated the detailed localization of pre-proapelin and APJ receptor mRNA in a wide range of human, rat and mouse tissues using quantitative RT-PCR, and carried out a detailed immunohistochemical study of the distribution of the APJ receptor in rat brain and spinal cord. Interestingly, the APJ receptor was not only co-localized in white matter with GFAP in the spinal cord, but was also clearly localized on neurones in the brain, suggesting that this receptor and its peptide may be involved in a wide range of biological process yet to be determined.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12603839/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15341513" class="tabcontent ">
+                    <h2>Functional dissociation of apelin receptor signaling and endocytosis: implications for the effects of apelin on arterial blood pressure.</h2>
+                    <h3>Journal of neurochemistry; 2004</h3>
+                    <p>Apelin is a novel neuropeptide involved in the regulation of body fluid homeostasis and cardiovascular functions. It acts through a G protein-coupled receptor, the APJ receptor. We studied the structure-activity relationships of apelin at the rat apelin receptor, tagged at its C-terminal end with enhanced green fluorescent protein and stably expressed in CHO cells. We evaluated the potency of N- and C-terminal deleted fragments of K17F to bind with high affinity to the apelin receptor, and to inhibit cAMP production and to induce apelin receptor internalization. We first characterized the internalization and trafficking of the rat apelin receptor. This receptor was internalized via a clathrin-dependent mechanism and our results suggest that receptor trafficking may follow a recycling pathway. We then tried to identify the amino acids of K17F required for apelin activity. The first five N-terminal and the last two C-terminal amino acids of K17F were not essential for apelin binding or the inhibition of cAMP production. However, the full-length sequence of K17F was the most potent inducer of apelin receptor internalization because successive N-terminal amino-acid deletions progressively reduced internalization and the removal of a single amino acid at the C-terminus abolished this process. Finally, the most novel observation of this work is that hypotensive actions of apelin peptides correlate best with the ability of those ligands to internalize. Thus, apelin receptor signaling and endocytosis are functionally dissociated, possibly reflecting the existence of several conformational states of this receptor, stabilized by the binding of different apelin fragments to the apelin receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15341513/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10777510" class="tabcontent ">
+                    <h2>Molecular and functional characteristics of APJ. Tissue distribution of mRNA and interaction with the endogenous ligand apelin.</h2>
+                    <h3>The Journal of biological chemistry; 2000</h3>
+                    <p>We have recently identified apelin as the endogenous ligand for human APJ. In rats, the highest expression of APJ mRNA was detected in the lung, suggesting that APJ and its ligand play an important role in the pulmonary system. When apelin-36 and its pyroglutamylated C-terminal peptide, [<Glu(65)]apelin-13, were compared in microphysiometric analyses, the elevation of extracellular acidification induced in cells expressing APJ by [<Glu(65)]apelin-13 was transient, whereas that by apelin-36 was sustained. These responses were almost completely inhibited by a specific inhibitor for G(i) or that for Na(+)/H(+) exchanger. (125)I -Labeled [<Glu(65)]apelin-13 analogue specifically bound to APJ with a high affinity, and [<Glu(65)]apelin-13 was more potent than apelin-36 in competitive inhibition assays. Because pretreatment with apelin-36 but not [<Glu(65)]apelin-13 drastically reduced the binding of the labeled apelin to APJ, the different patterns of acidification induced by these two peptides appeared to reflect their dissociation rather than association with APJ. Apelin elicited the migration of APJ-expressing cells, and [<Glu(65)]apelin-13 was more potent than apelin-36 in this activity. Heterogeneous molecular forms of apelin corresponding to apelin-36 and [<Glu(65)]apelin-13 were produced in bovine colostrum. Apelin-36 and [<Glu(65)]apelin-13 might have different functions in vivo and in vitro.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10777510/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12939143" class="tabcontent ">
+                    <h2>Structural and functional study of the apelin-13 peptide, an endogenous ligand of the HIV-1 coreceptor, APJ.</h2>
+                    <h3>Biochemistry; 2003</h3>
+                    <p>The APJ receptor is widely expressed in the human central nervous system (CNS). Apelin was recently identified as the endogenous peptidic ligand for human APJ. Studies with animal models suggested that APJ and apelin play an important role in the hypothalamic regulation of water intake and the endocrine axis, in the regulation of blood pressure, and in cardiac contractility. Apelin has been found to block the activity of APJ as a human immunodeficiency virus type I (HIV-1) coreceptor. In this study, we combined chemical synthetic approaches with alanine substitution to evaluate the structural requirements for interactions with the APJ receptor. We demonstrated that apelin peptides in aqueous solution adopt a random conformation, and the positive charge and hydrophobic residues of apelin-13 play important roles in interactions with the APJ receptor. We have observed an important correlation between receptor binding affinity and cell-cell fusion inhibitory activity. The elucidation of structural requirements of apelin-13 in its interaction with the APJ receptor is critical for further investigation of apelin-APJ functions in vivo and in the design of small molecular inhibitors for potential treatment of HIV-1 infection in the CNS.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12939143/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11336787" class="tabcontent ">
+                    <h2>Molecular properties of apelin: tissue distribution and receptor binding.</h2>
+                    <h3>Biochimica et biophysica acta; 2001</h3>
+                    <p>We analyzed the tissue distribution of apelin mRNA in rats by a quantitative reverse transcription-polymerase chain reaction and that of immunoreactive apelin (ir-apelin) by an enzyme immunoassay (EIA) using a monoclonal antibody. The expression levels of apelin mRNA and ir-apelin seemed to be consistent among tissues: they were highly expressed in the lung and mammary gland. By the combination of gel filtration and EIA, we found that the molecular forms of apelin differ among respective tissues: apelin molecules with sizes close to apelin-36 (long forms) were major components in the lung, testis, and uterus, but both long and short (whose sizes were close to [<Glu(65)]apelin-13) forms were detected in the mammary gland. In Scatchard analyses, the radioiodinated apelin-36 analogue bound to the receptor, APJ, with high affinity. In competitive binding assays, apelin-36 and apelin-19 far more efficiently inhibited the binding of the labeled apelin-36 analogue with APJ than [<Glu(65)]apelin-13. In analyses for the dissociation of apelin from APJ, unlabeled apelin-36 replaced more rapidly the labeled apelin-36 analogue bound with APJ than [<Glu(65)]apelin-13. Our results demonstrate that the long and short forms of apelin differently interact with APJ.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11336787/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12603839" class="tabcontent ">
+                    <h2>Pharmacological and immunohistochemical characterization of the APJ receptor and its endogenous ligand apelin.</h2>
+                    <h3>Journal of neurochemistry; 2003</h3>
+                    <p>Apelin peptides have recently been identified to be the endogenous ligands for the G protein-coupled receptor APJ. However, little is known about the physiological roles of this ligand-receptor pairing. In the present study we investigated the pharmacology of several apelin analogues at the human recombinant APJ receptor using radioligand binding and functional assays. This has led to the identification of key residues in the apelin peptide required for functional potency and binding affinity through structure-activity studies. In particular, we have identified that replacement of leucine in position 5, or arginine in position 2 and 4 of the C-terminal apelin peptide, apelin-13, resulted in significant changes in pharmacology. We also investigated the detailed localization of pre-proapelin and APJ receptor mRNA in a wide range of human, rat and mouse tissues using quantitative RT-PCR, and carried out a detailed immunohistochemical study of the distribution of the APJ receptor in rat brain and spinal cord. Interestingly, the APJ receptor was not only co-localized in white matter with GFAP in the spinal cord, but was also clearly localized on neurones in the brain, suggesting that this receptor and its peptide may be involved in a wide range of biological process yet to be determined.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12603839/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

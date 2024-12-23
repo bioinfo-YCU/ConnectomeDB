@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CD48——CD2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CD48——CD2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab18287277')">18287277</button><button class="tablinks " onclick="openTab(event, 'tab23470321')">23470321</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab18287277" class="tabcontent active">
+                    <h2>Rational design of a novel calcium-binding site adjacent to the ligand-binding site on CD2 increases its CD48 affinity.</h2>
+                    <h3>Protein science : a publication of the Protein Society; 2008</h3>
+                    <p>Electrostatic interactions are important for molecular recognition processes including Ca2+-binding and cell adhesion. To understand these processes, we have successfully introduced a novel Ca2+-binding site into the non-Ca2+-dependent cell adhesion protein CD2 using our criteria that are specifically tailored to the structural and functional properties of the protein environment and charged adhesion surface. This designed site with ligand residues exclusively from the beta-sheets selectively binds to Ca2+ and Ln3+ over other mono- and divalent cations. While Ca2+ and Ln3+ binding specifically alters the local environment of the designed Ca2+-binding site, the designed protein undergoes a significantly smaller conformation change compared with those observed in naturally occurring Ca2+-binding sites that are composed of at least part of the flexible loop and helical regions. In addition, the CD2-CD48-binding affinity increased approximately threefold after protein engineering, suggesting that the cell adhesion of CD2 can be modulated by altering the local electrostatic environment. The study provides site-specific information for regulating cell adhesion within CD2 and gives insight into the structural factors required for Ca2+-modulated biological processes.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/18287277/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab23470321" class="tabcontent ">
+                    <h2>Molecular mechanisms of T cell co-stimulation and co-inhibition.</h2>
+                    <h3>Nature reviews. Immunology; 2013</h3>
+                    <p>Co-stimulatory and co-inhibitory receptors have a pivotal role in T cell biology, as they determine the functional outcome of T cell receptor (TCR) signalling. The classic definition of T cell co-stimulation continues to evolve through the identification of new co-stimulatory and co-inhibitory receptors, the biochemical characterization of their downstream signalling events and the delineation of their immunological functions. Notably, it has been recently appreciated that co-stimulatory and co-inhibitory receptors display great diversity in expression, structure and function, and that their functions are largely context dependent. Here, we focus on some of these emerging concepts and review the mechanisms through which T cell activation, differentiation and function is controlled by co-stimulatory and co-inhibitory receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/23470321/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>GDNF——GFRA2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for GDNF——GFRA2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9182803')">9182803</button><button class="tablinks " onclick="openTab(event, 'tab9407096')">9407096</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9182803" class="tabcontent active">
+                    <h2>TrnR2, a novel receptor that mediates neurturin and GDNF signaling through Ret.</h2>
+                    <h3>Neuron; 1997</h3>
+                    <p>Glial cell line-derived neurotrophic factor (GDNF) and neurturin (NTN) comprise a family of TGF-beta-related neurotrophic factors (TRNs), which have trophic influences on a variety of neuronal populations. A receptor complex comprised of TrnR1 (GDNFR alpha) and Ret was recently identified and found to be capable of mediating both GDNF and NTN signaling. We have identified a novel receptor based on homology to TrnR1, called TrnR2, that is 48% identical to TrnR1, and is located on the short arm of chromosome 8. TrnR2 is attached to the cell surface via a GPI-linkage, and can mediate both NTN and GDNF signaling through Ret in vitro. Fibroblasts expressing TrnR2 and Ret are approximately 30-fold more sensitive to NTN than to GDNF treatment, whereas those expressing TrnR1 and Ret respond equivalently to both factors, suggesting the TrnR2-Ret complex acts preferentially as a receptor for NTN. TrnR2 and Ret are expressed in neurons of the superior cervical and dorsal root ganglia, and in the adult brain. Comparative analysis of TrnR1, TrnR2, and Ret expression indicates that multiple receptor complexes, capable of mediating GDNF and NTN signaling, exist in vivo.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9182803/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9407096" class="tabcontent ">
+                    <h2>GFRalpha-2 and GFRalpha-3 are two new receptors for ligands of the GDNF family.</h2>
+                    <h3>The Journal of biological chemistry; 1997</h3>
+                    <p>The receptor for glial cell line-derived neurotrophic factor (GDNF) consists of GFRalpha-1 and Ret. Neurturin is a GDNF-related neurotrophin whose receptor is presently unknown. Here we report that neurturin can bind to either GFRalpha-1 or GFRalpha-2, a novel receptor related to GFRalpha-1. Both GFRalpha-1 and GFRalpha-2 mediate neurturin-induced Ret phosphorylation. GDNF can also bind to either GFRalpha-1 or GFRalpha-2, and activate Ret in the presence of either binding receptor. Although both ligands interact with both receptors, cells expressing GFRalpha-1 bind GDNF more efficiently than neurturin, while cells expressing GFRalpha-2 bind neurturin preferentially. Cross-linking and Ret activation data also suggest that while there is cross-talk, GFRalpha-1 is the primary receptor for GDNF and GFRalpha-2 exhibits a preference for neurturin. We have also cloned a cDNA that apparently codes for a third member of the GFRalpha receptor family. This putative receptor, designated GFRalpha-3, is closely related in amino acid sequence and is nearly identical in the spacing of its cysteine residues to both GFRalpha-1 and GFRalpha-2. Analysis of the tissue distribution of GFRalpha-1, GFRalpha-2, GFRalpha-3, and Ret by Northern blot reveals overlapping but distinct patterns of expression. Consistent with a role in GDNF function, the GFRalphas and Ret are expressed in many of the same tissues, suggesting that GFRalphas mediate the action of GDNF family ligands in vivo.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9407096/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

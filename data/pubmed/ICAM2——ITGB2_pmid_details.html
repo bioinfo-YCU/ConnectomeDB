@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>ICAM2——ITGB2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for ICAM2——ITGB2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15023143')">15023143</button><button class="tablinks " onclick="openTab(event, 'tab9786897')">9786897</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15023143" class="tabcontent active">
+                    <h2>Characterization of pig intercellular adhesion molecule-2 and its interaction with human LFA-1.</h2>
+                    <h3>American journal of transplantation : official journal of the American Society of Transplantation and the American Society of Transplant Surgeons; 2004</h3>
+                    <p>Understanding molecular interactions between human leukocytes and porcine endothelium is important for the future success of pig-to-human xenotransplantation. Here we describe the analysis of pig intercellular adhesion molecule-2 (ICAM-2). A 1020-basepair ICAM-2 cDNA generated from pig lung RNA contained an open reading frame (ORF) encoding a 277-amino-acid protein with six potential N-linked glycosylation sites. The mature protein sequence was 55% identical to human ICAM-2, with conservation of five out of six residues critical for binding of the human protein to its ligand LFA-1. Northern blot analysis identified ICAM-2 transcripts of 4.0 and 1.4 kb in cultured pig endothelial cells and mRNA was detected in pig lung, spleen, kidney, liver and heart by RT-PCR. The gene structure and endothelial expression of pig ICAM-2 were strikingly similar to those of its human and mouse counterparts. However, unlike human ICAM-2, expression of pig ICAM-2 on cultured endothelial cells was not down-regulated by treatment with the inflammatory cytokines TNF-alpha and IL-1beta. Pig ICAM-2 expressed on stable transfectants supported firm adhesion of cells expressing human LFA-1. This conservation of function across the species barrier suggests that pig ICAM-2 plays a role in the cellular interactions associated with xenograft rejection.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15023143/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9786897" class="tabcontent ">
+                    <h2>Mapping the intercellular adhesion molecule-1 and -2 binding site on the inserted domain of leukocyte function-associated antigen-1.</h2>
+                    <h3>The Journal of biological chemistry; 1998</h3>
+                    <p>By extensive mutagenic analysis of the inserted domain (I-domain) of the alpha-chain (CD11a) of the leukocyte function-associated antigen-1 (LFA-1), we have defined a putative binding surface for intercellular adhesion molecules 1 and 2 (ICAM-1 and -2). This analysis showed that individually mutating Leu-205 or Glu-241 to alanine completely abolished LFA-1 binding to ICAM-1 or -2 without affecting I-domain structure, as assayed by antibody binding. Mutating Thr-243 to alanine also had a profound effect on LFA-1 binding to ICAM-1 and -2, as seen by complete loss of binding to ICAM-1 and a significant reduction (70% decrease) in binding to ICAM-2. Mutating Glu-146 to alanine reduced LFA-1 binding to ICAM-1 or -2 by 70%, and mutating His-264 or Glu-293 to alanine reduced binding to ICAM-1 or -2 by about 30-40%. Mutating Thr-175 to alanine reduced binding to ICAM-1 by about 30% and binding to ICAM-2 by about 70%. Interestingly, mutating Lys-263 to alanine preferentially abolished LFA-1 binding to ICAM-2. Using these data, we have generated a model of the interface between the LFA-1 I-domain and residues in the first domain of ICAM-1 that have been shown to be critical for this interaction. In addition, this model, together with the ICAM-2 crystal structure, has been used to map residues that are likely to mediate LFA-1 I-domain binding to ICAM-2.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9786897/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

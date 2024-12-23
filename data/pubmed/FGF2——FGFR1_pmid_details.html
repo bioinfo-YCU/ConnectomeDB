@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>FGF2——FGFR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for FGF2——FGFR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10950949')">10950949</button><button class="tablinks " onclick="openTab(event, 'tab11030354')">11030354</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10950949" class="tabcontent active">
+                    <h2>Identification of residues important both for primary receptor binding and specificity in fibroblast growth factor-7.</h2>
+                    <h3>The Journal of biological chemistry; 2000</h3>
+                    <p>Fibroblast growth factors (FGFs) mediate a multitude of physiological and pathological processes by activating a family of tyrosine kinase receptors (FGFRs). Each FGFR binds to a unique subset of FGFs and ligand binding specificity is essential in regulating FGF activity. FGF-7 recognizes one FGFR isoform known as the FGFR2 IIIb isoform or keratinocyte growth factor receptor (KGFR), whereas FGF-2 binds well to FGFR1, FGFR2, and FGFR4 but interacts poorly with KGFR. Previously, mutations in FGF-2 identified a set of residues that are important for high affinity receptor binding, known as the primary receptor-binding site. FGF-7 contains this primary site as well as a region that restricts interaction with FGFR1. The sequences that confer on FGF-7 its specific binding to KGFR have not been identified. By utilizing domain swapping and site-directed mutagenesis we have found that the loop connecting the beta4-beta5 strands of FGF-7 contributes to high affinity receptor binding and is critical for KGFR recognition. Replacement of this loop with the homologous loop from FGF-2 dramatically reduced both the affinity of FGF-7 for KGFR and its biological potency but did not result in the ability to bind FGFR1. Point mutations in residues comprising this loop of FGF-7 reduced both binding affinity and biological potency. The reciprocal loop replacement mutant (FGF2-L4/7) retained FGF-2 like affinity for FGFR1 and for KGFR. Our results show that topologically similar regions in these two FGFs have different roles in regulating receptor binding specificity and suggest that specificity may require the concerted action of distinct regions of an FGF.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10950949/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11030354" class="tabcontent ">
+                    <h2>Crystal structure of a ternary FGF-FGFR-heparin complex reveals a dual role for heparin in FGFR binding and dimerization.</h2>
+                    <h3>Molecular cell; 2000</h3>
+                    <p>The crystal structure of a dimeric 2:2:2 FGF:FGFR:heparin ternary complex at 3 A resolution has been determined. Within each 1:1 FGF:FGFR complex, heparin makes numerous contacts with both FGF and FGFR, thereby augmenting FGF-FGFR binding. Heparin also interacts with FGFR in the adjoining 1:1 FGF:FGFR complex to promote FGFR dimerization. The 6-O-sulfate group of heparin plays a pivotal role in mediating both interactions. The unexpected stoichiometry of heparin binding in the structure led us to propose a revised model for FGFR dimerization. Biochemical data in support of this model are also presented. This model provides a structural basis for FGFR activation by small molecule heparin analogs and may facilitate the design of heparin mimetics capable of modulating FGF signaling.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11030354/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

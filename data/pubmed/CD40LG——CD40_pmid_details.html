@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CD40LG——CD40 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CD40LG——CD40</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab1374165')">1374165</button><button class="tablinks " onclick="openTab(event, 'tab10647992')">10647992</button><button class="tablinks " onclick="openTab(event, 'tab7516405')">7516405</button><button class="tablinks " onclick="openTab(event, 'tab7543281')">7543281</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab1374165" class="tabcontent active">
+                    <h2>Molecular and biological characterization of a murine ligand for CD40.</h2>
+                    <h3>Nature; 1992</h3>
+                    <p>The CD40 surface molecule is a 277-amino-acid glycoprotein expressed on B lymphocytes, epithelial cells and some carcinoma cell lines. Monoclonal antibodies against CD40 mediate a variety of effects on B lymphocytes, including induction of intercellular adhesion, short- and long-term proliferation, differentiation and enhanced tyrosine phosphorylation of proteins. In addition, germinal centre centrocytes are prevented from undergoing apoptosis by activation through CD40 and receptor for antigen. These data indicate that CD40 could be a receptor for an unknown ligand with important functions in B-cell development and activation. This hypothesis is strengthened by the homology of the extracellular region of the CD40 molecule with a family of cell-surface glycoproteins that includes the receptors for nerve growth factor and tumour necrosis factor. Here we report the cloning of a ligand for CD40 that is expressed on the cell surface of activated T cells and mediates B-cell proliferation in the absence of co-stimulus, as well as IgE production in the presence of interleukin-4.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1374165/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10647992" class="tabcontent ">
+                    <h2>CD40-CD40 ligand.</h2>
+                    <h3>Journal of leukocyte biology; 2000</h3>
+                    <p>CD40 is a cell surface receptor that belongs to the tumor necrosis factor-R (TNF-R) family, and that was first identified and functionally characterized on B lymphocytes. Its critical role in T cell-dependent humoral immune responses was demonstrated by patients with the hyper-IgM syndrome, as well as by gene targeting in mice. However, in recent years it has become clear that CD40 is expressed much more broadly, including expression on monocytes, dendritic cells, endothelial cells, and epithelial cells. In addition, the CD40-ligand (CD40-L/CD154), a member of the TNF family, is also expressed more widely than activated CD4+ T cells only. Therefore it is now thought that CD40-CD40-L interactions play a more general role in immune regulation. Collectively these studies have culminated in pre-clinical and clinical studies that are in progress. This article reviews recent developments in this field of research, with main emphasis on (1) structure and expression of CD40 and its ligand; (2) CD40 signal transduction; (3) in vitro function of CD40 on different cell types; and (4) in vivo functions of CD40/CD40-L interactions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10647992/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7516405" class="tabcontent ">
+                    <h2>gp39-CD40 interactions are essential for germinal center formation and the development of B cell memory.</h2>
+                    <h3>The Journal of experimental medicine; 1994</h3>
+                    <p>gp39, the ligand for CD40 expressed on activated CD4+ T helper cells, is required for the generation of antibody responses to T-dependent (TD) antigens. Treatment of mice with anti-gp39 in vivo inhibits both primary and secondary antibody formation to TD, but not T-independent antigens. However, the role of this receptor-ligand pair in the development of germinal centers and the generation of B cell memory is as yet undefined. Using an antibody to gp39, this study examines the in vivo requirement for gp39-CD40 interactions in the induction of germinal center formation, as well as in the generation of B cell memory. Animals were immunized, treated in vivo with anti-gp39, and evaluated using immunohistochemical staining for the presence of splenic germinal centers 9-11 d after immunization. The results demonstrate that the formation of germinal centers was completely inhibited as a result of treatment with anti-gp39. Moreover, adoptive transfer experiments demonstrate that the generation of antigen-specific memory B cells is also inhibited as a consequence of blocking gp39-CD40 interactions. Taken together, the data demonstrate that gp39-CD40 interactions are critical not only for the generation of antibody responses, but also in the development of B cell memory.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7516405/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7543281" class="tabcontent ">
+                    <h2>Analysis of gp39/CD40 interactions using molecular models and site-directed mutagenesis.</h2>
+                    <h3>Biochemistry; 1995</h3>
+                    <p>The interaction between gp39 (CD40L, TRAP, T-BAM) on activated T cells and mast cells and CD40 on antigen-presenting cells modulates immune responses. Gp39 and CD40 are homologous to tumor necrosis factor (TNF) and its receptor (TNFR), respectively. The TNF-beta/TNFR interaction has been analyzed on the basis of mutagenesis experiments and crystal structures. Using the interaction of TNF-beta/TNFR as a guide, we previously reported a site-directed mutagenesis study in which we identified residues in gp39 (K143, Y145) and CD40 (Y82, D84, N86) involved in gp39/CD40 interactions. Here we describe the use of the TNF-beta/TNFR complex crystal structure as a template to prepare molecular models of gp39, CD40, and their approximate interaction. The application of these models has allowed us to extend our mutagenesis analysis of gp39/CD40 interactions. These experiments have led to the identification of additional gp39 (Y146, R203, Q220) and CD40 (E74, E117) residues that contribute to the gp39/CD40 interaction. We also further explored the importance of gp39 residue Y145 and CD40 residue Y82 for the gp39/CD40 interaction by conservatively replacing these residues with Phe. The results of these studies have enabled us to approximately outline the binding sites in gp39 and CD40. It appears that the gp39/CD40 interaction is centered on at least two clusters of residues and involves residues of two adjacent gp39 monomers. The molecular regions involved in the gp39/CD40 interaction essentially correspond to those in the homologous TNF-beta/TNFR system.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7543281/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

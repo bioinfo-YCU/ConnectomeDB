@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>HCRT——HCRTR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for HCRT——HCRTR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9491897')">9491897</button><button class="tablinks " onclick="openTab(event, 'tab9491897')">9491897</button><button class="tablinks " onclick="openTab(event, 'tab10498827')">10498827</button><button class="tablinks " onclick="openTab(event, 'tab14691055')">14691055</button><button class="tablinks " onclick="openTab(event, 'tab11403934')">11403934</button><button class="tablinks " onclick="openTab(event, 'tab12606634')">12606634</button><button class="tablinks " onclick="openTab(event, 'tab11250867')">11250867</button><button class="tablinks " onclick="openTab(event, 'tab12702704')">12702704</button><button class="tablinks " onclick="openTab(event, 'tab11266181')">11266181</button><button class="tablinks " onclick="openTab(event, 'tab11162621')">11162621</button><button class="tablinks " onclick="openTab(event, 'tab12208495')">12208495</button><button class="tablinks " onclick="openTab(event, 'tab18599270')">18599270</button><button class="tablinks " onclick="openTab(event, 'tab21362456')">21362456</button><button class="tablinks " onclick="openTab(event, 'tab9491897')">9491897</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9491897" class="tabcontent active">
+                    <h2>Orexins and orexin receptors: a family of hypothalamic neuropeptides and G protein-coupled receptors that regulate feeding behavior.</h2>
+                    <h3>Cell; 1998</h3>
+                    <p>The hypothalamus plays a central role in the integrated control of feeding and energy homeostasis. We have identified two novel neuropeptides, both derived from the same precursor by proteolytic processing, that bind and activate two closely related (previously) orphan G protein-coupled receptors. These peptides, termed orexin-A and -B, have no significant structural similarities to known families of regulatory peptides. prepro-orexin mRNA and immunoreactive orexin-A are localized in neurons within and around the lateral and posterior hypothalamus in the adult rat brain. When administered centrally to rats, these peptides stimulate food consumption. prepro-orexin mRNA level is up-regulated upon fasting, suggesting a physiological role for the peptides as mediators in the central feedback mechanism that regulates feeding behavior.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9491897/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9491897" class="tabcontent ">
+                    <h2>Orexins and orexin receptors: a family of hypothalamic neuropeptides and G protein-coupled receptors that regulate feeding behavior.</h2>
+                    <h3>Cell; 1998</h3>
+                    <p>The hypothalamus plays a central role in the integrated control of feeding and energy homeostasis. We have identified two novel neuropeptides, both derived from the same precursor by proteolytic processing, that bind and activate two closely related (previously) orphan G protein-coupled receptors. These peptides, termed orexin-A and -B, have no significant structural similarities to known families of regulatory peptides. prepro-orexin mRNA and immunoreactive orexin-A are localized in neurons within and around the lateral and posterior hypothalamus in the adult rat brain. When administered centrally to rats, these peptides stimulate food consumption. prepro-orexin mRNA level is up-regulated upon fasting, suggesting a physiological role for the peptides as mediators in the central feedback mechanism that regulates feeding behavior.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9491897/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10498827" class="tabcontent ">
+                    <h2>Characterization of recombinant human orexin receptor pharmacology in a Chinese hamster ovary cell-line using FLIPR.</h2>
+                    <h3>British journal of pharmacology; 1999</h3>
+                    <p>The cellular mechanisms underlying the physiological effects of the orexins are poorly understood. Therefore, the pharmacology of the recombinant human orexin receptors was studied using FLIPR. Intracellular calcium ([Ca2+]i) was monitored in Chinese hamster ovary (CHO) cells stably expressing orexin-1 (OX1) or orexin-2 (OX2) receptors using Fluo-3AM. Orexin-A and orexin-B increased [Ca2+]i in a concentration dependent manner in CHO-OX1 (pEC50=8.03+/-0.08 and 7. 30+/-0.08 respectively, n=5) and CHO-OX2 (pEC50=8.18+/-0.10 and 8. 43+/-0.09 respectively, n=5) cells. This response was typified as a rapid peak in [Ca2+]i (maximal at 6 - 8 s), followed by a gradually declining secondary phase. Thapsigargin (3 microM) or U73122 (3 microM) abolished the response. In calcium-free conditions the peak response was unaffected but the secondary phase was shortened, returning to basal values within 90 s. Calcium (1.5 mM) replacement restored the secondary phase. In conclusion, orexins cause a phospholipase C-mediated release of calcium from intracellular stores, with subsequent calcium influx.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10498827/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab14691055" class="tabcontent ">
+                    <h2>Characterisation of the binding of [3H]-SB-674042, a novel nonpeptide antagonist, to the human orexin-1 receptor.</h2>
+                    <h3>British journal of pharmacology; 2004</h3>
+                    <p>1. This study characterises the binding of a novel nonpeptide antagonist radioligand, [(3)H]SB-674042 (1-(5-(2-fluoro-phenyl)-2-methyl-thiazol-4-yl)-1-((S)-2-(5-phenyl-(1,3,4)oxadiazol-2-ylmethyl)-pyrrolidin-1-yl)-methanone), to the human orexin-1 (OX(1)) receptor stably expressed in Chinese hamster ovary (CHO) cells in both a whole cell assay and in a cell membrane-based scintillation proximity assay (SPA) format. 2. Specific binding of [(3)H]SB-674042 was saturable in both whole cell and membrane formats. Analyses suggested a single high-affinity site, with K(d) values of 3.76+/-0.45 and 5.03+/-0.31 nm, and corresponding B(max) values of 30.8+/-1.8 and 34.4+/-2.0 pmol mg protein(-1), in whole cell and membrane formats, respectively. Kinetic studies yielded similar K(d) values. 3. Competition studies in whole cells revealed that the native orexin peptides display a low affinity for the OX(1) receptor, with orexin-A displaying a approximately five-fold higher affinity than orexin-B (K(i) values of 318+/-158 and 1516+/-597 nm, respectively). 4. SB-334867, SB-408124 (1-(6,8-difluoro-2-methyl-quinolin-4-yl)-3-(4-dimethylamino-phenyl)-urea) and SB-410220 (1-(5,8-difluoro-quinolin-4-yl)-3-(4-dimethylamino-phenyl)-urea) all displayed high affinity for the OX(1) receptor in both whole cell (K(i) values 99+/-18, 57+/-8.3 and 19+/-4.5 nm, respectively) and membrane (K(i) values 38+/-3.6, 27+/-4.1 and 4.5+/-0.2 nm, respectively) formats. 5. Calcium mobilisation studies showed that SB-334867, SB-408124 and SB-410220 are all functional antagonists of the OX(1) receptor, with potencies in line with their affinities, as measured in the radioligand binding assays, and with approximately 50-fold selectivity over the orexin-2 receptor. 6. These studies indicate that [(3)H]SB-674042 is a specific, high-affinity radioligand for the OX(1) receptor. The availability of this radioligand will be a valuable tool with which to investigate the physiological functions of OX(1) receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14691055/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11403934" class="tabcontent ">
+                    <h2>High specificity of human orexin receptors for orexins over neuropeptide Y and other neuropeptides.</h2>
+                    <h3>Neuroscience letters; 2001</h3>
+                    <p>Orexin- and neuropeptide Y-ergic systems show physiological interaction in the regulation of appetite. In this study we investigate the postulated effect of neuropeptide Y (NPY) and other peptides directly on orexin OX1 and OX2 receptors. None of the tested peptides (NPY-variants, secretin, alpha-melanocortin, pancreatic polypeptide or pituitary adenylyl cyclase-activating peptide-38) induced any Ca2+ elevation at the concentrations up to 300 nM (human NPY, secretin and alpha-melanocortin up to 1 microM). Orexin-A- and -B-mediated Ca2+ elevations were completely unaffected by the peptides. In binding assays, human NPY, secretin and alpha-melanocortin at 1 microM did not induce any displacement of 0.1 nM [125I]orexin-A. Thus, in contrast to the previously reported result on orexin-A binding, our results demonstrate that NPY does not directly interact with orexin receptor in intact cellular settings.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11403934/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12606634" class="tabcontent ">
+                    <h2>Distinct recognition of OX1 and OX2 receptors by orexin peptides.</h2>
+                    <h3>The Journal of pharmacology and experimental therapeutics; 2003</h3>
+                    <p>In this study, we have compared the abilities of orexin-A and orexin-B and variants of orexin-A to activate different Ca(2+) responses (influx and release) in human OX(1) and OX(2) receptor- expressing Chinese hamster ovary cells. Responses mediated by activation of both receptor subtypes with either orexin-A or -B were primarily dependent on extracellular Ca(2+), suggesting similar activation of Ca(2+) influx as we have previously shown for orexin-A and OX(1) receptors. Amino acid-wise truncation of orexin-A reduced its ability to activate OX(1) and OX(2) receptors, but the response mediated by the OX(2) receptor was more resistant to truncation than the response mediated by the OX(1) receptor. We also performed a sequential replacement of amino acids 14 to 26 with alanine in the truncated orexin-A variant orexin-A(14-33). Replacement of the same amino acids produced a fall in the potency for each receptor subtype, but the reduction was less prominent for the OX(2) receptor. The most marked reduction was produced by the replacement of Leu20, Asp25, and His26 with alanine. Interestingly, extracellular Ca(2+) dependence of responses to some of the mutated peptides was different from those of orexin-A and -B. The mutagenesis also suggests that although the determinants required from orexin-A for binding to and activation of the receptor are highly conserved between the orexin receptor subtypes, the OX(2) receptor requires fewer determinants. This might in part explain why orexin-B has the affinity and potency equal to orexin-A for this subtype, although it has 10- to 100-fold lower affinity and potency for the OX(1) receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12606634/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11250867" class="tabcontent ">
+                    <h2>SB-334867-A: the first selective orexin-1 receptor antagonist.</h2>
+                    <h3>British journal of pharmacology; 2001</h3>
+                    <p>The pharmacology of various peptide and non-peptide ligands was studied in Chinese hamster ovary (CHO) cells stably expressing human orexin-1 (OX(1)) or orexin-2 (OX(2)) receptors by measuring intracellular calcium ([Ca(2+)](i)) using Fluo-3AM. Orexin-A and orexin-B increased [Ca(2+)](i) in CHO-OX(1) (pEC(50)=8.38+/-0.04 and 7.26+/-0.05 respectively, n=12) and CHO-OX(2) (pEC(50)=8.20+/-0.03 and 8.26+/-0.04 respectively, n=8) cells. However, neuropeptide Y and secretin (10 pM - 10 microM) displayed neither agonist nor antagonist properties in either cell-line. SB-334867-A (1-(2-Methyylbenzoxanzol-6-yl)-3-[1,5]naphthyridin-4-yl-urea hydrochloride) inhibited the orexin-A (10 nM) and orexin-B (100 nM)-induced calcium responses (pK(B)=7.27+/-0.04 and 7.23+/-0.03 respectively, n=8), but had no effect on the UTP (3 microM)-induced calcium response in CHO-OX(1) cells. SB-334867-A (10 microM) also inhibited OX(2) mediated calcium responses (32.7+/-1.9% versus orexin-A). SB-334867-A was devoid of agonist properties in either cell-line. In conclusion, SB-334867-A is a non-peptide OX(1) selective receptor antagonist.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11250867/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12702704" class="tabcontent ">
+                    <h2>Effects of orexin (hypocretin) on GIRK channels.</h2>
+                    <h3>Journal of neurophysiology; 2003</h3>
+                    <p>Orexins (hypocretins) are recently discovered excitatory transmitters implicated in arousal and sleep. Yet, their ionic and signal transduction mechanisms have not been fully clarified. Here we show that orexins suppress G-protein-coupled inward rectifier (GIRK) channel activity, and this suppression is likely to lead to neuronal excitation. Cultured neurons from the locus coeruleus (LC) and the nucleus tuberomammillaris (TM) were used, as well as HEK293A cells transfected with GIRK1 and 2, either human orexin receptor type 1 (OX1R) or type 2 (OX2R), mu opioid receptor and GFP cDNAs. In GTPgammaS-loaded cells, orexin A (OXA, 3 microM) inhibited GIRK currents that had previously been activated by somatostatin (in LC cells), nociceptin (TM cells), or the mu opioid agonist DAMGO (HEK cells). In guanosine triphosphate (GTP)-loaded HEK cells, in which GIRK currents were not preactivated, OXA induced a biphasic response through both types of orexin receptors: an initial current increase and a subsequent decrease to below resting levels. Current-voltage (I-V) relationships revealed that both the OXA-induced and suppressed currents are inwardly rectifying with reversal potentials around EK. The OXA-induced initial current was partially pertussis toxin (PTX) sensitive and partially PTX insensitive, whereas the OXA-suppressed current was PTX insensitive. These data suggest that orexin receptors couple with more than one type of G-protein, including PTX-sensitive (such as Gi/o) and PTX-insensitive (such as Gq/11) G-proteins. The modulation of GIRK channels by orexins may be one of the cellular mechanisms for the regulation of brain nuclei (e.g., LC and TM) that are crucial for arousal, sleep, and appetite.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12702704/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11266181" class="tabcontent ">
+                    <h2>Structure-activity analysis of truncated orexin-A analogues at the orexin-1 receptor.</h2>
+                    <h3>Bioorganic & medicinal chemistry letters; 2001</h3>
+                    <p>Truncated peptide analogues of orexin-A were prepared and their biological activity assesed at the orexin-1 receptor. Progressive N-terminal deletions identified the minimum C-terminal sequence required for maintaining a significant agonist effect, whilst an alanine scan and other pertinent substitutions identified key side-chain and stereochemical requirements for receptor activation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11266181/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11162621" class="tabcontent ">
+                    <h2>Requirement of intact disulfide bonds in orexin-A-induced stimulation of gastric acid secretion that is mediated by OX1 receptor activation.</h2>
+                    <h3>Biochemical and biophysical research communications; 2001</h3>
+                    <p>Orexin-A is a neuropeptide consisting of 33 amino acids with two intrachain disulfide bonds, namely Cys6-Cys12 and Cys7-Cys14, and is a potent stimulator of food consumption and gastric acid secretion. In contrast, orexin-B, a peptide containing 28 amino acids without disulfide bond, which has no stimulatory action of gastric acid. The objective of the present study was to characterize the receptor-mediated mechanism of orexin-A-induced stimulation of gastric acid secretion using orexin-A-related peptides with modification of disulfide bonds. Intracisternal injection of orexin-A, but not orexin-B or orexin-A (15-33), that does not contain both disulfide bonds stimulated gastric acid secretion in pylorus-ligated conscious rats. The ability of the stimulation of gastric acid output was less in three alanine-substituted orexin-A, [Ala(6,12)]orexin-A, [Ala(7,14)]orexin-A, and [Ala(6,7,12,14)]orexin-A, than orexin-A. Orexins-induced calcium increase was measured in CHO-K1 cells expressing OX1R or OX2R. Orexin-A induced a transient increase in [Ca(2+)]i in CHO-K1/OX1R cells in a dose-dependent manner. EC50 values for OX1R of orexin-A, orexin-B, or orexin-A (15-33) was 0.068, 0.69 or 4.1 nM, respectively, suggesting that peptides containing no disulfide bonds have lower potency for the receptor. Agonistic activity for OX1R of the three orexin-A analogues with modification of one or both disulfide bonds was significantly reduced as compared with that of orexin-A. EC50 values for OX2R of orexin-A and orexin-B was almost equal but potency for the receptor of orexin-A (15-33) and three alanine substituted orexin-A was less than that of orexin-A. A significant inverse relationship between gastric acid output and EC50 values for OX1R, but not OX2R, was observed. These results suggested that the orexin-A-induced acid stimulation requires OX1R activation and that disulfide bonds in orexin-A may have a key role in the receptor activation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11162621/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12208495" class="tabcontent ">
+                    <h2>Orexin signaling in recombinant neuron-like cells.</h2>
+                    <h3>FEBS letters; 2002</h3>
+                    <p>To assess the role of orexin receptor signaling in neuron-like cells, Neuro-2a murine neuroblastoma and PC12 human pheochromocytoma cells were stably transfected with human OX(1) or OX(2) receptors. Activation of both receptors strongly elevated cellular inositol phosphates and Ca(2+). A difference in the potency between orexin-A and -B was seen for OX(1), but not OX(2) receptors. Dependence of the orexin-mediated Ca(2+) response on extracellular Ca(2+) and the observed Ba(2+) influx indicate that in addition to phospholipase C, orexin receptors also may couple to similar non-voltage-gated Ca(2+) channels in neuronal cells as previously characterized in non-neuronal cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12208495/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab18599270" class="tabcontent ">
+                    <h2>The signalling profile of recombinant human orexin-2 receptor.</h2>
+                    <h3>Cellular signalling; 2008</h3>
+                    <p>Orexin-A and orexin-B orchestrate their diverse central and peripheral effects via two G-protein coupled receptors, OX1R and OX2R, which activate multiple G-proteins. In many tissues, orexins activate extracellular signal-regulated kinase (ERK(1/2)) and p38 mitogen-activated protein kinase (MAPK); however, the mechanism by which OX2R alone mediates MAPK activation is not understood. This study describes the intracellular signalling pathways involved in OX2R-mediated ERK(1/2) and p38 MAPK activation. In HEK-293 cells stably over-expressing recombinant human OX2R, orexin-A/B resulted in a rapid, dose and time dependent increase in activation of ERK(1/2) and p38 MAPK, with maximal activation at 10 min for ERK(1/2) and 30 min for p38 MAPK. Using dominant-negative G-proteins and selective inhibitors of intracellular signalling cascades, we determined that orexin-A and orexin-B induced ERK(1/2) and p38 MAPK activation through multiple G-proteins and different intracellular signalling pathways. ERK(1/2) activation involves Gq/phospholipase C (PLC)/protein kinase C (PKC), Gs/adenylyl cyclase (AC)/cAMP/protein kinase A (PKA) and Gi cascades; however, the Gq/PLC/PKC pathway, as well as PKA is not required for OX2R-mediated p38 MAPK activation. Interestingly, orexin-B-induced ERK(1/2) activation is predominantly mediated through the Gq/PLC/PKC pathway. In conclusion, this is the first comprehensive signalling study of the human OX2R recombinant receptor, showing ERK(1/2) and p38 MAPK activation are regulated by differential signalling pathways in HEK-293 cells, and that the ERK(1/2) activation is severely affected by naturally occurring mutants associated with narcolepsy. Moreover, it is evident that the human OX2R has ligand specific effects, with orexin-B being more potent in this transfected system and this distinct modulation of the MAPKs through OX2R, may translate to the regulation of diverse biological actions of orexins.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/18599270/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab21362456" class="tabcontent ">
+                    <h2>Agonist ligand discrimination by the two orexin receptors depends on the expression system.</h2>
+                    <h3>Neuroscience letters; 2011</h3>
+                    <p>Despite the recent successes in producing orexin receptor subtype-selective antagonists, these are not commonly available, and therefore, agonist ligands are regularly used to ascribe cell and tissue responses to OX(1) or OX(2) receptors. In the current study, we have compared the native "subtype-selective" agonist, orexin-B, and its reputedly enhanced synthetic variant, Ala(11), d-Leu(15)-orexin-B, in two different recombinant cell lines. Ca2+ elevation was used as readout, and the two "selective" ligands were compared to the subtype-non-selective orexin-A, as is customary with these ligands. In transiently transfected HEK-293 cells, orexin-B showed 9-fold selectivity for the OX(2) receptor and Ala(11), d-Leu(15)-orexin-B 23-fold selectivity, when the potency ratios of ligands were compared between OX(1) and OX(2). In stable CHO-K1 cells, the corresponding values were only 2.6- and 14-fold, respectively. In addition to being low, the selectivity of the ligands was also variable, as indicated by the comparison of the two cell lines. For instance, the relative potency of Ala(11), d-Leu(15)-orexin-B at OX(2) in CHO cells was only 2.3-fold higher than its relative potency at OX(1) in HEK-293 cells; this indicates that Ala(11), d-Leu(15)-orexin-B does not show high enough selectivity for OX(2) to be useful for determination of receptor subtype expression. Comparison of the potencies of orexin-A and -B with respect to a number of published responses in OX(1)-expressing CHO cells, demonstrates that these show great variation: i.e., orexin-A is 1.6-18-fold more potent than orexin-B, depending on the response assessed. These data together suggest that orexin receptor ligands show signal trafficking, which makes agonist-based pharmacology unreliable.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/21362456/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9491897" class="tabcontent ">
+                    <h2>Orexins and orexin receptors: a family of hypothalamic neuropeptides and G protein-coupled receptors that regulate feeding behavior.</h2>
+                    <h3>Cell; 1998</h3>
+                    <p>The hypothalamus plays a central role in the integrated control of feeding and energy homeostasis. We have identified two novel neuropeptides, both derived from the same precursor by proteolytic processing, that bind and activate two closely related (previously) orphan G protein-coupled receptors. These peptides, termed orexin-A and -B, have no significant structural similarities to known families of regulatory peptides. prepro-orexin mRNA and immunoreactive orexin-A are localized in neurons within and around the lateral and posterior hypothalamus in the adult rat brain. When administered centrally to rats, these peptides stimulate food consumption. prepro-orexin mRNA level is up-regulated upon fasting, suggesting a physiological role for the peptides as mediators in the central feedback mechanism that regulates feeding behavior.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9491897/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

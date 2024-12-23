@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>SAA1——TLR2 - PMID Details</title>
+    <style>
+        .tab {
+            display: flex;
+        }
+        .tab button {
+            margin-right: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .tabcontent {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .tabcontent.active {
+            display: block;
+        }
+    </style>
+    <script>
+        function openTab(evt, tabId) {
+            // Hide all tabcontents
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            // Deactivate all tablinks
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            // Show the current tab
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</head>
+<body>
+    <h1>PMID Details for SAA1——TLR2</h1>
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab18566366')">18566366</button>
+    </div>
+    
+                <div id="tab18566366" class="tabcontent active">
+                    <h2>Cutting edge: TLR2 is a functional receptor for acute-phase serum amyloid A.</h2>
+                    <p>Induced secretion of acute-phase serum amyloid A (SAA) is a host response to danger signals and a clinical indication of inflammation. The biological functions of SAA in inflammation have not been fully defined, although recent reports indicate that SAA induces proinflammatory cytokine expression. We now show that TLR2 is a functional receptor for SAA. HeLa cells expressing TLR2 responded to SAA with potent activation of NF-kappaB, which was enhanced by TLR1 expression and blocked by the Toll/IL-1 receptor/resistance (TIR) deletion mutants of TLR1, TLR2, and TLR6. SAA stimulation led to increased phosphorylation of MAPKs and accelerated IkappaBalpha degradation in TLR2-HeLa cells, and results from a solid-phase binding assay showed SAA interaction with the ectodomain of TLR2. Selective reduction of SAA-induced gene expression was observed in tlr2-/- mouse macrophages compared with wild-type cells. These results suggest a potential role for SAA in inflammatory diseases through activation of TLR2.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/18566366/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+</body>
+</html>

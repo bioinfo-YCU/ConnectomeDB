@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>ANXA1——FPR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for ANXA1——FPR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10882119')">10882119</button><button class="tablinks " onclick="openTab(event, 'tab10882119')">10882119</button><button class="tablinks " onclick="openTab(event, 'tab12560218')">12560218</button><button class="tablinks " onclick="openTab(event, 'tab10882119')">10882119</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10882119" class="tabcontent active">
+                    <h2>A novel ligand of the formyl peptide receptor: annexin I regulates neutrophil extravasation by interacting with the FPR.</h2>
+                    <h3>Molecular cell; 2000</h3>
+                    <p>The glucocorticoid-regulated protein annexin I (lipocortin I) has been shown to mediate antiinflammatory activities of glucocorticoids, but the molecular basis of its action has remained elusive. Here we show that annexin I acts through the formyl peptide receptor (FPR) on human neutrophils. Peptides derived from the unique N-terminal domain of annexin I serve as FPR ligands and trigger different signaling pathways in a dose-dependent manner. Lower peptide concentrations possibly found in inflammatory situations elicit Ca2+ transients without fully activating the MAP kinase pathway. This causes a specific inhibition of the transendothelial migration of neutrophils and a desensitization of neutrophils toward a chemoattractant challenge. These findings identify annexin I peptides as novel, endogenous FPR ligands and establish a mechanistic basis of annexin I-mediated antiinflammatory effects.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10882119/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10882119" class="tabcontent ">
+                    <h2>A novel ligand of the formyl peptide receptor: annexin I regulates neutrophil extravasation by interacting with the FPR.</h2>
+                    <h3>Molecular cell; 2000</h3>
+                    <p>The glucocorticoid-regulated protein annexin I (lipocortin I) has been shown to mediate antiinflammatory activities of glucocorticoids, but the molecular basis of its action has remained elusive. Here we show that annexin I acts through the formyl peptide receptor (FPR) on human neutrophils. Peptides derived from the unique N-terminal domain of annexin I serve as FPR ligands and trigger different signaling pathways in a dose-dependent manner. Lower peptide concentrations possibly found in inflammatory situations elicit Ca2+ transients without fully activating the MAP kinase pathway. This causes a specific inhibition of the transendothelial migration of neutrophils and a desensitization of neutrophils toward a chemoattractant challenge. These findings identify annexin I peptides as novel, endogenous FPR ligands and establish a mechanistic basis of annexin I-mediated antiinflammatory effects.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10882119/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12560218" class="tabcontent ">
+                    <h2>Leukocyte antiadhesive actions of annexin 1: ALXR- and FPR-related anti-inflammatory mechanisms.</h2>
+                    <h3>Blood; 2003</h3>
+                    <p>Recent investigations conducted with human neutrophils have indicated an involvement for the receptor for formylated peptides, termed FPR, and its analog FPRL1 (or ALXR because it is the receptor for the endogenous ligand lipoxin A(4)) in the in vitro inhibitory actions of the glucocorticoid-regulated protein annexin 1 and its peptidomimetics. To translate these findings in in vivo settings, we have used an ischemia/reperfusion (I/R) procedure to promote leukocyte-endothelium interactions in the mouse mesenteric microcirculation. In naive mice, the annexin 1 mimetic peptide Ac2-26 (20 to 100 microg administered intravenously prior to reperfusion) abolished I/R-induced cell adhesion and emigration, but not cell rolling. In FPR-deficient mice, peptide Ac2-26 retained significant inhibitory actions (about 50% of the effects in naive mice), and these were blocked by an FPR antagonist, termed butyloxycarbonyl-Phe-Leu-Phe-Leu-Phe, or Boc2. In vitro, neutrophils taken from these animals could be activated at high concentrations of formyl-Met-Leu-Phe (30 microM; fMLP), and this effect was blocked by cell incubation with peptide Ac2-26 (66 microM) or Boc2 (100 microM). FPR-deficient neutrophils expressed ALXR mRNA and protein. Both ALXR agonists, lipoxin A(4) and peptide Ac2-26, provoked detachment of adherent leukocytes in naive as well as in FPR-deficient mice, whereas the CXC chemokine KC or fMLP were inactive. The present findings demonstrate that endogenous regulatory autocoids such as lipoxin A(4) and annexin 1-derived peptides function to disengage adherent cells during cell-cell interactions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12560218/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10882119" class="tabcontent ">
+                    <h2>A novel ligand of the formyl peptide receptor: annexin I regulates neutrophil extravasation by interacting with the FPR.</h2>
+                    <h3>Molecular cell; 2000</h3>
+                    <p>The glucocorticoid-regulated protein annexin I (lipocortin I) has been shown to mediate antiinflammatory activities of glucocorticoids, but the molecular basis of its action has remained elusive. Here we show that annexin I acts through the formyl peptide receptor (FPR) on human neutrophils. Peptides derived from the unique N-terminal domain of annexin I serve as FPR ligands and trigger different signaling pathways in a dose-dependent manner. Lower peptide concentrations possibly found in inflammatory situations elicit Ca2+ transients without fully activating the MAP kinase pathway. This causes a specific inhibition of the transendothelial migration of neutrophils and a desensitization of neutrophils toward a chemoattractant challenge. These findings identify annexin I peptides as novel, endogenous FPR ligands and establish a mechanistic basis of annexin I-mediated antiinflammatory effects.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10882119/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

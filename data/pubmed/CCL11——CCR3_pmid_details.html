@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL11——CCR3 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL11——CCR3</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab8642344')">8642344</button><button class="tablinks " onclick="openTab(event, 'tab9276730')">9276730</button><button class="tablinks " onclick="openTab(event, 'tab10488147')">10488147</button><button class="tablinks " onclick="openTab(event, 'tab16339911')">16339911</button><button class="tablinks " onclick="openTab(event, 'tab12761559')">12761559</button><button class="tablinks " onclick="openTab(event, 'tab10854442')">10854442</button><button class="tablinks " onclick="openTab(event, 'tab8642344')">8642344</button><button class="tablinks " onclick="openTab(event, 'tab9712872')">9712872</button><button class="tablinks " onclick="openTab(event, 'tab8642344')">8642344</button><button class="tablinks " onclick="openTab(event, 'tab8609214')">8609214</button><button class="tablinks " onclick="openTab(event, 'tab8676064')">8676064</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab8642344" class="tabcontent active">
+                    <h2>Cloning, expression, and characterization of the human eosinophil eotaxin receptor.</h2>
+                    <h3>The Journal of experimental medicine; 1996</h3>
+                    <p>Although there is a mounting body of evidence that eosinophils are recruited to sites of allergic inflammation by a number of beta-chemokines, particularly eotaxin and RANTES, the receptor that mediates these actions has not been identified. We have now cloned a G protein-coupled receptor, CC CKR3, from human eosinophils which, when stably expressed in AML14.3D10 cells bound eotaxin, MCP-3 and RANTES with Kds of 0.1, 2.7 and 3.1 nM, respectively. CC CKR3 also bound MCP-1 with lower affinity, but did not bind MIP-1 alpha or MIP-1 beta. Eotaxin, RANTES, and to a lessor extent MCP-3, but not the other chemokines, activated CC CKR3 as determined by their ability to stimulate a Ca(2+) -flux. Competition binding studies on primary eosinophils gave binding affinities for the different chemokines which were indistinguishable from those measured with CC CKR3. Since CC CKR3 is prominently expressed in eosinophils we conclude that CC CKR3 is the eosinophil eotaxin receptor. Eosinophils also express a much lower level of a second chemokine receptor, CC CKR1, which appears to be responsible for the effects of MIP-1 alpha.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8642344/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9276730" class="tabcontent ">
+                    <h2>High expression of the chemokine receptor CCR3 in human blood basophils. Role in activation by eotaxin, MCP-4, and other chemokines.</h2>
+                    <h3>The Journal of clinical investigation; 1997</h3>
+                    <p>Eosinophil leukocytes express high numbers of the chemokine receptor CCR3 which binds eotaxin, monocyte chemotactic protein (MCP)-4, and some other CC chemokines. In this paper we show that CCR3 is also highly expressed on human blood basophils, as indicated by Northern blotting and flow cytometry, and mediates mainly chemotaxis. Eotaxin and MCP-4 elicited basophil migration in vitro with similar efficacy as regulated upon activation normal T cells expressed and secreted (RANTES) and MCP-3. They also induced the release of histamine and leukotrienes in IL-3-primed basophils, but their efficacy was lower than that of MCP-1 and MCP-3, which were the most potent stimuli of exocytosis. Pretreatment of the basophils with a CCR3-blocking antibody abrogated the migration induced by eotaxin, RANTES, and by low to optimal concentrations of MCP-4, but decreased only minimally the response to MCP-3. The CCR3-blocking antibody also affected exocytosis: it abrogated histamine and leukotriene release induced by eotaxin, and partially inhibited the response to RANTES and MCP-4. In contrast, the antibody did not affect the responses induced by MCP-1, MCP-3, and macrophage inflammatory protein-1alpha, which may depend on CCR1 and CCR2, two additional receptors detected by Northern blotting with basophil RNA. This study demonstrates that CCR3 is the major receptor for eotaxin, RANTES, and MCP-4 in human basophils, and suggests that basophils and eosinophils, which are the characteristic effector cells of allergic inflammation, depend largely on CCR3 for migration towards different chemokines into inflamed tissues.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9276730/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10488147" class="tabcontent ">
+                    <h2>Molecular cloning of a novel human CC chemokine (Eotaxin-3) that is a functional ligand of CC chemokine receptor 3.</h2>
+                    <h3>The Journal of biological chemistry; 1999</h3>
+                    <p>Previously, we mapped the novel CC chemokine myeloid progenitor inhibitory factor 2 (MPIF-2)/eotaxin-2 to chromosome 7q11.23 (Nomiyama, H., Osborne, L. R., Imai, T., Kusuda, J., Miura, R., Tsui, L.-C., and Yoshie, O. (1998) Genomics 49, 339-340). Since chemokine genes tend to be clustered, unknown chemokines may be present in the vicinity of those mapped to new chromosomal loci. Prompted by this hypothesis, we analyzed the genomic region containing the gene for MPIF-2/eotaxin-2 (SCYA24) and have identified a novel CC chemokine termed eotaxin-3. The genes for MPIF-2/eotaxin-2 (SCYA24) and eotaxin-3 (SCYA26) are localized within a region of approximately 40 kilobases. By Northern blot analysis, eotaxin-3 mRNA was constitutively expressed in the heart and ovary. We have generated recombinant eotaxin-3 in a baculovirus expression system. Eotaxin-3 induced transient calcium mobilization specifically in CC chemokine receptor 3 (CCR3)-expressing L1.2 cells with an EC(50) of 3 nM. Eotaxin-3 competed the binding of (125)I-eotaxin to CCR3-expressing L1.2 cells with an IC(50) of 13 nM. Eotaxin-3 was chemotactic for normal peripheral blood eosinophils and basophils at high concentrations. Collectively, eotaxin-3 is yet another functional ligand for CCR3. The potency of eotaxin-3 as a CCR3 ligand seems, however, to be approximately 10-fold less than that of eotaxin. Identification of eotaxin-3 will further promote our understanding of the control of eosinophil trafficking and other CCR3-mediated biological phenomena. The strategy used in this study may also be applicable to identification of other unknown chemokine genes.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10488147/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab16339911" class="tabcontent ">
+                    <h2>A novel, selective, and orally available antagonist for CC chemokine receptor 3.</h2>
+                    <h3>The Journal of pharmacology and experimental therapeutics; 2006</h3>
+                    <p>CC chemokine ligand 11 (CCL11/eotaxin) and other CC chemokine receptor 3 (CCR3) ligands (CCL24/eotaxin-2, CCL26/eotaxin-3, CCL13/monocyte chemotactic protein-4, etc.) play important roles in the chemotaxis and activation of eosinophils and other CCR3-expressing cells (basophils, mast cells, and CD4(+) T helper 2 cells) in allergic inflammation incidents, including asthma and rhinitis. A newly synthesized compound, N-{(3R)-1-[(6-fluoro-2-naphthyl)methyl]pyrrolidin-3-yl}-2-{1-[(5-hydroxy-3-methylpyridin-2-yl)carbonyl]piperidin-4-ylidene}-acetamide hemifumarate (YM-355179), inhibited the binding of CCL11 and CCL5/regulated on activation normal T cell expressed and secreted to CCR3-expressing B300-19 cells with IC(50) values of 7.6 and 24 nM, respectively. In contrast, YM-355179 did not affect the binding of CCL5 to CCR1 or CCR5. In functional assays, YM-355179 inhibited CCL11-induced, intracellular Ca(2+) influx, chemotaxis, and eosinophil degranulation with IC(50) values of 8.0, 24, and 29 nM, respectively. YM-355179 did not, however, affect any CC chemokine receptor (CCR1, CCR2, CCR4, or CCR5)-mediated Ca(2+) influx signals. Furthermore, oral administration of YM-355179 (1 mg/kg) inhibited CCL11-induced shape change of whole blood eosinophils in cynomolgus monkeys. Intravenous injection of YM-355179 (1 mg/kg) also inhibited eosinophil infiltration into airways of cynomolgus monkeys after segmental bronchoprovocation with CCL11. These results indicate that YM-355179 is a novel, selective, and orally available CCR3 antagonist with therapeutic potential for treating eosinophil-related allergic inflammatory diseases.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16339911/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12761559" class="tabcontent ">
+                    <h2>Genetic influence of CXCR6 chemokine receptor alleles on PCP-mediated AIDS progression among African Americans.</h2>
+                    <h3>Genes and immunity; 2003</h3>
+                    <p>CXCR6 is a chemokine receptor and the primary coreceptor in SIV infection. A single nucleotide polymorphism 1469G-->A, results in a nonconservative change in codon 3 (CXCR6-E3K) of the N-terminus of the coreceptor. To investigate the relation between the chemokine receptor CXCR6 genotype and progression to Pneumocystis carinii pneumonia (PCP) and from PCP to death, we clinically assessed and genotyped 805 individuals from an African-American injection drug-using cohort in Baltimore, MD, USA, for this CXCR6-E3K polymorphism. The allele frequency of CXCR6-3K was high (44%) in African Americans and rare in European Americans (f<1%). Although time to AIDS and PCP was similar for all CXCR6 genotypes, the median survival time from PCP to death for the CXCR6-3E/E and CXCR6-3E/K genotype was 1.5 years compared to 3.1 years for the CXCR6-K/K genotype. Individuals homozygous or heterozygous for the CXCR6-3E allele were 5.6 times more likely to die a PCP-mediated AIDS-related death than were individuals homozygous for CXCR6-3K. This study shows an association between CXCR6 genotype and progression from PCP to death among African-Americans with HIV. We suggest that CXCR6 may play a role in late-stage HIV-1 infection and may alter the progression to death after initial infection with PCP.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12761559/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10854442" class="tabcontent ">
+                    <h2>A small molecule antagonist of chemokine receptors CCR1 and CCR3. Potent inhibition of eosinophil function and CCR3-mediated HIV-1 entry.</h2>
+                    <h3>The Journal of biological chemistry; 2000</h3>
+                    <p>We describe a small molecule chemokine receptor antagonist, UCB35625 (the trans-isomer J113863 published by Banyu Pharmaceutical Co., patent WO98/04554), which is a potent, selective inhibitor of CCR1 and CCR3. Nanomolar concentrations of UCB35625 were sufficient to inhibit eosinophil shape change responses to MIP-1alpha, MCP-4, and eotaxin, while greater concentrations could inhibit the chemokine-induced internalization of both CCR1 and CCR3. UCB35625 also inhibited the CCR3-mediated entry of the human immunodeficiency virus-1 primary isolate 89.6 into the glial cell line, NP-2 (IC(50) = 57 nm). Chemotaxis of transfected cells expressing either CCR1 or CCR3 was inhibited by nanomolar concentrations of the compound (IC(50) values of CCR1-MIP-1alpha = 9.6 nm, CCR3-eotaxin = 93.7 nm). However, competitive ligand binding assays on the same transfectants revealed that considerably larger concentrations of UCB35625 were needed for effective ligand displacement than were needed for the inhibition of receptor function. Thus, it appears that the compound may interact with a region present in both receptors that inhibits the conformational change necessary to initiate intracellular signaling. By virtue of its potency at the two major eosinophil chemokine receptors, UCB35625 is a prototypic therapy for the treatment of eosinophil-mediated inflammatory disorders, such as asthma and as an inhibitor of CCR3-mediated human immunodeficiency virus-1 entry.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10854442/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8642344" class="tabcontent ">
+                    <h2>Cloning, expression, and characterization of the human eosinophil eotaxin receptor.</h2>
+                    <h3>The Journal of experimental medicine; 1996</h3>
+                    <p>Although there is a mounting body of evidence that eosinophils are recruited to sites of allergic inflammation by a number of beta-chemokines, particularly eotaxin and RANTES, the receptor that mediates these actions has not been identified. We have now cloned a G protein-coupled receptor, CC CKR3, from human eosinophils which, when stably expressed in AML14.3D10 cells bound eotaxin, MCP-3 and RANTES with Kds of 0.1, 2.7 and 3.1 nM, respectively. CC CKR3 also bound MCP-1 with lower affinity, but did not bind MIP-1 alpha or MIP-1 beta. Eotaxin, RANTES, and to a lessor extent MCP-3, but not the other chemokines, activated CC CKR3 as determined by their ability to stimulate a Ca(2+) -flux. Competition binding studies on primary eosinophils gave binding affinities for the different chemokines which were indistinguishable from those measured with CC CKR3. Since CC CKR3 is prominently expressed in eosinophils we conclude that CC CKR3 is the eosinophil eotaxin receptor. Eosinophils also express a much lower level of a second chemokine receptor, CC CKR1, which appears to be responsible for the effects of MIP-1 alpha.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8642344/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9712872" class="tabcontent ">
+                    <h2>Solution structure of eotaxin, a chemokine that selectively recruits eosinophils in allergic inflammation.</h2>
+                    <h3>The Journal of biological chemistry; 1998</h3>
+                    <p>The solution structure of the CCR3-specific chemokine, eotaxin, has been determined by NMR spectroscopy. The quaternary structure of eotaxin was investigated by ultracentrifugation and NMR, and it was found to be in equilibrium between monomer and dimer under a wide range of conditions. At pH </= 5 and low ionic strength, eotaxin was found to be predominantly a monomer. The three-dimensional structure of the eotaxin monomer solved at pH 5.0 revealed that it has a typical chemokine fold, which includes a 3-stranded beta-sheet and an overlying alpha-helix. Except for the N-terminal residues (residues 1-8), the core of the protein is well defined. The eotaxin structure is compared with the chemokines regulated upon activation, normal T-cell expressed and secreted (RANTES) and monocyte chemoattractant protein-1 (MCP-1); eotaxin binds only CC chemokine receptor CCR3, whereas RANTES binds many receptors including CCR3, and MCP-1 binds a distinct receptor, CCR2. The RMSD of the eotaxin ensemble of structures with the RANTES average minimized monomeric subunit is 5.52 +/- 0.87 A over all backbone atoms and 1.14 +/- 0.09 A over backbone atoms of residues 11-28 and 34-65. The most important difference between the structures is in the N-terminal residues that are unstructured in eotaxin but structured in RANTES and MCP-1. Several residues in the loop region of RANTES show similar packing in eotaxin (residues 11-17). As the N-terminal and loop regions have been shown to be critical for receptor binding and signaling, this structure will be useful for determining the basis for CCR3 selectivity of the eotaxin.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9712872/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8642344" class="tabcontent ">
+                    <h2>Cloning, expression, and characterization of the human eosinophil eotaxin receptor.</h2>
+                    <h3>The Journal of experimental medicine; 1996</h3>
+                    <p>Although there is a mounting body of evidence that eosinophils are recruited to sites of allergic inflammation by a number of beta-chemokines, particularly eotaxin and RANTES, the receptor that mediates these actions has not been identified. We have now cloned a G protein-coupled receptor, CC CKR3, from human eosinophils which, when stably expressed in AML14.3D10 cells bound eotaxin, MCP-3 and RANTES with Kds of 0.1, 2.7 and 3.1 nM, respectively. CC CKR3 also bound MCP-1 with lower affinity, but did not bind MIP-1 alpha or MIP-1 beta. Eotaxin, RANTES, and to a lessor extent MCP-3, but not the other chemokines, activated CC CKR3 as determined by their ability to stimulate a Ca(2+) -flux. Competition binding studies on primary eosinophils gave binding affinities for the different chemokines which were indistinguishable from those measured with CC CKR3. Since CC CKR3 is prominently expressed in eosinophils we conclude that CC CKR3 is the eosinophil eotaxin receptor. Eosinophils also express a much lower level of a second chemokine receptor, CC CKR1, which appears to be responsible for the effects of MIP-1 alpha.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8642344/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8609214" class="tabcontent ">
+                    <h2>Cloning of the human eosinophil chemoattractant, eotaxin. Expression, receptor binding, and functional properties suggest a mechanism for the selective recruitment of eosinophils.</h2>
+                    <h3>The Journal of clinical investigation; 1996</h3>
+                    <p>The CC chemokine eotaxin, identified in guinea pigs and also recently in mice, may be a key element for the selective recruitment of eosinophils to certain inflamed tissues. Using a partial mouse eotaxin CDNA probe, the human eotaxin gene was cloned and found to be 61.8 and 63.2% identical at the amino acid level to guinea pig and mouse eotaxin. Human eotaxin protein was a strong and specific eosinophil chemoattractant in vitro and was an effective eosinophil chemoattractant when injected into the skin of a rhesus monkey. Radiolabeled eotaxin was used to identify a high affinity receptor on eosinophils (0.52 nM Kd), expressed at 4.8 x 10(4) sites per cell. This receptor also bound RANTES and monocyte chemotactic protein-3 with lower affinity, but not macrophage inflammatory protein-1 alpha. Eotaxin could desensitize calcium responses of eosinophils to RANTES and monocyte chemotactic protein-3, although RANTES was able to only partially desensitize eosinophil calcium responses to eotaxin. Immunohistochemistry on human nasal polyp with antieotaxin mAbs showed that certain leukocytes as well as respiratory epithelium were intensely immunoreactive, and eosinophil infiltration occurred at sites of eotaxin upregulation. Thus eotaxin in humans is a potent and selective eosinophil chemoattractant that is expressed by a variety cell types in certain inflammatory conditions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8609214/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8676064" class="tabcontent ">
+                    <h2>Molecular cloning and characterization of a human eotaxin receptor expressed selectively on eosinophils.</h2>
+                    <h3>The Journal of experimental medicine; 1996</h3>
+                    <p>The chemokine eotaxin is unusual in that it appears to be a highly specific chemoattractant for eosinophils. Ligand-binding studies with radiolabeled eotaxin demonstrated a receptor on eosinophils distinct from the known chemokine receptors CKR-1 and -2. The distinct eotaxin binding site on human eosinophils also bound RANTES (regulated on activation T expressed and secreted) and monocyte chemotactic protein (MCP)3. We have now isolated a cDNA from eosinophils, termed CKR-3, with significant sequence similarity to other well characterized chemokine receptors. Cells transfected with CKR-3 cDNA bound radiolabeled eotaxin specifically and with high affinity, comparable to the binding affinity observed with eosinophils. This receptor also bound RANTES and MCP-3 with high affinity, but not other CC or CXC chemokines. Furthermore, receptor transfectants generated in a murine B cell lymphoma cell line migrated in transwell chemotaxis assays to eotaxin, RANTES, and MCP-3, but not to any other chemokines. A monoclonal antibody recognizing CKR-3 was used to show that eosinophils, but not other leukocyte types, expressed this receptor. This pattern of expression was confirmed by Northern blot with RNA from highly purified leukocyte subsets. The restricted expression of CKR-3 on eosinophils and the fidelity of eotaxin binding to CKR-3, provides a potential mechanism for the selective recruitment and migration of eosinophils within tissues.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8676064/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

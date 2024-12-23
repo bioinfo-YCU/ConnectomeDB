@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>HLA-E——KLRD1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for HLA-E——KLRD1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9486650')">9486650</button><button class="tablinks " onclick="openTab(event, 'tab14734748')">14734748</button><button class="tablinks " onclick="openTab(event, 'tab9815261')">9815261</button><button class="tablinks " onclick="openTab(event, 'tab9486650')">9486650</button><button class="tablinks " onclick="openTab(event, 'tab9886400')">9886400</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9486650" class="tabcontent active">
+                    <h2>HLA-E binds to natural killer cell receptors CD94/NKG2A, B and C.</h2>
+                    <h3>Nature; 1998</h3>
+                    <p>The protein HLA-E is a non-classical major histocompatibility complex (MHC) molecule of limited sequence variability. Its expression on the cell surface is regulated by the binding of peptides derived from the signal sequence of some other MHC class I molecules. Here we report the identification of ligands for HLA-E. We constructed tetramers in which recombinant HLA-E and beta2-microglobulin were refolded with an MHC leader-sequence peptide, biotinylated, and conjugated to phycoerythrin-labelled Extravidin. This HLA-E tetramer bound to natural killer (NK) cells and a small subset of T cells from peripheral blood. On transfectants, the tetramer bound to the CD94/NKG2A, CD94/NKGK2B and CD94/NKG2C NK cell receptors, but did not bind to the immunoglobulin family of NK cell receptors (KIR). Surface expression of HLA-E was enough to protect target cells from lysis by CD94/NKG2A+ NK-cell clones. A subset of HLA class I alleles has been shown to inhibit killing by CD94/NKG2A+ NK-cell clones. Only the HLA alleles that possess a leader peptide capable of upregulating HLA-E surface expression confer resistance to NK-cell-mediated lysis, implying that their action is mediated by HLA-E, the predominant ligand for the NK cell inhibitory receptor CD94/NKG2A.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9486650/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab14734748" class="tabcontent ">
+                    <h2>The nonclassical MHC class I molecule Qa-1 forms unstable peptide complexes.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 2004</h3>
+                    <p>The MHC class Ib molecule Qa-1 is the primary ligand for mouse CD94/NKG2A inhibitory receptors expressed on NK cells, in addition to presenting Ags to a subpopulation of T cells. CD94/NKG2A receptors specifically recognize Qa-1 bound to the MHC class Ia leader sequence-derived peptide Qdm. Qdm is the dominant peptide loaded onto Qa-1 under physiological conditions and this peptide has an optimal sequence for binding to Qa-1. Peptide dissociation experiments demonstrated that Qdm dissociates from soluble or cell surface Qa-1(b) molecules with a t(1/2) of approximately 1.5 h at 37 degrees C. In comparison, complexes of an optimal peptide (SIINFEKL) bound to the MHC class Ia molecule H-2K(b) dissociated with a t(1/2) in the range from 11 to 31 h. In contrast to K(b), the stability of cell surface Qa-1(b) molecules was independent of bound peptides, and several observations suggested that empty cell surface Qa-1(b) molecules might be unusually stable. Consistent with the rapid dissociation rate of Qdm from Qa-1(b), cells become susceptible to lysis by CD94/NKG2A(+) NK cells under conditions in which new Qa-1(b)/Qdm complexes cannot be continuously generated at the cell surface. These results support the hypothesis that Qa-1 has been selected as a specialized MHC molecule that is unable to form highly stable peptide complexes. We propose that the CD94/NKG2A-Qa-1/Qdm recognition system has evolved as a rapid sensor of the integrity of the MHC class I biosynthesis and Ag presentation pathway.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14734748/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9815261" class="tabcontent ">
+                    <h2>Mouse CD94/NKG2A is a natural killer cell receptor for the nonclassical major histocompatibility complex (MHC) class I molecule Qa-1(b).</h2>
+                    <h3>The Journal of experimental medicine; 1998</h3>
+                    <p>Natural killer (NK) cells preferentially lyse targets that express reduced levels of major histocompatibility complex (MHC) class I proteins. To date, the only known mouse NK receptors for MHC class I belong to the Ly49 family of C-type lectin homodimers. Here, we report the cloning of mouse NKG2A, and demonstrate it forms an additional and distinct class I receptor, a CD94/NKG2A heterodimer. Using soluble tetramers of the nonclassical class I molecule Qa-1(b), we provide direct evidence that CD94/NKG2A recognizes Qa-1(b). We further demonstrate that NK recognition of Qa-1(b) results in the inhibition of target cell lysis. Inhibition appears to depend on the presence of Qdm, a Qa-1(b)-binding peptide derived from the signal sequences of some classical class I molecules. Mouse NKG2A maps adjacent to CD94 in the heart of the NK complex on mouse chromosome six, one of a small cluster of NKG2-like genes. Our findings suggest that mouse NK cells, like their human counterparts, use multiple mechanisms to survey class I expression on target cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9815261/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9486650" class="tabcontent ">
+                    <h2>HLA-E binds to natural killer cell receptors CD94/NKG2A, B and C.</h2>
+                    <h3>Nature; 1998</h3>
+                    <p>The protein HLA-E is a non-classical major histocompatibility complex (MHC) molecule of limited sequence variability. Its expression on the cell surface is regulated by the binding of peptides derived from the signal sequence of some other MHC class I molecules. Here we report the identification of ligands for HLA-E. We constructed tetramers in which recombinant HLA-E and beta2-microglobulin were refolded with an MHC leader-sequence peptide, biotinylated, and conjugated to phycoerythrin-labelled Extravidin. This HLA-E tetramer bound to natural killer (NK) cells and a small subset of T cells from peripheral blood. On transfectants, the tetramer bound to the CD94/NKG2A, CD94/NKGK2B and CD94/NKG2C NK cell receptors, but did not bind to the immunoglobulin family of NK cell receptors (KIR). Surface expression of HLA-E was enough to protect target cells from lysis by CD94/NKG2A+ NK-cell clones. A subset of HLA class I alleles has been shown to inhibit killing by CD94/NKG2A+ NK-cell clones. Only the HLA alleles that possess a leader peptide capable of upregulating HLA-E surface expression confer resistance to NK-cell-mediated lysis, implying that their action is mediated by HLA-E, the predominant ligand for the NK cell inhibitory receptor CD94/NKG2A.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9486650/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9886400" class="tabcontent ">
+                    <h2>Specific recognition of HLA-E, but not classical, HLA class I molecules by soluble CD94/NKG2A and NK cells.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 1999</h3>
+                    <p>The CD94/NKG2 receptors expressed by subpopulations of NK cells and T cells have been implicated as receptors for a broad range of both classical and nonclassical HLA class I molecules. To examine the ligand specificity of CD94/NKG2 proteins, a soluble heterodimeric form of the receptor was produced and used in direct binding studies with cells expressing defined HLA class I/peptide complexes. We confirm that CD94/NKG2A specifically interacts with HLA-E and demonstrate that this interaction is dependent on the association of HLA-E with peptide. Moreover, no interaction between CD94/NKG2A and classical HLA class I molecules was observed, as assayed by direct binding of the soluble receptor or by functional assays using CD94/NKG2A+ NK cells. The role of the peptide associated with HLA-E in the interaction between HLA-E and CD94/NKG2A was also assessed. All class I leader sequence peptides tested bound to HLA-E and were recognized by CD94/NKG2A. However, amino acid variations in class I leader sequences affected the stability of HLA-E. Additionally, not all HLA-E/peptide complexes examined were recognized by CD94/NKG2A. Thus CD94/NKG2A recognition of HLA-E is controlled by peptide at two levels; first, peptide must stabilize HLA-E and promote cell surface expression, and second, the HLA-E/peptide complex must form the ligand for CD94/NKG2A.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9886400/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>APELA——APLNR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for APELA——APLNR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab25639753')">25639753</button><button class="tablinks " onclick="openTab(event, 'tab28137936')">28137936</button><button class="tablinks " onclick="openTab(event, 'tab26611206')">26611206</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab25639753" class="tabcontent active">
+                    <h2>Elabela-apelin receptor signaling pathway is functional in mammalian systems.</h2>
+                    <h3>Scientific reports; 2015</h3>
+                    <p>Elabela (ELA) or Toddler is a recently discovered hormone which is required for normal development of heart and vasculature through activation of apelin receptor (APJ), a G protein-coupled receptor (GPCR), in zebrafish. The present study explores whether the ELA-APJ signaling pathway is functional in the mammalian system. Using reverse-transcription PCR, we found that ELA is restrictedly expressed in human pluripotent stem cells and adult kidney whereas APJ is more widely expressed. We next studied ELA-APJ signaling pathway in reconstituted mammalian cell systems. Addition of ELA to HEK293 cells over-expressing GFP-AJP fusion protein resulted in rapid internalization of the fusion receptor. In Chinese hamster ovarian (CHO) cells over-expressing human APJ, ELA suppresses cAMP production with EC50 of 11.1 nM, stimulates ERK1/2 phosphorylation with EC50 of 14.3 nM and weakly induces intracellular calcium mobilization. Finally, we tested ELA biological function in human umbilical vascular endothelial cells and showed that ELA induces angiogenesis and relaxes mouse aortic blood vessel in a dose-dependent manner through a mechanism different from apelin. Collectively, we demonstrate that the ELA-AJP signaling pathways are functional in mammalian systems, indicating that ELA likely serves as a hormone regulating the circulation system in adulthood as well as in embryonic development.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/25639753/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab28137936" class="tabcontent ">
+                    <h2>Elabela/Toddler Is an Endogenous Agonist of the Apelin APJ Receptor in the Adult Cardiovascular System, and Exogenous Administration of the Peptide Compensates for the Downregulation of Its Expression in Pulmonary Arterial Hypertension.</h2>
+                    <h3>Circulation; 2017</h3>
+                    <p>Elabela/toddler (ELA) is a critical cardiac developmental peptide that acts through the G-protein-coupled apelin receptor, despite lack of sequence similarity to the established ligand apelin. Our aim was to investigate the receptor pharmacology, expression pattern, and in vivo function of ELA peptides in the adult cardiovascular system, to seek evidence for alteration in pulmonary arterial hypertension (PAH) in which apelin signaling is downregulated, and to demonstrate attenuation of PAH severity with exogenous administration of ELA in a rat model.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/28137936/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab26611206" class="tabcontent ">
+                    <h2>Characterization of apela, a novel endogenous ligand of apelin receptor, in the adult heart.</h2>
+                    <h3>Basic research in cardiology; 2016</h3>
+                    <p>The G protein-coupled apelin receptor regulates important processes of the cardiovascular homeostasis, including cardiac development, cardiac contractility, and vascular tone. Most recently, a novel endogenous peptide ligand for the apelin receptor was identified in zebrafish, and it was named apela/elabela/toddler. The peptide was originally considered as an exclusively embryonic regulator, and so far its function in the adult organism remains elusive. We show here that apela is predominantly expressed in the non-cardiomyocyte fraction in the adult rodent heart. We also provide evidence that apela binds to apelin receptors in the heart. Using isolated adult rat hearts, we demonstrate, that just like the fellow receptor agonist apelin, apela increases cardiac contractility and induces coronary vasodilation already in the nanomolar level. The inotropic effect, as revealed by Western blot analysis, is accompanied by a significant increase in extracellular signal-regulated kinase (ERK) 1/2 phosphorylation. Pharmacological inhibition of ERK1/2 activation markedly attenuates the apela-induced inotropy. Analysis of samples from infarcted mouse hearts showed that expression of both apela and apelin receptor is induced in failing mouse hearts and correlate with left ventricular ejection fraction. Hence, we conclude that apela is present in the adult heart, is upregulated in post-infarction cardiac remodeling, and increases cardiac contractility in an ERK1/2-dependent manner.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/26611206/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

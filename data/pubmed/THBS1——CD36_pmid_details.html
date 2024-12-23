@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>THBS1——CD36 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for THBS1——CD36</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab1379600')">1379600</button><button class="tablinks " onclick="openTab(event, 'tab10772961')">10772961</button><button class="tablinks " onclick="openTab(event, 'tab10487979')">10487979</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab1379600" class="tabcontent active">
+                    <h2>Sense and antisense cDNA transfection of CD36 (glycoprotein IV) in melanoma cells. Role of CD36 as a thrombospondin receptor.</h2>
+                    <h3>The Journal of biological chemistry; 1992</h3>
+                    <p>Thrombospondin (TSP) is a multifunctional matrix and platelet glycoprotein that interacts with cell surfaces and may play a role in mediating cell adhesion, platelet aggregation, platelet-monocyte interactions, cell proliferation, angiogenesis, tumor metastasis, and protease generation. To clarify and confirm the function of CD36 (glycoprotein IV) as a TSP receptor, we now describe a transfected cell model using human melanoma cells genetically manipulated by sense or antisense cDNA transfection to express either high or near zero levels of CD36. Surface expression was confirmed by flow cytometry with monoclonal anti-CD36 IgG and quantified by measuring radiolabeled antibody binding. Bowes melanoma cells, which in their wild type did not express CD36 and did not bind radiolabeled TSP, when transfected with the sense construct bound TSP in a 1:1 stoichiometric ratio with CD36 expression. Conversely, C32 melanoma cells, which in their wild type expressed high levels of CD36 and bound radiolabeled TSP at a 1:1 stoichiometric ratio, did not express CD36 and did not bind TSP when transfected with an antisense construct. In addition, transfected Bowes cells and wild type C32 cells, unlike wild type Bowes cells, adhered to activated platelets in a TSP-dependent manner. These data, i.e. the gain of function with sense cDNA transfection and loss of function with antisense transfection, strongly support the TSP receptor function of CD36. The distribution of this protein in vascular cells and tissues and observations that it may participate in signal transduction events suggest that TSP-CD36 interactions may play a role in mediating some of the pathophysiological processes associated with TSP.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1379600/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10772961" class="tabcontent ">
+                    <h2>A CD36-binding peptide from thrombospondin-1 can stimulate resorption by osteoclasts in vitro.</h2>
+                    <h3>Biochemical and biophysical research communications; 2000</h3>
+                    <p>Thrombospondin-1 (TSP-1), purified from platelets, stimulates resorption by avian osteoclasts in an in vitro resorption assay. TSP-1 binds to a number of different cellular receptors via different domains of the molecule and several short receptor-binding sequences have been identified within the TSP-1 molecule. In this study, we have used synthetic peptides representing these various sequences in order to identify the cellular receptor and TSP domain responsible for stimulation of resorption. We show that one peptide CSVTCG, which represents the CD36-binding region of TSP-1, stimulates resorption in a fashion similar to the intact molecule, while the peptides RGDS, RFYVVMWK, and RFYVVM, representing other cell-binding domains of TSP, have no effect on resorption. Using RT-PCR and immunoblotting, we further demonstrate expression of CD36 in human osteoclastoma (giant cell tumour), primary human bone derived cells, and clonal osteoblastic cells. These studies suggest that CD36 is involved in regulation of resorption by osteoclasts and is the receptor responsible for the resorption-promoting effects of TSP-1.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10772961/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10487979" class="tabcontent ">
+                    <h2>Activation of rat alveolar macrophage-derived latent transforming growth factor beta-1 by plasmin requires interaction with thrombospondin-1 and its cell surface receptor, CD36.</h2>
+                    <h3>The American journal of pathology; 1999</h3>
+                    <p>Transforming growth factor-beta-1 (TGF-beta1) is secreted by cells in a latent form (L-TGF-beta1) noncovalently bound to a latency-associated peptide. Activated alveolar macrophages obtained from rat lungs after bleomycin-induced pulmonary injury released increased amounts of active TGF-beta1 as well as plasmin, a protease, and thrombospondin-1 (TSP-1), a trimeric glycoprotein. Previously we had demonstrated that plasmin was critical to the activation of L-TGF- beta1. In the present study we demonstrated that TSP-1 is also important for the activation of L-TGF- beta1 because the activation can be inhibited by anti-TSP-1 monoclonal antibody. Proteins obtained from alveolar macrophage cell lysates immunoprecipitated with antibodies specific for TSP-1 were identified on immunoblots as LAP and TGF-beta1, indicating that TSP-1/L-TGF-beta1 complexes are present on alveolar macrophages. However, in the presence of plasmin both latency-associated peptide and TGF-beta1 were decreased in the same cell lysates, indicating that L-TGF-beta1 associated with TSP-1 is released by plasmin. Using immunofluorescence and antibodies to TGF-beta1 and CD36, a receptor for TSP-1, there was colocalization of TGF-beta1 with CD36. Because TSP-1 but not TGF-beta1 is a natural ligand for CD36, these findings suggest that the L-TGF-beta1 in a complex with TSP-1 localizes to the macrophage cell surface when TSP-1 interacts with its receptor, CD36. Furthermore, the association of TSP-1/L-TGF-beta1 complex with CD36 is necessary to the activation of L-TGF-beta1 because antibodies to CD36 prevent the colocalization of TGF-beta1 with CD36 as observed by immunofluorescence and inhibit activation of the L-TGF-beta1 by explanted alveolar macrophages. These findings suggest that activation of L-TGF-beta1 by plasmin occurs at the cell surface of activated alveolar macrophages and requires a TSP-1/CD36 interaction.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10487979/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

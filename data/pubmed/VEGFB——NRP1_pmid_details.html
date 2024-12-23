@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>VEGFB——NRP1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for VEGFB——NRP1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab409677')">409677</button><button class="tablinks " onclick="openTab(event, 'tab10409677')">10409677</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab409677" class="tabcontent active">
+                    <h2>Matrix protein from influenza A virus and its role in cross-protection in mice.</h2>
+                    <h3>Infection and immunity; 1977</h3>
+                    <p>The matrix (M) protein of influenza A virus, one of the two group-specific internal proteins of the virion, was isolated in a pure form, and its immunogenicity was stable to heating at 100 degrees C for 2 min. Mice immunized with isolated M protein in complete Freund adjuvant and subsequently infected with influenza virus cleared virus more rapidly from their lungs than did unimmunized mice. Despite the rapid clearance of virus, the mice developed pneumonia that was at least as severe as in unimmunized mice. Preliminary studies suggest that the rapid clearance of influenza virus from the lungs of mice immunized with M protein may be initiated by a cell-mediated rather than a humoral response. The mechanism by which a cross-reactive internal virion protein can initiate clearance of the different subtypes of influenza is not clear. Perhaps the M protein is exposed on the surface of the virus-infected cell and is responsible for the cross-reactivity at the cytotoxic T-cell level recently detected between influenza A virus subtypes.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/409677/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10409677" class="tabcontent ">
+                    <h2>Differential binding of vascular endothelial growth factor B splice and proteolytic isoforms to neuropilin-1.</h2>
+                    <h3>The Journal of biological chemistry; 1999</h3>
+                    <p>Vascular endothelial growth factor B (VEGF-B) is expressed in various tissues, especially strongly in the heart, and binds selectively to one of the VEGF receptors, VEGFR-1. The two splice isoforms, VEGF-B(167) and VEGF-B(186), have identical NH(2)-terminal cystine knot growth factor domains but differ in their COOH-terminal domains which give these forms their distinct biochemical properties. In this study, we show that both splice isoforms of VEGF-B bind specifically to Neuropilin-1 (NRP1), a receptor for collapsins/semaphorins and for the VEGF(165) isoform. The NRP1 binding of VEGF-B could be competed by an excess of VEGF(165). The binding of VEGF-B(167) was mediated by the heparin binding domain, whereas the binding of VEGF-B(186) to NRP1 was regulated by exposure of a short COOH-terminal proline-rich peptide upon its proteolytic processing. In immunohistochemistry, NRP1 distribution was found to be overlapping or adjacent to known sites of VEGF-B expression in several tissues, in particular in the developing heart, suggesting the involvement of VEGF-B in NRP1-mediated signaling.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10409677/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

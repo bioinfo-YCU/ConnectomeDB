@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>HLA-C——KIR2DS4 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for HLA-C——KIR2DS4</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15265913')">15265913</button><button class="tablinks " onclick="openTab(event, 'tab9521070')">9521070</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15265913" class="tabcontent active">
+                    <h2>MHC class I-independent recognition of NK-activating receptor KIR2DS4.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 2004</h3>
+                    <p>Natural killer cells are capable of killing tumor and virus-infected cells. This killing is mediated primarily via the natural cytotoxicity receptors, including NKp46, NKp44, NKp30, and by the NKG2D receptor. Killer cell Ig-like receptors (KIRs) are mainly involved in inhibiting NK killing (inhibitory KIRs) via interaction with MHC class I molecules. Some KIRs, however, have been found to enhance NK killing when interacting with MHC class I molecules (activating KIRs). We have previously demonstrated that KIR2DS4, an activating KIR, recognizes the HLA-Cw4 protein. The interaction observed was weak and highly restricted to HLA-Cw4 only. These findings prompted us to check whether KIR2DS4 might have additional ligand(s). In this study, we show that KIR2DS4 is able to also interact with a non-class I MHC protein expressed on melanoma cell lines and on a primary melanoma. This interaction is shown to be both specific and functional. Importantly, site-directed mutagenesis analysis reveals that the amino acid residues involved in the recognition of this novel ligand are different from those interacting with HLA-Cw4. These results may shed new light on the function of activating KIRs and their relevance in NK biology.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15265913/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9521070" class="tabcontent ">
+                    <h2>Signaling through human killer cell activating receptors triggers tyrosine phosphorylation of an associated protein complex.</h2>
+                    <h3>European journal of immunology; 1998</h3>
+                    <p>Our understanding of the biology of human natural killer (NK) cells has significantly advanced in recent years upon identification of a family of NK cell-expressed genes that encode killer cell inhibitory receptors (KIR). Individual KIR can selectively bind various HLA class I allotypes and consequently transduce inhibitory signals that block NK cell lysis of ligand-bearing target cells. A distinct subset of related and linked genes express truncated versions of KIR that are otherwise highly homologous in amino acid sequence. Interestingly, these receptors appear to transmit stimulatory signals into NK cells and have been termed killer cell activating receptors (KAR). In this report, we demonstrate that recognition of HLA-Cw3 by the p50 KAR, NKAT8, can potentiate the cytotoxic response of appropriate NK cell clones. Specific cross-linking of this KAR with a monoclonal antibody resulted in intracellular calcium mobilization, protein tyrosine phosphorylation, and phosphorylation of the MAP kinases, ERK1 and ERK2. In addition, we identified a KAR-associated disulfide-linked dimer of a 13-kDa protein that was absent in the Jurkat T cell line and is predicted to participate in these activation signaling events. Upon treatment of NK cells with pervanadate, the disulfide-linked p13 and additional proteins of 25, 30, 37 and 50-95 kDa were identified as KAR-associated tyrosine phosphoproteins. Importantly, p13 was inducibly tyrosine phosphorylated upon cross-linking of NKAT8, which strongly suggests that the associated p13 provides KAR with appropriate cytoplasmic structure to couple with tyrosine kinase-mediated signaling effectors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9521070/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>F7——F3 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for F7——F3</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12787023')">12787023</button><button class="tablinks " onclick="openTab(event, 'tab12787023')">12787023</button><button class="tablinks " onclick="openTab(event, 'tab9925787')">9925787</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12787023" class="tabcontent active">
+                    <h2>Probing the interface between factor Xa and tissue factor in the quaternary complex tissue factor-factor VIIa-factor Xa-tissue factor pathway inhibitor.</h2>
+                    <h3>European journal of biochemistry; 2003</h3>
+                    <p>Blood coagulation is triggered by the formation of a complex between factor VIIa (FVIIa) and its cofactor, tissue factor (TF). TF-FVIIa is inhibited by tissue factor pathway inhibitor (TFPI) in two steps: first TFPI is bound to the active site of factor Xa (FXa), and subsequently FXa-TFPI exerts feedback inhibition of TF-FVIIa. The FXa-dependent inhibition of TF-FVIIa activity by TFPI leads to formation of the quaternary complex TF-FVIIa-FXa-TFPI. We used site-directed fluorescence probing to map part of the region of soluble TF (sTF) that interacts with FXa in sTF-FVIIa-FXa-TFPI. We found that the C-terminal region of sTF, including positions 163, 166, 200 and 201, is involved in binding to FXa in the complex, and FXa, most likely via its Gla domain, is also in contact with the Gla domain of FVIIa in this part of the binding region. Furthermore, a region that includes the N-terminal part of the TF2 domain and the C-terminal part of the TF1 domain, i.e. the residues 104 and 197, participates in the interaction with FXa in the quaternary complex. Moreover, comparisons of the interaction areas between sTF and FX(a) in the quaternary complex sTF-FVIIa-FXa-TFPI and in the ternary complexes sTF-FVII-FXa or sTF-FVIIa-FX demonstrated large similarities.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12787023/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12787023" class="tabcontent ">
+                    <h2>Probing the interface between factor Xa and tissue factor in the quaternary complex tissue factor-factor VIIa-factor Xa-tissue factor pathway inhibitor.</h2>
+                    <h3>European journal of biochemistry; 2003</h3>
+                    <p>Blood coagulation is triggered by the formation of a complex between factor VIIa (FVIIa) and its cofactor, tissue factor (TF). TF-FVIIa is inhibited by tissue factor pathway inhibitor (TFPI) in two steps: first TFPI is bound to the active site of factor Xa (FXa), and subsequently FXa-TFPI exerts feedback inhibition of TF-FVIIa. The FXa-dependent inhibition of TF-FVIIa activity by TFPI leads to formation of the quaternary complex TF-FVIIa-FXa-TFPI. We used site-directed fluorescence probing to map part of the region of soluble TF (sTF) that interacts with FXa in sTF-FVIIa-FXa-TFPI. We found that the C-terminal region of sTF, including positions 163, 166, 200 and 201, is involved in binding to FXa in the complex, and FXa, most likely via its Gla domain, is also in contact with the Gla domain of FVIIa in this part of the binding region. Furthermore, a region that includes the N-terminal part of the TF2 domain and the C-terminal part of the TF1 domain, i.e. the residues 104 and 197, participates in the interaction with FXa in the quaternary complex. Moreover, comparisons of the interaction areas between sTF and FX(a) in the quaternary complex sTF-FVIIa-FXa-TFPI and in the ternary complexes sTF-FVII-FXa or sTF-FVIIa-FX demonstrated large similarities.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12787023/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9925787" class="tabcontent ">
+                    <h2>Structure of extracellular tissue factor complexed with factor VIIa inhibited with a BPTI mutant.</h2>
+                    <h3>Journal of molecular biology; 1999</h3>
+                    <p>The event that initiates the extrinsic pathway of blood coagulation is the association of coagulation factor VIIa (VIIa) with its cell-bound receptor, tissue factor (TF), exposed to blood circulation following tissue injury and/or vascular damage. The natural inhibitor of the TF.VIIa complex is the first Kunitz domain of tissue factor pathway inhibitor (TFPI-K1). The structure of TF. VIIa reversibly inhibited with a potent (Ki=0.4 nM) bovine pancreatic trypsin inhibitor (BPTI) mutant (5L15), a homolog of TFPI-K1, has been determined at 2.1 A resolution. When bound to TF, the four domain VIIa molecule assumes an extended conformation with its light chain wrapping around the framework of the two domain TF cofactor. The 5L15 inhibitor associates with the active site of VIIa similar to trypsin-bound BPTI, but makes several unique interactions near the perimeter of the site that are not observed in the latter. Most of the interactions are polar and involve mutated positions of 5L15. Of the eight rationally engineered mutations distinguishing 5L15 from BPTI, seven are involved in productive interactions stabilizing the enzyme-inhibitor association with four contributing contacts unique to the VIIa.5L15 complex. Two additional unique interactions are due to distinguishing residues in the VIIa sequence: a salt bridge between Arg20 of 5L15 and Asp60 of an insertion loop of VIIa, and a hydrogen bond between Tyr34O of the inhibitor and Lys192NZ of the enzyme. These interactions were used further to model binding of TFPI-K1 to VIIa and TFPI-K2 to factor Xa, the principal activation product of TF.VIIa. The structure of the ternary protein complex identifies the determinants important for binding within and near the active site of VIIa, and provides cogent information for addressing the manner in which substrates of VIIa are bound and hydrolyzed in blood coagulation. It should also provide guidance in structure-aided drug design for the discovery of potent and selective small molecule VIIa inhibitors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9925787/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

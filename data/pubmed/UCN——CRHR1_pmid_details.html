@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>UCN——CRHR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for UCN——CRHR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab11416224')">11416224</button><button class="tablinks " onclick="openTab(event, 'tab15450949')">15450949</button><button class="tablinks " onclick="openTab(event, 'tab11123370')">11123370</button><button class="tablinks " onclick="openTab(event, 'tab8612563')">8612563</button><button class="tablinks " onclick="openTab(event, 'tab8612563')">8612563</button><button class="tablinks " onclick="openTab(event, 'tab9423932')">9423932</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab11416224" class="tabcontent active">
+                    <h2>Identification of urocortin III, an additional member of the corticotropin-releasing factor (CRF) family with high affinity for the CRF2 receptor.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 2001</h3>
+                    <p>The corticotropin-releasing factor (CRF) family of neuropeptides includes the mammalian peptides CRF, urocortin, and urocortin II, as well as piscine urotensin I and frog sauvagine. The mammalian peptides signal through two G protein-coupled receptor types to modulate endocrine, autonomic, and behavioral responses to stress, as well as a range of peripheral (cardiovascular, gastrointestinal, and immune) activities. The three previously known ligands are differentially distributed anatomically and have distinct specificities for the two major receptor types. Here we describe the characterization of an additional CRF-related peptide, urocortin III, in the human and mouse. In searching the public human genome databases we found a partial expressed sequence tagged (EST) clone with significant sequence identity to mammalian and fish urocortin-related peptides. By using primers based on the human EST sequence, a full-length human clone was isolated from genomic DNA that encodes a protein that includes a predicted putative 38-aa peptide structurally related to other known family members. With a human probe, we then cloned the mouse ortholog from a genomic library. Human and mouse urocortin III share 90% identity in the 38-aa putative mature peptide. In the peptide coding region, both human and mouse urocortin III are 76% identical to pufferfish urocortin-related peptide and more distantly related to urocortin II, CRF, and urocortin from other mammalian species. Mouse urocortin III mRNA expression is found in areas of the brain including the hypothalamus, amygdala, and brainstem, but is not evident in the cerebellum, pituitary, or cerebral cortex; it is also expressed peripherally in small intestine and skin. Urocortin III is selective for type 2 CRF receptors and thus represents another potential endogenous ligand for these receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11416224/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15450949" class="tabcontent ">
+                    <h2>Cell-type specific calcium signaling by corticotropin-releasing factor type 1 (CRF1) and 2a (CRF2(a)) receptors: phospholipase C-mediated responses in human embryonic kidney 293 but not SK-N-MC neuroblastoma cells.</h2>
+                    <h3>Biochemical pharmacology; 2004</h3>
+                    <p>The human corticotropin-releasing factor (hCRF) receptors CRF1 and CRF2(a) couple to the Gs protein. It has been postulated that CRF receptors may also signal through phospholipase C (PLC). To test this hypothesis, binding and signaling properties were determined for both receptor subtypes stably expressed in human embryonic kidney 293 (HEK293) and human SK-N-MC neuroblastoma cells. CRF receptors were highly expressed and strongly coupled to Gs in HEK293 and SK-N-MC cells. However, when the calcium mobilization pathway was investigated, marked differences were observed. In SK-N-MC cells, neither CRF receptor stimulated calcium mobilization in the fluorometric imaging plate reader (FLIPR) assay, whereas activation of orexin type 1 and 2 receptors stably expressed in SK-N-MC cells revealed robust calcium responses. In contrast, intracellular calcium was strongly mobilized by agonist stimulation of hCRF1 and hCRF2(a) receptors in HEK293 cells. In HEK293 cells, potency rank orders for calcium and cAMP responses were identical for both receptors, despite a rightward shift of the dose-response curves. Complete inhibition of calcium signaling of both hCRF1 and hCRF2(a) receptors was observed in the presence of the PLC inhibitor U-73,122 whereas ryanodine, an inhibitor of calcium release channels and the protein kinase A inhibitor Rp-cAMPS were ineffective. Finally, CRF agonists produced a small but significant stimulation of inositol 1,4,5-triphosphate (IP3) accumulation in hCRF1-and hCRF2(a)-transfected HEK293 cells. These data clearly show that phospholipase C-mediated signaling of CRF receptors is dependent upon the cellular background and that in HEK293 cells human CRF receptors robustly respond in the FLIPR format.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15450949/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11123370" class="tabcontent ">
+                    <h2>Different binding modes of amphibian and human corticotropin-releasing factor type 1 and type 2 receptors: evidence for evolutionary differences.</h2>
+                    <h3>The Journal of pharmacology and experimental therapeutics; 2001</h3>
+                    <p>The binding characteristics of corticotropin-releasing factor (CRF) type 1 (CRF(1)) and type 2 (CRF(2)) receptors from human (hCRF(1) and hCRF(2alpha)) and Xenopus (xCRF(1) and xCRF(2)) were compared using four different (125)I-labeled CRF analogs, the agonists (125)I-CRF and (125)I-sauvagine, and the antagonists (125)I-astressin ((125)I-AST) and (125)I-antisauvagine-30 ((125)I-aSVG). The hCRF(2alpha) and xCRF(2) receptors bound all four radioligands with different affinities, whereas hCRF(1) did not bind (125)I-aSVG, and xCRF(1) bound neither (125)I-sauvagine nor (125)I-aSVG. Competitive binding studies using unlabeled agonists and antagonists with hCRF(1) and hCRF(2alpha) receptors revealed that most agonists exhibited higher affinity in displacing agonist radioligands compared with displacement of antagonist radioligands. Exceptions were the agonists human and rat urocortin, which displayed high-affinity binding in the presence of either (125)I-labeled agonist or antagonist ligands. In contrast, the affinities of antagonists were independent of the nature of the radioligand. We also found that, in contrast to the mammalian CRF receptors, the affinity of ligand binding to xCRF(1) and xCRF(2) receptors strongly depended on the nature of the radioligand used for competition. For xCRF(1), competitors showed different rank order binding profiles with (125)I-CRF compared with (125)I-AST as the displaceable ligand. Similarly, binding of competitors to the xCRF(2) receptor showed markedly different profiles with (125)I-CRF as the competed ligand compared with the other radioligands. These data demonstrate that amphibian CRF receptors have distinctly different binding modes compared with their mammalian counterparts.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11123370/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8612563" class="tabcontent ">
+                    <h2>Cloning and characterization of human urocortin.</h2>
+                    <h3>Endocrinology; 1996</h3>
+                    <p>Urocortin, a new member of the CRF peptide family which also includes urotensin I and sauvagine, was recently cloned from the rat midbrain. The synthetic replicate of urocortin was found to bind with high affinity to type 1 and type 2 CRF receptors and, based upon its anatomic localization within the brain, was proposed to be a natural ligand for the type 2 CRF receptors. Using a genomic library, we have cloned the human counterpart of rat urocortin and localized it to human chromosome 2. Human and rat urocortin share 95% identity within the mature peptide region. Synthetic human urocortin binds with high affinity to CRF receptor types 1, 2 alpha, and 2 beta, stimulates cAMP accumulation from cells stably transfected with these receptors, and acts in vitro to release ACTH from dispersed rat anterior pituitary cells. In addition, the CRF-binding protein binds human urocortin with high affinity and can prevent urocortin-stimulated ACTH secretion in vitro. The inhibitory effect of the CRF-binding protein on human urocortin can be blocked by biologically inactive CRF fragments, such as CRF(9-33).</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8612563/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8612563" class="tabcontent ">
+                    <h2>Cloning and characterization of human urocortin.</h2>
+                    <h3>Endocrinology; 1996</h3>
+                    <p>Urocortin, a new member of the CRF peptide family which also includes urotensin I and sauvagine, was recently cloned from the rat midbrain. The synthetic replicate of urocortin was found to bind with high affinity to type 1 and type 2 CRF receptors and, based upon its anatomic localization within the brain, was proposed to be a natural ligand for the type 2 CRF receptors. Using a genomic library, we have cloned the human counterpart of rat urocortin and localized it to human chromosome 2. Human and rat urocortin share 95% identity within the mature peptide region. Synthetic human urocortin binds with high affinity to CRF receptor types 1, 2 alpha, and 2 beta, stimulates cAMP accumulation from cells stably transfected with these receptors, and acts in vitro to release ACTH from dispersed rat anterior pituitary cells. In addition, the CRF-binding protein binds human urocortin with high affinity and can prevent urocortin-stimulated ACTH secretion in vitro. The inhibitory effect of the CRF-binding protein on human urocortin can be blocked by biologically inactive CRF fragments, such as CRF(9-33).</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8612563/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9423932" class="tabcontent ">
+                    <h2>Labelling of CRF1 and CRF2 receptors using the novel radioligand, [3H]-urocortin.</h2>
+                    <h3>Neuropharmacology; 1997</h3>
+                    <p>The binding of the novel radioligand, [3H]-rat urocortin to homogenates of rat cerebellum and homogenates of cells stably transfected with the human CRF1, rat CRF2alpha and rat CRF2beta receptors was examined. In each case, specific reversible high affinity binding was observed (K[d]s between 0.18 and 0.31 nM). The density of sites was relatively low in the cerebellum (9 fmol/mg tissue) but high in the recombinant systems with expression levels of between 1.4 and 6.3 pmol/mg protein. Agents known to interact with CRF receptors potently competed for binding in each case. The pharmacological profile of binding to the recombinant receptors were consistent with data previously published using other radioligands. Thus, for the recombinant CRF1 receptor, binding was inhibited with similar affinity by Urocortin, sauvagine, Urotensin 1 and CRF. The non-peptidic CRF antagonists (e.g. CP 154,526 and SC 241) also potently inhibited binding. The CRF2alpha and CRF2beta receptor recombinant systems had a very similar pharmacological profile with a clear rank order of potency for the peptide ligands (Urocortin > Sauvagine > Urotensin 1 > CRF), whereas the non-peptide CRF receptor antagonists had no measurable affinity. The pharmacological profile of specific [3H]-urocortin binding to homogentates of rat cerebellum was consistent with specific labelling of a CRF1 receptor. We conclude that [3H]-urocortin is a useful tool for the study of CRF receptors with the advantages that a filtration assay can be used, all CRF receptors can be labelled with the same ligand and the benefits associated with the low energy emittor, 3H.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9423932/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

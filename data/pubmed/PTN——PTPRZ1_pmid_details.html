@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>PTN——PTPRZ1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for PTN——PTPRZ1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10706604')">10706604</button><button class="tablinks " onclick="openTab(event, 'tab10706604')">10706604</button><button class="tablinks " onclick="openTab(event, 'tab16814777')">16814777</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10706604" class="tabcontent active">
+                    <h2>Pleiotrophin signals increased tyrosine phosphorylation of beta beta-catenin through inactivation of the intrinsic catalytic activity of the receptor-type protein tyrosine phosphatase beta/zeta.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 2000</h3>
+                    <p>Pleiotrophin (PTN) is a platelet-derived growth factor-inducible, 18-kDa heparin-binding cytokine that signals diverse phenotypes in normal and deregulated cellular growth and differentiation. To seek the mechanisms of PTN signaling, we studied the interactions of PTN with the receptor protein tyrosine phosphatase (RPTP) beta/zeta in U373-MG cells. Our results suggest that PTN is a natural ligand for RPTP beta/zeta. PTN signals through "ligand-dependent receptor inactivation" of RPTP beta/zeta and disrupts its normal roles in the regulation of steady-state tyrosine phosphorylation of downstream signaling molecules. We have found that PTN binds to and functionally inactivates the catalytic activity of RPTP beta/zeta. We also have found that an active site-containing domain of RPTP beta/zeta both binds beta-catenin and functionally reduces its levels of tyrosine phosphorylation when added to lysates of pervanidate-treated cells. In contrast, an (inactivating) active-site mutant of RPTP beta/zeta also binds beta-catenin but fails to reduce tyrosine phosphorylation of beta-catenin. Finally, in parallel to its ability to inactivate endogenous RPTP beta/zeta, PTN sharply increases tyrosine phosphorylation of beta-catenin in PTN-treated cells. The results suggest that in unstimulated cells, RPTP beta/zeta is intrinsically active and functions as an important regulator in the reciprocal control of the steady-state tyrosine phosphorylation levels of beta-catenin by tyrosine kinases and phosphatases. The results also suggest that RPTP beta/zeta is a functional receptor for PTN; PTN signals through ligand-dependent receptor inactivation of RPTP beta/zeta to increase levels of tyrosine phosphorylation of beta-catenin to initiate downstream signaling. PTN is the first natural ligand identified for any of the RPTP family; its identification provides a unique tool to pursue the novel signaling pathway activated by PTN and the relationship of PTN signaling with other pathways regulating beta-catenin.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10706604/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10706604" class="tabcontent ">
+                    <h2>Pleiotrophin signals increased tyrosine phosphorylation of beta beta-catenin through inactivation of the intrinsic catalytic activity of the receptor-type protein tyrosine phosphatase beta/zeta.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 2000</h3>
+                    <p>Pleiotrophin (PTN) is a platelet-derived growth factor-inducible, 18-kDa heparin-binding cytokine that signals diverse phenotypes in normal and deregulated cellular growth and differentiation. To seek the mechanisms of PTN signaling, we studied the interactions of PTN with the receptor protein tyrosine phosphatase (RPTP) beta/zeta in U373-MG cells. Our results suggest that PTN is a natural ligand for RPTP beta/zeta. PTN signals through "ligand-dependent receptor inactivation" of RPTP beta/zeta and disrupts its normal roles in the regulation of steady-state tyrosine phosphorylation of downstream signaling molecules. We have found that PTN binds to and functionally inactivates the catalytic activity of RPTP beta/zeta. We also have found that an active site-containing domain of RPTP beta/zeta both binds beta-catenin and functionally reduces its levels of tyrosine phosphorylation when added to lysates of pervanidate-treated cells. In contrast, an (inactivating) active-site mutant of RPTP beta/zeta also binds beta-catenin but fails to reduce tyrosine phosphorylation of beta-catenin. Finally, in parallel to its ability to inactivate endogenous RPTP beta/zeta, PTN sharply increases tyrosine phosphorylation of beta-catenin in PTN-treated cells. The results suggest that in unstimulated cells, RPTP beta/zeta is intrinsically active and functions as an important regulator in the reciprocal control of the steady-state tyrosine phosphorylation levels of beta-catenin by tyrosine kinases and phosphatases. The results also suggest that RPTP beta/zeta is a functional receptor for PTN; PTN signals through ligand-dependent receptor inactivation of RPTP beta/zeta to increase levels of tyrosine phosphorylation of beta-catenin to initiate downstream signaling. PTN is the first natural ligand identified for any of the RPTP family; its identification provides a unique tool to pursue the novel signaling pathway activated by PTN and the relationship of PTN signaling with other pathways regulating beta-catenin.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10706604/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab16814777" class="tabcontent ">
+                    <h2>Protein tyrosine phosphatase receptor type Z is inactivated by ligand-induced oligomerization.</h2>
+                    <h3>FEBS letters; 2006</h3>
+                    <p>Receptor-type protein tyrosine phosphatases (RPTPs) are considered to transduce extracellular signals across the membrane through changes in their PTP activity, however, our understanding of the regulatory mechanism is still limited. Here, we show that pleiotrophin (PTN), a natural ligand for protein tyrosine phosphatase receptor type Z (Ptprz) (also called PTPzeta/RPTPbeta), inactivates Ptprz through oligomerization and increases the tyrosine phosphorylation of substrates for Ptprz, G protein-coupled receptor kinase-interactor 1 (Git1) and membrane associated guanylate kinase, WW and PDZ domain containing 1 (Magi1). Oligomerization of Ptprz by an artificial dimerizer or polyclonal antibodies against its extracellular region also leads to inactivation, indicating that Ptprz is active in the monomeric form and inactivated by ligand-induced oligomerization.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16814777/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

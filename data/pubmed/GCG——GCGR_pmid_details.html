@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>GCG——GCGR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for GCG——GCGR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12529935')">12529935</button><button class="tablinks " onclick="openTab(event, 'tab4305077')">4305077</button><button class="tablinks " onclick="openTab(event, 'tab8382034')">8382034</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12529935" class="tabcontent active">
+                    <h2>Structure-function of the glucagon receptor family of G protein-coupled receptors: the glucagon, GIP, GLP-1, and GLP-2 receptors.</h2>
+                    <h3>Receptors & channels; 2002</h3>
+                    <p>The glucagon-like peptides include glucagon, GLP-1, and GLP-2, and exert diverse actions on nutrient intake, gastrointestinal motility, islet hormone secretion, cell proliferation and apoptosis, nutrient absorption, and nutrient assimilation. GIP, a related member of the glucagon peptide superfamily, also regulates nutrient disposal via stimulation of insulin secretion. The actions of these peptides are mediated by distinct members of the glucagon receptor superfamily of G protein-coupled receptors. These receptors exhibit unique patterns of tissue-specific expression, exhibit considerable amino acid sequence identity, and share similar structural and functional properties with respect to ligand binding and signal transduction. This article provides an overview of the biology of these receptors with an emphasis on understanding the unique actions of glucagon-related peptides through studies of the biology of their cognate receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12529935/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab4305077" class="tabcontent ">
+                    <h2>Glucagon-sensitive adenyl cylase in plasma membrane of hepatic parenchymal cells.</h2>
+                    <h3>Science (New York, N.Y.); 1969</h3>
+                    <p>The plasma membrane of hepatic parenchymal cells contains an adenyl cyclase system that is stimulated by glucagon. Adrenocorticotropin and epinephrine do not stimulate this adenyl cyclase, and very little cyclic phospho-diesterase activity is present in the membrane. These findings support the concept that glucagon exerts its regulatory action in the liver by stimulating adenyl cyclase activity in the plasma membrane.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/4305077/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8382034" class="tabcontent ">
+                    <h2>The role of histidine-1 in glucagon action.</h2>
+                    <h3>Archives of biochemistry and biophysics; 1993</h3>
+                    <p>The identification of position 9 aspartic acid in glucagon as a critical residue for transduction reinforced the notion that specific residues in the peptide sequence dictate either receptor recognition or biological activity. It was evident from our studies that Asp9 operates in conjunction with His1 as part of the activation mechanism that follows binding to the glucagon receptor. This investigation was conducted to delineate structural features of histidine that contribute to its role in glucagon action. We report, based on binding and activity data from 10 replacement analogs, that the imidazole ring of His1 furnishes an aromatic determinant for receptor binding affinity and that its protonatable imidazole nitrogen is important for transduction.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8382034/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

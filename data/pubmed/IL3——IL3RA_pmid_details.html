@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>IL3——IL3RA - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for IL3——IL3RA</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab11700046')">11700046</button><button class="tablinks " onclick="openTab(event, 'tab9278420')">9278420</button><button class="tablinks " onclick="openTab(event, 'tab8649415')">8649415</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab11700046" class="tabcontent active">
+                    <h2>Receptor binding kinetics of human IL-3 variants with altered proliferative activity.</h2>
+                    <h3>Biochemical and biophysical research communications; 2001</h3>
+                    <p>The binding kinetics of native IL-3 and a set of truncated IL-3 variants to the alpha subunit of the IL-3 receptor (IL-3Ralpha) were studied using surface plasmon resonance. These variants, with amino acid substitutions at residues, 22, 42, 43, 45, 46, 113, or 116, have previously been identified to have altered capacity to stimulate cell proliferation compared to native IL-3(1-133). In this study, variants E43N and F113Y exhibited >100-fold slower association rates than IL-3(15-125) consistent with residues 43 and 113 being essential for the binding of IL-3 to the IL-3Ralpha. Variants G42A, G42D, Q45V, D46S, K116V, and K116W exhibited increased association rates (up to 15-fold relative to IL-3(15-125)) and decreased dissociation rates (up to 7-fold). The results demonstrate that both the association and dissociation rates for the binding of IL-3 to the IL-3Ralpha are altered by truncation and by amino acid substitution at individual sites. Intracellular signaling studies using K116W and E43N demonstrate that differences in the IL-3alpha binding characteristics are reflected in magnitude and kinetics of STAT5 phosphorylation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11700046/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9278420" class="tabcontent ">
+                    <h2>The receptor binding site of human interleukin-3 defined by mutagenesis and molecular modeling.</h2>
+                    <h3>The Journal of biological chemistry; 1997</h3>
+                    <p>Interleukin-3 (IL-3) is a member of the cytokine superfamily that promotes multi-potential hematopoietic cell growth by interacting with a cell surface receptor composed of alpha and beta chains. The newly available three-dimensional structure of a variant of human (h) IL-3 allowed us to evaluate new and existing mutagenesis data and to rationally interpret the structure-function relationship of hIL-3 on a structural basis. The amino acid residues that were identified to be important for hIL-3 activity are grouped into two classes. The first class consists of largely hydrophobic residues required for the structural integrity of the protein, including the residues in IL-3 that are largely conserved among 10 mammalian species. These residues form the core of a scaffold for the second class of more rapidly diverging solvent-exposed residues, likely to be required for interaction with the receptor. Ten important and solvent-exposed residues, Asp21, Gly42, Glu43, Gln45, Asp46, Met49, Arg94, Pro96, Phe113, and Lys116, map to one side of the protein and form a putative binding site for the alpha subunit of the receptor. A model of the IL-3.IL-3 receptor complex based on the human growth hormone (hGH).hGH soluble receptor complex structure suggests that the interface between IL-3 and the IL-3 receptor alpha subunit consists of a cluster of hydrophobic residues flanked by electrostatic interactions. Although the IL-3/IL-3 receptor beta subunit interface cannot be uniquely located due to the lack of sufficient experimental data, several residues of the beta subunit that may interact with Glu22 of IL-3 are proposed. The role of these residues can be tested in future mutagenesis studies to define the interaction between IL-3 and IL-3 receptor beta subunit.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9278420/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8649415" class="tabcontent ">
+                    <h2>Human interleukin-3 (IL-3) induces disulfide-linked IL-3 receptor alpha- and beta-chain heterodimerization, which is required for receptor activation but not high-affinity binding.</h2>
+                    <h3>Molecular and cellular biology; 1996</h3>
+                    <p>The human interleukin-3 receptor (IL-3R) is a heterodimer that comprises an IL-3 specific alpha chain (IL-3R alpha) and a common beta chain (beta C) that is shared with the receptors for granulocyte-macrophage colony-stimulating factor (GM-CSF) and IL-5. These receptors belong to the cytokine receptor superfamily, but they are structurally and functionally more related to each other and thus make up a distinct subfamily. Although activation of the normal receptor occurs only in the presence of ligand, the underlying mechanisms are not known. We show here that human IL-3 induces heterodimerization of IL-3R alpha and beta c and that disulfide linkage of these chains is involved in receptor activation but not high-affinity binding. Monoclonal antibodies (MAb) to IL-3R alpha and beta c were developed which immunoprecipitated, in the absence of IL-3, the respective chains from cells labelled with 125I on the cell surface. However, in the presence of IL-3, each MAb immunoprecipitated both IL-3R alpha and beta c. IL-3-induced receptor dimers were disulfide and nondisulfide linked and were dependent on IL-3 interacting with both IL-3R alpha and beta c. In the presence of IL-3 and under nonreducing conditions, MAb to either IL-3R alpha or beta c immunoprecipitated complexes with apparent molecular weights of 215,000 and 245,000 and IL-3R alpha and beta c monomers. Preincubation with iodoacetamide prevented the formation of the two high-molecular-weight complexes without affecting noncovalent dimer formation or high-affinity IL-3 binding. Two-dimensional gel electrophoresis and Western blotting (immunoblotting) demonstrated the presence of both IL-3R alpha and beta c in the disulfide-linked complexes. IL-3 could also be coimmunoprecipitated with anti-IL-3R alpha or anti-beta c MAB, but it was not covalently attached to the receptor. Following IL-3 stimulation, only the disulfide-linked heterodimers exhibited reactivity with antiphosphotyrosine antibodies, with beta c but not IL-3R alpha being the phosphorylated species. A model of IL-3R activation is proposed which may be also applicable to the related GM-CSF and IL-5 receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8649415/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

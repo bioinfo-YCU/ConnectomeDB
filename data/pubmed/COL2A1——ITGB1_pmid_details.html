@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>COL2A1——ITGB1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for COL2A1——ITGB1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab7688313')">7688313</button><button class="tablinks " onclick="openTab(event, 'tab9685391')">9685391</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab7688313" class="tabcontent active">
+                    <h2>Localization of beta 1-integrins in human cartilage and their role in chondrocyte adhesion to collagen and fibronectin.</h2>
+                    <h3>Experimental cell research; 1993</h3>
+                    <p>In the past, proteins have been described that may be involved in chondrocyte interactions with extracellular collagen, but little is known about the role of integrins in chondrocyte-collagen interactions. Here we report on the analysis of beta 1-integrin distribution in human fetal cartilage and on the expression of integrins on fetal chondrocytes, using monoclonal and polyclonal antibodies to integrin alpha- and beta-chains. We show the presence of alpha 2-, alpha 5-, alpha 6-, alpha v-, and beta 1-chains on freshly isolated chondrocytes by surface immunofluorescence in the fluorescence-activated cell sorter and by surface iodination followed by immunoprecipitation. Affinity chromatography of bovine chondrocyte membrane proteins on a collagen-Sepharose column followed by immunoprecipitation confirmed the presence of the collagen-binding alpha 2 beta 1-integrin on chondrocytes. Chondrocyte adhesion on native collagens I and II, on fibronectin, and on laminin was completely blocked by anti-beta 1; anti-alpha 2 reduced chondrocyte binding to collagen by only 40-50%; similarly, anti-alpha 1-antibodies were also able to reduce chondrocyte binding to collagen, although alpha 1 could not be unequivocally identified on chondrocytes. Chondrocyte adhesion to fibronectin was Mg(2+)- and Ca(2+)-dependent and could be inhibited by anti-alpha 5 and by RGD peptides. Chondrocyte adhesion to native collagens is Mg(2+)-, but not Ca(2+)-dependent and RGD-independent. Interestingly, although these data point to a role of alpha 2 beta 1 in chondrocyte-collagen interactions in vitro, alpha 2 could not be visualized in sections of human fetal cartilage, in contrast to the beta 1-, alpha v-, and alpha 5-chains which were present. This suggests that alpha 2 beta 1-integrin may be involved in the assembly of a pericellular collagen matrix in vitro, but may not be required for chondrocyte-collagen interactions in intact cartilage.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7688313/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9685391" class="tabcontent ">
+                    <h2>Isolation, cloning, and sequence analysis of the integrin subunit alpha10, a beta1-associated collagen binding integrin expressed on chondrocytes.</h2>
+                    <h3>The Journal of biological chemistry; 1998</h3>
+                    <p>We have found that chondrocytes express a novel collagen type II-binding integrin, a new member of the beta1-integrin family. The integrin alpha subunit, which has a Mr of 160 kDa reduced, was isolated from bovine chondrocytes by collagen type II affinity purification. The human homologue was obtained by screening a human chondrocyte library with a bovine cDNA probe. Cloning and cDNA sequence analysis of the human integrin alpha subunit designated alpha10 show that it shares the general structure of other integrin alpha subunits. The predicted amino acid sequence consists of a 1167-amino acid mature protein, including a signal peptide (22 amino acids), a long extracellular domain (1098 amino acids), a transmembrane domain (25 amino acids), and a short cytoplasmic domain (22 amino acids). The extracellular part contains a 7-fold repeated sequence, an I-domain (199 amino acids) and three putative divalent cation-binding sites. The deduced amino acid sequence of alpha10 is 35% identical to the integrin subunit alpha2 and 37% identical to the integrin subunit alpha1. Northern blot analysis shows a single mRNA of 5.4 kilobases in chondrocytes. A peptide antibody against the predicted sequence of the cytoplasmic domain of alpha10 immunoprecipitated two proteins with masses of 125 and 160 kDa from chondrocyte lysates under reducing conditions. The peptide antibody specifically stained chondrocytes in tissue sections of human articular cartilage, showing that alpha10 beta1 is expressed in cartilage tissue.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9685391/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>WNT9B——FZD5 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for WNT9B——FZD5</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab28733458')">28733458</button><button class="tablinks " onclick="openTab(event, 'tab30978219')">30978219</button><button class="tablinks " onclick="openTab(event, 'tab25892522')">25892522</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab28733458" class="tabcontent active">
+                    <h2>Mapping of Wnt-Frizzled interactions by multiplex CRISPR targeting of receptor gene families.</h2>
+                    <h3>FASEB journal : official publication of the Federation of American Societies for Experimental Biology; 2017</h3>
+                    <p>Signaling pathway modules are often encoded by several closely related paralogous genes that can have redundant roles and are therefore difficult to analyze by loss-of-function analysis. A typical example is the Wnt signaling pathway, which in mammals is mediated by 19 Wnt ligands that can bind to 10 Frizzled (FZD) receptors. Although significant progress in understanding Wnt-FZD receptor interactions has been made in recent years, tools to generate systematic interaction maps have been largely lacking. Here we generated cell lines with multiplex mutant alleles of</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/28733458/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab30978219" class="tabcontent ">
+                    <h2>Molecular determinants of WNT9b responsiveness in nephron progenitor cells.</h2>
+                    <h3>PloS one; 2019</h3>
+                    <p>Primed nephron progenitor cells (NPCs) appear in metanephric mesenchyme by E11.5 and differentiate in response to the inductive WNT9b signal from the ureteric bud. However, the NPC WNT-receptor complex is unknown. We obtained M15 cells from E10.5 mesonephric mesenchyme and systematically analyzed components required for canonical WNT9b-responsiveness. When M15 cells were transfected with a β-catenin luciferase reporter plasmid, exposure to recombinant WNT9b resulted in minimal luciferase activity. We then analyzed mRNA-expression of WNT-pathway components and identified Fzd1-6 and Lrp6 transcripts but not Rspo1. When M15 cells were treated with recombinant RSPO1 the response to transfected WNT9b was augmented 4.8-fold. Co-transfection of M15 cells with Fzd5 (but no other Fzd family member) further increased the WNT9b signal to 16.8-fold and siRNA knockdown of Fzd5 reduced the signal by 52%. Knockdown of Lrp6 resulted in 60% WNT9b signal reduction. We confirmed Fzd5, Lrp6 and Rspo1 mRNA expression in CITED1(+) NPCs from E15.5 embryonic mouse kidney. Thus, while many WNT signaling-pathway components are present by E10.5, optimum responsiveness of E11.5 cap mesenchyme requires that NPCs acquire RSPO1, FZD5 and LRP6.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/30978219/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab25892522" class="tabcontent ">
+                    <h2>Frizzled7 functions as a Wnt receptor in intestinal epithelial Lgr5(+) stem cells.</h2>
+                    <h3>Stem cell reports; 2015</h3>
+                    <p>The mammalian adult small intestinal epithelium is a rapidly self-renewing tissue that is maintained by a pool of cycling stem cells intermingled with Paneth cells at the base of crypts. These crypt base stem cells exclusively express Lgr5 and require Wnt3 or, in its absence, Wnt2b. However, the Frizzled (Fzd) receptor that transmits these Wnt signals is unknown. We determined the expression profile of Fzd receptors in Lgr5(+) stem cells, their immediate daughter cells, and Paneth cells. Here we show Fzd7 is enriched in Lgr5(+) stem cells and binds Wnt3 and Wnt2b. Conditional deletion of the Fzd7 gene in adult intestinal epithelium leads to stem cell loss in vivo and organoid death in vitro. Crypts of conventional Fzd7 knockout mice show decreased basal Wnt signaling and impaired capacity to regenerate the epithelium following deleterious insult. These observations indicate that Fzd7 is required for robust Wnt-dependent processes in Lgr5(+) intestinal stem cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/25892522/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

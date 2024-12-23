@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>MEPE——PHEX - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for MEPE——PHEX</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15664000')">15664000</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15664000" class="tabcontent active">
+                    <h2>Surface plasmon resonance (SPR) confirms that MEPE binds to PHEX via the MEPE-ASARM motif: a model for impaired mineralization in X-linked rickets (HYP).</h2>
+                    <h3>Bone; 2005</h3>
+                    <p>Matrix Extracellular Phospho-glycoprotEin (MEPE) and proteases are elevated and PHEX is defective in HYP. PHEX prevents proteolysis of MEPE and release of a protease-resistant MEPE-ASARM peptide, an inhibitor of mineralization (minhibin). Thus, in HYP, mutated PHEX may contribute to increased ASARM peptide release. Moreover, binding of MEPE by PHEX may regulate this process in normal subjects. The nature of the PHEX-MEPE nonproteolytic interaction(s) (direct or indirect) is/are unknown. Our aims were to determine (1) whether PHEX binds specifically to MEPE, (2) whether the binding involves the ASARM motif region, and (3) whether free ASARM peptide affects mineralization in vivo in mice. Protein interactions between MEPE and recombinant soluble PHEX (secPHEX) were measured using surface plasmon resonance (SPR). Briefly, secPHEX, MEPE, and control protein (IgG) were immobilized on a Biacore CM5 sensor chip, and SPR experiments were performed on a Biacore 3000 high-performance research system. Pure secPHEX was then injected at different concentrations, and interactions with immobilized proteins were measured. To determine MEPE sequences interacting with secPHEX, the inhibitory effects of MEPE-ASARM peptides (phosphorylated and nonphosphorylated), control peptides, and MEPE midregion RGD peptides on secPHEX binding to chip-immobilized MEPE were measured. ASARM peptide and etidronate-mediated mineralization inhibition in vivo and in vitro were determined by quenched calcein fluorescence in hind limbs and calvariae in mice and by histological Sanderson stain. A specific, dose-dependent and Zn-dependent protein interaction between secPHEX and immobilized MEPE occurs (EC50 of 553 nM). Synthetic MEPE PO4-ASARM peptide inhibits the PHEX-MEPE interaction (K(D(app)) = 15 uM and B(max/inhib) = 68%). In contrast, control and MEPE-RGD peptides had no effect. Subcutaneous administration of ASARM peptide resulted in marked quenching of fluorescence in calvariae and hind limbs relative to vehicle controls indicating impaired mineralization. Similar results were obtained with etidronate. Sanderson-stained calvariae also indicated a marked increase in unmineralized osteoid with ASARM peptide and etidronate groups. We conclude that PHEX and MEPE form a nonproteolytic protein interaction via the MEPE carboxy-terminal ASARM motif, and the ASARM peptide inhibits mineralization in vivo. The binding of MEPE and ASARM peptide by PHEX may explain why loss of functional osteoblast-expressed PHEX results in defective mineralization in HYP.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15664000/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

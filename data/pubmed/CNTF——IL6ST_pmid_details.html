@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CNTF——IL6ST - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CNTF——IL6ST</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12643274')">12643274</button><button class="tablinks " onclick="openTab(event, 'tab16051226')">16051226</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12643274" class="tabcontent active">
+                    <h2>Signaling of human ciliary neurotrophic factor (CNTF) revisited. The interleukin-6 receptor can serve as an alpha-receptor for CTNF.</h2>
+                    <h3>The Journal of biological chemistry; 2003</h3>
+                    <p>Human ciliary neurotrophic factor (CNTF) is a neurotrophic cytokine that exerts a neuroprotective effect in multiple sclerosis and amyotrophic lateral sclerosis. Clinical application of human CNTF, however, was prevented by high toxicity at higher dosages. Human CNTF elicits cellular responses by induction of a receptor complex consisting of the CNTF alpha-receptor (CNTFR), which is not involved in signal transduction, and the beta-receptors gp130 and leukemia inhibitory factor receptor (LIFR). Previous studies with rat CNTF demonstrated that rat CNTF is unable to interact with the human interleukin-6 alpha-receptor, whereas at high concentrations, it can directly induce a signaling heterodimer of human gp130 and human LIFR in the absence of the CNTF receptor. Here, we demonstrate that human CNTF cannot directly induce a heterodimer of human gp130 and LIFR. However, human CNTF can use both the membrane-bound and the soluble human IL-6R as a substitute for its cognate alpha-receptor and thus widen the target spectrum of human CNTF. Engineering a CNTFR-specific human CNTF variant may therefore be a prerequisite to improving the safety profile of CNTF.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12643274/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab16051226" class="tabcontent ">
+                    <h2>The N-terminal cytokine binding domain of LIFR is required for CNTF binding and signaling.</h2>
+                    <h3>FEBS letters; 2005</h3>
+                    <p>Ciliary neurotrophic factor (CNTF) forms a functional receptor complex containing the CNTF receptor, gp130, and the leukemia inhibitory factor receptor (LIFR). However, the nature and stoichiometry of the receptor-mediated interactions in this complex have not yet been fully resolved. We show here that signaling by CNTF, but not by LIF or oncostatin M (OSM), was abolished in cells overexpressing a LIFR mutant with the N-terminal cytokine binding domain deleted. Our results illustrate molecular differences between the CNTF active receptor complex and those of LIF and OSM and provide further support for the hexameric model of the CNTF receptor complex.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16051226/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

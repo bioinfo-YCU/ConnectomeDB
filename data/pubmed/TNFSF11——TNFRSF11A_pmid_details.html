@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>TNFSF11——TNFRSF11A - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for TNFSF11——TNFRSF11A</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab11581298')">11581298</button><button class="tablinks " onclick="openTab(event, 'tab9367155')">9367155</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab11581298" class="tabcontent active">
+                    <h2>Crystal structure of the TRANCE/RANKL cytokine reveals determinants of receptor-ligand specificity.</h2>
+                    <h3>The Journal of clinical investigation; 2001</h3>
+                    <p>RANK, the receptor activator of NF-kappaB, and its ligand RANKL (initially termed TRANCE, also termed ODF and OPGL), are a TNF superfamily receptor-ligand pair that govern the development and function of osteoclasts, lymphoid tissue, and mammary epithelium. While TNF family cytokines share a common structural scaffold, individual receptor-ligand pairs associate with high specificity. Given the low level of amino acid conservation among members of the TNF superfamily, the means by which these molecules achieve specificity cannot be completely understood without knowledge of their three-dimensional structures. To determine the elements of RANKL that mediate RANK activation, we have crystallized the ectodomain of murine RANKL and solved its structure to a resolution of 2.6 A. RANKL self-associates as a homotrimer with four unique surface loops that distinguish it from other TNF family cytokines. Mutagenesis of selected residues in these loops significantly modulates RANK activation, as evidenced by in vitro osteoclastogenesis, thereby establishing their necessity in mediating the biological activities of RANKL. Such structural determinants of RANKL-RANK specificity may be of relevance in the pharmacologic design of compounds to ameliorate osteopenic disorders of bone.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11581298/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9367155" class="tabcontent ">
+                    <h2>A homologue of the TNF receptor and its ligand enhance T-cell growth and dendritic-cell function.</h2>
+                    <h3>Nature; 1997</h3>
+                    <p>Dendritic cells are rare haematopoietic cells that reside in a number of organs and tissues. By capturing, processing and presenting antigens to T cells, dendritic cells are essential for immune surveillance and the regulation of specific immunity. Several members of the tumour necrosis factor receptor (TNFR) superfamily are integral to the regulation of the immune response. These structurally related proteins modulate cellular functions ranging from proliferation and differentiation to inflammation and cell survival or deaths. The functional activity of dendritic cells is greatly increased by signalling through the TNFR family member CD40. Here we report the characterization of RANK (for receptor activator of NF-kappaB), a new member of the TNFR family derived from dendritic cells, and the isolation of a RANK ligand (RANKL) by direct expression screening. RANKL augments the ability of dendritic cells to stimulate naive T-cell proliferation in a mixed lymphocyte reaction, and increases the survival of RANK+ T cells generated with interleukin-4 and transforming growth factor (TGF)-beta. Thus RANK and RANKL seem to be important regulators of interactions between T cells and dendritic cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9367155/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

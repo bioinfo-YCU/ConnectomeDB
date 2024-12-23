@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>UTS2——UTS2R - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for UTS2——UTS2R</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10499587')">10499587</button><button class="tablinks " onclick="openTab(event, 'tab15109617')">15109617</button><button class="tablinks " onclick="openTab(event, 'tab11976263')">11976263</button><button class="tablinks " onclick="openTab(event, 'tab12238917')">12238917</button><button class="tablinks " onclick="openTab(event, 'tab15852036')">15852036</button><button class="tablinks " onclick="openTab(event, 'tab10581185')">10581185</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10499587" class="tabcontent active">
+                    <h2>Human urotensin-II is a potent vasoconstrictor and agonist for the orphan receptor GPR14.</h2>
+                    <h3>Nature; 1999</h3>
+                    <p>Urotensin-II (U-II) is a vasoactive 'somatostatin-like' cyclic peptide which was originally isolated from fish spinal cords, and which has recently been cloned from man. Here we describe the identification of an orphan human G-protein-coupled receptor homologous to rat GPR14 and expressed predominantly in cardiovascular tissue, which functions as a U-II receptor. Goby and human U-II bind to recombinant human GPR14 with high affinity, and the binding is functionally coupled to calcium mobilization. Human U-II is found within both vascular and cardiac tissue (including coronary atheroma) and effectively constricts isolated arteries from non-human primates. The potency of vasoconstriction of U-II is an order of magnitude greater than that of endothelin-1, making human U-II the most potent mammalian vasoconstrictor identified so far. In vivo, human U-II markedly increases total peripheral resistance in anaesthetized non-human primates, a response associated with profound cardiac contractile dysfunction. Furthermore, as U-II immunoreactivity is also found within central nervous system and endocrine tissues, it may have additional activities.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10499587/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15109617" class="tabcontent ">
+                    <h2>Urotensin II: the old kid in town.</h2>
+                    <h3>Trends in endocrinology and metabolism: TEM; 2004</h3>
+                    <p>Urotensin II (U-II) is a vasoactive hormone that acts through a recently described seven transmembrane-spanning G-protein-coupled receptor called GPR14. Although touted as the most potent vasoconstrictor peptide yet identified, the responses elicited by U-II are species-, tissue- and endothelium-dependent. Available data question the contribution of U-II to resting cardiovascular homeostasis in humans; instead they point to a role for this hormone in disease (heart failure and cardiac cell growth, renal function, diabetes, and mitogenesis in vascular and tumour cells). Key features of these diseases are increased expression and activity of U-II receptors. In this review, we focus on recent evidence that supports a role of U-II and its receptor in cardiovascular disease.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15109617/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11976263" class="tabcontent ">
+                    <h2>Molecular and pharmacological characterization of genes encoding urotensin-II peptides and their cognate G-protein-coupled receptors from the mouse and monkey.</h2>
+                    <h3>British journal of pharmacology; 2002</h3>
+                    <p>Urotensin-II (U-II) and its receptor (UT) represent novel therapeutic targets for management of a variety of cardiovascular diseases. To test such hypothesis, it will be necessary to develop experimental animal models for the manipulation of U-II/UT receptor system. The goal of this study was to clone mouse and primate preproU-II and UT for pharmacological profiling. Monkey and mouse preproU-II genes were identified to encode 123 and 125 amino acids. Monkey and mouse UT receptors were 389, and 386 amino acids, respectively. Genomic organization of mouse genes showed that the preproU-II has four exons, while the UT receptor has one exon. Although initially viewed by many exclusively as cardiovascular targets, the present study demonstrates expression of mouse and monkey U-II/UT receptor mRNA in extra-vascular tissue including lung, pancreas, skeletal muscle, kidney and liver. Ligand binding studies showed that [125I]h U-II bound to a single sites to the cloned receptors in a saturable/high affinity manner (Kd 654+/-154 and 214+/-65 pM and Bmax of 1011+/-125 and 497+/-68 fmol mg-1 for mouse and monkey UT receptors, respectively). Competition binding analysis demonstrated equipotent, high affinity binding of numerous mammalian, amphibian and piscine U-II isopeptides to these receptors (Ki=0.8 - 3 nM). Fluorescein isothiocyanate (FITC) labelled U-II, bound specifically to HEK-293 cells expressing mouse or monkey UT receptor, confirming cell surface expression of recombinant UT receptor. Exposure of these cells to human U-II resulted in an increase in intracellular [Ca2+] concentrations (EC50 3.2+/-0.8 and 1.1+/-0.3 nM for mouse and monkey UT receptors, respectively) and inositol phosphate (Ip) formation (EC50 7.2+/-1.8 and 0.9+/-0.2 nM for mouse and monkey UT receptors, respectively) consistent with the primary signalling pathway for UT receptor involving phospholipase C activation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11976263/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12238917" class="tabcontent ">
+                    <h2>A new, potent urotensin II receptor peptide agonist containing a Pen residue at the disulfide bridge.</h2>
+                    <h3>Journal of medicinal chemistry; 2002</h3>
+                    <p>Replacing Cys(5) by Pen (penicillamine, beta,beta-dimethylcysteine) in the cyclic C-terminal U-II octapeptide, U-II(4-11), we have obtained a potent urotensin II (U-II) receptor agonist. Conformational analysis of solution NMR data indicated that the putative biologically active conformation of U-II is stabilized by introduction of a Pen residue. To the best of our knowledge, this is the most potent U-II receptor agonist reported to date.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12238917/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15852036" class="tabcontent ">
+                    <h2>Nonpeptidic urotensin-II receptor antagonists I: in vitro pharmacological characterization of SB-706375.</h2>
+                    <h3>British journal of pharmacology; 2005</h3>
+                    <p>1. SB-706375 potently inhibited [(125)I]hU-II binding to both mammalian recombinant and 'native' UT receptors (K(i) 4.7+/-1.5 to 20.7+/-3.6 nM at rodent, feline and primate recombinant UT receptors and K(i) 5.4+/-0.4 nM at the endogenous UT receptor in SJRH30 cells). 2. Prior exposure to SB-706375 (1 microM, 30 min) did not alter [(125)I]hU-II binding affinity or density in recombinant cells (K(D) 3.1+/-0.4 vs 5.8+/-0.9 nM and B(max) 3.1+/-1.0 vs 2.8+/-0.8 pmol mg(-1)) consistent with a reversible mode of action. 3. The novel, nonpeptidic radioligand [(3)H]SB-657510, a close analogue of SB-706375, bound to the monkey UT receptor (K(D) 2.6+/-0.4 nM, B(max) 0.86+/-0.12 pmol mg(-1)) in a manner that was inhibited by both U-II isopeptides and SB-706375 (K(i) 4.6+/-1.4 to 17.6+/-5.4 nM) consistent with the sulphonamides and native U-II ligands sharing a common UT receptor binding domain. 4. SB-706375 was a potent, competitive hU-II antagonist across species with pK(b) 7.29-8.00 in HEK293-UT receptor cells (inhibition of [Ca(2+)](i)-mobilization) and pK(b) 7.47 in rat isolated aorta (inhibition of contraction). SB-706375 also reversed tone established in the rat aorta by prior exposure to hU-II (K(app) approximately 20 nM). 5. SB-706375 was a selective U-II antagonist with >/=100-fold selectivity for the human UT receptor compared to 86 distinct receptors, ion channels, enzymes, transporters and nuclear hormones (K(i)/IC(50)>1 microM). Accordingly, the contractile responses induced in isolated aortae by KCl, phenylephrine, angiotensin II and endothelin-1 were unaltered by SB-706375 (1 microM). 6. In summary, SB-706375 is a high-affinity, surmountable, reversible and selective nonpeptide UT receptor antagonist with cross-species activity that will assist in delineating the pathophysiological actions of U-II in mammals.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15852036/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10581185" class="tabcontent ">
+                    <h2>Identification of urotensin II as the endogenous ligand for the orphan G-protein-coupled receptor GPR14.</h2>
+                    <h3>Biochemical and biophysical research communications; 1999</h3>
+                    <p>Urotensin II (UII) is a neuropeptide with potent cardiovascular effects. Its sequence is strongly conserved among different species and has structural similarity to somatostatin. No receptor for UII has been molecularly identified from any species so far. GPR14 was cloned as an orphan G protein-coupled receptor with similarity to members of the somatostatin/opioid receptor family. We have now demonstrated that GPR14 is a high affinity receptor for UII and designate it UII-R1a. HEK293 cells and COS-7 cells transfected with rat GPR14 showed strong, dose-dependent calcium mobilization in response to fish, frog, and human UII. Radioligand binding analysis showed high affinity binding of UII to membrane preparations isolated from HEK293 cells stably expressing rat GPR14. In situ hybridization analysis showed that GPR14 was expressed in motor neurons of the spinal cord, smooth muscle cells of the bladder, and muscle cells of the heart. The identification of the first receptor for UII will allow better understanding of the physiological and pharmacological roles of UII.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10581185/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

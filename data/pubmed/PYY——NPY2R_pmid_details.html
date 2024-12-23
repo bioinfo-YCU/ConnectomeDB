@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>PYY——NPY2R - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for PYY——NPY2R</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab8632753')">8632753</button><button class="tablinks " onclick="openTab(event, 'tab7592910')">7592910</button><button class="tablinks " onclick="openTab(event, 'tab11408607')">11408607</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab8632753" class="tabcontent active">
+                    <h2>Expression cloning of a human brain neuropeptide Y Y2 receptor.</h2>
+                    <h3>Molecular pharmacology; 1996</h3>
+                    <p>The 36-amino acid peptide, neuropeptide Y (NPY), is a member of a peptide family that includes the endocrine peptides, peptide YY (PYY), and pancreatic polypeptide (PP). NPY receptors have been broadly subdivided into postsynaptic Y1 receptors and presynaptic Y2 receptors based on the preference of Pro34-substituted analogues for the Y1 receptors and carboxyl-terminal fragments for the Y2. A Y1 receptor has been cloned, and this receptor appears to mediate several effects of NPY, including vasoconstriction and anxiolysis in animal models. We report the cloning of a human brain Y2 receptor from a human brain library. Pools of clones were transiently expressed in COS-1 cells, and 125I-PYY binding pools were identified by autoradiography. After a single positive pool was detected in the original screening, a single clone was isolated by four rounds of sequential enrichment. The clone encoded a 381-amino acid protein of the heptahelix (seven TM) type. Amino acid identity of this receptor with the Y1 receptor was 31% overall with 40% identity in the TM regions. Comparison with the human PP1 receptor indicated 33% overall amino acid identity with 42% identity in the TM regions. Pharmacologically, the receptor exhibited high affinity for NPY, PYY, and carboxyl-terminal fragments of NPY and PYY. In addition, Pro34-substituted analogues had very low affinity. With the use of Northern blot analysis, high levels of Y2 mRNA were detected in a variety of brain regions with little expression in peripheral tissues. Thus, the receptor protein has the pharmacological properties and distribution of the human Y2 receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8632753/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7592910" class="tabcontent ">
+                    <h2>Expression cloning and pharmacological characterization of a human hippocampal neuropeptide Y/peptide YY Y2 receptor subtype.</h2>
+                    <h3>The Journal of biological chemistry; 1995</h3>
+                    <p>The pancreatic polypeptide family includes neuropeptide Y (NPY), one of the most abundant neuropeptides in the mammalian nervous system, as well as peptide YY (PYY) and pancreatic polypeptide (PP). This peptide family is involved in numerous physiological processes such as memory, pain, blood pressure, appetite, anxiety, and circadian rhythm. Of the multiple Y-type receptors proposed for PP family members, only the Y1 subtype was cloned previously. We now report the isolation of a human Y2 (hhY2) receptor cDNA by expression cloning from a human hippocampal cDNA library, using a 125I-PYY binding assay. hhY2 cDNA encodes a predicted protein of 381 amino acids with low amino acid identity to the human Y1 receptor (31% overall; 41% transmembrane). 125I-PYY binding to transiently expressed hY2 receptors was saturable (pKd = 10.17) and displaceable by human PP family members in rank order: PYY (pKi = 9.47) approximately NPY (pKi = 9.27) >> PP (pKi < 6) and by peptide analogs: NPY2-36 (pKi = 8.80) approximately NPY13-36 (pKi = 8.55) approximately C2-NPY (pKi = 8.54) > NPY26-36 (pKi = 6.51) approximately [Leu31,Pro34]NPY (pKi = 6.23). Human PYY decreased [cAMP] and increased intracellular [Ca2+] in hY2-transfected 293 cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7592910/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11408607" class="tabcontent ">
+                    <h2>The peptide YY-preferring receptor mediating inhibition of small intestinal secretion is a peripheral Y(2) receptor: pharmacological evidence and molecular cloning.</h2>
+                    <h3>Molecular pharmacology; 2001</h3>
+                    <p>A peptide YY (PYY)-preferring receptor [PYY > neuropeptide Y (NPY)] was previously characterized in rat small intestinal crypt cells, where it mediates inhibition of fluid secretion. Here, we investigated the possible status of this receptor as a peripheral Y(2) receptor in rats. Typical Y(2) agonists (PYY(3-36), NPY(3-36), NPY(13-36), C2-NPY) and very short PYY analogs (N-alpha-Ac-PYY(22-36) and N-alpha-Ac-PYY(25-36)) acting at the intestinal PYY receptor were tested for their ability to inhibit the binding of (125)I-PYY to membranes of rat intestinal crypt cells and of CHO cells stably transfected with the rat hippocampal Y(2) receptor cDNA. Similar PYY preference was observed and all analogs exhibited comparable high affinity in both binding assays. The same held true for the specific Y(2) antagonist BIIE0246 with a K(i) value of 6.5 and 9.0 nM, respectively. BIIE0246 completely abolished the inhibition of cAMP production by PYY in crypt cells and transfected CHO cells. Moreover, the antagonist 1) considerably reversed the PYY-induced reduction of short-circuit current in rat jejunum mucosa in Ussing chamber and 2) completely abolished the antisecretory action of PYY on vasoactive intestinal peptide (VIP)-induced fluid secretion in rat jejunum in vivo. Quantitative reverse transcription-polymerase chain reaction (RT-PCR) experiments showed that Y(2) receptor transcripts were present in intestinal crypt cells (3 x 10(2) molecules/100 ng RNA(T)) with no expression in villus cells, in complete agreement with the exclusive binding of PYY in crypt cells. Finally, a full-length Y(2) receptor was cloned by RT-PCR from rat intestinal crypt cells and also from human small intestine. We conclude that the so-called PYY-preferring receptor mediating inhibition of intestinal secretion is a peripheral Y(2) receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11408607/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

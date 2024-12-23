@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>BDNF——NTRK2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for BDNF——NTRK2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab7644540')">7644540</button><button class="tablinks " onclick="openTab(event, 'tab9312147')">9312147</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab7644540" class="tabcontent active">
+                    <h2>Brain-derived neurotrophic factor rapidly enhances synaptic transmission in hippocampal neurons via postsynaptic tyrosine kinase receptors.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1995</h3>
+                    <p>Although neurotrophins are primarily associated with long-term effects on neuronal survival and differentiation, recent studies have shown that acute changes in synaptic transmission can also be produced. In the hippocampus, an area critically involved in learning and memory, we have found that brain-derived neurotrophic factor (BDNF) rapidly enhanced synaptic efficacy through a previously unreported mechanism--increased postsynaptic responsiveness via a phosphorylation-dependent pathway. Within minutes of BDNF application to cultured hippocampal neurons, spontaneous firing rate was dramatically increased, as were the frequency and amplitude of excitatory postsynaptic currents. The increased frequency of postsynaptic currents resulted from the change in presynaptic firing. However, the increased amplitude was postsynaptic in origin because it was selectively blocked by intracellular injection of the tyrosine kinase receptor (Ntrk2/TrkB) inhibitor K-252a and potentiated by injection of the phosphatase inhibitor okadaic acid. These results suggest a role for BDNF in the modulation of synaptic transmission in the hippocampus.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7644540/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9312147" class="tabcontent ">
+                    <h2>Interactions between brain-derived neurotrophic factor and the TRKB receptor. Identification of two ligand binding domains in soluble TRKB by affinity separation and chemical cross-linking.</h2>
+                    <h3>The Journal of biological chemistry; 1997</h3>
+                    <p>The extracellular domain of the human neurotrophin TRKB receptor expressed in Chinese hamster ovary cells is a highly glycosylated protein, possessing binding ability for brain-derived neurotrophic factor (BDNF). Two distinct ligand binding domains of TRKB were isolated from proteolytic digests of the receptor by affinity separation on immobilized BDNF. One of these domains consists of amino acid residues 103-181 and contains both the third leucine-rich motif and the second cysteine cluster domain. The second domain is close to the second immunoglobulin-like domain (amino acid residues 342-394). Each of these two domains can bind BDNF independently. Disulfide linkages present in the first domain are necessary for BDNF binding, probably because of preservation of the native conformation. To study the second domain in greater detail, a truncated form of TRKB containing the second immunoglobulin-like domain (residues 248-398) was expressed in Escherichia coli. This domain was cross-linked to BDNF through a 1-ethyl-3-(3-dimethylaminopropyl)carbodiimide coupling reaction. Several synthetic peptides corresponding to amino acid residues 343-379 were able to bind immobilized BDNF. Amino acid substitution and cross-linking analysis indicated that amino acids Phe347, Asp354, and Tyr361 are intimately involved in BDNF binding. These results, obtained from a variety of experimental techniques, highlight the importance of two distinct regions of the extracellular domain of the TRKB receptor in binding BDNF.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9312147/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

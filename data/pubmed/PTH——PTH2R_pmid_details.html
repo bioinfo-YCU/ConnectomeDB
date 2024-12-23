@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>PTH——PTH2R - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for PTH——PTH2R</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab7797535')">7797535</button><button class="tablinks " onclick="openTab(event, 'tab9482662')">9482662</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab7797535" class="tabcontent active">
+                    <h2>Identification and functional expression of a receptor selectively recognizing parathyroid hormone, the PTH2 receptor.</h2>
+                    <h3>The Journal of biological chemistry; 1995</h3>
+                    <p>We have identified a G-protein-coupled receptor specifically activated by parathyroid hormone, which we refer to as the PTH2 receptor. Parathyroid hormone (PTH) and parathyroid hormone-related peptide (PTHrP, hypercalcemia of malignancy factor) activate a previously identified PTH/PTHrP receptor, which has a widespread tissue distribution. The PTH2 receptor is much more selective in ligand recognition and appears to have a more specific tissue distribution. It is activated by PTH and not by PTHrP and is particularly abundant in the brain and pancreas.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7797535/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9482662" class="tabcontent ">
+                    <h2>Multiple regions of ligand discrimination revealed by analysis of chimeric parathyroid hormone 2 (PTH2) and PTH/PTH-related peptide (PTHrP) receptors.</h2>
+                    <h3>Molecular endocrinology (Baltimore, Md.); 1998</h3>
+                    <p>PTH and PTH-related peptide (PTHrP) bind to the PTH/PTHrP receptor and stimulate cAMP accumulation with similar efficacy. Only PTH activates the PTH2 receptor. To examine the structural basis for this selectivity, we analyzed receptor chimeras in which the amino terminus and third extracellular domains of the two receptors were interchanged. All chimeric receptors bound radiolabeled PTH with high affinity. Transfer of the PTH2 receptor amino terminus to the PTH/PTHrP receptor eliminated high-affinity PTHrP binding and significantly decreased activation by PTHrP. A PTH/PTHrP receptor N terminus modified by deletion of the nonhomologous E2 domain transferred weak PTHrP interaction to the PTH2 receptor. Introduction of the PTH2 receptor third extracellular loop into the PTH/PTHrP receptor increased the EC50 for PTH and PTHrP, while preserving high-affinity PTH binding and eliminating high-affinity PTHrP binding. Similarly, transfer of the PTH/PTHrP receptor third extracellular loop preserved high-affinity PTH binding by the PTH2 receptor but decreased its activation. Return of Gln440 and Arg394, corresponding residues in the PTH/PTHrP and PTH2 receptor third extracellular loops, to the parent residue restored function of these receptors. Simultaneous interchange of wild-type amino termini and third extracellular loops eliminated agonist activation but not binding for both receptors. Function was restored by elimination of the E2 domain in the receptor with a PTH/PTHrP receptor N terminus and return of Gln440/Arg394 to the parent sequence in both receptors. These data suggest that the amino terminus and third extracellular loop of the PTH2 and PTH/PTHrP receptors interact similarly with PTH, and that both domains contribute to differential interaction with PTHrP.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9482662/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

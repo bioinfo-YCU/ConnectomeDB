@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>FGF1——FGFR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for FGF1——FGFR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10618369')">10618369</button><button class="tablinks " onclick="openTab(event, 'tab11069186')">11069186</button><button class="tablinks " onclick="openTab(event, 'tab14732692')">14732692</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10618369" class="tabcontent active">
+                    <h2>Structural interactions of fibroblast growth factor receptor with its ligands.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 2000</h3>
+                    <p>Fibroblast growth factors (FGFs) effect cellular responses by binding to FGF receptors (FGFRs). FGF bound to extracellular domains on the FGFR in the presence of heparin activates the cytoplasmic receptor tyrosine kinase through autophosphorylation. We have crystallized a complex between human FGF1 and a two-domain extracellular fragment of human FGFR2. The crystal structure, determined by multiwavelength anomalous diffraction analysis of the selenomethionyl protein, is a dimeric assemblage of 1:1 ligand:receptor complexes. FGF is bound at the junction between the two domains of one FGFR, and two such units are associated through receptor:receptor and secondary ligand:receptor interfaces. Sulfate ion positions appear to mark the course of heparin binding between FGF molecules through a basic region on receptor D2 domains. This dimeric assemblage provides a structural mechanism for FGF signal transduction.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10618369/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11069186" class="tabcontent ">
+                    <h2>Crystal structure of fibroblast growth factor receptor ectodomain bound to ligand and heparin.</h2>
+                    <h3>Nature; 2000</h3>
+                    <p>Fibroblast growth factors (FGFs) are a large family of structurally related proteins with a wide range of physiological and pathological activities. Signal transduction requires association of FGF with its receptor tyrosine kinase (FGFR) and heparan sulphate proteoglycan in a specific complex on the cell surface. Direct involvement of the heparan sulphate glycosaminoglycan polysaccharide in the molecular association between FGF and its receptor is essential for biological activity. Although crystal structures of binary complexes of FGF-heparin and FGF-FGFR have been described, the molecular architecture of the FGF signalling complex has not been elucidated. Here we report the crystal structure of the FGFR2 ectodomain in a dimeric form that is induced by simultaneous binding to FGF1 and a heparin decasaccharide. The complex is assembled around a central heparin molecule linking two FGF1 ligands into a dimer that bridges between two receptor chains. The asymmetric heparin binding involves contacts with both FGF1 molecules but only one receptor chain. The structure of the FGF1-FGFR2-heparin ternary complex provides a structural basis for the essential role of heparan sulphate in FGF signalling.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11069186/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab14732692" class="tabcontent ">
+                    <h2>Insights into the molecular basis for fibroblast growth factor receptor autoinhibition and ligand-binding promiscuity.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 2004</h3>
+                    <p>The prototypical fibroblast growth factor receptor (FGFR) extracellular domain consists of three Ig domains (D1-D3) of which the two membrane-proximal D2 and D3 domains and the interconnecting D2-D3 linker bear the determinants of ligand binding and specificity. In contrast, D1 and the D1-D2 linker are thought to play autoinhibitory roles in FGFR regulation. Here, we report the crystal structure of the three-Ig form of FGFR3c in complex with FGF1, an FGF that binds promiscuously to each of the seven principal FGFRs. In this structure, D1 and the D1-D2 linker are completely disordered, demonstrating that these regions are dispensable for FGF binding. Real-time binding experiments using surface plasmon resonance show that relative to two-Ig form, the three-Ig form of FGFR3c exhibits lower affinity for both FGF1 and heparin. Importantly, we demonstrate that this autoinhibition is mediated by intramolecular interactions of D1 and the D1-D2 linker with the minimal FGF and heparin-binding D2-D3 region. As in the FGF1-FGFR2c structure, but not the FGF1-FGFR1c structure, the alternatively spliced betaC'-betaE loop is ordered and interacts with FGF1 in the FGF1-FGFR3c structure. However, in contrast to the FGF1-FGFR2c structure in which the betaC'-betaE loop interacts with the beta-trefoil core region of FGF1, in the FGF1-FGFR3c structure, this loop interacts extensively with the N-terminal region of FGF1, underscoring the importance of the FGF1 N terminus in conferring receptor-binding affinity and promiscuity. Importantly, comparison of the three FGF1-FGFR structures shows that the flexibility of the betaC'-betaE loop is a major determinant of ligand-binding specificity and promiscuity.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14732692/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

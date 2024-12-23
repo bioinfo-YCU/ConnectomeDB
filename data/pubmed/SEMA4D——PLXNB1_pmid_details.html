@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>SEMA4D——PLXNB1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for SEMA4D——PLXNB1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10520995')">10520995</button><button class="tablinks " onclick="openTab(event, 'tab12198496')">12198496</button><button class="tablinks " onclick="openTab(event, 'tab11937491')">11937491</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10520995" class="tabcontent active">
+                    <h2>Plexins are a large family of receptors for transmembrane, secreted, and GPI-anchored semaphorins in vertebrates.</h2>
+                    <h3>Cell; 1999</h3>
+                    <p>In Drosophila, plexin A is a functional receptor for semaphorin-1a. Here we show that the human plexin gene family comprises at least nine members in four subfamilies. Plexin-B1 is a receptor for the transmembrane semaphorin Sema4D (CD100), and plexin-C1 is a receptor for the GPI-anchored semaphorin Sema7A (Sema-K1). Secreted (class 3) semaphorins do not bind directly to plexins, but rather plexins associate with neuropilins, coreceptors for these semaphorins. Plexins are widely expressed: in neurons, the expression of a truncated plexin-A1 protein blocks axon repulsion by Sema3A. The cytoplasmic domain of plexins associates with a tyrosine kinase activity. Plexins may also act as ligands mediating repulsion in epithelial cells in vitro. We conclude that plexins are receptors for multiple (and perhaps all) classes of semaphorins, either alone or in combination with neuropilins, and trigger a novel signal transduction pathway controlling cell repulsion.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10520995/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12198496" class="tabcontent ">
+                    <h2>The semaphorin 4D receptor controls invasive growth by coupling with Met.</h2>
+                    <h3>Nature cell biology; 2002</h3>
+                    <p>Semaphorins are cell surface and soluble signals that control axonal guidance. Recently, semaphorin receptors (plexins) have been discovered and shown to be widely expressed. Their biological activities outside the nervous system and the signal transduction mechanism(s) they utilize are largely unknown. Here, we show that in epithelial cells, Semaphorin 4D (Sema 4D) triggers invasive growth, a complex programme that includes cell#150;cell dissociation, anchorage-independent growth and branching morphogenesis. Interestingly, the same response is also controlled by scatter factors through their tyrosine kinase receptors, which share striking structural homology with plexins in their extracellular domain. We found that in cells expressing the endogenous proteins, Plexin B1 (the Sema 4D Receptor) and Met (the Scatter Factor 1/ Hepatocyte Growth Factor Receptor) associate in a complex. In addition, binding of Sema 4D to Plexin B1 stimulates the tyrosine kinase activity of Met, resulting in tyrosine phosphorylation of both receptors. Finally, cells lacking Met expression do not respond to Sema 4D unless exogenous Met is expressed. This work identifies a novel biological function of semaphorins and suggests the involvement of an unexpected signalling mechanism, namely, the coupling of a plexin to a tyrosine kinase receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12198496/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11937491" class="tabcontent ">
+                    <h2>The plexin-B1/Rac interaction inhibits PAK activation and enhances Sema4D ligand binding.</h2>
+                    <h3>Genes & development; 2002</h3>
+                    <p>The small GTPase Rac has been implicated in growth cone guidance mediated by semaphorins and their receptors. Here we demonstrate that plexin-B1, a receptor for Semaphorin4D (Sema4D), and p21-activated kinase (PAK) can compete for the interaction with active Rac and plexin-B1 can inhibit Rac-induced PAK activation. We have also demonstrated that expression of active Rac enhances the ability of plexin-B1 to interact with Sema4D. Active Rac stimulates the localization of plexin-B1 to the cell surface. The enhancement in Sema4D binding depends on the ability of Rac to bind plexin-B1. These observations support a model where signaling between Rac and plexin-B1 is bidirectional; Rac modulates plexin-B1 activity and plexin-B1 modulates Rac function.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11937491/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

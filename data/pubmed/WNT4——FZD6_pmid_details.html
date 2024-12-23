@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>WNT4——FZD6 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for WNT4——FZD6</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15265686')">15265686</button><button class="tablinks " onclick="openTab(event, 'tab21541287')">21541287</button><button class="tablinks " onclick="openTab(event, 'tab15265686')">15265686</button><button class="tablinks " onclick="openTab(event, 'tab15265686')">15265686</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15265686" class="tabcontent active">
+                    <h2>Wnt-4 activates the canonical beta-catenin-mediated Wnt pathway and binds Frizzled-6 CRD: functional implications of Wnt/beta-catenin activity in kidney epithelial cells.</h2>
+                    <h3>Experimental cell research; 2004</h3>
+                    <p>The Wnt signaling pathway is central to the development of all animals and to cancer progression, yet largely unknown are the pairings of secreted Wnt ligands to their respective Frizzled transmembrane receptors or, in many cases, the relative contributions of canonical (beta-catenin/LEF/TCF) versus noncanonical Wnt signals. Specifically, in the kidney where Wnt-4 is essential for the mesenchymal to epithelial transition that generates the tissue's collecting tubules, the corresponding Frizzled receptor(s) and downstream signaling mechanism(s) are unclear. In this report, we addressed these issues using Madin-Darby Canine Kidney (MDCK) cells, which are competent to form tubules in vitro. Employing established reporter constructs of canonical Wnt/beta-catenin pathway activity, we have determined that MDCK cells are highly responsive to Wnt-4, -1, and -3A, but not to Wnt-5A and control conditions, precisely reflecting functional findings from Wnt-4 null kidney mesenchyme ex vivo rescue studies. We have confirmed that Wnt-4's canonical signaling activity in MDCK cells is mediated by downstream effectors of the Wnt/beta-catenin pathway using beta-Engrailed and dnTCF-4 constructs that suppress this pathway. We have further found that MDCK cells express the Frizzled-6 receptor and that Wnt-4 forms a biochemical complex with the Frizzled-6 CRD. Since Frizzled-6 did not appear to transduce Wnt-4's canonical signal, data supported recently by Golan et al., there presumably exists another as yet unknown Frizzled receptor(s) mediating Wnt-4 activation of beta-catenin/LEF/TCF. Finally, we report that canonical Wnt/beta-catenin signals cells help maintain cell growth and survival in MDCK cells but do not contribute to standard HGF-induced (nonphysiologic) tubule formation. Our results in combination with work from Xenopus laevis (not shown) lead us to believe that Wnt-4 binds both canonical and noncanonical Frizzled receptors, thereby activating Wnt signaling pathways that may each contribute to kidney tubulogenesis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15265686/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab21541287" class="tabcontent ">
+                    <h2>Wnt4 enhances murine hematopoietic progenitor cell expansion through a planar cell polarity-like pathway.</h2>
+                    <h3>PloS one; 2011</h3>
+                    <p>While the role of canonical (β-catenin-mediated) Wnt signaling in hematolymphopoiesis has been studied extensively, little is known of the potential importance of non-canonical Wnt signals in hematopoietic cells. Wnt4 is one of the Wnt proteins that can elicit non-canonical pathways. We have previously shown that retroviral overexpression of Wnt4 by hematopoietic cells increased thymic cellularity as well as the frequency of early thymic progenitors and bone marrow hematopoietic progenitor cells (HPCs). However, the molecular pathways responsible for its effect in HPCs are not known.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/21541287/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15265686" class="tabcontent ">
+                    <h2>Wnt-4 activates the canonical beta-catenin-mediated Wnt pathway and binds Frizzled-6 CRD: functional implications of Wnt/beta-catenin activity in kidney epithelial cells.</h2>
+                    <h3>Experimental cell research; 2004</h3>
+                    <p>The Wnt signaling pathway is central to the development of all animals and to cancer progression, yet largely unknown are the pairings of secreted Wnt ligands to their respective Frizzled transmembrane receptors or, in many cases, the relative contributions of canonical (beta-catenin/LEF/TCF) versus noncanonical Wnt signals. Specifically, in the kidney where Wnt-4 is essential for the mesenchymal to epithelial transition that generates the tissue's collecting tubules, the corresponding Frizzled receptor(s) and downstream signaling mechanism(s) are unclear. In this report, we addressed these issues using Madin-Darby Canine Kidney (MDCK) cells, which are competent to form tubules in vitro. Employing established reporter constructs of canonical Wnt/beta-catenin pathway activity, we have determined that MDCK cells are highly responsive to Wnt-4, -1, and -3A, but not to Wnt-5A and control conditions, precisely reflecting functional findings from Wnt-4 null kidney mesenchyme ex vivo rescue studies. We have confirmed that Wnt-4's canonical signaling activity in MDCK cells is mediated by downstream effectors of the Wnt/beta-catenin pathway using beta-Engrailed and dnTCF-4 constructs that suppress this pathway. We have further found that MDCK cells express the Frizzled-6 receptor and that Wnt-4 forms a biochemical complex with the Frizzled-6 CRD. Since Frizzled-6 did not appear to transduce Wnt-4's canonical signal, data supported recently by Golan et al., there presumably exists another as yet unknown Frizzled receptor(s) mediating Wnt-4 activation of beta-catenin/LEF/TCF. Finally, we report that canonical Wnt/beta-catenin signals cells help maintain cell growth and survival in MDCK cells but do not contribute to standard HGF-induced (nonphysiologic) tubule formation. Our results in combination with work from Xenopus laevis (not shown) lead us to believe that Wnt-4 binds both canonical and noncanonical Frizzled receptors, thereby activating Wnt signaling pathways that may each contribute to kidney tubulogenesis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15265686/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15265686" class="tabcontent ">
+                    <h2>Wnt-4 activates the canonical beta-catenin-mediated Wnt pathway and binds Frizzled-6 CRD: functional implications of Wnt/beta-catenin activity in kidney epithelial cells.</h2>
+                    <h3>Experimental cell research; 2004</h3>
+                    <p>The Wnt signaling pathway is central to the development of all animals and to cancer progression, yet largely unknown are the pairings of secreted Wnt ligands to their respective Frizzled transmembrane receptors or, in many cases, the relative contributions of canonical (beta-catenin/LEF/TCF) versus noncanonical Wnt signals. Specifically, in the kidney where Wnt-4 is essential for the mesenchymal to epithelial transition that generates the tissue's collecting tubules, the corresponding Frizzled receptor(s) and downstream signaling mechanism(s) are unclear. In this report, we addressed these issues using Madin-Darby Canine Kidney (MDCK) cells, which are competent to form tubules in vitro. Employing established reporter constructs of canonical Wnt/beta-catenin pathway activity, we have determined that MDCK cells are highly responsive to Wnt-4, -1, and -3A, but not to Wnt-5A and control conditions, precisely reflecting functional findings from Wnt-4 null kidney mesenchyme ex vivo rescue studies. We have confirmed that Wnt-4's canonical signaling activity in MDCK cells is mediated by downstream effectors of the Wnt/beta-catenin pathway using beta-Engrailed and dnTCF-4 constructs that suppress this pathway. We have further found that MDCK cells express the Frizzled-6 receptor and that Wnt-4 forms a biochemical complex with the Frizzled-6 CRD. Since Frizzled-6 did not appear to transduce Wnt-4's canonical signal, data supported recently by Golan et al., there presumably exists another as yet unknown Frizzled receptor(s) mediating Wnt-4 activation of beta-catenin/LEF/TCF. Finally, we report that canonical Wnt/beta-catenin signals cells help maintain cell growth and survival in MDCK cells but do not contribute to standard HGF-induced (nonphysiologic) tubule formation. Our results in combination with work from Xenopus laevis (not shown) lead us to believe that Wnt-4 binds both canonical and noncanonical Frizzled receptors, thereby activating Wnt signaling pathways that may each contribute to kidney tubulogenesis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15265686/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

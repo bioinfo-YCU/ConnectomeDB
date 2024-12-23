@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL5——CCR3 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL5——CCR3</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab8642344')">8642344</button><button class="tablinks " onclick="openTab(event, 'tab8642344')">8642344</button><button class="tablinks " onclick="openTab(event, 'tab9289016')">9289016</button><button class="tablinks " onclick="openTab(event, 'tab8642344')">8642344</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab8642344" class="tabcontent active">
+                    <h2>Cloning, expression, and characterization of the human eosinophil eotaxin receptor.</h2>
+                    <h3>The Journal of experimental medicine; 1996</h3>
+                    <p>Although there is a mounting body of evidence that eosinophils are recruited to sites of allergic inflammation by a number of beta-chemokines, particularly eotaxin and RANTES, the receptor that mediates these actions has not been identified. We have now cloned a G protein-coupled receptor, CC CKR3, from human eosinophils which, when stably expressed in AML14.3D10 cells bound eotaxin, MCP-3 and RANTES with Kds of 0.1, 2.7 and 3.1 nM, respectively. CC CKR3 also bound MCP-1 with lower affinity, but did not bind MIP-1 alpha or MIP-1 beta. Eotaxin, RANTES, and to a lessor extent MCP-3, but not the other chemokines, activated CC CKR3 as determined by their ability to stimulate a Ca(2+) -flux. Competition binding studies on primary eosinophils gave binding affinities for the different chemokines which were indistinguishable from those measured with CC CKR3. Since CC CKR3 is prominently expressed in eosinophils we conclude that CC CKR3 is the eosinophil eotaxin receptor. Eosinophils also express a much lower level of a second chemokine receptor, CC CKR1, which appears to be responsible for the effects of MIP-1 alpha.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8642344/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8642344" class="tabcontent ">
+                    <h2>Cloning, expression, and characterization of the human eosinophil eotaxin receptor.</h2>
+                    <h3>The Journal of experimental medicine; 1996</h3>
+                    <p>Although there is a mounting body of evidence that eosinophils are recruited to sites of allergic inflammation by a number of beta-chemokines, particularly eotaxin and RANTES, the receptor that mediates these actions has not been identified. We have now cloned a G protein-coupled receptor, CC CKR3, from human eosinophils which, when stably expressed in AML14.3D10 cells bound eotaxin, MCP-3 and RANTES with Kds of 0.1, 2.7 and 3.1 nM, respectively. CC CKR3 also bound MCP-1 with lower affinity, but did not bind MIP-1 alpha or MIP-1 beta. Eotaxin, RANTES, and to a lessor extent MCP-3, but not the other chemokines, activated CC CKR3 as determined by their ability to stimulate a Ca(2+) -flux. Competition binding studies on primary eosinophils gave binding affinities for the different chemokines which were indistinguishable from those measured with CC CKR3. Since CC CKR3 is prominently expressed in eosinophils we conclude that CC CKR3 is the eosinophil eotaxin receptor. Eosinophils also express a much lower level of a second chemokine receptor, CC CKR1, which appears to be responsible for the effects of MIP-1 alpha.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8642344/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9289016" class="tabcontent ">
+                    <h2>Distinct but overlapping epitopes for the interaction of a CC-chemokine with CCR1, CCR3 and CCR5.</h2>
+                    <h3>Biochemistry; 1997</h3>
+                    <p>Chemokines play an important role in inflammation. The mechanism via which they bind to more than one receptor and activate them is not well understood. The chemokines are thought to interact with their receptors via two distinct sites, one necessary for binding and the other for activation of signal transduction. In this study we have used alanine scanning mutagenesis to identify residues on RANTES that specifically interact with its receptors CCR1, CCR3, and CCR5 for binding and activation. Residues within a potential receptor binding site known as the N-loop (residues 12-20) and near the N-terminus of RANTES were individually mutated to alanine. The results of this study show that, within the N-loop, the side chain of R17 is necessary for RANTES binding to CCR1, F12 for binding to CCR3, and F12 and I15 for binding to CCR5, thus forming distinct but overlapping binding epitopes. In addition, our finding that P2 is necessary for binding to CCR5 is the first to show that a residue near the N-terminus of a CC-chemokine is involved in binding to a receptor. We have also found that P2, D6, and T7 near the N-terminus are involved in activating signal transduction via CCR1, P2 and Y3 via CCR3, and Y3 and D6 via CCR5. These results indicate that RANTES interacts with each of its receptors in a distinct and specific manner and provide further evidence to support the two-site model of interaction between chemokines and their receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9289016/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8642344" class="tabcontent ">
+                    <h2>Cloning, expression, and characterization of the human eosinophil eotaxin receptor.</h2>
+                    <h3>The Journal of experimental medicine; 1996</h3>
+                    <p>Although there is a mounting body of evidence that eosinophils are recruited to sites of allergic inflammation by a number of beta-chemokines, particularly eotaxin and RANTES, the receptor that mediates these actions has not been identified. We have now cloned a G protein-coupled receptor, CC CKR3, from human eosinophils which, when stably expressed in AML14.3D10 cells bound eotaxin, MCP-3 and RANTES with Kds of 0.1, 2.7 and 3.1 nM, respectively. CC CKR3 also bound MCP-1 with lower affinity, but did not bind MIP-1 alpha or MIP-1 beta. Eotaxin, RANTES, and to a lessor extent MCP-3, but not the other chemokines, activated CC CKR3 as determined by their ability to stimulate a Ca(2+) -flux. Competition binding studies on primary eosinophils gave binding affinities for the different chemokines which were indistinguishable from those measured with CC CKR3. Since CC CKR3 is prominently expressed in eosinophils we conclude that CC CKR3 is the eosinophil eotaxin receptor. Eosinophils also express a much lower level of a second chemokine receptor, CC CKR1, which appears to be responsible for the effects of MIP-1 alpha.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8642344/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

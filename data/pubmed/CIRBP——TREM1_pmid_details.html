@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CIRBP——TREM1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CIRBP——TREM1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab32027618')">32027618</button><button class="tablinks " onclick="openTab(event, 'tab32506691')">32506691</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab32027618" class="tabcontent active">
+                    <h2>Extracellular CIRP as an endogenous TREM-1 ligand to fuel inflammation in sepsis.</h2>
+                    <h3>JCI insight; 2020</h3>
+                    <p>Extracellular cold-inducible RNA-binding protein (eCIRP) is a recently discovered damage-associated molecular pattern. Understanding the precise mechanism by which it exacerbates inflammation is essential. Here we identified that eCIRP is a new biologically active endogenous ligand of triggering receptor expressed on myeloid cells-1 (TREM-1), fueling inflammation in sepsis. Surface plasmon resonance revealed a strong binding affinity between eCIRP and TREM-1, and fluorescence resonance energy transfer assay confirmed eCIRP's interaction with TREM-1 in macrophages. Targeting TREM-1 by its siRNA or a decoy peptide, LP17, or by using TREM-1-/- mice dramatically reduced eCIRP-induced inflammation. We developed a potentially novel 7-aa peptide derived from human eCIRP, M3, which blocked the interaction of TREM-1 and eCIRP. M3 suppressed inflammation induced by eCIRP or agonist TREM-1 antibody cross-linking in murine macrophages or human peripheral blood monocytes. M3 also inhibited eCIRP-induced systemic inflammation and tissue injury. Treatment with M3 further protected mice from sepsis, improved acute lung injury, and increased survival. Thus, we have discovered a potentially novel TREM-1 ligand and developed a new peptide, M3, to block eCIRP-TREM-1 interaction and improve outcomes in sepsis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/32027618/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab32506691" class="tabcontent ">
+                    <h2>Extracellular CIRP and TREM-1 axis promotes ICAM-1-Rho-mediated NETosis in sepsis.</h2>
+                    <h3>FASEB journal : official publication of the Federation of American Societies for Experimental Biology; 2020</h3>
+                    <p>Extracellular cold-inducible RNA-binding protein (eCIRP) is a damage-associated molecular pattern (DAMP). Intercellular adhesion molecule-1 (ICAM-1) expressing neutrophils produce excessive amounts of neutrophil extracellular traps (NETs). We reveal that eCIRP generates ICAM-1</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/32506691/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

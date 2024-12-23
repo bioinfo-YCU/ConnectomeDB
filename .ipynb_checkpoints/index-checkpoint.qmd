@@ -1,0 +1,76 @@
+---
+title: " "
+format: 
+    dashboard:
+        orientation: rows
+        scrolling: false 
+execute:
+  echo: false
+extensions:
+    fontawesome
+---
+## Row
+
+ <h2> {{< fa database >}} Welcome to ConnectomeDB: Comprehensive Ligand Receptor (LR) Pairs Database</h2>
+[{{< fa arrow-right >}} **Proceed to Database**](database.qmd){style="font-size: 1.5em;"}
+
+## Row {.flow}
+
+<img src="data/image/human.png" alt="manAndWoman" style="width:68%; margin:auto; display:block;">
+
+```{python}
+#| content: valuebox
+#| title: "# of LR Pairs"
+import sys
+import os
+sys.path.append(os.path.abspath("src"))  # Add src directory to path
+from createDataTable import lrPairsCount, ligandCount, receptorCount, sourceCount, MouseLigandCount, MouseReceptorCount, RatLigandCount, RatReceptorCount
+dict(
+  icon = "server",
+  value = f"{lrPairsCount:,}"
+)
+```
+
+```{python}
+#| content: valuebox
+#| title: "# of Ligands & Receptors"
+dict(
+  # icon = "newspaper",
+  value = f"{ligandCount:,} & {receptorCount:,}"
+)
+```
+
+```{python}
+#| content: valuebox
+#| title: "# of Evidence (PMID)"
+dict(
+  icon = "map",
+  value = f"{sourceCount:,}"
+)
+```
+
+## Row {.flow}
+
+<img src="data/image/mouse.png" alt="mouse" style="width:50%; margin:auto;">
+
+```{python}
+#| content: valuebox
+#| title: "# of Mouse L & R Orthologs"
+dict(
+  # icon = "newspaper",
+  value = f"{MouseLigandCount:,} & {MouseReceptorCount:,}"
+)
+```
+
+<img src="data/image/rat.png" alt="rat" style="width:50%; margin:auto;">
+
+```{python}
+#| content: valuebox
+#| title: "# of Rat L & R Orthologs"
+dict(
+  # icon = "newspaper",
+  value = f"{RatLigandCount:,} & {RatReceptorCount:,}"
+)
+```
+
+

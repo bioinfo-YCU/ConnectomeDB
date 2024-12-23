@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL13——CCR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL13——CCR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9195948')">9195948</button><button class="tablinks " onclick="openTab(event, 'tab9276730')">9276730</button><button class="tablinks " onclick="openTab(event, 'tab12554737')">12554737</button><button class="tablinks " onclick="openTab(event, 'tab12149192')">12149192</button><button class="tablinks " onclick="openTab(event, 'tab9195948')">9195948</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9195948" class="tabcontent active">
+                    <h2>Cloning, in vitro expression, and functional characterization of a novel human CC chemokine of the monocyte chemotactic protein (MCP) family (MCP-4) that binds and signals through the CC chemokine receptor 2B.</h2>
+                    <h3>The Journal of biological chemistry; 1997</h3>
+                    <p>Here we describe the characterization of a novel human CC chemokine, tentatively named monocyte chemotactic protein (MCP-4). This chemokine was detected by random sequencing of expressed sequence tags in cDNA libraries. The full-length cDNA revealed an open reading frame for a 98-amino acid residue protein, and a sequence alignment with known CC chemokines showed high levels of similarity (59-62%) with MCP-1, MCP-3, and eotaxin. MCP-4 cDNA was cloned into Drosophila S2 cells, and the mature protein (residues 24-98) was purified from the conditioned medium. Recombinant MCP-4 induced a potent chemotactic response (EC50 = 2.88 +/- 0.15 nM) and a transient rise in cytosolic calcium concentration in fresh human peripheral blood monocytes but not in neutrophils. Binding studies in monocytes showed that MCP-4 and MCP-3 were very potent in displacing high affinity binding of 125I-MCP-1 (IC50 for MCP-4, MCP-3, and unlabeled MCP-1 of 2.1 +/- 1.4, 0.85-1.6, and 0.7 +/- 0.2 nM respectively), suggesting that all three chemokines interact with the CC chemokine receptor-2 (MCP-1 receptor). This was confirmed in binding studies with Chinese hamster ovary cells, stably transfected with the CC chemokine 2B receptor. Northern blot analysis in extracts of normal human tissues showed expression of mRNA for MCP-4 in small intestine, thymus, and colon, but the level of protein expression was too low to be detected in Western blot analysis. However, expression of MCP-4 protein was demonstrated by immunohistochemistry in human atherosclerotic lesion and found to be associated with endothelial cells and macrophages.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9195948/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9276730" class="tabcontent ">
+                    <h2>High expression of the chemokine receptor CCR3 in human blood basophils. Role in activation by eotaxin, MCP-4, and other chemokines.</h2>
+                    <h3>The Journal of clinical investigation; 1997</h3>
+                    <p>Eosinophil leukocytes express high numbers of the chemokine receptor CCR3 which binds eotaxin, monocyte chemotactic protein (MCP)-4, and some other CC chemokines. In this paper we show that CCR3 is also highly expressed on human blood basophils, as indicated by Northern blotting and flow cytometry, and mediates mainly chemotaxis. Eotaxin and MCP-4 elicited basophil migration in vitro with similar efficacy as regulated upon activation normal T cells expressed and secreted (RANTES) and MCP-3. They also induced the release of histamine and leukotrienes in IL-3-primed basophils, but their efficacy was lower than that of MCP-1 and MCP-3, which were the most potent stimuli of exocytosis. Pretreatment of the basophils with a CCR3-blocking antibody abrogated the migration induced by eotaxin, RANTES, and by low to optimal concentrations of MCP-4, but decreased only minimally the response to MCP-3. The CCR3-blocking antibody also affected exocytosis: it abrogated histamine and leukotriene release induced by eotaxin, and partially inhibited the response to RANTES and MCP-4. In contrast, the antibody did not affect the responses induced by MCP-1, MCP-3, and macrophage inflammatory protein-1alpha, which may depend on CCR1 and CCR2, two additional receptors detected by Northern blotting with basophil RNA. This study demonstrates that CCR3 is the major receptor for eotaxin, RANTES, and MCP-4 in human basophils, and suggests that basophils and eosinophils, which are the characteristic effector cells of allergic inflammation, depend largely on CCR3 for migration towards different chemokines into inflamed tissues.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9276730/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12554737" class="tabcontent ">
+                    <h2>A highly selective CCR2 chemokine agonist encoded by human herpesvirus 6.</h2>
+                    <h3>The Journal of biological chemistry; 2003</h3>
+                    <p>The chemokine-like, secreted protein product of the U83 gene from human herpesvirus 6, here named vCCL4, was chemically synthesized to be characterized in a complete library of the 18 known human chemokine receptors expressed individually in stably transfected cell lines. vCCL4 was found to cause calcium mobilization as efficiently as the endogenous chemokine ligand CCL2 through the CCR2 receptor, whereas the virally encoded chemokine did not affect any of the other 17 human chemokine receptors tested. Mutual cross-desensitization between CCL2 and vCCL4 was demonstrated in the CCR2-transfected cells. The affinity of vCCL4 for the CCR2 receptor was 79 nm as determined in competition binding against radioactively labeled CCL2. In the murine pre-B lymphocyte cell line L1.2 stably transfected with the CCR2 receptor, vCCL4 acted as a relatively low potency but highly efficacious chemoattractant being equally or more efficacious in causing cell migration than CCL2 and CCL7 and considerably more efficacious than CCL8 and CCL13. It is concluded that human herpesvirus 6 encodes a highly selective and efficacious CCR2 agonist, which will attract CCR2 expressing cells, for example macrophages and monocytes, conceivably for the virus to infect and to establish latency in. It is suggested that vCCL4 during reactivation of the virus in for example monocyte-derived microglia could perhaps be involved in the pathogenesis of the CCR2-dependent disease, multiple sclerosis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12554737/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12149192" class="tabcontent ">
+                    <h2>Matrix metalloproteinase processing of monocyte chemoattractant proteins generates CC chemokine receptor antagonists with anti-inflammatory properties in vivo.</h2>
+                    <h3>Blood; 2002</h3>
+                    <p>Monocyte chemoattractant protein (MCP)-3 is inactivated upon cleavage by the matrix metalloproteinase (MMP) gelatinase A (MMP-2). We investigated the susceptibility to proteolytic processing of the 4 human MCPs by 8 recombinant MMPs to determine whether MCP-3 is an isolated example or represents a general susceptibility of chemokines to proteolytic inactivation by these important inflammatory proteases. In addition to MMP-2, MCP-3 is efficiently cleaved by membrane type 1 (MT1)-MMP, the cellular activator of MMP-2, and by collagenase-1 and collagenase-3 (MMP-1, MMP-13) and stromelysin-1 (MMP-3). Specificity was shown by absence of cleavage by matrilysin (MMP-7) and the leukocytic MMPs neutrophil collagenase (MMP-8) and gelatinase B (MMP-9). The closely related chemokines MCP-1, MCP-2, and MCP-4 were not cleaved by MMP-2 or MT1-MMP, but were cleaved by MMP-1 and MMP-3 with varying efficiency. MCPs were typically cleaved between residues 4 and 5, but MCP-4 was further processed at Val7-Pro8. Synthetic MCP analogs corresponding to the MMP-cleaved forms bound CC chemokine receptor (CCR)-2 and CCR-3, but lacked chemoattractant activity in pre-B cells transfected with CCR-2 and CCR-3 or in THP-1 monocytic cells, a transformed leukemic cell line. Moreover, the truncated products of MCP-2 and MCP-4, like MCP-3, were potent antagonists of their cognate CC chemokine receptors in transwell cell migration assays in vitro. When they were injected 24 hours after the initiation of carrageenan-induced inflammation in rat paws, their in vivo antagonist activities were revealed by a greater than 66% reduction in inflammatory edema progression after 12 hours. We propose that MMPs have an important role in modulating inflammatory and immune responses by processing chemokines in wound healing and in disease.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12149192/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9195948" class="tabcontent ">
+                    <h2>Cloning, in vitro expression, and functional characterization of a novel human CC chemokine of the monocyte chemotactic protein (MCP) family (MCP-4) that binds and signals through the CC chemokine receptor 2B.</h2>
+                    <h3>The Journal of biological chemistry; 1997</h3>
+                    <p>Here we describe the characterization of a novel human CC chemokine, tentatively named monocyte chemotactic protein (MCP-4). This chemokine was detected by random sequencing of expressed sequence tags in cDNA libraries. The full-length cDNA revealed an open reading frame for a 98-amino acid residue protein, and a sequence alignment with known CC chemokines showed high levels of similarity (59-62%) with MCP-1, MCP-3, and eotaxin. MCP-4 cDNA was cloned into Drosophila S2 cells, and the mature protein (residues 24-98) was purified from the conditioned medium. Recombinant MCP-4 induced a potent chemotactic response (EC50 = 2.88 +/- 0.15 nM) and a transient rise in cytosolic calcium concentration in fresh human peripheral blood monocytes but not in neutrophils. Binding studies in monocytes showed that MCP-4 and MCP-3 were very potent in displacing high affinity binding of 125I-MCP-1 (IC50 for MCP-4, MCP-3, and unlabeled MCP-1 of 2.1 +/- 1.4, 0.85-1.6, and 0.7 +/- 0.2 nM respectively), suggesting that all three chemokines interact with the CC chemokine receptor-2 (MCP-1 receptor). This was confirmed in binding studies with Chinese hamster ovary cells, stably transfected with the CC chemokine 2B receptor. Northern blot analysis in extracts of normal human tissues showed expression of mRNA for MCP-4 in small intestine, thymus, and colon, but the level of protein expression was too low to be detected in Western blot analysis. However, expression of MCP-4 protein was demonstrated by immunohistochemistry in human atherosclerotic lesion and found to be associated with endothelial cells and macrophages.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9195948/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>HLA-C——KIR2DL1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for HLA-C——KIR2DL1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15607823')">15607823</button><button class="tablinks " onclick="openTab(event, 'tab10429675')">10429675</button><button class="tablinks " onclick="openTab(event, 'tab9378975')">9378975</button><button class="tablinks " onclick="openTab(event, 'tab11323700')">11323700</button><button class="tablinks " onclick="openTab(event, 'tab10820396')">10820396</button><button class="tablinks " onclick="openTab(event, 'tab11163076')">11163076</button><button class="tablinks " onclick="openTab(event, 'tab12794140')">12794140</button><button class="tablinks " onclick="openTab(event, 'tab11009104')">11009104</button><button class="tablinks " onclick="openTab(event, 'tab12454284')">12454284</button><button class="tablinks " onclick="openTab(event, 'tab9686591')">9686591</button><button class="tablinks " onclick="openTab(event, 'tab9768753')">9768753</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15607823" class="tabcontent active">
+                    <h2>A HLA-Cw6 specific single-chain antibody fragment (scFv) recognizing a natural killer cell receptor epitope.</h2>
+                    <h3>Molecular immunology; 2005</h3>
+                    <p>Major histocompatibility complex (MHC) class I molecules induce inhibitory signals on natural killer (NK) cells via killer cell immunoglobulin-like receptors (KIR). We recently reported a human single-chain antibody (scFv#1), which recognizes an epitope on HLA-Cw6 (genotype: *0602). Flow cytometry showed scFv#1 binding to HLA-Cw6 (strong) and also to HLA-Cw2, 4, 5 (very weak) but not to HLA-Cw1, 3, 7, 8. The presumptive epitope of the antibody fragment, which includes residues Asn77 and Lys80 was verified by introducing point mutations into HLA-Cw6 encoding cDNAs. Asn77 --> Ser77 (N77S) and Lys80- -> Asn80 (K80N) mutants of Cw6 lost scFv#1 binding capacity whereas an additional mutation at aa position 90 (Asp-->Ala, D90A) did not influence scFv#1 binding characteristics. Since residues 77 and 80 of HLA-C are directly involved in KIR/MHC interaction, we expected the induction of target cell lysis upon addition of scFv#1 when bringing NK and HLA-Cw6 positive cells together. To prove this interference, we performed Cr-release assays, using Cw*0602 and mock-transfected K562 erythroleukemia cells as targets and freshly prepared peripheral blood NK cells as effector cells. scFv#1 appeared to influence KIR on ligand binding and restored lysis at low effector to target (E/T) ratios. Pan HLA class I antibody W6/32 did not show such effects. Taken together scFv#1 binding patterns with mutagenized HLA-Cw6 and Cr-release assays are strong evidence that the scFv#1 epitope on HLA-Cw6 is at or close to the binding site of CD158a.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15607823/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10429675" class="tabcontent ">
+                    <h2>Structure of human histocompatibility leukocyte antigen (HLA)-Cw4, a ligand for the KIR2D natural killer cell inhibitory receptor.</h2>
+                    <h3>The Journal of experimental medicine; 1999</h3>
+                    <p>The crystal structure of the human class I major histocompatibility complex molecule, human histocompatibility leukocyte antigen (HLA)-Cw4, the ligand for a natural killer (NK) cell inhibitory receptor, has been determined, complexed with a nonameric consensus peptide (QYDDAVYKL). Relative to HLA-A2, the peptide binding groove is widened around the COOH terminus of the alpha 1 helix, which contains residues that determine the specificity of HLA-Cw4 for the inhibitory NK receptor, KIR2D. The structure reveals an unusual pattern of internal hydrogen bonding among peptide residues. The peptide is anchored in four specificity pockets in the cleft and secured by extensive hydrogen bonds between the peptide main chain and the cleft. The surface of HLA-Cw4 has electrostatic complementarity to the surface of the NK cell inhibitory receptor KIR2D.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10429675/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9378975" class="tabcontent ">
+                    <h2>Molecular basis of HLA-C recognition by p58 natural killer cell inhibitory receptors.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 1997</h3>
+                    <p>NK cells express several inhibitory receptors that recognize class I MHC molecules expressed on target cells. The NK cell inhibitory receptors (KIRs) provide a key regulatory function for NK cells via specific interaction with MHC/peptide complexes, but the molecular details for recognition of class I MHC molecules by KIRs still remain unclear. Here we report cDNA cloning and expression of p58 KIRs and a p50 killer cell activatory receptor (KAR) from a Korean blood donor and demonstrate direct binding between recombinant soluble p58 KIRs and recombinant soluble HLA-C molecules. We identified three p58/p50 killer cell receptors (KAR-K1, KIR-K6, and KIR-K7), which are homologous to p50 cl-39, p58 47.11, and p58 cl-6, respectively. Native gel shift assay revealed that p58 KIR-K6 and KIR-K7 bind both HLA-Cw3 and HLA-Cw6 molecules, but p50 KAR-K1 binds neither of the HLA-C molecules. However, binding of HLA-C molecule by p58 KIR is affected by the antigenic peptide bound on the MHC molecule, suggesting that the p58 KIR binding to the HLA-C molecule may be dependent on the peptide. In addition, the binding interaction requires the presence of both p58 Ig domains, suggesting that the binding mode of HLA-C and p58 KIR may have some similarity to that of the neonatal Fc receptor and the Fc fragment of Ab and may be distinct from that of TCR and MHC.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9378975/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11323700" class="tabcontent ">
+                    <h2>Crystal structure of the human natural killer cell inhibitory receptor KIR2DL1-HLA-Cw4 complex.</h2>
+                    <h3>Nature immunology; 2001</h3>
+                    <p>Inhibitory natural killer (NK) cell receptors down-regulate the cytotoxicity of NK cells upon recognition of specific class I major histocompatibility complex (MHC) molecules on target cells. We report here the crystal structure of the inhibitory human killer cell immunoglobulin-like receptor 2DL1 (KIR2DL1) bound to its class I MHC ligand, HLA-Cw4. The KIR2DL1-HLA-Cw4 interface exhibits charge and shape complementarity. Specificity is mediated by a pocket in KIR2DL1 that hosts the Lys80 residue of HLA-Cw4. Many residues conserved in HLA-C and in KIR2DL receptors make different interactions in KIR2DL1-HLA-Cw4 and in a previously reported KIR2DL2-HLA-Cw3 complex. A dimeric aggregate of KIR-HLA-C complexes was observed in one KIR2DL1-HLA-Cw4 crystal. Most of the amino acids that differ between human and chimpanzee KIRs with HLA-C specificities form solvent-accessible clusters outside the KIR-HLA interface, which suggests undiscovered interactions by KIRs.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11323700/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10820396" class="tabcontent ">
+                    <h2>Definition of polymorphic residues on killer Ig-like receptor proteins which contribute to the HLA-C binding site.</h2>
+                    <h3>European journal of immunology; 2000</h3>
+                    <p>Killer cell immunoglobulin-like receptors (KIR) bind HLA class I proteins in an allele- and locus-specific manner. This report describes the use of transfectants expressing recombinant chimeric proteins, comprising the extracellular portions of KIR molecules and the transmembrane and cytoplasmic tails of CD3-zeta, to create an in vitro system in which signaling is readily measured and that preserves the specificity of the KIR / HLA-C interaction. The identity of the amino acid residues on the KIR molecule important for binding to the HLA protein is not well understood; although some KIR2D residues involved in HLA-C recognition have been identified, their relative importance and whether other amino acids contribute to binding was unclear. This novel system was used to study, by site-directed mutagenesis, the role of various amino acids in KIR binding to HLA-C ligand. The data presented here show that while multiple polymorphic residues contribute to the HLA-C binding site on KIR proteins, two clusters of polymorphic residues define the group allotype specificity of HLA-C binding to a KIR2D molecule.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10820396/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11163076" class="tabcontent ">
+                    <h2>N-linked carbohydrate on human leukocyte antigen-C and recognition by natural killer cell inhibitory receptors.</h2>
+                    <h3>Human immunology; 2000</h3>
+                    <p>The possible role of carbohydrate in the interaction of HLA-C with a human inhibitory natural Killer cell Immunoglobulin-like Receptor with two Ig domains, KIR2DL1, was investigated. Transfectants of 721.221 (a class I MHC-negative human B cell line) expressing only HLA-Cw4 or -Cw6 or their respective non-glycosylated mutants (N86Q, S88A) were made. The binding of a KIR2DL1-Ig fusion protein to the non-glycosylated mutant HLA-Cw4- or -Cw6-expressing cells was markedly decreased compared to the wild type-expressing cells. The ability to induce an inhibitory signal in the NK tumor line YTS transfected with KIR2DL1 was also impaired in the nonglycosylated mutant expressing cells. Furthermore, in a second functional assay, mutant HLA-Cw4 and -Cw6 molecules had impaired ability to induce signal transduction in BW cells expressing a KIR2DL1-CD3 zeta chain chimeric protein. Thus, the deletion of the N-linked glycosylation signal in HLA-Cw4 and -Cw6 greatly reduced recognition by KIR2DL1. Alternative interpretations of the data are discussed.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11163076/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12794140" class="tabcontent ">
+                    <h2>Spontaneous clustering and tyrosine phosphorylation of NK cell inhibitory receptor induced by ligand binding.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 2003</h3>
+                    <p>Inhibition of NK cell cytotoxicity by killer cell Ig-like receptors (KIR) depends on phosphorylation of cytoplasmic tyrosines in KIR, which recruit tyrosine phosphatase Src homology protein tyrosine phosphatase 1. It is not clear how KIR, whose function lies downstream of a tyrosine kinase, succeeds in blocking proximal NK cell activation signals upon binding HLA class I on target cells. Here we show that mixing NK cells with insect cells expressing HLA-C was sufficient to induce clustering of KIR, and phosphorylation of KIR and SHP-1. Transient phosphorylation of KIR was detected in the presence of pervanadate, an inhibitor of protein tyrosine phosphatases, at suboptimal concentration. Phosphorylation of KIR was specifically induced by ligand binding because it was detected only when HLA-C was loaded with a peptide that permits KIR binding. KIR phosphorylation was not dependent on ICAM-1-mediated adhesion and was not blocked by inhibition of actin polymerization, but required Zn(2+). Fluorescence resonance energy transfer between HLA-C molecules revealed close molecular interactions induced by KIR binding. These results demonstrate tight clustering of KIR and rapid KIR phosphorylation induced simply by binding to HLA-C. The unique property of KIR to become phosphorylated in the absence of adhesion and of actin cytoskeleton rearrangement explains how KIR can efficiently block early activation signals during NK-target cell contacts.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12794140/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11009104" class="tabcontent ">
+                    <h2>A disulfide-linked natural killer cell receptor dimer has higher affinity for HLA-C than wild-type monomer.</h2>
+                    <h3>European journal of immunology; 2000</h3>
+                    <p>Inhibitory receptors on the surface of natural killer (NK) cells recognize specific MHC class I molecules on target cells and prevent the target cell lysis by NK cells. The killer cell immunoglobulin-related receptors (KIR), KIR2D, found in human, specifically interact with polymorphic HLA-C molecules. The crystal structure of the inhibitory receptor, KIR2DL1, revealed a relationship to the hematopoietic receptor family, suggesting that the signaling mechanism of KIR2D molecules may resemble that of the hematopoietic receptors, and involve KIR2D dimerization. We have engineered a disulfide-linked dimer of KIR2DL1 by introducing a free cysteine at the C-terminal stem region of the receptor. The disulfide-linked KIR2DL1 dimer binds to HLA-Cw4 at a molar ratio of one dimer to one HLA-Cw4 molecule. Furthermore, the covalently-linked KIR2DL1 dimer binds more tightly to HLA-Cw4 than the wild-type monomer, suggesting the occurrence of a second binding event that increases the overall affinity of KIR dimer for HLA-C.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11009104/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12454284" class="tabcontent ">
+                    <h2>Disulfide bond-mediated dimerization of HLA-G on the cell surface.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 2002</h3>
+                    <p>HLA-G is a nonclassical class I MHC molecule with an unknown function and with unusual characteristics that distinguish it from other class I MHC molecules. Here, we demonstrate that HLA-G forms disulfide-linked dimers that are present on the cell surface. Immunoprecipitation of HLA-G from surface biotinylated transfectants using the anti-beta2-microglobulin mAb BBM.1 revealed the presence of an approximately equal 78-kDa form of HLA-G heavy chain that was reduced by using DTT to a 39-kDa form. Mutation of Cys-42 to a serine completely abrogated dimerization of HLA-G, suggesting that the disulfide linkage formed exclusively through this residue. A possible interaction between the HLA-G monomer or dimer and the KIR2DL4 receptor was also investigated, but no interaction between these molecules could be detected through several approaches. The cell-surface expression of dimerized HLA-G molecules may have implications for HLA-Greceptor interactions and for the search for specific receptors that bind HLA-G.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12454284/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9686591" class="tabcontent ">
+                    <h2>Zinc bound to the killer cell-inhibitory receptor modulates the negative signal in human NK cells.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 1998</h3>
+                    <p>The lysis of target cells by human NK cells is inhibited by several kinds of receptors with varying specificities for the MHC class I molecules of target cells. The requirements for complete inhibition of NK cytotoxicity appear to be complex and not well defined. The HLA-C-specific members of the killer cell-inhibitory receptor (KIR) family, carrying two Ig domains (KIR2D), are unusual among Ig superfamily members in their ability to bind zinc. A role for the zinc-binding site in KIR-mediated inhibition was demonstrated in this study using a functional reconstitution system in NK cells. Replacement of six histidines by alanine residues in putative zinc binding sites of a KIR2D ablated zinc binding and markedly impaired its inhibitory function, but left intact its ability to bind HLA-C and to transduce a positive signal through an immunoreceptor tyrosine-based activation motif grafted onto its cytoplasmic tail. Thus, zinc modulates specifically the negative signal transmitted by this KIR molecule. Mutation of an exposed amino-terminal zinc-binding motif alone was sufficient to impair the inhibitory function of KIR. The data suggest that complete inhibition of HLA-C-specific NK cells requires a zinc-dependent protein-protein interaction via the amino-terminal end of KIR2D.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9686591/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9768753" class="tabcontent ">
+                    <h2>Kinetics of interaction of HLA-C ligands with natural killer cell inhibitory receptors.</h2>
+                    <h3>Immunity; 1998</h3>
+                    <p>The recognition of HLA-C molecules by specific inhibitory receptors is a crucial step in the regulation of natural killer (NK) cell function. Using soluble, recombinant HLA-C molecules and NK inhibitory receptors (NKIR, members of the immunoglobulin superfamily), we show that HLA-C binds to NKIR molecules with extremely fast association and dissociation rates, among the fastest of the immune system interactions so far studied. These kinetics may be essential for the biological function of NK cells, i.e., to facilitate the rapid immunosurveillance of cells for absent or diminished expression of class I MHC proteins.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9768753/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

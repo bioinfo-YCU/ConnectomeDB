@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CALR——SCARF1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CALR——SCARF1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15371419')">15371419</button><button class="tablinks " onclick="openTab(event, 'tab15371419')">15371419</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15371419" class="tabcontent active">
+                    <h2>SREC-I, a type F scavenger receptor, is an endocytic receptor for calreticulin.</h2>
+                    <h3>The Journal of biological chemistry; 2004</h3>
+                    <p>Calreticulin and gp96 (GRP94) traffic associated peptides into the major histocompatibility complex class-I cross-presentation pathway of antigen-presenting cells (APCs). Efficient accession of the cross-presentation pathway requires APC receptor-mediated endocytosis of the chaperone/peptide complexes. Previously, scavenger receptor class-A (SRA) was shown to play a substantial role in trafficking gp96 and calreticulin into macrophages, accounting for half of total receptor-mediated uptake. However, the scavenger receptor ligand fucoidin competed the chaperone uptake beyond that accounted for by SRA, indicating that another scavenger receptor(s) may also contribute. Consistent with this hypothesis, we showed that the residual calreticulin uptake into SRA(-/-) macrophages is competed by the scavenger receptor ligand acetylated low density lipoprotein (LDL). We now report that an additional scavenger receptor, SREC-I (scavenger receptor expressed by endothelial cell-I), mediates the endocytosis of calreticulin and gp96. Ectopic expression of SREC-I in Chinese hamster ovary cells yielded chaperone recognition and uptake, and these processes were competed by the inhibitory ligands fucoidin and acetylated (Ac)LDL. Although AcLDL competes for the chaperone interactions with SRA and SREC, we showed that not all of the scavenger receptors, which bind AcLDL, bind calreticulin or gp96. The overexpression of SREC-I in macrophages increased chaperone endocytosis, indicating that SREC-I functions in APCs and that the cytosolic components necessary for the endocytosis of SREC-I and its cargo are present and not limiting in APCs. These data identify a novel class of ligands for SREC-I and provide insight into the mechanisms by which APCs and potentially endothelial cells traffic chaperone/antigen complexes.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15371419/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15371419" class="tabcontent ">
+                    <h2>SREC-I, a type F scavenger receptor, is an endocytic receptor for calreticulin.</h2>
+                    <h3>The Journal of biological chemistry; 2004</h3>
+                    <p>Calreticulin and gp96 (GRP94) traffic associated peptides into the major histocompatibility complex class-I cross-presentation pathway of antigen-presenting cells (APCs). Efficient accession of the cross-presentation pathway requires APC receptor-mediated endocytosis of the chaperone/peptide complexes. Previously, scavenger receptor class-A (SRA) was shown to play a substantial role in trafficking gp96 and calreticulin into macrophages, accounting for half of total receptor-mediated uptake. However, the scavenger receptor ligand fucoidin competed the chaperone uptake beyond that accounted for by SRA, indicating that another scavenger receptor(s) may also contribute. Consistent with this hypothesis, we showed that the residual calreticulin uptake into SRA(-/-) macrophages is competed by the scavenger receptor ligand acetylated low density lipoprotein (LDL). We now report that an additional scavenger receptor, SREC-I (scavenger receptor expressed by endothelial cell-I), mediates the endocytosis of calreticulin and gp96. Ectopic expression of SREC-I in Chinese hamster ovary cells yielded chaperone recognition and uptake, and these processes were competed by the inhibitory ligands fucoidin and acetylated (Ac)LDL. Although AcLDL competes for the chaperone interactions with SRA and SREC, we showed that not all of the scavenger receptors, which bind AcLDL, bind calreticulin or gp96. The overexpression of SREC-I in macrophages increased chaperone endocytosis, indicating that SREC-I functions in APCs and that the cytosolic components necessary for the endocytosis of SREC-I and its cargo are present and not limiting in APCs. These data identify a novel class of ligands for SREC-I and provide insight into the mechanisms by which APCs and potentially endothelial cells traffic chaperone/antigen complexes.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15371419/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

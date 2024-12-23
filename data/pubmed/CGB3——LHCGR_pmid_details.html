@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CGB3——LHCGR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CGB3——LHCGR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10446903')">10446903</button><button class="tablinks " onclick="openTab(event, 'tab12727981')">12727981</button><button class="tablinks " onclick="openTab(event, 'tab1922095')">1922095</button><button class="tablinks " onclick="openTab(event, 'tab2254302')">2254302</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10446903" class="tabcontent active">
+                    <h2>The beta-subunit of human choriogonadotropin interacts with the exodomain of the luteinizing hormone/choriogonadotropin receptor and changes its interaction with the alpha-subunit.</h2>
+                    <h3>Molecular endocrinology (Baltimore, Md.); 1999</h3>
+                    <p>Human CG (hCG) consists of a common alpha-subunit and a hormone-specific beta-subunit. Similarly, its receptor is also composed of two domains, an extracellular N-terminal half (exodomain) and a membrane-associated C-terminal half (endodomain). hCG initially binds the exodomain of the receptor after which the resulting hCG/exodomain complex is thought to interact with the endodomain. This secondary interaction is considered responsible for signal generation. Despite the importance, it is unclear which hormone subunit interacts with the exodomain or the endodomain. As a step to determine the mechanisms of the initial and secondary interactions and signal generation, we investigated the interaction of the hormone-specific beta-subunit in hCG with the receptor's exodomain. A photoactivable hCG derivative consisting of the wild-type alpha-subunit and a photoactivable beta-subunit derivative was prepared and used to label the exodomain. The analysis and immunoprecipitation of photoaffinity labeled exodomain demonstrate that the beta-subunit in hCG makes the direct contact with the exodomain.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10446903/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12727981" class="tabcontent ">
+                    <h2>Absence of exon 10 of the human luteinizing hormone (LH) receptor impairs LH, but not human chorionic gonadotropin action.</h2>
+                    <h3>The Journal of clinical endocrinology and metabolism; 2003</h3>
+                    <p>The LH receptor (LHR) mediates the actions of LH and human chorionic gonadotropin (hCG). In vivo data showed that deletion of exon 10 does not affect hCG action, whereas LH action is impaired. To investigate the role of exon 10 in LH/hCG action in vitro we created stable COS-7 cells expressing the LHR with (wt) or without (-ex10) exon 10. Binding experiments showed that the affinities of LH and hCG to the LHR wt and -ex10 were similar. Stimulation of wt with hCG or LH resulted in increased cAMP. cAMP production was significantly impaired in -ex10 stimulated with LH. This response was not altered by pertussis toxin, excluding that G(i) becomes activated in LHR -ex10. In desensitization experiments, intracellular cAMP of LHR wt and -ex10 declined to approximately 30%. No difference in intracellular cAMP was detected between LHR wt or -ex10 after recovery and restimulation with hCG or LH. These experiments show that impaired cAMP production of LHR -ex10 stimulated with LH is not due to anomalous receptor coupling or desensitization. We conclude that although exon 10 of the LHR plays no role in ligand binding, it is important for receptor activation by LH by a mechanism probably involving extracellular conformational changes.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12727981/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab1922095" class="tabcontent ">
+                    <h2>Expression of human luteinizing hormone (LH) receptor: interaction with LH and chorionic gonadotropin from human but not equine, rat, and ovine species.</h2>
+                    <h3>Molecular endocrinology (Baltimore, Md.); 1991</h3>
+                    <p>Studies on human LH receptors are difficult due to the limited availability of clinical samples. Recent cloning of rat and porcine LH receptor cDNAs indicated that these binding sites are single polypeptides of the G-protein-coupled receptor family with seven transmembrane domains. Based on the conserved sequences of rat and porcine receptors, we performed reverse transcription polymerase chain reaction, using human ovarian mRNA as template and obtained partial human LH receptor cDNA clones. Further screening of a human ovary cDNA library and subsequent ligation of individual cDNA clones generated a human LH receptor cDNA containing the entire amino acid-coding region. Sequence analysis indicated that the human receptor cDNA displays 89% and 82% homology at the nucleotide level with its porcine and rat counterparts, respectively. A region spanning the second extracellular and third transmembrane domains is highly conserved among the human LH, FSH, and TSH receptors. The ovarian LH receptor clone is, however, significantly different from an incompletely spliced LH receptor cDNA recently obtained from a human thyroid library. Unlike the thyroid clone, the ovarian LH receptor cDNA could be expressed in the human fetal kidney cell line (293), and radioligand receptor assay identified high affinity (Kd, 1.2 x 10(-10) M) LH/hCG-binding sites on the plasma membrane. Binding specificity of the human LH receptor was studied using recombinant human CG, LH, and FSH secreted by CHO cells transfected with the respective genes. Human CG and LH displaced [125I]hCG binding with an ED50 of 4.3 and 4.8 ng/ml, respectively. In contrast, recombinant FSH was not effective. Treatment of transfected cells with recombinant gonadotropins also induced dose-dependent increases in extracellular cAMP production (hCG = LH much greater than FSH; ED50 25, 10, and greater than 3000 ng/ml). Although equine, rat, and ovine LH as well as equine CG competed effectively for rat testicular LH receptor binding, these hormones were unable to displace [125I]hCG binding to the human receptor, suggesting evolutionary changes in receptor binding specificity and the importance of using human receptors for clinical studies. Thus, the cloning and expression of the human LH receptor cDNA allowed analysis of interactions between human LH receptor and gonadotropins from diverse species. The present work should provide the basis for future design of therapeutic agents capable of interacting with the human receptor and for understanding the structural basis for LH receptor binding to different gonadotropins.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1922095/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab2254302" class="tabcontent ">
+                    <h2>Extracellular domain of lutropin/choriogonadotropin receptor expressed in transfected cells binds choriogonadotropin with high affinity.</h2>
+                    <h3>The Journal of biological chemistry; 1990</h3>
+                    <p>The lutropin-choriogonadotropin (LH/CG) receptor is a cell surface receptor comprised of two domains of roughly equivalent size. The amino-terminal half of the receptor is relatively hydrophilic and is located extracellularly, whereas the carboxyl-terminal half of the receptor shares amino acid homology with other receptors that couple to G proteins and is similarly thought to span the plasma membrane seven times, ending with a relatively short carboxyl-terminal tail. In order to test the role of the extracellular domain in binding hormone, we constructed a mutated rat luteal LH/CG receptor cDNA (termed pCLHR-D2), which encodes for only the extracellular domain, and used it to transiently transfect human kidney 293 cells. Here we report that the expressed extracellular domain of the LH/CG receptor is capable of binding human CG with a high affinity, comparable with that of the full-length receptor. Thus, not only is the extracellular domain of the glycoprotein hormone receptors involved in binding hormone, but it alone is capable of conferring high affinity binding. Unexpectedly, it was also found that this truncated receptor is not secreted into the culture media but remains trapped within the cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/2254302/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

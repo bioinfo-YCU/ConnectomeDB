@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>NTN1——UNC5C - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for NTN1——UNC5C</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12810718')">12810718</button><button class="tablinks " onclick="openTab(event, 'tab10399920')">10399920</button><button class="tablinks " onclick="openTab(event, 'tab12810718')">12810718</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12810718" class="tabcontent active">
+                    <h2>Netrin binds discrete subdomains of DCC and UNC5 and mediates interactions between DCC and heparin.</h2>
+                    <h3>The Journal of biological chemistry; 2003</h3>
+                    <p>Netrins are secreted proteins that elicit both attractive and repulsive responses in migrating cells in the central and peripheral nervous systems. Netrins interact with members of two distinct families of transmembrane receptors, represented by DCC (deleted in colorectal cancer) and UNC5. A human netrin fragment (soluble netrin; sNetrin) was purified from an engineered Chinese hamster ovary cell line and used in a pull-down assay to map the interactions between netrin and its receptors. We find that sNetrin binds exclusively to the fifth fibronectin type III repeat of DCC and to each immunoglobulin repeat of UNC5. Both DCC and UNC5 bind to sNetrin with 1:1 stoichiometry in solution, and the minimal receptor fragments behave similarly to larger fragments in cross-linking experiments with purified sNetrin. We find no evidence for formation of a ternary complex between sNetrin and soluble forms of DCC and UNC5. We also find no evidence for an interaction between DCC and heparin and instead demonstrate that a loop on the fifth fibronectin type III repeat of DCC previously implicated in mediating interactions with heparin is important for sNetrin binding. Since netrin binds heparin, our results suggest that interactions between DCC and heparin are probably mediated by netrin.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12810718/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10399920" class="tabcontent ">
+                    <h2>A ligand-gated association between cytoplasmic domains of UNC5 and DCC family receptors converts netrin-induced growth cone attraction to repulsion.</h2>
+                    <h3>Cell; 1999</h3>
+                    <p>Netrins are bifunctional: they attract some axons and repel others. Netrin receptors of the Deleted in Colorectal Cancer (DCC) family are implicated in attraction and those of the UNC5 family in repulsion, but genetic evidence also suggests involvement of the DCC protein UNC-40 in some cases of repulsion. To test whether these proteins form a receptor complex for repulsion, we studied the attractive responses of Xenopus spinal axons to netrin-1, which are mediated by DCC. We show that attraction is converted to repulsion by expression of UNC5 proteins in these cells, that this repulsion requires DCC function, that the UNC5 cytoplasmic domain is sufficient to effect the conversion, and that repulsion can be initiated by netrin-1 binding to either UNC5 or DCC. The isolated cytoplasmic domains of DCC and UNC5 proteins interact directly, but this interaction is repressed in the context of the full-length proteins. We provide evidence that netrin-1 triggers the formation of a receptor complex of DCC and UNC5 proteins and simultaneously derepresses the interaction between their cytoplasmic domains, thereby converting DCC-mediated attraction to UNC5/DCC-mediated repulsion.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10399920/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12810718" class="tabcontent ">
+                    <h2>Netrin binds discrete subdomains of DCC and UNC5 and mediates interactions between DCC and heparin.</h2>
+                    <h3>The Journal of biological chemistry; 2003</h3>
+                    <p>Netrins are secreted proteins that elicit both attractive and repulsive responses in migrating cells in the central and peripheral nervous systems. Netrins interact with members of two distinct families of transmembrane receptors, represented by DCC (deleted in colorectal cancer) and UNC5. A human netrin fragment (soluble netrin; sNetrin) was purified from an engineered Chinese hamster ovary cell line and used in a pull-down assay to map the interactions between netrin and its receptors. We find that sNetrin binds exclusively to the fifth fibronectin type III repeat of DCC and to each immunoglobulin repeat of UNC5. Both DCC and UNC5 bind to sNetrin with 1:1 stoichiometry in solution, and the minimal receptor fragments behave similarly to larger fragments in cross-linking experiments with purified sNetrin. We find no evidence for formation of a ternary complex between sNetrin and soluble forms of DCC and UNC5. We also find no evidence for an interaction between DCC and heparin and instead demonstrate that a loop on the fifth fibronectin type III repeat of DCC previously implicated in mediating interactions with heparin is important for sNetrin binding. Since netrin binds heparin, our results suggest that interactions between DCC and heparin are probably mediated by netrin.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12810718/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

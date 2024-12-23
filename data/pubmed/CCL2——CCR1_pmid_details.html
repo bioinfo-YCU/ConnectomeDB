@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL2——CCR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL2——CCR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab7679328')">7679328</button><button class="tablinks " onclick="openTab(event, 'tab8631787')">8631787</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab7679328" class="tabcontent active">
+                    <h2>Molecular cloning, functional expression, and signaling characteristics of a C-C chemokine receptor.</h2>
+                    <h3>Cell; 1993</h3>
+                    <p>The immunoregulatory proteins C-C chemokines are potent chemoattractants of lymphocytes and monocytes, as well as activators and attractants of eosinophils and basophils. We have isolated a cDNA that encodes a seven transmembrane-spanning receptor, with homology to other chemoattractant receptors, that encodes a protein designated C-C CKR-1 that acts as a receptor for the C-C chemokines. Human and murine macrophage inflammatory protein 1 alpha (MIP-1 alpha), human human monocyte chemotactic protein 1 (MCP-1), and RANTES all bind to the C-C CKR-1 with varying affinities. Chemokine binding affinity does not predict how well the ligand will transmit a signal through the receptor: RANTES and human MIP-1 alpha induce a similar intracellular calcium flux while binding with disparate affinities, while MCP-1 and human MIP-1 beta induce calcium mobilization only at high concentrations. Finally, C-C chemokines were shown to bind a C-C CKR-1-related gene product encoded by cytomegalovirus, suggesting a role for C-C chemokines in viral immunity.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7679328/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8631787" class="tabcontent ">
+                    <h2>Molecular cloning and functional expression of murine JE (monocyte chemoattractant protein 1) and murine macrophage inflammatory protein 1alpha receptors: evidence for two closely linked C-C chemokine receptors on chromosome 9.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>We have isolated cDNA clones that encode two closely related, murine C-C chemokine receptors. Both receptors are members of the G-protein-coupled, seven-transmembrane domain family of receptors and are most closely related to the human monocyte chemoattractant protein 1 receptor. Expression of each of the receptors was detected in murine monocyte/macrophage cell lines, but not in nonhematopoietic lines. Expression of these receptors in Xenopus oocytes revealed that one receptor signaled in response to low nanomolar concentrations of murine JE, whereas the second receptor was activated by murine macrophage inflammatory protein (MIP) 1alpha and the human chemokines MIP-1beta and RANTES. Binding studies revealed high affinity binding of radiolabeled mJE to the mJE receptor and murine MIP-1alpha to the second receptor. Chromosomal localization indicated that the two receptor genes were clustered within 80 kilobases of each other on mouse chromosome 9. Creation of receptor chimeras suggested that the amino terminus was critically involved in mediating signal transduction and ligand specificity of the mJE receptor, but not the mMIP-1alpha receptor. The identification and cloning of two functional murine chemokine receptors provides important new tools for investigating the roles of these potent cytokines in vivo.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8631787/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

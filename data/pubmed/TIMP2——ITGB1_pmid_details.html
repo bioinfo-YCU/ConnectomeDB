@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>TIMP2——ITGB1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for TIMP2——ITGB1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab16326706')">16326706</button><button class="tablinks " onclick="openTab(event, 'tab12887919')">12887919</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab16326706" class="tabcontent active">
+                    <h2>Shp-1 mediates the antiproliferative activity of tissue inhibitor of metalloproteinase-2 in human microvascular endothelial cells.</h2>
+                    <h3>The Journal of biological chemistry; 2006</h3>
+                    <p>The tissue inhibitors of metalloproteinases (TIMPs) regulate matrix metalloproteinase activity required for cell migration/invasion associated with cancer progression and angiogenesis. TIMPs also modulate cell proliferation in vitro and angiogenesis in vivo independent of their matrix metalloproteinase inhibitory activity. Here, we show that TIMP-2 mediates G1 growth arrest in human endothelial cells through de novo synthesis of the cyclin-dependent kinase inhibitor p27Kip1. TIMP-2-mediated inhibition of Cdk4 and Cdk2 activity is associated with increased binding of p27Kip1 to these complexes in vivo. Protein-tyrosine phosphatase inhibitors or expression of a dominant negative Shp-1 mutant ablates TIMP-2 induction of p27Kip1. Finally, angiogenic responses to fibroblast growth factor-2 and vascular endothelial growth factor-A in "motheaten viable" Shp-1-deficient mice are resistant to TIMP-2 inhibition, demonstrating that Shp-1 is an important negative regulator of angiogenesis in vivo.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16326706/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12887919" class="tabcontent ">
+                    <h2>TIMP-2 mediated inhibition of angiogenesis: an MMP-independent mechanism.</h2>
+                    <h3>Cell; 2003</h3>
+                    <p>Tissue inhibitors of metalloproteinases (TIMPs) suppress matrix metalloproteinase (MMP) activity critical for extracellular matrix turnover associated with both physiologic and pathologic tissue remodeling. We demonstrate here that TIMP-2 abrogates angiogenic factor-induced endothelial cell proliferation in vitro and angiogenesis in vivo independent of MMP inhibition. These effects require alpha 3 beta 1 integrin-mediated binding of TIMP-2 to endothelial cells. Further, TIMP-2 induces a decrease in total protein tyrosine phosphatase (PTP) activity associated with beta1 integrin subunits as well as dissociation of the phosphatase SHP-1 from beta1. TIMP-2 treatment also results in a concomitant increase in PTP activity associated with tyrosine kinase receptors FGFR-1 and KDR. Our findings establish an unexpected, MMP-independent mechanism for TIMP-2 inhibition of endothelial cell proliferation in vitro and reveal an important component of the antiangiogenic effect of TIMP2 in vivo.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12887919/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>GAS6——MERTK - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for GAS6——MERTK</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9160883')">9160883</button><button class="tablinks " onclick="openTab(event, 'tab8939948')">8939948</button><button class="tablinks " onclick="openTab(event, 'tab8939948')">8939948</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9160883" class="tabcontent active">
+                    <h2>Identification of Gas6 as a ligand for Mer, a neural cell adhesion molecule related receptor tyrosine kinase implicated in cellular transformation.</h2>
+                    <h3>Oncogene; 1997</h3>
+                    <p>Mer/Nyk/Eyk is an orphan receptor tyrosine kinase expressed at high levels in monocytes and cells derived from epithelial and reproductive tissues. Overexpression of Mer has been associated with lymphoid malignancies. Here we identify Gas6, the product of a growth arrest specific gene, as a ligand for Mer. Gas6 has previously been shown to activate both Axl and Rse/Tyro3, two other receptor tyrosine kinases in the same family as Mer. The apparent relative association and dissociation rate constants of Gas6 for soluble Axl, Rse/Tyro3 and Mer were compared using surface plasmon resonance. Gas6 was shown to induce rapid phosphorylation of Mer expressed in several different types of cells. We also observed a transient activation of p42 MAP kinase following activation of Mer by Gas6. Thus, Gas6 exerts its biological effects through multiple receptor tyrosine kinases.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9160883/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8939948" class="tabcontent ">
+                    <h2>Identification of the product of growth arrest-specific gene 6 as a common ligand for Axl, Sky, and Mer receptor tyrosine kinases.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>Axl, Sky, and Mer, members of an Axl/Sky receptor tyrosine kinase subfamily, are typified by the cell adhesion molecule-related extracellular domain. The product of growth arrest-specific gene 6 (Gas6), structurally homologous to the anticoagulant protein S, was recently identified as the ligand for Axl and Sky, but the ligand for Mer remained unknown. We have now obtained evidence that Gas6 can also function as a ligand for Mer. Co-precipitation analysis, using soluble receptors of Axl, Sky, and Mer (Axl-Fc, Sky-Fc, and Mer-Fc) composed of the extracellular domain of receptors fused to the Fc domain of immunoglobulin G1, clearly showed that Gas6, but not protein S, specifically bound to Axl-Fc, Sky-Fc, and Mer-Fc fusion proteins. Quantitative kinetic analyses using a BIAcore biosensor instrument revealed dissociation constants (Kd) of the binding of rat Gas6 to Axl-Fc, Sky-Fc, and Mer-Fc are 0.4, 2.7, and 29 nM, respectively. We also found that Gas6 stimulated tyrosine phosphorylation of Axl, Sky, and Mer receptors ectopically expressed in Chinese hamster ovary cells. Taken together, these findings suggest that Gas6 is a common ligand for Axl, Sky, and Mer, all known members of an Axl/Sky receptor subfamily.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8939948/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8939948" class="tabcontent ">
+                    <h2>Identification of the product of growth arrest-specific gene 6 as a common ligand for Axl, Sky, and Mer receptor tyrosine kinases.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>Axl, Sky, and Mer, members of an Axl/Sky receptor tyrosine kinase subfamily, are typified by the cell adhesion molecule-related extracellular domain. The product of growth arrest-specific gene 6 (Gas6), structurally homologous to the anticoagulant protein S, was recently identified as the ligand for Axl and Sky, but the ligand for Mer remained unknown. We have now obtained evidence that Gas6 can also function as a ligand for Mer. Co-precipitation analysis, using soluble receptors of Axl, Sky, and Mer (Axl-Fc, Sky-Fc, and Mer-Fc) composed of the extracellular domain of receptors fused to the Fc domain of immunoglobulin G1, clearly showed that Gas6, but not protein S, specifically bound to Axl-Fc, Sky-Fc, and Mer-Fc fusion proteins. Quantitative kinetic analyses using a BIAcore biosensor instrument revealed dissociation constants (Kd) of the binding of rat Gas6 to Axl-Fc, Sky-Fc, and Mer-Fc are 0.4, 2.7, and 29 nM, respectively. We also found that Gas6 stimulated tyrosine phosphorylation of Axl, Sky, and Mer receptors ectopically expressed in Chinese hamster ovary cells. Taken together, these findings suggest that Gas6 is a common ligand for Axl, Sky, and Mer, all known members of an Axl/Sky receptor subfamily.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8939948/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

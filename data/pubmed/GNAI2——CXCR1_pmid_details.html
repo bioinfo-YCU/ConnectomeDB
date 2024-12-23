@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>GNAI2——CXCR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for GNAI2——CXCR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab8662698')">8662698</button><button class="tablinks " onclick="openTab(event, 'tab8903513')">8903513</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab8662698" class="tabcontent active">
+                    <h2>Physical association of Gi2alpha with interleukin-8 receptors.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>Interleukin-8 (IL-8), one of the major mediators of the inflammatory response, belongs to a family of chemokines that includes NAP-2 (neutrophil-activating peptide-2) and Gro-alpha and whose biological activities are directed to a great extent toward neutrophils. Two distinct receptors have been described with overlapping, but not identical, binding affinities for IL-8, NAP-2, and Gro-alpha. This study was designed to examine the intracellular pathways activated upon the occupation of each of the IL-8 receptors (IL-8R). The formation of a physical coupling between IL-8 receptors and the alpha-subunit of heterotrimeric G proteins was tested in neutrophils by examining the presence of the former in anti-Galpha immune precipitates. The addition of IL-8 to a suspension of human neutrophils led to a time-dependent detection of IL-8 in anti-Gi2alpha (raised against amino acids 159-168 (LERIAQSDYI) of Gi2alpha) and anti-Gtalpha (raised against the COOH-terminal 10 amino acids (KENLKDCGLF) of Gtalpha), but not anti-Gq, immunoprecipitates. Similar results were obtained in human 293 cells stably transfected with IL-8RA or IL-8RB. The peptide derived from the COOH-terminal sequence of Gt inhibited the co-immunoprecipitation of IL-8R and Gi observed in response to the anti-Gtalpha and anti-Gi2alpha antibodies. On the other hand, the Gi2alpha peptide only inhibited the immunoprecipitation induced by the anti-Gi2alpha antibody. Peptides derived from Gi1alpha or Gi3alpha had no effect in this assay. The introduction of the anti-Gi2alpha or anti-Gtalpha antibodies or their neutralizing peptides, but not the Gi1alpha or Gi3alpha peptides, into 293 IL-8RA or 293 IL-8RB cells completely blocked the calcium responses obtained upon stimulation with IL-8. These results demonstrate that the occupation of either type of IL-8 receptor leads to a physical coupling to the alpha-subunit of Gi2. In addition, the use of the subunit-specific peptides identified two functionally important but distinct regions of Gialpha, one involved in receptor/Gialpha interaction (KENLKDCGLF) and the other mediating downstream signal transmission (LERIAQSDYI). Finally, the results of this study also validate the use of the transfected 293 cell line as a model for the study of the signal transduction pathway(s) initiated by IL-8.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8662698/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8903513" class="tabcontent ">
+                    <h2>Identification of G-protein binding sites of the human interleukin-8 receptors by functional mapping of the intracellular loops.</h2>
+                    <h3>FASEB journal : official publication of the Federation of American Societies for Experimental Biology; 1996</h3>
+                    <p>Interleukin 8 (IL-8) is considered to be a major mediator of the inflammatory response. Recent evidence indicates that a direct physical association occurs between IL-8 receptors and the alpha subunit of guanine nucleotide regulatory protein (Gi(alpha)2) upon stimulation of human neutrophils by IL-8. In the present study, we identified by site-directed mutagenesis key residues within the three intracellular loops of the IL-8RA receptor involved in the interaction with Gi(alpha)2. We first systematically mutated, in groups of two to four, all the residues in the three intracellular loops of the IL-8 type A receptor to alanine and analyzed the mutant receptors transiently expressed in 293 cells. Four residues in the second intracellular loop (Y136, L137, I139, V140) and one residue in the third intracellular loop (M241) were shown to be crucial for mediating calcium signaling in response to IL-8. Other residues in the second and third intracellular loops were also found to affect IL-8RA-mediated signaling, but to a lesser extent. These effects were not due to lower expression or low IL-8 binding affinities to the mutated receptors. Mutagenesis of the residues in the first intracellular loop had only weak effects on the mobilization of calcium induced by IL-8. We then used a coimmunoprecipitation protocol with anti-Gi(alpha)2 antibodies to determine the involvement of the two regions defined above in Gi(alpha)2 coupling to IL-8 type A receptors. Whereas the anti-Gi(alpha)2 antibodies coimmunoprecipitated IL-8 receptors in the wild-type cells, this interaction was lost in cells expressing mutated receptors that affected intracellular calcium mobilization. The peptides corresponding to the regions of the type A receptor found to be critical for Gi(alpha)2 coupling and induction of intracellular calcium mobilization were next introduced into cells expressing wild-type IL-8RA or IL-8RB to assess their role in coupling Gi(alpha)2 to both IL-8 receptors. The results obtained in the latter experiments suggest that the same regions of the second intracellular loop (Y136, L137, I139, V140) and of the third intracellular loop (M241) are critically involved in the coupling of both IL-8RA and IL-8 RB to Gi(alpha)2 as well as to a downstream effector (or effectors) involved in calcium mobilization.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8903513/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

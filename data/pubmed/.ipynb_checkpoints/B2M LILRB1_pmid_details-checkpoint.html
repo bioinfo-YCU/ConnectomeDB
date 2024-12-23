@@ -1,0 +1,42 @@
+
+            <html>
+            <head>
+                <title>B2M LILRB1 - PMID Details</title>
+                <style>
+                    .tab { display: flex; }
+                    .tab button { margin-right: 5px; padding: 10px; cursor: pointer; }
+                    .tabcontent { display: none; padding: 10px; border: 1px solid #ccc; }
+                    .tabcontent.active { display: block; }
+                </style>
+                <script>
+                    function openTab(evt, tabId) {
+                        // Hide all tabcontents
+                        let tabContents = document.getElementsByClassName("tabcontent");
+                        for (let i = 0; i < tabContents.length; i++) {
+                            tabContents[i].style.display = "none";
+                        }
+                        // Deactivate all tablinks
+                        let tabLinks = document.getElementsByClassName("tablinks");
+                        for (let i = 0; i < tabLinks.length; i++) {
+                            tabLinks[i].classList.remove("active");
+                        }
+                        // Show the current tab
+                        document.getElementById(tabId).style.display = "block";
+                        evt.currentTarget.classList.add("active");
+                    }
+                </script>
+            </head>
+            <body>
+                <h1>PMID Details for B2M LILRB1</h1>
+                <div class="tab">
+                    <button class="tablinks active" onclick="openTab(event, 'tab12897781')">12897781</button>
+                </div>
+                
+                <div id="tab12897781" class="tabcontent active">
+                    <h2>Crystal structure of HLA-A2 bound to LIR-1, a host and viral major histocompatibility complex receptor.</h2>
+                    <p>Leukocyte immunoglobulin-like receptor 1 (LIR-1), an inhibitory receptor expressed on monocytes, dendritic cells and lymphocytes, regulates cellular function by binding a broad range of classical and nonclassical major histocompatibility complex (MHC) class I molecules, and the human cytomegalovirus MHC class I homolog UL18. Here we describe the 3.4-A crystal structure of a complex between the LIR-1 D1D2 domains and the MHC class I molecule HLA-A2. LIR-1 contacts the mostly conserved beta(2)-microglobulin and alpha3 domains of HLA-A2. The LIR-1 binding site comprises residues at the interdomain hinge, and a patch at the D1 tip. The structure shows how LIR-1 recognizes UL18 and diverse MHC class I molecules, and indicates that a similar mode of MHC class I recognition is used by other LIR family members.</p>
+                </div>
+                
+            </body>
+            </html>
+            

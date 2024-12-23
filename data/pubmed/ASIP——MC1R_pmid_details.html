@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>ASIP——MC1R - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for ASIP——MC1R</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12851328')">12851328</button><button class="tablinks " onclick="openTab(event, 'tab9058374')">9058374</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12851328" class="tabcontent active">
+                    <h2>Accessory proteins for melanocortin signaling: attractin and mahogunin.</h2>
+                    <h3>Annals of the New York Academy of Sciences; 2003</h3>
+                    <p>Switching from eumelanin to pheomelanin synthesis during hair growth is accomplished by transient synthesis of Agouti protein, an inverse agonist for the melanocortin-1 receptor (Mc1r). The coat color mutations mahogany and mahoganoid prevent hair follicle melanocytes from responding to Agouti protein. The gene mutated in mahogany, which is also known as Attractin (Atrn), encodes a type I transmembrane protein that functions as an accessory receptor for Agouti protein. We have recently determined that the gene mutated in mahoganoid, which is also known as Mahogunin (Mgrn1), encodes an E3 ubiquitin ligase. Like Attractin, Mahogunin is conserved in invertebrate genomes, and its absence causes a pleiotropic phenotype that includes spongiform neurodegeneration.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12851328/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9058374" class="tabcontent ">
+                    <h2>Effects of recombinant agouti-signaling protein on melanocortin action.</h2>
+                    <h3>Molecular endocrinology (Baltimore, Md.); 1997</h3>
+                    <p>Mouse agouti protein is a paracrine signaling molecule that has previously been demonstrated to be an antagonist of melanocortin action at several cloned rodent and human melanocortin receptors. In this study we report the effects of agouti-signaling protein (ASIP), the human homolog of mouse agouti, on the action of alpha-MSH or ACTH at the five known human melanocortin receptor subtypes (hMCR 1-5). When stably expressed in L cells (hMC1R, hMC3R, hMC4R, hMC5R) or in the adrenocortical cell line OS3 (hMC1R, hMC2R, hMC4R), purified recombinant ASIP inhibits the generation of cAMP stimulated by alpha-MSH (hMC1R, hMC3R, hMC4R, hMC5R) or by ACTH (hMC2R). However, dose-response and Schild analysis indicated that the degree of ASIP inhibition varied significantly among the receptor subtypes; ASIP is a potent inhibitor of the hMC1R, hMC2R, and hMC4R, but has relatively weak effects at the hMC3R and hMC5R. These analyses also indicated that the apparent mechanism of ASIP antagonism varied among receptor subtypes, with characteristics consistent with competitive antagonism observed only at the hMC1R, and more complex behavior observed at the other receptors. ASIP inhibition at these latter receptors, nonetheless, can be classified as surmountable (hMC3R, hMC4R and hMC5R) or nonsurmountable (hMC2R). Recombinant ASIP also inhibited binding of radiolabeled melanocortins, [125I-Nle4, D-Phe7] alpha-MSH and [125I-Phe2, Nle4]ACTH 1-24, to the hMCR 1-5 receptors, with a relative efficacy that paralleled the ability of ASIP to inhibit cAMP accumulation at the hMC1R, hMC2R, hMC3R, and hMC4R. These results provide new insight into the biochemical mechanism of ASIP action and suggest that ASIP may play an important role in modulating melanocortin signaling in humans.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9058374/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

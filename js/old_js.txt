@@ -1,0 +1,72 @@
+  # <script>
+  #   document.addEventListener("DOMContentLoaded", function() {
+  #     var generalInfo = document.querySelector("#General_Info");
+  #     generalInfo.open = false;
+  #   });
+
+  #   document.addEventListener('DOMContentLoaded', () => {
+  #     const checkbox = document.getElementById('popupCheckbox');
+  #     const popup = document.getElementById('popup');
+  #     const closeBtn = document.querySelector('.close-btn');
+
+  #     // Show popup when checkbox is checked
+  #     checkbox.addEventListener('change', () => {
+  #       if (checkbox.checked) {
+  #         popup.style.display = 'flex';
+  #       } else {
+  #         popup.style.display = 'none';
+  #       }
+  #     });
+
+  #     // Close popup when close button is clicked
+  #     closeBtn.addEventListener('click', () => {
+  #       popup.style.display = 'none';
+  #     });
+
+  #     // Close popup when clicking outside of it
+  #     window.addEventListener('click', (event) => {
+  #       if (event.target === popup) {
+  #         popup.style.display = 'none';
+  #       }
+  #     });
+  #   });
+
+  #   function changeTheme() {
+  #     const selectedTheme = document.getElementById("theme-select").value;
+  #     const head = document.getElementsByTagName("head")[0];
+
+  #     // Remove any existing theme link
+  #     const existingLink = document.querySelector('link[data-theme="custom-theme"]');
+  #     if (existingLink) {
+  #       head.removeChild(existingLink);
+  #     }
+
+  #     // Create a new link element for the selected theme
+  #     const link = document.createElement("link");
+  #     link.rel = "stylesheet";
+  #     link.type = "text/css";
+  #     link.href = `https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/${selectedTheme}/bootstrap.min.css?v=${new Date().getTime()}`;  // Adding a version query to prevent caching
+  #     link.setAttribute("data-theme", "custom-theme");  // Mark this as a theme link
+    
+  #     // Append the new link element to the head
+  #     head.appendChild(link);
+  #   }
+
+  #   // Function to adjust table text color based on background
+  #   function adjustTableTextColor() {
+  #     const tables = document.querySelectorAll('table');
+    
+  #     tables.forEach(table => {
+  #       // Check the background color of the table
+  #       const bgColor = window.getComputedStyle(table).backgroundColor;
+        
+  #       // If the background color is black, change text color to white
+  #       if (bgColor === 'rgb(0, 0, 0)' || bgColor === 'black') {
+  #         table.style.color = 'white';
+  #       }
+  #     });
+  #   }
+
+  #   // Run the function when the page loads
+  #   window.onload = adjustTableTextColor;
+  # </script>

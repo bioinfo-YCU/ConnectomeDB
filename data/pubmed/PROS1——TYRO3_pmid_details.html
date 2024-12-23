@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>PROS1——TYRO3 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for PROS1——TYRO3</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab7867073')">7867073</button><button class="tablinks " onclick="openTab(event, 'tab7867073')">7867073</button><button class="tablinks " onclick="openTab(event, 'tab8641360')">8641360</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab7867073" class="tabcontent active">
+                    <h2>The anticoagulation factor protein S and its relative, Gas6, are ligands for the Tyro 3/Axl family of receptor tyrosine kinases.</h2>
+                    <h3>Cell; 1995</h3>
+                    <p>We report the identification of ligands for Tyro 3 (alternatively called Sky, rse, brt, or tif) and Axl (alternatively, Ark or UFO), members of a previously orphan family of receptor-like tyrosine kinases. These ligands correspond to protein S, a protease regulator that is a potent anticoagulant, and Gas6, a protein related to protein S but lacking any known function. Our results are reminiscent of recent findings that the procoagulant thrombin, a protease that drives clot formation by cleaving fibrinogen to form fibrin, also binds and activates intracellular signaling via a G protein-coupled cell surface receptor. Proteases and protease regulators that also activate specific cell surface receptors may serve to integrate coagulation with associated cellular responses required for tissue repair and growth, as well as to coordinate protease cascades and associated cellular responses in other systems, such as those involved in growth and remodeling of the nervous system.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7867073/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7867073" class="tabcontent ">
+                    <h2>The anticoagulation factor protein S and its relative, Gas6, are ligands for the Tyro 3/Axl family of receptor tyrosine kinases.</h2>
+                    <h3>Cell; 1995</h3>
+                    <p>We report the identification of ligands for Tyro 3 (alternatively called Sky, rse, brt, or tif) and Axl (alternatively, Ark or UFO), members of a previously orphan family of receptor-like tyrosine kinases. These ligands correspond to protein S, a protease regulator that is a potent anticoagulant, and Gas6, a protein related to protein S but lacking any known function. Our results are reminiscent of recent findings that the procoagulant thrombin, a protease that drives clot formation by cleaving fibrinogen to form fibrin, also binds and activates intracellular signaling via a G protein-coupled cell surface receptor. Proteases and protease regulators that also activate specific cell surface receptors may serve to integrate coagulation with associated cellular responses required for tissue repair and growth, as well as to coordinate protease cascades and associated cellular responses in other systems, such as those involved in growth and remodeling of the nervous system.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7867073/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8641360" class="tabcontent ">
+                    <h2>The Dtk receptor tyrosine kinase, which binds protein S, is expressed during hematopoiesis.</h2>
+                    <h3>Experimental hematology; 1996</h3>
+                    <p>Dtk (Tyro 3/Sky/Rse/Brt/Tif) belongs to a recently recognized subfamily of receptor tyrosine kinases that also includes Ufo (Axl/Ark) and Mer (Eyk). Ligands for Dtk and Ufo have been identified as protein S and the related molecule Gas6, respectively. This study examined expression of Dtk during ontogeny of the hematopoietic system and compared the pattern of expression with that of Ufo. Both receptors were abundantly expressed in differentiating embryonic stem cells, yolk sac blood islands, para-aortic splanchnopleural mesoderm, fractionated AA4+ fetal liver cells, and fetal thymus from day 14 until birth. Although Ufo was expressed at moderate levels in adult bone marrow, expression of Dtk in this tissue was barely detectable. In adult bone marrow subpopulations fractionated using counterflow centrifugal elutriation, immunomagnetic bead selection for lineage-depletion and FACS sorting for c-kit expression, very low levels of Dtk and/or Ufo were detected in some cell fractions. These results suggest that Dtk and Ufo are likely to be involved in the regulation of hematopoiesis, particularly during the embryonic stages of blood cell development.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8641360/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

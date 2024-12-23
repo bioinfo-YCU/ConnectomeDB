@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>ADM——CALCR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for ADM——CALCR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15692146')">15692146</button><button class="tablinks " onclick="openTab(event, 'tab12565884')">12565884</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15692146" class="tabcontent active">
+                    <h2>Pharmacological discrimination of calcitonin receptor: receptor activity-modifying protein complexes.</h2>
+                    <h3>Molecular pharmacology; 2005</h3>
+                    <p>Calcitonin (CT) receptors dimerize with receptor activity-modifying proteins (RAMPs) to create high-affinity amylin (AMY) receptors, but there is no reliable means of pharmacologically distinguishing these receptors. We used agonists and antagonists to define their pharmacology, expressing the CT(a) receptor alone or with RAMPs in COS-7 cells and measuring cAMP accumulation. Intermedin short, otherwise known as adrenomedullin 2, mirrored the action of alpha CGRP, being a weak agonist at CT(a), AMY(2a), and AMY(3a) receptors but considerably more potent at AMY(1a) receptors. Likewise, the linear calcitonin gene-related peptide (CGRP) analogs (Cys(ACM)(2,7))h alpha CGRP and (Cys(Et)(2,7))h alpha CGRP were only effective at AMY(1a) receptors, but they were partial agonists. As previously observed in COS-7 cells, there was little induction of the AMY(2a) receptor phenotype; thus, AMY(2a) was not examined further in this study. The antagonist peptide salmon calcitonin(8-32) (sCT(8-32)) did not discriminate strongly between CT and AMY receptors; however, AC187 was a more effective antagonist of AMY responses at AMY receptors, and AC413 additionally showed modest selectivity for AMY(1a) over AMY(3a) receptors. CGRP(8-37) also demonstrated receptor-dependent effects. CGRP(8-37) more effectively antagonized AMY at AMY(1a) than AMY(3a) receptors, although it was only a weak antagonist of both, but it did not inhibit responses at the CT(a) receptor. Low CGRP(8-37) affinity and agonism by linear CGRP analogs at AMY(1a) are the classic signature of a CGRP2 receptor. Our data indicate that careful use of combinations of agonists and antagonists may allow pharmacological discrimination of CT(a), AMY(1a), and AMY(3a) receptors, providing a means to delineate the physiological significance of these receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15692146/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12565884" class="tabcontent ">
+                    <h2>Novel calcitonin-(8-32)-sensitive adrenomedullin receptors derived from co-expression of calcitonin receptor with receptor activity-modifying proteins.</h2>
+                    <h3>Biochemical and biophysical research communications; 2003</h3>
+                    <p>We tested whether heterodimers comprised of calcitonin (CT) receptor lacking the 16-amino acid insert in intracellular domain 1 (CTR(I1-)) and receptor activity-modifying protein (RAMP) can function not only as calcitonin gene-related peptide (CGRP) receptors but also as adrenomedullin (AM) receptors. Whether transfected alone or together with RAMP, human (h)CTR(I1-) appeared mainly at the surface of HEK-293 cells. Expression of CTR(I1-) alone led to significant increases in cAMP in response to hCGRP or hAM, though both peptides remained about 100-fold less potent than hCT. However, the apparent potency of AM, like that of CGRP, approached that of CT when CTR(I1-) was co-expressed with RAMP. CGRP- or AM-evoked cAMP production was strongly inhibited by salmon CT-(8-32), a selective amylin receptor antagonist, but not by hCGRP-(8-37) or hAM-(22-52), antagonists of CGRP and AM receptors, respectively. Moreover, the inhibitory effects of CT-(8-32) were much stronger in cells co-expressing CTR(I1-) and RAMP than in cells expressing CTR(I1-) alone. Co-expression of CTR(I1-) with RAMP thus appears to produce functional CT-(8-32)-sensitive AM receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12565884/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

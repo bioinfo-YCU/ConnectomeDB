@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL3L1——CCR5 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL3L1——CCR5</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab11734558')">11734558</button><button class="tablinks " onclick="openTab(event, 'tab11449371')">11449371</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab11734558" class="tabcontent active">
+                    <h2>Identification of amino acid residues critical for LD78beta, a variant of human macrophage inflammatory protein-1alpha, binding to CCR5 and inhibition of R5 human immunodeficiency virus type 1 replication.</h2>
+                    <h3>The Journal of biological chemistry; 2002</h3>
+                    <p>In an attempt to determine which amino acid(s) of LD78beta, a variant of human macrophage inflammatory protein-1alpha, plays a critical role in the interaction with CCR5, we generated six LD78beta variants with an amino acid substituted to Ala at the NH(2) terminus of LD78beta. There was no significant difference in eliciting Ca(2+) flux and chemotaxis among the variants with the exception of LD78beta(T9A) showing a substantially reduced activity. The comparative order for human immunodeficiency virus type 1 (HIV-1) replication inhibition was: LD78beta(P8A) > LD78beta(D6A) > LD78beta(WT), LD78beta(L3A) > LD78beta(T7A), LD78beta(P2A) > LD78beta(T9A). In binding inhibition assays of LD78beta variants using 2D7 monoclonal antibody and (125)I-labeled macrophage inflammatory protein-1alpha, the comparative order was: LD78beta(P8A), LD78beta(D6A) > LD78beta(WT) > LD78beta(L3A) > LD78beta(T7A) > LD78beta(T9A), LD78betaP2A). The order for CCR5 down-regulation induction was comparable to that for binding inhibition. The present data suggest that Pro-2, Asp-6, Pro-8, and Thr-9 are critical for LD78beta binding to CCR5 and HIV-1 replication inhibition, and that LD78beta binding to CCR5, regardless of affinity, is sufficient for the initial signal transduction of LD78beta, whereas the greater anti-HIV-1 activity requires the greater magnitude of binding. The data also suggest that LD78beta variants with appropriate amino acid substitution(s) such as LD78beta(D6A) and LD78beta(P8A) may represent effective chemokine-based anti-HIV-1 therapeutics while preserving LD78beta-CCR5 interactions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11734558/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11449371" class="tabcontent ">
+                    <h2>Diverging binding capacities of natural LD78beta isoforms of macrophage inflammatory protein-1alpha to the CC chemokine receptors 1, 3 and 5 affect their anti-HIV-1 activity and chemotactic potencies for neutrophils and eosinophils.</h2>
+                    <h3>European journal of immunology; 2001</h3>
+                    <p>Recently, the LD78beta isoform of the CC chemokine macrophage inflammatory protein (MIP)-1alpha was shown to efficiently chemoattract lymphocytes and monocytes and to inhibit infection of mononuclear cells by R5 HIV-1 strains. We have now demonstrated that after cleavage of the NH2-terminal Ala-Pro dipeptide by CD26, LD78beta(3 - 70) became the most potent chemokine blocking HIV-1. LD78beta(3 - 70) competed tenfold more efficiently than LD78beta(1 - 70) with [125I] RANTES for binding to the CC chemokine receptors CCR5 and CCR1. Contrary to LD78alpha, LD78beta(1 - 70) at 30 ng/ml efficiently competed with [125I] RANTES for binding to CCR3 and mobilized calcium in CCR3 transfectants, whereas LD78beta(3 - 70) showed a 30-fold decrease in CCR3 affinity compared to LD78beta(1 - 70). This demonstrates the importance of the penultimate proline in LD78beta(1 - 70) for CCR3 recognition. Both LD78beta isoforms efficiently chemoattracted eosinophils from responsive donors. In contrast, only the CCR3 agonist LD78beta(1 - 70) and not LD78beta(3 - 70), induced calcium increases in eosinophils with low levels of CCR1. In responder neutrophils, LD78beta(3 - 70) elicited calcium fluxes at a 30-fold lower dose (10 ng/ml) compared to intact LD78beta and LD78alpha, whereas the three MIP-1alpha isoforms were equipotent neutrophil chemoattractants. Taken together, both LD78beta isoforms are potent HIV-1 inhibitors (CCR5) and activators for neutrophils (CCR1) and eosinophils (CCR1, CCR3), affecting infection and inflammation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11449371/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

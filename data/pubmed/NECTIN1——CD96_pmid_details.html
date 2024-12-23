@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>NECTIN1——CD96 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for NECTIN1——CD96</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab30759143')">30759143</button><button class="tablinks " onclick="openTab(event, 'tab17971293')">17971293</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab30759143" class="tabcontent active">
+                    <h2>Interaction between nectin-1 and the human natural killer cell receptor CD96.</h2>
+                    <h3>PloS one; 2019</h3>
+                    <p>Regulation of Natural Killer (NK) cell activity is achieved by the integration of both activating and inhibitory signals acquired at the immunological synapse with potential target cells. NK cells express paired receptors from the immunoglobulin family which share common ligands from the nectin family of adhesion molecules. The activating receptor CD226 (DNAM-1) binds to nectin-2 and CD155, which are also recognized by the inhibitory receptor TIGIT. The third receptor in this family is CD96, which is less well characterized and may have different functions in human and mouse models. Human CD96 interacts with CD155 and ligation of this receptor activates NK cells, while in mice the presence of CD96 correlates with decreased NK cell activation. Mouse CD96 also binds nectin-1, but the effect of this interaction has not yet been determined. Here we show that human nectin-1 directly interacts with CD96 in vitro. The binding site for CD96 is located on the nectin-1 V-domain, which comprises a canonical interface that is shared by nectins to promote cell adhesion. The affinity of nectin-1 for CD96 is lower than for other nectins such as nectin-3 and nectin-1 itself. However, the affinity of nectin-1 for CD96 is similar to its affinity for herpes simplex virus glycoprotein D (HSV gD), which binds the nectin-1 V-domain during virus entry. The affinity of human CD96 for nectin-1 is lower than for its known activating ligand CD155. We also found that human erythroleukemia K562 cells, which are commonly used as susceptible targets to assess NK cell cytotoxicity did not express nectin-1 on their surface and were resistant to HSV infection. When expressed in K562 cells, nectin-1-GFP accumulated at cell contacts and allowed HSV entry. Furthermore, overexpression of nectin-1-GFP led to an increased susceptibility of K562 cells to NK-92 cell cytotoxicity.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/30759143/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab17971293" class="tabcontent ">
+                    <h2>The murine pan T cell marker CD96 is an adhesion receptor for CD155 and nectin-1.</h2>
+                    <h3>Biochemical and biophysical research communications; 2007</h3>
+                    <p>The CD155 ligand CD96 is an immunoglobulin-like protein tentatively allocated to the repertoire of human NK receptors. We report here that the CD96/CD155-interaction is preserved between man and mouse although both receptors are only moderately conserved in amino acid sequence. Moreover, murine CD96 (mCD96) binds to nectin-1, a receptor related to CD155. Applying newly generated monoclonal antibodies specifically recognizing mCD96, an expression profile is revealed resembling closely that of human CD96 (hCD96) on cells of hematopoietic origin. A panel of anti-mCD96 but also recently established anti-mCD155 antibodies effectively prevents formation of CD96/CD155-complexes. This was exploited to demonstrate that the only available receptor for mCD96 present on thymocytes is mCD155. Moreover, T cell adhesion to insect cells expressing mCD155 is blocked by these antibodies depending on the T cell subtype. These results suggest a function of the CD96/CD155-adhesion system in T cell biology.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/17971293/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

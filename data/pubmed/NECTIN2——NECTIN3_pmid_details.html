@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>NECTIN2——NECTIN3 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for NECTIN2——NECTIN3</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12011057')">12011057</button><button class="tablinks " onclick="openTab(event, 'tab11544254')">11544254</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12011057" class="tabcontent active">
+                    <h2>Prominent role of the Ig-like V domain in trans-interactions of nectins. Nectin3 and nectin 4 bind to the predicted C-C'-C"-D beta-strands of the nectin1 V domain.</h2>
+                    <h3>The Journal of biological chemistry; 2002</h3>
+                    <p>Nectins form a family of integral molecules that belong to the immunoglobulin superfamily. Their ectodomain is made of three Ig-like domains (V, C, C). This family comprises at least five members, namely nectin1, -2, -3, -4, and poliovirus receptor (PVR), that are involved in different physiological and pathological processes. (i) Nectins are adhesion molecules localized at adherens junctions in epithelial cells. (ii) Some nectins act as poliovirus or alpha-herpesvirus receptors (nectin1). (iii) Nectin1 mutations are involved in orofacial developmental abnormalities in humans. Adhesion properties of nectins are mediated by Ca(2+)-independent homophilic and heterophilic processes through ectodomain trans-interactions. We have described a nectin trans-hetero-interaction network: nectin3 binds to nectin1, nectin2, and PVR; nectin1 also binds to nectin4. In the present study we compared the affinities of the different trans-interactions mediated by nectin1. We found that the K(D) of nectin1/nectin3 and nectin1/nectin4 interactions is 1 and 100 nm, respectively, whereas the K(D) of the nectin1-mediated homophilic interaction is 1 microm. We show that nectin1/nectin3 and nectin1/nectin4 trans-hetero-interactions were mediated through trans V to V domain interactions, whereas C domains contributed to increase the affinity of the interaction. Nectin3 and nectin4 share a common binding region in the nectin1 V domain: (i) nectin3 strongly competed with nectin4 binding, (ii) nectin3 and nectin4 binding to nectin1 was reduced by a number of monoclonal antibodies directed against the nectin1 V domain, and (iii) the glycoprotein D of herpes simplex virus-1 that binds to the V domain of nectin1 reduced nectin3 and nectin4 binding. Finally, using chimeric nectin1/PVR receptors where PVR V domain beta-strands were substituted with the corresponding regions of nectin1, the nectin3 and nectin4 minimal binding region on nectin1 V domain was mapped to the C-C'-C"-D beta-strands.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12011057/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11544254" class="tabcontent ">
+                    <h2>Nectin4/PRR4, a new afadin-associated member of the nectin family that trans-interacts with nectin1/PRR1 through V domain interaction.</h2>
+                    <h3>The Journal of biological chemistry; 2001</h3>
+                    <p>Nectins are adhesion molecules that participate in the organization of epithelial and endothelial junctions and serve as receptors for herpes simplex virus entry. They belong to the immunoglobulin superfamily, are homologues of the poliovirus receptor (PVR/CD155), and were also named poliovirus receptor-related (PRR) proteins. We identify a new member of the nectin family named nectin4. Peptide sequences of human and murine nectin4 share 92% identity, and as for other members, the ectodomain is made of three immunoglobulin-like domains of V, C, C types. In contrast to other nectin molecules, detection of nectin4 transcripts is mainly restricted to placenta in human tissues. Expression is broader in mouse, and interestingly nectin4 is detected at days 11, 15, and 17 during murine embryogenesis. Nectin4 interacts with afadin, a F-actin-associated molecule, via its carboxyl-terminal cytoplasmic sequence. Both molecules co-localize at cadherin-based adherens junctions in the MDCKII epithelial cell line. Nectins are homophilic adhesion molecules, and recently heterophilic interactions have been described between nectin3/nectin1 and nectin3/nectin2. We confirmed these trans-interactions and also described nectin3 as the PVR/CD155 ligand. By means of several approaches, we report on the identification of nectin4 as a new ligand for nectin1. First, a soluble chimeric recombinant nectin4 ectodomain (nectin4-Fc) trans-interacts with cells expressing nectin1 but not with cells expressing nectin2, nectin3, or PVR/CD155. Conversely, nectin1-Fc binds to cells expressing nectin4. Second, nectin1-Fc precipitates nectin4 expressed in COS cells. Third, reciprocal in vitro physical interactions were detected between nectin4-Fc and nectin1-Fc. The nectin4-Fc/nectin4-Fc interaction was detected suggesting that nectin4 exhibits both homophilic and heterophilic properties. Using the same approaches we demonstrate, for the first time, that the V domain of nectin1 acts as a major functional region involved in trans-heterointeraction with nectin4 and also nectin3.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11544254/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

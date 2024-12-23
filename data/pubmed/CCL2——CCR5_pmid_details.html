@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL2——CCR5 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL2——CCR5</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab16298345')">16298345</button><button class="tablinks " onclick="openTab(event, 'tab10477718')">10477718</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab16298345" class="tabcontent active">
+                    <h2>Molecular cloning and radioligand binding characterization of the chemokine receptor CCR5 from rhesus macaque and human.</h2>
+                    <h3>Biochemical pharmacology; 2005</h3>
+                    <p>The aim of this study was to determine if macaque represents a suitable species for the pre-clinical evaluation of novel CCR5 antagonists, such as maraviroc (UK-427,857). To do this we cloned and expressed CCR5 from rhesus macaque and compared the binding properties of [125I]-MIP-1beta and [3H]-maraviroc with human recombinant CCR5. [125I]-MIP-1beta bound with similar high affinity to CCR5 from macaque (K(d) = 0.24 +/- 0.05 nM) and human (K(d) = 0.23 +/- 0.05 nM) and with similar kinetic properties. In competition binding studies the affinity of a range of human chemokines for macaque CCR5 was also similar to human CCR5. Maraviroc inhibited binding of [125I]-MIP-1beta to CCR5 from macaque and human with similar potency (IC50 = 17.50 +/- 1.24 nM and 7.18 +/- 0.93 nM, respectively) and antagonised MIP-1beta induced intracellular calcium release mediated through CCR5 from macaque and human with similar potency (IC50 = 17.50 +/- 3.30 nM and 12.07 +/- 1.89, respectively). [3H]-maraviroc bound with high affinity to CCR5 from macaque (K(d) = 1.36+/-0.07 nM) and human (K(d) = 0.86 +/- 0.08 nM), but was found to dissociate approximately 10-fold more quickly from macaque CCR5. However, as with the human receptor, maraviroc was shown to be a high affinity, potent functional antagonist of macaque CCR5 thereby indicating that the macaque should be a suitable species in which to evaluate the pharmacology, safety and potential mechanism-related toxicology of novel CCR5 antagonists.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16298345/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10477718" class="tabcontent ">
+                    <h2>CCR5 binds multiple CC-chemokines: MCP-3 acts as a natural antagonist.</h2>
+                    <h3>Blood; 1999</h3>
+                    <p>CCR5 was first characterized as a receptor for MIP-1alpha, MIP-1beta, and RANTES, and was rapidly shown to be the main coreceptor for M-tropic human immunodeficiency virus (HIV)-1 strains and simian immunodeficiency virus (SIV). Chemokines constitute a rapidly growing family of proteins and receptor-chemokine interactions are known to be promiscuous and redundant. We have therefore tested whether other CC-chemokines could bind to and activate CCR5. All CC-chemokines currently available were tested for their ability to compete with [(125)I]-MIP-1beta binding on a stable cell line expressing recombinant CCR5, and/or to induce a functional response in these cells. We found that in addition to MIP-1beta, MIP-1alpha, and RANTES, five other CC-chemokines could compete for [(125)I]-MIP-1beta binding: MCP-2, MCP-3, MCP-4, MCP-1, and eotaxin binding was characterized by IC(50) values of 0.22, 2.14, 5.89, 29.9, and 21.7 nmol/L, respectively. Among these ligands, MCP-3 had the remarkable property of binding CCR5 with high affinity without eliciting a functional response, MCP-3 could also inhibit the activation of CCR5 by MIP-1beta and may therefore be considered as a natural antagonist for CCR5. It was unable to induce significant endocytosis of the receptor. Chemokines that could compete with high affinity for MIP-1beta binding could also compete for monomeric gp120 binding, although with variable potencies; maximal gp120 binding inhibition was 80% for MCP-2, but only 30% for MIP-1beta. MCP-3 could compete efficiently for gp120 binding but was, however, found to be a weak inhibitor of HIV infection, probably as a consequence of its inability to downregulate the receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10477718/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

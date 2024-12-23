@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>IL33——IL1RL1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for IL33——IL1RL1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab20926795')">20926795</button><button class="tablinks " onclick="openTab(event, 'tab16286016')">16286016</button><button class="tablinks " onclick="openTab(event, 'tab19996325')">19996325</button><button class="tablinks " onclick="openTab(event, 'tab29763370')">29763370</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab20926795" class="tabcontent active">
+                    <h2>IL-33 mediates inflammatory responses in human lung tissue cells.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 2010</h3>
+                    <p>IL-33 is a member of the IL-1 family and mediates its biological effects via the ST2 receptor, which is selectively expressed on Th2 cells and mast cells. Although polymorphic variation in ST2 is strongly associated with asthma, it is currently unclear whether IL-33 acts directly on lung tissue cells at sites of airway remodeling. Therefore, we aimed to identify the IL-33-responsive cells among primary human lung tissue cells. ST2 mRNA was expressed in both endothelial and epithelial cells but not in fibroblasts or smooth muscle cells. Correspondingly, IL-33 promoted IL-8 production by both endothelial and epithelial cells but not by fibroblasts or smooth muscle cells. Transfection of ST2 small interference RNA into both endothelial and epithelial cells significantly reduced the IL-33-dependent upregulation of IL-8, suggesting that IL-33-mediated responses in these cells occur via the ST2 receptor. Importantly, Th2 cytokines, such as IL-4, further enhanced ST2 expression and function in both endothelial and epithelial cells. The IL-33-mediated production of IL-8 by epithelial cells was almost completely suppressed by corticosteroid treatment. In contrast, the effect of corticosteroid treatment on the IL-33-mediated responses of endothelial cells was only partial. IL-33 induced activation of both ERK and p38 MAPK in endothelial cells but only ERK in epithelial cells. p38 MAPK was required for the IL-33-mediated responses of endothelial cells, whereas ERK was required for IL-33-mediated IL-8 production by epithelial cells. Taken together, these findings suggest that IL-33-mediated inflammatory responses of lung tissue cells may be involved in the chronic allergic inflammation of the asthmatic airway.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/20926795/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab16286016" class="tabcontent ">
+                    <h2>IL-33, an interleukin-1-like cytokine that signals via the IL-1 receptor-related protein ST2 and induces T helper type 2-associated cytokines.</h2>
+                    <h3>Immunity; 2005</h3>
+                    <p>Cytokines of the interleukin-1 (IL-1) family, such as IL-1 alpha/beta and IL-18, have important functions in host defense, immune regulation, and inflammation. Insight into their biological functions has led to novel therapeutic approaches to treat human inflammatory diseases. Within the IL-1 family, IL-1 alpha/beta, IL-1Ra, and IL-18 have been matched to their respective receptor complexes and have been shown to have distinct biological functions. The most prominent orphan IL-1 receptor is ST 2. This receptor has been described as a negative regulator of Toll-like receptor-IL-1 receptor signaling, but it also functions as an important effector molecule of T helper type 2 responses. We report a member of the IL-1 family, IL-33, which mediates its biological effects via IL-1 receptor ST 2, activates NF-kappaB and MAP kinases, and drives production of T(H)2-associated cytokines from in vitro polarized T(H)2 cells. In vivo, IL-33 induces the expression of IL-4, IL-5, and IL-13 and leads to severe pathological changes in mucosal organs.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16286016/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab19996325" class="tabcontent ">
+                    <h2>Expression of interleukin 1-like cytokine interleukin 33 and its receptor complex (ST2L and IL1RAcP) in human pancreatic myofibroblasts.</h2>
+                    <h3>Gut; 2010</h3>
+                    <p>Interleukin 33 (IL33) is a cytokine belonging to the IL1 family and it binds to a complex of the ST2L/IL1 receptor accessory protein (IL1RAcP). To define the role of IL33 in fibrogenesis of the pancreas, the expression of IL33, ST2L and IL1RAcP was examined in chronic pancreatitis tissues. The effects of IL33 on the functions of human pancreatic myofibroblasts were also investigated.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/19996325/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab29763370" class="tabcontent ">
+                    <h2>Novel interleukin-33 and its soluble ST2 receptor as potential serum biomarkers in parotid gland tumors.</h2>
+                    <h3>Experimental biology and medicine (Maywood, N.J.); 2018</h3>
+                    <p>An increasing number of patients with parotid gland tumors have been observed in recent years. The relationship between the immune system and tumor formation is thoroughly investigated. However, newly discovered molecules offer a new insight into the pathophysiology of malignancies. It would be ideal to find an easily determinable biomarker of tumor existence, its malignant potential or a biomarker suggesting the probability of disease recurrence. Our study is the first to examine serum concentrations of IL-33 and its sST2 receptor in patients with various types of parotid gland tumors. Serum IL33, sST2, IL-4 and IL-10 concentrations were determined in patients with benign and malignant parotid gland tumors (pleomorphic adenoma, Warthin's tumor, myoepithelioma and acinic cell carcinoma). We observed for the first time that serum IL-33 level was significantly elevated in patients with various types of parotid gland tumors and sST2 levels were significantly higher in pleomorphic adenoma and acinic cell carcinoma patients compared to the controls. Our results demonstrate for the first time that serum IL-33 and its sST2 receptor may be important factors in the pathology of parotid gland tumors. Although our results are promising, further investigations are required to detect if serum concentrations of those molecules may be a biomarker in parotid gland tumors. Impact statement Parotid gland tumors seem to be an increasingly important medical challenge, mostly due to a noticeable increase in the incidence. It would be crucial to find an easily determinable biomarker of tumor existence, its recurrence or malignant potential. We observed for the first time that serum IL-33 level was significantly elevated in patients with various types of parotid gland tumors and its sST2 receptor levels were significantly higher in pleomorphic adenoma and acinic cell carcinoma patients compared to the controls. We believe that our study helps to understand the biology of the tumors and a potential role of a relatively newly identified cytokine IL-33 in the pathophysiology of the parotid gland tumors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/29763370/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

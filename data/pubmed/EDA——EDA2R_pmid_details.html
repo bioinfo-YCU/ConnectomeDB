@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>EDA——EDA2R - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for EDA——EDA2R</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12084975')">12084975</button><button class="tablinks " onclick="openTab(event, 'tab11039935')">11039935</button><button class="tablinks " onclick="openTab(event, 'tab11039935')">11039935</button><button class="tablinks " onclick="openTab(event, 'tab12270937')">12270937</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12084975" class="tabcontent active">
+                    <h2>Recent advances in understanding of the molecular basis of anhidrotic ectodermal dysplasia: discovery of a ligand, ectodysplasin A and its two receptors.</h2>
+                    <h3>Journal of applied genetics; 2002</h3>
+                    <p>Recent developments of the investigations on the molecular basis of anhidrotic ectodermal dysplasia are reviewed. Identification of the major product of the EDA gene (ectodysplasin A), a protein belonging to a group of TNF ligands, and molecular cloning of the cDNA, encoding its receptor (EDAR), a member of the TNF receptor family, are presented. The role of an alternative EDA receptor, localised on the X chromosome (XEDAR) in the developmental control of the differentiation of skin appendages, is discussed. Recent findings have elucidated the cause of the autosomal forms of EDA, both dominant and recessive, and indicated an important role of a signal transduction pathway involving a protein product of the NEMO gene and the transcription factor NFkappaB in the differentiation of skin appendages.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12084975/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11039935" class="tabcontent ">
+                    <h2>Two-amino acid molecular switch in an epithelial morphogen that regulates binding to two distinct receptors.</h2>
+                    <h3>Science (New York, N.Y.); 2000</h3>
+                    <p>Ectodysplasin, a member of the tumor necrosis factor family, is encoded by the anhidrotic ectodermal dysplasia (EDA) gene. Mutations in EDA give rise to a clinical syndrome characterized by loss of hair, sweat glands, and teeth. EDA-A1 and EDA-A2 are two isoforms of ectodysplasin that differ only by an insertion of two amino acids. This insertion functions to determine receptor binding specificity, such that EDA-A1 binds only the receptor EDAR, whereas EDA-A2 binds only the related, but distinct, X-linked ectodysplasin-A2 receptor (XEDAR). In situ binding and organ culture studies indicate that EDA-A1 and EDA-A2 are differentially expressed and play a role in epidermal morphogenesis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11039935/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11039935" class="tabcontent ">
+                    <h2>Two-amino acid molecular switch in an epithelial morphogen that regulates binding to two distinct receptors.</h2>
+                    <h3>Science (New York, N.Y.); 2000</h3>
+                    <p>Ectodysplasin, a member of the tumor necrosis factor family, is encoded by the anhidrotic ectodermal dysplasia (EDA) gene. Mutations in EDA give rise to a clinical syndrome characterized by loss of hair, sweat glands, and teeth. EDA-A1 and EDA-A2 are two isoforms of ectodysplasin that differ only by an insertion of two amino acids. This insertion functions to determine receptor binding specificity, such that EDA-A1 binds only the receptor EDAR, whereas EDA-A2 binds only the related, but distinct, X-linked ectodysplasin-A2 receptor (XEDAR). In situ binding and organ culture studies indicate that EDA-A1 and EDA-A2 are differentially expressed and play a role in epidermal morphogenesis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11039935/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12270937" class="tabcontent ">
+                    <h2>Role of TRAF3 and -6 in the activation of the NF-kappa B and JNK pathways by X-linked ectodermal dysplasia receptor.</h2>
+                    <h3>The Journal of biological chemistry; 2002</h3>
+                    <p>X-linked ectodermal dysplasia receptor (XEDAR) is a recently isolated member of the tumor necrosis factor receptor family that has been shown to be highly expressed in ectodermal derivatives during embryonic development and binds to ectodysplasin-A2 (EDA-A2). By using a subclone of 293F cells with stable expression of XEDAR, we report that XEDAR activates the NF-kappaB and JNK pathways in an EDA-A2-dependent fashion. Treatment with EDA-A2 leads to the recruitment of TRAF3 and -6 to the aggregated XEDAR complex, suggesting a central role of these adaptors in the proximal aspect of XEDAR signaling. Whereas TRAF3 and -6, IKK1/IKKalpha, IKK2/IKKbeta, and NEMO/IKKgamma are involved in XEDAR-induced NF-kappaB activation, XEDAR-induced JNK activation seems to be mediated via a pathway dependent on TRAF3, TRAF6, and ASK1. Deletion and point mutagenesis studies delineate two distinct regions in the cytoplasmic domain of XEDAR, which are involved in binding to TRAF3 and -6, respectively, and play a major role in the activation of the NF-kappaB and JNK pathways. Taken together, our results establish a major role of TRAF3 and -6 in XEDAR signaling and in the process of ectodermal differentiation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12270937/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

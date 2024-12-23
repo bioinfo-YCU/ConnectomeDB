@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>TNFSF14——TNFRSF14 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for TNFSF14——TNFRSF14</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10894944')">10894944</button><button class="tablinks " onclick="openTab(event, 'tab11390428')">11390428</button><button class="tablinks " onclick="openTab(event, 'tab9462508')">9462508</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10894944" class="tabcontent active">
+                    <h2>Molecular cloning and characterization of a mouse homolog of human TNFSF14, a member of the TNF superfamily.</h2>
+                    <h3>Cytogenetics and cell genetics; 2000</h3>
+                    <p>A member of the tumor necrosis factor (TNF) superfamily, human TNFSF14 (hTNFSF14)/HVEM-L (herpes virus entry mediator ligand) was isolated as a cellular ligand for HVEM/TR2 and human lymphotoxin beta receptor (LTbetaR). TNFSF14 induces apoptosis and suppresses tumor formation. We have isolated a cDNA clone for a mouse homologue of hTNFSF14 by signal sequence trap (SST) screening which we recently developed. The deduced amino acid sequence of the mouse TNFSF14 (mTNFSF14) cDNA comprised 239 amino acid residues and was 77% identical to the hTNFSF14 protein. In Northern blot analysis, 2.1 kb and 4.2kb mTNFSF14 transcripts were detected in spleen and lung, and in heart, respectively. Fluorescence in situ hybridization analysis localized the mTNFSF14 gene Tnfsf14 to chromosome 17 which is tightly linked with Tnf, Lta, and Ltb.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10894944/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11390428" class="tabcontent ">
+                    <h2>Modulation of T-cell responses to alloantigens by TR6/DcR3.</h2>
+                    <h3>The Journal of clinical investigation; 2001</h3>
+                    <p>TR6 (DcR3) is a new member of the TNF receptor (TNFR) family that lacks a transmembrane domain in its sequence, indicating that it is a secreted molecule. TR6 can bind to FasL and prevent FasL-induced apoptosis; it can also associate with LIGHT, another TNF family member. The role of TR6 in immune responses was investigated in this study. According to flow cytometry, recombinant human TR6-Fc binds to human LIGHT expressed on 293 cells or on activated human T cells and competes with the LIGHT receptor TR2 for the binding to LIGHT on these cells. Human TR6 could cross-react with mouse LIGHT in immunoprecipitation. TR6-Fc also downregulates cytotoxic T lymphocyte activity in vitro and graft-versus-host responses in mice. Moreover, TR6-Fc modulates lymphokine production by alloantigen-stimulated mouse T cells. TR6-Fc ameliorated rejection response to mouse heart allograft. These results indicate that TR6 can dampen T-cell responses to alloantigens. Such regulatory effects of TR6 probably occur via interference with interaction between pairs of related TNF and TNFR family members, LIGHT/TR2 being one of the possible candidate pairs.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11390428/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9462508" class="tabcontent ">
+                    <h2>LIGHT, a new member of the TNF superfamily, and lymphotoxin alpha are ligands for herpesvirus entry mediator.</h2>
+                    <h3>Immunity; 1998</h3>
+                    <p>Herpes simplex virus (HSV) 1 and 2 infect activated T lymphocytes by attachment of the HSV envelope glycoprotein D (gD) to the cellular herpesvirus entry mediator (HVEM), an orphan member of the tumor necrosis factor receptor superfamily. Here, we demonstrate that HVEM binds two cellular ligands, secreted lymphotoxin alpha (LTalpha) and LIGHT, a new member of the TNF superfamily. LIGHT is a 29 kDa type II transmembrane protein produced by activated T cells that also engages the receptor for the LTalphabeta heterotrimer but does not form complexes with either LTalpha or LTbeta. HSV1 gD inhibits the interaction of HVEM with LIGHT, and LIGHT and gD interfere with HVEM-dependent cell entry by HSV1. This characterizes herpesvirus gD as a membrane-bound viokine and establishes LIGHT-HVEM as integral components of the lymphotoxin cytokine-receptor system.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9462508/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

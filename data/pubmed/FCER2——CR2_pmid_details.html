@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>FCER2——CR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for FCER2——CR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab16785534')">16785534</button><button class="tablinks " onclick="openTab(event, 'tab16172256')">16172256</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab16785534" class="tabcontent active">
+                    <h2>Characterization of human complement receptor type 2 (CR2/CD21) as a receptor for IFN-alpha: a potential role in systemic lupus erythematosus.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 2006</h3>
+                    <p>Human complement receptor type 2 (CR2/CD21) is a B lymphocyte membrane glycoprotein that plays a central role in the immune responses to foreign Ags as well as the development of autoimmunity to nuclear Ags in systemic lupus erythematosus. In addition to these three well-characterized ligands, C3d/iC3b, EBV-gp350, and CD23, a previous study has identified CR2 as a potential receptor for IFN-alpha. IFN-alpha, a multifunctional cytokine important in the innate immune system, has recently been proposed to play a major pathogenic role in the development of systemic lupus erythematosus in humans and mice. In this study, we have shown using surface plasmon resonance and ELISA approaches that CR2 will bind IFN-alpha in the same affinity range as the other three well-characterized ligands studied in parallel. In addition, we show that IFN-alpha interacts with short consensus repeat domains 1 and 2 in a region that serves as the ligand binding site for C3d/iC3b, EBV-gp350, and CD23. Finally, we show that treatment of purified human peripheral blood B cells with the inhibitory anti-CR2 mAb 171 diminishes the induction of IFN-alpha-responsive genes. Thus, IFN-alpha represents a fourth class of extracellular ligands for CR2 and interacts with the same domain as the other three ligands. Defining the role of CR2 as compared with the well-characterized type 1 IFN-alpha receptor 1 and 2 in mediating innate immune and autoimmune roles of this cytokine should provide additional insights into the biologic roles of this interaction.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16785534/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab16172256" class="tabcontent ">
+                    <h2>The structure of human CD23 and its interactions with IgE and CD21.</h2>
+                    <h3>The Journal of experimental medicine; 2005</h3>
+                    <p>The low-affinity immunoglobulin E (IgE) receptor, CD23 (FcepsilonRII), binds both IgE and CD21 and, through these interactions, regulates the synthesis of IgE, the antibody isotype that mediates the allergic response. We have determined the three-dimensional structure of the C-type lectin domain of CD23 in solution by nuclear magnetic resonance spectroscopy. An analysis of concentration-dependent chemical shift perturbations have allowed us to identify the residues engaged in self-association to the trimeric state, whereas ligand-induced changes have defined the binding sites for IgE and CD21. The results further reveal that CD23 can bind both ligands simultaneously. Despite the C-type lectin domain structure, none of the interactions require calcium. We also find that IgE and CD23 can interact to form high molecular mass multimeric complexes. The interactions that we have described provide a solution to the paradox that CD23 is involved in both up- and down-regulation of IgE and provide a structural basis for the development of inhibitors of allergic disease.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16172256/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

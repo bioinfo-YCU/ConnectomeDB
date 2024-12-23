@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL4——CCR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL4——CCR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12381680')">12381680</button><button class="tablinks " onclick="openTab(event, 'tab8530354')">8530354</button><button class="tablinks " onclick="openTab(event, 'tab7594543')">7594543</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12381680" class="tabcontent active">
+                    <h2>Pharmacological characterization of the chemokine receptor, hCCR1 in a stable transfectant and differentiated HL-60 cells: antagonism of hCCR1 activation by MIP-1beta.</h2>
+                    <h3>British journal of pharmacology; 2002</h3>
+                    <p>C-C chemokine receptor-1 (CCR1) has been implicated in mediating a variety of inflammatory conditions including multiple sclerosis and organ rejection. Although originally referred to as the MIP-1alpha/RANTES receptor, CCR1 is quite promiscuous and can be activated by numerous chemokines. We used radioligand binding and [35S]-GTPgammaS exchange assays in membranes from a cell line transfected to express CCR1 (Ba/F3-hCCR1) to characterize a panel of chemokines (HCC-1, MIP-1alpha, MIP-1beta, MIP-1delta, MPIF-1, MCP-2, MCP-3, and RANTES) as CCR1 ligands. In this recombinant model, these chemokines displaced 125I-MIP-1alpha with a wide range of potencies and, with the exception of MCP-2, acted as full agonists in stimulating [35S]-GTPgammaS exchange. We then assessed the utility of HL-60 cells cultured with known differentiating agents (PMA, DMSO, dibutyryl-cAMP or retinoic acid) for investigating CCR1 pharmacology. In [35S]-GTPgammaS exchange assays, membranes from cells cultured with retinoic acid (4-6 days) were the most responsive to activation by MIP-1alpha and MPIF-1. FACS analysis and comparative pharmacology confirmed that these activities were mediated by CCR1. Using [35S]-GTPgammaS exchange assays, intracellular calcium flux and/or whole cell chemotaxis assays in HL-60(Rx) cells, we validated that MIP-1alpha was the most potent CCR1 ligand (MIP-1alpha>MPIF-1>RANTES>or=MIP-1beta) although the ligands differed in their efficacy as agonists. MPIF-1 was the more efficacious (MPIF-1>RANTES=MIP-1alpha>>MIP-1beta). 125I-MIP-1beta binding in Ba/F3-hCCR1 and HL-60(Rx) membranes was competitively displaced by MIP-1alpha, MPIF-1 and MIP-1beta. The binding K(i) for these chemokines with 125I-MIP-1beta were essentially identical in the two membrane systems. Lastly, MIP-1beta antagonized [35S]-GTPgammaS exchange, Ca2+ flux and chemotaxis in HL-60(Rx) cells in response to robust agonists such as MIP-1alpha, RANTES and MPIF-1. Based on our results, we propose that MIP-1beta could function as an endogenous inhibitor of CCR1 function.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12381680/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8530354" class="tabcontent ">
+                    <h2>Monocyte chemoattractant protein-3 is a functional ligand for CC chemokine receptors 1 and 2B.</h2>
+                    <h3>The Journal of biological chemistry; 1995</h3>
+                    <p>The CC chemokine monocyte chemoattractant protein-3 (MCP-3) activates human monocytes, lymphocytes, basophils, and eosinophils. MCP-3 has been reported to induce [Ca2+]i changes in cells transfected with the monocyte-selective MCP-1 receptor 2B (CC CKR2B) and competes for 125I-MCP-1 binding on CC CKR2B, suggesting that it may mediate monocyte responses to MCP-3. However, we now show that MCP-3 is a ligand and potent agonist for the macrophage inflammatory protein-1 alpha (MIP-1 alpha)/regulated on activation, normal T expressed, and secreted protein (RANTES) receptor CC CKR1 (rank order for [Ca2+]i changes = MIP-1 alpha > MCP-3 > RANTES), which is expressed in monocytes > neutrophils > eosinophils. 125I-MCP-3 bound directly to CC CKR1 and CC CKR2B (Ki = 8 and 7 nM, respectively). Binding to CC CKR1 was competed by all CC chemokines tested except MCP-1. In contrast, binding to CC CKR2B was competed only by MCP-3 and MCP-1. Both MCP-1 and MCP-3 were equipotent agonists (EC50 = 10 nM for [Ca2+]i changes). Thus, MCP-3 is a functional ligand for both CC CKR1 and CC CKR2B, which otherwise have distinct selectivities for CC chemokines. These data suggest that monocyte responses to MCP-3 could be mediated by both CC CKR2B and CC CKR1, whereas eosinophil responses to MCP-3 could be mediated by CC CKR1.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8530354/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7594543" class="tabcontent ">
+                    <h2>Molecular characterization of two murine eosinophil beta chemokine receptors.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 1995</h3>
+                    <p>beta or C-C chemokines including RANTES, MCP-3, MIP-1 alpha, and eotaxin have been implicated in the pathogenesis of eosinophilic inflammation. Two human beta chemokine receptors have been cloned and characterized: the MIP-1 alpha/RANTES receptor or C-C chemokine receptor 1 (CCR-1) and the MCP-1 receptor or C-C chemokine receptor 2 (CCR-2). However, no murine beta chemokine receptors have thus far been reported. Molecular cloning from mouse genomic DNA and cDNA libraries yielded two murine beta chemokine receptors with 79% and 65% sequence identity with human CCR-1, and 50% and 55% with human CCR-2. COS cells transiently transfected with the murine homologue of human CCR-1 bind murine MIP-1 alpha and human RANTES with Kds of 3.4 nM and 4.2 nM and murine MIP-1 beta with an EC50 of 8.9 nM. The other murine beta chemokine receptor, which we have designated murine CCR-3, also binds murine MIP-1 alpha. The mRNAs for both receptors are expressed in eosinophils from IL-5 transgenic mice. The level of murine CCR-3 mRNA in these mouse eosinophils exceeds that of CCR-1 mRNA and approaches actin levels. Murine MIP-1 alpha was found to be a potent chemoattractant for murine eosinophils. Our findings suggest that the murine MIP-1 alpha ligand/receptor system is an important mediator of murine eosinophil trafficking.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7594543/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

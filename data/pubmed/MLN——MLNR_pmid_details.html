@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>MLN——MLNR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for MLN——MLNR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10381885')">10381885</button><button class="tablinks " onclick="openTab(event, 'tab15677347')">15677347</button><button class="tablinks " onclick="openTab(event, 'tab11461914')">11461914</button><button class="tablinks " onclick="openTab(event, 'tab11781320')">11781320</button><button class="tablinks " onclick="openTab(event, 'tab16531413')">16531413</button><button class="tablinks " onclick="openTab(event, 'tab11259768')">11259768</button><button class="tablinks " onclick="openTab(event, 'tab10381885')">10381885</button><button class="tablinks " onclick="openTab(event, 'tab11461914')">11461914</button><button class="tablinks " onclick="openTab(event, 'tab12054506')">12054506</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10381885" class="tabcontent active">
+                    <h2>Receptor for motilin identified in the human gastrointestinal system.</h2>
+                    <h3>Science (New York, N.Y.); 1999</h3>
+                    <p>Motilin is a 22-amino acid peptide hormone expressed throughout the gastrointestinal (GI) tract of humans and other species. It affects gastric motility by stimulating interdigestive antrum and duodenal contractions. A heterotrimeric guanosine triphosphate-binding protein (G protein)-coupled receptor for motilin was isolated from human stomach, and its amino acid sequence was found to be 52 percent identical to the human receptor for growth hormone secretagogues. The macrolide antibiotic erythromycin also interacted with the cloned motilin receptor, providing a molecular basis for its effects on the human GI tract. The motilin receptor is expressed in enteric neurons of the human duodenum and colon. Development of motilin receptor agonists and antagonists may be useful in the treatment of multiple disorders of GI motility.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10381885/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15677347" class="tabcontent ">
+                    <h2>Demonstration of a specific site of covalent labeling of the human motilin receptor using a biologically active photolabile motilin analog.</h2>
+                    <h3>The Journal of pharmacology and experimental therapeutics; 2005</h3>
+                    <p>The motilin receptor belongs to a group of class I G protein-coupled receptors that also includes the growth hormone secretagogue and ghrelin receptors. These represent clinically useful targets for pharmacotherapy. Their potentially unique structures and the molecular basis of their binding are not yet clear. We previously reported the initial affinity labeling of a region within this receptor (a cyanogen bromide fragment extending from the first to the second extracellular loop) using a position 1 photolabile motilin analog. To extend our understanding of the molecular basis of motilin binding, we have developed an additional radioiodinatable motilin analog probe having site of covalent attachment in position 5. This was a full agonist that bound to the motilin receptor specifically and with high affinity, and that efficiently established a single covalent bond to its receptor. Sequential chemical and enzymatic cleavage of labeled wild-type and mutant motilin receptor constructs established that the region of labeling was within the third extracellular loop. This was further localized to Phe(332) using radiochemical Edman degradation sequencing. These data provide the first spatial approximation constraint that can be used in the docking of this peptide ligand to its receptor. We hope that a series of such constraints can be determined to provide adequate structural information to begin to elucidate the conformation of this agonist-bound receptor and to ultimately be useful in the rational design of drugs acting at this important target.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15677347/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11461914" class="tabcontent ">
+                    <h2>Identification of peptide ligand-binding domains within the human motilin receptor using photoaffinity labeling.</h2>
+                    <h3>The Journal of biological chemistry; 2001</h3>
+                    <p>The cDNA encoding the human motilin receptor was recently cloned and found to represent a G protein-coupled receptor that is structurally related to the growth hormone secretagogue receptors. Together, these represent a new Class I receptor family. Our aim in the present work is to gain insight into the molecular basis of binding of motilin to its receptor using photoaffinity labeling. To achieve this, we developed a Chinese hamster ovary cell line that overexpressed functional motilin receptor (CHO-MtlR; 175,000 sites per cell, with K(i) = 2.3 +/- 0.4 nm motilin and EC(50) = 0.3 +/- 0.1 nm motilin) and a radioiodinatable peptide analogue of human motilin that incorporated a photolabile p-benzoyl-l-phenylalanine (Bpa) residue into its pharmacophoric domain. This probe, [Bpa(1),Ile(13)]motilin, was a full agonist at the motilin receptor that increased intracellular calcium in a concentration-dependent manner (EC(50) = 1.5 +/- 0.4 nm). This photolabile ligand bound specifically and with high affinity to the motilin receptor (K(i) = 12.4 +/- 1.0 nm), and covalently labeled that molecule within its M(r) = 45,000 deglycosylated core. Cyanogen bromide cleavage demonstrated its covalent attachment to fragments of the receptor having apparent M(r) = 6,000 and M(r) = 31,000. These were demonstrated to represent fragments that included both the first and the large second extracellular loop domains, with the latter representing a unique structural feature of this receptor. The spatial approximation of the pharmacophoric domain of motilin with these receptor domains support their functional importance as well.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11461914/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11781320" class="tabcontent ">
+                    <h2>Differential determinants for peptide and non-peptidyl ligand binding to the motilin receptor. Critical role of second extracellular loop for peptide binding and action.</h2>
+                    <h3>The Journal of biological chemistry; 2002</h3>
+                    <p>The predicted second extracellular loop domain of the motilin receptor is of particular interest because it is a region that is quite distinct from the analogous regions in other family members that are most closely related and because the initial report of the photoaffinity labeling of a domain of this receptor included this region (Coulie, B. J., Matsuura, B., Dong, M., Hadac, E. M., Pinon, D. I., Feighner, S. D., Howard, A. D., and Miller, L. J. (2001) J. Biol. Chem. 276, 35518-35522). In the current work, motilin receptor constructs were prepared that included sequential deletions ranging from single residues to twelve amino acid segments throughout this 67 amino acid domain. Each construct was expressed in COS cells and characterized for motilin radioligand binding and motilin-stimulated intracellular calcium responses. The only segments that had negative impact on motilin binding and biological activity included deletion constructs DeltaCys(235), Delta179-182, and Delta241-246. Cys(235) is likely involved in the highly conserved and functionally important disulfide bond linking the first and second loops of G protein-coupled receptors. Alanine replacements for each of the amino acid residues in the other two segments revealed that the perimembranous residues at both ends of this loop, Val(179) and Leu(245) and Arg(246), were responsible for the negative impact on motilin binding and biological activity. Of note, these mutants responded normally to the non-peptidyl agonist, erythromycin. These data support important functional roles for both amino-terminal and carboxyl-terminal perimembranous regions of the second loop for responses to the natural agonist peptide, while supporting independent determinants for action of a non-peptidyl agonist ligand.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11781320/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab16531413" class="tabcontent ">
+                    <h2>Differential contributions of motilin receptor extracellular domains for peptide and non-peptidyl agonist binding and activity.</h2>
+                    <h3>The Journal of biological chemistry; 2006</h3>
+                    <p>The family of G protein-coupled receptors that includes receptors for motilin, ghrelin, and growth hormone secretagogue has substantial potential importance as drug targets. Understanding of the molecular basis of hormone binding and receptor activation should provide insights that are helpful in the development of such drugs. We previously examined the unique second extracellular loop domain of the motilin receptor, identifying key epitopes in perimembranous locations at each end of this long loop (Matsuura, B., Dong, M., and Miller, L. J. (2002) J. Biol. Chem. 277, 9834-9839). Here, we have extended that work, examining the other predicted extracellular domains of the motilin receptor by using sequential deletions of segments ranging from one to six amino acid residues and site-directed alanine replacement mutagenesis approaches. Each construct was transiently expressed in COS cells, and characterized for motilin- and erythromycin-stimulated intracellular calcium responses and motilin radioligand binding. Only those receptor segments that included key Cys residues in positions 25, 30, and 111 or perimembranous regions at the ends of the amino terminus and the first and third extracellular loops disrupted motilin biological activity. Each of these Cys deletions also disrupted action of erythromycin. Alanine replacements for each of the potentially important amino acid residues in the perimembranous segments revealed that residues Gly36, Pro103, Leu109, and Phe332 were responsible for the selective negative impact on motilin biological activity, while responding normally to erythromycin. These results support the presence of functionally important disulfide bonds in the motilin receptor ectodomain and demonstrate that the structural determinants for binding and biological activity of peptide and non-peptidyl agonist ligands are distinct, with a broad extracellular perimembranous base contributing to normal motilin binding.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16531413/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11259768" class="tabcontent ">
+                    <h2>Demonstration of a functional motilin receptor in TE671 cells from human cerebellum.</h2>
+                    <h3>Brain research; 2001</h3>
+                    <p>Our laboratory has described the presence of motilin receptors in the rabbit cerebellum. We discovered its presence in the human TE671 cell line, which is of cerebellar origin.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11259768/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10381885" class="tabcontent ">
+                    <h2>Receptor for motilin identified in the human gastrointestinal system.</h2>
+                    <h3>Science (New York, N.Y.); 1999</h3>
+                    <p>Motilin is a 22-amino acid peptide hormone expressed throughout the gastrointestinal (GI) tract of humans and other species. It affects gastric motility by stimulating interdigestive antrum and duodenal contractions. A heterotrimeric guanosine triphosphate-binding protein (G protein)-coupled receptor for motilin was isolated from human stomach, and its amino acid sequence was found to be 52 percent identical to the human receptor for growth hormone secretagogues. The macrolide antibiotic erythromycin also interacted with the cloned motilin receptor, providing a molecular basis for its effects on the human GI tract. The motilin receptor is expressed in enteric neurons of the human duodenum and colon. Development of motilin receptor agonists and antagonists may be useful in the treatment of multiple disorders of GI motility.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10381885/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11461914" class="tabcontent ">
+                    <h2>Identification of peptide ligand-binding domains within the human motilin receptor using photoaffinity labeling.</h2>
+                    <h3>The Journal of biological chemistry; 2001</h3>
+                    <p>The cDNA encoding the human motilin receptor was recently cloned and found to represent a G protein-coupled receptor that is structurally related to the growth hormone secretagogue receptors. Together, these represent a new Class I receptor family. Our aim in the present work is to gain insight into the molecular basis of binding of motilin to its receptor using photoaffinity labeling. To achieve this, we developed a Chinese hamster ovary cell line that overexpressed functional motilin receptor (CHO-MtlR; 175,000 sites per cell, with K(i) = 2.3 +/- 0.4 nm motilin and EC(50) = 0.3 +/- 0.1 nm motilin) and a radioiodinatable peptide analogue of human motilin that incorporated a photolabile p-benzoyl-l-phenylalanine (Bpa) residue into its pharmacophoric domain. This probe, [Bpa(1),Ile(13)]motilin, was a full agonist at the motilin receptor that increased intracellular calcium in a concentration-dependent manner (EC(50) = 1.5 +/- 0.4 nm). This photolabile ligand bound specifically and with high affinity to the motilin receptor (K(i) = 12.4 +/- 1.0 nm), and covalently labeled that molecule within its M(r) = 45,000 deglycosylated core. Cyanogen bromide cleavage demonstrated its covalent attachment to fragments of the receptor having apparent M(r) = 6,000 and M(r) = 31,000. These were demonstrated to represent fragments that included both the first and the large second extracellular loop domains, with the latter representing a unique structural feature of this receptor. The spatial approximation of the pharmacophoric domain of motilin with these receptor domains support their functional importance as well.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11461914/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12054506" class="tabcontent ">
+                    <h2>The motilin pharmacophore in CHO cells expressing the human motilin receptor.</h2>
+                    <h3>Biochemical and biophysical research communications; 2002</h3>
+                    <p>We performed a structure-activity study with the human motilin receptor, which was recently cloned from thyroid tissue. N-terminal fragments, Ala-analogs of motilin, and motilides were tested in a cell line that expresses the cloned human motilin receptor and apoaequorin. Full potency to induce calcium fluxes was obtained with N-terminal fragments of 14 amino acids. Motilin fragments 1-14 in which residues 1 (Phe), 4 (Ile), and 7 (Tyr) were replaced by Ala showed the largest reduction in potency. Only motilides with an enol configuration had markedly higher potencies compared to erythromycin A. The potencies to induce Ca(2+) fluxes correlated strongly with rabbit binding and contractility data, suggesting that the cloned receptor is indeed the motilin receptor, responsible for contractile effects. Conservation of the motilin pharmacophore in evolution indicates an important physiological role of motilin.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12054506/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

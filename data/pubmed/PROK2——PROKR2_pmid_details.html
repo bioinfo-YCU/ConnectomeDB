@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>PROK2——PROKR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for PROK2——PROKR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12024206')">12024206</button><button class="tablinks " onclick="openTab(event, 'tab12054613')">12054613</button><button class="tablinks " onclick="openTab(event, 'tab15772293')">15772293</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12024206" class="tabcontent active">
+                    <h2>Prokineticin 2 transmits the behavioural circadian rhythm of the suprachiasmatic nucleus.</h2>
+                    <h3>Nature; 2002</h3>
+                    <p>The suprachiasmatic nucleus (SCN) controls the circadian rhythm of physiological and behavioural processes in mammals. Here we show that prokineticin 2 (PK2), a cysteine-rich secreted protein, functions as an output molecule from the SCN circadian clock. PK2 messenger RNA is rhythmically expressed in the SCN, and the phase of PK2 rhythm is responsive to light entrainment. Molecular and genetic studies have revealed that PK2 is a gene that is controlled by a circadian clock (clock-controlled). Receptor for PK2 (PKR2) is abundantly expressed in major target nuclei of the SCN output pathway. Inhibition of nocturnal locomotor activity in rats by intracerebroventricular delivery of recombinant PK2 during subjective night, when the endogenous PK2 mRNA level is low, further supports the hypothesis that PK2 is an output molecule that transmits behavioural circadian rhythm. The high expression of PKR2 mRNA within the SCN and the positive feedback of PK2 on its own transcription through activation of PKR2 suggest that PK2 may also function locally within the SCN to synchronize output.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12024206/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12054613" class="tabcontent ">
+                    <h2>Isolation and identification of EG-VEGF/prokineticins as cognate ligands for two orphan G-protein-coupled receptors.</h2>
+                    <h3>Biochemical and biophysical research communications; 2002</h3>
+                    <p>Endocrine gland-derived vascular endothelial growth factor (EG-VEGF, identical to prokineticin 1) is a novel peptide recently identified as a selective mitogen for endocrine gland endothelial cells. The present study demonstrates that EG-VEGF/prokineticin 1 and a peptide closely related to EG-VEGF, prokineticin 2, are cognate ligands of two orphan G-protein-coupled receptors designated ZAQ (=EG-VEGF/PK-R1) and I5E (=EG-VEGF/PK-R2). EG-VEGF/prokineticin 1 and prokineticin 2 induced a transient increase in intracellular calcium ion concentration ([Ca(2+)](i)) with nanomolar potency in Chinese hamster ovary (CHO) cells expressing EG-VEGF/PK-R1 and -R2 and bind to these cells with high affinity and with different receptor selectivity. EG-VEGF/prokineticins provoke rapid phosphorylation of p44/42 MAP kinase and DNA synthesis in the bovine adrenal capillary endothelial cells (BACE). The mRNAs of both EG-VEGF/PK-R1 and -R2 were expressed in BACE. The identification of the receptors for EG-VEGF/prokineticins may provide a novel molecular basis for the regulation of angiogenesis in endocrine glands.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12054613/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15772293" class="tabcontent ">
+                    <h2>Identification and pharmacological characterization of prokineticin 2 beta as a selective ligand for prokineticin receptor 1.</h2>
+                    <h3>Molecular pharmacology; 2005</h3>
+                    <p>Prokineticins 1 and 2 (PK1 and PK2) have been recently identified from humans and other mammals and play multiple functional roles. PK proteins are ligands for two G protein-coupled receptors, PK receptor 1 (PKR1) and PK receptor 2 (PKR2). Here, we report the molecular cloning and pharmacological characterization of an alternatively spliced product of the PK2 gene encoding 21 additional amino acids compared with PK2, designated PK2L (for PK2 long form). PK2L mRNA is broadly expressed, as is PK2. However, PK2L mRNA expression is lower in brain, undetectable in kidney, and much higher in lung and spleen than that of PK2. We expressed PK2L in mammalian cells and characterized the resulting peptide in comparison with PK1 and PK2. Biochemical characterization indicates that secreted PK2L protein is processed into a smaller peptide by proteolytic cleavage. We designate this smaller form of peptide as PK2beta. Coexpression of furin with PK2L significantly increased the PK2beta processing efficiency. Functional studies showed that PK1, PK2, and PK2beta stimulate intracellular Ca(2+) responses in PKR1-expressing cells with similar potencies. However, the PK2beta stimulus of Ca(2+) responses in PKR2-expressing cells is at least 10-fold less potent than that of PK1 or PK2. Differences in receptor selectivity combined with differential tissue expression patterns suggest PK2 and PK2beta might have different functions in vivo. PKRs have been reported to couple to G(q) and G(i) proteins. In this report, we show that PKs not only stimulate Ca(2+) mobilization but also induce cAMP accumulation in PKR-expressing cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15772293/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

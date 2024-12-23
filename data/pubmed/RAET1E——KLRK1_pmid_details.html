@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>RAET1E——KLRK1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for RAET1E——KLRK1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12732206')">12732206</button><button class="tablinks " onclick="openTab(event, 'tab14508119')">14508119</button><button class="tablinks " onclick="openTab(event, 'tab29651291')">29651291</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12732206" class="tabcontent active">
+                    <h2>ULBP4 is a novel ligand for human NKG2D.</h2>
+                    <h3>Biochemical and biophysical research communications; 2003</h3>
+                    <p>The ULBPs are a family of MHC class I-related molecules. We have previously shown that ULBPs 1, 2, and 3 are functional ligands of the NKG2D/DAP10 receptor complex on human natural killer (NK) cells. Here, we describe a new member of the ULBP family, ULBP4, which contains predicted transmembrane and cytoplasmic domains, unlike the other ULBPs, which are GPI-linked proteins. Transduction of ULBP4 into EL4 cells confers the ability to bind recombinant NKG2D and mediates increased cytotoxic activity by human NK cells, consistent with the role of ULBPs as ligands for the NKG2D/DAP10 activating receptors. Tissue expression of ULBP4 differs from other members of the family, in that it is expressed predominantly in the skin.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12732206/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab14508119" class="tabcontent ">
+                    <h2>Letal, A tumor-associated NKG2D immunoreceptor ligand, induces activation and expansion of effector immune cells.</h2>
+                    <h3>Cancer biology & therapy; 2003</h3>
+                    <p>NKG2D serves as one of the most potent activating receptors for effector lymphocytes. in peripheral tissues. Here we report the characterization of Letal, the first human trans-membrane NKG2D ligand lacking an immunoglobulin-like alpha-3 ectodomain. Letal is constitutively expressed by a variety of normal tissues, and is upregulated in tumor cells of different origins. Unlike other NKG2D ligands, Letal mRNA expression progressively decreased after treatment of tumor cells with retinoic acid. Simultaneous T-cell receptor activation and engagement of Letal stimulated proliferation of CD8(+) cells and dramatically increased IL-2 and IFNgamma secretion. In addition, Letal induced the killing of cancer cells by CD8(+) and NK cells. These results suggest that Letal delivers activating signals to NK cells and promotes tumor immune surveillance by inducing the expansion of anti-tumor cytotoxic lymphocytes.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14508119/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab29651291" class="tabcontent ">
+                    <h2>Cutting an NKG2D Ligand Short: Cellular Processing of the Peculiar Human NKG2D Ligand ULBP4.</h2>
+                    <h3>Frontiers in immunology; 2018</h3>
+                    <p>Stress-induced cell surface expression of MHC class I-related glycoproteins of the MIC and ULBP families allows for immune recognition of dangerous "self cells" by human cytotoxic lymphocytes </p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/29651291/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

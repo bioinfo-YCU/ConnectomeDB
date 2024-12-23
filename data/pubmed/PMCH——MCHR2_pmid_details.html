@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>PMCH——MCHR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for PMCH——MCHR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10471841')">10471841</button><button class="tablinks " onclick="openTab(event, 'tab11404457')">11404457</button><button class="tablinks " onclick="openTab(event, 'tab11416225')">11416225</button><button class="tablinks " onclick="openTab(event, 'tab11404457')">11404457</button><button class="tablinks " onclick="openTab(event, 'tab11274220')">11274220</button><button class="tablinks " onclick="openTab(event, 'tab11478907')">11478907</button><button class="tablinks " onclick="openTab(event, 'tab11839762')">11839762</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10471841" class="tabcontent active">
+                    <h2>Identification of melanin concentrating hormone (MCH) as the natural ligand for the orphan somatostatin-like receptor 1 (SLC-1).</h2>
+                    <h3>FEBS letters; 1999</h3>
+                    <p>To identify possible ligands of the orphan somatostatin-like receptor 1 (SLC-1), rat brain extracts were analyzed by using the functional expression system of Xenopus oocytes injected with cRNAs encoding SLC-1 and G protein-gated inwardly rectifying potassium channels (GIRK). A strong inward current was observed with crude rat brain extracts which upon further purification by cation exchange chromatography and high performance liquid chromatography (HPLC) yielded two peptides with a high agonist activity. Mass spectrometry and partial peptide sequencing revealed that one peptide is identical with the neuropeptide melanin concentrating hormone (MCH), the other represents a truncated version of MCH lacking the three N-terminal amino acid residues. Xenopus oocytes expressing the MCH receptor responded to nM concentrations of synthetic MCH not only by the activation of GIRK-mediated currents but also by the induction of Ca(2+) dependent chloride currents mediated by phospholipase C. This indicates that the MCH receptor can couple either to the G(i)- or G(q)-mediated signal transduction pathway, suggesting that MCH may serve for a number of distinct brain functions including food uptake behavior.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10471841/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11404457" class="tabcontent ">
+                    <h2>Identification and characterization of a second melanin-concentrating hormone receptor, MCH-2R.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 2001</h3>
+                    <p>Melanin-concentrating hormone (MCH) is a 19-aa cyclic neuropeptide originally isolated from chum salmon pituitaries. Besides its effects on the aggregation of melanophores in fish several lines of evidence suggest that in mammals MCH functions as a regulator of energy homeostasis. Recently, several groups reported the identification of an orphan G protein-coupled receptor as a receptor for MCH (MCH-1R). We hereby report the identification of a second human MCH receptor termed MCH-2R, which shares about 38% amino acid identity with MCH-1R. MCH-2R displayed high-affinity MCH binding, resulting in inositol phosphate turnover and release of intracellular calcium in mammalian cells. In contrast to MCH-1R, MCH-2R signaling is not sensitive to pertussis toxin and MCH-2R cannot reduce forskolin-stimulated cAMP production, suggesting an exclusive G(alpha)q coupling of the MCH-2R in cell-based systems. Northern blot and in situ hybridization analysis of human and monkey tissue shows that expression of MCH-2R mRNA is restricted to several regions of the brain, including the arcuate nucleus and the ventral medial hypothalamus, areas implicated in regulation of body weight. In addition, the human MCH-2R gene was mapped to the long arm of chromosome 6 at band 6q16.2-16.3, a region reported to be associated with cytogenetic abnormalities of obese patients. The characterization of a second mammalian G protein-coupled receptor for MCH potentially indicates that the control of energy homeostasis in mammals by the MCH neuropeptide system may be more complex than initially anticipated.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11404457/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11416225" class="tabcontent ">
+                    <h2>Identification and characterization of a melanin-concentrating hormone receptor.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 2001</h3>
+                    <p>Melanin-concentrating hormone (MCH), a neuropeptide expressed in central and peripheral nervous systems, plays an important role in the control of feeding behaviors and energy metabolism. An orphan G protein-coupled receptor (SLC-1/GPR24) has recently been identified as a receptor for MCH (MCHR1). We report here the identification and characterization of a G protein-coupled receptor as the MCH receptor subtype 2 (MCHR2). MCHR2 has higher protein sequence homology to MCHR1 than any other G protein-coupled receptor. The expression of MCHR2 has been detected in many regions of the brain. In contrast to MCHR1, which is intronless in the coding region and is located at the chromosomal locus 22q13.3, the MCHR2 gene has multiple exons and is mapped to locus 6q21. MCHR2 is specifically activated by nanomolar concentrations of MCH, binds to MCH with high affinity, and signals through Gq protein. This discovery is important for a full understanding of MCH biology and the development of potential therapeutics for diseases involving MCH, including obesity.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11416225/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11404457" class="tabcontent ">
+                    <h2>Identification and characterization of a second melanin-concentrating hormone receptor, MCH-2R.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 2001</h3>
+                    <p>Melanin-concentrating hormone (MCH) is a 19-aa cyclic neuropeptide originally isolated from chum salmon pituitaries. Besides its effects on the aggregation of melanophores in fish several lines of evidence suggest that in mammals MCH functions as a regulator of energy homeostasis. Recently, several groups reported the identification of an orphan G protein-coupled receptor as a receptor for MCH (MCH-1R). We hereby report the identification of a second human MCH receptor termed MCH-2R, which shares about 38% amino acid identity with MCH-1R. MCH-2R displayed high-affinity MCH binding, resulting in inositol phosphate turnover and release of intracellular calcium in mammalian cells. In contrast to MCH-1R, MCH-2R signaling is not sensitive to pertussis toxin and MCH-2R cannot reduce forskolin-stimulated cAMP production, suggesting an exclusive G(alpha)q coupling of the MCH-2R in cell-based systems. Northern blot and in situ hybridization analysis of human and monkey tissue shows that expression of MCH-2R mRNA is restricted to several regions of the brain, including the arcuate nucleus and the ventral medial hypothalamus, areas implicated in regulation of body weight. In addition, the human MCH-2R gene was mapped to the long arm of chromosome 6 at band 6q16.2-16.3, a region reported to be associated with cytogenetic abnormalities of obese patients. The characterization of a second mammalian G protein-coupled receptor for MCH potentially indicates that the control of energy homeostasis in mammals by the MCH neuropeptide system may be more complex than initially anticipated.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11404457/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11274220" class="tabcontent ">
+                    <h2>Molecular cloning and functional characterization of MCH2, a novel human MCH receptor.</h2>
+                    <h3>The Journal of biological chemistry; 2001</h3>
+                    <p>Melanin-concentrating hormone (MCH) is involved in the regulation of feeding and energy homeostasis. Recently, a 353-amino acid splice variant form of the human orphan receptor SLC-1 () (hereafter referred to as MCH(1)) was identified as an MCH receptor. This report describes the cloning and functional characterization of a novel second human MCH receptor, which we designate MCH(2), initially identified in a genomic survey sequence as being homologous to MCH(1) receptors. Using this sequence, a full-length cDNA was generated with an open reading frame of 1023 base pairs, encoding a polypeptide of 340 amino acids, with 38% identity to MCH(1) and with many of the structural features conserved in G protein-coupled receptors. This newly discovered receptor belongs to class 1 (rhodopsin-like) of the G protein-coupled receptor superfamily. HEK293 cells transfected with MCH(2) receptors responded to nanomolar concentrations of MCH with an increase in intracellular Ca(2+) levels and increased cellular extrusion of protons. In addition, fluorescently labeled MCH bound with nanomolar affinity to these cells. The tissue localization of MCH(2) receptor mRNA, as determined by quantitative reverse transcription-polymerase chain reaction, was similar to that of MCH(1) in that both receptors are expressed predominantly in the brain. The discovery of a novel MCH receptor represents a new potential drug target and will allow the further elucidation of MCH-mediated responses.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11274220/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11478907" class="tabcontent ">
+                    <h2>Short segment of human melanin-concentrating hormone that is sufficient for full activation of human melanin-concentrating hormone receptors 1 and 2.</h2>
+                    <h3>Biochemistry; 2001</h3>
+                    <p>Human melanin-concentrating hormone (hMCH) is a potent but nonselective agonist at human melanin-concentrating hormone receptors 1 and 2 (hMCH-1R and hMCH-2R, respectively). To determine the structural features of this neuropeptide which are necessary for efficient binding to and activation of the receptors, Ala-substituted, open-chain, and truncated analogues were synthesized and tested in the binding assays in CHO cells expressing hMCH-1R and hMCH-2R, and in functional assays measuring the level of intracellular calcium mobilization in human HEK-293 cells expressing these receptors. A compound consisting merely of the cyclic core of hMCH with the Arg attached to the N-terminus of the disulfide ring was found to activate both hMCH-1R and hMCH-2R about as effectively as full-length hMCH. Thus, the sequence Arg-cyclo(S-S)(Cys-Met-Leu-Gly-Arg-Val-Tyr-Arg-Pro-Cys) appears to constitute the "active core" that is necessary for agonist potency at hMCH-1R and hMCH-2R. A potent and approximately 4-fold more selective agonist at hMCH-1R than at hMCH-2R is also reported.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11478907/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11839762" class="tabcontent ">
+                    <h2>Synthesis and biological evaluation in vitro of a selective, high potency peptide agonist of human melanin-concentrating hormone action at human melanin-concentrating hormone receptor 1.</h2>
+                    <h3>The Journal of biological chemistry; 2002</h3>
+                    <p>Human melanin-concentrating hormone (hMCH) is a nonselective natural ligand for the human melanin-concentrating hormone receptors: hMCH-1R and hMCH-2R. Similarly, the smaller peptide encompassing the disulfide ring and Arg(6) of hMCH, Ac-Arg(6)-cyclo(S-S)(Cys(7)-Met(8)-Leu(9)-Gly(10)-Arg(11)-Val(12)-Tyr(13)-Arg(14)-Pro(15)-Cys(16))-NH(2), Ac-hMCH(6-16)-NH(2), binds to and activates equally well both human MCH receptors present in the brain. To separate the physiological functions of hMCH-1R from those of hMCH-2R, new potent and hMCH-1R selective agonists are necessary. In the present study, analogs of Ac-hMCH(6-16)-NH(2) were prepared and tested in binding and functional assays on cells expressing the MCH receptors. In these peptides, Arg in position 6 was replaced with various d-amino acids and/or Gly in position 10 was substituted with various L-amino acids. Several of the new compounds turned out to be potent agonists at hMCH-1R with improved selectivity over hMCH-2R. For example, peptide 26 with d-Arg in place of L-Arg in position 6 and Asn in place of Gly in position 10, Ac-dArg(6)-cyclo(S-S)(Cys(7)-Met(8)-Leu(9)-Asn(10)-Arg(11)-Val(12)-Tyr(13)-Arg(14)-Pro(15)-Cys(16))-NH(2), was a potent hMCH-1R agonist (IC(50) = 0.5 nm, EC(50) = 47 nm) with more than 200-fold selectivity with respect to hMCH-2R. Apparently, these structural changes in positions 6 and 10 results in peptide conformations that allow for efficient interactions with hMCH-1R but are unfavorable for molecular recognition at hMCH-2R.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11839762/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

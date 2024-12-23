@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>THBS1——CD47 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for THBS1——CD47</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab11980922')">11980922</button><button class="tablinks " onclick="openTab(event, 'tab9169439')">9169439</button><button class="tablinks " onclick="openTab(event, 'tab8550562')">8550562</button><button class="tablinks " onclick="openTab(event, 'tab10397731')">10397731</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab11980922" class="tabcontent active">
+                    <h2>Interactions of thrombospondins with alpha4beta1 integrin and CD47 differentially modulate T cell behavior.</h2>
+                    <h3>The Journal of cell biology; 2002</h3>
+                    <p>Thrombospondin (TSP)-1 has been reported to modulate T cell behavior both positively and negatively. We found that these opposing responses arise from interactions of TSP1 with two different T cell receptors. The integrin alpha4beta1 recognizes an LDVP sequence in the NH2-terminal domain of TSP1 and was required for stimulation of T cell adhesion, chemotaxis, and matrix metalloproteinase gene expression by TSP1. Recognition of TSP1 by T cells depended on the activation state of alpha4beta1 integrin, and TSP1 inhibited interaction of activated alpha4beta1 integrin on T cells with its counter receptor vascular cell adhesion molecule-1. The alpha4beta1 integrin recognition site is conserved in TSP2. A recombinant piece of TSP2 containing this sequence replicated the alpha4beta1 integrin-dependent activities of TSP1. The beta1 integrin recognition sites in TSP1, however, were neither necessary nor sufficient for inhibition of T cell proliferation and T cell antigen receptor signaling by TSP1. A second TSP1 receptor, CD47, was not required for some stimulatory responses to TSP1 but played a significant role in its T cell antigen receptor antagonist and antiproliferative activities. Modulating the relative expression or function of these two TSP receptors could therefore alter the direction or magnitude of T cell responses to TSPs.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11980922/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9169439" class="tabcontent ">
+                    <h2>Thrombspondin acts via integrin-associated protein to activate the platelet integrin alphaIIbbeta3.</h2>
+                    <h3>The Journal of biological chemistry; 1997</h3>
+                    <p>Integrin-associated protein (IAP or CD47) is a receptor for the cell/platelet-binding domain (CBD) of thrombospondin-1 (TS1), the most abundant protein of platelet alpha granules. Although it associates with alphaIIbbeta3, IAP has no known function in platelets. TS1, the CBD, and an IAP agonist peptide (4N1K) from the CBD of TS1 activate the platelet integrin alphaIIbbeta3, resulting in platelet spreading on immobilized fibrinogen, stimulation of platelet aggregation, and enhanced tyrosine phosphorylation of focal adhesion kinase. Furthermore, 4N1K peptide selectively stimulates the phosphorylation of LYN and SYK and their association with FAK. The phosphorylation of SYK is blocked by pertussis toxin, implicating a Gi-like heterotrimeric G protein. IAP solublized from membranes of unstimulated platelets binds specifically to an affinity column of 4N1K peptide. Both alphaIIb and beta3 integrin subunits and c-Src bind along with IAP. This complex of proteins is also detected with immunoprecipitation. Activation of platelets with the agonist peptide 4N1K results in the association of FAK with the IAP-alphaIIbbeta3 complex. Thus an important function of TS1 in platelets is that of a secreted costimulator of alphaIIbbeta3 whose unique properties result in its localization to the platelet surface and the fibrin clot.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9169439/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8550562" class="tabcontent ">
+                    <h2>Integrin-associated protein is a receptor for the C-terminal domain of thrombospondin.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>The C-terminal "cell-binding domain" (CBD) of thrombospondin-1 (TS1) is a binding site for many cell types. Cell-binding peptides based on the sequence RFYVVM from the CBD of TS1 affinity label a 52-kDa cell surface glycoprotein, which we show is integrin-associated protein (IAP or CD47). IAP associates with alpha v beta 3 and thereby modulates the activity of several integrins. Cells that express IAP bind strongly to TS1, the CBD, and its active cell-binding peptides while IAP negative cells do not. The 52-kDa protein is affinity labeled on IAP-positive but not IAP-negative cells, and monoclonal antibodies against IAP specifically immunoprecipitate the affinity-labeled 52-kDa protein from lysates of IAP-positive cells. Consistent with the association of IAP with alpha v beta 3 integrin, the labeled 52-kDa protein is immunoprecipitated by an anti-alpha v beta 3 antibody. Endothelial cells exhibit chemotaxis toward TS1 (at concentrations above 10 nM) and RFYVVM peptides. Chemotaxis to both agents is specifically inhibited by a function blocking anti-IAP monoclonal antibody. These data establish IAP (CD47) as a receptor for the CBD of TS1 and suggest a mechanism for the well established effects of the CBD on cell motility.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8550562/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10397731" class="tabcontent ">
+                    <h2>Thrombospondin-1 acts via IAP/CD47 to synergize with collagen in alpha2beta1-mediated platelet activation.</h2>
+                    <h3>Blood; 1999</h3>
+                    <p>Integrin-associated protein (IAP; or CD47) is a receptor for the cell binding domain (CBD) of thrombospondin-1 (TS1). In platelets, IAP associates with and regulates the function of alphaIIbbeta3 integrin (Chung et al, J Biol Chem 272:14740, 1997). We test here the possibility that CD47 may also modulate the function of platelet integrin alpha2beta1, a collagen receptor. The CD47 agonist peptide, 4N1K (KRFYVVMWKK), derived from the CBD, synergizes with soluble collagen in aggregating platelet-rich plasma. 4N1K and intact TS1 also induce the aggregation of washed, unstirred platelets on immobilized collagen with a rapid increase in tyrosine phosphorylation. The effects of TS1 and 4N1K on platelet aggregation are absolutely dependent on IAP, as shown by the use of platelets from IAP-/- mice. Prostaglandin E1 (PGE1) prevents 4N1K-dependent aggregation on immobilized collagen but does not inhibit the 4N1K peptide stimulation of alpha2beta1-dependent platelet spreading. Finally, a detergent-stable, physical association of IAP and alpha2beta1 integrin is detected by coimmunoprecipitation. These results imply a role for IAP and TS1 in the early activation of platelets upon adhesion to collagen.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10397731/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

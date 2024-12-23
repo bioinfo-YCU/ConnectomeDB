@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL25——CCR9 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL25——CCR9</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab11159507')">11159507</button><button class="tablinks " onclick="openTab(event, 'tab10229797')">10229797</button><button class="tablinks " onclick="openTab(event, 'tab10498628')">10498628</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab11159507" class="tabcontent active">
+                    <h2>Expression of CCR9 beta-chemokine receptor is modulated in thymocyte differentiation and is selectively maintained in CD8(+) T cells from secondary lymphoid organs.</h2>
+                    <h3>Blood; 2001</h3>
+                    <p>Chemokines appear to have an important role in the seeding of lymphoid progenitors in the thymus, the regulation of the coordinated movements of the maturing T cells within this organ, and the egress of the resulting naive T cells to secondary lymphoid organs. CCR9, the specific receptor for the beta-chemokine TECK/CCL25, is selectively expressed in thymus, lymph node, and spleen. Using a specific anti-CCR9 polyclonal antibody, K629, and a semiquantitative reverse transcriptase-polymerase chain reaction procedure, a detailed study of CCR9 expression in the thymus and secondary lymphoid organs was performed. The results show that CD4(+)CD8(+) double-positive thymocytes have the highest CCR9 expression in thymus. Single-positive CD8(+) thymocytes continue to express this receptor after abandoning the thymus as mature naive T cells, as suggested by the existence of a CD8(+)CD69(low)CD62L(high) CCR9(+) cell subset. Consistent with this, CD8(+) lymphocytes from lymph nodes, spleen, and Peyer patches express a functional CCR9, as its expression correlates with migration in response to CCL25. Conversely, CD4(+) thymocytes lose CCR9 before abandoning the thymus, and CD4(+) T cells from secondary lymphoid organs also lack CCR9 expression. Analysis of CCR9 expression in thymocytes from mice of different ages showed that CCR9 levels are affected by age, as this receptor is more abundant, and its response to CCL25 is more potent in newborn animals. Collectively, these results suggest that CCR9 has a role in thymocyte development throughout murine life, with clear differences between the CD4(+) and CD8(+) lineages.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11159507/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10229797" class="tabcontent ">
+                    <h2>Cutting edge: identification of the orphan chemokine receptor GPR-9-6 as CCR9, the receptor for the chemokine TECK.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 1999</h3>
+                    <p>Thymus-expressed chemokine (TECK) has been reported to chemoattract dendritic cells, thymocytes, and activated macrophages. Here, we show that TECK is a specific agonist for a human orphan receptor called GPR-9-6. We have determined the cDNA sequence of human GPR-9-6 and cloned the corresponding murine cDNA. Human and murine GPR-9-6 expression is very high in the thymus and low in lymph nodes and spleen. RT-PCR analysis of murine GPR-9-6 expression on murine FACS-sorted thymocyte subpopulations showed that this gene is expressed in both immature and mature T cells. Additions of human or murine TECK to HEK 293/human GPR-9-6 and HEK 293/murine GPR-9-6 transfectants provoked intracytoplasmic calcium mobilization. Human TECK also induced the in vitro migration of HEK 293/human GPR-9-6 cells. These results confirm that GPR-9-6 is a specific receptor for TECK. According to the established nomenclature system, we propose to rename GPR-9-6 as CC chemokine receptor 9 (CCR9).</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10229797/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10498628" class="tabcontent ">
+                    <h2>TECK, an efficacious chemoattractant for human thymocytes, uses GPR-9-6/CCR9 as a specific receptor.</h2>
+                    <h3>Blood; 1999</h3>
+                    <p>Chemokines regulate leukocytes trafficking in normal and inflammation conditions. Thymus-seeding progenitors are made in bone marrow and migrate to the thymus where they undergo their maturation to antigen-specific T cells. Immature T cells are in thymic cortex, while mature thymocytes are in medulla. Chemokines may be important for homing of thymus-seeding progenitors, and/or differential thymocyte localization in thymus. Here we report that GPR-9-6, now called CC chemokine receptor 9 (CCR9), is a receptor for thymus-expressed chemokine, TECK. Among a panel of chemokines tested, TECK specifically induced calcium flux in CCR9-expressing cell lines. We also showed that TECK efficaciously induced chemotaxis of immature CD4(+)CD8(+) double-positive, and mature CD4(+) and CD8(+) single-positive human thymocytes. Our data suggest that TECK/CCR9 interaction may play a pivotal role in T-cell migration in the thymus.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10498628/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

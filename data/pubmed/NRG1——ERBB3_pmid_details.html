@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>NRG1——ERBB3 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for NRG1——ERBB3</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab7514177')">7514177</button><button class="tablinks " onclick="openTab(event, 'tab7592681')">7592681</button><button class="tablinks " onclick="openTab(event, 'tab11555649')">11555649</button><button class="tablinks " onclick="openTab(event, 'tab9565587')">9565587</button><button class="tablinks " onclick="openTab(event, 'tab8702572')">8702572</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab7514177" class="tabcontent active">
+                    <h2>Coexpression of erbB2 and erbB3 proteins reconstitutes a high affinity receptor for heregulin.</h2>
+                    <h3>The Journal of biological chemistry; 1994</h3>
+                    <p>The heregulin/neu differentiation factor gene products were purified and cloned based on their ability to stimulate the phosphorylation of a 185-kDa protein in human breast carcinoma cell lines known to express erbB2. However, not all cells that express erbB2 respond to heregulin, indicating that other components besides erbB2 may be required for heregulin binding. Cells that are transfected with the closely related receptor, erbB3, display a single class of lower affinity heregulin binding sites than has been previously observed on breast carcinoma cell lines. Little or no stimulation of tyrosine phosphorylation in response to heregulin occurs in cells that are transfected with erbB3 alone. Transfection of cells with erbB3 and erbB2 reconstitutes a higher affinity binding receptor, which is also capable of generating a tyrosine phosphorylation signal in response to heregulin. A monoclonal antibody to erbB2 will inhibit heregulin activation of tyrosine phosphorylation and binding in cells transfected with both receptors but not with erbB3 alone. In cells expressing erbB2 and erbB3, both proteins become tyrosine-phosphorylated upon interaction with heregulin. Direct interaction between heregulin and the two proteins was demonstrated by chemical cross-linking experiments using 125I-heregulin followed by immunoprecipitation with antibodies specific for erbB2 or erbB3.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7514177/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7592681" class="tabcontent ">
+                    <h2>Binding of Neu differentiation factor with the extracellular domain of Her2 and Her3.</h2>
+                    <h3>The Journal of biological chemistry; 1995</h3>
+                    <p>The interaction of neu differentiation factor (NDF) with the extracellular domains of Her2 (sHer2) and Her3 (sHer3) have been studied using native gels, light scattering, and sedimentation equilibrium. The full-length NDF beta 2 was shown to bind sHer3 with a dissociation constant of 26 +/- 9 nM, while it showed a 1000-fold weaker binding to sHer2. Taken together, these results demonstrate that NDF is a high affinity ligand for Her3, but not for Her2. No increase in affinity of the NDF beta 2 for sHer3 was observed upon addition of sHer2 to the NDF beta 2-sHer3 mixture. Binding of NDF beta 2 to sHer3 did not induce receptor dimerization or oligomerization, the stoichiometry being one sHer3 per one NDF molecule. This finding suggests that transmembrane and/or intracellular domains of receptor family members or perhaps additional unidentified components may be involved in NDF induced dimerization and autophosphorylation, or alternatively, that dimerization is not the mechanism for Her3 autophosphorylation and signal transduction.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7592681/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11555649" class="tabcontent ">
+                    <h2>Identification of a heregulin binding site in HER3 extracellular domain.</h2>
+                    <h3>The Journal of biological chemistry; 2001</h3>
+                    <p>HER3 (also known as c-Erb-b3) is a type I receptor tyrosine kinase similar in sequence to the epidermal growth factor (EGF) receptor. The extracellular segment of this transmembrane receptor contains four domains. Domains I and II are similar in sequence to domains III and IV, respectively, and domains II and IV are cysteine-rich. We show that the EGF-like domain of heregulin (hrg) binds to domains I and II of HER3, in contrast to the EGF receptor, for which prior studies have shown that a construct consisting of domains III and portions of domain IV binds EGF. Next, we identified a putative hrg binding site by limited proteolysis of the recombinant extracellular domains of HER3 (HER3-ECD(I-IV)) in both the presence and absence of hrg. In the absence of hrg, HER3-ECD(I-IV) is cleaved after position Tyr(50), near the beginning of domain I. Binding of hrg to HER3-ECD(I-IV) fully protects position Tyr(50) from proteolysis. To confirm that domain I contains a hrg binding site, we expressed domains I and II (HER3-ECD(I-II)) and find that it binds hrg with 68 nm affinity. These data suggest that domains I and II of HER3-ECD(I-IV) act as a functional unit in folding and binding of hrg. Thus, our biochemical findings reinforce the structural hypothesis of others that HER3-ECD(I-IV) is similar to the insulin-like growth factor-1 receptor (IGF-1R), as follows: 1) The protected cleavage site in HER3-ECD(I-IV) corresponds to a binding footprint in domain I of IGF-1R; 2) HER3-ECD(I-II) binds hrg with a 68 nm dissociation constant, supporting the hypothesis that domain I is involved in ligand binding; and 3) the large accessible surface area (1749 A) of domain L1 of IGF-1R that is buried by domain S1, as well as the presence of conserved contacts in this interface of type 1 RTKs, suggests that domains L1 and S1 of IGF-1R function as a unit as observed for HER3-ECD(I-II). Our results are consistent with the proposal that HER3 has a structure similar to IGF-1R and binds ligand at a site in corresponding domains.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11555649/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9565587" class="tabcontent ">
+                    <h2>Binding interaction of the heregulinbeta egf domain with ErbB3 and ErbB4 receptors assessed by alanine scanning mutagenesis.</h2>
+                    <h3>The Journal of biological chemistry; 1998</h3>
+                    <p>Individual residues of the heregulinbeta (HRG) egf domain were mutated to alanine and displayed monovalently on phagemid particles as gene III fusion proteins. Wild type HRGbeta egf domain displayed on phage was properly folded as evidenced by its ability to bind ErbB3 and ErbB4 receptor-IgG fusion proteins with affinities close to those measured for bacterially produced HRGbeta egf domain. Binding to ErbB3 and ErbB4 receptors was affected by mutation of residues throughout the egf domain; including the NH2 terminus (His2 and Leu3), the two beta-turns (Val15-Gly18 and Gly42-Gln46), and some discontinuous residues (including Leu3, Val4, Phe13, Val23, and Leu33) that form a patch on the major beta-sheet and the COOH-terminal region (Tyr48 and Met50-Phe53). Binding affinity was least changed by mutations throughout the Omega-loop and the second strand of the major beta-sheet. More mutants had greater affinity loss for ErbB3 compared with ErbB4 implying that it has more stringent binding requirements. Many residues important for HRG binding to its receptors correspond to critical residues for epidermal growth factor (EGF) and transforming growth factor alpha binding to the EGF receptor. Specificity may be determined in part by bulky groups that prevent binding to the unwanted receptor. All of the mutants tested were able to induce phosphorylation and mitogen-activated protein kinase activation through ErbB4 receptors and were able to modulate a transphosphorylation signal from ErbB3 to ErbB2 in MCF7 cells. An understanding of binding similarities and differences among the EGF family of ligands may facilitate the development of egf-like analogs with broad or narrow specificity.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9565587/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8702572" class="tabcontent ">
+                    <h2>Neu differentiation factor/neuregulin isoforms activate distinct receptor combinations.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>The multiple isoforms of Neu differentiation factor (NDF/neuregulin) induce a pleiotropic cellular response that is isoform-specific and cell type-dependent. The molecular basis of this heterogeneity was addressed by comparing the two major groups of isoforms, alpha and beta. Both groups bind to the catalytically impaired receptor tyrosine kinase ErbB-3, whose mitogenic stimulation by NDF requires transactivation by other ErbB proteins, either ErbB-1 or ErbB-2. By expressing each pair of receptors in interleukin 3-dependent myeloid cells, we found that both isoforms induced mitogenic signals in cells co-expressing the combination of ErbB-3 with ErbB-2. However, only the beta isoform stimulated cells that expressed both ErbB-3 and ErbB-1, and neither isoform was active on cells expressing ErbB-3 alone. Both isoforms bind to all ErbB-3-expressing cells, albeit with different affinities, but the co-stimulatory mitogenic effect is correlated with the ability of each auxiliary receptor to transphosphorylate ErbB-3. These results imply that NDF isoforms differ in their ability to induce receptor heterodimers; whereas both types of isoforms signal through ErbB-3/ErbB-2 heterodimers, only beta isoforms are able to stabilize ErbB-3/ErbB-1 heterodimers.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8702572/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>ADM——MRGPRX2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for ADM——MRGPRX2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab16111673')">16111673</button><button class="tablinks " onclick="openTab(event, 'tab15823563')">15823563</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab16111673" class="tabcontent active">
+                    <h2>Proadrenomedullin N-terminal peptide and cortistatin activation of MrgX2 receptor is based on a common structural motif.</h2>
+                    <h3>European journal of pharmacology; 2005</h3>
+                    <p>The G protein-coupled receptor MrgX2 belongs to the large family of the Mas-related genes or sensory neuron-specific G protein-coupled receptors. The MrgX2 receptor has been shown to be activated by the peptides cortistatin and proadrenomedullin N-terminal peptides (PAMP). Here we investigated the structure activity relationship of PAMP and identified key structural features that are shared with cortistatin and might explain why two apparently unrelated peptides are able to activate a single G protein-coupled receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16111673/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15823563" class="tabcontent ">
+                    <h2>Identification of MrgX2 as a human G-protein-coupled receptor for proadrenomedullin N-terminal peptides.</h2>
+                    <h3>Biochemical and biophysical research communications; 2005</h3>
+                    <p>Proadrenomedullin N-terminal 20 peptide (PAMP[1-20]/PAMP-20) and its truncated analog, PAMP[9-20]/PAMP-12, are endogenous peptides that elicit hypotension through inhibiting catecholamine secretion from sympathetic nerve endings and adrenal chromaffin cells. Although the binding sites for PAMP are widely distributed, the nature of its receptor has been elusive. In an effort to identify potential PAMP receptor(s), we found that a human G-protein-coupled receptor, MrgX2, was specifically activated by PAMP. Although a previous study revealed that MrgX2 was a receptor for cortistatin, a neuropeptide involved in sleep regulation and locomotor activity, our present data indicated that the rank order of the agonistic effect against MrgX2 was "PAMP-12> or =cortistatin>PAMP-20". These activities were confirmed by the inhibition of the forskolin-elevated cAMP accumulation, Ca(2+) mobilization, and [(35)S]guanosine 5'-(gamma-thio)triphosphate binding assays. These findings suggest that MrgX2 couples with not only G(alpha q) but also G(alpha i), consistent with previous reports on the pharmacological profile of PAMP signaling. Furthermore, by immunostaining, we found that MrgX2 was expressed in the adrenal chromaffin cells as well as the dorsal root ganglia. From these results, we concluded that MrgX2 is a potential human PAMP-12 receptor that regulates catecholamine secretion from adrenal glands. The present discovery will eventually lead to a better understanding of the pathophysiological role of proadrenomedullin peptides.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15823563/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

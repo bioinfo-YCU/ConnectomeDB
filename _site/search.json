@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "database.html",
+    "href": "database.html",
+    "title": "ConnectomeDB2025",
+    "section": "",
+    "text": "LR Pair\n      Source  \n      Ligand  \n      Receptor  \n      Perplexity\n      PMID support\n      Ligand HGNC ID  \n      Ligand location  \n      Receptor HGNC ID  \n      Receptor location  \n      Ligand Mouse (MGI) ID\n      Ligand Rat (RGD) ID\n      Receptor Mouse (MGI) ID\n      Receptor Rat (RGD) ID\n      HGNC L R  \n      sanity check  \n      curator  \n      secondary source?  \n    \n  LR PairSource  Ligand  Receptor  PerplexityPMID supportLigand HGNC ID  Ligand location  Receptor HGNC ID  Receptor location  Ligand Mouse (MGI) IDLigand Rat (RGD) IDReceptor Mouse (MGI) IDReceptor Rat (RGD) IDHGNC L R  sanity check  curator  secondary source?  \n\n\n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\nLoading ITables v2.2.4 from the internet...\n(need help?)"
+  }
+]

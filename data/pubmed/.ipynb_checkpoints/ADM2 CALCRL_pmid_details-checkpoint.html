@@ -1,0 +1,42 @@
+
+            <html>
+            <head>
+                <title>ADM2 CALCRL - PMID Details</title>
+                <style>
+                    .tab { display: flex; }
+                    .tab button { margin-right: 5px; padding: 10px; cursor: pointer; }
+                    .tabcontent { display: none; padding: 10px; border: 1px solid #ccc; }
+                    .tabcontent.active { display: block; }
+                </style>
+                <script>
+                    function openTab(evt, tabId) {
+                        // Hide all tabcontents
+                        let tabContents = document.getElementsByClassName("tabcontent");
+                        for (let i = 0; i < tabContents.length; i++) {
+                            tabContents[i].style.display = "none";
+                        }
+                        // Deactivate all tablinks
+                        let tabLinks = document.getElementsByClassName("tablinks");
+                        for (let i = 0; i < tabLinks.length; i++) {
+                            tabLinks[i].classList.remove("active");
+                        }
+                        // Show the current tab
+                        document.getElementById(tabId).style.display = "block";
+                        evt.currentTarget.classList.add("active");
+                    }
+                </script>
+            </head>
+            <body>
+                <h1>PMID Details for ADM2 CALCRL</h1>
+                <div class="tab">
+                    <button class="tablinks active" onclick="openTab(event, 'tab14615490')">14615490</button>
+                </div>
+                
+                <div id="tab14615490" class="tabcontent active">
+                    <h2>Intermedin is a calcitonin/calcitonin gene-related peptide family peptide acting through the calcitonin receptor-like receptor/receptor activity-modifying protein receptor complexes.</h2>
+                    <p>Calcitonin, calcitonin gene-related peptide (CGRP), adrenomedullin (ADM), and amylin belong to a unique group of peptide hormones important for homeostasis in diverse tissues. Calcitonin is essential for calcium balance, whereas CGRP and ADM are important for neurotransmission and cardiovascular and respiratory regulation. Based on phylogenetic analysis, we identified intermedin as a novel member of the calcitonin/CGRP peptide family. Analysis of intermedin expression indicated that intermedin is expressed primarily in the pituitary and gastrointestinal tract. Intermedin increased cAMP production in SK-N-MC and L6 cells expressing endogenous CGRP receptors and competed with labeled CGRP for binding to its receptors in these cells. In addition, treatment of 293T cells expressing recombinant calcitonin receptor-like receptor (CRLR) and one of the three receptor activity-modifying proteins (RAMPs) showed that a CRLR/RAMP receptor complex is required for intermedin signaling. In contrast to CGRP and ADM, which exhibited a preferential stimulation of CRLR when co-expressed with RAMP1 and RAMP2 or RAMP3, respectively, intermedin represents a nonselective agonist for the RAMP coreceptors. In vivo studies demonstrated that intermedin treatment led to blood pressure reduction in both normal and spontaneously hypertensive rats via interactions with the CRLR/RAMP receptor complexes. Furthermore, in vivo treatment in mice with intermedin led to suppression of gastric emptying activity and food intake. Thus, identification of intermedin as a novel member of the calcitonin/CGRP peptide family capable of signaling through CRLR/RAMP receptor complexes provides an additional player in the regulation of peripheral tissues by CRLR and will allow development of new therapeutic agents for pathologies associated with diverse vascular and gastrointestinal disorders.</p>
+                </div>
+                
+            </body>
+            </html>
+            

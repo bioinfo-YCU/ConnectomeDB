@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>IL11——IL11RA - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for IL11——IL11RA</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10948192')">10948192</button><button class="tablinks " onclick="openTab(event, 'tab7670098')">7670098</button><button class="tablinks " onclick="openTab(event, 'tab10504396')">10504396</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10948192" class="tabcontent active">
+                    <h2>Interleukin-11 signals through the formation of a hexameric receptor complex.</h2>
+                    <h3>The Journal of biological chemistry; 2000</h3>
+                    <p>Interleukin-11 (IL-11) is a member of the gp130 family of cytokines. These cytokines drive the assembly of multisubunit receptor complexes, all of which contain at least one molecule of the transmembrane signaling receptor gp130. IL-11 has been shown to induce gp130-dependent signaling through the formation of a high affinity complex with the IL-11 receptor (IL-11R) and gp130. Site-directed mutagenesis studies have identified three distinct receptor binding sites of IL-11, which enable it to form this high affinity receptor complex. Here we present data from immunoprecipitation experiments, using differentially tagged forms of ligand and soluble receptor components, which show that multiple copies of IL-11, IL-11R, and gp130 are present in the receptor complex. Furthermore, it is demonstrated that sites II and III of IL-11 are independent gp130 binding epitopes and that both are essential for gp130 dimerization. We also show that a stable high affinity complex of IL-11, IL-11R, and gp130 can be resolved by nondenaturing polyacrylamide gel electrophoresis, and its composition verified by second dimension denaturing polyacrylamide gel electrophoresis. Results indicate that the three receptor binding sites of IL-11 and the Ig-like domain of gp130 are all essential for this stable receptor complex to be formed. We therefore propose that IL-11 forms a hexameric receptor complex composed of two molecules each of IL-11, IL-11R, and gp130.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10948192/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7670098" class="tabcontent ">
+                    <h2>Molecular cloning of two isoforms of a receptor for the human hematopoietic cytokine interleukin-11.</h2>
+                    <h3>Blood; 1995</h3>
+                    <p>Interleukin-11 (IL-11) is a stromal cell-derived cytokine with multiple biologic activities on lymphohematopoietic cells. It belongs to a family of pleiotropic and redundant cytokines that use the gp 130 transducing subunit in their high affinity receptors. By amplifying human cDNA libraries with oligonucleotide primers corresponding to the conserved WSXWS motif found in the hematopoietic cytokine receptor family, a novel cytokine receptor cDNA was identified that, based on high (82%) sequence homology with the recently cloned murine IL-11 receptor, appears to encode the human IL-11 receptor. This receptor is a 422-amino acid protein containing a signal peptide followed by extracellular, transmembrane, and cytoplasmic domains. The extracellular region has a two-domain structure homologous to those of the IL-6 and ciliary neurotrophic factor (CNTF) receptors: an immunoglobulin-like domain and a cytokine receptor-like domain. In addition, an isoform of the human IL-11 receptor that lacks the cytoplasmic domain was also identified. In agreement with the pleiotropic effects of IL-11 on different hematopoietic lineages and bone cells, IL-11 receptor transcripts were found to be expressed by the myelogenous leukemia cell line K562, the megakaryocytic leukemia cell line Mo7E, the erythroleukemia cell line TF1, and the osteosarcoma cell lines MG-63 and Saos-2.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7670098/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10504396" class="tabcontent ">
+                    <h2>Definition of receptor binding sites on human interleukin-11 by molecular modeling-guided mutagenesis.</h2>
+                    <h3>European journal of biochemistry; 1999</h3>
+                    <p>Interleukin-11 (IL-11) belongs to the interleukin-6 (IL-6)-type subfamily of long-chain helical cytokines including IL-6, ciliary neurotrophic factor (CNTF), leukemia inhibitory factor (LIF), oncostatin M, and cardiotrophin-1, which all share the glycoprotein gp130 as a signal transducing receptor component. IL-11 acts on cells expressing gp130 and the IL-11 receptor (IL-11R) alpha-subunit (IL-11Ralpha). The structural epitopes of IL-11 required for the recruitment of the individual receptor subunits have not yet been defined. Based on the structure of CNTF, a three-dimensional model of human IL-11 was built. Using this model, 10 surface exposed amino acid residues of IL-11 were selected for mutagenesis using analogies to the well-characterized receptor recruitment sites of IL-6, CNTF, and LIF. The respective mutants of human IL-11 were expressed as soluble fusion proteins in bacteria. Their biological activities were determined on HepG2 and Ba/F3-130-11alpha cells. Several mutants with substantially decreased bioactivity and one hyperagonistic mutant were identified and further analyzed with regard to recruitment of IL-11Ralpha and gp130. The low-activity mutant I171D still binds IL-11Ralpha but fails to recruit gp130, whereas the hyperagonistic variant R135E more efficiently engages the IL-11R subunits. The low-activity mutants R190E and L194D failed to bind to IL-11Ralpha. These findings reveal a common mechanism of receptor recruitment in the family of IL-6-type cytokines and offer considerable perspectives for the rational design of IL-11 antagonists and hyperagonists.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10504396/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

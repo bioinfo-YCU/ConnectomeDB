@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>TNFSF9——TNFRSF9 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for TNFSF9——TNFRSF9</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab8088337')">8088337</button><button class="tablinks " onclick="openTab(event, 'tab13130507')">13130507</button><button class="tablinks " onclick="openTab(event, 'tab9045669')">9045669</button><button class="tablinks " onclick="openTab(event, 'tab8088337')">8088337</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab8088337" class="tabcontent active">
+                    <h2>Molecular and biological characterization of human 4-1BB and its ligand.</h2>
+                    <h3>European journal of immunology; 1994</h3>
+                    <p>4-1BB was originally described as a cDNA expressed by activated murine T cells and subsequently demonstrated to encode a member of the tumor necrosis factor receptor family of integral membrane proteins. Recently, we identified and cloned a murine ligand for 4-1BB (mu4-1BB-L) and demonstrated it to be a member of an emerging family of ligands with structural homology to tumor necrosis factor. To characterize further the role of 4-1BB in the immune response we undertook to clone the human homologue of 4-1BB-L. However, attempts to isolate a cDNA encoding the human 4-1BB-L by cross-hybridization with the murine cDNA were unsuccessful. Therefore we first utilized cross-species hybridization to isolate a cDNA encoding human 4-1BB (hu4-1BB). A fusion protein consisting of the extracellular portion of hu4-1BB coupled to the Fc region of human immunoglobulin G1 (hu4-1BB.Fc) was then used to identify and clone a gene for human 4-1BB-L from an activated CD4+ T cell clone using a direct expression cloning strategy. Human 4-1BB-L shows 36% amino acid identity with its murine counterpart and maps to chromosome 19p13.3. Scatchard analysis demonstrated high-affinity binding of hu4-1BB.Fc to either native or recombinant human 4-1BB-L. Both monoclonal antibody to hu4-1BB and cells transfected with hu4-1BB-L induced a strong proliferative response in mitogen co-stimulated primary T cells. In contrast, ligation of 4-1BB on T cell clones enhanced activation-induced cell death when triggered by engagement of the TCR/CD3 complex.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8088337/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab13130507" class="tabcontent ">
+                    <h2>Expression of CD137 and its ligand in human neurons, astrocytes, and microglia: modulation by FGF-2.</h2>
+                    <h3>Journal of neuroscience research; 2003</h3>
+                    <p>CD137 (ILA, 4-1BB), a member of the tumor necrosis factor receptor family, and its ligand CD137-L were assayed by RT-PCR and immunocytochemistry in cultured human brain cells. Results demonstrated that both neurons and astrocytes expressed specific RNA for CD137 and its protein, which was found both on the plasma membrane and in the cytoplasm. Surprisingly, microglia, which also expressed CD137 mRNA, showed negative immunostaining. CD137-L-specific RNA was detected only in astrocytes and neurons. When brain cells were treated with fibroblast growth factor-2 (FGF-2), upregulation of CD137 but not of its ligand was observed in neurons and astrocytes. Protein localization was also affected. In microglia, an inhibition of RNA expression was induced by treatment, whereas CD137-L remained negative. Our data are the first demonstration that human brain cells express a protein found thus far in activated immunocompetent cells and epithelia. Moreover, they suggest not only that CD137 and CD137-L might play a role in interaction among human brain cells, but also that FGF-2 might have an immunoregulatory function in brain, modulating interaction of the central nervous system with peripheral immunocompetent cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/13130507/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9045669" class="tabcontent ">
+                    <h2>Analysis of 4-1BBL and laminin binding to murine 4-1BB, a member of the tumor necrosis factor receptor superfamily, and comparison with human 4-1BB.</h2>
+                    <h3>The Journal of biological chemistry; 1997</h3>
+                    <p>The T cell activation antigen 4-1BB (CDw137) is a distantly related member of the tumor necrosis factor receptor family of cell surface receptors. We previously reported that murine 4-1BB (m4-1BB) bound to extracellular matrix (ECM) proteins. Recently, a tumor necrosis factor-like ligand of m4-1BB, m4-1BBL, as well as the human counterparts of 4-1BB (ILA) and 4-1BBL (h4-1BB and h4-1BBL, respectively) have been cloned. No information is currently available on how binding of m4-1BB to ECM proteins affects its binding to m4-1BBL and vice versa and if the ability of m4-1BB to bind ECM proteins is conserved across species. We report that binding of m4-1BBL to m4-1BB blocked its ability to bind laminin (LN), while binding of m4-1BB to LN did not block its ability to bind m4-1BBL. Furthermore, binding of m4-1BBL to the m4-1BB.LN complex did not displace LN. These findings suggest the two ligands bind to proximal but distinct sites on m4-1BB. This is supported by the observation that six of eight anti-m4-1BB monoclonal antibodies blocked the interaction between 4-1BB and 4-1BBL, while seven blocked LN binding. Ligand and monoclonal antibody binding studies with a truncated protein lacking the amino-terminal LN-homologous domain of m4-1BB demonstrated that regions downstream of the LN-homologous domain participate in LN binding and that the intact protein is required for m4-1BBL binding. Studies with h4-1BB showed that h4-1BB only bound h4-1BBL, indicating that the ECM binding activity of 4-1BB is not conserved across species. This finding allowed the construction of murine/human 4-1BB chimeras, which permitted further dissection of the regions of 4-1BB involved in LN and 4-1BBL binding and suggests that sequence differences in the LN-homologous domain of h4-1BB in part account for the inability of h4-1BB to bind ECM proteins.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9045669/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8088337" class="tabcontent ">
+                    <h2>Molecular and biological characterization of human 4-1BB and its ligand.</h2>
+                    <h3>European journal of immunology; 1994</h3>
+                    <p>4-1BB was originally described as a cDNA expressed by activated murine T cells and subsequently demonstrated to encode a member of the tumor necrosis factor receptor family of integral membrane proteins. Recently, we identified and cloned a murine ligand for 4-1BB (mu4-1BB-L) and demonstrated it to be a member of an emerging family of ligands with structural homology to tumor necrosis factor. To characterize further the role of 4-1BB in the immune response we undertook to clone the human homologue of 4-1BB-L. However, attempts to isolate a cDNA encoding the human 4-1BB-L by cross-hybridization with the murine cDNA were unsuccessful. Therefore we first utilized cross-species hybridization to isolate a cDNA encoding human 4-1BB (hu4-1BB). A fusion protein consisting of the extracellular portion of hu4-1BB coupled to the Fc region of human immunoglobulin G1 (hu4-1BB.Fc) was then used to identify and clone a gene for human 4-1BB-L from an activated CD4+ T cell clone using a direct expression cloning strategy. Human 4-1BB-L shows 36% amino acid identity with its murine counterpart and maps to chromosome 19p13.3. Scatchard analysis demonstrated high-affinity binding of hu4-1BB.Fc to either native or recombinant human 4-1BB-L. Both monoclonal antibody to hu4-1BB and cells transfected with hu4-1BB-L induced a strong proliferative response in mitogen co-stimulated primary T cells. In contrast, ligation of 4-1BB on T cell clones enhanced activation-induced cell death when triggered by engagement of the TCR/CD3 complex.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8088337/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

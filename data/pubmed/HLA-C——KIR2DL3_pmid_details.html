@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>HLA-C——KIR2DL3 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for HLA-C——KIR2DL3</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15607823')">15607823</button><button class="tablinks " onclick="openTab(event, 'tab8692965')">8692965</button><button class="tablinks " onclick="openTab(event, 'tab9768753')">9768753</button><button class="tablinks " onclick="openTab(event, 'tab10497191')">10497191</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15607823" class="tabcontent active">
+                    <h2>A HLA-Cw6 specific single-chain antibody fragment (scFv) recognizing a natural killer cell receptor epitope.</h2>
+                    <h3>Molecular immunology; 2005</h3>
+                    <p>Major histocompatibility complex (MHC) class I molecules induce inhibitory signals on natural killer (NK) cells via killer cell immunoglobulin-like receptors (KIR). We recently reported a human single-chain antibody (scFv#1), which recognizes an epitope on HLA-Cw6 (genotype: *0602). Flow cytometry showed scFv#1 binding to HLA-Cw6 (strong) and also to HLA-Cw2, 4, 5 (very weak) but not to HLA-Cw1, 3, 7, 8. The presumptive epitope of the antibody fragment, which includes residues Asn77 and Lys80 was verified by introducing point mutations into HLA-Cw6 encoding cDNAs. Asn77 --> Ser77 (N77S) and Lys80- -> Asn80 (K80N) mutants of Cw6 lost scFv#1 binding capacity whereas an additional mutation at aa position 90 (Asp-->Ala, D90A) did not influence scFv#1 binding characteristics. Since residues 77 and 80 of HLA-C are directly involved in KIR/MHC interaction, we expected the induction of target cell lysis upon addition of scFv#1 when bringing NK and HLA-Cw6 positive cells together. To prove this interference, we performed Cr-release assays, using Cw*0602 and mock-transfected K562 erythroleukemia cells as targets and freshly prepared peripheral blood NK cells as effector cells. scFv#1 appeared to influence KIR on ligand binding and restored lysis at low effector to target (E/T) ratios. Pan HLA class I antibody W6/32 did not show such effects. Taken together scFv#1 binding patterns with mutagenized HLA-Cw6 and Cr-release assays are strong evidence that the scFv#1 epitope on HLA-Cw6 is at or close to the binding site of CD158a.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15607823/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8692965" class="tabcontent ">
+                    <h2>Direct binding of a soluble natural killer cell inhibitory receptor to a soluble human leukocyte antigen-Cw4 class I major histocompatibility complex molecule.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1996</h3>
+                    <p>Natural killer (NK) cells expressing specific p58 NK receptors are inhibited from lysing target cells that express human leukocyte antigen (HLA)-C class I major histocompatibility complex molecules. To investigate the interaction between p58 NK receptors and HLA-Cw4, the extracellular domain of the p58 NK receptor specific for HLA-Cw4 was overexpressed in Escherichia coli and refolded from purified inclusion bodies. The refolded NK receptor is a monomer in solution. It interacts specifically with HLA-Cw4, blocking the binding of a p58-Ig fusion protein to HLA-Cw4-expressing cells, but does not block the binding of a p58-Ig fusion protein specific for HLA-Cw3 to HLA-Cw3-expressing cells. The bacterially expressed extracellular domain of HLA-Cw4 heavy chain and beta2-microglobulin were refolded in the presence of a HLA-Cw4-specific peptide. Direct binding between the soluble p58 NK receptor and the soluble HLA-Cw4-peptide complex was observed by native gel electrophoresis. Titration binding assays show that soluble monomeric receptor forms a 1:1 complex with HLA-Cw4, independent of the presence of Zn2+. The formation of complexes between soluble, recombinant molecules indicates that HLA-Cw4 is sufficient for specific ligation by the NK receptor and that neither glycoprotein requires carbohydrate for the interaction.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8692965/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9768753" class="tabcontent ">
+                    <h2>Kinetics of interaction of HLA-C ligands with natural killer cell inhibitory receptors.</h2>
+                    <h3>Immunity; 1998</h3>
+                    <p>The recognition of HLA-C molecules by specific inhibitory receptors is a crucial step in the regulation of natural killer (NK) cell function. Using soluble, recombinant HLA-C molecules and NK inhibitory receptors (NKIR, members of the immunoglobulin superfamily), we show that HLA-C binds to NKIR molecules with extremely fast association and dissociation rates, among the fastest of the immune system interactions so far studied. These kinetics may be essential for the biological function of NK cells, i.e., to facilitate the rapid immunosurveillance of cells for absent or diminished expression of class I MHC proteins.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9768753/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10497191" class="tabcontent ">
+                    <h2>Killer cell immunoglobulin receptors and T cell receptors bind peptide-major histocompatibility complex class I with distinct thermodynamic and kinetic properties.</h2>
+                    <h3>The Journal of biological chemistry; 1999</h3>
+                    <p>Human natural killer cells and a subset of T cells express a repertoire of killer cell immunoglobulin receptors (KIRs) that recognize major histocompatibility complex (MHC) class I molecules. KIRs and T cell receptors (TCRs) bind in a peptide-dependent manner to overlapping regions of peptide-MHC class I complexes. KIRs with two immunoglobulin domains (KIR2Ds) recognize distinct subsets of HLA-C alleles. Here we use surface plasmon resonance to study the binding of soluble forms of KIR2DL1 and KIR2DL3 to several peptide-HLA-Cw7 complexes. KIR2DL3 bound to the HLA-Cw7 allele presenting the peptide RYRPGTVAL with a 1:1 stoichiometry and an affinity (K(d) approximately 7 microM at 25 degrees C) within the range of values measured for other cell-cell recognition molecules, including the TCR. Although KIR2DL1 is reported not to recognize the HLA-Cw7 allele in functional assays, it bound RYRPGTVAL/HLA-Cw7, albeit with a 10-20-fold lower affinity. TCR/peptide-MHC interactions are characterized by comparatively slow kinetics and unfavorable entropic changes (Willcox, B. E., Gao, G. F., Wyer, J. R. , Ladbury, J. E., Bell, J. I., Jakobsen, B. K., and van der Merwe, P. A. (1999) Immunity 10, 357-365), suggesting that binding is accompanied by conformational adjustments. In contrast, we show that KIR2DL3 binds RYRPGTVAL/HLA-Cw7 with fast kinetics and a favorable binding entropy, consistent with rigid body association. These results indicate that KIR/peptide-MHC class I interactions have properties typical of other cell-cell recognition molecules, and they highlight the unusual nature of TCR/peptide-MHC recognition.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10497191/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

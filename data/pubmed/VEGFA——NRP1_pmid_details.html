@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>VEGFA——NRP1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for VEGFA——NRP1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab11986311')">11986311</button><button class="tablinks " onclick="openTab(event, 'tab15637071')">15637071</button><button class="tablinks " onclick="openTab(event, 'tab11986311')">11986311</button><button class="tablinks " onclick="openTab(event, 'tab10409677')">10409677</button><button class="tablinks " onclick="openTab(event, 'tab9529250')">9529250</button><button class="tablinks " onclick="openTab(event, 'tab17222790')">17222790</button><button class="tablinks " onclick="openTab(event, 'tab16763549')">16763549</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab11986311" class="tabcontent active">
+                    <h2>Neuropilin-1 binds vascular endothelial growth factor 165, placenta growth factor-2, and heparin via its b1b2 domain.</h2>
+                    <h3>The Journal of biological chemistry; 2002</h3>
+                    <p>Neuroplin-1 (NRP1), a receptor for vascular endothelial growth factor (VEGF) family members, has three distinct extracellular domains, a1a2, b1b2, and c. To determine the VEGF(165) and placenta growth factor 2 (PlGF-2)-binding sites of NRP1, recombinant NRP1 domains were expressed in mammalian cells as Myc-tagged, soluble proteins, and used in co-precipitation experiments with 125I-VEGF165 and 125I-PlGF-2. Anti-Myc antibodies immunoprecipitated 125I-VEGF165 and 125I-PlGF-2 in the presence of the b1b2 but not of the a1a2 and c domains. Neither b1 nor b2 alone was capable of binding 125I-VEGF165. In competition experiments, VEGF165 competed PlGF-2 binding to the NRP1 b1b2 domain, suggesting that the binding sites of VEGF165 and PlGF-2 overlap. The presence of the a1a2 domain greatly enhanced VEGF165, but not PlGF-2 binding to b1b2. Heparin enhanced the binding of both 125I-VEGF165 and 125I-PlGF-2 to the b1b2 domain by 20- and 4-fold, respectively. A heparin chain of at least 20-24 monosaccharides was necessary for binding. In addition, the b1b2 domain of NRP1 could bind heparin directly, requiring heparin oligomers of at least 8 monosaccharide units. It was concluded that an intact b1b2 domain serves as the VEGF165-, PlGF-2-, and heparin-binding sites in NRP1, and that heparin is a critical component for regulating VEGF165 and PlGF-2 interactions with NRP1 by physically interacting with both receptor and ligands.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11986311/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15637071" class="tabcontent ">
+                    <h2>Vascular endothelial growth factor (VEGF)-A165-induced prostacyclin synthesis requires the activation of VEGF receptor-1 and -2 heterodimer.</h2>
+                    <h3>The Journal of biological chemistry; 2005</h3>
+                    <p>We previously reported that vascular endothelial growth factor (VEGF)-A(165) inflammatory effect is mediated by acute platelet-activating factor synthesis from endothelial cells upon the activation of VEGF receptor-2 (VEGFR-2) and its coreceptor, neuropilin-1 (NRP-1). In addition, VEGF-A(165) promotes the release of other endothelial mediators including nitric oxide and prostacyclin (PGI(2)). However, it is unknown whether VEGF-A(165) is mediating PGI(2) synthesis through VEGF receptor-1 (VEGFR-1) and/or VEGF receptor-2 (VEGFR-2) activation and whether the coreceptor NRP-1 potentiates VEGF-A(165) activity. In this study, PGI(2) synthesis in bovine aortic endothelial cells (BAEC) was assessed by quantifying its stable metabolite (6-keto prostaglandin F(1alpha), 6-keto PGF(1alpha)) by enzyme-linked immunosorbent assay. Treatment of BAEC with VEGF analogs, VEGF-A(165) (VEGFR-1, VEGFR-2 and NRP-1 agonist) and VEGF-A(121) (VEGFR-1 and VEGFR-2 agonist) (up to 10(-9) m), increased PGI(2) synthesis by 70- and 40-fold within 15 min. Treatment with VEGFR-1 (placental growth factor and VEGF-B) or VEGFR-2 (VEGF-C) agonist did not increase PGI(2) synthesis. The combination of VEGFR-1 and VEGFR-2 agonists did not increase PGI(2) release. Pretreatment with a VEGFR-2 inhibitor abrogated PGI(2) release mediated by VEGF-A(165) and VEGF-A(121), and pretreatment of BAEC with antisense oligomers targeting VEGFR-1 or VEGFR-2 mRNA reduced PGI(2) synthesis mediated by VEGF-A(165) and VEGF-A(121) up to 79%. In summary, our data demonstrate that the activation of VEGFR-1 and VEGFR-2 heterodimer (VEGFR-1/R-2) is essential for PGI(2) synthesis mediated by VEGF-A(165) and VEGF-A(121), which cannot be reproduced by the parallel activation of VEGFR-1 and VEGFR-2 homodimers with corresponding agonists. In addition, the binding of VEGF-A(165) to NRP-1 potentiates its capacity to promote PGI(2) synthesis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15637071/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11986311" class="tabcontent ">
+                    <h2>Neuropilin-1 binds vascular endothelial growth factor 165, placenta growth factor-2, and heparin via its b1b2 domain.</h2>
+                    <h3>The Journal of biological chemistry; 2002</h3>
+                    <p>Neuroplin-1 (NRP1), a receptor for vascular endothelial growth factor (VEGF) family members, has three distinct extracellular domains, a1a2, b1b2, and c. To determine the VEGF(165) and placenta growth factor 2 (PlGF-2)-binding sites of NRP1, recombinant NRP1 domains were expressed in mammalian cells as Myc-tagged, soluble proteins, and used in co-precipitation experiments with 125I-VEGF165 and 125I-PlGF-2. Anti-Myc antibodies immunoprecipitated 125I-VEGF165 and 125I-PlGF-2 in the presence of the b1b2 but not of the a1a2 and c domains. Neither b1 nor b2 alone was capable of binding 125I-VEGF165. In competition experiments, VEGF165 competed PlGF-2 binding to the NRP1 b1b2 domain, suggesting that the binding sites of VEGF165 and PlGF-2 overlap. The presence of the a1a2 domain greatly enhanced VEGF165, but not PlGF-2 binding to b1b2. Heparin enhanced the binding of both 125I-VEGF165 and 125I-PlGF-2 to the b1b2 domain by 20- and 4-fold, respectively. A heparin chain of at least 20-24 monosaccharides was necessary for binding. In addition, the b1b2 domain of NRP1 could bind heparin directly, requiring heparin oligomers of at least 8 monosaccharide units. It was concluded that an intact b1b2 domain serves as the VEGF165-, PlGF-2-, and heparin-binding sites in NRP1, and that heparin is a critical component for regulating VEGF165 and PlGF-2 interactions with NRP1 by physically interacting with both receptor and ligands.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11986311/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10409677" class="tabcontent ">
+                    <h2>Differential binding of vascular endothelial growth factor B splice and proteolytic isoforms to neuropilin-1.</h2>
+                    <h3>The Journal of biological chemistry; 1999</h3>
+                    <p>Vascular endothelial growth factor B (VEGF-B) is expressed in various tissues, especially strongly in the heart, and binds selectively to one of the VEGF receptors, VEGFR-1. The two splice isoforms, VEGF-B(167) and VEGF-B(186), have identical NH(2)-terminal cystine knot growth factor domains but differ in their COOH-terminal domains which give these forms their distinct biochemical properties. In this study, we show that both splice isoforms of VEGF-B bind specifically to Neuropilin-1 (NRP1), a receptor for collapsins/semaphorins and for the VEGF(165) isoform. The NRP1 binding of VEGF-B could be competed by an excess of VEGF(165). The binding of VEGF-B(167) was mediated by the heparin binding domain, whereas the binding of VEGF-B(186) to NRP1 was regulated by exposure of a short COOH-terminal proline-rich peptide upon its proteolytic processing. In immunohistochemistry, NRP1 distribution was found to be overlapping or adjacent to known sites of VEGF-B expression in several tissues, in particular in the developing heart, suggesting the involvement of VEGF-B in NRP1-mediated signaling.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10409677/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9529250" class="tabcontent ">
+                    <h2>Neuropilin-1 is expressed by endothelial and tumor cells as an isoform-specific receptor for vascular endothelial growth factor.</h2>
+                    <h3>Cell; 1998</h3>
+                    <p>Vascular endothelial growth factor (VEGF), a major regulator of angiogenesis, binds to two receptor tyrosine kinases, KDR/Flk-1 and Flt-1. We now describe the purification and the expression cloning from tumor cells of a third VEGF receptor, one that binds VEGF165 but not VEGF121. This isoform-specific VEGF receptor (VEGF165R) is identical to human neuropilin-1, a receptor for the collapsin/semaphorin family that mediates neuronal cell guidance. When coexpressed in cells with KDR, neuropilin-1 enhances the binding of VEGF165 to KDR and VEGF165-mediated chemotaxis. Conversely, inhibition of VEGF165 binding to neuropilin-1 inhibits its binding to KDR and its mitogenic activity for endothelial cells. We propose that neuropilin-1 is a novel VEGF receptor that modulates VEGF binding to KDR and subsequent bioactivity and therefore may regulate VEGF-induced angiogenesis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9529250/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab17222790" class="tabcontent ">
+                    <h2>Blocking neuropilin-1 function has an additive effect with anti-VEGF to inhibit tumor growth.</h2>
+                    <h3>Cancer cell; 2007</h3>
+                    <p>Neuropilin-1 (NRP1) guides the development of the nervous and vascular systems. Binding to either semaphorins or VEGF, NRP1 acts with plexins to regulate neuronal guidance, or with VEGFR2 to mediate vascular development. We have generated two monoclonal antibodies that bind to the Sema- and VEGF-binding domains of NRP1, respectively. Both antibodies reduce angiogenesis and vascular remodeling, while having little effect on other VEGFR2-mediated events. Importantly, anti-NRP1 antibodies have an additive effect with anti-VEGF therapy in reducing tumor growth. Vessels from tumors treated with anti-VEGF show a close association with pericytes, while tumors treated with both anti-NRP1 and anti-VEGF lack this organization. We propose that blocking NRP1 function inhibits vascular remodeling, rendering vessels more susceptible to anti-VEGF therapy.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/17222790/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab16763549" class="tabcontent ">
+                    <h2>Glycosaminoglycan modification of neuropilin-1 modulates VEGFR2 signaling.</h2>
+                    <h3>The EMBO journal; 2006</h3>
+                    <p>Neuropilin-1 (NRP1) is a co-receptor for vascular endothelial growth factor (VEGF) that enhances the angiogenic signals cooperatively with VEGFR2. VEGF signaling is essential for physiological and pathological angiogenesis through its effects on vascular endothelial cells (ECs) and smooth muscle cells (SMCs), but the mechanisms coordinating this response are not well understood. Here we show that a substantial fraction of NRP1 is proteoglycan modified with either heparan sulfate or chondroitin sulfate on a single conserved Ser. The composition of the NRP1 glycosaminoglycan (GAG) chains differs between ECs and SMCs. Glycosylation increased VEGF binding in both cell types, but the differential GAG composition of NRP1 mediates opposite responsiveness to VEGF in ECs and SMCs. Finally, NRP1 expression and its GAG modification post-transcriptionally regulate VEGFR2 protein expression. These findings indicate that GAG modification of NRP1 plays a critical role in modulating VEGF signaling, and may provide new insights into physiological and pathological angiogenesis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16763549/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

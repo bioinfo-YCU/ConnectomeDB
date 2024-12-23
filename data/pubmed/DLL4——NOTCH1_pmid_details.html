@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>DLL4——NOTCH1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for DLL4——NOTCH1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab16219802')">16219802</button><button class="tablinks " onclick="openTab(event, 'tab10837024')">10837024</button><button class="tablinks " onclick="openTab(event, 'tab11739188')">11739188</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab16219802" class="tabcontent active">
+                    <h2>Up-regulation of the Notch ligand Delta-like 4 inhibits VEGF-induced endothelial cell function.</h2>
+                    <h3>Blood; 2006</h3>
+                    <p>Delta-like 4 (Dll4), a membrane-bound ligand for Notch1 and Notch4, is selectively expressed in the developing endothelium and in some tumor endothelium, and it is induced by vascular endothelial growth factor (VEGF)-A and hypoxia. Gene targeting studies have shown that Dll4 is required for normal embryonic vascular remodeling, but the mechanisms underlying Dll4 regulatory functions are currently not defined. In this study, we generated primary human endothelial cells that overexpress Dll4 protein to study Dll4 function and mechanism of action. Human umbilical vein endothelial cells retrovirally transduced with Dll4 displayed reduced proliferative and migratory responses selectively to VEGF-A. Expression of VEGF receptor-2, the principal signaling receptor for VEGF-A in endothelial cells, and coreceptor neuropilin-1 was significantly decreased in Dll4-transduced endothelial cells. Consistent with Dll4 signaling through Notch, expression of HEY2, one of the transcription factors that mediates Notch function, was significantly induced in Dll4-overexpressing endothelial cells. The gamma-secretase inhibitor L-685458 significantly reconstituted endothelial cell proliferation inhibited by immobilized extracellular Dll4 and reconstituted VEGFR2 expression in Dll4-overexpressing endothelial cells. These results identify the Notch ligand Dll4 as a selective inhibitor of VEGF-A biologic activities down-regulating 2 VEGF receptors expressed on endothelial cells and raise the possibility that Dll4 may be exploited therapeutically to modulate angiogenesis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16219802/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10837024" class="tabcontent ">
+                    <h2>Dll4, a novel Notch ligand expressed in arterial endothelium.</h2>
+                    <h3>Genes & development; 2000</h3>
+                    <p>We report the cloning and characterization of a new member of the Delta family of Notch ligands, which we have named Dll4. Like other Delta genes, Dll4 is predicted to encode a membrane-bound ligand, characterized by an extracellular region containing several EGF-like domains and a DSL domain required for receptor binding. In situ analysis reveals a highly selective expression pattern of Dll4 within the vascular endothelium. The activity and expression of Dll4 and the known actions of other members of this family suggest a role for Dll4 in the control of endothelial cell biology.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10837024/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11739188" class="tabcontent ">
+                    <h2>A novel Notch ligand, Dll4, induces T-cell leukemia/lymphoma when overexpressed in mice by retroviral-mediated gene transfer.</h2>
+                    <h3>Blood; 2001</h3>
+                    <p>Notch receptors mediate cell-fate decisions through interaction with specific ligands during development. The biological role of a novel Notch ligand, Dll4, in mice was explored by reconstituting lethally irradiated mice with bone marrow (BM) cells transduced with Dll4 retroviral vector. White blood cell and lymphocyte counts in Dll4-overexpressing mice were reduced at the early stage of reconstitution but increased significantly at approximately 10 weeks after BM transplantation. BM, spleen, lymph nodes, and peripheral blood of Dll4-overexpressing mice contained predominantly CD4(+)CD8(+) T cells and virtually lacked B cells. The Dll4-overexpressing mice eventually developed a lethal phenotype that was characterized by the progression of a T-cell lymphoproliferative disease (restricted to BM and lymphoid tissues) to transplantable monoclonal T-cell leukemia/lymphoma scattered to multiple organs. Results suggest that the interaction of Dll4 with Notch1 may provide key signals for T-cell development.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11739188/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

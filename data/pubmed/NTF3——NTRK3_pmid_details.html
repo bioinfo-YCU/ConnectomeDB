@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>NTF3——NTRK3 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for NTF3——NTRK3</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab7679912')">7679912</button><button class="tablinks " onclick="openTab(event, 'tab9488719')">9488719</button><button class="tablinks " onclick="openTab(event, 'tab9973222')">9973222</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab7679912" class="tabcontent active">
+                    <h2>Similarities and differences in the way neurotrophins interact with the Trk receptors in neuronal and nonneuronal cells.</h2>
+                    <h3>Neuron; 1993</h3>
+                    <p>We have exploited a battery of approaches to address several controversies that have accompanied the expansion of the nerve growth factor (NGF) family of neurotrophic factors and the identification of the Trk tyrosine kinases as receptors for these factors. For example, we find that a recently cloned mammalian neurotrophin, known as either neurotrophin-4 or neurotrophin-5 and assigned widely differing receptor specificities, represents the functional counterpart of Xenopus neurotrophin-4 and is a "preferred" ligand for TrkB. However, its interactions with TrkB can be distinguished from those of brain-derived neurotrophic factor (BDNF) with TrkB. We also find that all of the Trks display similar dose responses to their "preferred" ligands in neuronal as compared with nonneuronal cells (i.e., NGF for TrkA, BDNF and NT-4/5 for TrkB, and NT-3 for TrkC), providing evidence against a role for accessory molecules expressed in neurons in generating receptors that would allow for responses to lower concentrations of the neurotrophins. However, we find that a neuronal environment does restrict the Trks in their ability to respond to their "nonpreferred" neurotrophin ligands.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7679912/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9488719" class="tabcontent ">
+                    <h2>High resolution mapping of the binding site of TrkA for nerve growth factor and TrkC for neurotrophin-3 on the second immunoglobulin-like domain of the Trk receptors.</h2>
+                    <h3>The Journal of biological chemistry; 1998</h3>
+                    <p>Neurotrophic factors are important for survival and maintenance of neurons during developmental and adult stages of the vertebrate nervous system. The neurotrophins mediate their signal into the cell by specific interaction with tyrosine kinase receptors of the Trk family. The extracellular immunoglobulin-like domain of the Trk receptors adjacent to the membrane has previously been shown to be the dominant element for specific neurotrophin binding. Using computer graphics models of the human TrkA and TrkC immunoglobulin-like domains as a guide, the residues involved in binding to their respective neurotrophins were mapped by mutational analysis. TrkC primarily utilizes loop EF, between beta-strands E and F, for binding. In contrast, TrkA utilizes the EF loop as well as additional residues, the latter being prime candidates for determining the specificity of TrkA versus TrkC. When selected TrkC and TrkA mutants with reduced binding were expressed on NIH3T3 cells, neurotrophin-induced autophosphorylation was strongly reduced or absent.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9488719/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9973222" class="tabcontent ">
+                    <h2>Activation of neurotrophin-3 receptor TrkC induces apoptosis in medulloblastomas.</h2>
+                    <h3>Cancer research; 1999</h3>
+                    <p>Elevated expression of the neurotrophin-3 (NT-3) receptor TrkC by childhood medulloblastomas is associated with favorable clinical outcome. Here, we provide evidence that TrkC is more than simply a passive marker of prognosis. We demonstrate that: (a) medulloblastomas undergo apoptosis in vitro when grown in the presence of NT-3; (b) overexpression of TrkC inhibits the growth of intracerebral xenografts of a medulloblastoma cell line in nude mice; and (c) trkC expression by individual tumor cells is highly correlated with apoptosis within primary medulloblastoma biopsy specimens. TrkC-mediated NT-3 signaling promotes apoptosis by activating multiple parallel signaling pathways and by inducing immediate-early gene expression of both c-jun and c-fos. Considered collectively, these results support the conclusion that the biological actions of TrkC activation affect medulloblastoma outcome by inhibiting tumor growth through the promotion of apoptosis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9973222/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

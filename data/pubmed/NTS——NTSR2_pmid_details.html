@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>NTS——NTSR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for NTS——NTSR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9851594')">9851594</button><button class="tablinks " onclick="openTab(event, 'tab11723247')">11723247</button><button class="tablinks " onclick="openTab(event, 'tab11801734')">11801734</button><button class="tablinks " onclick="openTab(event, 'tab16087676')">16087676</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9851594" class="tabcontent active">
+                    <h2>Neurotensin is an antagonist of the human neurotensin NT2 receptor expressed in Chinese hamster ovary cells.</h2>
+                    <h3>European journal of pharmacology; 1998</h3>
+                    <p>The human levocabastine-sensitive neurotensin NT2 receptor was cloned from a cortex cDNA library and stably expressed in Chinese hamster ovary (CHO) cells in order to study its binding and signalling characteristics. The receptor binds neurotensin as well as several other ligands already described for neurotensin NT1 receptor. It also binds levocabastine, a histamine H1 receptor antagonist that is not recognised by neurotensin NT1 receptor. Neurotensin binding to recombinant neurotensin NT2 receptor expressed in CHO cells does not elicit a biological response as determined by second messenger measurements. Levocabastine, and the peptides neuromedin N and xenin were also ineffective on neurotensin NT2 receptor activation. Experiments with the neurotensin NT1 receptor antagonists SR48692 and SR142948A, resulted in the unanticipated discovery that both molecules are potent agonists on neurotensin NT2 receptor. Both compounds, following binding to neurotensin NT2 receptor, enhance inositol phosphates (IP) formation with a subsequent [Ca2+]i mobilisation; induce arachidonic acid release; and stimulate mitogen-activated protein kinase (MAPK) activity. Interestingly, these activities are antagonised by neurotensin and levocabastine in a concentration-dependent manner. These activities suggest that the human neurotensin NT2 receptor may be of physiological importance and that a natural agonist for the receptor may exist.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9851594/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11723247" class="tabcontent ">
+                    <h2>Agonism, inverse agonism, and neutral antagonism at the constitutively active human neurotensin receptor 2.</h2>
+                    <h3>Molecular pharmacology; 2001</h3>
+                    <p>Two G protein-coupled neurotensin (NT) receptors, termed NTR1 and NTR2, have been identified so far. In contrast to the NTR1, which has been extensively studied, little is known about the pharmacological and biological properties of the NTR2. In the course of characterizing NT analogs that exhibited binding selectivity for the NTR2, we discovered that this receptor constitutively activated inositol phosphate (IP) production. Here, we report on the constitutive activity of the human NTR2 (hNTR2) transfected in COS cells and on compounds that exhibit agonism, inverse agonism, and neutral antagonism at this receptor. IP levels increased linearly with time, whereas they remained constant in mock-transfected cells. Furthermore, IP production was proportional to the amount of hNTR2 present at the cell membrane. SR 48692, a nonpeptide antagonist of the NTR1, stimulated IP production, whereas levocabastine, a nonpeptide histamine H1 antagonist that binds the NTR2 but not the NTR1, behaved as a weak partial inverse agonist. NT analogs modified at position 11 of the NT molecule, in particular by the introduction of bulky aromatic D amino acids, exhibited binding selectivity at the hNTR2 and also behaved as partial inverse agonists, reversing constitutive IP production up to 50%. Finally, NT barely affected constitutive IP production but antagonized the effects of both agonist and inverse agonist compounds, thus behaving as a neutral antagonist. The unique pharmacological profile of the hNTR2 is discussed in the light of its sequence similarity with the NTR1 and the known binding site topology of NT and SR 48692 in the NTR1.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11723247/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11801734" class="tabcontent ">
+                    <h2>Recycling ability of the mouse and the human neurotensin type 2 receptors depends on a single tyrosine residue.</h2>
+                    <h3>Journal of cell science; 2002</h3>
+                    <p>Receptor recycling plays a key role in the modulation of cellular responses to extracellular signals. The purpose of this work was to identify residues in G-protein coupled neurotensin receptors that are directly involved in recycling. Both the high affinity receptor-1 (NTR1) and the levocabastine-sensitive NTR2 are internalized after neurotensin binding. Here, we show that only the mouse NTR2 recycled to the plasma membrane, whereas the rat NTR1 and the human NTR2 did not. Using site-directed mutagenesis, we demonstrate that tyrosine 237 in the third intracellular loop is crucial for recycling of the mouse NTR2. We show that the mouse NTR2 is phosphorylated on tyrosine residues by NT. This phosphorylation is essential for receptor recycling since the tyrosine kinase inhibitor genistein blocks this process. The absence of recycling observed with the human NTR2 could be completely explained by the presence of a cysteine instead of a tyrosine in position 237. Indeed, substitution of this cysteine by a tyrosine gave a mutant receptor that has acquired the ability to recycle to the cell surface after neurotensin-induced internalization. This work demonstrates that a single tyrosine residue in the third intracellular loop of a G-protein-coupled receptor is responsible for receptor phosphorylation and represents an essential structural element for receptor recycling.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11801734/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab16087676" class="tabcontent ">
+                    <h2>A novel form of neurotensin post-translationally modified by arginylation.</h2>
+                    <h3>The Journal of biological chemistry; 2005</h3>
+                    <p>A novel bioactive form of neurotensin post-translationally modified at a Glu residue was isolated from porcine intestine. Purification of the peptide was guided by detection of intracellular Ca2+ release in SK-N-SH neuroblastoma cells. Using high resolution accurate mass analysis on an ion trap Fourier transform mass spectrometer, the post-translational modification was identified as arginine linked to the gamma-carboxyl of Glu via an isopeptide bond, and we named the newly identified peptide "arginylated neurotensin" (R-NT, N-(neurotensin-C5-4-yl)arginine). Although arginylation is a known modification of N-terminal amino groups in proteins, its presence at a Glu side chain is unique. The finding places neurotensin among the few physiologically active peptides that occur both in post-translationally modified and unmodified forms. Pharmacologically, we characterized R-NT for its ligand activity on three known neurotensin receptors, NTR1, -2, and -3, and found that R-NT has similar pharmacological properties to those of neurotensin, however, with a slightly higher affinity to all three receptors. We expressed the intracellular receptor NTR3 as a soluble protein secreted into the cell culture medium, which allowed characterization of its R-NT and neurotensin binding properties. The creation of soluble NTR3 also provides a potential tool for neutralizing neurotensin action in vivo and in vitro. We have shown that SK-N-SH neuroblastoma cells express NTR1 and NTR3 but not NTR2, suggesting that the Ca2+ mobilization elicited by R-NT is via NTR1.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16087676/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

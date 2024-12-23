@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>PTH2——PTH1R - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for PTH2——PTH1R</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab11159842')">11159842</button><button class="tablinks " onclick="openTab(event, 'tab10854439')">10854439</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab11159842" class="tabcontent active">
+                    <h2>Tuberoinfundibular peptide 39 binds to the parathyroid hormone (PTH)/PTH-related peptide receptor, but functions as an antagonist.</h2>
+                    <h3>Endocrinology; 2001</h3>
+                    <p>The tuberoinfundibular peptide TIP39 [TIP-(1-39)], which exhibits only limited amino acid sequence homology with PTH and PTH-related peptide (PTHrP), stimulates cAMP accumulation in cells expressing the PTH2 receptor (PTH2R), but it is inactive at the PTH/PTHrP receptor (PTH1R). However, when using either (125)I-labeled rat [Nle(8,21),Tyr(34)]PTH-(1-34)amide (rPTH) or (125)I-labeled human [Tyr(36)]PTHrP-(1-36)amide [PTHrP-(1-36)] for radioreceptor studies, TIP-(1-39) bound to LLCPK(1) cells stably expressing the PTH1R (HKrk-B7 cells), albeit with weak apparent affinity (243 +/- 52 and 210 +/- 64 nM, respectively). In comparison to the parent peptide, the apparent binding affinity of TIP-(3-39) was about 3-fold higher, and that of TIP-(9-39) was about 5.5-fold higher. However, despite their improved IC(50) values at the PTH1R, both truncated peptides failed to stimulate cAMP accumulation in HKrk-B7 cells. In contrast, the chimeric peptide PTHrP-(1-20)/TIP-(23-39) bound to HKrk-B7 cells with affinities of 31 +/- 8.2 and 11 +/- 4.0 nM when using radiolabeled rPTH and PTHrP-(1-36), respectively, and it stimulated cAMP accumulation in HKrk-B7 and SaOS-2 cells with potencies (EC(50), 1.40 +/- 0.3 and 0.38 +/- 0.12 nM, respectively) and efficacies (maximum levels, 39 +/- 8 and 31 +/- 3 pmol/well, respectively) similar to those of PTH-(1-34) and PTHrP-(1-36). In both cell lines, TIP(9-39) and, to a lesser extent, TIP-(1-39) inhibited the actions of the three agonists with efficiencies similar to those of [Leu(11),D-Trp(12),Trp(23),Tyr(36)]PTHrP-(7-36)amide, an established PTH1R antagonist. Taken together, the currently available data suggest that the carboxyl-terminal portion of TIP-(1-39) interacts efficiently with the PTH1R, at sites identical to or closely overlapping those used by PTH-(1-34) and PTHrP-(1-36). The amino-terminal residues of TIP-(1-39), however, are unable to interact productively with the PTH1R, thus enabling TIP-(1-39) and some of its truncated analogs to function as an antagonist at this receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11159842/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10854439" class="tabcontent ">
+                    <h2>Molecular determinants of tuberoinfundibular peptide of 39 residues (TIP39) selectivity for the parathyroid hormone-2 (PTH2) receptor. N-terminal truncation of TIP39 reverses PTH2 receptor/PTH1 receptor binding selectivity.</h2>
+                    <h3>The Journal of biological chemistry; 2000</h3>
+                    <p>Tuberoinfundibular peptide of 39 residues (TIP39) and the parathyroid hormone-2 (PTH2) receptor form part of an extended family of related signaling molecules that includes the PTH1 receptor, which responds to PTH and PTH-related protein. TIP39 does not appreciably activate the PTH1 receptor, but in this study it is shown to bind the receptor with moderate affinity (59 nm). In this study, we investigated the molecular determinants of both ligand and receptor for the PTH2 receptor selectivity of TIP39 and quantitatively evaluated the role of molecular elements in the binding of TIP39 to the PTH2 and PTH1 receptors. A chimeric receptor composed of the N-terminal extracellular domain of the PTH1 receptor and the remainder (juxtamembrane domain) of the PTH2 receptor (P2-NP1) was fully activated by TIP39 (E(max) = 98% of the rPTH-(1-34), E(max), EC(50) = 2.0 nm). This receptor chimera bound TIP39 with an equivalent affinity to the wild-type PTH2 receptor (2. 3 and 2.0 nm, respectively). The reciprocal chimeric receptor (P1-NP2) was not activated by TIP39 and bound the ligand with an affinity equivalent to that of the PTH1 receptor. Thus, the juxtamembrane receptor domain specifies the signaling and binding selectivity of TIP39 for the PTH2 receptor over the PTH1 receptor. Removing six N-terminal residues of TIP39 eliminated activation of the PTH2 receptor and reduced binding affinity 70-fold. In contrast, this truncation increased affinity for the PTH1 receptor 10-fold, reversing the PTH2/PTH1 receptor binding selectivity and resulting in a high affinity interaction of TIP-(7-39) with the PTH1 receptor (6 nm). These findings can be explained by a strong interaction between the N-terminal region of TIP39 and the juxtamembrane domain of the PTH2 receptor, with the corresponding domain of the PTH1 receptor acting as a selectivity barrier against high affinity binding of TIP39. As a result, TIP-(7-39) is a highly potent, selective antagonist for the PTH1 receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10854439/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

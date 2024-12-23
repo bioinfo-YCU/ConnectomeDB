@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>SST——SSTR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for SST——SSTR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab8702767')">8702767</button><button class="tablinks " onclick="openTab(event, 'tab9784130')">9784130</button><button class="tablinks " onclick="openTab(event, 'tab8769372')">8769372</button><button class="tablinks " onclick="openTab(event, 'tab9650799')">9650799</button><button class="tablinks " onclick="openTab(event, 'tab10598788')">10598788</button><button class="tablinks " onclick="openTab(event, 'tab15333679')">15333679</button><button class="tablinks " onclick="openTab(event, 'tab7988476')">7988476</button><button class="tablinks " onclick="openTab(event, 'tab11520208')">11520208</button><button class="tablinks " onclick="openTab(event, 'tab9724791')">9724791</button><button class="tablinks " onclick="openTab(event, 'tab9652348')">9652348</button><button class="tablinks " onclick="openTab(event, 'tab1346068')">1346068</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab8702767" class="tabcontent active">
+                    <h2>Identification of ligand binding determinants in the somatostatin receptor subtypes 1 and 2.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>The somatostatin (SRIF) receptors (SSTRs) 1 and 2 bind SRIF and SRIF 28 with high affinity, although a number of synthetic hexapeptide and octapeptide analogs of SRIF bind selectively to SSTR2. Extracellular loop three and its adjoining trans-membrane-spanning regions contain elements essential for the binding of such analogs to murine SSTR2. In particular, a stretch of amino acids from residues 294-297 (FDFV) in murine SSTR2 in trans-membrane domain seven can determine affinity for the SSTR2-selective analogs. Within this region, Phe294 has previously been predicted to be essential for the binding of octapeptides (Kaupmann, K., Bruns, C., Raulf, F., Weber, H., Mattes, H., and Lubbert, H. (1995) EMBO J. 14, 727-735) based on the observation that SSTR1 can bind the octapeptide SMS-201-995 with reasonable affinity after a Ser-to-Phe conversion in the analogous region of this receptor (SSTR1S305F). We find that SSTR1S305F has low affinity for a number of SSTR2-selective hexapeptides, suggesting that these analogs have different binding requirements than SMS-201-995. A correlation is seen between the ability of SSTR1S305F to bind hexapeptide analogs and the presence of a phenylalanine, but not tyrosine, at position two in these small cyclic molecules. Thus, a single hydroxyl group in hexapeptides can play a critical role in determining receptor binding to these receptor mutants. We also find that the second extracellular loop of SSTR1 is important for the selectivity of certain SRIF agonists for binding to SSTR1. Taken together, our data indicate that there are multiple elements in the somatostatin receptors that can determine the binding affinity and selectivity of peptide analogs.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8702767/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9784130" class="tabcontent ">
+                    <h2>Rapid identification of subtype-selective agonists of the somatostatin receptor through combinatorial chemistry.</h2>
+                    <h3>Science (New York, N.Y.); 1998</h3>
+                    <p>Nonpeptide agonists of each of the five somatostatin receptors were identified in combinatorial libraries constructed on the basis of molecular modeling of known peptide agonists. In vitro experiments using these selective compounds demonstrated the role of the somatostatin subtype-2 receptor in inhibition of glucagon release from mouse pancreatic alpha cells and the somatostatin subtype-5 receptor as a mediator of insulin secretion from pancreatic beta cells. Both receptors regulated growth hormone release from the rat anterior pituitary gland. The availability of high-affinity, subtype-selective agonists for each of the somatostatin receptors provides a direct approach to defining their physiological functions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9784130/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8769372" class="tabcontent ">
+                    <h2>Binding properties of somatostatin receptor subtypes.</h2>
+                    <h3>Metabolism: clinical and experimental; 1996</h3>
+                    <p>In the past few years, five different somatostatin (SRIF) receptor subtypes (sst1.5) have been identified, which form a distinct group in the superfamily of G-protein-coupled receptors. The naturally occurring somatostatins SRIF-28, SRIF-25, and SRIF-14 all reveal high-affinity binding for sst1.5. In contrast, short synthetic analogs that are in clinical use, such as SMS 201-995, RC-160, or BIM 23014, primarily interact with the sst2 subtype. Some SRIF analogs were previously reported to be selective for one SRIF receptor subtype, eg, the sst2 (MK 678), the sst3 (BIM 23056), or the sst5 (BIM 23052, L362-855) subtype. However, when we studied the binding affinities of these SRIF analogs for human (h) sst1.5 expressed in either CHO or COS-1 cells, we were unable to confirm these previously reported selectivities. The absence of sst antagonists is a major drawback for investigating the functional role of each sst subtype. We used site-directed mutagenesis to identify amino acids that determine ligand specificity for sst2. A single Ser305 to Phe mutation in TM VII increased the affinity of hsst1, for SMS 201-995 nearly 100-fold, and when Gln291 was also exchanged to Asn in TM VII of hsst1, almost full sst2-like binding of SMS 201-995 was obtained. These data may aid in the design and synthesis of new selective type sst ligands. We have identified the expression of sst subtypes in nonclassical SRIF target tissue such as the lung. The pKi values for SRIF and various SRIF analogs in rat lung tissue preparations were in close correlation with those obtained for CHO cells expressing the sst4 subtype. Furthermore, reverse transcriptase polymerase chain reaction (RT-PCR) experiments revealed the predominant expression of mRNA specific for sst4 in mouse, rat, and human lung tissue, confirmed by autoradiographies of rat lung. No specific binding for [125I]Tyr3-SMS 201-995 was detected, since SMS 201-995 has low affinity for sst4. In contrast, specific binding of [125I]SRIF-28 to rat lung sections was demonstrated, which could be displaced by unlabelled SRIF-14 and SRIF-28, indicating specific, high affinity binding of this radioligand to sst4 receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8769372/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9650799" class="tabcontent ">
+                    <h2>[125I]Tyr10-cortistatin14 labels all five somatostatin receptors.</h2>
+                    <h3>Naunyn-Schmiedeberg's archives of pharmacology; 1998</h3>
+                    <p>The recently cloned rat preprocortistatin, which shows homology to the preprosomatostatin peptide, is thought to be enzymatically cleaved to cortistatin14 (CST14) similarly to somatostatin14 (SRIF14). High structural similarity of cortistatin14 compared to SRIF14 suggested binding properties to somatostatin receptors similar to SRIF14. In the present study, we expressed stably the five human somatostatin receptor subtypes (hsst1-hsst5) in CCL39 cells (Chinese hamster lung fibroblast cells). The receptors were labelled with an iodinated analogue of CST14 ([125I]Tyr10)-cortistatin14, [125I]Tyr10-CST) to establish the pharmacological profile of hsst1-hsst5 sites labelled with [125I]Tyr10-CST. In parallel, [Leu8,D-Trp22,125I-Tyr25]-SRIF28 ([125I]LTT-SRIF28) was used as a control at the five recombinant SRIF receptors stably expressed in CCL39 cells. High affinity [125I]Tyr10-CST binding could be demonstrated to all five recombinant somatostatin receptor subtypes. The pKd (-log mol/l) and Bmax values (fmol/mg) for hsst1-5 receptors were: 10.02+/-0.04, 220+/-30; 9.45+/-0.09, 340+/-70; 10.06+/-0.11, 340+/-50; 9.67+/-0.14, 340+/-110 and 10.33+/-0.03, 5630+/-1330, respectively. The pharmacological profiles determined with [125I]Tyr10-CST and [125I]LTT-SRIF28 were very similar at every receptor studied. These data suggest that cortistatin and somatostatin have similar high affinity for SRIF receptors. None of the receptors showed marked selectivity for either CST14/CST17 or the somatostatins. In conclusion, the data show that cortistatin and somatostatin have very similar high affinity to all five recombinant somatostatin receptors. It remains to be seen whether there are specific receptors which bind only somatostatins or cortistatins.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9650799/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10598788" class="tabcontent ">
+                    <h2>Characterisation of human recombinant somatostatin receptors. 1. Radioligand binding studies.</h2>
+                    <h3>Naunyn-Schmiedeberg's archives of pharmacology; 1999</h3>
+                    <p>Human somatostatin receptor subtypes 1-5 (sst1-5) were characterised using the agonist radioligands [125I]LTT-SRIF28, [125I][Tyr10]CST14, [125I]CGP 23996 and [125I][Tyr3]octreotide in stably transfected Chinese hamster lung fibroblast cells (CCL39 cells). The radioligands used labelled saturable and high-affinity populations of sites in each instance; at sst1-4 receptors maximum binding (Bmax) was roughly equivalent. By contrast, at sst5 receptors Bmax determined with [125I]CGP 23996 and [125I][Tyr3]octreotide was significantly lower (two-and eightfold) compared with [125I]LTT-SRIF28 and [125I][Tyr10]CST14. Experiments were performed with the stable GTP-analogue guanylylimidodiphosphate (GppNHp) to establish guanine nucleotide sensitivity of agonist binding to sst1-5 receptors. The sensitivity towards GppNHp was quite variable depending on receptor and/or ligand. At sst1 and sst4 receptors, GppNHp produced little effect overall, whereas binding to sst3 and sst2 receptors was reduced by 70 and >80%, respectively. At sst5 receptors, the binding of [125I]LTT-SRIF28 and [125I][Tyr10]CST14 was only slightly affected by GppNHp, while [125I]CGP 23996 and [125I][Tyr3]octreotide binding was almost entirely inhibited. Thus, [125I][Tyr3]octreotide labelled about 26-fold less sst5 receptors than [125I]LTT-SRIF28, in the presence of 10 microM GppNHp. These discrepancies in guanine nucleotide sensitivity, were confirmed in GppNHp competition experiments. Competition studies were performed at the five receptors labelled with the different radioligands to establish their respective pharmacological profiles: the rank order of affinity was largely radioligand-independent at sst1-4 receptors, in contrast to sst5 receptors where it was radioligand-dependent. Thus, the pharmacological profile of [125I]LTT-SRIF28- and [125I][Tyr10]CST14-labelled sst5 sites correlated highly significantly, but did not correlate with the affinity profiles defined with [125I]CGP 23996 and [125I][Tyr3]octreotide binding to sst5 receptors. Depending on the agonist radioligand used and the receptor studied, it would appear that binding can be essentially to a guanine nucleotide-sensitive state (e.g. sst2 or sst3), a guanine nucleotide-insensitive state (sst1 or sst4) or a mixture of both (sst5); in the latter case, each radioligand defining a more or less different rank order of affinity at the same receptor. In summary, the differences in agonist receptor binding and guanine nucleotide sensitivity cannot be explained by the ternary complex model or its variations, but rather suggest the existence of multiple agonist-specific receptor states which vary from one receptor to another.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10598788/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15333679" class="tabcontent ">
+                    <h2>Superagonism at the human somatostatin receptor subtype 4.</h2>
+                    <h3>The Journal of pharmacology and experimental therapeutics; 2005</h3>
+                    <p>We have discovered a novel compound, J-2156 [(1'S, 2S)-4-amino-N-(1'-carbamoyl-2'-phenylethyl)-2-(4''-methyl-1''-naphthalenesulfonylamino)butanamide], that belongs to a new class of somatostatin receptor ligands. J-2156 binds with nanomolar affinity to the human somatostatin receptor subtype 4 and is over 400-fold subtype-selective against the other somatostatin receptors. When evaluated in a [(35)S]guanosine-5'-O-(3-thio) triphosphate binding assay, J-2156 elicited a response 2 to 3 times as large as that of somatostatin-28 and somatostatin-14. That somatostatin-14 is clearly not a maximally efficacious agonist could be verified by demonstrating that it displays the typical behavior of a partial agonist when tested against J-2156. Increasing concentrations of somatostatin-14 cause a concentration-dependent rightward shift of the dose-response curves for J-2156, without affecting its maximal response. This lack of reduction of the maximal response and the fact that the superior efficacy of J-2156 is detected in membranes argue against desensitization and internalization as possible explanations for the superior efficacy of J-2156. More likely is that somatostatin-14 and J-2156 stabilize distinct receptor conformations that differ in their ability to interact with G-proteins. In a cyclic AMP assay, J-2156, somatostatin-28, and somatostatin-14 all act as full agonists. However, this outcome is most likely due to the presence of a receptor reserve in the cyclic AMP assay since there is a large gain of apparent potency in the cyclic AMP assay and the gain is larger for J-2156 than for somatostatin. We conclude that the endogenous ligands somatostatin-14 and somatostatin-28 do not define maximal agonism on the human somatostatin receptor subtype 4 and that J-2156 represents a so-called superagonist.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15333679/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7988476" class="tabcontent ">
+                    <h2>Subtype selectivity of peptide analogs for all five cloned human somatostatin receptors (hsstr 1-5).</h2>
+                    <h3>Endocrinology; 1994</h3>
+                    <p>Recent reports (Raynor et al) have claimed the identification of potent somatostatin (SST) agonists exhibiting binding affinities of 1-2 pM and up to 30,000 fold binding selectivity for several of the 5 cloned sstr subtypes. These conclusions, however, are based on binding comparisons of sstr subtypes from different species expressed in different cell lines and studied with different radioligands. To eliminate the effect of species and/or methodological variations, we have investigated agonist selectivity of 32 synthetic SST analogs for all 5 hsstrs stably expressed in CHO-K1 cells under identical binding conditions. We show that hsstr2, 3, 5 react potently with hexapeptide as well as cyclic and linear octapeptide analogs and belong to a similar sstr subclass. hsstr1 and 4 react poorly with these analogs and belong to a separate subclass. The present generation of SST analogs exhibit a modest-50 fold increase in binding potency compared to SST-14 for 2 subtypes (hsstr2, 3), and relative selectivity for only 1 subtype (hsstr2) which is at best only 35 fold. The potency and degree of selectivity of these analogs is several orders of magnitude less than that reported earlier and suggests the need for caution in using these compounds as putative superagonists or subtype selective compounds for any of the individual sstrs.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7988476/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11520208" class="tabcontent ">
+                    <h2>Identification of potent non-peptide somatostatin antagonists with sst(3) selectivity.</h2>
+                    <h3>Journal of medicinal chemistry; 2001</h3>
+                    <p>Using a solution-phase parallel synthesis strategy, a series of non-peptide somatostatin analogues were prepared, and their binding affinities to the five human somatostatin receptor subtypes (sst(1-5)) were determined. Imidazolyl derivatives 2 were found to bind with moderate affinity but with high selectivity to the sst(3) receptor subtype. Further modifications of these structures led to a more potent class of ligands, the tetrahydro-beta-carboline derivatives 4. Among these, compounds 4k (BN81644) and 4n (BN81674) bind selectively and with high affinity to the sst(3) receptor subtype (K(i) = 0.64 and 0.92 nM, respectively). Furthermore, 4k and 4n reverse the inhibition of cyclic AMP accumulation induced by 1 nM somatostatin via sst(3) receptors, with IC(50) = 2.7 and 0.84 nM, respectively. The most potent compound 4n was shown to be a competitive antagonist of human sst(3) receptors by increasing the EC(50) of SRIF-14-mediated inhibition of cAMP accumulation with a K(B) of 2.8 nM (where K(B) is the concentration of antagonist that shifts the agonist dose-response 2-fold). These new derivatives are, to our knowledge, the first potent and highly selective non-peptide human sst(3) antagonists known and, as such, are useful tools for investigating the physiological role of sst(3) receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11520208/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9724791" class="tabcontent ">
+                    <h2>Synthesis and biological activities of potent peptidomimetics selective for somatostatin receptor subtype 2.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1998</h3>
+                    <p>A series of nonpeptide somatostatin agonists which bind selectively and with high affinity to somatostatin receptor subtype 2 (sst2) have been synthesized. One of these compounds, L-054,522, binds to human sst2 with an apparent dissociation constant of 0.01 nM and at least 3,000-fold selectivity when evaluated against the other somatostatin receptors. L-054,522 is a full agonist based on its inhibition of forskolin-stimulated adenylate cyclase activity in Chinese hamster ovary-K1 cells stably expressing sst2. L-054,522 has a potent inhibitory effect on growth hormone release from rat primary pituitary cells and glucagon release from isolated mouse pancreatic islets. Intravenous infusion of L-054,522 to rats at 50 microgram/kg per hr causes a rapid and sustained reduction in growth hormone to basal levels. The high potency and selectivity of L-054, 522 for sst2 will make it a useful tool to further characterize the physiological functions of this receptor subtype.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9724791/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9652348" class="tabcontent ">
+                    <h2>[125I][Tyr3]octreotide labels human somatostatin sst2 and sst5 receptors.</h2>
+                    <h3>European journal of pharmacology; 1998</h3>
+                    <p>Human somatostatin (somatotropin release inhibiting factor = SRIF) receptor subtypes sst2 and sst5 were stably expressed in Chinese hamster lung fibroblast (CCL39) cells. [125I][Tyr3]octreotide labelled with high affinity and in a saturable manner both sst2 (pKd = 9.89+/-0.02, Bmax = 210+/-10 fmol/mg, n = 3) and sst5 sites (pKd = 9.64+/-0.04, Bmax = 920+/-170 fmol/mg, n = 3). The pharmacological profile of sst2 sites established in CCL39 cells using SRIF and various peptide analogues was very similar to that described previously in CHO cells and in human cortex: SRIF14 = SRIF28 > or = seglitide > BIM 23014 = RC 160 > octreotide > CGP 23996 > or = L362,855 > BIM 23052 > L361,301 = cortistatin14 > BIM 23030 > BIM 23056 > cycloantagonist SA. However, peptides classically perceived as sst2 receptor selective (e.g., seglitide, octreotide, vapreotide) showed also high affinity for human sst5 receptors labelled with [125I][Tyr3]octreotide: SRIF28 > seglitide > SRIF14 > L361,301 = octreotide > cortistatin14 = BIM 23014 = BIM 23052 > L362,855 = RC160 > CGP 23996 > BIM 23056 > cycloantagonist SA > BIM 23030. Further radioligand binding studies were performed with [Leu8,D-Trp22,125I-Tyr25]SRIF28 ([125I]LTT-SRIF28) and [125I]CGP 23996. At sst2 receptors, Bmax values determined with [125I][Tyr3]octreotide, [125I]LTT-SRIF28 and [125I]CGP 23996 were in the same range (180-370 fmol/mg). 5'-Guanylyl-imidodiphosphate (GppNHp) displaced all three radioligands to the same extent (85%) and the pharmacological profiles were superimposable. By contrast, at sst5 receptors Bmax values were very different: [125I][Tyr3]octreotide (920 fmol/mg), [125I]CGP 23996 (3530 fmol/mg) and [125I]LTT-SRIF28 (6950 fmol/mg). GppNHp affected [125I][Tyr3]octreotide more than [125I]CGP 23996 binding, whereas [125I]LTT-SRIF28 was much less affected. In addition, the affinity values determined in competition experiments at sst5 receptors, varied markedly; whereas SRIF14, cortistatin14 and SRIF28 showed 2-, 4- and 8-fold differences in affinity at sst5 receptors labelled with [125I][Tyr3]octreotide and [125I]LTT-SRIF28 compounds such as RC160, L363,301, L362,855, octreotide or CGP 23996 showed between 42- and 123-fold lower affinity when sst5 sites were labelled with [125I]LTT-SRIF28. The present data suggest caution to be used when comparing affinity profiles determined in binding studies using different radioligands. In addition, the present results suggest that effects produced by octreotide and related short chain SRIF analogues on hormone release, modulation of tumour growth and central effects may be mediated by either sst2 and/or sst5 receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9652348/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab1346068" class="tabcontent ">
+                    <h2>Cloning and functional characterization of a family of human and mouse somatostatin receptors expressed in brain, gastrointestinal tract, and kidney.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1992</h3>
+                    <p>Somatostatin is a tetradecapeptide that is widely distributed in the body. It acts on multiple organs including brain, pituitary, gut, exocrine and endocrine pancreas, adrenals, thyroid, and kidneys to inhibit release of many hormones and other secretory proteins. In addition, it functions as a neuropeptide affecting the electrical activity of neurons. Somatostatin exerts its biological effects by binding to specific high-affinity receptors, which appear in many cases to be coupled to GTP-binding proteins. Here we report the cloning, functional expression, and tissue distribution of two different somatostatin receptors (SSTRs). SSTR1 and SSTR2 contain 391 and 369 amino acids, respectively, and are members of the superfamily of receptors having seven transmembrane segments. There is 46% identity and 70% similarity between the amino acid sequences of SSTR1 and SSTR2. Stably transfected Chinese hamster ovary cells expressing SSTR1 or SSTR2 exhibit specific somatostatin binding, with an apparently higher affinity for somatostatin-14 than somatostatin-28, and NH2-terminally extended form of somatostatin-14. RNA blotting studies show that SSTR1 and SSTR2 are expressed at highest levels in jejunum and stomach and in cerebrum and kidney, respectively. A SSTR1 probe hybridized to multiple DNA fragments in EcoRI digests of human and mouse DNA, indicating that SSTR1 and SSTR2 are members of a larger family of somatostatin receptors. Thus, the biological effects of somatostatin are mediated by a family of receptors that are expressed in a tissue-specific manner.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1346068/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

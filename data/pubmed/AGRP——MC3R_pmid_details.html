@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>AGRP——MC3R - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for AGRP——MC3R</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9311920')">9311920</button><button class="tablinks " onclick="openTab(event, 'tab9819197')">9819197</button><button class="tablinks " onclick="openTab(event, 'tab9893984')">9893984</button><button class="tablinks " onclick="openTab(event, 'tab11747427')">11747427</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9311920" class="tabcontent active">
+                    <h2>Antagonism of central melanocortin receptors in vitro and in vivo by agouti-related protein.</h2>
+                    <h3>Science (New York, N.Y.); 1997</h3>
+                    <p>Expression of Agouti protein is normally limited to the skin where it affects pigmentation, but ubiquitous expression causes obesity. An expressed sequence tag was identified that encodes Agouti-related protein, whose RNA is normally expressed in the hypothalamus and whose levels were increased eightfold in ob/ob mice. Recombinant Agouti-related protein was a potent, selective antagonist of Mc3r and Mc4r, melanocortin receptor subtypes implicated in weight regulation. Ubiquitous expression of human AGRP complementary DNA in transgenic mice caused obesity without altering pigmentation. Thus, Agouti-related protein is a neuropeptide implicated in the normal control of body weight downstream of leptin signaling.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9311920/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9819197" class="tabcontent ">
+                    <h2>Biochemical, biophysical, and pharmacological characterization of bacterially expressed human agouti-related protein.</h2>
+                    <h3>Biochemistry; 1998</h3>
+                    <p>The agouti-related protein gene (Agrp) is a novel gene implicated in the control of feeding behavior. The hypothalamic expression of Agrp is regulated by leptin, and overexpression of Agrp in transgenic animals results in obesity and diabetes. By analogy with the known actions of agouti, these data suggest a role for the Agrp gene product in the regulation of melanocortin receptors expressed in the central nervous system. The availability of recombinant, highly purified protein is required to fully address this potential interaction. A nearly full-length form of AGRP (MKd5-AGRP) was expressed in the cytosolic or soluble fraction of Escherichia coli and appeared as large intermolecular disulfide-bonded aggregates. Following oxidation, refolding, and purification, this protein was soluble, and eluted as a single symmetric peak on RP-HPLC. Circular dichroism studies indicated that the purified protein contains primarily random coil and beta-sheet secondary structure. Sedimentation velocity studies at neutral pH demonstrated that MKd5-AGRP is monomeric at low micromolar concentrations. Mobility shifts observed using SDS-PAGE under reducing and nonreducing conditions for bacterially expressed and mammalian expressed AGRP were identical, an indication of a similar disulfide structure. The purification to homogeneity of a second, truncated form of AGRP (Md65-AGRP) which was expressed in the insoluble or inclusion body fraction is also described. Both forms act as competitive antagonists of alpha-melanocyte stimulating hormone (alpha-MSH) at melanocortin-3 (MC-3) and melanocortin-4 receptors (MC-4). The demonstration that AGRP is an endogenous antagonist with respect to these receptors is a unique mechanism within the central nervous system, and has important implications in the control of feeding.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9819197/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9893984" class="tabcontent ">
+                    <h2>Molecular interaction of Agouti protein and Agouti-related protein with human melanocortin receptors.</h2>
+                    <h3>Biochemistry; 1999</h3>
+                    <p>Agouti protein and the Agouti-related protein (AGRP) are antagonists of the melanocortin-3 receptor and melanocortin-4 receptor. Both proteins contain 10 cysteines in the C-terminal domain arranged in five disulfide bonds. One possible arrangement of the disulfide bonds predicts an octapeptide loop, and the chemical properties of four residues within this loop (residues 111-114 in human AGRP) bear striking resemblance to those of several melanocortin peptides, including alpha-MSH, MT-II, and SHU-9119. We showed that cyclic synthetic octapeptides based on the sequence of this loop from Agouti protein or human AGRP are functional antagonists of the human melanocortin-4 receptor. All peptides had a lower affinity for the melanocortin-3 receptor than for the melanocortin-4 receptor. Substitution of serines for cysteines resulted in linear peptides which had reduced binding affinities for both receptors. Mutational analysis of human AGRP indicated that its C-terminal domain is functionally equivalent to the intact human AGRP. The RFF111-113 triplet appears to be the most critical portion of AGRP in determining the binding affinity for both melanocortin-3 and melanocortin-4 receptors. These data strongly suggest that the loop defined by Cys-110 and Cys-117 is critical in determining the antagonist activity of human AGRP. Our data provide indirect evidence for the suggestion that the Cys-110 to Cys-117 octapeptide loop of human AGRP mimics the conformation of alpha-MSH, MT-II, and SHU-9119.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9893984/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11747427" class="tabcontent ">
+                    <h2>High-resolution NMR structure of the chemically-synthesized melanocortin receptor binding domain AGRP(87-132) of the agouti-related protein.</h2>
+                    <h3>Biochemistry; 2001</h3>
+                    <p>The agouti-related protein (AGRP) is an endogenous antagonist of the melanocortin receptors MC3R and MC4R found in the hypothalamus and exhibits potent orexigenic (appetite-stimulating) activity. The cysteine-rich C-terminal domain of this protein, corresponding to AGRP(87-132), contains five disulfide bonds and exhibits receptor binding affinity and antagonism equivalent to that of the full-length protein. The three-dimensional structure of this domain has been determined by 1H NMR at 800 MHz. The first 34 residues of AGRP(87-132) are well-ordered and contain a three-stranded antiparallel beta sheet, where the last two strands form a beta hairpin. The relative spatial positioning of the disulfide cross-links demonstrates that the ordered region of AGRP(87-132) adopts the inhibitor cystine knot (ICK) fold previously identified for numerous invertebrate toxins. Interestingly, this may be the first example of a mammalian protein assigned to the ICK superfamily. The hairpin's turn region presents a triplet of residues (Arg-Phe-Phe) known to be essential for melanocortin receptor binding. The structure also suggests that AGRP possesses an additional melanocortin-receptor contact region within a loop formed by the first 16 residues of its C-terminal domain. This specific region shows little sequence homology to the corresponding region of the agouti protein, which is an MC1R antagonist involved in pigmentation. Consideration of these sequence differences, along with recent experiments on mutant and chimeric melanocortin receptors, allows us to postulate that this loop in the first 16 residues of its C-terminal domain confers AGRP's distinct selectivity for MC3R and MC4R.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11747427/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

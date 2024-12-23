@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>GHRL——GHSR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for GHRL——GHSR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10604470')">10604470</button><button class="tablinks " onclick="openTab(event, 'tab15905359')">15905359</button><button class="tablinks " onclick="openTab(event, 'tab10628755')">10628755</button><button class="tablinks " onclick="openTab(event, 'tab12907757')">12907757</button><button class="tablinks " onclick="openTab(event, 'tab21402696')">21402696</button><button class="tablinks " onclick="openTab(event, 'tab11314756')">11314756</button><button class="tablinks " onclick="openTab(event, 'tab10604470')">10604470</button><button class="tablinks " onclick="openTab(event, 'tab11227737')">11227737</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10604470" class="tabcontent active">
+                    <h2>Ghrelin is a growth-hormone-releasing acylated peptide from stomach.</h2>
+                    <h3>Nature; 1999</h3>
+                    <p>Small synthetic molecules called growth-hormone secretagogues (GHSs) stimulate the release of growth hormone (GH) from the pituitary. They act through GHS-R, a G-protein-coupled receptor for which the ligand is unknown. Recent cloning of GHS-R strongly suggests that an endogenous ligand for the receptor does exist and that there is a mechanism for regulating GH release that is distinct from its regulation by hypothalamic growth-hormone-releasing hormone (GHRH). We now report the purification and identification in rat stomach of an endogenous ligand specific for GHS-R. The purified ligand is a peptide of 28 amino acids, in which the serine 3 residue is n-octanoylated. The acylated peptide specifically releases GH both in vivo and in vitro, and O-n-octanoylation at serine 3 is essential for the activity. We designate the GH-releasing peptide 'ghrelin' (ghre is the Proto-Indo-European root of the word 'grow'). Human ghrelin is homologous to rat ghrelin apart from two amino acids. The occurrence of ghrelin in both rat and human indicates that GH release from the pituitary may be regulated not only by hypothalamic GHRH, but also by ghrelin.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10604470/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15905359" class="tabcontent ">
+                    <h2>Nonpeptide and peptide growth hormone secretagogues act both as ghrelin receptor agonist and as positive or negative allosteric modulators of ghrelin signaling.</h2>
+                    <h3>Molecular endocrinology (Baltimore, Md.); 2005</h3>
+                    <p>Two nonpeptide (L692,429 and MK-677) and two peptide [GH-releasing peptide (GHRP)-6 and ghrelin] agonists were compared in binding and in signal transduction assays: calcium mobilization, inositol phosphate turnover, cAMP-responsive element (CRE), and serum-responsive element (SRE) controlled transcription, as well as arrestin mobilization. MK-677 acted as a simple agonist having an affinity of 6.5 nm and activated all signal transduction systems with similar high potency (0.2-1.4 nm). L-692,429 also displayed a very similar potency in all signaling assays (25-60 nm) but competed with a 1000-fold lower apparent affinity for ghrelin binding and surprisingly acted as a positive allosteric receptor modulator by increasing ghrelin's potency 4- to 10-fold. In contrast, the potency of GHRP-6 varied 600-fold (0.1-61 nm) depending on the signal transduction assay, and it acted as a negative allosteric modulator of ghrelin signaling. Unexpectedly, the maximal signaling efficacy for ghrelin was increased above what was observed with the hormone itself during coadministration with the nonendogenous agonists. It is concluded that agonists for the ghrelin receptor vary both in respect of their intrinsic agonist properties and in their ability to modulate ghrelin signaling. A receptor model is presented wherein ghrelin normally only activates one receptor subunit in a dimer and where the smaller nonendogenous agonists bind in the other subunit to act both as coagonists and as either neutral (MK-677), positive (L-692,429), or negative (GHRP-6) modulators of ghrelin function. It is suggested that an optimal drug candidate could be an agonist that also is a positive modulator of ghrelin signaling.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15905359/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10628755" class="tabcontent ">
+                    <h2>Ligand activation domain of human orphan growth hormone (GH) secretagogue receptor (GHS-R) conserved from Pufferfish to humans.</h2>
+                    <h3>Molecular endocrinology (Baltimore, Md.); 2000</h3>
+                    <p>Synthetic ligands have been identified that reset and amplify the cycle of pulsatile GH secretion by interacting with the orphan GH-secretagogue receptor (GHS-R). The GHS-R is rhodopsin like, but does not obviously belong to any of the established G protein-coupled receptor (GPCR) subfamilies. We recently characterized the closely related orphan family member, GPR38, as the motilin receptor. A common property of both receptors is that they amplify and sustain pulsatile biological responses in the continued presence of their respective ligands. To efficiently identify additional members of this new GPCR family, we explored a vertebrate species having a compact genome, that was evolutionary distant from human, but where functionally important genes were likely to be conserved. Accordingly, three distinct full-length clones, encoding proteins of significant identity to the human GHS-R, were isolated from the Pufferfish (Spheroides nephelus). Southern analyses showed that the three cloned Pufferfish genes are highly conserved across species. The gene with closest identity (58%) was activated by three synthetic ligands that were chosen for their very high selectivity on the GHS-R as illustrated by their specificity in activating the wild-type human GHS-R but not the E124Q mutant. These results indicate that the ligand activation domain of the GHS-R has been evolutionary conserved from Pufferfish to human (400 million years), supporting the notion that the GHS-R and its natural ligand play a fundamentally important role in biology. Furthermore, they illustrate the power of exploiting the compact Pufferfish genome for simplifying the isolation of endocrinologically important receptor families.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10628755/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12907757" class="tabcontent ">
+                    <h2>High constitutive signaling of the ghrelin receptor--identification of a potent inverse agonist.</h2>
+                    <h3>Molecular endocrinology (Baltimore, Md.); 2003</h3>
+                    <p>Ghrelin is a GH-releasing peptide that also has an important role as an orexigenic hormone-stimulating food intake. By measuring inositol phosphate turnover or by using a reporter assay for transcriptional activity controlled by cAMP-responsive elements, the ghrelin receptor showed strong, ligand-independent signaling in transfected COS-7 or human embryonic kidney 293 cells. Ghrelin and a number of the known nonpeptide GH secretagogues acted as agonists stimulating inositol phosphate turnover further. In contrast, the low potency ghrelin antagonist, [D-Arg1,D-Phe5,D-Trp7,9,Leu11]-substance P was surprisingly found to be a high potency (EC50 = 5.2 nm) full inverse agonist as it decreased the constitutive signaling of the ghrelin receptor down to that observed in untransfected cells. The homologous motilin receptor functioned as a negative control as it did not display any sign of constitutive activity; however, upon agonist stimulation the motilin receptor signaled as strongly as the unstimulated ghrelin receptor. It is concluded that the ghrelin receptor is highly constitutively active and that this activity could be of physiological importance in its role as a regulator of both GH secretion and appetite control. It is suggested that inverse agonists for the ghrelin receptor could be particularly interesting for the treatment of obesity.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12907757/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab21402696" class="tabcontent ">
+                    <h2>Unique interaction pattern for a functionally biased ghrelin receptor agonist.</h2>
+                    <h3>The Journal of biological chemistry; 2011</h3>
+                    <p>Based on the conformationally constrained D-Trp-Phe-D-Trp (wFw) core of the prototype inverse agonist [D-Arg(1),D-Phe(5),D-Trp(7,9),Leu(11)]substance P, a series of novel, small, peptide-mimetic agonists for the ghrelin receptor were generated. By using various simple, ring-constrained spacers connecting the D-Trp-Phe-D-Trp motif with the important C-terminal carboxyamide group, 40 nm agonism potency was obtained and also in one case (wFw-Isn-NH(2), where Isn is isonipecotic acid) ~80% efficacy. However, in contrast to all previously reported ghrelin receptor agonists, the piperidine-constrained wFw-Isn-NH(2) was found to be a functionally biased agonist. Thus, wFw-Isn-NH(2) mediated potent and efficacious signaling through the Gα(q) and ERK1/2 signaling pathways, but in contrast to all previous ghrelin receptor agonists it did not signal through the serum response element, conceivably the Gα(12/13) pathway. The recognition pattern of wFw-Isn-NH(2) with the ghrelin receptor also differed significantly from that of all previously characterized unbiased agonists. Most importantly, wFw-Isn-NH(2) was not dependent on GluIII:09 (Glu3.33), which otherwise is an obligatory TM III anchor point residue for ghrelin agonists. Molecular modeling and docking experiments indicated that wFw-Isn-NH(2) binds in the classical agonist binding site between the extracellular segments of TMs III, VI, and VII, interacting closely with the aromatic cluster between TMs VI and VII, but that it does so in an opposite orientation as compared with, for example, the wFw peptide agonists. It is concluded that the novel peptide-mimetic ligand wFw-Isn-NH(2) is a biased ghrelin receptor agonist and that the selective signaling pattern presumably is due to its unique receptor recognition pattern lacking interaction with key residues especially in TM III.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/21402696/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11314756" class="tabcontent ">
+                    <h2>Binding of 125I-labeled ghrelin to membranes from human hypothalamus and pituitary gland.</h2>
+                    <h3>Journal of endocrinological investigation; 2001</h3>
+                    <p>Ghrelin has been proposed as a natural ligand of the GH secretagogue receptor(s) (GHS-R), which was an orphan receptor activated by synthetic peptidyl (hexarelin) and non-peptidyl (MK-0677) GHS to strongly release GH in animals and humans. Herein we studied: 1) the binding of 125I-labeled human ghrelin to membranes from human hypothalamus and pituitary gland; 2) the ability of human ghrelin (either octanoylated or desoctanoylated), as well as of some GHS and neuropeptides to compete with the radioligand. The saturation binding analysis showed, in both tissues, the existence of a single class of high-affinity binding sites with limited binding capacity. The Bmax (maximal number of binding sites) values of ghrelin receptors in the hypothalamus were significantly greater (p<0.001) than those detected in the pituitary, whereas the Kd (dissociation constant) values in the two tissues were similar. 125I-ghrelin bound to hypothalamic membranes was displaced by ghrelin, hexarelin, MK-0677, various GHS antagonists (EP-80317, [D-Arg1-D-Phe5-D-Trp7,9-Leu11]-substance P) and some natural (cortistatin-14) and synthetic (vapreotide) SRIH-14 agonists. In contrast, no competition was seen in the presence of GHRH-44, SRIH-14 or desoctanoylated ghrelin, a ghrelin precursor that is devoid of GH-releasing properties. In conclusion, this preliminary study firstly demonstrates that ghrelin needs octanoylation to bind its hypothalamo-pituitary receptors. These receptors are the specific binding sites for GHS and their antagonists, as well as for SRIH analogs (vapreotide and cortistatin- 14), but not for native SRIH.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11314756/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10604470" class="tabcontent ">
+                    <h2>Ghrelin is a growth-hormone-releasing acylated peptide from stomach.</h2>
+                    <h3>Nature; 1999</h3>
+                    <p>Small synthetic molecules called growth-hormone secretagogues (GHSs) stimulate the release of growth hormone (GH) from the pituitary. They act through GHS-R, a G-protein-coupled receptor for which the ligand is unknown. Recent cloning of GHS-R strongly suggests that an endogenous ligand for the receptor does exist and that there is a mechanism for regulating GH release that is distinct from its regulation by hypothalamic growth-hormone-releasing hormone (GHRH). We now report the purification and identification in rat stomach of an endogenous ligand specific for GHS-R. The purified ligand is a peptide of 28 amino acids, in which the serine 3 residue is n-octanoylated. The acylated peptide specifically releases GH both in vivo and in vitro, and O-n-octanoylation at serine 3 is essential for the activity. We designate the GH-releasing peptide 'ghrelin' (ghre is the Proto-Indo-European root of the word 'grow'). Human ghrelin is homologous to rat ghrelin apart from two amino acids. The occurrence of ghrelin in both rat and human indicates that GH release from the pituitary may be regulated not only by hypothalamic GHRH, but also by ghrelin.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10604470/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11227737" class="tabcontent ">
+                    <h2>Cortistatin, but not somatostatin, binds to growth hormone secretagogue (GHS) receptors of human pituitary gland.</h2>
+                    <h3>Journal of endocrinological investigation; 2001</h3>
+                    <p>Antagonism between GH secretagogues (GHS) and somatostatin (SRIH) has been postulated and demonstrated, but SRIH does not bind to GHS receptors (GHS-R) and potent synthetic peptidyl GHS (GHRP6, hexarelin) do not displace radiolabeled SRIH from its receptors. However, non-natural SRIH octapeptide agonists (mainly lanreotide and vapreotide) displace 125I-Tyr-Ala-hexarelin from pituitary binding sites suggesting that an endogenous factor related to SRIH might exist and interact with GHS-R. Our aims were to investigate the ability of different SRIH-like peptides such as various SRIH fragments (SRIH 3-14, SRIH 7-14, SRIH 3-10, SRIH 7-10, SRIH 2-9) and a natural neuropeptide that shows a high structural homology with SRIH such as cortistatin-14 (CST) to compete with 125I-Tyr-Ala-hexarelin for human pituitary binding sites and to compare their binding affinity with that of hexarelin and ghrelin, a gastric-derived peptidyl GHS that has been proposed as a natural ligand of GHS-R. While the binding of 125I-Tyr-Ala-hexarelin to pituitary membranes was completely displaced by unlabelled hexarelin, ghrelin and CST, none of the SRIH fragments tested inhibited this binding. Ghrelin and CST exhibited a similar affinity (4.6-5.4 x 10(-7) mol/l) for the binding while hexarelin was more effective by about four orders of magnitude in displacing 125I-Tyr-Ala-hexarelin. Our data demonstrate for the first time that cortistatin, a natural peptide related to SRIH, binds to GHS-R and suggest that this factor may play a role in modulating the activity of these receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11227737/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

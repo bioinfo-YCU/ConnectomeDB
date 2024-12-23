@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>SCT——SCTR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for SCT——SCTR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab7782300')">7782300</button><button class="tablinks " onclick="openTab(event, 'tab7612008')">7612008</button><button class="tablinks " onclick="openTab(event, 'tab8579602')">8579602</button><button class="tablinks " onclick="openTab(event, 'tab9440501')">9440501</button><button class="tablinks " onclick="openTab(event, 'tab7782300')">7782300</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab7782300" class="tabcontent active">
+                    <h2>Critical contributions of amino-terminal extracellular domains in agonist binding and activation of secretin and vasoactive intestinal polypeptide receptors. Studies of chimeric receptors.</h2>
+                    <h3>The Journal of biological chemistry; 1995</h3>
+                    <p>Secretin and vasoactive intestinal polypeptide (VIP) receptors are closely related G protein-coupled receptors in a recently described family possessing a large amino-terminal ectodomain. We postulated that this domain might be critical for agonist recognition and therefore constructed a series of six chimeric receptors, exchanging the amino terminus, the first extracellular loop, or both in secretin and VIP receptors. Constructs were expressed in COS cells and characterized by cAMP generation and binding of both secretin and VIP radio-ligands. Wild type receptors demonstrated high affinity binding of respective ligands (IC50 values (in nM): at the secretin receptor: 2.2 for secretin, > 1000 for VIP; at the VIP receptor: 2.2 for VIP, > 1000 for secretin) and appropriately sensitive and selective biological responses (EC50 values (in nM): at the secretin receptor: 1.5 for secretin, 127 for VIP; at the VIP receptor: 1.0 for VIP, 273 for secretin). Replacement of the secretin receptor amino terminus with that of the VIP receptor resulted in biological responsiveness typical of the VIP receptor (EC50 = 120 nM for secretin, 1.7 nM for VIP). The converse was not true, with this domain of the secretin receptor not able to provide the same response when incorporated into the VIP receptor (EC50 = 50 nM for VIP, 30 nM for secretin). The addition of both the first loop and the amino terminus of the secretin receptor was effective in yielding a secretin receptor-like response (EC50 = 2.0 nM for secretin, 47 nM for VIP). All chimeric constructs expressing selectivity for secretin-stimulated activity bound this hormone with high affinity (IC50 = 0.2-2.2 nM); however, there was divergence between VIP binding and biological activity. Thus, the amino terminus of secretin and VIP receptors plays a key role in agonist recognition and responsiveness, with the first loop playing a critical complementary role for the secretin receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7782300/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7612008" class="tabcontent ">
+                    <h2>Molecular cloning and functional characterization of a human secretin receptor.</h2>
+                    <h3>Biochemical and biophysical research communications; 1995</h3>
+                    <p>Secretin is a gastrointestinal hormone responsible for the regulation of bicarbonate, potassium ion and enzyme secretion from the pancreas. A cDNA encoding the human secretin receptor was isolated from a human pancreatic adenocarcinoma cell-line cDNA library using polymerase chain reaction and library screening techniques. The cDNA isolated is 1717 bp in length encoding a 440 amino acid long polypeptide. Computer analysis of the receptor indicated that it is a member of the glucagon-VIP-secretin receptor family and is a G-protein coupled receptor containing seven hydrophobic transmembrane domains. The receptor was subsequently expressed in COS-7 cells and was able to bind specifically to human secretin with high affinity as indicated by the competitive displacement assay. The human secretin receptor was found to be functionally coupled to the stimulation of adenylyl cyclase resulting in the accumulation of intracellular cAMP in a dose-dependent manner. By Northern blot analysis, a 1.8 Kb mRNA was detected in human pancreas and intestine, while weak hybridization signals were detected in human colon, kidney and lung. Functional characterization of this receptor should enhance our understanding of the physiology and pathophysiology of human secretin, its structure-function, receptor interaction and receptor tissue distribution.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7612008/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8579602" class="tabcontent ">
+                    <h2>Lysine 173 residue within the first exoloop of rat secretin receptor is involved in carboxylate moiety recognition of Asp 3 in secretin.</h2>
+                    <h3>Biochemical and biophysical research communications; 1996</h3>
+                    <p>The contribution of the extracellular loops of the secretin receptor to the recognition of secretin was investigated by transfection in CHO cells of chimeric receptors, in which the three loops of the secretin recombinant receptor were replaced by the corresponding sequences of the glucagon receptor. The role of the third loop could not be evaluated as the transfected cells did not respond to secretin. Replacement of extracellular loop 2 reduced markedly the capability of secretin to occupy the receptor but did not alter the capacity of the receptor to discriminate between peptide analogues modified in position 3. Replacement of the first extracellular loop not only reduced the potency of secretin but also decreased the capacity of the receptor to discriminate between ligands having in position 3 an aspartate (as in secretin), an asparagine, or a glutamic acid. This change in receptor properties was reproduced by a single mutation of lysine 173 of the receptor into isoleucine. Thus, the basic amino acid in position 173 is likely to interact with aspartate 3 of secretin. As an aspartate is also present in position 3 of VIP and PACAP, two peptides related to secretin, and a lysine residue is conserved in the first extracellular loop of the VIP and PACAP receptors, this interaction may be a key element of peptide recognition by this receptor family.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8579602/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9440501" class="tabcontent ">
+                    <h2>Functional antagonism of the human secretin receptor by a recombinant protein encoding the N-terminal ectodomain of the receptor.</h2>
+                    <h3>Receptors & signal transduction; 1997</h3>
+                    <p>Recent evidence indicates that the N-terminal extracellular domain of receptors in the secretin-glucagon receptor family is responsible for ligand recognition. In this report, the N-terminal ectodomain of the human secretin receptor (HSR) was expressed in Escherichia coli, and the ability of this recombinant protein to interact with secretin was investigated by functional assays. The cDNA region encoding the N-terminal ectodomain of HSR linked to the polyhistidine fusion partner was expressed in E. coli. The resulting fusion protein was purified and used for competitive studies. A permanently transfected cell line with the HSR expressed was used in this study. The cell line was able to respond to secretin leading to the elevation of both intracellular cAMP and protein kinase-A activity. Using this cell line, incubation of secretin with the recombinant protein led to a dose-dependent inhibition of both cAMP production and protein kinase-A activity. These findings strongly suggested that the N-terminal ectodomain of HSR alone can act as a functional domain that provides a means to study ligand-receptor interactions of this receptor. The His-tagged recombinant HSR ectodomain may also be used for screening secretin-specific agonists and antagonists by affinity chromatography in the future.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9440501/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7782300" class="tabcontent ">
+                    <h2>Critical contributions of amino-terminal extracellular domains in agonist binding and activation of secretin and vasoactive intestinal polypeptide receptors. Studies of chimeric receptors.</h2>
+                    <h3>The Journal of biological chemistry; 1995</h3>
+                    <p>Secretin and vasoactive intestinal polypeptide (VIP) receptors are closely related G protein-coupled receptors in a recently described family possessing a large amino-terminal ectodomain. We postulated that this domain might be critical for agonist recognition and therefore constructed a series of six chimeric receptors, exchanging the amino terminus, the first extracellular loop, or both in secretin and VIP receptors. Constructs were expressed in COS cells and characterized by cAMP generation and binding of both secretin and VIP radio-ligands. Wild type receptors demonstrated high affinity binding of respective ligands (IC50 values (in nM): at the secretin receptor: 2.2 for secretin, > 1000 for VIP; at the VIP receptor: 2.2 for VIP, > 1000 for secretin) and appropriately sensitive and selective biological responses (EC50 values (in nM): at the secretin receptor: 1.5 for secretin, 127 for VIP; at the VIP receptor: 1.0 for VIP, 273 for secretin). Replacement of the secretin receptor amino terminus with that of the VIP receptor resulted in biological responsiveness typical of the VIP receptor (EC50 = 120 nM for secretin, 1.7 nM for VIP). The converse was not true, with this domain of the secretin receptor not able to provide the same response when incorporated into the VIP receptor (EC50 = 50 nM for VIP, 30 nM for secretin). The addition of both the first loop and the amino terminus of the secretin receptor was effective in yielding a secretin receptor-like response (EC50 = 2.0 nM for secretin, 47 nM for VIP). All chimeric constructs expressing selectivity for secretin-stimulated activity bound this hormone with high affinity (IC50 = 0.2-2.2 nM); however, there was divergence between VIP binding and biological activity. Thus, the amino terminus of secretin and VIP receptors plays a key role in agonist recognition and responsiveness, with the first loop playing a critical complementary role for the secretin receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7782300/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

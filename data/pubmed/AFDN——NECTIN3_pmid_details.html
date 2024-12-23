@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>AFDN——NECTIN3 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for AFDN——NECTIN3</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10744716')">10744716</button><button class="tablinks " onclick="openTab(event, 'tab11024295')">11024295</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10744716" class="tabcontent active">
+                    <h2>Nectin-3, a new member of immunoglobulin-like cell adhesion molecules that shows homophilic and heterophilic cell-cell adhesion activities.</h2>
+                    <h3>The Journal of biological chemistry; 2000</h3>
+                    <p>We have isolated a novel cell-cell adhesion system localized at cadherin-based adherens junctions (AJs). This system consists of at least nectin, a Ca(2+)-independent immunoglobulin-like adhesion molecule, and afadin, an actin filament-binding protein, that connects nectin to the actin cytoskeleton. Nectin constitutes a family consisting of two members, nectin-1 and -2. We have isolated here a third member of the nectin family and named it nectin-3. Nectin-3 has three splicing variants, nectin-3alpha (biggest), -3beta (middle), and -3gamma (smallest). Like nectin-1 and -2, nectin-3alpha consists of three extracellular immunoglobulin-like domains, a transmembrane segment, and a cytoplasmic region with the C-terminal consensus motif for binding to the PDZ domain. Nectin-3alpha formed a cis-homo-dimer and showed Ca(2+)-independent trans-homo-interaction to cause homophilic cell-cell adhesion. Nectin-3alpha furthermore showed trans-hetero-interaction with nectin-1 or -2 but did not form a cis-hetero-dimer with nectin-1 or -2. Nectin-1 did not show trans-hetero-interaction with nectin-2. The affinity of trans-hetero-interaction of nectin-3alpha with nectin-1 or -2 was higher than that of trans-homo-interaction of nectin-1, -2, or -3alpha. Nectin-2 and -3 were ubiquitously expressed, whereas nectin-1 was abundantly expressed in brain. Nectin-3alpha was colocalized with nectin-2 at cadherin-based AJs and interacted with afadin. These results indicate that the nectin family consists of at least three members, nectin-1, -2, and -3, all of which show homophilic and heterophilic cell-cell adhesion activities and are localized at cadherin-based AJs.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10744716/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11024295" class="tabcontent ">
+                    <h2>Human nectin3/PRR3: a novel member of the PVR/PRR/nectin family that interacts with afadin.</h2>
+                    <h3>Gene; 2000</h3>
+                    <p>We have isolated nectin3/PRR3, the fourth human member of the nectin/PRR family, also described as the alpha herpes virus receptor family. Nectin/PRR members are adhesion molecules expressed at intercellular junctions. Nectin3/PRR3 is a transmembrane protein, whose extracellular region contains three Ig-like domains (V, C and C) and shares approximately 30% identity with the other members. It is mainly expressed in testis and placental tissues. SDS-PAGE analyses demonstrate that nectin3/PRR3 has a molecular weight of 83kDa. Nectin1/PRR1L and nectin2/PRR2S and L were found to be specifically expressed at the intercellular junctions. This localization is in part due to the interaction of the C-terminal part of these receptors (ended by the consensus sequence A/EXYV) and the PDZ domain of afadin. In this report we demonstrate that the nectin3/PRR3 receptor carries the A/EXYV consensus sequence and interacts in vivo with both long and short isoforms of afadin. These results suggest that the human nectin3/PRR3 is a new afadin-associated molecule.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11024295/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>GALP——GALR3 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for GALP——GALR3</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9832121')">9832121</button><button class="tablinks " onclick="openTab(event, 'tab15944009')">15944009</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9832121" class="tabcontent active">
+                    <h2>Molecular characterization and expression of cloned human galanin receptors GALR2 and GALR3.</h2>
+                    <h3>Journal of neurochemistry; 1998</h3>
+                    <p>Galanin is a 29- or 30-amino acid peptide with wide-ranging effects on hormone release, feeding behavior, smooth muscle contractility, and somatosensory neuronal function. Three distinct galanin receptor (GALR) subtypes, designated GALR1, 2, and 3, have been cloned from the rat. We report here the cloning of the human GALR2 and GALR3 genes, an initial characterization of their pharmacology with respect to radioligand binding and signal transduction pathways, and a profile of their expression in brain and peripheral tissues. Human GALR2 and GALR3 show, respectively, 92 and 89% amino acid sequence identity with their rat homologues. Radioligand binding studies with 125I-galanin show that recombinant human GALR2 binds with high affinity to human galanin (K(D) = 0.3 nM). Human GALR3 binds galanin with less affinity (IC50 of 12 nM for porcine galanin and 75 nM for human galanin). Human GALR2 was shown to couple to phospholipase C and elevation of intracellular calcium levels as assessed by aequorin luminescence in HEK-293 cells and by Xenopus melanophore pigment aggregation and dispersion assays, in contrast to human GALR1 and human GALR3, which signal predominantly through inhibition of adenylate cyclase. GALR2 mRNA shows a wide distribution in the brain (mammillary nuclei, dentate gyrus, cingulate gyrus, and posterior hypothalamic, supraoptic, and arcuate nuclei), and restricted peripheral tissue distribution with highest mRNA levels detected in human small intestine. In comparison, whereas GALR3 mRNA was expressed in many areas of the rat brain, there was abundant expression in the primary olfactory cortex, olfactory tubercle, the islands of Calleja, the hippocampal CA regions of Ammon's horn, and the dentate gyrus. GALR3 mRNA was highly expressed in human testis and was detectable in adrenal gland and pancreas. The genes for human GALR2 and 3 were localized to chromosomes 17q25 and 22q12.2-13.1, respectively.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9832121/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15944009" class="tabcontent ">
+                    <h2>Pharmacological and functional characterization of galanin-like peptide fragments as potent galanin receptor agonists.</h2>
+                    <h3>Neuropeptides; 2005</h3>
+                    <p>The hypothalamic galanin-like peptide (GALP) was isolated by its ability to activate galanin receptors. The mature porcine GALP is a 60-amino acid neuropeptide proteolytically processed from a 120-amino acid precursor protein. It contains a region identical to the N-terminal 13-amino acids of the neuropeptide galanin. Within the sequence of human GALP (1-60) a potential proteolytic cleavage site between two basic amino acids is present at position 33, which might lead to a shorter C-terminally amidated peptide. In addition, the first two amino acids could be potentially removed via the action of dipeptidase IV. Ligand binding assays using the human neuroblastoma cell line SH-SY5Y transfected with the respective galanin receptors revealed that human GALP (1-60) displayed the highest affinity for the galanin receptor subtype GalR3 (IC50 = 10 nM) followed by GalR2 (IC50 = 28 nM) and GalR1 (IC50 = 77 nM). Ligand binding assays and functional studies showed that the human GALP (3-32) fragment was at least as potent as full length GALP (1-60). Other studies have shown that shorter fragments like human GALP (1-21) and GALP (22-60) were not effective on feeding responses in mice as compared to the full length peptide. Taken together these data suggest that the putative fragment GALP (3-32) might represent the strongest mediator of biological GALP activity. Furthermore it might be a useful tool to study the affinity of GALP to galanin receptors and to search for specific GALP receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15944009/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

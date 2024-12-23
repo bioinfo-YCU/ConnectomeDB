@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>IGF2——INSR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for IGF2——INSR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9281335')">9281335</button><button class="tablinks " onclick="openTab(event, 'tab9722981')">9722981</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9281335" class="tabcontent active">
+                    <h2>Growth-promoting interaction of IGF-II with the insulin receptor during mouse embryonic development.</h2>
+                    <h3>Developmental biology; 1997</h3>
+                    <p>Genetic analyses of dwarfing phenotypes resulting from targeted mutagenesis of the genes encoding the insulin-like growth factors (IGF-I and IGF-II) and their cognate type 1 IGF receptor (IGF1R) have demonstrated that this signaling system is a major determinant of mouse embryonic growth. Of the two IGF ligands, IGF-I interacts exclusively with IGF1R, whereas IGF-II recognizes an additional receptor (XR), because the growth retardation of embryos lacking both IGR1R and IGF-II (30% of normal birthweight) is more severe than that manifested in either class of single Igf1r or Igf2 null mutants (45 and 60% of normal, respectively). To determine whether XR is the insulin receptor (IR), we examined embryos nullizygous for both Igf1r and Insr. While the growth of embryos lacking solely IR is affected very mildly and only at the end of gestation, concomitant absence of IGF1R results in a severe growth-deficiency phenotype (30% of normal size at birth) that is first detected at Embryonic Day 13.5 and is also characterized by transient edema, curly tail, generalized organ hypoplasia, including the muscles, developmental delays in ossification, and thin epidermis. The Igf1r/Insr double nullizygotes are phenotypically indistinguishable from double mutants lacking IGF1R and IGF-II and from other double and triple mutants in which all of the IGF ligand/receptor interactions have been eliminated. Therefore, these results provide genetic evidence that the growth-promoting function of IGF-II during mouse embryogenesis is mediated in part by signaling through the insulin receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9281335/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9722981" class="tabcontent ">
+                    <h2>Insulin-like growth factor II (IGF-II).</h2>
+                    <h3>The international journal of biochemistry & cell biology; 1998</h3>
+                    <p>Insulin-like growth factor II (IGF-II) plays a key role in mammalian growth, influencing foetal cell division and differentiation and possibly metabolic regulation. The mature 67 amino acid peptide shares sequence homology with both insulin and IGF-I. The liver is the main endocrine source of IGFs, but autocrine/paracrine activity is found in most tissues. The type 1 receptor mediates most of the biological effects of IGF-I and IGF-II; the type 2 receptor is involved with IGF-II degradation. Binding proteins may both localise IGFs to the receptors and regulate their activities. The IGF2 gene is maternally imprinted in mouse and human. Relaxation of IGF2 imprinting occurs in the Beckwith-Wiedemann syndrome of somatic overgrowth, sporadic Wilms' tumour and a number of other cancers. In the general adult population, the IGF2-INS gene cluster may also influence body weight, in which case IGF-II function could become a target for therapeutic intervention in obesity.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9722981/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

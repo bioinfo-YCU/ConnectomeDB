@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>IGF1——IGF1R - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for IGF1——IGF1R</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab2877871')">2877871</button><button class="tablinks " onclick="openTab(event, 'tab1852007')">1852007</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab2877871" class="tabcontent active">
+                    <h2>Insulin-like growth factor I receptor primary structure: comparison with insulin receptor suggests structural determinants that define functional specificity.</h2>
+                    <h3>The EMBO journal; 1986</h3>
+                    <p>To identify structural characteristics of the closely related cell surface receptors for insulin and IGF-I that define their distinct physiological roles, we determined the complete primary structure of the human IGF-I receptor from cloned cDNA. The deduced sequence predicts a 1367 amino acid receptor precursor, including a 30-residue signal peptide, which is removed during translocation of the nascent polypeptide chain. The 1337 residue, unmodified proreceptor polypeptide has a predicted Mr of 151,869, which compares with the 180,000 Mr IGF-I receptor precursor. In analogy with the 152,784 Mr insulin receptor precursor, cleavage of the Arg-Lys-Arg-Arg sequence at position 707 of the IGF-I receptor precursor will generate alpha (80,423 Mr) and beta (70,866 Mr) subunits, which compare with approximately 135,000 Mr (alpha) and 90,000 Mr (beta) fully glycosylated subunits.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/2877871/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab1852007" class="tabcontent ">
+                    <h2>The ligand specificities of the insulin receptor and the insulin-like growth factor I receptor reside in different regions of a common binding site.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1991</h3>
+                    <p>To identify the region(s) of the insulin receptor and the insulin-like growth factor I (IGF-I) receptor responsible for ligand specificity (high-affinity binding), expression vectors encoding soluble chimeric insulin/IGF-I receptors were prepared. The chimeric receptors were expressed in mammalian cells and partially purified. Binding studies revealed that a construct comprising an IGF-I receptor in which the 68 N-terminal amino acids of the insulin receptor alpha-subunit had replaced the equivalent IGF-I receptor segment displayed a markedly increased affinity for insulin. In contrast, the corresponding IGF-I receptor sequence is not critical for high-affinity IGF-I binding. It is shown that part of the cysteine-rich domain determines IGF-I specificity. We have previously shown that exchanging exons 1, 2, and 3 of the insulin receptor with the corresponding IGF-I receptor sequence results in loss of high affinity for insulin and gain of high affinity for IGF-I. Consequently, it is suggested that the ligand specificities of the two receptors (i.e., the sequences that discriminate between insulin and IGF-I) reside in different regions of a binding site with common features present in both receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1852007/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

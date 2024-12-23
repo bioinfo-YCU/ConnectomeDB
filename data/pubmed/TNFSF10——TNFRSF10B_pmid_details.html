@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>TNFSF10——TNFRSF10B - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for TNFSF10——TNFRSF10B</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15766588')">15766588</button><button class="tablinks " onclick="openTab(event, 'tab9311998')">9311998</button><button class="tablinks " onclick="openTab(event, 'tab10549288')">10549288</button><button class="tablinks " onclick="openTab(event, 'tab9325248')">9325248</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15766588" class="tabcontent active">
+                    <h2>Infrequent mutation of TRAIL receptor 2 (TRAIL-R2/DR5) in transitional cell carcinoma of the bladder with 8p21 loss of heterozygosity.</h2>
+                    <h3>Cancer letters; 2005</h3>
+                    <p>Loss of heterozygosity (LOH) on 8p is a frequent event in many cancers and is often associated with more aggressive disease. Tumour necrosis factor-related apoptosis inducing ligand (TRAIL) receptor 2 (TRAIL-R2) also known as TNFRSF10B (tumour necrosis factor receptor (TNFR) super family 10b) or KILLER/DR5, a member of the TNFR family, is a promising candidate tumour suppressor gene at 8p21-22. Mutations in this gene have been identified in non-small cell lung cancer, head and neck cancer, breast cancer and non-Hodgkin's lymphoma. We carried out mutation analysis of TRAIL-R2 in bladder cancer cell lines and in primary bladder tumours. One novel protein truncating mutation was identified in a bladder cancer cell line. Our results suggest that if TRAIL-R2 is the target of LOH events in these cancers, inactivation of the remaining allele is by a mechanism other than mutation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15766588/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9311998" class="tabcontent ">
+                    <h2>TRAIL-R2: a novel apoptosis-mediating receptor for TRAIL.</h2>
+                    <h3>The EMBO journal; 1997</h3>
+                    <p>TRAIL is a member of the tumor necrosis factor (TNF) family of cytokines and induces apoptosis in a wide variety of cells. Based on homology searching of a private database, a receptor for TRAIL (DR4 or TRAIL-R1) was recently identified. Here we report the identification of a distinct receptor for TRAIL, TRAIL-R2, by ligand-based affinity purification and subsequent molecular cloning. TRAIL-R2 was purified independently as the only receptor for TRAIL detectable on the surface of two different human cell lines that undergo apoptosis upon stimulation with TRAIL. TRAIL-R2 contains two extracellular cysteine-rich repeats, typical for TNF receptor (TNFR) family members, and a cytoplasmic death domain. TRAIL binds to recombinant cell-surface-expressed TRAIL-R2, and TRAIL-induced apoptosis is inhibited by a TRAIL-R2-Fc fusion protein. TRAIL-R2 mRNA is widely expressed and the gene encoding TRAIL-R2 is located on human chromosome 8p22-21. Like TRAIL-R1, TRAIL-R2 engages a caspase-dependent apoptotic pathway but, in contrast to TRAIL-R1, TRAIL-R2 mediates apoptosis via the intracellular adaptor molecule FADD/MORT1. The existence of two distinct receptors for the same ligand suggests an unexpected complexity to TRAIL biology, reminiscent of dual receptors for TNF, the canonical member of this family.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9311998/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10549288" class="tabcontent ">
+                    <h2>Triggering cell death: the crystal structure of Apo2L/TRAIL in a complex with death receptor 5.</h2>
+                    <h3>Molecular cell; 1999</h3>
+                    <p>Formation of a complex between Apo2L (also called TRAIL) and its signaling receptors, DR4 and DR5, triggers apoptosis by inducing the oligomerization of intracellular death domains. We report the crystal structure of the complex between Apo2L and the ectodomain of DR5. The structure shows three elongated receptors snuggled into long crevices between pairs of monomers of the homotrimeric ligand. The interface is divided into two distinct patches, one near the bottom of the complex close to the receptor cell surface and one near the top. Both patches contain residues that are critical for high-affinity binding. A comparison to the structure of the lymphotoxin-receptor complex suggests general principles of binding and specificity for ligand recognition in the TNF receptor superfamily.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10549288/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9325248" class="tabcontent ">
+                    <h2>Identification and molecular cloning of two novel receptors for the cytotoxic ligand TRAIL.</h2>
+                    <h3>The Journal of biological chemistry; 1997</h3>
+                    <p>A human receptor for the cytotoxic ligand TRAIL (TRAIL receptor-1, designated DR4) was identified recently as a member of the tumor necrosis factor receptor family. In this report we describe the identification of two additional human TRAIL receptors, TRAIL receptor-2 and TRAIL receptor-3, that belong to the tumor necrosis factor receptor family. Interestingly, TRAIL receptor-2 but not TRAIL receptor-3 contains a cytoplasmic "death domain" necessary for induction of apoptosis and is hence designated death receptor-5 (DR5). Like DR4, DR5 engages the apoptotic pathway independent of the adaptor molecule FADD/MORT1. Because of its lack of a death domain, TRAIL receptor-3 is not capable of inducing apoptosis. However, by competing for TRAIL, it is capable of inhibiting TRAIL-induced apoptosis. Thus, TRAIL receptor-3 may function as an antagonistic decoy receptor to attenuate the cytotoxic effect of TRAIL in most tissues that are TRAIL+, DR4+, and DR5+.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9325248/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

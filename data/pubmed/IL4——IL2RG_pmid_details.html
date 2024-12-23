@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>IL4——IL2RG - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for IL4——IL2RG</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab7918378')">7918378</button><button class="tablinks " onclick="openTab(event, 'tab8266078')">8266078</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab7918378" class="tabcontent active">
+                    <h2>Site-specific conjugation to interleukin 4 containing mutated cysteine residues produces interleukin 4-toxin conjugates with improved binding and activity.</h2>
+                    <h3>Biochemistry; 1994</h3>
+                    <p>Fusion of a ligand to another protein frequently impairs the binding of the ligand. Recombinant toxins composed of mutants of Pseudomonas exotoxin (PE) fused to the C-terminus of human interleukin 4 (IL4) are cytotoxic to IL4 receptor- (IL4R-) bearing tumor cells but bind to the IL4R with only 1% the affinity of IL4. We have developed a method to connect a toxin to a ligand which allows the junction to be moved to a location on the ligand which would minimize the binding impairment. We designed mutants of IL4 in which residue 28, 38, 68, 70, 97, or 105 was substituted with cysteine. All purified mutants bound to the IL4R with 60-100% the affinity of IL4, indicating that the IL4 structure was essentially unchanged. The IL4 mutants were then each conjugated through a disulfide bond to PE35, a truncated form of PE which contains a single cysteine. IL4 conjugated to PE35 at residue 28, 38, or 105 of IL4 bound with 10-fold improved affinity and was 10-fold more cytotoxic than the recombinant IL4-toxin in which PE is fused to position 129 at the C-terminus of IL4. IL4 containing PE35 conjugated at position 68, 70, or 97 had lower binding affinity and cytotoxic activity. These results indicate that the location of the ligand-protein junction can be selectively moved to enhance conjugate effectiveness, and implications could be made regarding which regions of IL4 are important for binding.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7918378/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8266078" class="tabcontent ">
+                    <h2>Interleukin-2 receptor gamma chain: a functional component of the interleukin-4 receptor.</h2>
+                    <h3>Science (New York, N.Y.); 1993</h3>
+                    <p>The interleukin-2 (IL-2) receptor gamma chain (IL-2R gamma) is an essential component of high- and intermediate-affinity IL-2 receptors. IL-2R gamma was demonstrated to be a component of the IL-4 receptor on the basis of chemical cross-linking data, the ability of IL-2R gamma to augment IL-4 binding affinity, and the requirement for IL-2R gamma in IL-4-mediated phosphorylation of insulin receptor substrate-1. The observation that IL-2R gamma is a functional component of the IL-4 receptor, together with the finding that IL-2R gamma associates with the IL-7 receptor, begins to elucidate why deficiency of this common gamma chain (gamma c) has a profound effect on lymphoid function and development, as seen in X-linked severe combined immunodeficiency.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8266078/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

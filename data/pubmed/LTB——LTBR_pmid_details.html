@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>LTB——LTBR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for LTB——LTBR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab7995952')">7995952</button><button class="tablinks " onclick="openTab(event, 'tab7916655')">7916655</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab7995952" class="tabcontent active">
+                    <h2>Characterization of surface lymphotoxin forms. Use of specific monoclonal antibodies and soluble receptors.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 1995</h3>
+                    <p>Lymphotoxin (LT) is a cytokine related to TNF, found in human systems in both secreted and membrane bound forms. The well characterized secreted form is a trimer of a single protein, LT-alpha, whereas the surface form is composed of a complex between two related molecules, LT-alpha and LT-beta. Because there is a distinct receptor for the complex, the membrane form is believed to signal via events different from those elicited by TNF and secreted LT-alpha. By using a battery of anti-LT-alpha and LT-beta mAbs, it is clear that two LT surface forms exist on the surface of PMA-activated II-23 cells, a human T cell hybridoma. Assuming that these surface forms are trimers, a minor form appears early after induction having an apparent stoichiometry of LT-alpha 2/beta 1 and is recognized by one group of anti-LT-alpha mAbs and the p55-TNF receptor. The second and predominant form has an apparent LT-alpha 1/beta 2 composition and is recognized by a second group of pantrophic anti-LT-alpha mAbs and the LT-beta receptor. Neither of the heteromeric forms nor a putative LT-beta homotrimeric form were found to be secreted. The properties of surface LT on the II-23 cell system were similar to those of the surface LT forms on Chinese hamster ovary cells transfected with both LT-alpha and LT-beta genes and a number of lymphoid tumor lines. These experiments point toward the LT-alpha 1/beta 2 complex as the predominant membrane form of LT on the lymphocyte surface, and this complex is the primary ligand for the LT-beta receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7995952/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7916655" class="tabcontent ">
+                    <h2>Lymphotoxin beta, a novel member of the TNF family that forms a heteromeric complex with lymphotoxin on the cell surface.</h2>
+                    <h3>Cell; 1993</h3>
+                    <p>The lymphokine tumor necrosis factor (TNF) has a well-defined role as an inducer of inflammatory responses; however, the function of the structurally related molecule lymphotoxin (LT alpha) is unknown. LT alpha is present on the surface of activated T, B, and LAK cells as a complex with a 33 kd glycoprotein, and cloning of the cDNA encoding the associated protein, called lymphotoxin beta (LT beta), revealed it to be a type II membrane protein with significant homology to TNF, LT alpha, and the ligand for the CD40 receptor. The gene for LT beta was found next to the TNF-LT locus in the major histocompatibility complex (MHC), a region of the MHC with possible linkage to autoimmune disease. These observations raise the possibility that a surface LT alpha-LT beta complex may have a specific role in immune regulation distinct from the functions ascribed to TNF.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7916655/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CSF2——CSF2RB - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CSF2——CSF2RB</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab2828352')">2828352</button><button class="tablinks " onclick="openTab(event, 'tab8278375')">8278375</button><button class="tablinks " onclick="openTab(event, 'tab2645577')">2645577</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab2828352" class="tabcontent active">
+                    <h2>Characterization of the human granulocyte-macrophage colony-stimulating factor receptor.</h2>
+                    <h3>The Journal of biological chemistry; 1988</h3>
+                    <p>Human granulocyte-macrophage colony-stimulating factor (GM-CSF) is a cytokine derived from activated T cells, endothelial cells, fibroblasts, and macrophages. It stimulates myeloid and erythroid progenitors to form colonies in semisolid medium in vitro, as well as enhancing multiple differentiated functions of mature neutrophils, macrophages, and eosinophils. We have examined the binding of human GM-CSF to a variety of responsive human cells and cell lines. The most mature myelomonocytic cells, specifically human neutrophils, macrophages, and eosinophils, express the highest numbers of a single class of high affinity receptors (Kd approximately 37 pM, 293-1000 sites/cell). HL-60 and KG-1 cells exhibit an increase in specific binding at high concentrations of GM-CSF; computer analysis of the data is nonetheless consistent with a single class of high affinity binding sites with a Kd approximately 43 pM and 20-450 sites/cell. Dimethyl sulfoxide induces a 3-10-fold increase in high affinity receptors expressed in HL-60 cells, coincident with terminal neutrophilic differentiation. Finally, binding of 125I-GM-CSF to fresh peripheral blood cells from six patients with chronic myelogenous leukemia was analyzed. In three of six cases, binding was similar to the nonsaturable binding observed with HL-60 and KG-1 cells. GM-CSF binding was low, or in some cases, undetectable on myeloblasts obtained from eight patients with acute myelogenous leukemia. The observed affinities of the receptor for GM-CSF are consistent with all known biological activities. Affinity labeling of both normal neutrophils and dimethyl sulfoxide-induced HL-60 cells with unglycosylated 125I-GM-CSF yielded a band of 98 kDa, implying a molecular weight of approximately 84,000 for the human GM-CSF receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/2828352/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8278375" class="tabcontent ">
+                    <h2>Histidine-367 of the human common beta chain of the receptor is critical for high-affinity binding of human granulocyte-macrophage colony-stimulating factor.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1994</h3>
+                    <p>High-affinity receptors for granulocyte-macrophage colony-stimulating factor (GM-CSF), interleukin 3, and interleukin 5 consist of ligand-specific alpha chains (low-affinity subunits) and a common beta chain (beta c) that converts each complex to a high-affinity form. Although beta c alone has no detectable cytokine-binding activity, amino acid substitutions for Glu-21 of human GM-CSF significantly reduce high-affinity but not low-affinity binding, implying that beta c interacts directly with GM-CSF during formation of the high-affinity receptor but only in the presence of the alpha chain. A potential GM-CSF-binding determinant was identified in the second hemopoietin domain of beta c, and the role of individual residues within this region was investigated by determining the ability of mutated beta c chains to confer high-affinity binding when coexpressed with the alpha subunit of the GM-CSF receptor in COS cells. Substitutions involving Met-363, Arg-364, Tyr-365, and Glu-366 did not affect high-affinity binding. However, substitution of His-367 by lysine or glutamine abolished high-affinity binding, suggesting that this residue may form an important part of the high-affinity GM-CSF-binding determinant. Consistent with the loss of high-affinity binding, higher concentrations of human GM-CSF were required to stimulate proliferation of CTLL-2 cell lines transfected with cDNAs for GM-CSF receptor alpha chain and His-367 beta c mutant than those expressing GM-CSF receptor alpha subunit and beta c wild type.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8278375/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab2645577" class="tabcontent ">
+                    <h2>Hematopoietic activity of granulocyte/macrophage colony-stimulating factor is dependent upon two distinct regions of the molecule: functional analysis based upon the activities of interspecies hybrid growth factors.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1989</h3>
+                    <p>Granulocyte/macrophage colony-stimulating factor (GM-CSF) is an acidic glycoprotein that stimulates hematopoiesis in vitro and in vivo. Despite a high degree of sequence homology, the GM-CSFs from human and murine sources fail to crossreact in their respective colony-forming assays. On the basis of this finding, a series of hybrid molecules containing various proportions of human- and murine-specific amino acid sequences were generated by recombinant DNA techniques and assayed for species-specific activity against human and murine marrow target cells. Two regions of GM-CSF, residues 38-48 and residues 95-111, were found to be critical for hematopoietic function. These regions are structurally characterized by an amphiphilic helix and by a disulfide-bonded loop, respectively, and are homologous in position in the human and murine growth factors. In addition, competition assays suggested that, together, these regions bind to the GM-CSF receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/2645577/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

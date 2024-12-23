@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>HCRT——HCRTR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for HCRT——HCRTR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9491897')">9491897</button><button class="tablinks " onclick="openTab(event, 'tab9491897')">9491897</button><button class="tablinks " onclick="openTab(event, 'tab12702704')">12702704</button><button class="tablinks " onclick="openTab(event, 'tab11162621')">11162621</button><button class="tablinks " onclick="openTab(event, 'tab12208495')">12208495</button><button class="tablinks " onclick="openTab(event, 'tab18599270')">18599270</button><button class="tablinks " onclick="openTab(event, 'tab9491897')">9491897</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9491897" class="tabcontent active">
+                    <h2>Orexins and orexin receptors: a family of hypothalamic neuropeptides and G protein-coupled receptors that regulate feeding behavior.</h2>
+                    <h3>Cell; 1998</h3>
+                    <p>The hypothalamus plays a central role in the integrated control of feeding and energy homeostasis. We have identified two novel neuropeptides, both derived from the same precursor by proteolytic processing, that bind and activate two closely related (previously) orphan G protein-coupled receptors. These peptides, termed orexin-A and -B, have no significant structural similarities to known families of regulatory peptides. prepro-orexin mRNA and immunoreactive orexin-A are localized in neurons within and around the lateral and posterior hypothalamus in the adult rat brain. When administered centrally to rats, these peptides stimulate food consumption. prepro-orexin mRNA level is up-regulated upon fasting, suggesting a physiological role for the peptides as mediators in the central feedback mechanism that regulates feeding behavior.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9491897/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9491897" class="tabcontent ">
+                    <h2>Orexins and orexin receptors: a family of hypothalamic neuropeptides and G protein-coupled receptors that regulate feeding behavior.</h2>
+                    <h3>Cell; 1998</h3>
+                    <p>The hypothalamus plays a central role in the integrated control of feeding and energy homeostasis. We have identified two novel neuropeptides, both derived from the same precursor by proteolytic processing, that bind and activate two closely related (previously) orphan G protein-coupled receptors. These peptides, termed orexin-A and -B, have no significant structural similarities to known families of regulatory peptides. prepro-orexin mRNA and immunoreactive orexin-A are localized in neurons within and around the lateral and posterior hypothalamus in the adult rat brain. When administered centrally to rats, these peptides stimulate food consumption. prepro-orexin mRNA level is up-regulated upon fasting, suggesting a physiological role for the peptides as mediators in the central feedback mechanism that regulates feeding behavior.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9491897/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12702704" class="tabcontent ">
+                    <h2>Effects of orexin (hypocretin) on GIRK channels.</h2>
+                    <h3>Journal of neurophysiology; 2003</h3>
+                    <p>Orexins (hypocretins) are recently discovered excitatory transmitters implicated in arousal and sleep. Yet, their ionic and signal transduction mechanisms have not been fully clarified. Here we show that orexins suppress G-protein-coupled inward rectifier (GIRK) channel activity, and this suppression is likely to lead to neuronal excitation. Cultured neurons from the locus coeruleus (LC) and the nucleus tuberomammillaris (TM) were used, as well as HEK293A cells transfected with GIRK1 and 2, either human orexin receptor type 1 (OX1R) or type 2 (OX2R), mu opioid receptor and GFP cDNAs. In GTPgammaS-loaded cells, orexin A (OXA, 3 microM) inhibited GIRK currents that had previously been activated by somatostatin (in LC cells), nociceptin (TM cells), or the mu opioid agonist DAMGO (HEK cells). In guanosine triphosphate (GTP)-loaded HEK cells, in which GIRK currents were not preactivated, OXA induced a biphasic response through both types of orexin receptors: an initial current increase and a subsequent decrease to below resting levels. Current-voltage (I-V) relationships revealed that both the OXA-induced and suppressed currents are inwardly rectifying with reversal potentials around EK. The OXA-induced initial current was partially pertussis toxin (PTX) sensitive and partially PTX insensitive, whereas the OXA-suppressed current was PTX insensitive. These data suggest that orexin receptors couple with more than one type of G-protein, including PTX-sensitive (such as Gi/o) and PTX-insensitive (such as Gq/11) G-proteins. The modulation of GIRK channels by orexins may be one of the cellular mechanisms for the regulation of brain nuclei (e.g., LC and TM) that are crucial for arousal, sleep, and appetite.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12702704/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11162621" class="tabcontent ">
+                    <h2>Requirement of intact disulfide bonds in orexin-A-induced stimulation of gastric acid secretion that is mediated by OX1 receptor activation.</h2>
+                    <h3>Biochemical and biophysical research communications; 2001</h3>
+                    <p>Orexin-A is a neuropeptide consisting of 33 amino acids with two intrachain disulfide bonds, namely Cys6-Cys12 and Cys7-Cys14, and is a potent stimulator of food consumption and gastric acid secretion. In contrast, orexin-B, a peptide containing 28 amino acids without disulfide bond, which has no stimulatory action of gastric acid. The objective of the present study was to characterize the receptor-mediated mechanism of orexin-A-induced stimulation of gastric acid secretion using orexin-A-related peptides with modification of disulfide bonds. Intracisternal injection of orexin-A, but not orexin-B or orexin-A (15-33), that does not contain both disulfide bonds stimulated gastric acid secretion in pylorus-ligated conscious rats. The ability of the stimulation of gastric acid output was less in three alanine-substituted orexin-A, [Ala(6,12)]orexin-A, [Ala(7,14)]orexin-A, and [Ala(6,7,12,14)]orexin-A, than orexin-A. Orexins-induced calcium increase was measured in CHO-K1 cells expressing OX1R or OX2R. Orexin-A induced a transient increase in [Ca(2+)]i in CHO-K1/OX1R cells in a dose-dependent manner. EC50 values for OX1R of orexin-A, orexin-B, or orexin-A (15-33) was 0.068, 0.69 or 4.1 nM, respectively, suggesting that peptides containing no disulfide bonds have lower potency for the receptor. Agonistic activity for OX1R of the three orexin-A analogues with modification of one or both disulfide bonds was significantly reduced as compared with that of orexin-A. EC50 values for OX2R of orexin-A and orexin-B was almost equal but potency for the receptor of orexin-A (15-33) and three alanine substituted orexin-A was less than that of orexin-A. A significant inverse relationship between gastric acid output and EC50 values for OX1R, but not OX2R, was observed. These results suggested that the orexin-A-induced acid stimulation requires OX1R activation and that disulfide bonds in orexin-A may have a key role in the receptor activation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11162621/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12208495" class="tabcontent ">
+                    <h2>Orexin signaling in recombinant neuron-like cells.</h2>
+                    <h3>FEBS letters; 2002</h3>
+                    <p>To assess the role of orexin receptor signaling in neuron-like cells, Neuro-2a murine neuroblastoma and PC12 human pheochromocytoma cells were stably transfected with human OX(1) or OX(2) receptors. Activation of both receptors strongly elevated cellular inositol phosphates and Ca(2+). A difference in the potency between orexin-A and -B was seen for OX(1), but not OX(2) receptors. Dependence of the orexin-mediated Ca(2+) response on extracellular Ca(2+) and the observed Ba(2+) influx indicate that in addition to phospholipase C, orexin receptors also may couple to similar non-voltage-gated Ca(2+) channels in neuronal cells as previously characterized in non-neuronal cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12208495/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab18599270" class="tabcontent ">
+                    <h2>The signalling profile of recombinant human orexin-2 receptor.</h2>
+                    <h3>Cellular signalling; 2008</h3>
+                    <p>Orexin-A and orexin-B orchestrate their diverse central and peripheral effects via two G-protein coupled receptors, OX1R and OX2R, which activate multiple G-proteins. In many tissues, orexins activate extracellular signal-regulated kinase (ERK(1/2)) and p38 mitogen-activated protein kinase (MAPK); however, the mechanism by which OX2R alone mediates MAPK activation is not understood. This study describes the intracellular signalling pathways involved in OX2R-mediated ERK(1/2) and p38 MAPK activation. In HEK-293 cells stably over-expressing recombinant human OX2R, orexin-A/B resulted in a rapid, dose and time dependent increase in activation of ERK(1/2) and p38 MAPK, with maximal activation at 10 min for ERK(1/2) and 30 min for p38 MAPK. Using dominant-negative G-proteins and selective inhibitors of intracellular signalling cascades, we determined that orexin-A and orexin-B induced ERK(1/2) and p38 MAPK activation through multiple G-proteins and different intracellular signalling pathways. ERK(1/2) activation involves Gq/phospholipase C (PLC)/protein kinase C (PKC), Gs/adenylyl cyclase (AC)/cAMP/protein kinase A (PKA) and Gi cascades; however, the Gq/PLC/PKC pathway, as well as PKA is not required for OX2R-mediated p38 MAPK activation. Interestingly, orexin-B-induced ERK(1/2) activation is predominantly mediated through the Gq/PLC/PKC pathway. In conclusion, this is the first comprehensive signalling study of the human OX2R recombinant receptor, showing ERK(1/2) and p38 MAPK activation are regulated by differential signalling pathways in HEK-293 cells, and that the ERK(1/2) activation is severely affected by naturally occurring mutants associated with narcolepsy. Moreover, it is evident that the human OX2R has ligand specific effects, with orexin-B being more potent in this transfected system and this distinct modulation of the MAPKs through OX2R, may translate to the regulation of diverse biological actions of orexins.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/18599270/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9491897" class="tabcontent ">
+                    <h2>Orexins and orexin receptors: a family of hypothalamic neuropeptides and G protein-coupled receptors that regulate feeding behavior.</h2>
+                    <h3>Cell; 1998</h3>
+                    <p>The hypothalamus plays a central role in the integrated control of feeding and energy homeostasis. We have identified two novel neuropeptides, both derived from the same precursor by proteolytic processing, that bind and activate two closely related (previously) orphan G protein-coupled receptors. These peptides, termed orexin-A and -B, have no significant structural similarities to known families of regulatory peptides. prepro-orexin mRNA and immunoreactive orexin-A are localized in neurons within and around the lateral and posterior hypothalamus in the adult rat brain. When administered centrally to rats, these peptides stimulate food consumption. prepro-orexin mRNA level is up-regulated upon fasting, suggesting a physiological role for the peptides as mediators in the central feedback mechanism that regulates feeding behavior.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9491897/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

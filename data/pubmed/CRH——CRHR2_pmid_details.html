@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CRH——CRHR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CRH——CRHR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab8536644')">8536644</button><button class="tablinks " onclick="openTab(event, 'tab11123370')">11123370</button><button class="tablinks " onclick="openTab(event, 'tab8243338')">8243338</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab8536644" class="tabcontent active">
+                    <h2>Cloning and characterization of the human corticotropin-releasing factor-2 receptor complementary deoxyribonucleic acid.</h2>
+                    <h3>Endocrinology; 1996</h3>
+                    <p>Two CRF receptor subtypes (CRF1 and CRF2 receptors) with distinct brain localizations and pharmacological profiles have recently been cloned and characterized. For the CRF2 receptor subtype, at least 2 splice forms with different 5'-coding sequences (CRF2 alpha and CRF2 beta) have been identified in rat. In this article, we report the genomic structure and the corresponding complementary DNA (cDNA) sequence of the human CRF2 receptor. The gene coding for human CRF2 receptor consists of at least 12 exons and spans approximately 30 kilobases. The cDNA sequence in the protein-coding region is 94% identical to that of the reported rat CRF2 alpha receptor. At present, there is no evidence for the existence of a CRF2 beta receptor homolog in humans. The encoded receptor is 411 amino acids in length and is 70% identical to the human CRF1 receptor, with least sequence homology in the N-terminal extracellular domain (47% identical). Cells transfected with the full-length human CRF2 receptor cDNA responded to rat/human CRF and sauvagine by increasing the intracellular cAMP level, with EC50 values of approximately 20 and 1 nM, respectively. The CRF- and sauvagine-induced accumulation of intracellular cAMP could be competitively inhibited by the CRF receptor antagonist D-Phe-CRF. This pharmacological profile was comparable to that of the rat CRF2 alpha receptor. The relative abundance of the CRF2 receptor messenger RNA appears to be lower in humans than in rats for the tissues studied thus far.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8536644/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11123370" class="tabcontent ">
+                    <h2>Different binding modes of amphibian and human corticotropin-releasing factor type 1 and type 2 receptors: evidence for evolutionary differences.</h2>
+                    <h3>The Journal of pharmacology and experimental therapeutics; 2001</h3>
+                    <p>The binding characteristics of corticotropin-releasing factor (CRF) type 1 (CRF(1)) and type 2 (CRF(2)) receptors from human (hCRF(1) and hCRF(2alpha)) and Xenopus (xCRF(1) and xCRF(2)) were compared using four different (125)I-labeled CRF analogs, the agonists (125)I-CRF and (125)I-sauvagine, and the antagonists (125)I-astressin ((125)I-AST) and (125)I-antisauvagine-30 ((125)I-aSVG). The hCRF(2alpha) and xCRF(2) receptors bound all four radioligands with different affinities, whereas hCRF(1) did not bind (125)I-aSVG, and xCRF(1) bound neither (125)I-sauvagine nor (125)I-aSVG. Competitive binding studies using unlabeled agonists and antagonists with hCRF(1) and hCRF(2alpha) receptors revealed that most agonists exhibited higher affinity in displacing agonist radioligands compared with displacement of antagonist radioligands. Exceptions were the agonists human and rat urocortin, which displayed high-affinity binding in the presence of either (125)I-labeled agonist or antagonist ligands. In contrast, the affinities of antagonists were independent of the nature of the radioligand. We also found that, in contrast to the mammalian CRF receptors, the affinity of ligand binding to xCRF(1) and xCRF(2) receptors strongly depended on the nature of the radioligand used for competition. For xCRF(1), competitors showed different rank order binding profiles with (125)I-CRF compared with (125)I-AST as the displaceable ligand. Similarly, binding of competitors to the xCRF(2) receptor showed markedly different profiles with (125)I-CRF as the competed ligand compared with the other radioligands. These data demonstrate that amphibian CRF receptors have distinctly different binding modes compared with their mammalian counterparts.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11123370/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8243338" class="tabcontent ">
+                    <h2>Cloning and functional expression of a rat brain corticotropin releasing factor (CRF) receptor.</h2>
+                    <h3>Endocrinology; 1993</h3>
+                    <p>Corticotropin releasing factor (CRF), a key neuroregulator of the hypothalamic-pituitary-adrenal cortical axis, also displays a broad range of effects on the endocrine, central nervous and immune systems. Having recently characterized the human pituitary CRF receptor by expression cloning of cDNA from a human Cushing's corticotropic adenoma, we report here the structure of the cDNA for a rat brain CRF receptor (rCRF-R) which was cloned by hybridization from a rat brain cDNA library. The sequence of the rCRF-R encodes a 415 amino acid protein comprising seven membrane spanning domains. The rCRF-R is 97% identical at the amino acid level to the human pituitary tumor CRF receptor, differing by only 12 amino acids. When expressed in COSM6 cells, the rCRF-R binds CRF with high affinity (Kd = 1.7 (0.8-3.8)nM). The receptor transduces a CRF stimulated accumulation of intracellular cAMP which is inhibited by the CRF antagonist, alpha helCRF(9-41). These results suggest that the brain expresses a CRF receptor similar to that in the pituitary.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8243338/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

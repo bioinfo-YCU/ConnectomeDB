@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CALCA——RAMP1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CALCA——RAMP1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9620797')">9620797</button><button class="tablinks " onclick="openTab(event, 'tab12234182')">12234182</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9620797" class="tabcontent active">
+                    <h2>RAMPs regulate the transport and ligand specificity of the calcitonin-receptor-like receptor.</h2>
+                    <h3>Nature; 1998</h3>
+                    <p>Calcitonin-gene-related peptide (CGRP) and adrenomedullin are related peptides with distinct pharmacological profiles. Here we show that a receptor with seven transmembrane domains, the calcitonin-receptor-like receptor (CRLR), can function as either a CGRP receptor or an adrenomedullin receptor, depending on which members of a new family of single-transmembrane-domain proteins, which we have called receptor-activity-modifying proteins or RAMPs, are expressed. RAMPs are required to transport CRLR to the plasma membrane. RAMP1 presents the receptor at the cell surface as a mature glycoprotein and a CGRP receptor. RAMP2-transported receptors are core-glycosylated and are adrenomedullin receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9620797/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12234182" class="tabcontent ">
+                    <h2>The transmembrane domain of receptor-activity-modifying protein 1 is essential for the functional expression of a calcitonin gene-related peptide receptor.</h2>
+                    <h3>Biochemistry; 2002</h3>
+                    <p>Three receptor-activity-modifying proteins (RAMP) define specific interactions between calcitonin (CT) gene-related peptide (CGRP), adrenomedullin (AM) and amylin, and a CT receptor or a CT receptor-like receptor (CRLR). Both form heterodimeric RAMP/receptor complexes at the cell surface. This association represents a novel principle of G protein-coupled receptor function. RAMP1 is transported to the cell surface together with the CRLR or the CT receptor. Here, we have investigated the functional relevance of the short C-terminal intracellular tail QSKRTEGIV and of the single transmembrane domain of human (h) RAMP1 for their interactions with the hCRLR to constitute a CGRP receptor. To this end, hRAMP1 has been sequentially truncated from the C-terminus, and [(125)I]h alpha CGRP/hRAMP1/hCRLR association at the cell surface and cAMP accumulation in response to h alpha CGRP have been examined. With the C-terminal truncation of hRAMP1 by four amino acids wild-type hRAMP1 function was maintained, and the hCRLR was required for the transport of hRAMP1 to the cell surface. Further truncation of hRAMP1 through removal of the remaining five intracellular amino acids revealed CRLR-independent cell surface delivery but otherwise normal hRAMP1 activity. Sequential shortening of the hRAMP1 transmembrane domain resulted in progressively impaired association with the hCRLR and, as a consequence, abolished CGRP receptor function. In conclusion, the intracellular QSKRT sequence adjacent to the transmembrane domain of hRAMP1 provides a signal for intracellular retention. The sequence is unrelated to consensus endoplasmic reticulum retention/retrieval motives and overridden by the presence of the hCRLR. The entire single transmembrane domain of hRAMP1 together with one hydrophilic amino acid residue at its C-terminus is required for the formation of a fully functional CGRP/hRAMP1/hCRLR receptor complex.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12234182/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

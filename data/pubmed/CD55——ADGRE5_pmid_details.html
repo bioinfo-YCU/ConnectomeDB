@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CD55——ADGRE5 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CD55——ADGRE5</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12417446')">12417446</button><button class="tablinks " onclick="openTab(event, 'tab10540231')">10540231</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12417446" class="tabcontent active">
+                    <h2>Expression of the EGF-TM7 receptor CD97 and its ligand CD55 (DAF) in multiple sclerosis.</h2>
+                    <h3>Journal of neuroimmunology; 2002</h3>
+                    <p>CD97 is a recently identified seven-span transmembrane (7-TM) protein that is expressed by leukocytes early after activation. CD97 binds to its cellular ligand CD55 (decay accelerating factor), which protects several cell types from complement-mediated damage. The functional consequences of CD97-CD55 binding are largely unknown, but previous data imply that CD97-CD55 interactions play a role in cellular activation, migration, and adhesion under inflammatory conditions. Here we examined the expression of CD97 and CD55 by immunohistochemistry in multiple sclerosis (MS). On the basis of established criteria for inflammation and demyelination, different lesion stages were distinguished in MS post-mortem brain tissue. In normal white matter, CD97 expression was not found, but CD55 was expressed with weak staining intensity on endothelial cells. In pre-active lesions, defined by abnormalities of the white matter, many infiltrating T cells, macrophages (MPhi) and microglia expressed CD97. CD55 was highly expressed by endothelial cells. In active lesions with myelin degradation, MPhi and microglia expressed both CD55 and CD97. Furthermore, a sandwich ELISA showed significantly (p<0.05) elevated levels of soluble CD97 in serum but not in cerebrospinal fluid of MS patients (37%) compared to healthy controls (8%).Collectively, these data suggest that CD97-CD55 interactions are involved in the inflammatory processes in MS. CD55, which is expressed in lesions by vessels to protect against complement-mediated damage, might bind to CD97 on infiltrating leukocytes. This interaction may facilitate cell activation and migration through the blood-brain barrier. In addition, CD97-CD55 interactions in the parenchyma of the brain may contribute to the inflammation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12417446/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10540231" class="tabcontent ">
+                    <h2>Structural characterization of mouse CD97 and study of its specific interaction with the murine decay-accelerating factor (DAF, CD55).</h2>
+                    <h3>Immunology; 1999</h3>
+                    <p>CD97 is a newly identified, activation-associated human leucocyte antigen with seven putative transmembrane domains. It has an extended extracellular segment containing several adhesion molecule structure motifs, and has been shown to interact with the human complement regulator, decay-accelerating factor (DAF, CD55). To understand further the interaction between CD97 and DAF, as well as the structure and function of CD97 in general, we have cloned the mouse CD97 cDNA and studied the encoded protein for its membrane association property and ability to interact specifically with the murine decay-accelerating factor. The full-length mouse CD97 cDNA that we have cloned and characterized encodes a protein that is 60% identical to the three epidermal growth factor (EGF) domain-containing form of human CD97 but does not contain the Arg-Gly-Asp (RGD) motif which is present in human CD97. Two other alternatively spliced forms of mouse CD97 were also identified. These forms differ by the number of EGF-like sequence repeats present in the N-terminal region. Northern blot analysis revealed that CD97 is expressed widely in mouse tissues and in resting as well as activated cultured mouse splenocytes. Transient transfection of human embryonic kidney (HEK) 293 cells with the mouse CD97 cDNA in a green-fluorescence protein vector (pEGFP-N1) showed plasma membrane targeting of the expressed protein. Western blot analysis confirmed its membrane association and identified the existence of a processed C-terminal fragment, supporting the notion that CD97 on the cell membrane is composed of post-translationally generated subunits. Adhesion studies demonstrated that normal, but not DAF knockout mouse erythrocytes and splenocytes adhered to mouse CD97-transfected HEK cells. The interaction of CD97 and DAF was found to be species-restrictive in that human erythrocytes were unable to bind to mouse CD97-transfected HEK cells. These results indicate that the general structure, membrane association property and DAF-binding ability of CD97 are conserved and that the adhesive interaction between CD97 and DAF is independent of the RGD motif. The finding that CD97 is distributed widely among various mouse tissues suggests that CD97 may have other roles beyond lymphocyte activation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10540231/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>BAG6——NCR3 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for BAG6——NCR3</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab18055229')">18055229</button><button class="tablinks " onclick="openTab(event, 'tab18852879')">18852879</button><button class="tablinks " onclick="openTab(event, 'tab24133212')">24133212</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab18055229" class="tabcontent active">
+                    <h2>Human leukocyte antigen-B-associated transcript 3 is released from tumor cells and engages the NKp30 receptor on natural killer cells.</h2>
+                    <h3>Immunity; 2007</h3>
+                    <p>The activity of natural killer (NK) cells is regulated by surface receptors, which direct target cell recognition. NKp30 (Natural Cytotoxicity Receptor 3) induces target cell lysis and is also crucial for the interaction with dendritic cells. So far, the cellular ligands for NKp30 have remained elusive. Here we show that the nuclear factor HLA-B-associated transcript 3 (BAT3) was released from tumor cells, bound directly to NKp30, and engaged NKp30 on NK cells. BAT3 triggered NKp30-mediated cytotoxicity and was necessary for tumor rejection in a multiple myeloma model. These data identify BAT3 as a cellular ligand for NKp30. We propose a concept for target cell recognition by NK cells beyond "missing self" and "induced self," mediated through a tumor cell-derived extracellular factor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/18055229/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab18852879" class="tabcontent ">
+                    <h2>Dendritic cells release HLA-B-associated transcript-3 positive exosomes to regulate natural killer function.</h2>
+                    <h3>PloS one; 2008</h3>
+                    <p>NKp30, a natural cytotoxicity receptor expressed on NK cells is critically involved in direct cytotoxicity against various tumor cells and directs both maturation and selective killing of dendritic cells. Recently the intracellular protein BAT3, which is involved in DNA damage induced apoptosis, was identified as a ligand for NKp30. However, the mechanisms underlying the exposure of the intracellular ligand BAT3 to surface NKp30 and its role in NK-DC cross talk remained elusive. Electron microscopy and flow cytometry demonstrate that exosomes released from 293T cells and iDCs express BAT3 on the surface and are recognized by NKp30-Ig. Overexpression and depletion of BAT3 in 293T cells directly correlates with the exosomal expression level and the activation of NK cell-mediated cytokine release. Furthermore, the NKp30-mediated NK/DC cross talk resulting either in iDC killing or maturation was BAT3-dependent. Taken together this puts forward a new model for the activation of NK cells through intracellular signals that are released via exosomes from accessory cells. The manipulation of the exosomal regulation may offer a novel strategy to induce tumor immunity or inhibit autoimmune diseases caused by NK cell-activation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/18852879/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab24133212" class="tabcontent ">
+                    <h2>A soluble fragment of the tumor antigen BCL2-associated athanogene 6 (BAG-6) is essential and sufficient for inhibition of NKp30 receptor-dependent cytotoxicity of natural killer cells.</h2>
+                    <h3>The Journal of biological chemistry; 2013</h3>
+                    <p>Immunosurveillance of tumor cells depends on NKp30, a major activating receptor of human natural killer (NK) cells. The human BCL2-associated athanogene 6 (BAG-6, also known as BAT3; 1126 amino acids) is a cellular ligand of NKp30. To date, little is known about the molecular details of this receptor ligand system. Within the current study, we have located the binding site of NKp30 to a sequence stretch of 250 amino acids in the C-terminal region of BAG-6 (BAG-6(686-936)). BAG-6(686-936) forms a noncovalent dimer of 57-59 kDa, which is sufficient for high affinity interaction with NKp30 (KD < 100 nM). As our most important finding, BAG-6(686-936) inhibits NKp30-dependent signaling, interferon-γ release, and degranulation of NK cells in the presence of malignantly transformed target cells. Based on these data, we show for the first time that BAG-6(686-936) comprises a subdomain of BAG-6, which is sufficient for receptor docking and inhibition of NKp30-dependent NK cell cytotoxicity as part of a tumor immune escape mechanism. These molecular insights provide an access point to restore tumor immunosurveillance by NK cells and to increase the efficacy of cellular therapies.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/24133212/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

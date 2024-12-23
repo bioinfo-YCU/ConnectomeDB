@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>TF——TFRC - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for TF——TFRC</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab6270680')">6270680</button><button class="tablinks " onclick="openTab(event, 'tab12210842')">12210842</button><button class="tablinks " onclick="openTab(event, 'tab6268632')">6268632</button><button class="tablinks " onclick="openTab(event, 'tab16354665')">16354665</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab6270680" class="tabcontent active">
+                    <h2>Ubiquitous cell-surface glycoprotein on tumor cells is proliferation-associated receptor for transferrin.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1981</h3>
+                    <p>A murine monoclonal antibody (OKT9) raised against human leukemic cells binds to a wide variety of leukemia and tumor cell lines and to a minority of leukemia cells taken directly from patients. Fetal thymus and liver are strongly reactive as are some normal, immature hemopoietic cells and activated lymphocytes. Reactivity with OKT9 appears to correlate with proliferation status in both normal and malignant populations. Biochemical analysis indicates that this structure is a approximately equal to 180,000-dalton glycoprotein with two disulfide-bonded subunits of approximately equal to 90,000-daltons. Isolation of the transferrin receptor from a T-cell line (MOLT-4) indicates that it also has a dimeric approximately equal to 180,000-dalton structure. Radio-labeled transferrin bound to its receptors can be specifically precipitated by the monoclonal OKT9, although the latter does not bind transferrin itself, indicating that the antigenic structure defined by this antibody is likely to be the transferrin receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/6270680/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12210842" class="tabcontent ">
+                    <h2>Molecular mechanisms involved in the actions of apotransferrin upon the central nervous system: Role of the cytoskeleton and of second messengers.</h2>
+                    <h3>Journal of neuroscience research; 2002</h3>
+                    <p>Apotransferrin (aTf), intracranially administered into newborn rats, produces increased myelination with marked increases in the levels of myelin basic protein (MBP), phospholipids and galactolipids, and mRNAs of MBP and 2', 3' cyclic nucleotide 3'-phosphohydrolase (CNPase). Cytoskeletal proteins such as tubulin, actin, and microtubule-associated proteins are also increased after aTf injection. In contrast, almost no changes are observed in myelin proteolipid protein (PLP) or in its mRNA or cholesterol. In the present study, we used brain-tissue slices and cell cultures highly enriched for oligodendroglia to investigate signaling pathways involved in the action of aTf, and to find out whether cytoskeletal integrity and dynamics were essential for its action upon the neural expression of certain genes. Treatment of brain-tissue slices with aTf produced a marked increase in the expression of MBP, CNPase, and tubulin mRNAs. Colchicine, cytochalasin, and taxol severely reduced the effect of aTf. Addition to cultures of an antibody against transferrin receptor (TfR), protein kinase inhibitors, or a cyclic AMP (cAMP) analogue showed that a functionally intact TfR was necessary, and that tyrosine kinase, protein kinase C and A, as well as calcium-calmodulin-dependent kinase (Ca-CaMK) activities appeared to mediate aTf actions upon the expression of the above mentioned genes. Changes in the levels of phosphoinositides and cAMP induced by aTf in oligodendroglial cell (OLGc) cultures correlated with these results and coincide with an activation of the cyclic response element binding protein (CREB) and of mitogen activated protein kinases. The increased expression of certain myelin genes produced by aTf appear to be mediated by interaction of this glycoprotein with its receptor, by the cytoskeleton of the OLGc, and by a complex activation of protein kinases which lead to CREB phosphorylation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12210842/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab6268632" class="tabcontent ">
+                    <h2>Physical characterization of the transferrin receptor in human placentae.</h2>
+                    <h3>The Journal of biological chemistry; 1981</h3>
+                    <p>The physical properties and binding characteristics of the solubilized transferrin receptor isolated from the placental brush-border membrane of a human trophoblast cell were investigated. The receptor protein was isolated from solubilized 125I-labeled membranes by immunoprecipitation with anti-human transferrin in the presence of saturating amounts of human transferrin. Gel filtration on acrylamide agarose (AcA-22) at 23 degrees C in the absence of transferrin indicates the transferrin receptor has a Stokes radius of 4.6 nm. In the presence of transferrin, the Stokes radius of the receptor shifts to 6.3 nm. Sucrose density centrifugation studies indicate that it has a sedimentation coefficient of 9.8 S in the absence of transferrin and 11.2 S in the presence of transferrin. The molecular weight for the transferrin free receptor is calculated to be 213,000. Upon incubation with transferrin, it increases to 364,000. This is consistent with the idea that the active form of the solubilized receptor is a dimer and the dimer is in turn capable of binding two transferrin molecules.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/6268632/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab16354665" class="tabcontent ">
+                    <h2>Release of the soluble transferrin receptor is directly regulated by binding of its ligand ferritransferrin.</h2>
+                    <h3>The Journal of biological chemistry; 2006</h3>
+                    <p>The human transferrin receptor (TfR) is shed by an integral metalloprotease releasing a soluble form (sTfR) into serum. The sTfR reflects the iron demand of the body and is postulated as a regulator of iron homeostasis via binding to the hereditary hemochromatosis protein HFE. To study the role of transferrin in this process, we investigated TfR shedding in HL60 cells and TfR-deficient Chinese hamster ovary cells transfected with human TfR. Independent of TfR expression, sTfR release decreases with increasing ferritransferrin concentrations, whereas apo-transferrin exhibits no inhibitory effect. To investigate the underlying mechanism, we generated several TfR mutants with different binding affinities for transferrin. Shedding of TfR mutants in transfected cells correlates exactly with their binding affinity, implying that the effect of ferritransferrin on TfR shedding is mediated by a direct molecular interaction. Analysis of sTfR release from purified microsomal membranes revealed that the regulation is independent from intracellular trafficking or cellular signaling events. Our results clearly demonstrated that sTfR does not only reflect the iron demand of the cells but also the iron availability in the bloodstream, mirrored by iron saturation of transferrin, corroborating the important potential function of sTfR as a regulator of iron homeostasis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16354665/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

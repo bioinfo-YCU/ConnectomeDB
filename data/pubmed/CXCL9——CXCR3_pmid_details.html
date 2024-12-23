@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CXCL9——CXCR3 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CXCL9——CXCR3</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12884299')">12884299</button><button class="tablinks " onclick="openTab(event, 'tab9660793')">9660793</button><button class="tablinks " onclick="openTab(event, 'tab15761110')">15761110</button><button class="tablinks " onclick="openTab(event, 'tab9660793')">9660793</button><button class="tablinks " onclick="openTab(event, 'tab12782716')">12782716</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12884299" class="tabcontent active">
+                    <h2>CCR3 functional responses are regulated by both CXCR3 and its ligands CXCL9, CXCL10 and CXCL11.</h2>
+                    <h3>European journal of immunology; 2003</h3>
+                    <p>The chemokine receptor CXCR3 is predominantly expressed on T lymphocytes, and its agonists CXCL9, CXCL10 and CXCL11 are IFN-gamma-inducible chemokines that promote Th1 responses. In contrast, the CCR3 agonists CCL11, CCL24 and CCL26 are involved in the recruitment of cells such as eosinophils and basophils during Th2 responses. Here, we report that although CCL11, CCL24 and CCL26 are neither agonists nor antagonists of CXCR3, CCL11 binds with high affinity to CXCR3. This suggests that, in vivo, CXCR3 may act as a decoy receptor, sequestering locally produced CCL11. We also demonstrate that the CXCR3 ligands inhibit CCR3-mediated functional responses of both human eosinophils and CCR3 transfectants induced by all three eotaxins, with CXCL11 being the most efficacious antagonist. The examination of CCR3-CCR1 chimeric constructs revealed that CCL11 and CXCL11 share overlapping binding sites contained within the CCR3 extracellular loops, a region that was previously shown to be essential for effective receptor-activation. Hence, eosinophil responses mediated by chemokines acting at CCR3 may be regulated by two distinct mechanisms: the antagonistic effects of CXCR3 ligands and the sequestration of CCL11 by CXCR3-expressing cells. Such interplay may serve to finely tune inflammatory responses in vivo.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12884299/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9660793" class="tabcontent ">
+                    <h2>Binding and functional properties of recombinant and endogenous CXCR3 chemokine receptors.</h2>
+                    <h3>The Journal of biological chemistry; 1998</h3>
+                    <p>IP10 and MIG are two members of the CXC branch of the chemokine superfamily whose expression is dramatically up-regulated by interferon (IFN)-gamma. The proteins act largely on natural killer (NK)-cells and activated T-cells and have been implicated in mediating some of the effects of IFN-gamma and lipopolysaccharides (LPSs), as well as T-cell-dependent anti-tumor responses. Recently both chemokines have been shown to be functional agonists of the same G-protein-coupled receptor, CXCR3. We now report the pharmacological characterization of CXCR3 and find that, when heterologously expressed, CXCR3 binds IP10 and MIG with Ki values of 0.14 and 4.9 nM, respectively. The receptor has very modest affinity for SDF-1alpha and little or no affinity for other CXC-chemokines. The properties of the endogenous receptor expressed on activated T-cells are similar. Surprisingly, several CC-chemokines, particularly eotaxin and MCP-4, also compete with moderate affinity for the binding of IP10 to CXCR3. Eotaxin does not activate CXCR3 but, in CXCR3-transfected cells, can block IP10-mediated receptor activation. Eotaxin, therefore, may be a natural CXCR3 antagonist.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9660793/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15761110" class="tabcontent ">
+                    <h2>Pharmacological characterization of CXC chemokine receptor 3 ligands and a small molecule antagonist.</h2>
+                    <h3>The Journal of pharmacology and experimental therapeutics; 2005</h3>
+                    <p>The CXC chemokine receptor 3 (CXCR3) is predominantly expressed on T helper type 1 (Th1) cells that are involved in inflammatory diseases. The three CXCR3 ligands CXCL9, CXCL10, and CXCL11 are produced at sites of inflammation and elicit migration of pathological Th1 cells. Here, we are the first to characterize the pharmacological potencies and specificity of a CXCR3 antagonist, N-1R-[3-(4-ethoxy-phenyl)-4-oxo-3,4-dihydro-pyrido[2,3-d]pyrimidin-2-yl]-ethyl-N-pyridin-3-ylmethyl-2-(4-fluoro-3-trifluoromethyl-phenyl)-acetamide (NBI-74330), from the T487 small molecule series. NBI-74330 demonstrated potent inhibition of [(125)I]CXCL10 and [(125)I]CXCL11 specific binding (K(i) of 1.5 and 3.2 nM, respectively) and of functional responses mediated by CXCR3, such as ligand-induced guanosine 5'-O-(3-[(35)S]thio)triphosphate ([(35)S]GTPgammaS) binding, calcium mobilization, and cellular chemotaxis (IC(50) of 7 to 18 nM). NBI-74330 was selective for CXCR3 because it showed no significant inhibition of chemotactic responses to other chemokines and did not inhibit radioligand binding to a panel of nonchemokine G-protein coupled receptors. There was a striking difference in potencies among the three CXCR3 ligands, with CXCL11 >> CXCL10 > CXCL9. A comparison of the rank order of K(i) values with the rank order of monocyte production levels of these three ligands revealed a precise inverse correlation, suggesting that the weaker receptor affinities of CXCL9 and CXCL10 were physiologically compensated for by an elevated expression, perhaps to maintain effectiveness of each ligand under physiological conditions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15761110/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9660793" class="tabcontent ">
+                    <h2>Binding and functional properties of recombinant and endogenous CXCR3 chemokine receptors.</h2>
+                    <h3>The Journal of biological chemistry; 1998</h3>
+                    <p>IP10 and MIG are two members of the CXC branch of the chemokine superfamily whose expression is dramatically up-regulated by interferon (IFN)-gamma. The proteins act largely on natural killer (NK)-cells and activated T-cells and have been implicated in mediating some of the effects of IFN-gamma and lipopolysaccharides (LPSs), as well as T-cell-dependent anti-tumor responses. Recently both chemokines have been shown to be functional agonists of the same G-protein-coupled receptor, CXCR3. We now report the pharmacological characterization of CXCR3 and find that, when heterologously expressed, CXCR3 binds IP10 and MIG with Ki values of 0.14 and 4.9 nM, respectively. The receptor has very modest affinity for SDF-1alpha and little or no affinity for other CXC-chemokines. The properties of the endogenous receptor expressed on activated T-cells are similar. Surprisingly, several CC-chemokines, particularly eotaxin and MCP-4, also compete with moderate affinity for the binding of IP10 to CXCR3. Eotaxin does not activate CXCR3 but, in CXCR3-transfected cells, can block IP10-mediated receptor activation. Eotaxin, therefore, may be a natural CXCR3 antagonist.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9660793/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12782716" class="tabcontent ">
+                    <h2>An alternatively spliced variant of CXCR3 mediates the inhibition of endothelial cell growth induced by IP-10, Mig, and I-TAC, and acts as functional receptor for platelet factor 4.</h2>
+                    <h3>The Journal of experimental medicine; 2003</h3>
+                    <p>The chemokines CXCL9/Mig, CXCL10/IP-10, and CXCL11/I-TAC regulate lymphocyte chemotaxis, mediate vascular pericyte proliferation, and act as angiostatic agents, thus inhibiting tumor growth. These multiple activities are apparently mediated by a unique G protein-coupled receptor, termed CXCR3. The chemokine CXCL4/PF4 shares several activities with CXCL9, CXCL10, and CXCL11, including a powerful angiostatic effect, but its specific receptor is still unknown. Here, we describe a distinct, previously unrecognized receptor named CXCR3-B, derived from an alternative splicing of the CXCR3 gene that mediates the angiostatic activity of CXCR3 ligands and also acts as functional receptor for CXCL4. Human microvascular endothelial cell line-1 (HMEC-1), transfected with either the known CXCR3 (renamed CXCR3-A) or CXCR3-B, bound CXCL9, CXCL10, and CXCL11, whereas CXCL4 showed high affinity only for CXCR3-B. Overexpression of CXCR3-A induced an increase of survival, whereas overexpression of CXCR3-B dramatically reduced DNA synthesis and up-regulated apoptotic HMEC-1 death through activation of distinct signal transduction pathways. Remarkably, primary cultures of human microvascular endothelial cells, whose growth is inhibited by CXCL9, CXCL10, CXCL11, and CXCL4, expressed CXCR3-B, but not CXCR3-A. Finally, monoclonal antibodies raised to selectively recognize CXCR3-B reacted with endothelial cells from neoplastic tissues, providing evidence that CXCR3-B is also expressed in vivo and may account for the angiostatic effects of CXC chemokines.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12782716/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

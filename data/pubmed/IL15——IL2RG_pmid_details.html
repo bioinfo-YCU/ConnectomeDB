@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>IL15——IL2RG - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for IL15——IL2RG</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15265897')">15265897</button><button class="tablinks " onclick="openTab(event, 'tab8568232')">8568232</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15265897" class="tabcontent active">
+                    <h2>Natural, proteolytic release of a soluble form of human IL-15 receptor alpha-chain that behaves as a specific, high affinity IL-15 antagonist.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 2004</h3>
+                    <p>IL-15 and IL-2 are two structurally and functionally related cytokines whose high affinity receptors share the IL-2R beta-chain and gamma-chain in association with IL-15R alpha-chain (IL-15R alpha) or IL-2R alpha-chain, respectively. Whereas IL-2 action seems restricted to the adaptative T cells, IL-15 appears to be crucial for the function of the innate immune responses, and the pleiotropic expression of IL-15 and IL-15R alpha hints at a much broader role for the IL-15 system in multiple cell types and tissues. In this report, using a highly sensitive radioimmunoassay, we show the existence of a soluble form of human IL-15R alpha (sIL-15R alpha) that arises from proteolytic shedding of the membrane-anchored receptor. This soluble receptor is spontaneously released from IL-15R alpha-expressing human cell lines as well as from IL-15R alpha transfected COS-7 cells. This release is strongly induced by PMA and ionomycin, and to a lesser extent by IL-1 beta and TNF-alpha. The size of sIL-15R alpha (42 kDa), together with the analysis of deletion mutants in the ectodomain of IL-15R alpha, indicates the existence of cleavage sites that are proximal to the plasma membrane. Whereas shedding induced by PMA was abrogated by the synthetic matrix metalloproteinases inhibitor GM6001, the spontaneous shedding was not, indicating the occurrence of at least two distinct proteolytic mechanisms. The sIL-15R alpha displayed high affinity for IL-15 and behaved as a potent and specific inhibitor of IL-15 binding to the membrane receptor, and of IL-15-induced cell proliferation (IC(50) in the range from 3 to 20 pM). These results suggest that IL-15R alpha shedding may play important immunoregulatory functions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15265897/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8568232" class="tabcontent ">
+                    <h2>Interaction of IL-15 with the shared IL-2 receptor beta and gamma c subunits. The IL-15/beta/gamma c receptor-ligand complex is less stable than the IL-2/beta/gamma c receptor-ligand complex.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 1996</h3>
+                    <p>This study was designed to compare the interactions of IL-2 and IL-15 with the IL-2R beta and IL-2R gamma c subunits, as differences in receptor interactions between IL-2 and IL-15 might contribute to the functional differences between these two cytokines. The results suggest the existence of a human IL-15R alpha subunit, although physical evidence of this molecule was not obtained. Proliferation of anti-CD3 (OKT3)-stimulated human PBL was compared for responsiveness to IL-2, IL-15, and F42K, and IL-2 mutant that does not bind the IL-2R alpha chain. F42K was more potent than IL-15 in activating a dose-dependent response. This fact, along with Scatchard binding analyses of IL-15 on OKT3 blasts and YT cells revealing both high and intermediate affinity receptors, supports the existence of IL-15R alpha on these cells. Additional characterization of the IL-15R utilized covalent cross-linking to affinity label IL-2R and IL-15R on YT cells and OKT3 blasts. Consistent with previously reported functional data, IL-2R alpha was not co-precipitated from the [125I]IL-15 receptor-ligand complex, demonstrating that IL-15 does not interact physically with the IL-2R alpha subunit. While IL-2R alpha did co-precipitate with IL-2R beta and IL-2R gamma c in the presence of IL-2, IL-15R alpha did not co-precipitate with the IL-2R beta/gamma c complex. Finally, YT cells equilibrated with IL-2 and then precipitated through IL-2R beta showed that IL-2R beta and IL-2R gamma c co-precipitate in a 1:1 ratio, while only IL-2R beta was found in the immunoprecipitates of YT cells equilibrated with IL-15. This indicates that IL-15 creates a less stable bridge between the IL-2R beta and IL-2R gamma c chains than does IL-2 on YT cells. This result was identical for both surface-iodinated YT cells and immunoprecipitates that were probed for IL-2R beta and IL-2R gamma c on Western blots.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8568232/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

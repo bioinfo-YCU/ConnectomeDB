@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>IL9——IL9R - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for IL9——IL9R</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9535918')">9535918</button><button class="tablinks " onclick="openTab(event, 'tab11588013')">11588013</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9535918" class="tabcontent active">
+                    <h2>Heteromerization of the gammac chain with the interleukin-9 receptor alpha subunit leads to STAT activation and prevention of apoptosis.</h2>
+                    <h3>The Journal of biological chemistry; 1998</h3>
+                    <p>Interleukin-9 (IL-9) is a cytokine with pleiotropic effects on mast cell and T cell lines. It exerts its effects through the IL-9R complex consisting of IL-9Ralpha and the common gammac subunit. Here we report functional evidence for receptor heteromerization for efficient signal transduction, and we define minimal requirements in the two receptor subunits for IL-9R function. Tyrosine 336 of the IL-9Ralpha and the membrane-proximal segment of gammac are both crucial for signaling. The activated IL-9R complex employs the Janus kinases JAK1 and JAK3 for subsequent activation of the signal transducer and activator transcription (STAT) factors STAT-1, STAT-3, and STAT-5. This process is independent of Tyk2. We demonstrate further that the activated STAT complexes consist of STAT-1 and STAT-5 homodimers and STAT-1-STAT-3 heterodimers. Finally, we show that IL-9R signaling in a T cell line does not result in detectable mitogen-activated protein kinase activation and leads to unsustained proliferation. Nonetheless, these T cells are efficiently protected from dexamethasone-induced apoptosis. These results further define the molecular architecture of the IL-9R and its specific connections to various biologic responses.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9535918/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11588013" class="tabcontent ">
+                    <h2>Il-9 stimulates release of chemotactic factors from human bronchial epithelial cells.</h2>
+                    <h3>American journal of respiratory cell and molecular biology; 2001</h3>
+                    <p>Interleukin (IL)-9 is a T helper 2 cytokine implicated as a candidate gene and contributor to human asthma. We hypothesized that the inflammatory potential of bronchial epithelium is affected by its local environment and explored this hypothesis with respect to the effect of IL-9 on bronchial epithelium. We investigated the response of primary and immortalized human bronchial epithelial cells to IL-9 stimulation with respect to the release of T-cell chemoattractant factors. In response to IL-9, the HBE4-E6/E7 cell line, but not BEAS-2B cells, released the T-cell chemoattractants IL-16 and regulated on activation, normal T cells expressed and secreted (RANTES) in a dose-dependent fashion. We found a similar dose response to IL-9 in primary cells from bronchial brushings of healthy subjects and that nearly all of the T-cell chemoattraction was attributable to IL-16 and RANTES. Reverse transcriptase/polymerase chain reaction of BEAS-2B, HBE4-E6/E7, and primary cells from two subjects revealed messenger RNA for IL-9 receptor (IL-9R) alpha but not in BEAS-2B cells. Fluorescence-activated cell sorter analysis of HBE4-E6/E7 and primary cells confirmed surface expression of the IL-9 receptor. Costimulation of both cell types with IL-9 and antibody to either gamma-common chain or IL-9Ralpha completely blocked the release of T-cell chemoattractant activity, confirming the primary role of a functioning IL-9 receptor for IL-9 signaling in HBE4-E6/E7 and primary bronchial epithelial cells. We conclude that IL-9 is a stimulus for airway epithelial cell release of T-cell chemoattractant factors, which in turn may modulate the immune response in allergic airway inflammation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11588013/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

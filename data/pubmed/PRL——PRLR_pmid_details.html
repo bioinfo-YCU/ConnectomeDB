@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>PRL——PRLR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for PRL——PRLR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab2558309')">2558309</button><button class="tablinks " onclick="openTab(event, 'tab11356126')">11356126</button><button class="tablinks " onclick="openTab(event, 'tab9626554')">9626554</button><button class="tablinks " onclick="openTab(event, 'tab10966654')">10966654</button><button class="tablinks " onclick="openTab(event, 'tab7984244')">7984244</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab2558309" class="tabcontent active">
+                    <h2>Identification of a cDNA encoding a long form of prolactin receptor in human hepatoma and breast cancer cells.</h2>
+                    <h3>Molecular endocrinology (Baltimore, Md.); 1989</h3>
+                    <p>Human PRL receptor cDNA clones from hepatoma (Hep G2) and breast cancer (T-47D) libraries were isolated by using a rat PRL receptor cDNA probe. The nucleotide sequence predicts a mature protein of 598 amino acids with a much longer cytoplasmic domain than the rat liver PRL receptor. Although this extended region has additional segments of localized sequence identity with the human GH receptor, there is no identity with any consensus sequences known to be involved in hormonal signal transduction. This cDNA will be a valuable tool to better understand the role of PRL in the development and growth of human breast cancer.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/2558309/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11356126" class="tabcontent ">
+                    <h2>Prolactin receptor heterogeneity: processing and signalling of the long and short isoforms during development.</h2>
+                    <h3>Biochemical Society transactions; 2001</h3>
+                    <p>During development, the fetus is exposed to prolactin activity from the placenta, as well as from the developing fetal pituitary. Distinct prolactin receptor isoforms, having different cytoplasmic domains generated by alternative splicing, are expressed as development proceeds at different levels in different organs. The "long" receptors are able to mediate transduction of all signals examined, in contrast with the "short" isoforms, whose truncated cytoplasmic domains are able to mediate a much smaller repertoire of signals and can act as dominant negatives. Our studies demonstrate that, although these forms share internalization mechanisms, the long form is internalized faster, resulting in more rapid down-regulation of this form. In order to examine the mechanisms by which prolactin may exert trophic effects on its target tissues during development, we have examined the signalling pathways through which prolactin binding to the long receptor regulates the transcription of cyclin D1. Our studies reveal the importance of the JAK/STAT (Janus kinase/signal transduction and activators of transcription) pathway, and the complexity of prolactin signalling to this promoter.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11356126/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9626554" class="tabcontent ">
+                    <h2>Prolactin (PRL) and its receptor: actions, signal transduction pathways and phenotypes observed in PRL receptor knockout mice.</h2>
+                    <h3>Endocrine reviews; 1998</h3>
+                    <p>PRL is an anterior pituitary hormone that, along with GH and PLs, forms a family of hormones that probably resulted from the duplication of an ancestral gene. The PRLR is also a member of a larger family, known as the cytokine class-1 receptor superfamily, which currently has more than 20 different members. PRLRs or binding sites are widely distributed throughout the body. In fact, it is difficult to find a tissue that does not express any PRLR mRNA or protein. In agreement with this wide distribution of receptors is the fact that now more than 300 separate actions of PRL have been reported in various vertebrates, including effects on water and salt balance, growth and development, endocrinology and metabolism, brain and behavior, reproduction, and immune regulation and protection. Clearly, a large proportion of these actions are directly or indirectly associated with the process of reproduction, including many behavioral effects. PRL is also becoming well known as an important regulator of immune function. A number of disease states, including the growth of different forms of cancer as well as various autoimmune diseases, appear to be related to an overproduction of PRL, which may act in an endocrine, autocrine, or paracrine manner, or via an increased sensitivity to the hormone. The first step in the mechanism of action of PRL is the binding to a cell surface receptor. The ligand binds in a two-step process in which site 1 on PRL binds to one receptor molecule, after which a second receptor molecule binds to site 2 on the hormone, forming a homodimer consisting of one molecule of PRL and two molecules of receptor. The PRLR contains no intrinsic tyrosine kinase cytoplasmic domain but associates with a cytoplasmic tyrosine kinase, JAK2. Dimerization of the receptor induces tyrosine phosphorylation and activation of the JAK kinase followed by phosphorylation of the receptor. Other receptor-associated kinases of the Src family have also been shown to be activated by PRL. One major pathway of signaling involves phosphorylation of cytoplasmic State proteins, which themselves dimerize and translocate to nucleus and bind to specific promoter elements on PRL-responsive genes. In addition, the Ras/Raf/MAP kinase pathway is also activated by PRL and may be involved in the proliferative effects of the hormone. Finally, a number of other potential mediators have been identified, including IRS-1, PI-3 kinase, SHP-2, PLC gamma, PKC, and intracellular Ca2+. The technique of gene targeting in mice has been used to develop the first experimental model in which the effect of the complete absence of any lactogen or PRL-mediated effects can be studied. Heterozygous (+/-) females show almost complete failure to lactate after the first, but not subsequent, pregnancies. Homozygous (-/-) females are infertile due to multiple reproductive abnormalities, including ovulation of premeiotic oocytes, reduced fertilization of oocytes, reduced preimplantation oocyte development, lack of embryo implantation, and the absence of pseudopregnancy. Twenty per cent of the homozygous males showed delayed fertility. Other phenotypes, including effects on the immune system and bone, are currently being examined. It is clear that there are multiple actions associated with PRL. It will be important to correlate known effects with local production of PRL to differentiate classic endocrine from autocrine/paracrine effects. The fact that extrapituitary PRL can, under some circumstances, compensate for pituitary PRL raises the interesting possibility that there may be effects of PRL other than those originally observed in hypophysectomized rats. The PRLR knockout mouse model should be an interesting system by which to look for effects activated only by PRL or other lactogenic hormones. On the other hand, many of the effects reported in this review may be shared with other hormones, cytokines, or growth factors and thus will be more difficult to study. (ABSTRACT TRUNCATED)</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9626554/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10966654" class="tabcontent ">
+                    <h2>Ternary complex between placental lactogen and the extracellular domain of the prolactin receptor.</h2>
+                    <h3>Nature structural biology; 2000</h3>
+                    <p>The structure of the ternary complex between ovine placental lactogen (oPL) and the extracellular domain (ECD) of the rat prolactin receptor (rPRLR) reveals that two rPRLR ECDs bind to opposite sides of oPL with pseudo two-fold symmetry. The two oPL receptor binding sites differ significantly in their topography and electrostatic character. These binding interfaces also involve different hydrogen bonding and hydrophobic packing patterns compared to the structurally related human growth hormone (hGH)-receptor complexes. Additionally, the receptor-receptor interactions are different from those of the hGH-receptor complex. The conformational adaptability of prolactin and growth hormone receptors is evidenced by the changes in local conformations of the receptor binding loops and more global changes induced by shifts in the angular relationships between the N- and C-terminal domains, which allow the receptor to bind to the two topographically distinct sites of oPL.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10966654/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7984244" class="tabcontent ">
+                    <h2>The X-ray structure of a growth hormone-prolactin receptor complex.</h2>
+                    <h3>Nature; 1994</h3>
+                    <p>The human pituitary hormones, growth hormone (hGH) and prolactin (hPRL), regulate a large variety of physiological processes, among which are growth and differentiation of muscle, bone and cartilage cells, and lactation. These activities are initiated by hormone-receptor binding. The hGH and hPRL receptors (hGHR and hPRLR, respectively) are single-pass transmembrane receptors from class 1 of the haematopoietic receptor superfamily. This classification is based on sequence similarity in their extracellular domains, notably a highly conserved pentapeptide, the so-called 'WSXWS box', the function of which is controversial. All ligands in class 1 activate their respective receptors by clustering mechanisms. In the case of hGH, activation involves receptor homodimerization in a sequential process: the active ternary complex containing one ligand and two receptor molecules is formed by association of a receptor molecule to an intermediate 1:1 complex. hPRL does not bind to the hGH receptor, but hGH binds to both the hGHR and hPRLR, and mutagenesis studies have shown that the receptor-binding sites on hGH overlap. We present here the crystal structure of the 1:1 complex of hGH bound to the extracellular domain of the hPRLR. Comparisons with the hGH-hGHR complex reveal how hGH can bind to the two distinctly different receptor binding surfaces.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7984244/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>INSL3——RXFP2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for INSL3——RXFP2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12114498')">12114498</button><button class="tablinks " onclick="openTab(event, 'tab15649866')">15649866</button><button class="tablinks " onclick="openTab(event, 'tab20560146')">20560146</button><button class="tablinks " onclick="openTab(event, 'tab12114498')">12114498</button><button class="tablinks " onclick="openTab(event, 'tab15649866')">15649866</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12114498" class="tabcontent active">
+                    <h2>INSL3/Leydig insulin-like peptide activates the LGR8 receptor important in testis descent.</h2>
+                    <h3>The Journal of biological chemistry; 2002</h3>
+                    <p>Several orphan G protein-coupled receptors homologous to gonadotropin and thyrotropin receptors have recently been identified and named as LGR4-8. INSL3, also known as Leydig insulin-like peptide or relaxin-like factor, is a relaxin family member expressed in testis Leydig cells and ovarian theca and luteal cells. Male mice mutant for INSL3 exhibit cryptorchidism or defects in testis descent due to abnormal gubernaculum development whereas overexpression of INSL3 induces ovary descent in transgenic females. Because transgenic mice missing the LGR8 gene are also cryptorchid, INSL3 was tested as the ligand for LGR8. Here, we show that treatment with INSL3 stimulated cAMP production in cells expressing recombinant LGR8 but not LGR7. In addition, interactions between INSL3 and LGR8 were demonstrated following ligand receptor cross-linking. Northern blot analysis indicated that the LGR8 transcripts are expressed in gubernaculum whereas treatment of cultured gubernacular cells with INSL3 stimulated cAMP production and thymidine incorporation. The present study identified the ligand for an orphan G protein-coupled receptor based on common phenotypes of ligand and receptor null mice. Demonstration of INSL3 as the ligand for LGR8 facilitates understanding of the mechanism of testis descent and allows studies on the role of INSL3 in gonadal and other physiological processes.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12114498/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15649866" class="tabcontent ">
+                    <h2>Multiple binding sites revealed by interaction of relaxin family peptides with native and chimeric relaxin family peptide receptors 1 and 2 (LGR7 and LGR8).</h2>
+                    <h3>The Journal of pharmacology and experimental therapeutics; 2005</h3>
+                    <p>Relaxin family peptide 1 (RXFP1) receptor (LGR7) and RXFP2 receptor (LGR8) were recently identified as the receptor targets for H2 relaxin and insulin-like peptide 3 (INSL3), respectively. In this study, we define the pharmacology of these two receptors by using a number of receptor chimeras and relaxin family peptides. We have identified two binding sites on these receptors: one primary, high-affinity site within the ectodomain and a secondary, lower affinity site within the transmembrane region. The primary site was found to dictate receptor binding characteristics, although the lower affinity site also exerts some influence and modulates ligand affinity for the primary site in a manner dependent upon the peptide in question. Not all relaxin peptides were able to bind to the RXFP2 receptor, indicating that the relaxin-RXFP2 receptor interaction is species-specific. INSL3 was found to exhibit characteristics of a partial agonist at the RXFP2 and chimeric RXFP1/2 receptors, with low maximal cAMP responses but high potency in coupling to this pathway. cAMP accumulation studies also revealed that the binding sites couple to cAMP signaling pathways with differing efficiency: the high-affinity site signals with high efficiency, whereas the lower affinity site signals with little to no efficiency. Comparisons between RXFP1, RXFP2, the chimeric receptors, and the truncated receptors revealed that the interaction between receptor sites is critical for optimal ligand binding and signal transduction and that the ectodomain is essential for signaling. Evidence obtained in this study supports a two-stage binding model of receptor activation: binding to the primary site allows a conformational change and interaction with the low-affinity transmembrane site.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15649866/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab20560146" class="tabcontent ">
+                    <h2>Design and development of analogues of dimers of insulin-like peptide 3 B-chain as high-affinity antagonists of the RXFP2 receptor.</h2>
+                    <h3>Biopolymers; 2011</h3>
+                    <p>Insulin-like peptide 3 (INSL3) is one of 10 members of the human relaxin-insulin superfamily of peptides. It is a peptide hormone that is expressed by fetal and postnatal testicular Leydig cells and postnatal ovarian thecal cells. It mediates testicular descent during fetal life and suppresses sperm apoptosis in adult males, whereas, in females, it causes oocyte maturation. INSL3 has also been shown to promote thyroid tumor growth and angiogenesis in human. These actions of INSL3 are mediated through its G protein-coupled receptor, RXFP2. INSL3, a two-chained peptide, binds to its receptor primarily via its B-chain, whereas elements of the A-chain are essential for receptor activation. In an attempt to design a high-affinity antagonist with potential clinical application as an anticancer agent as well as a contraceptive, we have previously prepared a synthetic parallel dimer of INSL3 B-chain and demonstrated that it binds to RXFP2 with high affinity. In this work, we undertook full pharmacological characterization of this peptide and show that it can antaogonize INSL3-mediated cAMP signaling through RXFP2. Further refinement by truncation of 18 residues yielded a minimized analogue that retained full binding affinity and INSL3 antagonism. It is an attractive lead peptide for in vivo evaluation as an inhibitor of male and female fertility and of INSL3-mediated carcinogenesis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/20560146/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12114498" class="tabcontent ">
+                    <h2>INSL3/Leydig insulin-like peptide activates the LGR8 receptor important in testis descent.</h2>
+                    <h3>The Journal of biological chemistry; 2002</h3>
+                    <p>Several orphan G protein-coupled receptors homologous to gonadotropin and thyrotropin receptors have recently been identified and named as LGR4-8. INSL3, also known as Leydig insulin-like peptide or relaxin-like factor, is a relaxin family member expressed in testis Leydig cells and ovarian theca and luteal cells. Male mice mutant for INSL3 exhibit cryptorchidism or defects in testis descent due to abnormal gubernaculum development whereas overexpression of INSL3 induces ovary descent in transgenic females. Because transgenic mice missing the LGR8 gene are also cryptorchid, INSL3 was tested as the ligand for LGR8. Here, we show that treatment with INSL3 stimulated cAMP production in cells expressing recombinant LGR8 but not LGR7. In addition, interactions between INSL3 and LGR8 were demonstrated following ligand receptor cross-linking. Northern blot analysis indicated that the LGR8 transcripts are expressed in gubernaculum whereas treatment of cultured gubernacular cells with INSL3 stimulated cAMP production and thymidine incorporation. The present study identified the ligand for an orphan G protein-coupled receptor based on common phenotypes of ligand and receptor null mice. Demonstration of INSL3 as the ligand for LGR8 facilitates understanding of the mechanism of testis descent and allows studies on the role of INSL3 in gonadal and other physiological processes.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12114498/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15649866" class="tabcontent ">
+                    <h2>Multiple binding sites revealed by interaction of relaxin family peptides with native and chimeric relaxin family peptide receptors 1 and 2 (LGR7 and LGR8).</h2>
+                    <h3>The Journal of pharmacology and experimental therapeutics; 2005</h3>
+                    <p>Relaxin family peptide 1 (RXFP1) receptor (LGR7) and RXFP2 receptor (LGR8) were recently identified as the receptor targets for H2 relaxin and insulin-like peptide 3 (INSL3), respectively. In this study, we define the pharmacology of these two receptors by using a number of receptor chimeras and relaxin family peptides. We have identified two binding sites on these receptors: one primary, high-affinity site within the ectodomain and a secondary, lower affinity site within the transmembrane region. The primary site was found to dictate receptor binding characteristics, although the lower affinity site also exerts some influence and modulates ligand affinity for the primary site in a manner dependent upon the peptide in question. Not all relaxin peptides were able to bind to the RXFP2 receptor, indicating that the relaxin-RXFP2 receptor interaction is species-specific. INSL3 was found to exhibit characteristics of a partial agonist at the RXFP2 and chimeric RXFP1/2 receptors, with low maximal cAMP responses but high potency in coupling to this pathway. cAMP accumulation studies also revealed that the binding sites couple to cAMP signaling pathways with differing efficiency: the high-affinity site signals with high efficiency, whereas the lower affinity site signals with little to no efficiency. Comparisons between RXFP1, RXFP2, the chimeric receptors, and the truncated receptors revealed that the interaction between receptor sites is critical for optimal ligand binding and signal transduction and that the ectodomain is essential for signaling. Evidence obtained in this study supports a two-stage binding model of receptor activation: binding to the primary site allows a conformational change and interaction with the low-affinity transmembrane site.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15649866/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

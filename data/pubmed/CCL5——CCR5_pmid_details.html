@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL5——CCR5 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL5——CCR5</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12964882')">12964882</button><button class="tablinks " onclick="openTab(event, 'tab10318947')">10318947</button><button class="tablinks " onclick="openTab(event, 'tab16298345')">16298345</button><button class="tablinks " onclick="openTab(event, 'tab9790730')">9790730</button><button class="tablinks " onclick="openTab(event, 'tab9289016')">9289016</button><button class="tablinks " onclick="openTab(event, 'tab8663314')">8663314</button><button class="tablinks " onclick="openTab(event, 'tab11116158')">11116158</button><button class="tablinks " onclick="openTab(event, 'tab14637022')">14637022</button><button class="tablinks " onclick="openTab(event, 'tab10477718')">10477718</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12964882" class="tabcontent active">
+                    <h2>Unraveling the chemistry of chemokine receptor ligands.</h2>
+                    <h3>Chemical reviews; 2003</h3>
+                    <p>No abstract available</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12964882/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10318947" class="tabcontent ">
+                    <h2>A small-molecule, nonpeptide CCR5 antagonist with highly potent and selective anti-HIV-1 activity.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1999</h3>
+                    <p>The beta-chemokine receptor CCR5 is considered to be an attractive target for inhibition of macrophage-tropic (CCR5-using or R5) HIV-1 replication because individuals having a nonfunctional receptor (a homozygous 32-bp deletion in the CCR5 coding region) are apparently normal but resistant to infection with R5 HIV-1. In this study, we found that TAK-779, a nonpeptide compound with a small molecular weight (Mr 531.13), antagonized the binding of RANTES (regulated on activation, normal T cell expressed and secreted) to CCR5-expressing Chinese hamster ovary cells and blocked CCR5-mediated Ca2+ signaling at nanomolar concentrations. The inhibition of beta-chemokine receptors by TAK-779 appeared to be specific to CCR5 because the compound antagonized CCR2b to a lesser extent but did not affect CCR1, CCR3, or CCR4. Consequently, TAK-779 displayed highly potent and selective inhibition of R5 HIV-1 replication without showing any cytotoxicity to the host cells. The compound inhibited the replication of R5 HIV-1 clinical isolates as well as a laboratory strain at a concentration of 1.6-3.7 nM in peripheral blood mononuclear cells, though it was totally inactive against T-cell line-tropic (CXCR4-using or X4) HIV-1.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10318947/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab16298345" class="tabcontent ">
+                    <h2>Molecular cloning and radioligand binding characterization of the chemokine receptor CCR5 from rhesus macaque and human.</h2>
+                    <h3>Biochemical pharmacology; 2005</h3>
+                    <p>The aim of this study was to determine if macaque represents a suitable species for the pre-clinical evaluation of novel CCR5 antagonists, such as maraviroc (UK-427,857). To do this we cloned and expressed CCR5 from rhesus macaque and compared the binding properties of [125I]-MIP-1beta and [3H]-maraviroc with human recombinant CCR5. [125I]-MIP-1beta bound with similar high affinity to CCR5 from macaque (K(d) = 0.24 +/- 0.05 nM) and human (K(d) = 0.23 +/- 0.05 nM) and with similar kinetic properties. In competition binding studies the affinity of a range of human chemokines for macaque CCR5 was also similar to human CCR5. Maraviroc inhibited binding of [125I]-MIP-1beta to CCR5 from macaque and human with similar potency (IC50 = 17.50 +/- 1.24 nM and 7.18 +/- 0.93 nM, respectively) and antagonised MIP-1beta induced intracellular calcium release mediated through CCR5 from macaque and human with similar potency (IC50 = 17.50 +/- 3.30 nM and 12.07 +/- 1.89, respectively). [3H]-maraviroc bound with high affinity to CCR5 from macaque (K(d) = 1.36+/-0.07 nM) and human (K(d) = 0.86 +/- 0.08 nM), but was found to dissociate approximately 10-fold more quickly from macaque CCR5. However, as with the human receptor, maraviroc was shown to be a high affinity, potent functional antagonist of macaque CCR5 thereby indicating that the macaque should be a suitable species in which to evaluate the pharmacology, safety and potential mechanism-related toxicology of novel CCR5 antagonists.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16298345/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9790730" class="tabcontent ">
+                    <h2>CCR5 has an expanded ligand-binding repertoire and is the primary receptor used by MCP-2 on activated T cells.</h2>
+                    <h3>Cellular immunology; 1998</h3>
+                    <p>CCR5 is a chemokine receptor expressed by T cells and macrophages, which also functions as the principal coreceptor for macrophage (M)-tropic HIV-1 strains to enter the host cells. In this study, we aim to better understand the ligand-binding profiles of CCR5 and the chemokine-receptor usage on leukocyte cells. We found that MCP-2 could bind to CCR5 transfectants with high affinity and cross-compete effectively with RANTES, MIP-1alpha, and MIP-1beta. MCP-2 is a true agonist for CCR5, eliciting a robust chemotactic response in CCR5 transfectants similar to that of the three known CCR5 ligands and exhibiting cross-desensitization with RANTES in the Ca2+ flux response. MCP-4 also bound to CCR5 with high affinity and was efficiently displaced by other CCR5 ligands. However, MCP-4 only partially displaced the binding of radiolabeled MIP-1alpha and caused a chemotactic response only at high concentrations. Furthermore, MCP-2 inhibited the binding of the M-tropic HIV-1 gp120 envelope glycoprotein to CCR5 and HIV-1 infection of peripheral blood mononuclear cells. More importantly, we found that MCP-2 could bind and elicit chemotaxis in CD3-activated and IL-2-maintained T cells, and most of these functions could be specifically inhibited by the anti-CCR5 mAb 2D7, whereas the responses mediated by MIP-1alpha or MCP-4 were only partially inhibited by 2D7. Thus, although MCP-2 can bind to and signal through CCR1, CCR2b, and CCR5, among which both CCR2 and CCR5 are expressed at high levels on activated T cells, it appears to preferably utilize CCR5 on these cells. In contrast, MIP-1alpha and MCP-4 seem to activate multiple receptors on the same cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9790730/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9289016" class="tabcontent ">
+                    <h2>Distinct but overlapping epitopes for the interaction of a CC-chemokine with CCR1, CCR3 and CCR5.</h2>
+                    <h3>Biochemistry; 1997</h3>
+                    <p>Chemokines play an important role in inflammation. The mechanism via which they bind to more than one receptor and activate them is not well understood. The chemokines are thought to interact with their receptors via two distinct sites, one necessary for binding and the other for activation of signal transduction. In this study we have used alanine scanning mutagenesis to identify residues on RANTES that specifically interact with its receptors CCR1, CCR3, and CCR5 for binding and activation. Residues within a potential receptor binding site known as the N-loop (residues 12-20) and near the N-terminus of RANTES were individually mutated to alanine. The results of this study show that, within the N-loop, the side chain of R17 is necessary for RANTES binding to CCR1, F12 for binding to CCR3, and F12 and I15 for binding to CCR5, thus forming distinct but overlapping binding epitopes. In addition, our finding that P2 is necessary for binding to CCR5 is the first to show that a residue near the N-terminus of a CC-chemokine is involved in binding to a receptor. We have also found that P2, D6, and T7 near the N-terminus are involved in activating signal transduction via CCR1, P2 and Y3 via CCR3, and Y3 and D6 via CCR5. These results indicate that RANTES interacts with each of its receptors in a distinct and specific manner and provide further evidence to support the two-site model of interaction between chemokines and their receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9289016/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8663314" class="tabcontent ">
+                    <h2>Molecular cloning and functional characterization of a novel human CC chemokine receptor (CCR5) for RANTES, MIP-1beta, and MIP-1alpha.</h2>
+                    <h3>The Journal of biological chemistry; 1996</h3>
+                    <p>Chemokines affect leukocyte chemotactic and activation activities through specific G protein-coupled receptors. In an effort to map the closely linked CC chemokine receptor genes, we identified a novel chemokine receptor encoded 18 kilobase pairs downstream of the monocyte chemoattractant protein-1 (MCP-1) receptor (CCR2) gene on human chromosome 3p21. The deduced amino acid sequence of this novel receptor, designated CCR5, is most similar to CCR2B, sharing 71% identical residues. Transfected cells expressing the receptor bind RANTES (regulated on activation normal T cell expressed), MIP-1beta, and MIP-1alpha with high affinity and generate inositol phosphates in response to these chemokines. This same combination of chemokines has recently been shown to potently inhibit human immunodeficiency virus replication in human peripheral blood leukocytes (Cocchi, F., DeVico, A. L., Garzino-Demo, A., Arya, S. K., Gallo, R. C., and Lusso, P.(1995) Science 270, 1811-1815). CCR5 is expressed in lymphoid organs such as thymus and spleen, as well as in peripheral blood leukocytes, including macrophages and T cells, and is the first example of a human chemokine receptor that signals in response to MIP-1beta.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8663314/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11116158" class="tabcontent ">
+                    <h2>The BBXB motif of RANTES is the principal site for heparin binding and controls receptor selectivity.</h2>
+                    <h3>The Journal of biological chemistry; 2001</h3>
+                    <p>The chemokine RANTES (regulated on activation normal T cell expressed and secreted; CCL5) binds selectively to glycosaminoglycans (GAGs) such as heparin, chondroitin sulfate, and dermatan sulfate. The primary sequence of RANTES contains two clusters of basic residues, (44)RKNR(47) and (55)KKWVR(59). The first is a BBXB motif common in heparin-binding proteins, and the second is located in the loop directly preceding the C-terminal helix. We have mutated these residues to alanine, both as point mutations as well as triple mutations of the 40s and 50s clusters. Using a binding assay to heparin beads with radiolabeled proteins, the (44)AANA(47) mutant demonstrated an 80% reduction in its capacity to bind heparin, whereas the (55)AAWVA(59) mutant retained full binding capacity. Mutation of the (44)RKNR(47) site reduced the selectivity of RANTES binding to different GAGs. The mutants were tested for their integrity by receptor binding assays on CCR1 and CCR5 as well as their ability to induce chemotaxis in vitro. In all assays the single point mutations and the triple 50s cluster mutation caused no significant difference in activity compared with the wild type sequence. However, the triple 40s mutant showed a 80-fold reduction in affinity for CCR1, despite normal binding to CCR5. It was only able to induce monocyte chemotaxis at micromolar concentrations. The triple 40s mutant was also able to inhibit HIV-1 infectivity, but consistent with its abrogated GAG binding capacity, it no longer induced enhanced infectivity at high concentrations.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11116158/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab14637022" class="tabcontent ">
+                    <h2>Interaction of RANTES with syndecan-1 and syndecan-4 expressed by human primary macrophages.</h2>
+                    <h3>Biochimica et biophysica acta; 2003</h3>
+                    <p>Interaction of RANTES with its membrane ligands or receptors transduces multiple intracellular signals. Whether RANTES uses proteoglycans (PGs) belonging to the syndecan family to attach to primary cells expressing RANTES G-protein-coupled receptors (GPCRs) was investigated. We demonstrate that RANTES specifically binds to high and low affinity binding sites on human monocyte-derived macrophages (MDM). We show by co-immunoprecipitation experiments that RANTES is associated on these cells with syndecan-1 and syndecan-4, but neither with syndecan-2 nor with betaglycan, in addition to CD44 and its GPCRs, CCR5 and CCR1. Glycosaminidases pre-treatment of the monocyte derived-macrophages strongly decreases the binding of RANTES to syndecan-1 and syndecan-4 and also to CCR5, and abolishes RANTES binding to CD44. This suggests that glycosaminoglycans (GAGs) are involved in RANTES binding to the PGs and that such bindings facilitate the subsequent interaction of RANTES with CCR5, on the MDM, characterized by low membrane expression of CCR5. The role of these interactions in the pathophysiology of RANTES deserves further study.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14637022/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10477718" class="tabcontent ">
+                    <h2>CCR5 binds multiple CC-chemokines: MCP-3 acts as a natural antagonist.</h2>
+                    <h3>Blood; 1999</h3>
+                    <p>CCR5 was first characterized as a receptor for MIP-1alpha, MIP-1beta, and RANTES, and was rapidly shown to be the main coreceptor for M-tropic human immunodeficiency virus (HIV)-1 strains and simian immunodeficiency virus (SIV). Chemokines constitute a rapidly growing family of proteins and receptor-chemokine interactions are known to be promiscuous and redundant. We have therefore tested whether other CC-chemokines could bind to and activate CCR5. All CC-chemokines currently available were tested for their ability to compete with [(125)I]-MIP-1beta binding on a stable cell line expressing recombinant CCR5, and/or to induce a functional response in these cells. We found that in addition to MIP-1beta, MIP-1alpha, and RANTES, five other CC-chemokines could compete for [(125)I]-MIP-1beta binding: MCP-2, MCP-3, MCP-4, MCP-1, and eotaxin binding was characterized by IC(50) values of 0.22, 2.14, 5.89, 29.9, and 21.7 nmol/L, respectively. Among these ligands, MCP-3 had the remarkable property of binding CCR5 with high affinity without eliciting a functional response, MCP-3 could also inhibit the activation of CCR5 by MIP-1beta and may therefore be considered as a natural antagonist for CCR5. It was unable to induce significant endocytosis of the receptor. Chemokines that could compete with high affinity for MIP-1beta binding could also compete for monomeric gp120 binding, although with variable potencies; maximal gp120 binding inhibition was 80% for MCP-2, but only 30% for MIP-1beta. MCP-3 could compete efficiently for gp120 binding but was, however, found to be a weak inhibitor of HIV infection, probably as a consequence of its inability to downregulate the receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10477718/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

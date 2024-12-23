@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CORT——SSTR3 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CORT——SSTR3</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9125122')">9125122</button><button class="tablinks " onclick="openTab(event, 'tab9650799')">9650799</button><button class="tablinks " onclick="openTab(event, 'tab10598788')">10598788</button><button class="tablinks " onclick="openTab(event, 'tab15333679')">15333679</button><button class="tablinks " onclick="openTab(event, 'tab9125122')">9125122</button><button class="tablinks " onclick="openTab(event, 'tab9205124')">9205124</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9125122" class="tabcontent active">
+                    <h2>Identification and characterization of a novel human cortistatin-like peptide.</h2>
+                    <h3>Biochemical and Biophysical Research Communications; 1997</h3>
+                    <p>Expressed sequence tags (ESTs) that showed significant homology to rat cortistatin (CST) were found in a human fetal brain cDNA library. A protein coded by the cDNA showed 55% identity to rat preprocortistatin in amino acid. Similarly in the generation of mature peptides from rat preprocortistatin, it was expected that cleavage at dibasic amino acids in the C-terminal portion of the coded protein might produce at least two different sizes of mature peptides with 29 and 17 amino acid residues, respectively. We chemically synthesized the predicted mature peptide with 17 amino acid residues (hCS-17) and examined its biological activities. It bound to all human somatostatin receptor (SSTR) subtypes in almost the same manner as rat CST-14. It also inhibited cAMP production induced by forskolin through SSTRs. Administration of hCS-17 to the cerebral ventricle showed flattening of cortical and hippocampal electroencephalograms in rats. These results indicate that a bioactive peptide encoded by the cDNA is a human counterpart corresponding to rat CST.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9125122/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9650799" class="tabcontent ">
+                    <h2>[125I]Tyr10-cortistatin14 labels all five somatostatin receptors.</h2>
+                    <h3>Naunyn-Schmiedeberg's archives of pharmacology; 1998</h3>
+                    <p>The recently cloned rat preprocortistatin, which shows homology to the preprosomatostatin peptide, is thought to be enzymatically cleaved to cortistatin14 (CST14) similarly to somatostatin14 (SRIF14). High structural similarity of cortistatin14 compared to SRIF14 suggested binding properties to somatostatin receptors similar to SRIF14. In the present study, we expressed stably the five human somatostatin receptor subtypes (hsst1-hsst5) in CCL39 cells (Chinese hamster lung fibroblast cells). The receptors were labelled with an iodinated analogue of CST14 ([125I]Tyr10)-cortistatin14, [125I]Tyr10-CST) to establish the pharmacological profile of hsst1-hsst5 sites labelled with [125I]Tyr10-CST. In parallel, [Leu8,D-Trp22,125I-Tyr25]-SRIF28 ([125I]LTT-SRIF28) was used as a control at the five recombinant SRIF receptors stably expressed in CCL39 cells. High affinity [125I]Tyr10-CST binding could be demonstrated to all five recombinant somatostatin receptor subtypes. The pKd (-log mol/l) and Bmax values (fmol/mg) for hsst1-5 receptors were: 10.02+/-0.04, 220+/-30; 9.45+/-0.09, 340+/-70; 10.06+/-0.11, 340+/-50; 9.67+/-0.14, 340+/-110 and 10.33+/-0.03, 5630+/-1330, respectively. The pharmacological profiles determined with [125I]Tyr10-CST and [125I]LTT-SRIF28 were very similar at every receptor studied. These data suggest that cortistatin and somatostatin have similar high affinity for SRIF receptors. None of the receptors showed marked selectivity for either CST14/CST17 or the somatostatins. In conclusion, the data show that cortistatin and somatostatin have very similar high affinity to all five recombinant somatostatin receptors. It remains to be seen whether there are specific receptors which bind only somatostatins or cortistatins.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9650799/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10598788" class="tabcontent ">
+                    <h2>Characterisation of human recombinant somatostatin receptors. 1. Radioligand binding studies.</h2>
+                    <h3>Naunyn-Schmiedeberg's archives of pharmacology; 1999</h3>
+                    <p>Human somatostatin receptor subtypes 1-5 (sst1-5) were characterised using the agonist radioligands [125I]LTT-SRIF28, [125I][Tyr10]CST14, [125I]CGP 23996 and [125I][Tyr3]octreotide in stably transfected Chinese hamster lung fibroblast cells (CCL39 cells). The radioligands used labelled saturable and high-affinity populations of sites in each instance; at sst1-4 receptors maximum binding (Bmax) was roughly equivalent. By contrast, at sst5 receptors Bmax determined with [125I]CGP 23996 and [125I][Tyr3]octreotide was significantly lower (two-and eightfold) compared with [125I]LTT-SRIF28 and [125I][Tyr10]CST14. Experiments were performed with the stable GTP-analogue guanylylimidodiphosphate (GppNHp) to establish guanine nucleotide sensitivity of agonist binding to sst1-5 receptors. The sensitivity towards GppNHp was quite variable depending on receptor and/or ligand. At sst1 and sst4 receptors, GppNHp produced little effect overall, whereas binding to sst3 and sst2 receptors was reduced by 70 and >80%, respectively. At sst5 receptors, the binding of [125I]LTT-SRIF28 and [125I][Tyr10]CST14 was only slightly affected by GppNHp, while [125I]CGP 23996 and [125I][Tyr3]octreotide binding was almost entirely inhibited. Thus, [125I][Tyr3]octreotide labelled about 26-fold less sst5 receptors than [125I]LTT-SRIF28, in the presence of 10 microM GppNHp. These discrepancies in guanine nucleotide sensitivity, were confirmed in GppNHp competition experiments. Competition studies were performed at the five receptors labelled with the different radioligands to establish their respective pharmacological profiles: the rank order of affinity was largely radioligand-independent at sst1-4 receptors, in contrast to sst5 receptors where it was radioligand-dependent. Thus, the pharmacological profile of [125I]LTT-SRIF28- and [125I][Tyr10]CST14-labelled sst5 sites correlated highly significantly, but did not correlate with the affinity profiles defined with [125I]CGP 23996 and [125I][Tyr3]octreotide binding to sst5 receptors. Depending on the agonist radioligand used and the receptor studied, it would appear that binding can be essentially to a guanine nucleotide-sensitive state (e.g. sst2 or sst3), a guanine nucleotide-insensitive state (sst1 or sst4) or a mixture of both (sst5); in the latter case, each radioligand defining a more or less different rank order of affinity at the same receptor. In summary, the differences in agonist receptor binding and guanine nucleotide sensitivity cannot be explained by the ternary complex model or its variations, but rather suggest the existence of multiple agonist-specific receptor states which vary from one receptor to another.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10598788/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15333679" class="tabcontent ">
+                    <h2>Superagonism at the human somatostatin receptor subtype 4.</h2>
+                    <h3>The Journal of pharmacology and experimental therapeutics; 2005</h3>
+                    <p>We have discovered a novel compound, J-2156 [(1'S, 2S)-4-amino-N-(1'-carbamoyl-2'-phenylethyl)-2-(4''-methyl-1''-naphthalenesulfonylamino)butanamide], that belongs to a new class of somatostatin receptor ligands. J-2156 binds with nanomolar affinity to the human somatostatin receptor subtype 4 and is over 400-fold subtype-selective against the other somatostatin receptors. When evaluated in a [(35)S]guanosine-5'-O-(3-thio) triphosphate binding assay, J-2156 elicited a response 2 to 3 times as large as that of somatostatin-28 and somatostatin-14. That somatostatin-14 is clearly not a maximally efficacious agonist could be verified by demonstrating that it displays the typical behavior of a partial agonist when tested against J-2156. Increasing concentrations of somatostatin-14 cause a concentration-dependent rightward shift of the dose-response curves for J-2156, without affecting its maximal response. This lack of reduction of the maximal response and the fact that the superior efficacy of J-2156 is detected in membranes argue against desensitization and internalization as possible explanations for the superior efficacy of J-2156. More likely is that somatostatin-14 and J-2156 stabilize distinct receptor conformations that differ in their ability to interact with G-proteins. In a cyclic AMP assay, J-2156, somatostatin-28, and somatostatin-14 all act as full agonists. However, this outcome is most likely due to the presence of a receptor reserve in the cyclic AMP assay since there is a large gain of apparent potency in the cyclic AMP assay and the gain is larger for J-2156 than for somatostatin. We conclude that the endogenous ligands somatostatin-14 and somatostatin-28 do not define maximal agonism on the human somatostatin receptor subtype 4 and that J-2156 represents a so-called superagonist.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15333679/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9125122" class="tabcontent ">
+                    <h2>Identification and characterization of a novel human cortistatin-like peptide.</h2>
+                    <h3>Biochemical and Biophysical Research Communications; 1997</h3>
+                    <p>Expressed sequence tags (ESTs) that showed significant homology to rat cortistatin (CST) were found in a human fetal brain cDNA library. A protein coded by the cDNA showed 55% identity to rat preprocortistatin in amino acid. Similarly in the generation of mature peptides from rat preprocortistatin, it was expected that cleavage at dibasic amino acids in the C-terminal portion of the coded protein might produce at least two different sizes of mature peptides with 29 and 17 amino acid residues, respectively. We chemically synthesized the predicted mature peptide with 17 amino acid residues (hCS-17) and examined its biological activities. It bound to all human somatostatin receptor (SSTR) subtypes in almost the same manner as rat CST-14. It also inhibited cAMP production induced by forskolin through SSTRs. Administration of hCS-17 to the cerebral ventricle showed flattening of cortical and hippocampal electroencephalograms in rats. These results indicate that a bioactive peptide encoded by the cDNA is a human counterpart corresponding to rat CST.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9125122/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9205124" class="tabcontent ">
+                    <h2>Cloning, mRNA expression, and chromosomal mapping of mouse and human preprocortistatin.</h2>
+                    <h3>Genomics; 1997</h3>
+                    <p>Cortistatin is a 14-residue putative neuropeptide with strong structural similarity to somatostatin and is expressed predominantly in cortical GABAergic interneurons of rats. Administration of cortistatin into the brain ventricles specifically enhances slow-wave sleep, presumably by antagonizing the effects of acetylcholine on cortical excitability. Here we report the identification of cDNAs corresponding to mouse and human preprocortistatin and the mRNA distribution and gene mapping of mouse cortistatin. Analysis of the nucleotide and predicted amino acid sequences from rat and mouse reveals that the 14 C-terminal residues of preprocortistatin, which make up the sequence that is most similar to somatostatin, are conserved between species. Lack of conservation of other dibasic amino acid residues whose cleavage by prohormone convertases would give rise to additional peptides suggests that cortistatin-14 is the only active peptide derived from the precursor. As in the rat, mouse preprocortistatin mRNA is present in GABAergic interneurons in the cerebral cortex and hippocampus. The preprocortistatin gene maps to mouse chromosome 4, in a region showing conserved synteny with human 1p36. The human putative cortistatin peptide has an arginine for lysine substitution, compared to the rat and mouse products, and is N-terminally extended by 3 amino acids.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9205124/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

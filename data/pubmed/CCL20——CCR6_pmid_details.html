@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>CCL20——CCR6 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for CCL20——CCR6</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab12964882')">12964882</button><button class="tablinks " onclick="openTab(event, 'tab9169459')">9169459</button><button class="tablinks " onclick="openTab(event, 'tab9294137')">9294137</button><button class="tablinks " onclick="openTab(event, 'tab12081481')">12081481</button><button class="tablinks " onclick="openTab(event, 'tab9223454')">9223454</button><button class="tablinks " onclick="openTab(event, 'tab9169459')">9169459</button><button class="tablinks " onclick="openTab(event, 'tab9294137')">9294137</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab12964882" class="tabcontent active">
+                    <h2>Unraveling the chemistry of chemokine receptor ligands.</h2>
+                    <h3>Chemical reviews; 2003</h3>
+                    <p>No abstract available</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12964882/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9169459" class="tabcontent ">
+                    <h2>Identification of CCR6, the specific receptor for a novel lymphocyte-directed CC chemokine LARC.</h2>
+                    <h3>The Journal of biological chemistry; 1997</h3>
+                    <p>Liver and activation-regulated chemokine (LARC) is a recently identified CC chemokine that is expressed mainly in the liver. LARC functions as a selective chemoattractant for lymphocytes that express a class of receptors specifically binding to LARC with high affinity. To identifiy the receptor for LARC, we examined LARC-induced calcium mobilization in cells stably expressing five CC chemokine receptors (CCR1-CCR5) and five orphan seven-transmembrane receptors. LARC specifically induced calcium flux in K562 cells as well as 293/EBNA-1 cells stably expressing an orphan receptor GPR-CY4. LARC induced migration in 293/EBNA-1 cells stably expressing GPR-CY4 with a bi-modal dose-response curve. LARC fused with secreted alkaline phosphatase (LARC-SEAP) bound specifically to Raji cells stably expressing GPR-CY4 with a Kd of 0.9 nM. Only LARC but not five other CC chemokines (MCP-1, RANTES, MIP-1alpha, MIP-1beta, and TARC) competed with LARC-SEAP for binding to GPR-CY4. By Northern blot analysis, GPR-CY4 mRNA was expressed mainly in spleen, lymph nodes, Appendix, and fetal liver among various human tissues. Among various leukocyte subsets, GPR-CY4 mRNA was detected in lymphocytes (CD4(+) and CD8(+) T cells and B cells) but not in natural killer cells, monocytes, or granulocytes. Expression of GPR-CY4 mRNA in CD4(+) and CD8(+) T cells was strongly up-regulated by IL-2. Taken together, GPR-CY4 is the specific receptor for LARC expressed selectively on lymphocytes, and LARC is a unique functional ligand for GPR-CY4. We propose GPR-CY4 to be designated as CCR6.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9169459/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9294137" class="tabcontent ">
+                    <h2>Cloning and characterization of a specific receptor for the novel CC chemokine MIP-3alpha from lung dendritic cells.</h2>
+                    <h3>The Journal of experimental medicine; 1997</h3>
+                    <p>Dendritic cells are potent antigen-presenting cells involved in the initiation of immune responses. The trafficking of these cells to tissues and lymph nodes is mediated by members of the chemokine family. Recently, a novel CC chemokine known as MIP-3alpha or liver and activation-regulated chemokine has been identified from the EMBL/GenBank/DDBJ expressed sequence tag database. In the present study, we have shown that the messenger RNA for MIP-3alpha is expressed predominantly in inflamed and mucosal tissues. MIP-3alpha produced either synthetically or by human embryonic kidney 293 cells is chemotactic for CD34(+)-derived dendritic cells and T cells, but is inactive on monocytes and neutrophils. MIP-3alpha was unable to displace the binding of specific CC or CXC chemokines to stable cell lines expressing their respective high affinity receptors, namely CCR1-5 and CXCR1 and CXCR2, suggesting that MIP-3alpha acts through a novel CC chemokine receptor. Therefore, we used degenerate oligonucleotide-based reverse transcriptase PCR to identify candidate MIP-3alpha receptors in lung dendritic cells. Our results show that the orphan receptor known as GCY-4, CKRL-3, or STRL-22 is a specific receptor for MIP-3alpha, and that its activation leads to pertussis toxin-sensitive and phospholipase C-dependent intracellular Ca2+ mobilization when it is expressed in HEK 293 cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9294137/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12081481" class="tabcontent ">
+                    <h2>Mutating the four extracellular cysteines in the chemokine receptor CCR6 reveals their differing roles in receptor trafficking, ligand binding, and signaling.</h2>
+                    <h3>Biochemistry; 2002</h3>
+                    <p>CCR6 is the receptor for the chemokine MIP-3 alpha/CCL20. Almost all chemokine receptors contain cysteine residues in the N-terminal domain and in the first, second, and third extracellular loops. In this report, we have studied the importance of all cysteine residues in the CCR6 sequence using site-directed mutagenesis and biochemical techniques. Like all G protein-coupled receptors, mutating disulfide bond-forming cysteines in the first (Cys118) and second (Cys197) extracellular loops in CCR6 led to complete elimination of receptor activity, which for CCR6 was also associated with the accumulation of the receptor intracellularly. Although two additional cysteines in the N-terminal region and the third extracellular loop, which are present in almost all chemokine receptors, are presumed to form a disulfide bond, this has not been demonstrated experimentally for any of these receptors. We found that mutating the cysteines in the N-terminal domain (Cys36) and the third extracellular loop (Cys288) neither significantly affected receptor surface expression nor completely abolished receptor function. Importantly, contrary to several previous reports, we demonstrated directly that instead of forming a disulfide bond, the N-terminal cysteine (Cys36) and the third extracellular loop cysteine (Cys288) contain free SH groups. The cysteine residues (Cys36 and Cys288), rather than forming a disulfide bond, may be important per se. We propose that CCR6 forms only a disulfide bond between the first (Cys118) and second (Cys197) extracellular loops, which confines a helical bundle together with the N-terminus adjacent to the third extracellular loop, creating the structural organization critical for ligand binding and therefore for receptor signaling.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12081481/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9223454" class="tabcontent ">
+                    <h2>STRL22 is a receptor for the CC chemokine MIP-3alpha.</h2>
+                    <h3>Biochemical and biophysical research communications; 1997</h3>
+                    <p>STRL22 is a human seven transmembrane domain orphan receptor related to known chemokine receptors and expressed in peripheral blood lymphocytes, tumor infiltrating lymphocytes and lymphoid tissues. MIP-3alpha/LARC/Exodus is a CC chemokine that is chemotactic for lymphocytes and that is expressed in activated cells, including monocytes, T cells, endothelial cells, and fibroblasts, and in liver, lung, and some lymphoid tissues. We report here that STRL22-transfected human embryonic kidney 293 cells demonstrated specific binding for MIP-3alpha and that MIP-3alpha, but no other chemokines, produced a calcium flux in the STRL22-transfected cells. We show that MIP-3alpha, unlike other chemokines, produced a calcium flux in freshly-isolated peripheral blood lymphocytes and we show that MIP-3alpha also produced a signal in tumor infiltrating lymphocytes that express STRL22. Since STRL22 is the sixth functional CC chemokine receptor identified, it should be re-named CCR6.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9223454/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9169459" class="tabcontent ">
+                    <h2>Identification of CCR6, the specific receptor for a novel lymphocyte-directed CC chemokine LARC.</h2>
+                    <h3>The Journal of biological chemistry; 1997</h3>
+                    <p>Liver and activation-regulated chemokine (LARC) is a recently identified CC chemokine that is expressed mainly in the liver. LARC functions as a selective chemoattractant for lymphocytes that express a class of receptors specifically binding to LARC with high affinity. To identifiy the receptor for LARC, we examined LARC-induced calcium mobilization in cells stably expressing five CC chemokine receptors (CCR1-CCR5) and five orphan seven-transmembrane receptors. LARC specifically induced calcium flux in K562 cells as well as 293/EBNA-1 cells stably expressing an orphan receptor GPR-CY4. LARC induced migration in 293/EBNA-1 cells stably expressing GPR-CY4 with a bi-modal dose-response curve. LARC fused with secreted alkaline phosphatase (LARC-SEAP) bound specifically to Raji cells stably expressing GPR-CY4 with a Kd of 0.9 nM. Only LARC but not five other CC chemokines (MCP-1, RANTES, MIP-1alpha, MIP-1beta, and TARC) competed with LARC-SEAP for binding to GPR-CY4. By Northern blot analysis, GPR-CY4 mRNA was expressed mainly in spleen, lymph nodes, Appendix, and fetal liver among various human tissues. Among various leukocyte subsets, GPR-CY4 mRNA was detected in lymphocytes (CD4(+) and CD8(+) T cells and B cells) but not in natural killer cells, monocytes, or granulocytes. Expression of GPR-CY4 mRNA in CD4(+) and CD8(+) T cells was strongly up-regulated by IL-2. Taken together, GPR-CY4 is the specific receptor for LARC expressed selectively on lymphocytes, and LARC is a unique functional ligand for GPR-CY4. We propose GPR-CY4 to be designated as CCR6.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9169459/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9294137" class="tabcontent ">
+                    <h2>Cloning and characterization of a specific receptor for the novel CC chemokine MIP-3alpha from lung dendritic cells.</h2>
+                    <h3>The Journal of experimental medicine; 1997</h3>
+                    <p>Dendritic cells are potent antigen-presenting cells involved in the initiation of immune responses. The trafficking of these cells to tissues and lymph nodes is mediated by members of the chemokine family. Recently, a novel CC chemokine known as MIP-3alpha or liver and activation-regulated chemokine has been identified from the EMBL/GenBank/DDBJ expressed sequence tag database. In the present study, we have shown that the messenger RNA for MIP-3alpha is expressed predominantly in inflamed and mucosal tissues. MIP-3alpha produced either synthetically or by human embryonic kidney 293 cells is chemotactic for CD34(+)-derived dendritic cells and T cells, but is inactive on monocytes and neutrophils. MIP-3alpha was unable to displace the binding of specific CC or CXC chemokines to stable cell lines expressing their respective high affinity receptors, namely CCR1-5 and CXCR1 and CXCR2, suggesting that MIP-3alpha acts through a novel CC chemokine receptor. Therefore, we used degenerate oligonucleotide-based reverse transcriptase PCR to identify candidate MIP-3alpha receptors in lung dendritic cells. Our results show that the orphan receptor known as GCY-4, CKRL-3, or STRL-22 is a specific receptor for MIP-3alpha, and that its activation leads to pertussis toxin-sensitive and phospholipase C-dependent intracellular Ca2+ mobilization when it is expressed in HEK 293 cells.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9294137/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

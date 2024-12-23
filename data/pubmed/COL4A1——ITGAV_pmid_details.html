@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>COL4A1——ITGAV - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for COL4A1——ITGAV</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab14610079')">14610079</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab14610079" class="tabcontent active">
+                    <h2>Alpha(v)beta3 and alpha(v)beta5 integrins bind both the proximal RGD site and non-RGD motifs within noncollagenous (NC1) domain of the alpha3 chain of type IV collagen: implication for the mechanism of endothelia cell adhesion.</h2>
+                    <h3>The Journal of biological chemistry; 2004</h3>
+                    <p>The NC1 domains of human type IV collagen, in particular alpha3NC1, are inhibitors of angiogenesis and tumor growth (Petitclerc, E., Boutaud, A., Prestayko, A., Xu, J., Sado, Y., Ninomiya, Y., Sarras, M. P., Jr., Hudson, B. G., and Brooks, P. C. (2000) J. Biol. Chem. 275, 8051-8061). The recombinant alpha3NC1 domain contained a RGD site as part of a short collagenous sequence at the N terminus, designated herein as RGD-alpha3NC1. Others, using synthetic peptides, have concluded that this RGD site is nonfunctional in cell adhesion, and therefore, the anti-angiogenic activity is attributed exclusively to alpha(v)beta(3) integrin interactions with non-RGD motifs of the RGD-alpha3NC1 domain (Maeshima, Y., Colorado, P. C., and Kalluri, R. (2000) J. Biol. Chem. 275, 23745-23750). This nonfunctionality is surprising given that RGD is a binding site for alpha(v)beta(3) integrin in several proteins. In the present study, we used the alpha3NC1 domain with or without the RGD site, expressed in HEK 293 cells for native conformation, as an alternative approach to synthetic peptides to assess the functionality of the RGD site and non-RGD motifs. Our results demonstrate a predominant role of the RGD site for endothelial adhesion and for binding of alpha(v)beta(3) and alpha(v)beta(5) integrins. Moreover, we demonstrate that the two non-RGD peptides, previously identified as the alpha(v)beta(3) integrin-binding sites of the alpha3NC1 domain, are 10-fold less potent in competing for integrin binding than the native protein, indicating the importance of additional structural and/or conformational features of the alpha3NC1 domain for integrin binding. Therefore, the RGD site, in addition to non-RGD motifs, may contribute to the mechanisms of endothelial cell adhesion in the human vasculature and the anti-angiogenic activity of the RGD-alpha3NC1 domain.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/14610079/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

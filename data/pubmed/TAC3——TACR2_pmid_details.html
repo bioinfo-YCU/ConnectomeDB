@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>TAC3——TACR2 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for TAC3——TACR2</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab8925404')">8925404</button><button class="tablinks " onclick="openTab(event, 'tab9190866')">9190866</button><button class="tablinks " onclick="openTab(event, 'tab7682062')">7682062</button><button class="tablinks " onclick="openTab(event, 'tab7961636')">7961636</button><button class="tablinks " onclick="openTab(event, 'tab10189055')">10189055</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab8925404" class="tabcontent active">
+                    <h2>Tachykinins: receptor to effector.</h2>
+                    <h3>The international journal of biochemistry & cell biology; 1996</h3>
+                    <p>Tachykinins belong to an evolutionarily conserved family of peptide neurotransmitters. The mammalian tachykinins include substance P, neurokinin A and neurokinin B, which exert their effects by binding to specific receptors. These tachykinin receptors are divided into three types, designated NK1, NK2 and NK3, respectively. Tachykinin receptors have been cloned and contain seven segments spanning the cell membrane, indicating their inclusion in the G-protein-linked receptor family. The continued development of selective agonists and antagonists for each receptor has helped elucidate roles for these mediators, ranging from effects in the central nervous system to the perpetuation of the inflammatory response in the periphery. Various selective ligands have shown both inter- and intraspecies differences in binding potencies, indicating distinct binding sites in the tachykinin receptor. The interaction of tachykinin with its receptor activates Gq, which in turn activates phospholipase C to break down phosphatidyl inositol bisphosphate into inositol trisphosphate (IP3) and diacylglycerol (DAG). IP3 acts on specific receptors in the sarcoplasmic reticulum to release intracellular stores of Ca2+, while DAG acts via protein kinase C to open L-type calcium channels in the plasma membrane. The rise in intracellular [Ca2+] induces the tissue response. With an array of actions as diverse as that seen with tachykinins, there is scope for numerous therapeutic possibilities. With the development of potent, selective non-peptide antagonists, there could be potential benefits in the treatment of a variety of clinical conditions, including chronic pain, Parkinson's disease, Alzheimer's disease, depression, rheumatoid arthritis, irritable bowel syndrome and asthma.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8925404/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9190866" class="tabcontent ">
+                    <h2>Nonpeptide tachykinin receptor antagonists: I. Pharmacological and pharmacokinetic characterization of SB 223412, a novel, potent and selective neurokinin-3 receptor antagonist.</h2>
+                    <h3>The Journal of pharmacology and experimental therapeutics; 1997</h3>
+                    <p>The in vitro and in vivo pharmacological profile of SB 223412 [(S)-(-)-N-(alpha-ethylbenzyl)-3-hydroxy-2-phenylquinoline-4-carbo xamide], a novel human NK-3 (hNK-3) receptor antagonist, is described. SB 223412 demonstrated enantioselective affinity for inhibition of [125I][MePhe7]neurokinin B (NKB) binding to membranes of CHO cells expressing the hNK-3 receptor (CHO hNK-3). SB 223412, the (S)-isomer, (Ki = 1.0 nM), has similar affinity as the natural ligand, NKB (Ki = 0.8 nM) and another nonpeptide NK-3 receptor antagonist, SR 142801 (Ki = 1.2 nM). SB 223412 was selective for hNK-3 receptors compared with hNK-1 (>10,000-fold selective) and hNK-2 receptors (>140-fold selective), and selectivity was further demonstrated by its lack of effect, in concentrations up to 1 or 10 microM, in >60 receptor, enzyme and ion channel assays. SB 223412 enantioselectively inhibited the NKB-induced Ca++ mobilization in HEK 293 cells stably expressing the hNK-3 receptor. SB 223412 (10-1,000 nM) produced concentration-dependent rightward shifts in NKB-induced Ca++ mobilization concentration-response curves with a Kb value of 3 nM. In addition, SB 223412 antagonized senktide-induced contraction in the isolated rabbit iris sphincter muscle (Kb = 1.6 nM). In mice, oral administration of SB 223412 produced dose-dependent inhibition of behavioral responses induced by the NK-3 receptor-selective agonist, senktide (ED50 = 12.2 mg/kg). Pharmacokinetic evaluation of SB 223412 in rat and dog indicated low plasma clearance, oral bioavailability and high and sustained plasma concentrations after 4 to 8 mg/kg oral dosages. The preclinical profile of SB 223412 (high affinity, selectivity, reversibility and oral activity) suggests that it will be a useful tool compound to define the physiological and pathophysiological roles of NK-3 receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9190866/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7682062" class="tabcontent ">
+                    <h2>Characterization of the binding sites of [3H]SR 48968, a potent nonpeptide radioligand antagonist of the neurokinin-2 receptor.</h2>
+                    <h3>Biochemical and biophysical research communications; 1993</h3>
+                    <p>[3H]SR 48968, a radiolabeled nonpeptide antagonist of NK-2 receptor, has been tested in ligand-receptor binding assays using rat duodenum, hamster urinary bladder and guinea pig ileum membranes. [3H]SR 48968 bound to a single class of high affinity binding sites. Its affinity was slightly species-dependent. Its binding was inhibited by neurokinins, following the rank order of potency NKA > NKB > SP. It was also inhibited by peptide antagonists of NK-2 receptor (MEN 10,376, L 659,877), but their relative potencies were highly species-dependent. Unlabeled SR 48968, but not its R-enantiomer (SR 48965), also potently inhibited its binding. These data show that [3H]SR 48968 potently binds to NK-2 receptor and therefore is a useful tool to study NK-2 receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7682062/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7961636" class="tabcontent ">
+                    <h2>The ligand binding site of the neurokinin 2 receptor. Site-directed mutagenesis and identification of neurokinin A binding residues in the human neurokinin 2 receptor.</h2>
+                    <h3>The Journal of biological chemistry; 1994</h3>
+                    <p>Thirteen residues in the human neurokinin 2 (NK2) receptor were identified as potential ligand-binding residues by molecular modeling and amino acid sequence analysis. Site-directed mutagenesis was used to alter these residues in order to ascertain their importance in binding neurokinin A (NKA), the physiological peptide ligand for the NK2 receptor, and the non-peptide NK2 receptor selective antagonist SR48968. Four sites appear to be critical for NKA binding (Gln109, His198, Ile202, and Gly273). The mutant receptors Gln109-->His, Ile202-->Val, Gly273-->Pro, and Gly273-->Thr maintain their affinity for SR48968, despite being unable to bind the peptide ligand. His198-->Ala and His198-->Leu no longer bind NKA or SR48968. We have also identified a residue (Leu292) which appears to play a minor role in the binding of substance P (SP) and neurokinin B (NKB) to the NK2 receptor. The mutant receptor Leu292-->Ser binds NKB and SP with approximately a 5-fold greater affinity in comparison with the wild type receptor while the affinity of NKA remains unaffected. The results suggest that intramembranous residues, as well as residues which lie close to the extracellular side of transmembrane helices 3, 5, and 6, form part of the NK2 receptor binding site. Binding of SP and NKB to the NK2 receptor may also be influenced by residues near the extracellular side of helix 7. These results suggest that some regions of the binding site for NKA in the NK2 receptor are not used for binding SP in the NK1 receptor. However, it also seems that the NKA binding site includes regions that are also used by other G-protein-coupled receptors such as rhodopsin and the beta 2-adrenergic receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7961636/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10189055" class="tabcontent ">
+                    <h2>Tachykinin receptors on human monocytes: their involvement in rheumatoid arthritis</h2>
+                    <h3>Neuropeptides; 1998</h3>
+                    <p>Three types of tachykinin receptors, namely NK1, NK2 and NK3, are known to preferentially interact with substance P (SP), neurokinin A (NKA) and neurokinin B (NKB), respectively. Experimental evidence indicates that SP and NKA modulate the activity of inflammatory and immune cells, including mononuclear ones. This study evaluated the effects of mammalian tachykinins and selective tachykinin agonists and antagonists on human monocytes isolated from healthy donors: SP, NKA and NKB all evoked a dose-dependent superoxide anion (O2-) production and the NK2 selective agonist [beta-Ala8]-NKA(4-10) induced a full response. The NK3 selective agonist senktide was inactive, while the NK1 selective agonists septide and [Sar9Met(O2)11]SP displayed some effects. These results indicate that NK2 and also some NK1 receptors are present in monocytes isolated from healthy donors. The role of tachykinin receptor activation in rheumatoid arthritis was also investigated, by measuring O2- production and TNF-alpha mRNA expression in monocytes isolated from rheumatoid patients. Tachykinins enhanced the expression of this cytokine in both control and rheumatoid monocytes and NK2 receptor stimulation was shown to trigger an enhanced respiratory burst in monocytes from rheumatoid patients. In conclusion, these results indicate that NK2 and NK1 receptors are present on human monocytes, the former being preferentially involved in rheumatoid arthritis.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10189055/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

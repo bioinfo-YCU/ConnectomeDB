@@ -1,0 +1,42 @@
+
+            <html>
+            <head>
+                <title>ASIP MC3R - PMID Details</title>
+                <style>
+                    .tab { display: flex; }
+                    .tab button { margin-right: 5px; padding: 10px; cursor: pointer; }
+                    .tabcontent { display: none; padding: 10px; border: 1px solid #ccc; }
+                    .tabcontent.active { display: block; }
+                </style>
+                <script>
+                    function openTab(evt, tabId) {
+                        // Hide all tabcontents
+                        let tabContents = document.getElementsByClassName("tabcontent");
+                        for (let i = 0; i < tabContents.length; i++) {
+                            tabContents[i].style.display = "none";
+                        }
+                        // Deactivate all tablinks
+                        let tabLinks = document.getElementsByClassName("tablinks");
+                        for (let i = 0; i < tabLinks.length; i++) {
+                            tabLinks[i].classList.remove("active");
+                        }
+                        // Show the current tab
+                        document.getElementById(tabId).style.display = "block";
+                        evt.currentTarget.classList.add("active");
+                    }
+                </script>
+            </head>
+            <body>
+                <h1>PMID Details for ASIP MC3R</h1>
+                <div class="tab">
+                    <button class="tablinks active" onclick="openTab(event, 'tab9058374')">9058374</button>
+                </div>
+                
+                <div id="tab9058374" class="tabcontent active">
+                    <h2>Effects of recombinant agouti-signaling protein on melanocortin action.</h2>
+                    <p>Mouse agouti protein is a paracrine signaling molecule that has previously been demonstrated to be an antagonist of melanocortin action at several cloned rodent and human melanocortin receptors. In this study we report the effects of agouti-signaling protein (ASIP), the human homolog of mouse agouti, on the action of alpha-MSH or ACTH at the five known human melanocortin receptor subtypes (hMCR 1-5). When stably expressed in L cells (hMC1R, hMC3R, hMC4R, hMC5R) or in the adrenocortical cell line OS3 (hMC1R, hMC2R, hMC4R), purified recombinant ASIP inhibits the generation of cAMP stimulated by alpha-MSH (hMC1R, hMC3R, hMC4R, hMC5R) or by ACTH (hMC2R). However, dose-response and Schild analysis indicated that the degree of ASIP inhibition varied significantly among the receptor subtypes; ASIP is a potent inhibitor of the hMC1R, hMC2R, and hMC4R, but has relatively weak effects at the hMC3R and hMC5R. These analyses also indicated that the apparent mechanism of ASIP antagonism varied among receptor subtypes, with characteristics consistent with competitive antagonism observed only at the hMC1R, and more complex behavior observed at the other receptors. ASIP inhibition at these latter receptors, nonetheless, can be classified as surmountable (hMC3R, hMC4R and hMC5R) or nonsurmountable (hMC2R). Recombinant ASIP also inhibited binding of radiolabeled melanocortins, [125I-Nle4, D-Phe7] alpha-MSH and [125I-Phe2, Nle4]ACTH 1-24, to the hMCR 1-5 receptors, with a relative efficacy that paralleled the ability of ASIP to inhibit cAMP accumulation at the hMC1R, hMC2R, hMC3R, and hMC4R. These results provide new insight into the biochemical mechanism of ASIP action and suggest that ASIP may play an important role in modulating melanocortin signaling in humans.</p>
+                </div>
+                
+            </body>
+            </html>
+            

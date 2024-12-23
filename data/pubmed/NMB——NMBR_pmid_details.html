@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>NMB——NMBR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for NMB——NMBR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15169928')">15169928</button><button class="tablinks " onclick="openTab(event, 'tab10454496')">10454496</button><button class="tablinks " onclick="openTab(event, 'tab7838118')">7838118</button><button class="tablinks " onclick="openTab(event, 'tab10544247')">10544247</button><button class="tablinks " onclick="openTab(event, 'tab8253343')">8253343</button><button class="tablinks " onclick="openTab(event, 'tab8392057')">8392057</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15169928" class="tabcontent active">
+                    <h2>Neuromedin U and its receptors: structure, function, and physiological roles.</h2>
+                    <h3>Pharmacological reviews; 2004</h3>
+                    <p>Neuromedin U (NmU) is a structurally highly conserved neuropeptide. It is ubiquitously distributed, with highest levels found in the gastrointestinal tract and pituitary. Originally isolated from porcine spinal cord, it has since been isolated and sequenced from several species. Amino acid alignment of NmU from different species reveals a high level of conservation, and particular features within its structure are important for bioactivity. Specifically, the C terminus, including a terminal asparagine-linked amidation, is essential for activity. The conservation of NmU across a wide range of species indicates a strong evolutionary pressure to conserve this peptide and points to its physiological significance. Despite this, the precise physiological and indeed pathophysiological roles of NmU have remained elusive. NmU was first isolated based on its ability to contract rat uterine smooth-muscle (hence the suffix "U") and has since been implicated in the regulation of smooth-muscle contraction, blood pressure and local blood flow, ion transport in the gut, stress responses, cancer, gastric acid secretion, pronociception, and feeding behavior. Two G-protein-coupled receptors for NmU have recently been cloned. These receptors are widespread throughout the body but have differential distributions suggesting diverse but specific roles for the receptor subtypes. Here we detail the isolation and characterization of NmU, describe the discovery, cloning, distribution, and structure of its two receptors, and outline its possible roles in both physiology and pathophysiology. Ultimately the development of receptor-specific ligands and the generation of animals in which the receptors have been selectively knocked out will hopefully reveal the true extent of the biological roles of NmU and suggest novel therapeutic indications for selective activation or blockade of either of its receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15169928/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10454496" class="tabcontent ">
+                    <h2>Comparative pharmacology of the nonpeptide neuromedin B receptor antagonist PD 168368.</h2>
+                    <h3>The Journal of pharmacology and experimental therapeutics; 1999</h3>
+                    <p>The mammalian peptide neuromedin B (NMB) and its receptor are expressed in a variety of tissues; however, little is definitively established about its physiological actions because of the lack of potent, specific antagonists. Recently, the peptoid PD 168368 was found to be a potent human NMB receptor antagonist. Because it had been shown previously that either synthetic analogs of bombesin (Bn) or other receptor peptoid or receptor antagonists function as an antagonist or agonist depends on animal species and receptor subtype studied, we investigated the pharmacological properties of PD 168368 compared with all currently known Bn receptor subtypes (NMB receptor, gastrin-releasing peptide receptor, Bn receptor subtype 3, and Bn receptor subtype 4) from human, mouse, rat, and frog. In binding studies, PD 168368 had similar high affinities (K(i) = 15-45 nM) for NMB receptors from each species examined, 30- to 60-fold lower affinity for gastrin-releasing peptide receptors, and >300-fold lower affinity for Bn receptor subtype 3 or 4. It inhibited NMB binding in a competitive manner. PD 168368 alone did not stimulate increases in either intracellular calcium concentration or [(3)H]inositol phosphates in any of the cells studied but inhibited NMB-induced responses with equivalent potencies in cells containing NMB receptors. PD 168368 was only minimally soluble in water. When hydroxypropyl-beta-cyclodextrin rather than dimethyl sulfoxide was used as the vehicle, both the affinity and the antagonist potency of PD 168368 were significantly greater. The results demonstrate that PD 168368 is a potent, competitive, and selective antagonist at NMB receptors, with a similar pharmacology across animal species. PD 168368 should prove useful for delineating the biological role of NMB and selectively blocking NMB signaling in bioassays and as a lead for the development of more selective nonpeptide antagonists for the NMB receptor.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10454496/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7838118" class="tabcontent ">
+                    <h2>Expression and characterization of cloned human bombesin receptors.</h2>
+                    <h3>Molecular pharmacology; 1995</h3>
+                    <p>Little is known about the pharmacology or cell biology of human bombesin (Bn) receptors, because they are usually present at low levels and both subtypes are frequently present in the same tissues. Human gastrin-releasing peptide (GRP) receptors (huGRP-R) and human neuromedin B (NMB) receptors (huNMB-R) were stably transfected into BALB/3T3 fibroblasts. Both receptor types were glycosylated, with 35% of the huGRP-R and 38% of the huNMB-R representing carbohydrate residues. The extent of glycosylation of the transfected huGRP-R was the same as that seen in the human glioblastoma cell line U-118. Radiolabeled agonist ligands were rapidly internalized, whereas noninternalized ligand readily dissociated in a temperature-dependent fashion. The affinities of various agonists for binding to the huGRP-R were Bn (Ki = 1.4 +/- 0.2 nM) = 4 x GRP = 300 x NMB. In contrast, affinities for the huNMB-R were NMB (Ki = 8.1 +/- 5.2 nM) = 4 x Bn = 600 x GRP. [F5-D-Phe6,D-Ala11]Bn(6-13)methyl ester was the most potent huGRP-R antagonist, whereas D-Nal-Cys-Tyr-D-Trp-Lys-Val-Cys-Nal-NH2 was the most potent huNMB-R antagonist. Agonist binding to either receptor type caused activation of phospholipase C and increased cellular [3H]inositol phosphate levels. GRP was potent at increasing [3H]inositol phosphate generation in cells expressing the huGRP-R (EC50 = 13.6 +/- 1.3 nM), whereas NMB was similarly potent when acting upon cells expressing the huNMB-R (EC50 = 9.3 +/- 1.4 nM). However, neither receptor type, when stimulated with agonist, caused an increase in cAMP levels. These data show that stably transfected huGRP-R exhibit similar pharmacology for agonists and antagonists, are appropriately glycosylated, and function similarly with respect to their ability to alter biological activity, compared with natively expressed receptors. Minimal native huNMB-R data are available for comparison, but in general the huNMB-R is similar to the rat NMB receptor in its pharmacology and cell biology.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7838118/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10544247" class="tabcontent ">
+                    <h2>Solution structure of neuromedin B by (1)H nuclear magnetic resonance spectroscopy.</h2>
+                    <h3>FEBS letters; 1999</h3>
+                    <p>The solution structure of neuromedin B (NMB) was investigated using two-dimensional nuclear magnetic resonance (NMR) spectroscopy in membrane-mimicking environments. NMB adopts a relaxed helical conformation from Trp(4) to Met(10) in 50% aqueous 2,2, 2-trifluoroethanol (TFE) solution and in 150 mM SDS micelles. Sidechain atoms of the three residues, Trp(4), His(8) and Phe(9) orient toward the same direction and these residues might play a key role on interacting with hydrophobic acyl chains of the phospholipids in the membrane. NOESY experiments performed on NMB in non-deuterated SDS micelle show that aromatic ring protons of Trp(4) and Phe(9) residues are in close contact with methylene protons of SDS micelles. In addition, proton longitudinal relaxation data proved that the interactions between NMB with SDS micelle are characterized as extrinsic interaction. Trp(4) and Phe(9) seem to be important in interaction with receptor and this agrees with the previous studies of structure-activity relationship (Howell, D.C. et al. (1996) Int. J. Pept. Protein Res. 48, 522-531). These conformational features might be helpful in understanding the molecular mechanism of the function of NMB and developing the efficient drugs.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10544247/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8253343" class="tabcontent ">
+                    <h2>Expression of bombesin-receptor subtypes and their differential regulation of colonic smooth muscle contraction.</h2>
+                    <h3>Gastroenterology; 1993</h3>
+                    <p>Bombesin-related peptides show different potencies, suggesting the existence of at least two receptor subtypes. The aim of this study was to assess the relationship and contribution of each receptor subtype on smooth muscle contraction.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8253343/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8392057" class="tabcontent ">
+                    <h2>The fifth transmembrane segment of the neuromedin B receptor is critical for high affinity neuromedin B binding.</h2>
+                    <h3>The Journal of biological chemistry; 1993</h3>
+                    <p>The two bombesin receptor subtypes, neuromedin B (NMB-R) and gastrin releasing peptide (GRP-R) receptors, bind their respective ligands with high affinity. To identify molecular components mediating high affinity NMB binding, four mutant receptors were constructed, in which different parts of the NMB-R were replaced with the corresponding regions of the GRP-R. When stably expressed in Balb 3T3 fibroblasts, all four NMB-R/GRP-R chimeras were functional and showed NMB-induced stimulation of inositol phosphate (IP) formation. Results of 125I-[D-Tyr0]NMB displacement assays using unlabeled NMB for competition indicated that high affinity NMB binding was determined by amino acid sequences in transmembrane domain V (TM-V) of the NMB-R. To identify which amino acid(s) in TM-V of NMB-R contributed to high affinity NMB binding, four additional NMB-R mutants were constructed where non-conserved amino acids in TM-V of NMB-R were replaced by the corresponding GRP-R amino acids. Three of the mutations, TyrPheLeu220-222-->PheTyrVal, Ile230-->Val, and His234-->Phe, did not affect high affinity NMB binding. The Ile216-->Ser substitution, however, abolished high affinity NMB binding and severely impaired the ability of the mutant receptor to stimulate NMB-dependent inositol phosphate formation. These results suggest that ILe216 in TM-V of NMB-R may be critical for high affinity NMB binding.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8392057/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

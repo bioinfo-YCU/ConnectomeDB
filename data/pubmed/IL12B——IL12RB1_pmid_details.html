@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>IL12B——IL12RB1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for IL12B——IL12RB1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab7843232')">7843232</button><button class="tablinks " onclick="openTab(event, 'tab7527811')">7527811</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab7843232" class="tabcontent active">
+                    <h2>Mouse interleukin-12 (IL-12) p40 homodimer: a potent IL-12 antagonist.</h2>
+                    <h3>European journal of immunology; 1995</h3>
+                    <p>Interleukin-12 (IL-12) is a cytokine that has regulatory effects on T and natural killer (NK) cells and is composed of two disulfide-bonded subunits, p40 and p35. It was recently reported that supernatants from cultures of mouse IL-12 (moIL-12) p40-transfected COS cells could inhibit IL-12-dependent responses in vitro (Mattner, F., et al., Eur. J. Immunol. 1993. 23: 2202). We have further characterized the nature of the inhibitory substance. Purified mouse p40 produced in a baculovirus expression system was found to consist of two species: the p40 monomer and a disulfide-linked p40 dimer [(p40)2]. The (p40)2 was 25- to 50-fold more active than the p40 monomer in causing specific, dose-dependent inhibition of IL-12-induced mouse concanavalin A (Con A) blast proliferation and could also inhibit IL-12-induced interferon-gamma (IFN-gamma) secretion by mouse splenocytes and IL-12-dependent activation of mouse NK cells. Competitive binding studies on mouse Con A blasts showed that (p40)2 was equally effective as moIL-12 in competing with 125I-labeled moIL-12 ([125I]moIL-12) for binding to mouse Con A blasts. However, in contrast to moIL-12, mouse (p40)2 displayed little ability to compete with 125I-labeled human IL-12 (huIL-12) for binding to high-affinity IL-12 receptors (IL-12R) on human phytohemagglutinin (PHA) blasts and caused little or no inhibition of huIL-12-induced human PHA blast proliferation. Nonetheless, mouse (p40)2 was equally effective as moIL-12 in competing with [125I] huIL-12 for binding to COS cells transfected with the human IL-12R beta subunit and expressing low-affinity IL-12 binding sites. These results suggest that (i) the majority of the structural determinants required for binding of IL-12 to its receptor are contained within the p40 subunit, but p35 is required for signaling, (ii) the p40 subunit of IL-12 interacts with the beta subunit of IL-12R, and (iii) (p40)2 may be a suitable IL-12 antagonist for studying the role of IL-12 in various immune responses in vivo as well as in vitro. Further studies are required to determine whether or not (p40)2 is produced by normal lymphoid cells and is a physiologic regulator of IL-12 activity.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7843232/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7527811" class="tabcontent ">
+                    <h2>Human IL-12 p40 homodimer binds to the IL-12 receptor but does not mediate biologic activity.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 1995</h3>
+                    <p>IL-12, a heterodimeric cytokine, consists of two disulfide-linked subunits, p40 and p35. We investigated the role of p40 in ligand binding and signal transduction by expressing this subunit alone in COS cells. Culture media of the transfected COS cells exhibited specific dose-dependent binding to KIT225/K6 cells, a human T cell line that expresses IL-12R. Analysis of the culture media by SDS-PAGE and Western blotting demonstrated the presence of 40-kDa monomers and 80-kDa disulfide-linked homodimers. The two p40 species were purified and identified by N-terminal sequencing and proteolytic peptide mapping. Characterization of the p40 proteins for binding and bioactivity showed that both the p40 monomer and dimer inhibited 125I-labeled IL-12 binding to IL-12R, but the 80-kDa species, having a 50% inhibitory concentration (IC50) of 20 to 70 ng/ml, was at least 20-fold more effective than the monomer. Although neither the monomer nor the dimer stimulated human PHA-blast proliferation, the 80-kDa dimer inhibited IL-12-induced proliferation in a dose-dependent manner with an IC50 of 65 ng/ml. The results suggest that the IL-12 p40 subunit contains the essential epitopes for receptor binding. However, a proper conformation required for high affinity binding is achieved only when p40 is associated with a p35 subunit or another p40 subunit. When p40 is associated with a p35 subunit, the heterodimer acts as an agonist mediating biologic activity. However, when p40 associates with another p40, the homodimer behaves as an antagonist in vitro.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7527811/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

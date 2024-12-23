@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>ANGPT4——TEK - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for ANGPT4——TEK</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab10051567')">10051567</button><button class="tablinks " onclick="openTab(event, 'tab15284220')">15284220</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab10051567" class="tabcontent active">
+                    <h2>Angiopoietins 3 and 4: diverging gene counterparts in mice and humans.</h2>
+                    <h3>Proceedings of the National Academy of Sciences of the United States of America; 1999</h3>
+                    <p>The angiopoietins have recently joined the members of the vascular endothelial growth factor family as the only known growth factors largely specific for vascular endothelium. The angiopoietins include a naturally occurring agonist, angiopoietin-1, as well as a naturally occurring antagonist, angiopoietin-2, both of which act by means of the Tie2 receptor. We now report our attempts to use homology-based cloning approaches to identify new members of the angiopoietin family. These efforts have led to the identification of two new angiopoietins, angiopoietin-3 in mouse and angiopoietin-4 in human; we have also identified several more distantly related sequences that do not seem to be true angiopoietins, in that they do not bind to the Tie receptors. Although angiopoietin-3 and angiopoietin-4 are strikingly more structurally diverged from each other than are the mouse and human versions of angiopoietin-1 and angiopoietin-2, they appear to represent the mouse and human counterparts of the same gene locus, as revealed in our chromosomal localization studies of all of the angiopoietins in mouse and human. The structural divergence of angiopoietin-3 and angiopoietin-4 appears to underlie diverging functions of these counterparts. Angiopoietin-3 and angiopoietin-4 have very different distributions in their respective species, and angiopoietin-3 appears to act as an antagonist, whereas angiopoietin-4 appears to function as an agonist.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10051567/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15284220" class="tabcontent ">
+                    <h2>Biological characterization of angiopoietin-3 and angiopoietin-4.</h2>
+                    <h3>FASEB journal : official publication of the Federation of American Societies for Experimental Biology; 2004</h3>
+                    <p>The angiopoietin (Ang) family of growth factors includes Ang1, Ang2, Ang3, and Ang4, all of which bind to the endothelial receptor tyrosine kinase Tie2. Ang3 (mouse) and Ang4 (human) are interspecies orthologs. In experiments with human endothelial cell lines, Ang3 was identified as an antagonist of Tie2 and Ang4 was identified as an agonist of Tie2. However, the biological roles of Ang3 and Ang4 are unknown. We examined the biological effect of recombinant Ang3 and Ang4 proteins in primary cultured endothelial cells and in vivo in mice. Recombinant Ang3 and Ang4 formed disulfide-linked dimers. Ang4 (400 ng/mL) markedly increased Tie2 and Akt phosphorylation in primary cultured HUVECs whereas Ang3 (400 ng/mL) did not produce significant changes. Accordingly, Ang4, but not Ang3, induced survival and migration in primary cultured HUVECs. Unexpectedly, intravenously administered Ang3 (30 microg) was more potent than Ang4 (30 microg) in phosphorylating the Tie2 receptor in lung tissue from mice in vivo. Accordingly, Ang3 was more potent than Ang4 in phosphorylating Akt in primary cultured mouse lung microvascular endothelial cells. Ang3 and Ang4 both produced potent corneal angiogenesis extending from the limbus across the mouse cornea in vivo. Thus, Ang3 and Ang4 are agonists of Tie2, but mouse Ang3 has strong activity only on endothelial cells of its own species.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15284220/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

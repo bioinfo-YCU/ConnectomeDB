@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>POMC——MC1R - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for POMC——MC1R</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab1516719')">1516719</button><button class="tablinks " onclick="openTab(event, 'tab10942578')">10942578</button><button class="tablinks " onclick="openTab(event, 'tab7774675')">7774675</button><button class="tablinks " onclick="openTab(event, 'tab12007532')">12007532</button><button class="tablinks " onclick="openTab(event, 'tab10942578')">10942578</button><button class="tablinks " onclick="openTab(event, 'tab11041375')">11041375</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab1516719" class="tabcontent active">
+                    <h2>Molecular cloning and expression of the human melanocyte stimulating hormone receptor cDNA.</h2>
+                    <h3>FEBS letters; 1992</h3>
+                    <p>Melanocytes and melanoma cells are known to possess receptors for melanocyte stimulating hormone (MSH). A cDNA clone, designated 11D, has been isolated from human melanoma cells and encodes a MSH receptor. The cloned cDNA encodes a 317 amino acid protein with transmembrane topography characteristics of a G-protein-coupled receptor, but it does not show striking similarity to already published sequences of other G-protein-coupled receptors. When 11D cDNA is expressed in COS-7 cells, it binds an 125I-labelled MSH analogue (NDP-MSH) in a specific manner. The bound ligand could be displaced by melanotropic peptides, alpha-MSH, beta-MSH, gamma-MSH and ACTH (adrenocorticotropic hormone), but not by the non-melanotropic peptide, beta-endorphin. This is the first report of the cloning of the receptor gene of the melanotropin receptor family.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/1516719/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10942578" class="tabcontent ">
+                    <h2>Bioactive motifs of agouti signal protein.</h2>
+                    <h3>Experimental cell research; 2000</h3>
+                    <p>The switch between the synthesis of eu- and pheomelanins is modulated by the interaction of two paracrine signaling molecules, alpha-melanocyte stimulating hormone (MSH) and agouti signal protein (ASP), which interact with melanocytes via the MSH receptor (MC1R). Comparison of the primary sequence of ASP with the known MSH pharmacophore provides no suggestion about the putative bioactive domain(s) of ASP. To identify such bioactive motif(s), we synthesized 15-mer peptides that spanned the primary sequence of ASP and determined their effects on the melanogenic activities of murine melanocytes. Northern and Western blotting were used, together with chemical analysis of melanins and enzymatic assays, to identify three distinct bioactive regions of ASP that down-regulate eumelanogenesis. The decrease in eumelanin production was mediated by down-regulation of mRNA levels for tyrosinase and other melanogenic enzymes, as occurs in vivo, and these effects were comparable to those elicited by intact recombinant ASP. Shorter peptides in those motifs were synthesized and their effects on melanogenesis were further investigated. The amino acid arginine, which is present in the MSH peptide pharmacophore (HFRW), is also in the most active domain of ASP (KVARP). Our data suggest that lysines and an arginine (in motifs such as KxxxxKxxR or KxxRxxxxK) are important for the bioactivity of ASP. Identification of the specific ASP epitope that interacts with the MC1R has potential pharmacological applications in treating dysfunctions of skin pigmentation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10942578/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7774675" class="tabcontent ">
+                    <h2>Characterisation of melanocortin receptor subtypes by radioligand binding analysis.</h2>
+                    <h3>European journal of pharmacology; 1995</h3>
+                    <p>The DNAs encoding three melanocortin receptor subtypes (melanocortin MC1 receptor, melanocortin MC3 receptor and melanocortin MC5 receptor) were expressed individually in COS (CV-1 Origin, SV40) cells to characterise their ligand binding properties. The results indicated that [125I][Nle4, D-Phe7]alpha-MSH (melanocyte stimulating hormone) bound to a single saturable site with Kd values of 85.1 +/- 8.0 pmol/l (mean +/- S.E.M), 396 +/- 65 pmol/l and 5.05 +/- 1.00 nmol/l for melanocortin MC1 receptor, melanocortin MC3 receptor and melanocortin MC3 receptor, respectively. The melanocortin MC1 receptor and the melanocortin MC5 receptor showed a similar potency order to the melanocortic peptides examined which was markedly different from the potency order of the melanocortin MC3 receptor. The melanocortin MC1 receptor and melanocortin MC5 receptor had a relatively higher affinity for alpha-MSH than gamma-MSH and beta-MSH, whereas the melanocortin MC3 receptor had higher affinity for desacetyl-alpha-MSH, gamma-MSH and beta-MSH compared to alpha-MSH. The inclusion of the endopeptidase inhibitor phosphoramidon to prevent the breakdown of ACTH-(1-39) (adrenocorticotrophic hormone) to alpha-MSH, decreased ACTH-(1-39) binding affinity showing that ACTH-(1-39) had a much lower affinity for melanocortin MC1 receptor than reported earlier.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7774675/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12007532" class="tabcontent ">
+                    <h2>The role of melanocortins in body weight regulation: opportunities for the treatment of obesity.</h2>
+                    <h3>European journal of pharmacology; 2002</h3>
+                    <p>Five G-protein-coupled melanocortin receptors (MC(1)-MC(5)) are expressed in mammalian tissues. The melanocortin receptors support diverse physiological functions, including the regulation of hair color, adrenal function, energy homeostasis, feed efficiency, sebaceous gland lipid production and immune and sexual function. The melanocortins (adrenocorticotropic hormone (ACTH), alpha-melanocyte-stimulating hormone (alpha-MSH), beta-MSH and gamma-MSH) are agonist peptide ligands for the melanocortin receptors and these peptides are processed from the pre-prohormone proopiomelanocortin (POMC). Peptide antagonists for the melanocortin MC(1), MC(3) and MC(4) receptors include agouti-related protein (AgRP) and agouti. Diverse lines of evidence, including genetic and pharmacological data obtained in rodents and humans, support a role for the melanocortin MC(3) and MC(4) receptors in the regulation of energy homeostasis. Recent advances in the development of potent and selective peptide and non-peptide melanocortin receptor ligands are anticipated to help unravel the roles for the melanocortin receptors in humans and to accelerate the clinical use of small molecule melanocortin mimetics.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12007532/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10942578" class="tabcontent ">
+                    <h2>Bioactive motifs of agouti signal protein.</h2>
+                    <h3>Experimental cell research; 2000</h3>
+                    <p>The switch between the synthesis of eu- and pheomelanins is modulated by the interaction of two paracrine signaling molecules, alpha-melanocyte stimulating hormone (MSH) and agouti signal protein (ASP), which interact with melanocytes via the MSH receptor (MC1R). Comparison of the primary sequence of ASP with the known MSH pharmacophore provides no suggestion about the putative bioactive domain(s) of ASP. To identify such bioactive motif(s), we synthesized 15-mer peptides that spanned the primary sequence of ASP and determined their effects on the melanogenic activities of murine melanocytes. Northern and Western blotting were used, together with chemical analysis of melanins and enzymatic assays, to identify three distinct bioactive regions of ASP that down-regulate eumelanogenesis. The decrease in eumelanin production was mediated by down-regulation of mRNA levels for tyrosinase and other melanogenic enzymes, as occurs in vivo, and these effects were comparable to those elicited by intact recombinant ASP. Shorter peptides in those motifs were synthesized and their effects on melanogenesis were further investigated. The amino acid arginine, which is present in the MSH peptide pharmacophore (HFRW), is also in the most active domain of ASP (KVARP). Our data suggest that lysines and an arginine (in motifs such as KxxxxKxxR or KxxRxxxxK) are important for the bioactivity of ASP. Identification of the specific ASP epitope that interacts with the MC1R has potential pharmacological applications in treating dysfunctions of skin pigmentation.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10942578/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11041375" class="tabcontent ">
+                    <h2>The melanocortin-1 receptor is a key regulator of human cutaneous pigmentation.</h2>
+                    <h3>Pigment cell research; 2000</h3>
+                    <p>The cloning and characterization of the human melanocortin-1 receptor (MC1R) and the demonstration that normal human melanocytes respond to the melanocortins, alpha-melanocyte stimulating hormone (alpha-MSH) and adrenocorticotrophic hormone (ACTH), with increased proliferation and eumelanogenesis had put an end to a long-standing controversy about the role of melanocortins in regulating human cutaneous pigmentation. We have shown that alpha-MSH and ACTH bind the human MC1R with equal affinity, and are equipotent in their mitogenic and melanogenic effects on human melanocytes. We also showed that the activation of the MC1R is important for the melanogenic response of human melanocytes to ultraviolet radiation (UVR). The MC1R is also the principal mediator of the inhibitory effects of agouti signaling protein (ASP) on melanogenesis. Expression of the MC1R is subject to regulation by its own ligands alpha-MSH and ACTH, as well as by UVR and endothelin-1. Recent studies that we conducted on the expression of MC1R variants by human melanocytes and the implications of these variants on the function of the MC1R revealed the following. Human melanocytes homozygous for Arg160Trp mutation in the MC1R demonstrated a significantly reduced response to alpha-MSH. Also, this culture responded poorly to ASP and exhibited an exaggerated cytotoxic response to UVR. Another culture, which was homozygous for Val92Met mutation in the MC1R, demonstrated a normal response to alpha-MSH. Heterozygous mutations that are frequently expressed in various melanocyte cultures did not disrupt MC1R function. These results begin to elucidate the significance of MC1R variants in the function of the receptor. Our data emphasize the significance of a normally functioning MC1R in the response of melanocytes to melanocortins, ASP, and UVR.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11041375/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

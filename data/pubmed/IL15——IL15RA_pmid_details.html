@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>IL15——IL15RA - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for IL15——IL15RA</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab15265897')">15265897</button><button class="tablinks " onclick="openTab(event, 'tab7641685')">7641685</button><button class="tablinks " onclick="openTab(event, 'tab16284400')">16284400</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab15265897" class="tabcontent active">
+                    <h2>Natural, proteolytic release of a soluble form of human IL-15 receptor alpha-chain that behaves as a specific, high affinity IL-15 antagonist.</h2>
+                    <h3>Journal of immunology (Baltimore, Md. : 1950); 2004</h3>
+                    <p>IL-15 and IL-2 are two structurally and functionally related cytokines whose high affinity receptors share the IL-2R beta-chain and gamma-chain in association with IL-15R alpha-chain (IL-15R alpha) or IL-2R alpha-chain, respectively. Whereas IL-2 action seems restricted to the adaptative T cells, IL-15 appears to be crucial for the function of the innate immune responses, and the pleiotropic expression of IL-15 and IL-15R alpha hints at a much broader role for the IL-15 system in multiple cell types and tissues. In this report, using a highly sensitive radioimmunoassay, we show the existence of a soluble form of human IL-15R alpha (sIL-15R alpha) that arises from proteolytic shedding of the membrane-anchored receptor. This soluble receptor is spontaneously released from IL-15R alpha-expressing human cell lines as well as from IL-15R alpha transfected COS-7 cells. This release is strongly induced by PMA and ionomycin, and to a lesser extent by IL-1 beta and TNF-alpha. The size of sIL-15R alpha (42 kDa), together with the analysis of deletion mutants in the ectodomain of IL-15R alpha, indicates the existence of cleavage sites that are proximal to the plasma membrane. Whereas shedding induced by PMA was abrogated by the synthetic matrix metalloproteinases inhibitor GM6001, the spontaneous shedding was not, indicating the occurrence of at least two distinct proteolytic mechanisms. The sIL-15R alpha displayed high affinity for IL-15 and behaved as a potent and specific inhibitor of IL-15 binding to the membrane receptor, and of IL-15-induced cell proliferation (IC(50) in the range from 3 to 20 pM). These results suggest that IL-15R alpha shedding may play important immunoregulatory functions.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15265897/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7641685" class="tabcontent ">
+                    <h2>Identification and cloning of a novel IL-15 binding protein that is structurally related to the alpha chain of the IL-2 receptor.</h2>
+                    <h3>The EMBO journal; 1995</h3>
+                    <p>Interleukin-15 (IL-15) is a novel cytokine of the four-helix bundle family which shares many biological activities with IL-2, probably due to its interaction with the IL-2 receptor beta and gamma (IL-2R beta and gamma c) chains. We report here the characterization and molecular cloning of a distinct murine IL-15R alpha chain. IL-15R alpha alone displays an affinity of binding for IL-15 equivalent to that of the heterotrimeric IL-2R for IL-2. A biologically functional heteromeric IL-15 receptor complex capable of mediating IL-15 responses was generated through reconstruction experiments in a murine myeloid cell line. IL-15R alpha is structurally similar to IL-2R alpha; together they define a new cytokine receptor family. The distribution of IL-15 and IL-15R alpha mRNA suggests that IL-15 may have biological activities distinct from IL-2.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7641685/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab16284400" class="tabcontent ">
+                    <h2>Soluble interleukin-15 receptor alpha (IL-15R alpha)-sushi as a selective and potent agonist of IL-15 action through IL-15R beta/gamma. Hyperagonist IL-15 x IL-15R alpha fusion proteins.</h2>
+                    <h3>The Journal of biological chemistry; 2006</h3>
+                    <p>Interleukin-15 (IL-15) is crucial for the generation of multiple lymphocyte subsets (natural killer (NK), NK-T cells, and memory CD8 T cells), and transpresentation of IL-15 by monocytes and dendritic cells has been suggested to be the dominant activating process of these lymphocytes. We have previously shown that a natural soluble form of IL-15R alpha chain corresponding to the entire extracellular domain of IL-15R alpha behaves as a high affinity IL-15 antagonist. In sharp contrast with this finding, we demonstrate in this report that a recombinant, soluble sushi domain of IL-15R alpha, which bears most of the binding affinity for IL-15, behaves as a potent IL-15 agonist by enhancing its binding and biological effects (proliferation and protection from apoptosis) through the IL-15R beta/gamma heterodimer, whereas it does not affect IL-15 binding and function of the tripartite IL-15R alpha/beta/gamma membrane receptor. Our results suggest that, if naturally produced, such soluble sushi domains might be involved in the IL-15 transpresentation mechanism. Fusion proteins (RLI and ILR), in which IL-15 and IL-15R alpha-sushi are attached by a flexible linker, are even more potent than the combination of IL-15 plus sIL-15R alpha-sushi. After binding to IL-15R beta/gamma, RLI is internalized and induces a biological response very similar to the IL-15 high affinity response. Such hyper-IL-15 fusion proteins appear to constitute potent adjuvants for the expansion of lymphocyte subsets.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/16284400/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

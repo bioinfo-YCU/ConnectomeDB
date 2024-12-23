@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>TNF——TNFRSF1B - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for TNF——TNFRSF1B</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab2158863')">2158863</button><button class="tablinks " onclick="openTab(event, 'tab7664431')">7664431</button><button class="tablinks " onclick="openTab(event, 'tab2158863')">2158863</button><button class="tablinks " onclick="openTab(event, 'tab19084540')">19084540</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab2158863" class="tabcontent active">
+                    <h2>Molecular cloning and expression of a receptor for human tumor necrosis factor.</h2>
+                    <h3>Cell; 1990</h3>
+                    <p>A human tumor necrosis factor (TNF) binding protein from serum of cancer patients was purified to homogeneity and partially sequenced. Synthetic DNA probes based on amino acid sequence information were used to isolate cDNA clones encoding a receptor for TNF. The TNF receptor (TNF-R) is a 415 amino acid polypeptide with a single membrane-spanning region. The extracellular cysteine-rich domain of the TNF-R is homologous to the nerve growth factor receptor and the B cell activation protein Bp50. Human embryonic kidney cells transfected with a TNF-R expression vector specifically bind both 125I-labeled and biotinylated TNF-alpha. Unlabeled TNF-alpha and TNF-beta were equally effective at displacing the binding of labeled TNF-alpha to TNF-R expressing cells. Northern analysis indicates a single species of mRNA for the TNF-R in a variety of cell types. Therefore, the soluble TNF binding protein found in human serum is probably proteolytically derived from the TNF-R.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/2158863/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7664431" class="tabcontent ">
+                    <h2>Expression and functional significance of tumor necrosis factor receptors in human myocardium.</h2>
+                    <h3>Circulation; 1995</h3>
+                    <p>Tumor necrosis factor-alpha (TNF-alpha), a proinflammatory cytokine with potent negative inotropic properties, is elaborated in septic shock, acute myocarditis, reperfusion injury, and congestive heart failure. TNF-alpha acts by binding to two specific receptors: TNFR1 and TNFR2. However, neither the presence nor the significance of TNF receptors has been studied in the adult mammalian heart.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7664431/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab2158863" class="tabcontent ">
+                    <h2>Molecular cloning and expression of a receptor for human tumor necrosis factor.</h2>
+                    <h3>Cell; 1990</h3>
+                    <p>A human tumor necrosis factor (TNF) binding protein from serum of cancer patients was purified to homogeneity and partially sequenced. Synthetic DNA probes based on amino acid sequence information were used to isolate cDNA clones encoding a receptor for TNF. The TNF receptor (TNF-R) is a 415 amino acid polypeptide with a single membrane-spanning region. The extracellular cysteine-rich domain of the TNF-R is homologous to the nerve growth factor receptor and the B cell activation protein Bp50. Human embryonic kidney cells transfected with a TNF-R expression vector specifically bind both 125I-labeled and biotinylated TNF-alpha. Unlabeled TNF-alpha and TNF-beta were equally effective at displacing the binding of labeled TNF-alpha to TNF-R expressing cells. Northern analysis indicates a single species of mRNA for the TNF-R in a variety of cell types. Therefore, the soluble TNF binding protein found in human serum is probably proteolytically derived from the TNF-R.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/2158863/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab19084540" class="tabcontent ">
+                    <h2>Structure-function relationship of tumor necrosis factor (TNF) and its receptor interaction based on 3D structural analysis of a fully active TNFR1-selective TNF mutant.</h2>
+                    <h3>Journal of molecular biology; 2009</h3>
+                    <p>Tumor necrosis factor (TNF) is an important cytokine that suppresses carcinogenesis and excludes infectious pathogens to maintain homeostasis. TNF activates its two receptors [TNF receptor (TNFR) 1 and TNFR2], but the contribution of each receptor to various host defense functions and immunologic surveillance is not yet clear. Here, we used phage display techniques to generate receptor-selective TNF mutants that activate only one TNFR. These TNF mutants will be useful in the functional analysis of TNFR. Six amino acids in the receptor binding interface (near TNF residues 30, 80, and 140) were randomly mutated by polymerase chain reaction. Two phage libraries comprising over 5 million TNF mutants were constructed. By selecting the mutants without affinity for TNFR1 or TNFR2, we successfully isolated 4 TNFR2-selective candidates and 16 TNFR1-selective candidates, respectively. The TNFR1-selective candidates were highly mutated near residue 30, whereas TNFR2-selective candidates were highly mutated near residue 140, although both had conserved sequences near residues 140 and 30, respectively. This finding suggested that the phage display technique was suitable for identifying important regions for the TNF interaction with TNFR1 and TNFR2. Purified clone R1-6, a TNFR1-selective candidate, remained fully bioactive and had full affinity for TNFR1 without activating TNFR2, indicating the usefulness of the R1-6 TNF mutant in analyzing TNFR1 receptor function. To further elucidate the receptor selectivity of R1-6, we examined the structure of R1-6 by X-ray crystallography. The results suggested that R31A and R32G mutations strongly influenced electrostatic interaction with TNFR2, and that L29K mutation contributed to the binding of R1-6 to TNFR1. This phage display technique can be used to efficiently construct functional mutants for analysis of the TNF structure-function relationship, which might facilitate in silico drug design based on receptor selectivity.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/19084540/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>POMC——MC5R - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for POMC——MC5R</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab11785979')">11785979</button><button class="tablinks " onclick="openTab(event, 'tab7774675')">7774675</button><button class="tablinks " onclick="openTab(event, 'tab12007532')">12007532</button><button class="tablinks " onclick="openTab(event, 'tab11606131')">11606131</button><button class="tablinks " onclick="openTab(event, 'tab8185570')">8185570</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab11785979" class="tabcontent active">
+                    <h2>Ligand-dependent activation of the melanocortin 5 receptor: cAMP production and ryanodine receptor-dependent elevations of [Ca(2+)](I).</h2>
+                    <h3>Biochemical and biophysical research communications; 2002</h3>
+                    <p>The melanocortins are involved in the regulation of various cognitive and physiological processes such as learning, feeding, immune suppression, pigmentation, and sebum production. Five melanocortin receptors have been identified, of which the melanocortin 5 receptor (MC5R) has the most widespread distribution. This subtype is found in the brain, and at numerous peripheral sites including the skin where it is expressed in the sebaceous glands. The purpose of this study was to identify the peptide that functions as a natural ligand at the MC5R in the skin. alpha-MSH, ACTH1-39, ACTH1-17, ACTH1-10, and ACTH4-10 all increased the production of cAMP in HEK293 cells transfected with the mouse MC5R. alpha-MSH and ACTH1-17 were the most potent in this respect. In addition, all peptides stimulated a rapid and transient increase in [Ca(2+)](i), and, ACTH1-10 was the most potent. The increases in [Ca(2+)](i) were of intracellular origin, but not associated with inositol phosphate production. The elevations in [Ca(2+)](i) were reduced by ruthenium red and procaine and it is therefore possible that they were mediated via ryanodine receptors.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11785979/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7774675" class="tabcontent ">
+                    <h2>Characterisation of melanocortin receptor subtypes by radioligand binding analysis.</h2>
+                    <h3>European journal of pharmacology; 1995</h3>
+                    <p>The DNAs encoding three melanocortin receptor subtypes (melanocortin MC1 receptor, melanocortin MC3 receptor and melanocortin MC5 receptor) were expressed individually in COS (CV-1 Origin, SV40) cells to characterise their ligand binding properties. The results indicated that [125I][Nle4, D-Phe7]alpha-MSH (melanocyte stimulating hormone) bound to a single saturable site with Kd values of 85.1 +/- 8.0 pmol/l (mean +/- S.E.M), 396 +/- 65 pmol/l and 5.05 +/- 1.00 nmol/l for melanocortin MC1 receptor, melanocortin MC3 receptor and melanocortin MC3 receptor, respectively. The melanocortin MC1 receptor and the melanocortin MC5 receptor showed a similar potency order to the melanocortic peptides examined which was markedly different from the potency order of the melanocortin MC3 receptor. The melanocortin MC1 receptor and melanocortin MC5 receptor had a relatively higher affinity for alpha-MSH than gamma-MSH and beta-MSH, whereas the melanocortin MC3 receptor had higher affinity for desacetyl-alpha-MSH, gamma-MSH and beta-MSH compared to alpha-MSH. The inclusion of the endopeptidase inhibitor phosphoramidon to prevent the breakdown of ACTH-(1-39) (adrenocorticotrophic hormone) to alpha-MSH, decreased ACTH-(1-39) binding affinity showing that ACTH-(1-39) had a much lower affinity for melanocortin MC1 receptor than reported earlier.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7774675/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12007532" class="tabcontent ">
+                    <h2>The role of melanocortins in body weight regulation: opportunities for the treatment of obesity.</h2>
+                    <h3>European journal of pharmacology; 2002</h3>
+                    <p>Five G-protein-coupled melanocortin receptors (MC(1)-MC(5)) are expressed in mammalian tissues. The melanocortin receptors support diverse physiological functions, including the regulation of hair color, adrenal function, energy homeostasis, feed efficiency, sebaceous gland lipid production and immune and sexual function. The melanocortins (adrenocorticotropic hormone (ACTH), alpha-melanocyte-stimulating hormone (alpha-MSH), beta-MSH and gamma-MSH) are agonist peptide ligands for the melanocortin receptors and these peptides are processed from the pre-prohormone proopiomelanocortin (POMC). Peptide antagonists for the melanocortin MC(1), MC(3) and MC(4) receptors include agouti-related protein (AgRP) and agouti. Diverse lines of evidence, including genetic and pharmacological data obtained in rodents and humans, support a role for the melanocortin MC(3) and MC(4) receptors in the regulation of energy homeostasis. Recent advances in the development of potent and selective peptide and non-peptide melanocortin receptor ligands are anticipated to help unravel the roles for the melanocortin receptors in humans and to accelerate the clinical use of small molecule melanocortin mimetics.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12007532/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11606131" class="tabcontent ">
+                    <h2>Selective, high affinity peptide antagonists of alpha-melanotropin action at human melanocortin receptor 4: their synthesis and biological evaluation in vitro.</h2>
+                    <h3>Journal of medicinal chemistry; 2001</h3>
+                    <p>Peptide Ac-Nle(4)-cyclo(5beta-->10epsilon)(Asp(5)-His(6)-D-(2')Nal(7)-Arg(8)-Trp(9)-Lys(10))-NH(2), compound 1, a cyclic derivative of alpha-melanotropin, is a nonselective high affinity antagonist at human melanocortin receptors 3 and 4, and an agonist at melanocortin receptors 1 and 5. To differentiate between the physiological functions of these receptors, antagonists with improved receptor selectivity are needed. In this study, analogues of compound 1 without Ac-Nle(4) or His(6) and/or the amino group of Asp(5) were prepared and tested in binding assays and in functional assays on CHO cells expressing hMC3-5R. Several of these peptides were to be selective, high affinity hMC-4R antagonists. The most interesting was compound 10, named MBP10, cyclo(6beta-->10epsilon)(succinyl(6)-D-(2')Nal(7)-Arg(8)-Trp(9)-Lys(10))-NH(2), an antagonist (IC(50) = 0.5 nM) with 125-fold selectivity over hMC-3R (and of >300-fold selectivity over MC-1RB). This compound had no agonist activity at hMC-3R or hMC-4R and only weak agonist activity at hMC-5R. Examination of the sequences of these new peptides revealed that the D-(2')Nal(7)-Arg(8)-Trp(9) segment of peptide 1 forms the "essential core" required for high affinity and high selectivity of analogues of peptide 1 at hMC-4R, but the "extended core", His(6)-D-(2')Nal(7)-Arg(8)-Trp(9), is necessary for the maximum affinity for hMC-3R and hMC-5R.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11606131/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8185570" class="tabcontent ">
+                    <h2>Molecular cloning, expression, and characterization of a fifth melanocortin receptor.</h2>
+                    <h3>Biochemical and biophysical research communications; 1994</h3>
+                    <p>We report the isolation of a gene encoding a novel member of the family of melanocortin receptors. The mouse melanocortin-5 receptor (mMC5R) responds to melanocortins with an increase in intracellular cyclic 3',5'-adenosine monophosphate (cAMP) concentrations. Stimulation of the mMC5R by the melanocortins revealed a hierarchy of potency in which alpha-melanocyte stimulating hormone (alpha-MSH) > beta-melanocyte stimulating hormone (beta-MSH) > adrenocorticotropic hormone (ACTH) > gamma- melanocyte stimulating hormone (gamma-MSH). Further structure-activity studies indicated that amino- and carboxyl-terminal portions of alpha-MSH appear to be key determinants in the activation of mMC5R whereas the melanocortin core heptapeptide sequence is devoid of pharmacological activity. Northern blot analysis demonstrated the expression of mMC5R mRNA in mouse skeletal muscle, lung, spleen, and brain.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8185570/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

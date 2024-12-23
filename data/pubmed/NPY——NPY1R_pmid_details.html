@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>NPY——NPY1R - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for NPY——NPY1R</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab9549761')">9549761</button><button class="tablinks " onclick="openTab(event, 'tab12007534')">12007534</button><button class="tablinks " onclick="openTab(event, 'tab7559383')">7559383</button><button class="tablinks " onclick="openTab(event, 'tab9001438')">9001438</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab9549761" class="tabcontent active">
+                    <h2>XVI. International Union of Pharmacology recommendations for the nomenclature of neuropeptide Y, peptide YY, and pancreatic polypeptide receptors.</h2>
+                    <h3>Pharmacological reviews; 1998</h3>
+                    <p>No abstract available</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9549761/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab12007534" class="tabcontent ">
+                    <h2>Neuropeptide Y receptors as targets for anti-obesity drug development: perspective and current status.</h2>
+                    <h3>European journal of pharmacology; 2002</h3>
+                    <p>Neuropeptide Y is a widely distributed neuropeptide that elicits a plethora of physiological effects via interaction with six different receptors (Y(1)-y(6)). Recent attention has focused on the role of neuropeptide Y in the regulation of energy homeostasis. Neuropeptide Y stimulates food intake, inhibits energy expenditure, increases body weight and increases anabolic hormone levels by activating the neuropeptide Y Y(1) and Y(5) receptors in the hypothalamus. Based on these findings, several neuropeptide Y Y(1) and Y(5) receptor antagonists have been developed recently as potential anti-obesity agents. In addition, mice lacking neuropeptide Y, the neuropeptide Y Y(1) receptor or the neuropeptide Y Y(5) receptor have been generated. The data obtained to date with these newly developed tools suggests that neuropeptide Y receptor antagonists, particularly neuropeptide Y Y(1) receptor antagonists, may be useful anti-obesity agents. However, the redundancy of the neurochemical systems regulating energy homeostasis may limit the effect of ablating a single pathway. In addition, patients in whom the starvation response is activated, such as formerly obese patients who have lost weight or patients with complete or partial leptin deficiency, may be the best candidates for treatment with a neuropeptide Y receptor antagonist.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/12007534/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7559383" class="tabcontent ">
+                    <h2>Cloning and functional expression of a cDNA encoding a human type 2 neuropeptide Y receptor.</h2>
+                    <h3>The Journal of biological chemistry; 1995</h3>
+                    <p>Neuropeptide Y (NPY) is a 36-amino acid polypeptide that is widely distributed in the central nervous system and periphery. Pharmacological studies have suggested that there are at least three receptor subtypes, Y1, Y2, and Y3. Cloning of the Y1 subtype has been reported previously. Here we report the isolation by expression cloning of a cDNA encoding a human NPY receptor displaying a pharmacology typical of a Y2 receptor. COS-7 cells transfected with the cDNA express high affinity binding sites for NPY, peptide YY, and NPY13-36, whereas [Leu31,Pro34]NPY binds with lower affinity. The receptor is 381 amino acids in length and has seven putative transmembrane regions typical of G-protein-coupled receptors. Comparison of the amino acid sequence of this Y2 receptor to that of the human Y1 receptor indicates that the two receptors are 31% identical at the amino acid level. Northern blot analyses reveal a single 4-kilobase mRNA species and indicate that the messenger RNA is present in many areas of the central nervous system. NPY induced calcium mobilization and inhibited forskolin-stimulated cAMP accumulation in Chinese hamster ovary cells that stably express the Y2 receptor cDNA, indicating that the recombinant Y2 receptor is functionally coupled to second messenger systems.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7559383/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab9001438" class="tabcontent ">
+                    <h2>Neuropeptide Y receptor subtypes.</h2>
+                    <h3>Life sciences; 1995</h3>
+                    <p>Neuropeptide Y (NPY) is an amidated 36-amino acid peptide with a wide distribution in the central and peripheral nervous system. It can evoke numerous physiological responses by activating specific receptors. Studies using NPY analogs in various model systems and cell types demonstrate different orders of ligand potency and receptor binding affinity. These studies suggest the existence of multiple subtypes of NPY receptors. NPY has been described to bind to at least three different receptors, Y1, Y2 and Y3. NPY has also been shown to interact with sigma receptor in vivo and in vitro. There are indications that more subtypes might exist. Ligand binding studies reveal that Y1, Y2 and Y3 receptors are all G-protein coupled. It is not yet confirmed whether the sigma receptor that interacts with NPY is G-protein coupled. Some studies show that NPY receptors may interact with other classical receptors, including alpha- and beta-adrenoceptors and cholinergic receptors. In the case of alpha- and beta-adrenoceptors, the receptor-receptor interaction is possibly via a pertussis toxin-sensitive G-protein. NPY receptors are coupled to various signal transduction mechanisms including inhibition of adenylate cyclase, and stimulation or inhibition of increases in intracellular Ca2+. Specific links between individual NPY receptor subtype and a particular signal transduction pathway are not established.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9001438/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

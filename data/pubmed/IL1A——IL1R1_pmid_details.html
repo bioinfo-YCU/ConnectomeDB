@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>IL1A——IL1R1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for IL1A——IL1R1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab2946959')">2946959</button><button class="tablinks " onclick="openTab(event, 'tab2946959')">2946959</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab2946959" class="tabcontent active">
+                    <h2>The cell surface receptors for interleukin-1 alpha and interleukin-1 beta are identical.</h2>
+                    <h3>Nature; 1986</h3>
+                    <p>Interleukin-1 (IL-1) is a factor that can induce proliferation of murine T lymphocytes and can elicit a variety of other biological responses. These include bone resorption, fibroblast proliferation, acute phase protein release from hepatocytes, cartilage breakdown and fever. This spectrum of activities is consistent with a role for IL-1 as a mediator of inflammation. Recently, sequence data have shown that there are at least two members of the IL-1 family; these distantly related proteins have been termed IL-1 alpha and IL-1 beta. We have found previously that both murine T cells and fibroblasts possess a relative molecular mass (Mr) approximately 80,000 (80K) plasma membrane receptor for human IL-1 beta. We show here that the receptor for IL-1 alpha on both murine and human cells is identical to that for IL-1 beta. This result raises the issue of what separation, if any, there might be between the biological activities of IL-1 alpha and IL-1 beta.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/2946959/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab2946959" class="tabcontent ">
+                    <h2>The cell surface receptors for interleukin-1 alpha and interleukin-1 beta are identical.</h2>
+                    <h3>Nature; 1986</h3>
+                    <p>Interleukin-1 (IL-1) is a factor that can induce proliferation of murine T lymphocytes and can elicit a variety of other biological responses. These include bone resorption, fibroblast proliferation, acute phase protein release from hepatocytes, cartilage breakdown and fever. This spectrum of activities is consistent with a role for IL-1 as a mediator of inflammation. Recently, sequence data have shown that there are at least two members of the IL-1 family; these distantly related proteins have been termed IL-1 alpha and IL-1 beta. We have found previously that both murine T cells and fibroblasts possess a relative molecular mass (Mr) approximately 80,000 (80K) plasma membrane receptor for human IL-1 beta. We show here that the receptor for IL-1 alpha on both murine and human cells is identical to that for IL-1 beta. This result raises the issue of what separation, if any, there might be between the biological activities of IL-1 alpha and IL-1 beta.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/2946959/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

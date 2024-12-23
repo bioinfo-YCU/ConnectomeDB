@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>PLA2G10——PLA2R1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for PLA2G10——PLA2R1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab11019817')">11019817</button><button class="tablinks " onclick="openTab(event, 'tab10922494')">10922494</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab11019817" class="tabcontent active">
+                    <h2>Mouse group X secretory phospholipase A2 induces a potent release of arachidonic acid from spleen cells and acts as a ligand for the phospholipase A2 receptor.</h2>
+                    <h3>Archives of biochemistry and biophysics; 2000</h3>
+                    <p>Group X secretory phospholipase A2 (sPLA2-X) has recently been shown to possess a powerful potency for releasing arachidonic acid from cell membrane phospholipids. Here, we report the purification of mouse pro- and mature forms of sPLA2-X, as well as its expression and biological functions. Purified pro-sPLA2-X was found to possess a propeptide of 11 amino acid residues attached at the NH2-terminals of the mature protein, and showed as little as 8% of the PLA2 activity of the mature form. Limited proteolysis of pro-sPLA2-X with trypsin resulted in the appearance of the mature form with a concomitant increase in PLA2 activity, suggesting a requirement of proteolytic removal of the propeptide for the optimal activity. The expression of sPLA2-X mRNA was detected in various tissues including the lung, thymus, and spleen, and immunohistochemical analysis revealed its expression in splenic macrophages. In the spleen cells, mature sPLA2-X elicited a prompt release of arachidonic acid with significant production of prostaglandin E2 more efficiently than group IB and IIA sPLA2s. In addition, sPLA2-X was identified as a high-affinity ligand for both native and recombinant form of mouse PLA2 receptor (PLA2R). However, there was no significant difference in the sPLA2-X-induced arachidonic acid release responses in the spleen cells between wild-type and PLA2R-deficient mice. These findings strongly suggest that sPLA2-X possesses two distinct biological functions in mice: it elicits a marked release of arachidonic acid from membrane phospholipids leading to the production of lipid mediators based on its enzymatic potency, and it acts as a natural ligand for the PLA2R that has been shown to play a critical role in the production of inflammatory cytokines during endotoxic shock.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11019817/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab10922494" class="tabcontent ">
+                    <h2>Identification of group X secretory phospholipase A(2) as a natural ligand for mouse phospholipase A(2) receptor.</h2>
+                    <h3>FEBS letters; 2000</h3>
+                    <p>Phospholipase A(2) receptor (PLA(2)R) mediates various biological responses elicited by group IB secretory phospholipase A(2) (sPLA(2)-IB). The recently cloned group X sPLA(2) (sPLA(2)-X) possesses several structural features characteristic of sPLA(2)-IB. Here, we detected a specific binding site of sPLA(2)-X in mouse osteoblastic MC3T3-E(1) cells. Cross-linking experiments demonstrated its molecular weight (180 kDa) to be similar to that of PLA(2)R. In fact, sPLA(2)-X was found to bind the recombinant PLA(2)R expressed in COS-7 cells, and its specific binding detected in mouse lung membranes was abolished by the deficiency of PLA(2)R. These findings demonstrate sPLA(2)-X to be one of the high-affinity ligands for mouse PLA(2)R.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/10922494/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

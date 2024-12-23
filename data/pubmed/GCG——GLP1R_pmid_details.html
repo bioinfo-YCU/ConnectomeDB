@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>GCG——GLP1R - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for GCG——GLP1R</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab8404634')">8404634</button><button class="tablinks " onclick="openTab(event, 'tab7937318')">7937318</button><button class="tablinks " onclick="openTab(event, 'tab15528268')">15528268</button><button class="tablinks " onclick="openTab(event, 'tab8404634')">8404634</button><button class="tablinks " onclick="openTab(event, 'tab11116211')">11116211</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab8404634" class="tabcontent active">
+                    <h2>Cloning and functional expression of the human glucagon-like peptide-1 (GLP-1) receptor.</h2>
+                    <h3>Endocrinology; 1993</h3>
+                    <p>Truncated forms of glucagon-like peptide-1 are the most potent endogenous stimuli of insulin secretion and have powerful antidiabetogenic effects. To determine the structure and coupling mechanisms of the human GLP-1 receptor we have isolated two pancreatic islet cDNAs, encoding the 463 amino acid receptor and differing mainly in their 3' untranslated regions. The deduced amino acid sequence is 90% homologous with the rat GLP-1 receptor. Northern blot analysis shows expression of a single 2.7 kb transcript in pancreatic tissue. When expressed in COS-7 cells the recombinant receptor conferred specific, high affinity GLP-1(7-37) binding. GLP-1(7-37) increased intracellular cAMP in a concentration dependent manner and caused an increase in the free cytosolic calcium ([Ca2+]i) from an intracellular pool, characteristic of phospholipase C (PLC) activation. Thus, like the structurally related glucagon and parathyroid hormone receptors, the human GLP-1 receptor can activate multiple intracellular signaling pathways including adenylyl cyclase and PLC. Knowledge of the GLP-1 receptor structure will facilitate the development of receptor agonists and elucidation of the important role of GLP-1 in normal physiology and disease states.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8404634/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab7937318" class="tabcontent ">
+                    <h2>Stable expression of the rat GLP-I receptor in CHO cells: activation and binding characteristics utilizing GLP-I(7-36)-amide, oxyntomodulin, exendin-4, and exendin(9-39).</h2>
+                    <h3>Peptides; 1994</h3>
+                    <p>Glucagon-like peptide-I (GLP-I) is a potent insulinotropic peptide that mediates its actions at pancreatic B-cells via specific receptors. In the present study we stably expressed the rat B-cell GLP-I receptor in CHO cells and studied binding characteristics and receptor activation utilizing the naturally occurring receptor agonist GLP-I(7-36)-amide (GLP-I), the proglucagon-derived GLP-I-related peptide oxyntomodulin, the GLP-I receptor agonist exendin-4, and the specific antagonist exendin(9-39). The potencies to displace [125I]GLP-I from the receptor were GLP-I > exendin-4 > exendin(9-39) > oxyntomodulin, and to displace [125I]exendin-4 GLP-I = exendin-4 > exendin(9-39) > oxyntomodulin. cAMP production was stimulated equally by GLP-I and exendin-4. Oxyntomodulin was less potent to stimulate cAMP generation. Exendin(9-39) blocked the stimulatory action of GLP-I and exendin-4 on cAMP production, but not that of oxyntomodulin. This study shows that GLP-I and exendin-4 are potent agonists at the transfected rat B-cell GLP-I receptor whereas oxyntomodulin is only a weak GLP-I receptor agonist. Furthermore, exendin(9-39) is a potent GLP-I receptor antagonist. This peptide is a valuable tool to further study the physiological actions of GLP-I.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/7937318/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab15528268" class="tabcontent ">
+                    <h2>Characterization of glucagon-like peptide-1 receptor beta-arrestin 2 interaction: a high-affinity receptor phenotype.</h2>
+                    <h3>Molecular endocrinology (Baltimore, Md.); 2005</h3>
+                    <p>To dissect the interaction between beta-arrestin ((beta)arr) and family B G protein-coupled receptors, we constructed fusion proteins between the glucagon-like peptide 1 receptor and (beta)arr2. The fusion constructs had an increase in apparent affinity selectively for glucagon, suggesting that (beta)arr2 interaction locks the receptor in a high-affinity conformation, which can be explored by some, but not all, ligands. The fusion constructs adopted a signaling phenotype governed by the tethered (beta)arr2 with an attenuated G protein-mediated cAMP signal and a higher maximal internalization compared with wild-type receptors. This distinct phenotype of the fusion proteins can not be mimicked by coexpressing wild-type receptor with (beta)arr2. However, when the wild-type receptor was coexpressed with both (beta)arr2 and G protein-coupled receptor kinase 5, a phenotype similar to that observed for the fusion constructs was observed. We conclude that the glucagon-like peptide 1 fusion construct mimics the natural interaction of the receptor with (beta)arr2 with respect to binding peptide ligands, G protein-mediated signaling and internalization, and that this distinct molecular phenotype is reminiscent of that which has previously been characterized for family A G protein-coupled receptors, suggesting similarities in the effect of (beta)arr interaction between family A and B receptors also at the molecular level.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/15528268/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab8404634" class="tabcontent ">
+                    <h2>Cloning and functional expression of the human glucagon-like peptide-1 (GLP-1) receptor.</h2>
+                    <h3>Endocrinology; 1993</h3>
+                    <p>Truncated forms of glucagon-like peptide-1 are the most potent endogenous stimuli of insulin secretion and have powerful antidiabetogenic effects. To determine the structure and coupling mechanisms of the human GLP-1 receptor we have isolated two pancreatic islet cDNAs, encoding the 463 amino acid receptor and differing mainly in their 3' untranslated regions. The deduced amino acid sequence is 90% homologous with the rat GLP-1 receptor. Northern blot analysis shows expression of a single 2.7 kb transcript in pancreatic tissue. When expressed in COS-7 cells the recombinant receptor conferred specific, high affinity GLP-1(7-37) binding. GLP-1(7-37) increased intracellular cAMP in a concentration dependent manner and caused an increase in the free cytosolic calcium ([Ca2+]i) from an intracellular pool, characteristic of phospholipase C (PLC) activation. Thus, like the structurally related glucagon and parathyroid hormone receptors, the human GLP-1 receptor can activate multiple intracellular signaling pathways including adenylyl cyclase and PLC. Knowledge of the GLP-1 receptor structure will facilitate the development of receptor agonists and elucidation of the important role of GLP-1 in normal physiology and disease states.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/8404634/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11116211" class="tabcontent ">
+                    <h2>Characterization of glucagon-like peptide-1 receptor-binding determinants.</h2>
+                    <h3>Journal of molecular endocrinology; 2000</h3>
+                    <p>Glucagon-like peptide 1 (GLP-1) is a potent insulinotropic hormone currently under study as a therapeutic agent for type 2 diabetes. Since an understanding of the molecular mechanisms leading to high-affinity receptor (R) binding and activation may facilitate the development of more potent GLP-1R agonists, we have localized specific regions of GLP-1R required for binding. The purified N-terminal fragment (hereafter referred to as NT) of the GLP-1R produced in either insect (Sf9) or mammalian (COS-7) cells was shown to bind GLP-1. The physical interaction of NT with GLP-1 was first demonstrated by cross-linking ((125)I-GLP-1/NT complex band at approximately 28 kDa) and secondly by attachment to Ni(2+)-NTA beads. The GLP-1R NT protein attached to beads bound GLP-1, but with lower affinity (inhibitory concentration (IC(50)): 4.5 x 10(-7) M) than wild-type (WT) GLP-1R (IC(50): 5.2 x 10(-9)M). The low affinity of GLP-1R NT suggested that other receptor domains may contribute to GLP-1 binding. This was supported by studies using chimeric glucose-dependent insulinotropic polypeptide (GIP)/GLP-1 receptors. GIP(1-151)/GLP-1R, but not GIP(1-222)/GLP-1R, exhibited specific GLP-1 binding and GLP-1-induced cAMP production, suggesting that the region encompassing transmembrane (TM) domain 1 through to TM3 was required for binding. Since it was hypothesized that certain charged or polar amino acids in this region might be involved in binding, these residues (TM2-TM3) were analyzed by substitution mutagenesis. Five mutants (K197A, D198A, K202A, D215A, R227A) displayed remarkably reduced binding affinity. These studies indicate that the NT domain of the GLP-1R is able to bind GLP-1, but charged residues concentrated at the distal TM2/extracellular loop-1 (EC1) interface (K197, D198, K202) and in EC1 (D215 and R227) probably contribute to the binding determinants of the GLP-1R.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11116211/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>FGF4——FGFR1 - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for FGF4——FGFR1</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab11486033')">11486033</button><button class="tablinks " onclick="openTab(event, 'tab11486033')">11486033</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab11486033" class="tabcontent active">
+                    <h2>Identification of receptor and heparin binding sites in fibroblast growth factor 4 by structure-based mutagenesis.</h2>
+                    <h3>Molecular and cellular biology; 2001</h3>
+                    <p>Fibroblast growth factors (FGFs) comprise a large family of multifunctional, heparin-binding polypeptides that show diverse patterns of interaction with a family of receptors (FGFR1 to -4) that are subject to alternative splicing. FGFR binding specificity is an essential mechanism in the regulation of FGF signaling and is achieved through primary sequence differences among FGFs and FGFRs and through usage of two alternative exons, IIIc and IIIb, for the second half of immunoglobulin-like domain 3 (D3) in FGFRs. While FGF4 binds and activates the IIIc splice forms of FGFR1 to -3 at comparable levels, it shows little activity towards the IIIb splice forms of FGFR1 to -3 as well as towards FGFR4. To begin to explore the structural determinants for this differential affinity, we determined the crystal structure of FGF4 at a 1.8-A resolution. FGF4 adopts a beta-trefoil fold similar to other FGFs. To identify potential receptor and heparin binding sites in FGF4, a ternary FGF4-FGFR1-heparin model was constructed by superimposing the FGF4 structure onto FGF2 in the FGF2-FGFR1-heparin structure. Mutation of several key residues in FGF4, observed to interact with FGFR1 or with heparin in the model, produced ligands with reduced receptor binding and concomitant low mitogenic potential. Based on the modeling and mutational data, we propose that FGF4, like FGF2, but unlike FGF1, engages the betaC'-betaE loop in D3 and thus can differentiate between the IIIc and IIIb splice isoforms of FGFRs for binding. Moreover, we show that FGF4 needs to interact with both the 2-O- and 6-O-sulfates in heparin to exert its optimal biological activity.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11486033/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11486033" class="tabcontent ">
+                    <h2>Identification of receptor and heparin binding sites in fibroblast growth factor 4 by structure-based mutagenesis.</h2>
+                    <h3>Molecular and cellular biology; 2001</h3>
+                    <p>Fibroblast growth factors (FGFs) comprise a large family of multifunctional, heparin-binding polypeptides that show diverse patterns of interaction with a family of receptors (FGFR1 to -4) that are subject to alternative splicing. FGFR binding specificity is an essential mechanism in the regulation of FGF signaling and is achieved through primary sequence differences among FGFs and FGFRs and through usage of two alternative exons, IIIc and IIIb, for the second half of immunoglobulin-like domain 3 (D3) in FGFRs. While FGF4 binds and activates the IIIc splice forms of FGFR1 to -3 at comparable levels, it shows little activity towards the IIIb splice forms of FGFR1 to -3 as well as towards FGFR4. To begin to explore the structural determinants for this differential affinity, we determined the crystal structure of FGF4 at a 1.8-A resolution. FGF4 adopts a beta-trefoil fold similar to other FGFs. To identify potential receptor and heparin binding sites in FGF4, a ternary FGF4-FGFR1-heparin model was constructed by superimposing the FGF4 structure onto FGF2 in the FGF2-FGFR1-heparin structure. Mutation of several key residues in FGF4, observed to interact with FGFR1 or with heparin in the model, produced ligands with reduced receptor binding and concomitant low mitogenic potential. Based on the modeling and mutational data, we propose that FGF4, like FGF2, but unlike FGF1, engages the betaC'-betaE loop in D3 and thus can differentiate between the IIIc and IIIb splice isoforms of FGFRs for binding. Moreover, we show that FGF4 needs to interact with both the 2-O- and 6-O-sulfates in heparin to exert its optimal biological activity.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11486033/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

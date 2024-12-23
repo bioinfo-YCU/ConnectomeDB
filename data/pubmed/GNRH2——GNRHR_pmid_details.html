@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>GNRH2——GNRHR - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for GNRH2——GNRHR</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab17452338')">17452338</button><button class="tablinks " onclick="openTab(event, 'tab17942747')">17942747</button><button class="tablinks " onclick="openTab(event, 'tab19638591')">19638591</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab17452338" class="tabcontent active">
+                    <h2>Structural determinants for ligand-receptor conformational selection in a peptide G protein-coupled receptor.</h2>
+                    <h3>The Journal of biological chemistry; 2007</h3>
+                    <p>G protein coupled receptors (GPCRs) modulate the majority of physiological processes through specific intermolecular interactions with structurally diverse ligands and activation of differential intracellular signaling. A key issue yet to be resolved is how GPCRs developed selectivity and diversity of ligand binding and intracellular signaling during evolution. We have explored the structural basis of selectivity of naturally occurring gonadotropin-releasing hormones (GnRHs) from different species in the single functional human GnRH receptor. We found that the highly variable amino acids in position 8 of the naturally occurring isoforms of GnRH play a discriminating role in selecting receptor conformational states. The human GnRH receptor has a higher affinity for the cognate GnRH I but a lower affinity for GnRH II and GnRHs from other species possessing substitutions for Arg(8). The latter were partial agonists in the human GnRH receptor. Mutation of Asn(7.45) in transmembrane domain (TM) 7 had no effect on GnRH I affinity but specifically increased affinity for other GnRHs and converted them to full agonists. Using molecular modeling and site-directed mutagenesis, we demonstrated that the highly conserved Asn(7.45) makes intramolecular interactions with a highly conserved Cys(6.47) in TM 6, suggesting that disruption of this intramolecular interaction induces a receptor conformational change which allosterically alters ligand specific binding sites and changes ligand selectivity and signaling efficacy. These results reveal GnRH ligand and receptor structural elements for conformational selection, and support co-evolution of GnRH ligand and receptor conformations.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/17452338/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab17942747" class="tabcontent ">
+                    <h2>Identification of a novel ligand binding residue Arg38(1.35) in the human gonadotropin-releasing hormone receptor.</h2>
+                    <h3>Molecular pharmacology; 2008</h3>
+                    <p>Delineation of peptide ligand binding sites is of fundamental importance in rational drug design and in understanding ligand-induced receptor activation. Molecular modeling and ligand docking to previously experimentally identified binding sites revealed a putative novel interaction between the C terminus of gonadotropin-releasing hormone (GnRH) and Arg(38(1.35)), located at the extracellular end of transmembrane domain 1 of the human GnRH receptor. Mutation of Arg(38(1.35)) to alanine resulted in 989- and 1268-fold reduction in affinity for GnRH I and GnRH II, respectively, the two endogenous ligands. Conservative mutation of Arg(38(1.35)) to lysine had less effect, giving reduced affinities of GnRH I and GnRH II by 24- and 54-fold, respectively. To test whether Arg(38(1.35)) interacts with the C-terminal Gly(10)-NH(2) of GnRH, binding of GnRH analogs with substitution of the C-terminal glycinamide with ethylamide ([Pro(9)-NHEt]GnRH) was studied with wild-type and Arg(38(1.35)) mutant receptors. Mutation of Arg(38(1.35)) to lysine or alanine had much smaller effect on receptor affinity for [Pro(9)-NHEt]GnRH analogs and no effect on binding affinity of peptide antagonist cetrorelix. In parallel with the decreased affinity, the mutants also gave a decreased potency to GnRH-elicited inositol phosphate (IP) responses. The mutant receptors had effects on [Pro(9)-NHEt]GnRH-elicited IP responses similar to that of the parent GnRHs. These findings indicate that Arg(38(1.35)) of the GnRH receptor is essential for high-affinity binding of GnRH agonists and stabilizing the receptor active conformation. The mutagenesis results support the prediction of molecular modeling that Arg(38(1.35)) interacts with the C-terminal glycinamide and probably forms hydrogen bonds with the backbone carbonyl of Pro(9) and Gly(10)-NH(2).</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/17942747/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab19638591" class="tabcontent ">
+                    <h2>GnRH-II antagonists induce apoptosis in human endometrial, ovarian, and breast cancer cells via activation of stress-induced MAPKs p38 and JNK and proapoptotic protein Bax.</h2>
+                    <h3>Cancer research; 2009</h3>
+                    <p>Recently, we could show that gonadotropin-releasing hormone (GnRH)-II antagonists induce apoptosis in human endometrial, ovarian, and breast cancer cells in vitro and in vivo. In the present study, we have ascertained receptor binding and effects of GnRH-II antagonists on mitogenic signal transduction and on activation of proapoptotic protein Bax. The GnRH-II antagonists tested showed EC50 values for GnRH-I receptor binding in the range of 1 to 2 nmol/L. The GnRH-II agonist [D-Lys6]GnRH-II showed an EC50 value for GnRH-I receptor binding of approximately 1,000 nmol/L. Agonistic activity on GnRH-I receptor function with an EC50 of 13 nmol/L has been determined for [D-Lys6]GnRH-II. Antagonistic activities with EC50 values in the range of 1 nmol/L were determined for the GnRH-II antagonists. Treatment of human endometrial, ovarian, and breast cancer cells with GnRH-II antagonists resulted in time-dependent activation of stress-induced mitogen-activated protein kinases p38 and c-Jun NH2-terminal kinase. In addition, treatment with GnRH-II antagonists induced time-dependent activation of proapoptotic protein Bax. GnRH-II antagonists are not involved in activation of protein kinase B/Akt or extracellular signal-regulated kinase 1/2. The GnRH-II antagonists tested had similar binding affinities to the GnRH-I receptor comparable with that of GnRH-I antagonist Cetrorelix. Referring to the cyclic AMP response element reporter gene activation assay, the GnRH-II agonist [D-Lys6]GnRH-II has to be classified as an agonist at the GnRH-I receptor, whereas the GnRH-II antagonists tested are clear antagonists at the GnRH-I receptor. GnRH-II antagonists induce apoptotic cell death in human endometrial, ovarian, and breast cancer cells via activation of stress-induced mitogen-activated protein kinases p38 and c-Jun NH2-terminal kinase followed by activation of proapoptotic protein Bax.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/19638591/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>

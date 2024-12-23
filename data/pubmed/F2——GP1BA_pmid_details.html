@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+    <title>F2——GP1BA - PMID Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 2em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+    </style>
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="">ConnectomeDB</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">Home</a>
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html">Database</a>
+        </div>
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+
+    <h1>PMID Details for F2——GP1BA</h1>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'tab2933256')">2933256</button><button class="tablinks " onclick="openTab(event, 'tab11024046')">11024046</button>
+    </div>
+
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
+        </div>
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    
+                <div id="tab2933256" class="tabcontent active">
+                    <h2>Structure and function of platelet membrane glycoproteins Ib and V. Effects of leukocyte elastase and other proteases on platelets response to von Willebrand factor and thrombin.</h2>
+                    <h3>European journal of biochemistry; 1985</h3>
+                    <p>Treatment of platelets with human leukocyte elastase causes a rapid loss in response to von Willebrand factor and a biphasic loss in response to thrombin, first rapid then more slowly. The rapid phase corresponds to cleavage of a 45-kDa glycopeptide from the extracellular end of membrane glycoprotein GPIb. Longer treatment removes 80-kDa and 90-kDa glycopeptides and a glycopeptide corresponding to the major part of GPV. The 45-kDa and 90-kDa species could be obtained by elastase treatment of glycocalicin, the major proteolytic cleavage product of GPIb. Polyclonal rabbit antibodies against the purified 45-kDa glycopeptide had the same effect on the action of von Willebrand factor and thrombin on platelets as cleavage of GPIb by elastase. These results indicate that both the von Willebrand factor and thrombin binding sites on GPIb are located in the same region on the outside of the molecule. Thrombin activation of platelets involves at least two receptors, one on the 45-kDa glycopeptide, which when occupied causes an increase in the speed of response of the platelets to the cleavage of the second. GPV, a candidate for the second receptor, is a hydrophobic glycoprotein that is cleaved from the platelet membrane by several proteases. Proteases that do not activate platelets but degrade the second receptor remove larger fragments from GPV than do proteases such as thrombin or trypsin which activate platelets.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/2933256/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+                <div id="tab11024046" class="tabcontent ">
+                    <h2>Platelet glycoprotein Ib alpha binds to thrombin anion-binding exosite II inducing allosteric changes in the activity of thrombin.</h2>
+                    <h3>The Journal of biological chemistry; 2001</h3>
+                    <p>The glycoprotein (GP) Ib-IX complex is a platelet surface receptor that binds thrombin as one of its ligands, although the biological significance of thrombin interaction remains unclear. In this study we have used several approaches to investigate the GPIb alpha-thrombin interaction in more detail and to study its effect on the thrombin-induced elaboration of fibrin. We found that both glycocalicin and the amino-terminal fragment of GPIb alpha reduced the release of fibrinopeptide A from fibrinogen by about 50% by a noncompetitive allosteric mechanism. Similarly, GPIb alpha caused in thrombin an allosteric reduction in the rate of turnover of the small peptide substrate d-Phe-Pro-Arg-pNA. The K(d) for the glycocalicin-thrombin interaction was 1 microm at physiological ionic strength but was highly salt-dependent, decreasing to 0.19 microm at 100 mm NaCl (Gamma(salt) = -4.2). The salt dependence was characteristic of other thrombin ligands that bind to exosite II of this enzyme, and we confirmed this as the GPIb alpha-binding site on thrombin by using thrombin mutants and by competition binding studies. R68E or R70E mutations in exosite I of thrombin had little effect on its interaction with GPIb alpha. Both the allosteric inhibition of fibrinogen turnover caused by GPIb alpha binding to these mutants, and the K(d) values for their interactions with GPIb alpha were similar to those of wild-type thrombin. In contrast, R89E and K248E mutations in exosite II of thrombin markedly increased the K(d) values for the interactions of these thrombin mutants with GPIb alpha by 10- and 25-fold, respectively. Finally, we demonstrated that low molecular weight heparin (which binds to thrombin exosite II) but not hirugen (residues 54-65 of hirudin, which binds to exosite I of thrombin) inhibited thrombin binding to GPIb alpha. These data demonstrate that GPIb alpha binds to thrombin exosite II and in so doing causes a conformational change in the active site of thrombin by an allosteric mechanism that alters the accessibility of both its natural substrate, fibrinogen, and the small peptidyl substrate d-Phe-Pro-Arg-pNA.</p>
+                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/11024046/" target="_blank">[For more details, see PubMed]</a></p>
+                </div>
+                
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Laboratory</span>
+        <span>Page built with <a href="https://quarto.org/">Quarto</a> by バイオインフォマティクス解析センター</span>
+    </footer>
+</body>
+</html>
