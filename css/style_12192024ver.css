@@ -1,0 +1,204 @@
+:root {
+    --navbar-bg-color: #007bff;  /* Default navbar background */
+    --navbar-text-color: #ffffff; /* Default navbar text color */
+    --valuebox-primary-bg-color: #2fa4e7;  /* Default bg color for primary valuebox */
+    --valuebox-primary-text-color: #fff;   /* Default text color for primary valuebox */
+    --quarto-light: #ffffff;  /* Light background */
+    --quarto-dark: #000000;   /* Dark text */
+    --heading-color: #2fa4e7; /* Default heading color */
+    color-scheme: light;
+}
+
+.quarto-dashboard .card.valuebox.bslib-card.bg-primary {
+    background-color: var(--valuebox-primary-bg-color) !important;
+    color: var(--valuebox-primary-text-color) !important;
+}
+
+.navbar {
+    background-color: var(--navbar-bg-color);
+    color: var(--navbar-text-color);
+}
+
+.navbar .navbar-nav .nav-item {
+    color: var(--navbar-text-color);
+}
+
+.navbar .navbar-title {
+    color: var(--navbar-text-color);
+}
+
+/* Apply styles to the navbar with the class 'navbar' */
+body .navbar {
+    background-color: var(--navbar-bg-color) !important;
+    color: var(--navbar-text-color) !important;
+}
+
+body {
+    background-color: var(--quarto-light); /* Light background */
+    color: var(--quarto-dark);  /* Dark text */
+    margin: 0;
+    padding: 0;
+}
+
+/* Dynamic heading styles based on theme */
+h1, .h1, h2, .h2 {
+    color: var(--heading-color); /* Dynamic heading color based on theme */
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* Table and general content styling */
+body {
+    background-color: var(--quarto-light); /* Light background */
+    color: var(--quarto-dark); /* Dark text */
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.tooltip { position: relative; 
+          display: inline-block;
+          cursor: pointer; 
+          font-size: 16px; 
+          border: 1px solid #ccc; 
+          border-radius: 5px;} 
+
+.tooltip .tooltip-text { 
+    visibility: hidden; 
+    width: 200px;
+    background-color: black; 
+    color: #fff; text-align: center; 
+    border-radius: 5px; padding: 5px 0; 
+    padding: 10px 15px;  /* Make the tooltip text box larger */
+
+    position: absolute; 
+    z-index: 1;
+    bottom: 125%; /* Position the tooltip above the text */ 
+    left: 50%; 
+    margin-left: -100px; /* Adjust the tooltip's position */
+    opacity: 0; 
+    transition: opacity 0.3s; 
+    font-size: 14px;  /* Make the tooltip text a little bigger */
+    line-height: 1.5;  /* Improve the readability of the text */
+    max-width: 100%;  /* Allow the tooltip to resize if content is too long */
+} 
+
+.tooltip:hover .tooltip-text { visibility: visible;
+                              opacity: 1; }
+
+.dt-input::placeholder {
+    font-style: italic !important;
+}
+
+
+/* Apply consistent margin for the main content */
+main {
+    margin-left: 25px;
+    margin-right: 25px;
+    max-width: calc(100% - 100px); /* Prevent overflow */
+}
+
+
+
+/* Global styles to ensure light theme */
+body {
+    background-color: var(--quarto-light); /* Light background */
+    color: var(--quarto-dark); /* Dark text */
+    margin: 0;
+    padding: 0;
+}
+
+/* Table-specific styles: Ensure light background and dark text */
+table {
+    background-color: #ffffff !important; /* Force white background */
+    color: #000000 !important; /* Force black text */
+    border-collapse: collapse; /* Clean borders */
+    width: 100%; /* Responsive table width */
+    margin: 10px 0; /* Add spacing around tables */
+    border: 1px solid #ddd; /* Subtle border for tables */
+}
+
+table thead th {
+    background-color: #f8f9fa; /* Light gray header background */
+    color: #000000; /* Black text for headers */
+    text-align: left;
+    padding: 8px;
+    border-bottom: 2px solid #ddd;
+}
+
+table tbody td {
+    padding: 4px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Apply white text color if the background is black */
+table[style*="background-color: black"], 
+table[style*="background-color: #000000"] {
+    color: white !important; /* Force white text */
+}
+
+/* Navigation bar and footer styles */
+
+/* nav, footer {
+    background-color: #ffffff; /* Ensure light background */
+    color: #000000; /* Ensure dark text */
+    margin: 0;
+    padding: 0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+} */
+
+/* Optional: Links */
+/* a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+ */
+/* a:hover {
+    color: #d32f2f;
+    text-decoration: underline;
+}
+ */
+
+th.dtfc-fixed-start.dtfc-fixed-left {
+    width: auto; /* Reset any conflicting width */
+    padding: 0 1px; /* Adjust padding if needed */
+}
+
+span.dt-column-title input[type="text"] {
+    width: 100% !important;  /* Apply width directly */
+    font-size: 12px !important;  /* Change the font size */
+}
+
+#popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);  /* semi-transparent background */
+  display: none;  /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  width: 300px;
+}
+
+.close-btn {
+  background: red;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+

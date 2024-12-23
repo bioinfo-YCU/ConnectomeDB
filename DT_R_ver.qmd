@@ -1,0 +1,38 @@
+---
+title: "DT in R"
+execute:
+  echo: false
+---
+
+### Datatable table example
+
+```{r, echo=FALSE, eval =TRUE, warning=FALSE, message=FALSE}
+library("knitr")
+library("rmarkdown")
+library("tidyverse")
+library("DT")
+gene_pair <- read_tsv("data/literature_support.tsv")
+gene_pair <- gene_pair[, colSums(!is.na(gene_pair)) > 0]
+
+gene_pair |> DT::datatable(rownames = FALSE, 
+                           filter = "top",
+                           extensions = 'Buttons', 
+                           options = list(
+                             dom = 'Bfrtip',
+                             buttons = list(
+                               'copy', 
+                               'print', 
+                               list(
+                                 extend = 'collection',
+                                 buttons = c('csv', 'excel', 'pdf'),
+                                 text = 'Download'
+                               )
+                             ),
+                             lengthMenu = list(c(10, 25, 50, -1), c('10', '25', '50', 'All')),  # Set the length menu
+                             pageLength = 25  # Default rows per page
+                           )
+) |>
+  DT::formatStyle(columns = colnames(gene_pair), 
+                  fontSize = '95%', color = 'navy')
+```
+
