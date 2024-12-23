@@ -15,8 +15,6 @@ To get started, clone the repository to your local machine:
 git clone https://github.com/bioinfo-YCU/ConnectomeDB.git
 cd ConnectomeDB
 ```
-Here’s a template for a README.md that provides instructions for pulling the repository, setting up a conda environment, and requesting a "data" directory from Sakura (if collaborators need it):
-
 
 ## Setting Up the Conda Environment
 The project requires specific dependencies, which can be installed using the requirements.txt file. Follow the steps below:
