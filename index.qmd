@@ -1,5 +1,5 @@
 ---
-title: " "
+title: "ConnectomeDB Dashboard"
 format: 
     dashboard:
         orientation: rows
@@ -16,7 +16,6 @@ extensions:
 
 ## Row {.flow}
 
-<img src="data/image/human.png" alt="manAndWoman" style="width:68%; margin:auto; display:block;">
 
 ```{python}
 #| content: valuebox
@@ -30,6 +29,7 @@ dict(
   value = f"{lrPairsCount:,}"
 )
 ```
+<img src="data/image/human.png" alt="manAndWoman" style="width:50%; margin:auto; display:block;">
 
 ```{python}
 #| content: valuebox
