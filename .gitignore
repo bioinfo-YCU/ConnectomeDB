@@ -18,6 +18,7 @@ __pycache__/
 
 # R qmd--remove for now
 DT_R_ver.qmd
+/DT_R_ver.qmd
 
 # C extensions
 *.so
