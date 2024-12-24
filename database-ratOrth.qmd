@@ -1,0 +1,73 @@
+---
+title: "Limited to LR Pairs with Rat Ortholog"
+execute:
+  echo: false
+format:
+  html:
+    table: false
+---
+
+***
+
+```{python}
+import sys
+import os
+import pandas as pd
+from itables import init_notebook_mode, show
+from IPython.display import display, Javascript
+import itables.options as opt
+sys.path.append(os.path.abspath("src"))  # Add src directory to path
+from createDataTable import rat_gene_pair
+
+
+# Function to update and display the table
+def update_table():
+    show(
+        rat_gene_pair,
+        keys=True,
+        #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
+        fixedColumns={"start": 1, "end": 0},
+        fixedHeader=True,  # Keep header fixed for alignment
+        column_filters="footer", 
+        scrollX=True,
+        classes="display nowrap cell-border compact",
+        select=True,
+        selected_rows=[],
+        responsive=True,  # Enable responsive behavior
+        theme='grid',
+        search={"regex": True, "caseInsensitive": False, "smart": True},
+        lengthMenu=[ [10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"] ],
+        buttons=[
+            "pageLength",  
+            {"extend": "colvis", "text": "Display Columns"},
+            {"extend": "csvHtml5", "title": "Source"},
+            {"extend": "excelHtml5", "title": "Source"},
+            {"extend": "copyHtml5", "title": "Source"},
+        ],
+        columnDefs=[
+            {"className": "dt-center", "targets": [4]}, 
+            # {"width": "100px", "targets": "_all"},
+            {"targets": [-4, -3, -2, -1], "visible": False} # Hide last two columns by default
+        ],
+        style="1200px;margin:auto",
+           language={
+            "search": "Search Any Column:",
+            "searchPlaceholder": "e.g. RGD:2298",
+           # "searchBuilder": {
+           #     "title": "Advanced Search <i>Multiple filtering, AND/OR condition</i>" 
+           # }
+        }, 
+        autoWidth=True,
+        maxBytes=0,  # So it does not downsample
+        initCode='''
+            $(document).on('draw.dt', function () {
+                $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
+            });
+    '''
+    )
+      
+
+# Call the function to render the table
+update_table()
+```
+

@@ -153,5 +153,92 @@ span.dt-column-title input[type="text"] {
   cursor: pointer;
 }
 
+/* itables */
+
+.dt-container {
+  font-size: 15px;
+  margin: 0px 0;  /* Add spacing if needed */
+}
+
+.dt-column-title {
+    font-size: 17px !important;
+    font-weight: bold !important; 
+    color: #333 !important;
+}
+
+
+.dt-buttons button {
+    font-size: 16px !important;
+    padding: 5px 5px !important;
+    background-color: #007BFF !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 5px !important;
+    margin: 2px !important;
+    cursor: pointer !important;
+}
+
+.dt-buttons button:hover {
+    background-color: #0056b3 !important;
+}
+
+/* Styling the input field text */
+.dt-input {
+    font-style: italic; /* Make the input text italic */
+    border: 5px solid #ccc; /* Add a light border */
+    border-radius: 4px; /* Optional: Rounded corners */
+    padding: 2px; /* Add some padding */
+    font-size: 14px; /* Adjust font size */
+}
+
+/* Styling the placeholder text */
+.dt-input::placeholder {
+    color: gray; /* Placeholder color */
+    font-style: italic; /* Make placeholder text italic */
+    opacity: 0.8; /* Optional: Slightly transparent */
+}
+
+/* Targeting the input fields within the th elements that have the dtfc-fixed-start and dtfc-fixed-left classes */
+th.dtfc-fixed-start.dtfc-fixed-left input[type="text"] {
+    width: 50px;  /* Adjust the width to make the input field shorter */
+}
+
+span.dt-column-title input[type="text"] {
+    width: 50px;  /* Adjust the width to make the input field shorter */
+}
+
+/* Ensure a max-width for all table cells */
+table.dataTable td,
+table.dataTable th {
+    max-width: 200px; /* Set your preferred max width */
+    text-overflow: ellipsis; /* Handle overflow with ellipsis */
+    overflow: hidden; /* Hide overflow content */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Adjust fixed columns */
+.dtfc-fixed-left, .dtfc-fixed-right {
+    background-color: #f9f9f9; /* Match table body */
+    border-right: 1px solid #ddd; /* Optional border */
+}
+
+/* Table wrapper adjustments */
+.dataTables_wrapper {
+    overflow-x: auto; /* Allow horizontal scrolling */
+    width: 100%; /* Ensure full width */
+}
+
+/* Fixed header alignment */
+.dataTables_scrollHeadInner {
+    width: 100% !important; /* Match the table's width */
+}
+
+
+table.dataTable thead th {
+    text-align: center; /* Center-align headers */
+    vertical-align: middle; /* Center headers vertically */
+}
+
+
 
 
