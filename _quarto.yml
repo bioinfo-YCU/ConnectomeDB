@@ -18,6 +18,11 @@ website:
       #   text: DT in R
       - href: database.qmd
         text: Database
+      - href: database-mouseOrth.qmd
+        text: Mouse Ortholog
+      - href: database-ratOrth.qmd
+        text: Rat Ortholog
+        
 
 
     right:
@@ -37,7 +42,7 @@ website:
 format:
   html:
     toc: true
-    theme: cosmos
+    theme: cerulean
     css: css/styles.css
     embed-resources: true  # Ensures resources are embedded for standalone
     grid: 
@@ -54,13 +59,16 @@ header-includes: |
   <div id="theme-switcher">
     <label for="theme-select"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose Theme:</label>
     <select id="theme-select" onchange="changeTheme()">
-      <option value="cosmos">Cosmos</option>
       <option value="cerulean">Cerulean</option>
+      <option value="sketchy">Sketchy</option>
+      <option value="spacelab">SpaceLab</option>
+      <option value="cosmo">Cosmo</option>
+      <option value="sandstone">Sandstone</option>
       <option value="flatly">Flatly</option>
-      <option value="simplex">Simplex</option>
       <option value="minty">Minty</option>
       <option value="paper">Paper</option>
-      <option value="slate">Slate</option>
+      <option value="cyborg">Cyborg</option>
+      <option value="quartz">Quartz</option>
       <option value="united">United</option>
     </select>
   </div>
