@@ -9,7 +9,8 @@ format:
 
 ***
 
-[**Filter by Mouse Ortholog**](database-mouseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} &nbsp;&nbsp;&nbsp; [**Filter by Rat Ortholog**](database-mouseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} 
+
+[**Filter by Mouse Ortholog Pairs**](database-mouseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} [**Filter by Rat Ortholog Pairs**](database-mouseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} 
 
 ```{python}
 import sys
@@ -21,11 +22,13 @@ import itables.options as opt
 sys.path.append(os.path.abspath("src"))  # Add src directory to path
 from createDataTable import gene_pair
 
+
 # Function to update and display the table
 def update_table():
     show(
         gene_pair,
         keys=True,
+        layout={"top": ["info", "paging"]},
         #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
         fixedColumns={"start": 1, "end": 0},
         fixedHeader=True,  # Keep header fixed for alignment

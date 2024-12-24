@@ -1,5 +1,5 @@
 ---
-title: "Limited to LR Pairs with Mouse Ortholog"
+title: "Limited to LR Pairs with Mouse Orthologs"
 execute:
   echo: false
 format:
@@ -25,6 +25,7 @@ def update_table():
     show(
         mouse_gene_pair,
         keys=True,
+        layout={"top": ["info", "paging"]},
         #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
         fixedColumns={"start": 1, "end": 0},
         fixedHeader=True,  # Keep header fixed for alignment

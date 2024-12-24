@@ -218,13 +218,14 @@ gene_pair["LR Pair"] = [
 # Add tooltips to the column headers
 gene_pair.columns = [
     f'<span title="Ligand Receptor Pair">{col}</span>' if col == "LR Pair" else
-    f'<span title="Click the logo below to run Perplexity on the LR pair">{col}</span>' if col == "Perplexity" else
-    f'<span title="Hover on symbols below to show gene names">{col}&nbsp;&nbsp;</span>' if col in ["Ligand", "Receptor"] else
+    f'<span title="Click the logo below to run Perplexity on the LR pair">{col}&nbsp;</span>' if col == "Perplexity" else
+    f'<span title="Hover on symbols below to show gene names">{col}&nbsp;&nbsp;&nbsp;</span>' if col in ["Ligand", "Receptor"] else
     f'<span title="Click on HGNC IDs below for more details">{col}&nbsp;&nbsp;</span>' if col in ["Ligand HGNC ID", "Receptor HGNC ID"] else
     f'<span title="Click on the Pubmed IDs (PMID) below for more details">{col}</span>' if col == "PMID support" else
     f'<span title="Click on the Rat Genome Database(RGD) IDs below for more details">{col}</span>' if col in ["Ligand Rat (RGD) ID", "Receptor Rat (RGD) ID"] else
-    f'<span title="Click on the Mouse Genome Informatics(MGI) IDs below for more details">{col}</span>' if col in ["Ligand Mouse (MGI) ID", "Receptor Mouse (MGI) ID",] else
-    f'<span title="Double-click header of {col} to ensure all values are shown">{col}&nbsp;&nbsp;</span>'
+    f'<span title="Click on the Mouse Genome Informatics(MGI) IDs below for more details">{col}</span>' if col in ["Ligand Mouse (MGI) ID", "Receptor Mouse (MGI) ID"] else
+    f'<span title="Location is defined as subcellular location">{col}</span>' if col in ["Ligand location", "Receptor location"] else
+    f'<span title="Double-click header of {col} to ensure all values are shown">{col}&nbsp;</span>'
     for col in gene_pair.columns
 ]
 
@@ -239,6 +240,7 @@ mouse_gene_pair = gene_pair[(gene_pair[mouse_columns].map(str.strip) != "").all(
 # Reorder the DataFrame
 new_order = mouse_columns + [col for col in mouse_gene_pair.columns if col not in mouse_columns]
 mouse_gene_pair = mouse_gene_pair[new_order]
+mouse_gene_pair = mouse_gene_pair.reset_index(drop=True)  
 
 # Find columns with "Rat" in the name
 rat_columns = ["<span title=\"Ligand Receptor Pair\">LR Pair</span>"] + [col for col in gene_pair.columns if "Rat" in col]
@@ -247,3 +249,4 @@ rat_gene_pair = gene_pair[(gene_pair[rat_columns].map(str.strip) != "").all(axis
 # Reorder the DataFrame
 new_order = rat_columns + [col for col in rat_gene_pair.columns if col not in rat_columns]
 rat_gene_pair = rat_gene_pair[new_order]
+rat_gene_pair = rat_gene_pair.reset_index(drop=True)  
