@@ -19,9 +19,9 @@ website:
       - href: database.qmd
         text: Database
       - href: database-mouseOrth.qmd
-        text: Mouse Ortholog
+        text: Mouse Orthologs
       - href: database-ratOrth.qmd
-        text: Rat Ortholog
+        text: Rat Orthologs
         
 
 
