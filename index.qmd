@@ -19,7 +19,7 @@ extensions:
 
 ```{python}
 #| content: valuebox
-#| title: "# of LR Pairs"
+#| title: "Number of LR Pairs"
 import sys
 import os
 sys.path.append(os.path.abspath("src"))  # Add src directory to path
