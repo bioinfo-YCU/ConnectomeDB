@@ -1,3 +1,5 @@
+## Function to prepare datatables (cleaning and hyperlinking, adding tool tips, etc) input for the database qmds
+
 from itables import init_notebook_mode
 import pandas as pd
 from itables import show

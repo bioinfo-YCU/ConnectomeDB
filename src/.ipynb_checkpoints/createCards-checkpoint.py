@@ -1,3 +1,5 @@
+## Function to create Ligand-Receptor pair cards
+
 import os
 import jinja2
 import sys

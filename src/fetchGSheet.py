@@ -1,4 +1,4 @@
-# Function to fetch data from a Google Sheet tab
+## Function to fetch data from a Google Sheet tab
 
 import gspread
 from google.oauth2.service_account import Credentials

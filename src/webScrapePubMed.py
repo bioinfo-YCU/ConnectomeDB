@@ -1,4 +1,5 @@
-### IMPORTANT: TURN OFF VPN!!!
+## Function to scrape data from Pubmed for Title, Abstract, Journal, and Year
+### IMPORTANT: TURN OFF VPN and make sure you have the data directory (from Sakura)
 
 import sys
 import requests
