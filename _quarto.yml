@@ -60,8 +60,6 @@ header-includes: |
       <option value="flatly">Flatly</option>
       <option value="minty">Minty</option>
       <option value="paper">Paper</option>
-      <option value="cyborg">Cyborg</option>
-      <option value="quartz">Quartz</option>
       <option value="united">United</option>
     </select>
   </div>
