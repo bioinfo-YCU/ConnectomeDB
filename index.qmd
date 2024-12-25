@@ -1,76 +1,155 @@
 ---
-title: "ConnectomeDB Dashboard"
-format: 
-    dashboard:
-        orientation: rows
-        scrolling: false 
+title: " ConnectomeDB: Comprehensive Ligand Receptor (LR) Pairs Database"
 execute:
   echo: false
 extensions:
     fontawesome
+toc: false
 ---
-## Row
 
- <h2> {{< fa database >}} Welcome to ConnectomeDB: Comprehensive Ligand Receptor (LR) Pairs Database</h2>
 [{{< fa arrow-right >}} **Proceed to Database**](database.qmd){style="font-size: 1.5em;"}
 
-## Row {.flow}
+::: {.columns}
+::: {.column width="24%"}
 
+::: {.card padding="3px"}
+<div style="height: 1.5em;"></div>
+
+### &nbsp; {{< fa database >}}  LR Pair Count
 
 ```{python}
-#| content: valuebox
-#| title: "Number of LR Pairs"
 import sys
 import os
+from IPython.display import display, HTML
+
 sys.path.append(os.path.abspath("src"))  # Add src directory to path
-from createDataTable import lrPairsCount, ligandCount, receptorCount, sourceCount, MouseLigandCount, MouseReceptorCount, RatLigandCount, RatReceptorCount
-dict(
-  icon = "server",
-  value = f"{lrPairsCount:,}"
+from createDataTable import (
+    lrPairsCount,
+    ligandCount,
+    receptorCount,
+    sourceCount,
+    MouseLigandCount,
+    MouseReceptorCount,
+    RatLigandCount,
+    RatReceptorCount,
 )
+
+# Display the LR pairs count in the desired format
+value = f"<div style='text-align:center;'><span style='font-size:2.4em; color:black; font-weight:bold'>{lrPairsCount:,}</span></div>"
+display(HTML(value))
 ```
-<img src="data/image/human.png" alt="manAndWoman" style="width:50%; margin:auto; display:block;">
+<br>
+:::
+
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="24%"}
+
+::: {.card padding="3px"}
+<div style="height: 1.15em;"></div>
+<img src="data/image/human.png" alt="manAndWoman" style="width:55%; margin:auto; display:block;">
+
+:::
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="24%"}
+
+::: {.card padding="3px"}
+### &nbsp;  ○ <span style='font-size: 50px;'>⤚</span> L & R Count
 
 ```{python}
-#| content: valuebox
-#| title: "Number of Ligands & Receptors"
-dict(
-  # icon = "newspaper",
-  value = f"{ligandCount:,} & {receptorCount:,}"
-)
+value = f"<div style='text-align:center;'><span style='font-size:2.4em; color:black; font-weight:bold'>{ligandCount:,} & {receptorCount:,}</span></div>"
+display(HTML(value))
 ```
+
+<br>
+<div style="height: 0.7em;"></div>
+
+
+:::
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="24%"}
+
+::: {.card padding="3px"}
+<div style="height: 1.7em;"></div>
+
+### &nbsp; {{< fa search >}} PMID Count
 
 ```{python}
-#| content: valuebox
-#| title: "Number of Evidence (PMID)"
-dict(
-  icon = "search",
-  value = f"{sourceCount:,}"
-)
+value = f"<div style='text-align:center;'><span style='font-size:2.4em; color:black; font-weight:bold'>{sourceCount:,}</span></div>"
+display(HTML(value))
 ```
+<div style="height: 2.3em;"></div>
+:::
+:::
 
-## Row {.flow}
+<div style="height: 2em;"></div>
 
-<img src="data/image/mouse.png" alt="mouse" style="width:49%; margin:auto;">
+:::
+
+::: {.columns}
+
+::: {.column width="15%"}
+
+::: {.card padding="3px"}
+
+<img src="data/image/mouse.png" alt="mouse" style="width:56%; display:block; margin:auto;">
+
+:::
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="33%"}
+::: {.card padding="3px"}
+
+### &nbsp; Number of Mouse L & R Orthologs
 
 ```{python}
-#| content: valuebox
-#| title: "Number of Mouse L & R Orthologs"
-dict(
-  # icon = "newspaper",
-  value = f"{MouseLigandCount:,} & {MouseReceptorCount:,}"
-)
+value = f"<div style='text-align:center;'><span style='font-size:2.4em; color:black; font-weight:bold'>{MouseLigandCount:,} & {MouseReceptorCount:,}</span></div>"
+display(HTML(value))
 ```
 
-<img src="data/image/rat.png" alt="rat" style="width:50%; margin:auto;">
+:::
+:::
 
+::: {.column width="1%"}
+:::
+
+::: {.column width="15%"}
+
+::: {.card padding="3px"}
+
+<img src="data/image/rat.png" alt="rat" style="width:77%; display:block; margin:auto;">
+
+:::
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="33%"}
+
+::: {.card padding="3px"}
+
+### &nbsp;Number of Rat L & R Orthologs
 ```{python}
-#| content: valuebox
-#| title: "Number of Rat L & R Orthologs"
-dict(
-  # icon = "newspaper",
-  value = f"{RatLigandCount:,} & {RatReceptorCount:,}"
-)
+value = f"<div style='text-align:center;'><span style='font-size:2.4em; color:black; font-weight:bold'>{RatLigandCount:,} & {RatReceptorCount:,}</span></div>"
+display(HTML(value))
 ```
 
+:::
+:::
 
+:::
