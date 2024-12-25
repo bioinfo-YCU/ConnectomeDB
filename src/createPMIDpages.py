@@ -10,7 +10,7 @@ OUTPUT_DIR = "data/pubmed/"
 
 # Add the src directory to the path for importing modules
 sys.path.append(os.path.abspath("src"))
-from createDataTable import gene_pair00
+from createDataTable import source
 
 # Load PubMed data
 pubmed_data = pd.read_csv("data/pubmed_results.csv")
@@ -18,8 +18,11 @@ pubmed_data["Year"] = pubmed_data["Year"].astype(str).str.replace(".0",
                                                                   "", 
                                                                   regex=False).astype(int)
 
+pubmed_data["PMID"] = pubmed_data["PMID"].astype(str)
 # Replace spaces in "LR Pair" with a placeholder
 gene_pair00["LR Pair"] = gene_pair00["LR Pair"].str.replace(" ", "——")
+
+pubmed_data = pubmed_data.reset_index(drop=True)  # Remove the index
 
 def load_template(template_path):
     """
@@ -68,8 +71,8 @@ def create_detailed_pages_with_tabs(df, gene_column, pmid_column, pubmed_data, t
                 else:
                     title = "No Title Found"
                     abstract = "No Abstract Found"
-                    title = "Journal Unknown"
-                    abstract = "Year Unknown"
+                    journal = "Journal Unknown"
+                    year = "Year Unknown"
 
                 active_class = "active" if i == 0 else ""
                 tab_headers.append(f'<button class="tablinks {active_class}" onclick="openTab(event, \'tab{pmid}\')">{pmid}</button>')

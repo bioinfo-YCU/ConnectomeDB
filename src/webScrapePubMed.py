@@ -16,7 +16,7 @@ with open("data/ncbi_api_key.txt", "r") as file:
     ncbi_api_key = file.read().strip()
 
 # File to save the results
-output_file = "data/pubmed_result.csv"
+output_file = "data/pubmed_results.csv"
 
 # Load your list of PMIDs
 pmid_list = source
