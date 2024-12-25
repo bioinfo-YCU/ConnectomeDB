@@ -1,3 +1,5 @@
+### IMPORTANT: TURN OFF VPN!!!
+
 import sys
 import requests
 import pandas as pd

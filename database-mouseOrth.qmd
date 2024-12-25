@@ -1,5 +1,5 @@
 ---
-title: "Limited to LR Pairs with Mouse Orthologs"
+title: "Mouse Ortholog LR Pairs"
 execute:
   echo: false
 format:
@@ -8,6 +8,13 @@ format:
 ---
 
 ***
+
+<span>**Filter by:**</span>
+
+[**None**](database.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} [**Mouse Ortholog Pairs**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" title="Currently selected"}
+[**Rat Ortholog Pairs**](database-mouseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"}
+
+
 
 ```{python}
 import sys

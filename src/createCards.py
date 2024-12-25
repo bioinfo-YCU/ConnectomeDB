@@ -35,11 +35,11 @@ def prepare_dataframes(gene_pair0):
         ["Approved symbol", "Alias symbol", "Previous symbol", "Date symbol changed"]
     ].drop_duplicates(subset="Approved symbol", keep="first")
     
-    ligand_card = gene_pair0[["LR Pair", "Ligand", "Ligand name", "Ligand HGNC ID", 'Ligand location']].merge(
+    ligand_card = gene_pair0[["LR Pair", "Ligand", "Ligand name", "Ligand HGNC ID", "Ligand location", "Ligand MGI ID", "Ligand RGD ID"]].merge(
         pop_up_info_lim, how='left', left_on='Ligand', right_on='Approved symbol'
     ).drop_duplicates(subset='LR Pair', keep="first").drop(columns=["Ligand"])
 
-    receptor_card = gene_pair0[["LR Pair", "Receptor", "Receptor name", "Receptor HGNC ID", 'Receptor location']].merge(
+    receptor_card = gene_pair0[["LR Pair", "Receptor", "Receptor name", "Receptor HGNC ID", "Receptor location", "Receptor MGI ID", "Receptor RGD ID"]].merge(
         pop_up_info_lim, how='left', left_on='Receptor', right_on='Approved symbol'
     ).drop_duplicates(subset='LR Pair', keep="first").drop(columns=["Receptor"])
 

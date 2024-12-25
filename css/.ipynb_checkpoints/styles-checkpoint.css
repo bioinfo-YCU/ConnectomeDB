@@ -103,6 +103,15 @@ table[style*="background-color: #000000"] {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
 } */
 
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap; /* Prevent line breaks */
+  padding: 0.5rem 1rem; /* Adjust spacing */
+}
+
+
 /* Optional: Links */
 /* a {
     color: #1a73e8;
@@ -152,6 +161,14 @@ span.dt-column-title input[type="text"] {
   border: none;
   cursor: pointer;
 }
+
+.btn.active {
+    color: #fff; /* White text */
+    background-color: #007bff; /* Primary button background */
+    border-color: #007bff; /* Primary button border */
+    pointer-events: none; /* Make it non-clickable */
+}
+
 
 /* itables */
 

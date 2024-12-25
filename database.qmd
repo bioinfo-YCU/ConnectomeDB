@@ -9,8 +9,11 @@ format:
 
 ***
 
+<span>**Filter by:**</span>
 
-[**Filter by Mouse Ortholog Pairs**](database-mouseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} [**Filter by Rat Ortholog Pairs**](database-mouseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} 
+[**None**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" title="Currently selected"} [**Mouse Ortholog Pairs**](database-mouseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} 
+[**Rat Ortholog Pairs**](database-mouseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"}
+
 
 ```{python}
 import sys
