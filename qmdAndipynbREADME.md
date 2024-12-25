@@ -20,4 +20,5 @@ The following scripts are always executed when qmds are being rendered via quart
 The following scripts are only for testing scripts during development:
 
 `R_test.ipynb`: For testing scripts written in `R`
-`R_test.ipynb`: For testing scripts written in `Python`
+
+`Python_test.ipynb`: For testing scripts written in `Python`
