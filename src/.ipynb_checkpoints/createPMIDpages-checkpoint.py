@@ -74,9 +74,9 @@ def create_detailed_pages_with_tabs(df, gene_column, pmid_column, pubmed_data, t
                 tab_contents.append(f"""
                 <div id="tab{pmid}" class="tabcontent {active_class}">
                     <h2>{title}</h2>
-                    <h3>{journal}; {year}</h3>
+                    <p><strong>{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">For more details, see PubMed</a></strong></p>
                     <p>{abstract}</p>
-                    <p><a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">[For more details, see PubMed]</a></p>
+                    
                 </div>
                 """)
 

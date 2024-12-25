@@ -18,13 +18,6 @@ website:
       #   text: DT in R
       - href: database.qmd
         text: Database
-      - href: database-mouseOrth.qmd
-        text: Mouse Orthologs
-      - href: database-ratOrth.qmd
-        text: Rat Orthologs
-        
-
-
     right:
       - href: https://www-user.yokohama-cu.ac.jp/~bioinfo/
         text: YCU Bioinformatics Lab 
@@ -35,8 +28,8 @@ website:
         href: https://github.com/bioinfo-YCU
 
   page-footer:
-    right: "Page built with [Quarto](https://quarto.org/) by バイオインフォマティクス解析センター"
-    left: "© Copyright 2024, YCU Bioinformatics Laboratory"
+    right: "Page built with [Quarto](https://quarto.org/)"
+    left: "© Copyright 2024 YCU Bioinformatics Lab | Perkins Systems Biology & Genomics Lab"
     background: "#F7F7F7"
 
 format:
