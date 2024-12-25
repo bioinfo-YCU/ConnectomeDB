@@ -1,3 +1,5 @@
+## Function to create an evidence page per LR pair with each tab per PMID
+
 import sys
 import os
 import pandas as pd
