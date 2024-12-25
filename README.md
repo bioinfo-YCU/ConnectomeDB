@@ -1,5 +1,5 @@
 # ConnectomeDB
-This repository contains the scripts for creating the database website for ConnectomeDB. Follow the instructions below to get started with the project.
+This repository contains the scripts for creating the database website for [ConnectomeDB](https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/). Follow the instructions below to get started with the project.
 
 ## Prerequisites
 Before setting up the project, ensure you have the following installed:
@@ -32,11 +32,21 @@ Before setting up the project, ensure you have the following installed:
 
 To get started, clone the repository to your local machine:
 
+via HTTPS:
+
 ```bash
-git clone https://github.com/yourusername/repository-name.git
-cd repository-name
-Setting Up the Conda Environment
-The project requires specific dependencies, which can be installed using the requirements.txt file. Follow the steps below:
+git clone https://github.com/bioinfo-YCU/ConnectomeDB.git
+```
+
+or via ssh:
+
+```bash
+git clone git@github.com:bioinfo-YCU/ConnectomeDB.git
+```
+then change directory to "ConnectomeDB":
+
+```bash
+cd ConnectomeDB
 ```
 
 ## Setting Up the Conda Environment
@@ -71,3 +81,4 @@ You can render and preview the website to see changes you've made.
 quarto render
 quarto preview
 ```
+
