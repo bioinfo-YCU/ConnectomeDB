@@ -8,6 +8,9 @@ import time
 import os
 import xml.etree.ElementTree as ET
 
+sys.path.append(os.path.abspath("src"))  
+from createDataTable import source
+
 # Read the API key from a file
 with open("data/ncbi_api_key.txt", "r") as file:
     ncbi_api_key = file.read().strip()
@@ -18,14 +21,14 @@ output_file = "data/pubmed_result.csv"
 # Load your list of PMIDs
 pmid_list = source
 
-# Limit PMIDs to the intersection with an existing file
 if os.path.exists(output_file):
     existing_data = pd.read_csv(output_file)
     existing_pmids = set(existing_data["PMID"].astype(str))  # Ensure PMIDs are strings
 else:
     existing_pmids = set()
-
-pmid_list = list(set(pmid_list).intersection(existing_pmids))
+    
+# Limit PMIDs to the intersection with an existing file
+#pmid_list = list(set(pmid_list).intersection(existing_pmids))
 
 def fetch_pubmed_data(pmid_list):
     base_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
