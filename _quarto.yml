@@ -19,7 +19,7 @@ website:
       - href: database.qmd
         text: Database
     right:
-      - href: https://www-user.yokohama-cu.ac.jp/~bioinfo/
+      - href: https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/
         text: YCU Bioinformatics Lab 
       - text: "|"
       - href: https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/
