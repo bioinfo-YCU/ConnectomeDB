@@ -9,9 +9,14 @@ format:
 
 ***
 
-[**Human LR Pairs**](database.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} [**Mouse Ortholog Pairs**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" title="Currently selected"}
-[**Rat Ortholog Pairs**](database-ratOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"}
-
+[**Human LR Pairs**](database.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} [**Mouse Ortholog Pairs**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" title="Currently selected"} <div class="btn-group" role="group">
+  <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    Other Species
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item active" href="database-ratOrth.qmd" aria-disabled="false">Rat Ortholog Pairs</a></li>
+  </ul>
+</div>
 
 
 ```{python}
@@ -51,7 +56,7 @@ def update_table():
             {"extend": "copyHtml5", "title": "Source"},
         ],
         columnDefs=[
-            {"className": "dt-center", "targets": [4]}, 
+            {"className": "dt-center", "targets": [9]}, 
             # {"width": "100px", "targets": "_all"},
             {"targets": [-4, -3, -2, -1], "visible": False} # Hide last two columns by default
         ],
