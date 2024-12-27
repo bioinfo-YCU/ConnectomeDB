@@ -2,6 +2,7 @@
 title: "ConnectomeDB2025"
 execute:
   echo: false
+  warnings: false  # Add this line to suppress warnings globally
 format:
   html:
     table: false
@@ -9,9 +10,7 @@ format:
 
 ***
 
-<span>**Filter by:**</span>
-
-[**None**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" title="Currently selected"} [**Mouse Ortholog Pairs**](database-mouseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} 
+[**Human LR Pairs**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" title="Currently selected"} [**Mouse Ortholog Pairs**](database-mouseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} 
 [**Rat Ortholog Pairs**](database-ratOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"}
 
 

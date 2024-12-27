@@ -10,7 +10,7 @@ OUTPUT_DIR = "data/pubmed/"
 
 # Add the src directory to the path for importing modules
 sys.path.append(os.path.abspath("src"))
-from createDataTable import source
+from createDataTable import gene_pair00
 
 # Load PubMed data
 pubmed_data = pd.read_csv("data/pubmed_results.csv")

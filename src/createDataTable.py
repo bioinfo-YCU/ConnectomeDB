@@ -1,5 +1,6 @@
 ## Function to prepare datatables (cleaning and hyperlinking, adding tool tips, etc) input for the database qmds
-
+import sys, os
+sys.path.append(os.path.abspath("src"))  
 from itables import init_notebook_mode
 import pandas as pd
 from itables import show
@@ -7,6 +8,11 @@ from itables import options
 from IPython.display import HTML, display
 import numpy as np
 import fetchGSheet 
+import warnings
+
+# Suppress SettingWithCopyWarning
+warnings.simplefilter("ignore", category=UserWarning)
+
 
 # Select only the relevant columns from pop_up_info
 
@@ -34,6 +40,22 @@ gene_pair = gene_pair.rename(columns={"Approved name": "Ligand name",
                                      "RGD ID": "Ligand RGD ID"},
                             )
 
+# Add MGI name
+MGI_info = pd.read_csv("data/MGI_ID_biomart.csv")
+gene_pair = gene_pair.merge(MGI_info, how='left', left_on='Ligand MGI ID', right_on='MGI ID')
+
+# Add RGD name
+RGD_info = pd.read_csv("data/RGD_ID_biomart.csv")
+RGD_info['RGD ID'] = "RGD:" + RGD_info['RGD ID'].astype(str)
+gene_pair = gene_pair.merge(RGD_info, how='left', left_on='Ligand RGD ID', right_on='RGD ID')
+
+gene_pair = gene_pair.drop(columns=["RGD ID", "MGI ID"])
+
+gene_pair = gene_pair.rename(columns={
+                                     "MGI name": "Ligand MGI name", 
+                                     "RGD name": "Ligand RGD name"}
+                            )
+
 gene_pair = gene_pair.merge(pop_up_info_lim, how='left', left_on='Receptor', right_on='Approved symbol')
 
 gene_pair = gene_pair.rename(columns={"Approved name": "Receptor name",
@@ -41,6 +63,15 @@ gene_pair = gene_pair.rename(columns={"Approved name": "Receptor name",
                                       "RGD ID": "Receptor RGD ID"}
                             )
 
+# Add MGI name
+gene_pair = gene_pair.merge(MGI_info, how='left', left_on='Receptor MGI ID', right_on='MGI ID')
+gene_pair = gene_pair.merge(RGD_info, how='left', left_on='Receptor RGD ID', right_on='RGD ID')
+gene_pair = gene_pair.drop(columns=["RGD ID", "MGI ID"])
+
+gene_pair = gene_pair.rename(columns={
+                                     "MGI name": "Receptor MGI name", 
+                                     "RGD name": "Receptor RGD name"}
+                            )
 gene_pair = gene_pair.drop(columns=["Approved symbol_x", "Approved symbol_y"])
 
 # Drop columns where all values are NA in gene_pair
@@ -199,17 +230,6 @@ def replace_spaces(row):
 # Apply the function to the 'LR Pair' column
 gene_pair['LR Pair'] = gene_pair.apply(replace_spaces, axis=1)
 
-gene_pair["Ligand location"] = [
-    '<span title="This is the tooltip for {}">{}</span>'.format(loc, loc)
-    for loc in gene_pair["Ligand location"]
-]
-
-gene_pair["Receptor location"] = [
-    '<span title="This is the tooltip for {}">{}</span>'.format(loc, loc)
-    for loc in gene_pair["Receptor location"]
-]
-
-
 gene_pair = gene_pair.drop(columns=["Ligand name", "Receptor name"])
 
 
@@ -238,19 +258,58 @@ gene_pair = gene_pair.reset_index(drop=True)  # Remove the index
 
 ## Limit to those with either Mouse Ligand or Receptor
 # Find columns with "Mouse" in the name
-mouse_columns = ["<span title=\"Ligand Receptor Pair\">LR Pair</span>"] + [col for col in gene_pair.columns if "Mouse" in col]
+mouse_columns = [col for col in gene_pair.columns if "MGI" in col]
 # Filter rows where all "Mouse" columns are not " "
 mouse_gene_pair = gene_pair[(gene_pair[mouse_columns].map(str.strip) != "").all(axis=1)]
-# Reorder the DataFrame
-new_order = mouse_columns + [col for col in mouse_gene_pair.columns if col not in mouse_columns]
-mouse_gene_pair = mouse_gene_pair[new_order]
-mouse_gene_pair = mouse_gene_pair.reset_index(drop=True)  
+# Dynamically identify columns containing "Ligand" and "Receptor" in their names 
+# since it is now in span format
+        
+ligand_col = [col for col in mouse_gene_pair.columns if "Ligand MGI name" in col][0]
+receptor_col = [col for col in mouse_gene_pair.columns if "Receptor MGI name" in col][0]
+ligand_location = [col for col in mouse_gene_pair.columns if "Ligand location" in col][0]
+receptor_location = [col for col in mouse_gene_pair.columns if "Receptor location" in col][0]
 
-# Find columns with "Rat" in the name
-rat_columns = ["<span title=\"Ligand Receptor Pair\">LR Pair</span>"] + [col for col in gene_pair.columns if "Rat" in col]
-# Filter rows where any "Mouse" columns have a value
-rat_gene_pair = gene_pair[(gene_pair[rat_columns].map(str.strip) != "").all(axis=1)]
+# Combine columns into "Mouse LR Pair" with appropriate replacements
+def format_lr_pair(row):
+    if row[ligand_location] == 'secreted':
+        return f"{row[ligand_col]} ○ <span style='font-size: 30px;'>⤚</span> {row[receptor_col]}"
+    elif row[receptor_location] == 'plasma membrane':
+        return f"{row[ligand_col]} <span style='font-size: 30px;'>⤙</span> <span style='font-size: 30px;'>⤚</span> {row[receptor_col]}"
+    else:
+        return f"{row[ligand_col]} \u2192 {row[receptor_col]}"
+
+
+# Apply the function row-wise and assign to the new column using .loc
+mouse_gene_pair1 = mouse_gene_pair.copy() 
+mouse_gene_pair1.loc[:, "Mouse LR Pair"] = mouse_gene_pair1.apply(format_lr_pair, axis=1)
 # Reorder the DataFrame
-new_order = rat_columns + [col for col in rat_gene_pair.columns if col not in rat_columns]
-rat_gene_pair = rat_gene_pair[new_order]
-rat_gene_pair = rat_gene_pair.reset_index(drop=True)  
+new_order = ["Mouse LR Pair"] + mouse_columns + [col for col in mouse_gene_pair1.columns if col not in mouse_columns]
+mouse_gene_pair1 = mouse_gene_pair1[new_order]
+mouse_gene_pair1 = mouse_gene_pair1.reset_index(drop=True)  
+
+## Limit to those with either Rat Ligand or Receptor
+rat_columns = [col for col in gene_pair.columns if "RGD" in col]
+# Filter rows where all "Rat" columns are not " "
+rat_gene_pair = gene_pair[(gene_pair[rat_columns].map(str.strip) != "").all(axis=1)]
+# Dynamically identify columns containing "Ligand" and "Receptor" in their names 
+# since it is now in span format
+ligand_col = [col for col in rat_gene_pair.columns if "Ligand RGD name" in col][0]
+receptor_col = [col for col in rat_gene_pair.columns if "Receptor RGD name" in col][0]
+ligand_location = [col for col in mouse_gene_pair.columns if "Ligand location" in col][0]
+receptor_location = [col for col in mouse_gene_pair.columns if "Receptor location" in col][0]
+# Combine columns into "Mouse LR Pair" with appropriate replacements
+def format_lr_pair(row):
+    if row[ligand_location] == 'secreted':
+        return f"{row[ligand_col]} ○ <span style='font-size: 30px;'>⤚</span> {row[receptor_col]}"
+    elif row[receptor_location] == 'plasma membrane':
+        return f"{row[ligand_col]} <span style='font-size: 30px;'>⤙</span> <span style='font-size: 30px;'>⤚</span> {row[receptor_col]}"
+    else:
+        return f"{row[ligand_col]} \u2192 {row[receptor_col]}"
+
+rat_gene_pair1 = rat_gene_pair.copy() 
+rat_gene_pair1.loc[:, "Rat LR Pair"] = rat_gene_pair1.apply(format_lr_pair, axis=1)
+
+# Reorder the DataFrame
+new_order = ["Rat LR Pair"] + rat_columns + [col for col in rat_gene_pair1.columns if col not in rat_columns]
+rat_gene_pair1 = rat_gene_pair1[new_order]
+rat_gene_pair1 = rat_gene_pair1.reset_index(drop=True)  

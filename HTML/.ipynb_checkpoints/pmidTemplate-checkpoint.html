@@ -108,12 +108,12 @@
         }
 
         .tabcontent h2 {
-            font-size: 2em;
+            font-size: 1.5em;
             color: #2980b9;
         }
 
         .tabcontent p {
-            font-size: 1.2em;
+            font-size: 1em;
             line-height: 1.8;
         }
 
@@ -154,7 +154,7 @@
 <body>
     <nav>
         <div class="navbar-left">
-            <a href="javascript:history.back()"> ← Back to ConnectomeDB </a> 
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html"> ← ConnectomeDB </a> 
         </div>
         
         <div class="navbar-right">
@@ -163,9 +163,7 @@
             <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/">Perkins Systems Biology & Genomics Lab</a>
         </div>
     </nav>
-
-    <h1>PMID Details for {{GENE_NAME}}</h1>
-
+    <h1>{{GENE_NAME}} PMIDs</h1>
     <div class="tab">
         {{TAB_HEADERS}}
     </div>

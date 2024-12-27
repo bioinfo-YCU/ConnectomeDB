@@ -2,6 +2,7 @@
 title: " ConnectomeDB: Comprehensive Ligand Receptor (LR) Pairs Database"
 execute:
   echo: false
+  warnings: false  # Add this line to suppress warnings globally
 extensions:
     fontawesome
 toc: false
