@@ -9,9 +9,7 @@ format:
 
 ***
 
-<span>**Filter by:**</span>
-
-[**None**](database.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} [**Mouse Ortholog Pairs**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" title="Currently selected"}
+[**Human LR Pairs**](database.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} [**Mouse Ortholog Pairs**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" title="Currently selected"}
 [**Rat Ortholog Pairs**](database-ratOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"}
 
 
@@ -24,13 +22,13 @@ from itables import init_notebook_mode, show
 from IPython.display import display, Javascript
 import itables.options as opt
 sys.path.append(os.path.abspath("src"))  # Add src directory to path
-from createDataTable import mouse_gene_pair
+from createDataTable import mouse_gene_pair1
 
 
 # Function to update and display the table
 def update_table():
     show(
-        mouse_gene_pair,
+        mouse_gene_pair1,
         keys=True,
         layout={"top": ["info", "paging"]},
         #layout={"bottom": "searchBuilder", "title": "Advanced Search"},

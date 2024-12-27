@@ -121,7 +121,7 @@
 <body>
     <nav>
         <div class="navbar-left">
-            <a href="javascript:history.back()"> ← Back to ConnectomeDB </a> 
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database.html"> ← ConnectomeDB </a> 
         </div>
         
         <div class="navbar-right">
@@ -186,15 +186,45 @@
                     {{ value }}
                 </div>
             {% endfor %}
-        </div>
-        <div class="card">
-            <h2>Receptor: {{ value2 }}</h2>
-            {% for column, value in table2_data.items() %}
+            <hr>
+            {% set table2_data_items = table2_data.items() | list %}
+            {% for column, value in table2_data_items[:-1] %}
                 <div>
                     <strong>{{ column }}:</strong> 
                     {{ value }}
                 </div>
             {% endfor %}
+            <hr>
+            {% set table2_data_items = table2_data.items() | list %}
+            {% set last_column = table2_data_items[-1] %}
+            <div>
+                <strong>{{ last_column[0] }}:</strong> 
+                {{ last_column[1] }}
+            </div>
+        </div>
+        <div class="card">
+            <h2>Receptor: {{ value2 }}</h2>
+            {% for column, value in table3_data.items() %}
+                <div>
+                    <strong>{{ column }}:</strong> 
+                    {{ value }}
+                </div>
+            {% endfor %}
+            <hr>
+            {% set table4_data_items = table4_data.items() | list %}
+            {% for column, value in table4_data_items[:-1] %}
+                <div>
+                    <strong>{{ column }}:</strong> 
+                    {{ value }}
+                </div>
+            {% endfor %}
+            <hr>
+            {% set table4_data_items = table4_data.items() | list %}
+            {% set last_column = table4_data_items[-1] %}
+            <div>
+                <strong>{{ last_column[0] }}:</strong> 
+                {{ last_column[1] }}
+            </div>
         </div>
     </div>
     <footer>

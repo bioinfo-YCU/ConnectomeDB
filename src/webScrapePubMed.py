@@ -116,7 +116,7 @@ def fetch_pubmed_data(pmid_list):
             updated_data.sort_values(by="PMID")  # Ensure rows are ordered
             .drop_duplicates(subset="PMID", keep="last")  # Keep the latest data
         )
-        
+        updated_data["Journal"] = updated_data["Journal"].str.split(" (", n=1, expand=False, regex=False).str[0]
         updated_data.to_csv(output_file, index=False)
     else:
         print("No new data fetched.")
