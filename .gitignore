@@ -1,27 +1,20 @@
-.ipynb_checkpoints/
-.DS_Store
-
-# quarto
-.quarto/
-/.quarto/
-/.quarto/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
 # data
-/data/
-/data/*
-/DT_R_ver_files/
+data/
+data/*
+DT_R_ver_files/
+*.zip
 
 # output file
-/_site/
-/_site/*
+_site/
+_site/*
 
 # R qmd--remove for now
 DT_R_ver.qmd
-/DT_R_ver.qmd
 
 # C extensions
 *.so
@@ -190,3 +183,5 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
+
+/.quarto/
