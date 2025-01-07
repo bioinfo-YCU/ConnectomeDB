@@ -16,7 +16,7 @@ warnings.simplefilter("ignore", category=UserWarning)
 
 # Select only the relevant columns from pop_up_info
 
-pop_up_info = fetchGSheet.pop_up_info.rename(columns={"Mouse genome informatics (MGI) ID": "MGI ID","Rat genome database (RGD) ID": "RGD ID"})
+pop_up_info = fetchGSheet.pop_up_info.rename(columns={"Mouse genome informatics (MGI) ID": "MGI ID", "Rat genome database (RGD) ID": "RGD ID"})
 
 pop_up_info_lim = pop_up_info[["Approved symbol", "Approved name", "MGI ID", "RGD ID"]]
 pop_up_info_lim = pop_up_info_lim.drop_duplicates(subset="Approved symbol", keep="first")
@@ -52,8 +52,8 @@ gene_pair = gene_pair.merge(RGD_info, how='left', left_on='Ligand RGD ID', right
 gene_pair = gene_pair.drop(columns=["RGD ID", "MGI ID"])
 
 gene_pair = gene_pair.rename(columns={
-                                     "MGI name": "Ligand MGI name", 
-                                     "RGD name": "Ligand RGD name"}
+                                     "MGI name": "Mouse Ligand", 
+                                     "RGD name": "Rat Ligand"}
                             )
 
 gene_pair = gene_pair.merge(pop_up_info_lim, how='left', left_on='Receptor', right_on='Approved symbol')
@@ -69,8 +69,8 @@ gene_pair = gene_pair.merge(RGD_info, how='left', left_on='Receptor RGD ID', rig
 gene_pair = gene_pair.drop(columns=["RGD ID", "MGI ID"])
 
 gene_pair = gene_pair.rename(columns={
-                                     "MGI name": "Receptor MGI name", 
-                                     "RGD name": "Receptor RGD name"}
+                                     "MGI name": "Mouse Receptor", 
+                                     "RGD name": "Rat Receptor"}
                             )
 gene_pair = gene_pair.drop(columns=["Approved symbol_x", "Approved symbol_y"])
 
@@ -255,17 +255,36 @@ gene_pair.columns = [
 ]
 
 gene_pair = gene_pair.reset_index(drop=True)  # Remove the index
+gene_pair000 = gene_pair.copy()
 
-## Limit to those with either Mouse Ligand or Receptor
+keywords_to_modify = ["LR Pair", "Ligand", "Receptor"]
+exclude_keywords = ["HGNC ID", "Location"]  # Columns containing this will not be modified
+
+# Copy the original columns so we can modify only the first 10
+new_columns = gene_pair000.columns.tolist()
+
+# Modify only the first 10 columns
+new_columns[:10] = [
+    f'<span title="{col.split(">")[0]}">Human {col.split(">")[1]}</span>'
+    if any(keyword in col for keyword in keywords_to_modify) and not any(exclude in col for exclude in exclude_keywords)
+    else col
+    for col in new_columns[:10]
+]
+
+# Assign the modified column names back to the DataFrame
+gene_pair000.columns = new_columns
+human_columns = [col for col in gene_pair000.columns][:10]
+
 # Find columns with "Mouse" in the name
-mouse_columns = [col for col in gene_pair.columns if "MGI" in col]
+mouse_columns = [col for col in gene_pair.columns if "MGI" in col or "Mouse" in col]
+
 # Filter rows where all "Mouse" columns are not " "
-mouse_gene_pair = gene_pair[(gene_pair[mouse_columns].map(str.strip) != "").all(axis=1)]
+mouse_gene_pair = gene_pair000[(gene_pair000[mouse_columns].map(str.strip) != "").all(axis=1)]
 # Dynamically identify columns containing "Ligand" and "Receptor" in their names 
 # since it is now in span format
         
-ligand_col = [col for col in mouse_gene_pair.columns if "Ligand MGI name" in col][0]
-receptor_col = [col for col in mouse_gene_pair.columns if "Receptor MGI name" in col][0]
+ligand_col = [col for col in mouse_gene_pair.columns if "Mouse Ligand" in col][0]
+receptor_col = [col for col in mouse_gene_pair.columns if "Mouse Receptor" in col][0]
 ligand_location = [col for col in mouse_gene_pair.columns if "Ligand location" in col][0]
 receptor_location = [col for col in mouse_gene_pair.columns if "Receptor location" in col][0]
 
@@ -283,18 +302,18 @@ def format_lr_pair(row):
 mouse_gene_pair1 = mouse_gene_pair.copy() 
 mouse_gene_pair1.loc[:, "Mouse LR Pair"] = mouse_gene_pair1.apply(format_lr_pair, axis=1)
 # Reorder the DataFrame
-new_order = ["Mouse LR Pair"] + mouse_columns + [col for col in mouse_gene_pair1.columns if col not in mouse_columns]
+new_order = ["Mouse LR Pair"] + mouse_columns + human_columns
 mouse_gene_pair1 = mouse_gene_pair1[new_order]
 mouse_gene_pair1 = mouse_gene_pair1.reset_index(drop=True)  
 
 ## Limit to those with either Rat Ligand or Receptor
-rat_columns = [col for col in gene_pair.columns if "RGD" in col]
+rat_columns = [col for col in gene_pair.columns if "RGD" in col or "Rat" in col]
 # Filter rows where all "Rat" columns are not " "
-rat_gene_pair = gene_pair[(gene_pair[rat_columns].map(str.strip) != "").all(axis=1)]
+rat_gene_pair = gene_pair000[(gene_pair000[rat_columns].map(str.strip) != "").all(axis=1)]
 # Dynamically identify columns containing "Ligand" and "Receptor" in their names 
 # since it is now in span format
-ligand_col = [col for col in rat_gene_pair.columns if "Ligand RGD name" in col][0]
-receptor_col = [col for col in rat_gene_pair.columns if "Receptor RGD name" in col][0]
+ligand_col = [col for col in rat_gene_pair.columns if "Rat Ligand" in col][0]
+receptor_col = [col for col in rat_gene_pair.columns if "Rat Receptor" in col][0]
 ligand_location = [col for col in mouse_gene_pair.columns if "Ligand location" in col][0]
 receptor_location = [col for col in mouse_gene_pair.columns if "Receptor location" in col][0]
 # Combine columns into "Mouse LR Pair" with appropriate replacements
@@ -310,6 +329,6 @@ rat_gene_pair1 = rat_gene_pair.copy()
 rat_gene_pair1.loc[:, "Rat LR Pair"] = rat_gene_pair1.apply(format_lr_pair, axis=1)
 
 # Reorder the DataFrame
-new_order = ["Rat LR Pair"] + rat_columns + [col for col in rat_gene_pair1.columns if col not in rat_columns]
+new_order = ["Rat LR Pair"] + rat_columns + human_columns
 rat_gene_pair1 = rat_gene_pair1[new_order]
 rat_gene_pair1 = rat_gene_pair1.reset_index(drop=True)  

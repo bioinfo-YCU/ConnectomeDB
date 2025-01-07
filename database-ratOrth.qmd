@@ -59,7 +59,7 @@ def update_table():
         columnDefs=[
             {"className": "dt-center", "targets": [9]}, 
             # {"width": "100px", "targets": "_all"},
-            {"targets": [-4, -3, -2, -1], "visible": False} # Hide last two columns by default
+            #{"targets": [-4, -3, -2, -1], "visible": False} # Hide last 4 columns by default
         ],
         style="1200px;margin:auto",
            language={
