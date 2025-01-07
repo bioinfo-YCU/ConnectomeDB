@@ -8,6 +8,8 @@ format:
     table: false
 ---
 
+***Last updated: Dec 2024***
+
 ***
 
 [**Human LR Pairs**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" title="Currently selected"} [**Mouse Ortholog Pairs**](database-mouseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} <div class="btn-group" role="group">
@@ -15,7 +17,8 @@ format:
     Other Species
   </button>
   <ul class="dropdown-menu">
-    <li><a class="dropdown-item active" href="database-ratOrth.qmd" aria-disabled="false">Rat Ortholog Pairs</a></li>
+    <li><a class="dropdown-item" href="database-ratOrth.qmd" aria-disabled="false">Rat Ortholog Pairs</a></li>
+    <li><a class="dropdown-item" href="database-zebrafishOrth.qmd" aria-disabled="false">Zebrafish Ortholog Pairs</a></li>
   </ul>
 </div>
 

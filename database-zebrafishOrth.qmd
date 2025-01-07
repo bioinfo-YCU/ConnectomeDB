@@ -1,5 +1,5 @@
 ---
-title: "Rat Ortholog LR Pairs"
+title: "Zebrafish Ortholog LR Pairs"
 execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
@@ -17,10 +17,12 @@ format:
     Other Species
   </button>
   <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#" aria-disabled="true">Rat Ortholog Pairs</a></li>
-    <li><a class="dropdown-item" href="database-zebrafishOrth.qmd" aria-disabled="false">Zebra Ortholog Pairs</a></li>
+    <li><a class="dropdown-item" href="database-ratOrth.qmd" aria-disabled="false">Rat Ortholog Pairs</a></li>
+    <li><a class="dropdown-item" href="#" aria-disabled="true">Zebrafish Ortholog Pairs</a></li>
   </ul>
 </div>
+
+*dummy (currently rat DB)*
 
 
 ```{python}
