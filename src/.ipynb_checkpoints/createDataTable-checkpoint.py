@@ -309,9 +309,9 @@ receptor_location = [col for col in mouse_gene_pair.columns if "Receptor locatio
 # Combine columns into "Mouse LR Pair" with appropriate replacements
 def format_lr_pair(row):
     if row[ligand_location] == 'secreted':
-        return f"{row[ligand_col]} ○ <span style='font-size: 30px;'>⤚</span> {row[receptor_col]}"
+        return f"{row[ligand_col]} ○ <span style='font-size: 28px;'>⤚</span> {row[receptor_col]}"
     elif row[receptor_location] == 'plasma membrane':
-        return f"{row[ligand_col]} <span style='font-size: 30px;'>⤙</span> <span style='font-size: 30px;'>⤚</span> {row[receptor_col]}"
+        return f"{row[ligand_col]} <span style='font-size: 28px;'>⤙</span> <span style='font-size: 28px;'>⤚</span> {row[receptor_col]}"
     else:
         return f"{row[ligand_col]} \u2192 {row[receptor_col]}"
 
@@ -342,16 +342,16 @@ rat_gene_pair.columns = new_columns
 
 # Dynamically identify columns containing "Ligand" and "Receptor" in their names 
 # since it is now in span format
-ligand_col = [col for col in rat_gene_pair.columns if "Ligand&nbsp;" in col][1]
-receptor_col = [col for col in rat_gene_pair.columns if "Receptor&nbsp;" in col][1]
+ligand_col = [col for col in rat_gene_pair.columns if "Ligand&nbsp;" in col][2]
+receptor_col = [col for col in rat_gene_pair.columns if "Receptor&nbsp;" in col][2]
 ligand_location = [col for col in rat_gene_pair.columns if "Ligand location" in col][0]
 receptor_location = [col for col in rat_gene_pair.columns if "Receptor location" in col][0]
 
 def format_lr_pair(row):
     if row[ligand_location] == 'secreted':
-        return f"{row[ligand_col]} ○ <span style='font-size: 30px;'>⤚</span> {row[receptor_col]}"
+        return f"{row[ligand_col]} ○ <span style='font-size: 28px;'>⤚</span> {row[receptor_col]}"
     elif row[receptor_location] == 'plasma membrane':
-        return f"{row[ligand_col]} <span style='font-size: 30px;'>⤙</span> <span style='font-size: 30px;'>⤚</span> {row[receptor_col]}"
+        return f"{row[ligand_col]} <span style='font-size: 28px;'>⤙</span> <span style='font-size: 28px;'>⤚</span> {row[receptor_col]}"
     else:
         return f"{row[ligand_col]} \u2192 {row[receptor_col]}"
 
