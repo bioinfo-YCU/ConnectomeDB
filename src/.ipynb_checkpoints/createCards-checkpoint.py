@@ -31,7 +31,7 @@ def prepare_dataframes(gene_pair0):
         )
     ]
     interaction_card = gene_pair0[["Interaction ID", "Human LR Pair", "Interaction Type", "Perplexity", "PMID support"]]
-    interaction_card["Perplexity"] = interaction_card["Perplexity"].str.replace('size=35', 'size=80')
+    interaction_card["Perplexity"] = interaction_card["Perplexity"].str.replace('size=30', 'size=80')
 
     pop_up_info_lim = fetchGSheet.pop_up_info[
         ["Approved symbol", "Alias symbol", "Previous symbol", "Date symbol changed"]
