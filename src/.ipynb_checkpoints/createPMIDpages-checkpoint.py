@@ -1,4 +1,4 @@
-## Function to create an evidence page per LR pair with each tab per PMID
+## Function to create an evidence page per Human LR Pair with each tab per PMID
 
 import sys
 import os
@@ -19,8 +19,8 @@ pubmed_data["Year"] = pubmed_data["Year"].astype(str).str.replace(".0",
                                                                   regex=False).astype(int)
 
 pubmed_data["PMID"] = pubmed_data["PMID"].astype(str)
-# Replace spaces in "LR Pair" with a placeholder
-gene_pair00["LR Pair"] = gene_pair00["LR Pair"].str.replace(" ", "——")
+# Replace spaces in "Human LR Pair" with a placeholder
+gene_pair00["Human LR Pair"] = gene_pair00["Human LR Pair"].str.replace(" ", "——")
 
 pubmed_data = pubmed_data.reset_index(drop=True)  # Remove the index
 
@@ -104,7 +104,7 @@ if __name__ == "__main__":
     # Generate pages
     create_detailed_pages_with_tabs(
         df=gene_pair00,
-        gene_column="LR Pair",
+        gene_column="Human LR Pair",
         pmid_column="PMID support",
         pubmed_data=pubmed_data,
         template=template,
