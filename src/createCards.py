@@ -24,7 +24,7 @@ def convert_hgnc_url(col):
    # Extract the HGNC ID from the original URL
     hgnc_id = col.split("HGNC:")[1].split('"')[0]  # Extract the ID number (e.g., "31702")
     # Extract the visible text inside the <a> tag
-    visible_text = col.split(">")[1].split("<")[0]  # Extract "HGNC:31702"
+    visible_text = "genecard.org" # simplify col.split(">")[1].split("<")[0]  # Extract "HGNC:31702"
     # Construct the new link, keeping the text intact
     new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}" target="_blank">{visible_text}</a>'
     return new_link
@@ -34,7 +34,7 @@ def convert_hgnc_url_disease(col):
    # Extract the HGNC ID from the original URL
     hgnc_id = col.split("HGNC:")[1].split('"')[0]  # Extract the ID number (e.g., "31702")
     # Extract the visible text inside the <a> tag
-    visible_text = col.split(">")[1].split("<")[0]  # Extract "HGNC:31702"
+    visible_text = "see here" #col.split(">")[1].split("<")[0]  # Extract "HGNC:31702"
     # Construct the new link, keeping the text intact
     new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}#diseases" target="_blank">{visible_text}</a>'
     return new_link
@@ -43,7 +43,7 @@ def convert_hgnc_url_exp(col):
    # Extract the HGNC ID from the original URL
     hgnc_id = col.split("HGNC:")[1].split('"')[0]  # Extract the ID number (e.g., "31702")
     # Extract the visible text inside the <a> tag
-    visible_text = col.split(">")[1].split("<")[0]  # Extract "HGNC:31702"
+    visible_text = "see here" #col.split(">")[1].split("<")[0]  # Extract "HGNC:31702"
     # Construct the new link, keeping the text intact
     new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}#expression" target="_blank">{visible_text}</a>'
     return new_link
