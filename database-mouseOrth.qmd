@@ -18,6 +18,7 @@ format:
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="database-ratOrth.qmd" aria-disabled="false">Rat Ortholog Pairs</a></li>
     <li><a class="dropdown-item" href="database-zebrafishOrth.qmd" aria-disabled="false">Zebra Ortholog Pairs</a></li>
+    <li><a class="dropdown-item" href="database-chimpOrth.qmd" aria-disabled="false">Chimp Ortholog Pairs</a></li>
   </ul>
 </div>
 

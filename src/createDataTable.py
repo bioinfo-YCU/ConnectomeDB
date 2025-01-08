@@ -143,7 +143,7 @@ gene_pair["Receptor HGNC ID"] = [
 
 # Perplexity
 gene_pair["Perplexity"] = [
-    '<a href="{}" target="_blank"> <img src="https://img.icons8.com/?size=35&id=0NbBuNOxUwps&format=png&color=000000" alt="Perplexity AI" /></a>'.format(url)
+    '<a href="{}" target="_blank"> <img src="https://img.icons8.com/?size=30&id=0NbBuNOxUwps&format=png&color=000000" alt="Perplexity AI" /></a>'.format(url)
     for url in gene_pair["Perplexity"]
 ]
 
