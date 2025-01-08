@@ -19,6 +19,35 @@ def load_template(template_path):
     with open(template_path, 'r') as file:
         return jinja2.Template(file.read())
 
+# Function to convert the links
+def convert_hgnc_url(col):
+   # Extract the HGNC ID from the original URL
+    hgnc_id = col.split("HGNC:")[1].split('"')[0]  # Extract the ID number (e.g., "31702")
+    # Extract the visible text inside the <a> tag
+    visible_text = col.split(">")[1].split("<")[0]  # Extract "HGNC:31702"
+    # Construct the new link, keeping the text intact
+    new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}" target="_blank">{visible_text}</a>'
+    return new_link
+
+
+def convert_hgnc_url_disease(col):
+   # Extract the HGNC ID from the original URL
+    hgnc_id = col.split("HGNC:")[1].split('"')[0]  # Extract the ID number (e.g., "31702")
+    # Extract the visible text inside the <a> tag
+    visible_text = col.split(">")[1].split("<")[0]  # Extract "HGNC:31702"
+    # Construct the new link, keeping the text intact
+    new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}#diseases" target="_blank">{visible_text}</a>'
+    return new_link
+    
+def convert_hgnc_url_exp(col):
+   # Extract the HGNC ID from the original URL
+    hgnc_id = col.split("HGNC:")[1].split('"')[0]  # Extract the ID number (e.g., "31702")
+    # Extract the visible text inside the <a> tag
+    visible_text = col.split(">")[1].split("<")[0]  # Extract "HGNC:31702"
+    # Construct the new link, keeping the text intact
+    new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}#expression" target="_blank">{visible_text}</a>'
+    return new_link
+
 def prepare_dataframes(gene_pair0):
     """Prepare interaction, ligand, and receptor dataframes."""
     DBlength = len(gene_pair0)
@@ -42,16 +71,26 @@ def prepare_dataframes(gene_pair0):
     ).drop_duplicates(subset='Human LR Pair', keep="first").drop(columns=["Ligand", "Approved symbol"])
 
     ligand_card_1 = ligand_card[["Human LR Pair", "Alias symbol", "Date symbol changed", "Ligand name"]] 
-    ligand_card_2 = ligand_card[["Human LR Pair", "Ligand HGNC ID", "Ligand MGI ID", "Ligand RGD ID", "Ligand location"]] 
-    
+    ligand_card_2 = ligand_card[["Human LR Pair", "Ligand HGNC ID", "Ligand location"]] 
+    # convert links
+    ligand_card_2["HGNC gene card"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url)
+    ligand_card_2["Disease relevance"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url_disease)
+    ligand_card_2["Expression Profile"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url_exp)
+    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "HGNC gene card", "Disease relevance", "Expression Profile", "Ligand location"]]       
+
+          
     receptor_card = gene_pair0[["Human LR Pair", "Receptor", "Receptor name", "Receptor HGNC ID", "Receptor MGI ID", "Receptor RGD ID", "Receptor location"]].merge(
         pop_up_info_lim, how='left', left_on='Receptor', right_on='Approved symbol'
     ).drop_duplicates(subset='Human LR Pair', keep="first").drop(columns=["Receptor", "Approved symbol"])
     
     receptor_card_1 = receptor_card[["Human LR Pair", "Alias symbol", "Date symbol changed", "Receptor name"]] 
-    receptor_card_2 = receptor_card[["Human LR Pair", "Receptor HGNC ID", "Receptor MGI ID", "Receptor RGD ID", "Receptor location"]] 
+    receptor_card_2 = receptor_card[["Human LR Pair", "Receptor HGNC ID", "Receptor location"]] 
+    receptor_card_2["HGNC gene card"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url)
+    receptor_card_2["Disease relevance"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url_disease)
+    receptor_card_2["Expression Profile"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url_exp)
+    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID", "HGNC gene card", "Disease relevance", "Expression Profile", "Receptor location"]]       
 
-    return interaction_card, ligand_card_1, ligand_card_2, receptor_card_1, receptor_card_2
+    return interaction_card, ligand_card_1, ligand_card_2,receptor_card_1, receptor_card_2
 
 def generate_html_files(template, interaction_card, ligand_card_1, receptor_card_1, ligand_card_2, receptor_card_2, output_dir):
     """Generate HTML files for each Human LR Pair."""
