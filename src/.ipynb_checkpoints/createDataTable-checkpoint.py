@@ -23,10 +23,13 @@ pop_up_info_lim = pop_up_info_lim.drop_duplicates(subset="Approved symbol", keep
 
 # Drop columns where all values are NA in gene_pair
 gene_pair = fetchGSheet.gene_pair.dropna(axis=1, how='all')
+# Fetch species IDs from the dataset
+hgnc_id = [col for col in gene_pair.columns if "HGNC ID" in col]
+hgnc_id = pd.concat([gene_pair[col] for col in hgnc_id]).unique()
 
 # Rename columns for better clarity
 gene_pair = gene_pair.rename(columns={
-    "Ligand receptor pair": "LR Pair",
+    "Ligand receptor pair": "Human LR Pair",
     "Ligand gene symbol": "Ligand",
     "Receptor gene symbol": "Receptor",
     "Perplexity link": "Perplexity"
@@ -78,19 +81,21 @@ gene_pair = gene_pair.drop(columns=["Approved symbol_x", "Approved symbol_y"])
 gene_pair = gene_pair.dropna(axis=1, how='all')
 
 gene_pair = gene_pair.fillna(" ")
-gene_pair = gene_pair[gene_pair['LR Pair'] != ' ']
+gene_pair = gene_pair[gene_pair['Human LR Pair'] != ' ']
 
 if "PMID link" in gene_pair.columns:
     gene_pair = gene_pair.drop(columns=["PMID link"])
 
 # Add
-first_columns=['LR Pair','Source', 'Ligand','Receptor', 'Perplexity']
-end_columns=['HGNC L R','sanity check', 'curator','secondary source?']
+first_columns=['Human LR Pair', 'Ligand', 'Receptor', 'Source']
+
+end_columns=['HGNC L R', 'sanity check', 'curator', 'secondary source?']
 gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns + end_columns] + end_columns]
+
 
 # number of unique vars
 
-lrPairsCount = len(gene_pair["LR Pair"].unique())
+lrPairsCount = len(gene_pair["Human LR Pair"].unique())
 
 ligandCount = len(gene_pair["Ligand"].unique())
 
@@ -120,7 +125,7 @@ source = [value.replace(" ", "") for value in source]
 sourceCount = len(source)
 
 # for creating PMIDs
-gene_pair00 = gene_pair[['LR Pair', 'PMID support']]
+gene_pair00 = gene_pair[['Human LR Pair', 'PMID support']]
 
 # create URLs for the HGNC IDs
 
@@ -173,7 +178,7 @@ def generate_links_with_doi(df, gene_column, pmid_column):
 
 
 # Generate the links for the "PMID support" column
-gene_pair = generate_links_with_doi(gene_pair, gene_column="LR Pair", pmid_column="PMID support")
+gene_pair = generate_links_with_doi(gene_pair, gene_column="Human LR Pair", pmid_column="PMID support")
 
 gene_pair["Ligand MGI ID"] = [
         f'<a href="https://www.informatics.jax.org/marker/{mouseOrth}" target="_blank">{mouseOrth}</a>' 
@@ -199,14 +204,16 @@ gene_pair["Receptor RGD ID"] = [
         for ratOrth in gene_pair["Receptor RGD ID"]
     ]
 
-mouse_columns = [col for col in gene_pair.columns if "MGI" in col]
-rat_columns = [col for col in gene_pair.columns if "RGD" in col]
+mouse_columns = [col for col in gene_pair.columns if "MGI" in col or "Mouse" in col]
+rat_columns = [col for col in gene_pair.columns if "RGD" in col or "Rat" in col]
 
-gene_pair0 = gene_pair[['LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PMID support',
+gene_pair0 = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PMID support',
        'Ligand HGNC ID', 'Ligand location', 'Receptor HGNC ID',
        'Receptor location', 'Ligand name', 'Receptor name'] + mouse_columns + rat_columns]
 
-
+gene_pair = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Source', 'Perplexity', 'PMID support',
+       'Ligand location', 'Receptor location', 'Ligand HGNC ID', 'Receptor HGNC ID',
+        'Ligand name', 'Receptor name'] + mouse_columns + rat_columns + end_columns]
 # gene symbol
 gene_pair["Ligand"] = [
     f'<span title="{ligand_name}">{ligand_symbol}</span>'
@@ -221,35 +228,35 @@ gene_pair["Receptor"] = [
 
 def replace_spaces(row):
     if row['Ligand location'] == 'secreted':
-        return row['LR Pair'].replace(" ", " ○ <span style='font-size: 30px;'>⤚</span> ")
+        return row['Human LR Pair'].replace(" ", " ○ <span style='font-size: 30px;'>⤚</span> ")
     elif row['Ligand location'] == 'plasma membrane':
-        return row['LR Pair'].replace(" ", " <span style='font-size: 30px;'>⤙</span> <span style='font-size: 30px;'>⤚</span> ")
+        return row['Human LR Pair'].replace(" ", " <span style='font-size: 30px;'>⤙</span> <span style='font-size: 30px;'>⤚</span> ")
     else:
-        return row['LR Pair'].replace(" ", " \u2192 ")
+        return row['Human LR Pair'].replace(" ", " \u2192 ")
 
 # Apply the function to the 'LR Pair' column
-gene_pair['LR Pair'] = gene_pair.apply(replace_spaces, axis=1)
+gene_pair['Human LR Pair'] = gene_pair.apply(replace_spaces, axis=1)
 
 gene_pair = gene_pair.drop(columns=["Ligand name", "Receptor name"])
 
 
 # Create the links to the HTML cards
-gene_pair["LR Pair"] = [
+gene_pair["Human LR Pair"] = [
     f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrPairOrig}.html">{lrPair}</a>'
-    for lrPairOrig, lrPair in zip(gene_pair0["LR Pair"], gene_pair["LR Pair"])
+    for lrPairOrig, lrPair in zip(gene_pair0["Human LR Pair"], gene_pair["Human LR Pair"])
 ]
 
 
 # Add tooltips to the column headers
 gene_pair.columns = [
-    f'<span title="Ligand Receptor Pair">{col}</span>' if col == "LR Pair" else
-    f'<span title="Click the logo below to run Perplexity on the LR pair">{col}&nbsp;</span>' if col == "Perplexity" else
+    f'<span title="Ligand Receptor Pair">{col}</span>' if col == "Human LR Pair" else
+    f'<span title="Click the logo below to run Perplexity on the Human LR pair">{col}&nbsp;</span>' if col == "Perplexity" else
     f'<span title="Hover on symbols below to show gene names">{col}&nbsp;&nbsp;&nbsp;</span>' if col in ["Ligand", "Receptor"] else
     f'<span title="Click on HGNC IDs below for more details">{col}&nbsp;&nbsp;</span>' if col in ["Ligand HGNC ID", "Receptor HGNC ID"] else
     f'<span title="Click on the Pubmed IDs (PMID) below for more details">{col}</span>' if col == "PMID support" else
     f'<span title="Click on the Rat Genome Database(RGD) IDs below for more details">{col}</span>' if col in ["Ligand RGD ID", "Receptor RGD ID"] else
     f'<span title="Click on the Mouse Genome Informatics(MGI) IDs below for more details">{col}</span>' if col in ["Ligand MGI ID", "Receptor MGI ID"] else
-    f'<span title="Location is defined as subcellular location">{col}</span>' if col in ["Ligand location", "Receptor location"] else
+    f'<span title="Location is defined as predicted subcellular location (HUMAN)">{col}</span>' if col in ["Ligand location", "Receptor location"] else
     f'<span title="Double-click header of {col} to ensure all values are shown">{col}&nbsp;</span>'
     for col in gene_pair.columns
 ]
@@ -257,15 +264,15 @@ gene_pair.columns = [
 gene_pair = gene_pair.reset_index(drop=True)  # Remove the index
 gene_pair000 = gene_pair.copy()
 
-keywords_to_modify = ["LR Pair", "Ligand", "Receptor"]
-exclude_keywords = ["HGNC ID", "Location"]  # Columns containing this will not be modified
+keywords_to_modify = ["Ligand", "Receptor"]
+exclude_keywords = ["HGNC ID", "Location", "Human"]  # Columns containing this will not be modified
 
 # Copy the original columns so we can modify only the first 10
 new_columns = gene_pair000.columns.tolist()
 
 # Modify only the first 10 columns
 new_columns[:10] = [
-    f'<span title="{col.split(">")[0]}">Human {col.split(">")[1]}</span>'
+    f'{col.split(">")[0]}">Human {col.split(">")[1]}</span>'
     if any(keyword in col for keyword in keywords_to_modify) and not any(exclude in col for exclude in exclude_keywords)
     else col
     for col in new_columns[:10]
@@ -282,11 +289,22 @@ mouse_columns = [col for col in gene_pair.columns if "MGI" in col or "Mouse" in 
 mouse_gene_pair = gene_pair000[(gene_pair000[mouse_columns].map(str.strip) != "").all(axis=1)]
 # Dynamically identify columns containing "Ligand" and "Receptor" in their names 
 # since it is now in span format
+
+new_columns = mouse_gene_pair.columns.tolist()
+
+new_columns = [
+    col.replace("Mouse ", "").strip()
+    if "Mouse Ligand" in col or "Mouse Receptor" in col
+    else col
+    for col in new_columns
+]
+mouse_gene_pair.columns = new_columns
         
-ligand_col = [col for col in mouse_gene_pair.columns if "Mouse Ligand" in col][0]
-receptor_col = [col for col in mouse_gene_pair.columns if "Mouse Receptor" in col][0]
+ligand_col = [col for col in mouse_gene_pair.columns if "Ligand&nbsp;" in col][1]
+receptor_col = [col for col in mouse_gene_pair.columns if "Receptor&nbsp;" in col][1]
 ligand_location = [col for col in mouse_gene_pair.columns if "Ligand location" in col][0]
 receptor_location = [col for col in mouse_gene_pair.columns if "Receptor location" in col][0]
+
 
 # Combine columns into "Mouse LR Pair" with appropriate replacements
 def format_lr_pair(row):
@@ -297,12 +315,12 @@ def format_lr_pair(row):
     else:
         return f"{row[ligand_col]} \u2192 {row[receptor_col]}"
 
-
 # Apply the function row-wise and assign to the new column using .loc
 mouse_gene_pair1 = mouse_gene_pair.copy() 
 mouse_gene_pair1.loc[:, "Mouse LR Pair"] = mouse_gene_pair1.apply(format_lr_pair, axis=1)
+mouse_columns = [col for col in mouse_gene_pair1.columns if "MGI" in col]
 # Reorder the DataFrame
-new_order = ["Mouse LR Pair"] + mouse_columns + human_columns
+new_order = ["Mouse LR Pair", ligand_col, receptor_col] + mouse_columns + human_columns
 mouse_gene_pair1 = mouse_gene_pair1[new_order]
 mouse_gene_pair1 = mouse_gene_pair1.reset_index(drop=True)  
 
@@ -310,13 +328,25 @@ mouse_gene_pair1 = mouse_gene_pair1.reset_index(drop=True)
 rat_columns = [col for col in gene_pair.columns if "RGD" in col or "Rat" in col]
 # Filter rows where all "Rat" columns are not " "
 rat_gene_pair = gene_pair000[(gene_pair000[rat_columns].map(str.strip) != "").all(axis=1)]
+
+
+new_columns = rat_gene_pair.columns.tolist()
+
+new_columns = [
+    col.replace("Rat ", "").strip()
+    if "Ligand" in col or "Receptor" in col
+    else col
+    for col in new_columns
+]
+rat_gene_pair.columns = new_columns
+
 # Dynamically identify columns containing "Ligand" and "Receptor" in their names 
 # since it is now in span format
-ligand_col = [col for col in rat_gene_pair.columns if "Rat Ligand" in col][0]
-receptor_col = [col for col in rat_gene_pair.columns if "Rat Receptor" in col][0]
-ligand_location = [col for col in mouse_gene_pair.columns if "Ligand location" in col][0]
-receptor_location = [col for col in mouse_gene_pair.columns if "Receptor location" in col][0]
-# Combine columns into "Mouse LR Pair" with appropriate replacements
+ligand_col = [col for col in rat_gene_pair.columns if "Ligand&nbsp;" in col][1]
+receptor_col = [col for col in rat_gene_pair.columns if "Receptor&nbsp;" in col][1]
+ligand_location = [col for col in rat_gene_pair.columns if "Ligand location" in col][0]
+receptor_location = [col for col in rat_gene_pair.columns if "Receptor location" in col][0]
+
 def format_lr_pair(row):
     if row[ligand_location] == 'secreted':
         return f"{row[ligand_col]} ○ <span style='font-size: 30px;'>⤚</span> {row[receptor_col]}"
@@ -327,8 +357,8 @@ def format_lr_pair(row):
 
 rat_gene_pair1 = rat_gene_pair.copy() 
 rat_gene_pair1.loc[:, "Rat LR Pair"] = rat_gene_pair1.apply(format_lr_pair, axis=1)
-
+rat_columns = [col for col in rat_gene_pair1.columns if "RGD" in col]
 # Reorder the DataFrame
-new_order = ["Rat LR Pair"] + rat_columns + human_columns
+new_order = ["Rat LR Pair", ligand_col, receptor_col] + rat_columns + human_columns
 rat_gene_pair1 = rat_gene_pair1[new_order]
 rat_gene_pair1 = rat_gene_pair1.reset_index(drop=True)  

@@ -6,59 +6,62 @@ import pandas as pd
 
 # Add source directory to the path
 sys.path.append(os.path.abspath("src"))
-from createDataTable import pop_up_info_lim
+from createDataTable import hgnc_id
 
 # Species-specific parameters
 species_id_prefix = "ZFIN"  # "RGD" for rat, "MGI" for mouse
 dataset_name = "drerio_gene_ensembl" # "drerio_gene_ensembl" for zebra fish, "rnorvegicus_gene_ensembl" for rat, "mmusculus_gene_ensembl" for mouse
+gene_id_field = "zfin_id"  # "external_gene_name" for mouse
 gene_symbol_field = "zfin_symbol"  # "external_gene_name" for mouse
+output_filename="data/hgnc_to_zfin_mapping.csv"
 
-# Access Biomart server and dataset
-biomart_server_url = "http://www.ensembl.org/biomart"
-server = BiomartServer(biomart_server_url)
-dataset = server.datasets[dataset_name]
+# Define function for conversion
+def convert_hgnc_to_zfin(hgnc_ids, output_file=None):
+    """
+    Converts a list of HGNC IDs (human) to Other Species (e.g. ZFIN IDs (zebrafish)) using Ensembl Biomart.
+    
+    Args:
+        hgnc_ids (list): A list of HGNC IDs to be converted.
+        output_file (str): Path to save the conversion results (optional).
+    
+    Returns:
+        pd.DataFrame: DataFrame containing input HGNC IDs and their corresponding ZFIN IDs.
+    """
+    # Biomart server configuration
+    biomart_server_url = "http://www.ensembl.org/biomart"
+    server = BiomartServer(biomart_server_url)
+    
+    # Select zebrafish dataset
+    dataset_name = "drerio_gene_ensembl"
+    dataset = server.datasets[dataset_name]
 
-# Fetch species IDs from the dataset
-species_ids = pop_up_info_lim[species_id_prefix + ' ID'].unique()
-species_ids = [id for id in species_ids if id.startswith(species_id_prefix + ":")]
+    # Query attributes
+    attributes = [
+        "ensembl_gene_id",  # Ensembl Gene ID
+        "hgnc_id",          # HGNC ID (human)
+         gene_id_field,      # Species to convert to
+         gene_symbol_field
+    ]
+    
+    # Build query
+    response = dataset.search({
+        "filters": {
+            "hgnc_id": hgnc_ids
+        },
+        "attributes": attributes,
+    })
 
-# Clean the IDs if they are from RGD
-if species_id_prefix == "RGD":
-    species_ids = [value.replace("RGD:", "") for value in species_ids]
+    # Parse response to DataFrame
+    results = pd.read_csv(response, sep="\t", header=None, names=attributes)
 
-# if not mouse nor rat, 
-if species_id_prefix == "ZFIN":
-    species_ids = [value.replace("ZFIN:", "") for value in species_ids]
+    # Save results if output_file is provided
+    if output_file:
+        results.to_csv(output_file, index=False)
 
-# Function to query Biomart in chunks
-def query_in_chunks(ids, chunk_size=100):
-    gene_mapping = {}
-    for i in range(0, len(ids), chunk_size):
-        chunk = ids[i:i + chunk_size]
-        try:
-            response = dataset.search({
-                'filters': {species_id_prefix.lower() + '_id': chunk},
-                'attributes': [species_id_prefix.lower() + '_id', gene_symbol_field]
-            })
-            # Parse the response and add to gene_mapping
-            for line in response.iter_lines(decode_unicode=True):
-                species_id, gene_name = line.split("\t")
-                gene_mapping[species_id] = gene_name
-        except Exception as e:
-            print(f"Error processing chunk {i // chunk_size + 1}: {e}")
-    return gene_mapping
+    return results
 
-# Query the dataset
-gene_mapping = query_in_chunks(species_ids)
-
-# Display results
-for species_id, gene_name in gene_mapping.items():
-    print(f"{species_id}: {gene_name}")
-
-# Convert the gene_mapping dictionary to a DataFrame and save as CSV
-df = pd.DataFrame.from_dict(gene_mapping, orient='index', columns=[species_id_prefix + ' name']) \
-    .reset_index() \
-    .rename(columns={'index': species_id_prefix + ' ID'})
-
-# Save the DataFrame to a CSV file
-df.to_csv(f"data/{species_id_prefix}_ID_biomart.csv", index=False)
+# Example usage
+if __name__ == "__main__":
+    # Call function and print results
+    result_df = convert_hgnc_to_zfin(hgnc_id, output_filename)
+    print(result_df)
