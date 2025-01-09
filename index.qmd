@@ -132,7 +132,7 @@ display(HTML(value))
 
 ::: {.card padding="3px"}
 
-<img src="data/image/rat.png" alt="rat" style="width:77%; display:block; margin:auto;">
+<img src="data/image/multispecies.png" alt="rat" style="width:77%; display:block; margin:auto;">
 
 :::
 :::
@@ -144,9 +144,9 @@ display(HTML(value))
 
 ::: {.card padding="3px"}
 
-### &nbsp;Number of Rat L & R Orthologs
+### &nbsp;Number of Species with Orthologs
 ```{python}
-value = f"<div style='text-align:center;'><span style='font-size:2.4em; color:black; font-weight:bold'>{RatLigandCount:,} & {RatReceptorCount:,}</span></div>"
+value = f"10"
 display(HTML(value))
 ```
 
