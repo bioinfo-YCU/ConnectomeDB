@@ -146,7 +146,8 @@ display(HTML(value))
 
 ### &nbsp;Number of Species with Orthologs
 ```{python}
-value = f"10"
+speciesCount = 10
+value = f"<div style='text-align:center;'><span style='font-size:2.4em; color:black; font-weight:bold'>{speciesCount:,}</span></div>"
 display(HTML(value))
 ```
 
