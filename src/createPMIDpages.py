@@ -19,9 +19,17 @@ pubmed_data["Year"] = pubmed_data["Year"].astype(str).str.replace(".0",
                                                                   regex=False).astype(int)
 
 pubmed_data["PMID"] = pubmed_data["PMID"].astype(str)
+
+# add llm results
+bio_keywords = pd.read_csv("data/llm_results.csv")
+
+
 # Replace spaces in "Human LR Pair" with a placeholder
 gene_pair00["Human LR Pair"] = gene_pair00["Human LR Pair"].str.replace(" ", "——")
 
+gene_pair000 = gene_pair00.merge(bio_keywords, how='left', left_on="Human LR Pair", right_on='Human LR Pair')
+gene_pair000["Relevance Keywords"] = gene_pair000["Relevance Keywords"].astype(str)
+gene_pair000["Human LR Pair"]  = gene_pair000["Human LR Pair"].astype(str)
 pubmed_data = pubmed_data.reset_index(drop=True)  # Remove the index
 
 def load_template(template_path):
@@ -38,7 +46,7 @@ def load_template(template_path):
         return file.read()
 
 
-def create_detailed_pages_with_tabs(df, gene_column, pmid_column, pubmed_data, template):
+def create_detailed_pages_with_tabs(df, gene_column, keywords_column, pmid_column, pubmed_data, template):
     """
     Generate detailed HTML pages with tabs and PubMed links for each gene pair.
 
@@ -51,6 +59,7 @@ def create_detailed_pages_with_tabs(df, gene_column, pmid_column, pubmed_data, t
     """
     for idx, row in df.iterrows():
         gene_name = row[gene_column]
+        keywords = row[keywords_column]
         pmids = row[pmid_column]
 
         # Ensure PMIDs are properly processed
@@ -87,6 +96,7 @@ def create_detailed_pages_with_tabs(df, gene_column, pmid_column, pubmed_data, t
 
             # Fill the template with dynamic content
             page_content = template.replace("{{GENE_NAME}}", gene_name)
+            page_content = page_content.replace("{{KEYWORDS}}", keywords)
             page_content = page_content.replace("{{TAB_HEADERS}}", "".join(tab_headers))
             page_content = page_content.replace("{{TAB_CONTENTS}}", "".join(tab_contents))
 
@@ -103,9 +113,10 @@ if __name__ == "__main__":
 
     # Generate pages
     create_detailed_pages_with_tabs(
-        df=gene_pair00,
+        df=gene_pair000,
         gene_column="Human LR Pair",
         pmid_column="PMID support",
+        keywords_column = "Relevance Keywords",
         pubmed_data=pubmed_data,
-        template=template,
+        template=template
     )

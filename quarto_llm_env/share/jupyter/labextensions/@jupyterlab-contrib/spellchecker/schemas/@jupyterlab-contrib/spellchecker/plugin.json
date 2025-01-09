@@ -1,0 +1,114 @@
+{
+  "jupyter.lab.setting-icon": "spellcheck:spellcheck",
+  "jupyter.lab.setting-icon-label": "Spellchecker",
+  "title": "Spellchecker",
+  "description": "Spellchecker settings.",
+  "definitions": {
+    "language": {
+      "type": "string"
+    },
+    "ignore": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mimeTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "onlineDictionaries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Unique identifier"
+          },
+          "name": {
+            "type": "string",
+            "title": "Display name"
+          },
+          "aff": {
+            "type": "string",
+            "title": "URL address of the .aff file"
+          },
+          "dic": {
+            "type": "string",
+            "title": "URL address of the .dic file"
+          }
+        }
+      }
+    },
+    "theme": {
+      "type": "string",
+      "enum": ["background-box", "wavy-underline", "dotted-underline"]
+    }
+  },
+  "properties": {
+    "theme": {
+      "title": "Theme",
+      "description": "Theme for decorating misspelt words, one of:\n  - 'background-box': fills the background of the misspelt word;\n  - 'wavy-underline': underline with wavelets (note: Chrome has a bug which prevents rendering of wavelets under some very short words)\n  - 'dotted-underline': underline with dotted style",
+      "$ref": "#/definitions/theme",
+      "default": "background-box"
+    },
+    "language": {
+      "title": "Language of the spellchecker",
+      "description": "Dictionary identifier, e.g. en-us",
+      "$ref": "#/definitions/language",
+      "default": "en-us"
+    },
+    "checkComments": {
+      "type": "boolean",
+      "default": true,
+      "title": "Check spelling in comments"
+    },
+    "checkStrings": {
+      "type": "boolean",
+      "default": false,
+      "title": "Check spelling in strings"
+    },
+    "debounceTime": {
+      "type": "number",
+      "default": 200,
+      "title": "Time delay before spellchecking starts (debouncer)."
+    },
+    "ignore": {
+      "title": "Words to be ignored by the spellchecker",
+      "description": "Case-sensitive list of words to be ignored",
+      "$ref": "#/definitions/ignore",
+      "default": [
+        "JupyterLab",
+        "Jupyter",
+        "JupyterHub",
+        "Voilà",
+        "Xeus",
+        "IPython"
+      ]
+    },
+    "mimeTypes": {
+      "title": "MIME types for files/editors for which the spellchecking should be activated",
+      "description": "List of MIME types. GFM denotes GitHub Flavored Markdown",
+      "$ref": "#/definitions/mimeTypes",
+      "default": [
+        "text/plain",
+        "text/x-ipythongfm",
+        "text/x-rst",
+        "text/x-latex",
+        "text/x-ipython",
+        "text/x-rsrc"
+      ]
+    },
+    "onlineDictionaries": {
+      "title": "Online dictionaries",
+      "description": "A list of online dictionaries to use if installing dictionaries in data path of jupyter-server is not possible or not desirable. For example:\n\n[\n    {\n        \"id\": \"pl_PL-online\",\n        \"aff\": \"http://some-url/pl_PL.aff\",\n        \"dic\": \"http://some-url/pl_PL.dic\",\n        \"name\": \"polski (Polska)\"\n    }\n]",
+      "$ref": "#/definitions/onlineDictionaries",
+      "default": []
+    }
+  },
+  "additionalProperties": false,
+  "type": "object"
+}

@@ -1,4 +1,4 @@
-## Function to convert MGI/RGD IDs/Other Species to gene symbols via biomart
+## Function to convert Humans (HGNC symbol) to Other species ID via biomart
 import os
 import sys
 from biomart import BiomartServer
