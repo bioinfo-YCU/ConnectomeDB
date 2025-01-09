@@ -34,7 +34,7 @@ The project requires specific dependencies, which can be installed using the req
 Create a new conda environment with the necessary dependencies:
 
 ```bash
-conda create --name quarto_env --file requirements.txt
+conda create --name quarto_llm_env python=3.11 --file requirements.txt
 ```
 Activate the conda environment:
 
@@ -60,4 +60,12 @@ You can render and preview the website to see changes you've made.
 quarto render
 quarto preview
 ```
+
+### Note: to use as an env in Jupyter, make sure you add it as a new kernel
+
+```bash
+conda activate quarto_llm_env
+python -m ipykernel install --user --name=quarto_llm_env --display-name "quarto_llm_env)"
+```
+
 
