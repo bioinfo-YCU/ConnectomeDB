@@ -3,6 +3,7 @@ project:
   render: 
     - "*.qmd"
     - "!DT_R_ver.qmd"
+    - "!index_dashboards.qmd"
     - "!*.ipynb/"
 
 website:
@@ -11,7 +12,7 @@ website:
   open-graph: true
   navbar:
     left:
-      - text: "ConnectomeDB"
+      - text: ""
       - href: index.qmd
         text: Home
       # - href: DT_R_ver.qmd
