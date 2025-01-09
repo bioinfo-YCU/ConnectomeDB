@@ -204,8 +204,8 @@ gene_pair["Receptor RGD ID"] = [
         for ratOrth in gene_pair["Receptor RGD ID"]
     ]
 
-mouse_columns = [col for col in gene_pair.columns if "MGI" in col or "Mouse" in col]
-rat_columns = [col for col in gene_pair.columns if "RGD" in col or "Rat" in col]
+mouse_columns = ['Mouse Ligand', 'Mouse Receptor','Ligand MGI ID','Receptor MGI ID'] 
+rat_columns = ['Rat Ligand','Rat Receptor','Ligand RGD ID','Receptor RGD ID']
 
 gene_pair0 = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PMID support',
        'Ligand HGNC ID', 'Ligand location', 'Receptor HGNC ID',
@@ -228,9 +228,11 @@ gene_pair["Receptor"] = [
 
 def replace_spaces(row):
     if row['Ligand location'] == 'secreted':
-        return row['Human LR Pair'].replace(" ", " ○ <span style='font-size: 26px;'>⤚</span> ")
+        return row['Human LR Pair'].replace(" ", " <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
+    elif row['Ligand location'] == '':
+        return row['Human LR Pair'].replace(" ", " <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
     elif row['Ligand location'] == 'plasma membrane':
-        return row['Human LR Pair'].replace(" ", " <span style='font-size: 26px;'>⤙</span> <span style='font-size: 26px;'>⤚</span> ")
+        return row['Human LR Pair'].replace(" ", " <span style='font-size: 24px;'>⤙</span> <span style='font-size: 24px;'>⤚</span> ")
     else:
         return row['Human LR Pair'].replace(" ", " \u2192 ")
 
@@ -309,9 +311,11 @@ receptor_location = [col for col in mouse_gene_pair.columns if "Receptor locatio
 # Combine columns into "Mouse LR Pair" with appropriate replacements
 def format_lr_pair(row):
     if row[ligand_location] == 'secreted':
-        return f"{row[ligand_col]} ○ <span style='font-size: 26px;'>⤚</span> {row[receptor_col]}"
+        return f"{row[ligand_col]} <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
+    elif row[ligand_location] == '':
+        return f"{row[ligand_col]} <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
     elif row[receptor_location] == 'plasma membrane':
-        return f"{row[ligand_col]} <span style='font-size: 26px;'>⤙</span> <span style='font-size: 26px;'>⤚</span> {row[receptor_col]}"
+        return f"{row[ligand_col]} <span style='font-size: 24px;'>⤙</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
     else:
         return f"{row[ligand_col]} \u2192 {row[receptor_col]}"
 
@@ -349,9 +353,11 @@ receptor_location = [col for col in rat_gene_pair.columns if "Receptor location"
 
 def format_lr_pair(row):
     if row[ligand_location] == 'secreted':
-        return f"{row[ligand_col]} ○ <span style='font-size: 26px;'>⤚</span> {row[receptor_col]}"
+        return f"{row[ligand_col]} <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
+    elif row[ligand_location] == '':
+        return f"{row[ligand_col]} <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
     elif row[receptor_location] == 'plasma membrane':
-        return f"{row[ligand_col]} <span style='font-size: 26px;'>⤙</span> <span style='font-size: 26px;'>⤚</span> {row[receptor_col]}"
+        return f"{row[ligand_col]} <span style='font-size: 24px;'>⤙</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
     else:
         return f"{row[ligand_col]} \u2192 {row[receptor_col]}"
 
