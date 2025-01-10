@@ -8,7 +8,7 @@ format:
     table: false
 ---
 
-***Last updated: 10-Jan-2025***; <span style="color: darkgreen;">**<u>{{< fa mouse-pointer >}} Hint: Hover over the table rows to discover additional details!</u>**</span>
+***Last updated: [10-Jan-2025](about.qmd)***; <span style="color: darkgreen;">**<u>{{< fa mouse-pointer >}} Hint: Hover over the table rows to discover additional details!</u>**</span>
 
 
 ***
