@@ -21,7 +21,7 @@ website:
         text: Database
     right:
       - href: https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/
-        text: YCU Bioinformatics Lab 
+        text: YCU Bioinformatics Lab
       - text: "|"
       - href: https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/
         text: Perkins Systems Biology & Genomics Lab
@@ -29,7 +29,7 @@ website:
         href: https://github.com/bioinfo-YCU
 
   page-footer:
-    right: "Page built with [Quarto](https://quarto.org/) & Biorender Images"
+    right: "Page built with <a href='https://quarto.org/' target='_blank'>Quarto</a>  & Biorender Images"
     left: "© Copyright 2024 YCU Bioinformatics Lab | Perkins Systems Biology & Genomics Lab"
     background: "#F7F7F7"
 
@@ -47,6 +47,7 @@ format:
 filter: fontawesome
 
 header-includes: |
+  <script src="js/external_links.js"></script>
   <script src="js/checkboxAndPopUp.js"></script>
   <script src="js/themeSwitcher.js"></script>
   <script src="js/adjustTableTextColor.js"></script>
