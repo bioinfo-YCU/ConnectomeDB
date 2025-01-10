@@ -259,8 +259,7 @@ gene_pair.columns = [
     f'<span title=" PubMed IDs (PMID) with Literature Evidence for LR Interaction. Click on the link for more details">{col}</span>' if col == "PMID support" else
     f'<span title="Rat Genome Database (RGD) ID. Click on the link for more details">{col}</span>' if col in ["Ligand RGD ID", "Receptor RGD ID"] else
     f'<span title="Mouse Genome Informatics (MGI) ID. Click on the link for more details">{col}</span>' if col in ["Ligand MGI ID", "Receptor MGI ID"] else
-    f'<span title="Location based on the predicted subcellular localization of the human proteome, as described in Ramilowski et al. (PMID: 26198319)
-">{col}</span>' if col in ["Ligand location", "Receptor location"] else
+    f'<span title="Location based on the predicted subcellular localization of the human proteome, as described in Ramilowski et al. (PMID: 26198319)">{col}</span>' if col in ["Ligand location", "Receptor location"] else
     f'<span title="Double-click header of {col} to ensure all values are shown">{col}&nbsp;</span>'
     for col in gene_pair.columns
 ]
