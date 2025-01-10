@@ -252,14 +252,15 @@ gene_pair["Human LR Pair"] = [
 
 # Add tooltips to the column headers
 gene_pair.columns = [
-    f'<span title="Ligand Receptor Pair">{col}</span>' if col == "Human LR Pair" else
+    f'<span title=" Ligand-Receptor Interacting Pair, as described in Liu et al. (PMID: XXXXXX)">{col}</span>' if col == "Human LR Pair" else
     f'<span title="Click the logo below to run Perplexity on the Human LR pair">{col}&nbsp;</span>' if col == "Perplexity" else
-    f'<span title="Hover on symbols below to show gene names">{col}&nbsp;&nbsp;&nbsp;</span>' if col in ["Ligand", "Receptor"] else
-    f'<span title="Click on HGNC IDs below for more details">{col}&nbsp;&nbsp;</span>' if col in ["Ligand HGNC ID", "Receptor HGNC ID"] else
-    f'<span title="Click on the Pubmed IDs (PMID) below for more details">{col}</span>' if col == "PMID support" else
-    f'<span title="Click on the Rat Genome Database(RGD) IDs below for more details">{col}</span>' if col in ["Ligand RGD ID", "Receptor RGD ID"] else
-    f'<span title="Click on the Mouse Genome Informatics(MGI) IDs below for more details">{col}</span>' if col in ["Ligand MGI ID", "Receptor MGI ID"] else
-    f'<span title="Location is defined as predicted subcellular location (HUMAN)">{col}</span>' if col in ["Ligand location", "Receptor location"] else
+    f'<span title=" Official Gene Symbol; Hover on symbols below to show gene names">{col}&nbsp;&nbsp;&nbsp;</span>' if col in ["Ligand", "Receptor"] else
+    f'<span title="HUGO Gene Nomenclature Committee (HGNC) ID. Click on the link for more details">{col}&nbsp;&nbsp;</span>' if col in ["Ligand HGNC ID", "Receptor HGNC ID"] else
+    f'<span title=" PubMed IDs (PMID) with Literature Evidence for LR Interaction. Click on the link for more details">{col}</span>' if col == "PMID support" else
+    f'<span title="Rat Genome Database (RGD) ID. Click on the link for more details">{col}</span>' if col in ["Ligand RGD ID", "Receptor RGD ID"] else
+    f'<span title="Mouse Genome Informatics (MGI) ID. Click on the link for more details">{col}</span>' if col in ["Ligand MGI ID", "Receptor MGI ID"] else
+    f'<span title="Location based on the predicted subcellular localization of the human proteome, as described in Ramilowski et al. (PMID: 26198319)
+">{col}</span>' if col in ["Ligand location", "Receptor location"] else
     f'<span title="Double-click header of {col} to ensure all values are shown">{col}&nbsp;</span>'
     for col in gene_pair.columns
 ]
