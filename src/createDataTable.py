@@ -32,7 +32,8 @@ gene_pair = gene_pair.rename(columns={
     "Ligand receptor pair": "Human LR Pair",
     "Ligand gene symbol": "Ligand",
     "Receptor gene symbol": "Receptor",
-    "Perplexity link": "Perplexity"
+    "Perplexity link": "Perplexity",
+    "Source": "Interaction Source"
 })
 
 # Merge gene_pair with pop_up_info_lim for Ligand(L)
@@ -87,7 +88,7 @@ if "PMID link" in gene_pair.columns:
     gene_pair = gene_pair.drop(columns=["PMID link"])
 
 # Add
-first_columns=['Human LR Pair', 'Ligand', 'Receptor', 'Source']
+first_columns=['Human LR Pair', 'Ligand', 'Receptor', 'Interaction Source']
 
 end_columns=['HGNC L R', 'sanity check', 'curator', 'secondary source?']
 gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns + end_columns] + end_columns]
@@ -211,7 +212,7 @@ gene_pair0 = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PM
        'Ligand HGNC ID', 'Ligand location', 'Receptor HGNC ID',
        'Receptor location', 'Ligand name', 'Receptor name'] + mouse_columns + rat_columns]
 
-gene_pair = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Source', 'Perplexity', 'PMID support',
+gene_pair = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Interaction Source', 'Perplexity', 'PMID support',
         'Ligand HGNC ID', 'Receptor HGNC ID', 'Ligand location', 'Receptor location',
         'Ligand name', 'Receptor name'] + mouse_columns + rat_columns + end_columns]
 # gene symbol
