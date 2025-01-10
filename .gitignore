@@ -12,6 +12,8 @@ DT_R_ver_files/
 # output file
 _site/
 _site/*
+site_libs/
+site_libs/*
 
 # R qmd--remove for now
 DT_R_ver.qmd
