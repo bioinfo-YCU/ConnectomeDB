@@ -27,6 +27,19 @@ bio_keywords = pd.read_csv("data/llm_results.csv")
 # Replace spaces in "Human LR Pair" with a placeholder
 gene_pair00["Human LR Pair"] = gene_pair00["Human LR Pair"].str.replace(" ", "——")
 
+gene_pair00["Cards"] = [
+    f'''
+    <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrpair.replace("——", "%20")}.html" target="_blank" 
+       role="button" title="Open {lrpair} card" class="btn btn-outline-primary" 
+       style="background-color: #3498db; color: white; border-color: #2980b9; font-size: 20px; padding: 10px 15px; text-decoration: none; border-radius: 5px;">
+        <i class="fas fa-mouse-pointer" aria-hidden="true" style="margin-right: 8px;"></i>{lrpair} Card
+    </a>
+    ''' if pd.notna(lrpair) and lrpair.strip() else ""
+    for lrpair in gene_pair00["Human LR Pair"]
+]
+
+
+
 gene_pair000 = gene_pair00.merge(bio_keywords, how='left', left_on="Human LR Pair", right_on='Human LR Pair')
 gene_pair000["Relevance Keywords"] = gene_pair000["Relevance Keywords"].astype(str)
 gene_pair000["Human LR Pair"]  = gene_pair000["Human LR Pair"].astype(str)
@@ -46,19 +59,22 @@ def load_template(template_path):
         return file.read()
 
 
-def create_detailed_pages_with_tabs(df, gene_column, keywords_column, pmid_column, pubmed_data, template):
+def create_detailed_pages_with_tabs(df, gene_column, card_column, keywords_column, pmid_column, pubmed_data, template):
     """
     Generate detailed HTML pages with tabs and PubMed links for each gene pair.
 
     Parameters:
         df (pd.DataFrame): DataFrame containing gene pair information.
         gene_column (str): Name of the column containing gene pair names.
+        card_column (str): lr pair cards
+        keywords_column (str): Biologically relevant keywords extracted using LLM
         pmid_column (str): Name of the column containing PMIDs.
         pubmed_data (pd.DataFrame): DataFrame containing PubMed details.
         template (str): HTML template to use for generating the pages.
     """
     for idx, row in df.iterrows():
         gene_name = row[gene_column]
+        cards = row[card_column]
         keywords = row[keywords_column]
         pmids = row[pmid_column]
 
@@ -96,6 +112,7 @@ def create_detailed_pages_with_tabs(df, gene_column, keywords_column, pmid_colum
 
             # Fill the template with dynamic content
             page_content = template.replace("{{GENE_NAME}}", gene_name)
+            page_content = page_content.replace("{{CARDS}}", cards)
             page_content = page_content.replace("{{KEYWORDS}}", keywords)
             page_content = page_content.replace("{{TAB_HEADERS}}", "".join(tab_headers))
             page_content = page_content.replace("{{TAB_CONTENTS}}", "".join(tab_contents))
@@ -115,6 +132,7 @@ if __name__ == "__main__":
     create_detailed_pages_with_tabs(
         df=gene_pair000,
         gene_column="Human LR Pair",
+        card_column = "Cards",
         pmid_column="PMID support",
         keywords_column = "Relevance Keywords",
         pubmed_data=pubmed_data,
