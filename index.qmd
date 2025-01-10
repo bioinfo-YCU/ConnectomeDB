@@ -15,7 +15,7 @@ toc: false
 
 ::: {.columns}
 
-::: {.column width="30%"}
+::: {.column width="37%"}
 
 ::: {.card padding="3px"}
 ## &nbsp;  ○ <span style='font-size: 50px;'>⤚</span> Human LR Pair (L&R) Count
@@ -49,20 +49,14 @@ display(HTML(value))
 :::
 :::
 
-::: {.column width="1%"}
-:::
-
-
 ::: {.column width="28%"}
 
-<img src="data/image/human.png" alt="manAndWoman" style="width:100%; margin:auto; display:block;">
+<img src="data/image/human.png" alt="manAndWoman" style="width:80%; margin:auto; display:block;">
 
 :::
 
-::: {.column width="1%"}
-:::
 
-::: {.column width="30%"}
+::: {.column width="35%"}
 
 ::: {.card padding="3px"}
 <div style="height: 1.7em;"></div>
@@ -80,55 +74,45 @@ display(HTML(value))
 :::
 
 ***
-<br>
+<div style="height: 1.5em;"></div>
 
 
 ::: {.columns}
 
-
-::: {.column width="1%"}
-:::
-
-::: {.column width="30%"}
+::: {.column width="37%"}
 
 ::: {.card padding="3px"}
 
-## &nbsp; Number of Mouse L & R Orthologs
+## &nbsp; Mouse L&R Orthologs Count
 
 ```{python}
 value = f"<div style='text-align:center;'><span style='font-size:2.4em; color:black; font-weight:bold'>{MouseLigandCount:,} & {MouseReceptorCount:,}</span></div>"
 display(HTML(value))
 ```
 
-<div style="height: 4em;"></div>
+<div style="height: 2.5em;"></div>
 :::
 
 :::
 
-::: {.column width="2%"}
-:::
-
-::: {.column width="25%"}
+::: {.column width="28%"}
 
 
 <img src="data/image/multispecies.png" alt="multispecies" style="width:85%; display:block; margin:auto;">
 
 :::
 
-::: {.column width="2%"}
-:::
-
-::: {.column width="30%"}
+::: {.column width="35%"}
 
 ::: {.card padding="3px"}
 
-## &nbsp; [Number of Species with Orthologs]{style='text-align:center}
+## &nbsp; [Species with Orthologs Count]{style='text-align:center}
 ```{python}
 speciesCount = 10
 value = f"<div style='text-align:center;'><span style='font-size:2.4em; color:black; font-weight:bold'>{speciesCount:,}</span></div>"
 display(HTML(value))
 ```
-<div style="height: 4em;"></div>
+<div style="height: 2.5em;"></div>
 
 :::
 :::
