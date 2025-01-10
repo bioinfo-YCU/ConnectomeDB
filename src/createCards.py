@@ -53,7 +53,7 @@ def prepare_dataframes(gene_pair0):
     DBlength = len(gene_pair0)
     gene_pair0["Interaction ID"] = [f"CDB{str(i).zfill(4)}" for i in range(1, DBlength + 1)]
     gene_pair0["Interaction Type"] = [
-        f'{ligandLocation} {ligand} ligand binds to {receptorLocation} {receptor} receptor'
+        f'{ligand} {ligandLocation} ligand binds to {receptor} {receptorLocation} receptor'
         for ligand, ligandLocation, receptor, receptorLocation in zip(
             gene_pair0["Ligand"], gene_pair0["Ligand location"],
             gene_pair0["Receptor"], gene_pair0["Receptor location"]
