@@ -8,7 +8,7 @@ format:
     table: false
 ---
 
-***Last updated: 09-Jan-2025***
+***Last updated: 10-Jan-2025***; <span style="color: darkgreen;">**<u>{{< fa mouse-pointer >}} Hint: Hover over the table rows to discover additional details!</u>**</span>
 
 ***
 
