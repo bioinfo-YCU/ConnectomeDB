@@ -32,7 +32,7 @@ def convert_hgnc_to_zfin(hgnc_ids, output_file=None):
     server = BiomartServer(biomart_server_url)
     
     # Select zebrafish dataset
-    dataset_name = "drerio_gene_ensembl"
+    dataset_name = dataset_name
     dataset = server.datasets[dataset_name]
 
     # Query attributes
