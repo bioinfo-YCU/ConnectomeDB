@@ -9,7 +9,7 @@ toc: false
 
 ---
 
-[{{< fa arrow-right >}} **Proceed to Database**](database.qmd); {{< fa wand-sparkles >}} ***Last updated: [10-Jan-2025](about.qmd)***;
+{{< fa wand-sparkles >}} ***Last updated: [10-Jan-2025](about.qmd)***
 
 ::: {.columns}
 
