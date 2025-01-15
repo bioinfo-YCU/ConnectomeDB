@@ -32,13 +32,13 @@ from itables import init_notebook_mode, show
 from IPython.display import display, Javascript
 import itables.options as opt
 sys.path.append(os.path.abspath("src"))  # Add src directory to path
-from createDataTable import rat_gene_pair1
+from createDataTable import Zebrafish_gene_pair1
 
 
 # Function to update and display the table
 def update_table():
     show(
-        rat_gene_pair1,
+        Zebrafish_gene_pair1,
         keys=True,
         layout={"top": ["info", "paging"]},
         #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
