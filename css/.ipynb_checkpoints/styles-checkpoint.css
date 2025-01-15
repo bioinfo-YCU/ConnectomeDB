@@ -11,17 +11,10 @@ body {
     padding: 0;
 }
 
-.boxed {
-    display: inline-block;
-    border: 2px solid black;
-    padding: 5px;
-    border-radius: 5px; /* Optional, for rounded corners */
-}
-
-  .highlight {
+.highlight {
         background-color: rgba(128, 128, 128, 0.2); /* Light translucent gray */
         color: inherit; /* Keeps the text color natural */
-        padding: 5px;
+        padding: 2px;
         border-radius: 3px; /* Subtle rounded corners */
     }
 

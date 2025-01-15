@@ -14,11 +14,11 @@ website:
     left:
       - text: ""
       - href: index.qmd
-        text: Home
+        text: '**Home**'
       # - href: DT_R_ver.qmd
       #   text: DT in R
       - href: database.qmd
-        text: Database
+        text: '**ConnectomeDB**'
     right:
       - href: https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/
         text: YCU Bioinformatics Lab
@@ -30,13 +30,18 @@ website:
 
   page-footer:
     right: "Page built with <a href='https://quarto.org/' target='_blank'>Quarto</a>  & Biorender Images"
-    left: "© Copyright 2024 YCU Bioinformatics Lab | Perkins Systems Biology & Genomics Lab"
+    left: "© 2024 YCU Bioinformatics Lab | Perkins Systems Biology & Genomics Lab"
     background: "#F7F7F7"
+
+typography:
+  fonts:
+    - family: Roboto
+      source: google
 
 format:
   html:
     toc: true
-    theme: cerulean
+    theme: cosmo
     css: css/styles.css
     embed-resources: true  # Ensures resources are embedded for standalone
     grid: 
@@ -51,20 +56,7 @@ header-includes: |
   <script src="js/checkboxAndPopUp.js"></script>
   <script src="js/themeSwitcher.js"></script>
   <script src="js/adjustTableTextColor.js"></script>
-  <div id="theme-switcher">
-    <label for="theme-select"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose Theme:</label>
-    <select id="theme-select" onchange="changeTheme()">
-      <option value="cerulean">Cerulean</option>
-      <option value="sketchy">Sketchy</option>
-      <option value="spacelab">SpaceLab</option>
-      <option value="cosmo">Cosmo</option>
-      <option value="sandstone">Sandstone</option>
-      <option value="flatly">Flatly</option>
-      <option value="minty">Minty</option>
-      <option value="paper">Paper</option>
-      <option value="united">United</option>
-    </select>
-  </div>
+
 
 
 
