@@ -27,11 +27,11 @@ from IPython.display import display, HTML
 sys.path.append(os.path.abspath("src"))  # Add src directory to path
 from createDataTable import (
     lrPairsCount,
+    MouselrPairsCount,
+    HumanMouseLRPairsPer, 
     ligandCount,
     receptorCount,
     sourceCount,
-    MouseLigandCount,
-    MouseReceptorCount,
     RatLigandCount,
     RatReceptorCount,
 )
@@ -81,10 +81,10 @@ display(HTML(value))
 
 ::: {.card padding="3px"}
 
-## &nbsp; Mouse L&R Orthologs Count
+## &nbsp; Mouse Orthologous LR Pairs
 
 ```{python}
-value = f"<div style='text-align:center;'><span style='font-size:2.4em; color:black; font-weight:bold'>{MouseLigandCount:,} & {MouseReceptorCount:,}</span></div>"
+value = f"<div style='text-align:center;'><span style='font-size:2.4em; color:black; font-weight:bold'>{MouselrPairsCount:,} ({HumanMouseLRPairsPer:,} %)</span></div>"
 display(HTML(value))
 ```
 
@@ -104,7 +104,7 @@ display(HTML(value))
 
 ::: {.card padding="3px"}
 
-## &nbsp; [Species with Orthologs Count]{style='text-align:center}
+## &nbsp; Species w/ Orthologous LR Pairs
 ```{python}
 speciesCount = 10
 value = f"<div style='text-align:center;'><span style='font-size:2.4em; color:black; font-weight:bold'>{speciesCount:,}</span></div>"

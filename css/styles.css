@@ -168,11 +168,30 @@ span.dt-column-title input[type="text"] {
 }
 
 .close-btn {
-  background: red;
-  color: white;
-  padding: 10px;
-  border: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
   cursor: pointer;
+}
+
+.buttonPassword:hover {
+  background-color: #2780e3;
+  color: white;
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 10px; 
+  font-family: var(--bs-body-font-family);
+  background-color: transparent;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 1px solid black; 
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
 .btn.active {
@@ -183,10 +202,49 @@ span.dt-column-title input[type="text"] {
 }
 
 
+
+.button:hover {
+  background-color: #2780e3;
+  color: white;
+}
+
+.buttonNonclickable {
+  display: inline-block;
+  padding: 4px 6px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  font-size: 16px;
+  pointer-events: none; /* Disable pointer events */
+  border: 1px solid white; /* Change the outline color to red */
+   &:hover {
+    background-color: black; 
+  }
+}
+
+.buttonPassword {
+  display: inline-block;
+  padding: 4px 6px;
+  background-color: transparent;
+  color: transparent;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  font-size: 16px;
+  border: 1px solid white; /* Change the outline color to red */
+  transition: background-color 0.3s;
+}
+
+
 /* itables */
 
 .dt-container {
-  font-size: 15px;
+  font-size: 16px;
+  font-family: var(--bs-body-font-family);
   margin: 0px 0;  /* Add spacing if needed */
 }
 
@@ -198,18 +256,23 @@ span.dt-column-title input[type="text"] {
 
 
 .dt-buttons button {
-    font-size: 16px !important;
-    padding: 5px 5px !important;
-    background-color: #007BFF !important;
-    color: white !important;
-    border: none !important;
-    border-radius: 5px !important;
-    margin: 2px !important;
-    cursor: pointer !important;
+  display: inline-block;
+  padding: 6px 10px;
+  background-color: transparent;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 1px solid black; 
+  font-family: var(--bs-body-font-family);
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
+
 .dt-buttons button:hover {
-    background-color: #0056b3 !important;
+  background-color: #2780e3;
+  color: white;
 }
 
 /* Styling the input field text */
