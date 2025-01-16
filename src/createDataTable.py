@@ -363,6 +363,10 @@ mouse_columns = [col for col in mouse_gene_pair1.columns if "MGI" in col]
 # Reorder the DataFrame
 new_order = ["Mouse LR Pair", ligand_col, receptor_col] + mouse_columns + human_columns
 mouse_gene_pair1 = mouse_gene_pair1[new_order]
+MouselrPairsCount = len(mouse_gene_pair1["Mouse LR Pair"].unique())
+HumanMouseLRPairsPer = (MouselrPairsCount/lrPairsCount)*100
+HumanMouseLRPairsPer = round(HumanMouseLRPairsPer, 2)
+
 mouse_gene_pair1 = mouse_gene_pair1.reset_index(drop=True)  
 
 
