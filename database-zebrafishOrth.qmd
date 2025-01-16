@@ -14,13 +14,12 @@ format:
     Other Species
   </button>
   <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="database-chimpOrth.qmd" target="_blank" aria-disabled="false">Chimp Ortholog Pairs</a></li>
     <li><a class="dropdown-item" href="database-ratOrth.qmd" target="_blank" aria-disabled="false">Rat Ortholog Pairs</a></li>
     <li><a class="dropdown-item" href="#" aria-disabled="true">Zebrafish Ortholog Pairs</a></li>
-    <li><a class="dropdown-item" href="database-chimpOrth.qmd" target="_blank" aria-disabled="false">Chimp Ortholog Pairs</a></li>
+
   </ul>
 </div> 
-
-*dummy (currently rat DB)*
 
 ```{python}
 import sys

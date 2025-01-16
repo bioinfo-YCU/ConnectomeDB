@@ -1,0 +1,23 @@
+---
+title: "Cite Us"
+---
+
+### Our research has been published in the following peer-reviewed journals:
+
+
+#### 1. ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction
+P Liu, et al
+Journal XXX, 2025
+PMID: XXX
+
+#### 2. Predicting cell-to-cell communication networks using NATMI
+R Hou, E Denisenko, HT Ong, JA Ramilowski, ARR Forrest
+Nature communications 11 (1), 5011, 2020
+https://doi.org/10.1038/s41467-020-18873-z
+
+#### 3. A draft network of ligand–receptor-mediated multicellular signalling in human
+JA Ramilowski, T Goldberg, J Harshbarger, E Kloppmann, M Lizio, VP Satagopam, M Itoh, H Kawaji, P Carninci, BRost, ARR Forrest
+Nature communications 6 (1), 7866, 2015
+https://doi.org/10.1038/ncomms8866
+
+

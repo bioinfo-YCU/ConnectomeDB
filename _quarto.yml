@@ -14,11 +14,14 @@ website:
     left:
       - text: ""
       - href: index.qmd
-        text: '**Home**'
+        text: Home
       # - href: DT_R_ver.qmd
       #   text: DT in R
       - href: database.qmd
-        text: '**ConnectomeDB**'
+        text: ConnectomeDB
+      - href: citeus.qmd
+        text: Cite Us
+        
     right:
       - href: https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/
         text: YCU Bioinformatics Lab

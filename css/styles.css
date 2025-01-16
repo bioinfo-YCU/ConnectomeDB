@@ -11,11 +11,20 @@ body {
     padding: 0;
 }
 
+.half-break {
+  display: block;
+  height: 0.5em; /* Adjust as needed */
+}
+
 .boxed {
     display: inline-block;
     border: 2px solid black;
     padding: 5px;
     border-radius: 5px; /* Optional, for rounded corners */
+}
+
+.title {
+        color: #1f4eb6;
 }
 
 .highlight {
@@ -328,10 +337,15 @@ table.dataTable th {
 
 
 table.dataTable thead th {
-    text-align: lef; /* Center-align headers */
+    text-align: left; /* Center-align headers */
     vertical-align: middle; /* Center headers vertically */
 }
 
 
-
+/* Change font for navbar items */
+.navbar-nav .nav-link {
+    font-family: 'Roboto'; /* Replace with your preferred font */
+    font-weight: bold;  
+    font-size: 20px;    
+}
 
