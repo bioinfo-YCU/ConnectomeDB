@@ -366,6 +366,8 @@ mouse_gene_pair1 = mouse_gene_pair1[new_order]
 MouselrPairsCount = len(mouse_gene_pair1["Mouse LR Pair"].unique())
 HumanMouseLRPairsPer = (MouselrPairsCount/lrPairsCount)*100
 HumanMouseLRPairsPer = round(HumanMouseLRPairsPer, 2)
+# Round up to the nearest 0.5%
+HumanMouseLRPairsPer = ((HumanMouseLRPairsPer * 2 + 1) // 1) / 2
 
 mouse_gene_pair1 = mouse_gene_pair1.reset_index(drop=True)  
 

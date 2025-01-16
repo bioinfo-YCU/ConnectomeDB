@@ -1,5 +1,5 @@
 ---
-title: "ConnectomeDB2025: <span class='highlight'>Chimp</span> Ortholog LR Pairs"
+title: "<span class='title'>ConnectomeDB2025:</span><span class='highlight'>Chimp</span> <span class='title'>Ortholog LR Pairs</span>"
 execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
@@ -13,9 +13,9 @@ format:
     Other Species
   </button>
   <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="database-chimpOrth.qmd" target="_blank" aria-disabled="false">Chimp Ortholog Pairs</a></li>
     <li><a class="dropdown-item" href="database-ratOrth.qmd" target="_blank" aria-disabled="false">Rat Ortholog Pairs</a></li>
     <li><a class="dropdown-item" href="database-zebrafishOrth.qmd" target="_blank" aria-disabled="true">Zebrafish Ortholog Pairs</a></li>
-    <li><a class="dropdown-item" href="#" aria-disabled="false">Chimp Ortholog Pairs</a></li>
   </ul>
 </div>
 
