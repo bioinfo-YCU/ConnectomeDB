@@ -9,6 +9,8 @@ toc: false
 
 ---
 
+[**Last Updated on:**]{style="color:#FF5733"} [17-Jan-2025](about.qmd) (trying happy color)
+
 ```{python}
 import sys
 import os
@@ -17,7 +19,6 @@ from datetime import datetime
 
 # Get today's date
 last_updated = datetime.today().strftime("%d-%b-%Y")
-
 # Create the formatted string, no need for Quarto-style {{ }} here
 output = f"""
 <div style='text-align:left;'> 
@@ -109,7 +110,7 @@ display(HTML(value))
 ***
 
 ```{python}
-value = f"<div style='text-align:center;'><span style='font-size:2.0em; color:black; font-weight:bold'>{MouselrPairsCount:,} ({HumanMouseLRPairsPer:,} %)</span></div>"
+value = f"<div style='text-align:center;'><span style='font-size:2.0em; color:black; font-weight:bold'>{MouselrPairsCount:,} ({HumanMouseLRPairsPer:,}%)</span></div>"
 display(HTML(value))
 ```
 
