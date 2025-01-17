@@ -40,7 +40,7 @@ conda create --name quarto_llm_env python=3.11 --file requirements.txt
 Activate the conda environment:
 
 ```bash
-conda activate quarto_env
+conda activate quarto_llm_env
 ```
 This will ensure that the correct versions of all required libraries are installed.
 
