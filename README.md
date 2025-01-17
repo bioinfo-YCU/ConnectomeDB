@@ -50,7 +50,7 @@ If you are a collaborator working on this project, please request the "data" dir
 ```bash
 project-directory/
   ├── data/                # Place your requested data here
-  ├── requirements.txt
+  ├── environment.yml
   ├── [other project files]
 ```
 
