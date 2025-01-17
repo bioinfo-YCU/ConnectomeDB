@@ -4,8 +4,9 @@ This repository contains the scripts for creating the database website for [Conn
 ## Prerequisites
 Before setting up the project, ensure you have the following installed:
 
-- [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or [Anaconda](https://www.anaconda.com/products/individual)
+- [Miniconda](https://docs.conda.io/en/latest/miniconda.html) 
 - Git
+- [jupyter lab](https://jupyter.org/install)
 
 ## Clone the Repository
 
