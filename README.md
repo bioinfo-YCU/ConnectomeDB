@@ -44,7 +44,7 @@ conda activate quarto_llm_env
 ```
 This will ensure that the correct versions of all required libraries are installed.
 
-## Data Directory
+## Data Directory ([REQUIRED]{style="color:darkgreen"})
 If you are a collaborator working on this project, please request the "data" directory from Sakura to access the necessary credentials/data. Once you have access to the data, place it within the project directory.
 
 ```bash
@@ -66,7 +66,7 @@ quarto preview
 
 ```bash
 conda activate quarto_llm_env
-python -m ipykernel install --user --name=quarto_llm_env --display-name "quarto_llm_env)"
+python -m ipykernel install --user --name=quarto_llm_env --display-name "quarto_llm_env"
 ```
 
 
