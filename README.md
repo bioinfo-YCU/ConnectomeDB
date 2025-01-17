@@ -35,7 +35,7 @@ The project requires specific dependencies, which can be installed using the req
 Create a new conda environment with the necessary dependencies:
 
 ```bash
-conda env export --name quarto_llm_env --no-builds > environment.yml
+conda env create --file environment.yml
 ```
 Activate the conda environment:
 
