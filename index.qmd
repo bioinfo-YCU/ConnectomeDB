@@ -3,13 +3,9 @@ title: "ConnectomeDB: Comprehensive Ligand Receptor Pairs Database"
 execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
-extensions:
-    fontawesome
 toc: false
 
 ---
-
-[**Last Updated on:**]{style="color:#FF5733"} [17-Jan-2025](about.qmd) (trying happy color)
 
 ```{python}
 import sys
@@ -32,15 +28,17 @@ output = f"""
 display(HTML(output))
 ```
 
+<span class="half-break"></span>
 
 ::: {.columns}
 
-<span class="half-break"></span>
-
 ::: {.column width="37%"}
 
+<span class="half-break"></span>
+
 ::: {.card padding="3px"}
-### &nbsp;  ○ <span style='font-size: 50px;'>⤚</span> Human LR Pair (L&R) Count
+
+### &nbsp; Human LR Pair (L&R) Count
 
 ***
 
@@ -78,8 +76,9 @@ display(HTML(value))
 
 ::: {.column width="35%"}
 
+<span class="half-break"></span>
+
 ::: {.card padding="3px"}
-<div style="height: 1.7em;"></div>
 
 ### &nbsp; {{< fa search >}} PubMed Evidence Count
 
@@ -97,7 +96,6 @@ display(HTML(value))
 
 ***
 <div style="height: 1.5em;"></div>
-
 
 ::: {.columns}
 

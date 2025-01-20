@@ -12,19 +12,18 @@ website:
   open-graph: true
   navbar:
     left:
-      - text: ""
       - href: index.qmd
-        text: '{{< fa regular house >}} Home'
+        text: "{{< iconify mdi:home size=20px >}}Home"
       - href: database.qmd
-        text: '{{< fa regular database >}} ConnectomeDB'
+        text: 'ConnectomeDB'
       - href: documentation.qmd
-        text: '{{< fa regular book >}} Documentation'
+        text: 'Documentation'
       - href: citeus.qmd
-        text: 'Cite Us!'
+        text: "Cite Us!"
         
     right:
       - url: mailto:bioinfo@yokohama-cu.ac.jp
-        text: '{{< fa regular envelope >}}'
+        text: '<i class="fas fa-envelope"></i>'
       - icon: github
         menu:
           - text: Source Code
@@ -53,15 +52,10 @@ format:
       sidebar-width: 0px
       margin-width: 0px
 
-filter: fontawesome
-
 header-includes: |
   <script src="js/external_links.js"></script>
   <script src="js/checkboxAndPopUp.js"></script>
   <script src="js/themeSwitcher.js"></script>
   <script src="js/adjustTableTextColor.js"></script>
-
-
-
 
 
