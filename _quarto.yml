@@ -14,26 +14,27 @@ website:
     left:
       - text: ""
       - href: index.qmd
-        text: Home
-      # - href: DT_R_ver.qmd
-      #   text: DT in R
+        text: '{{< fa regular house >}} Home'
       - href: database.qmd
-        text: ConnectomeDB
+        text: '{{< fa regular database >}} ConnectomeDB'
+      - href: documentation.qmd
+        text: '{{< fa regular book >}} Documentation'
       - href: citeus.qmd
-        text: Cite Us
+        text: 'Cite Us!'
         
     right:
-      - href: https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/
-        text: YCU Bioinformatics Lab
-      - text: "|"
-      - href: https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/
-        text: Perkins Systems Biology & Genomics Lab
+      - url: mailto:bioinfo@yokohama-cu.ac.jp
+        text: '{{< fa regular envelope >}}'
       - icon: github
-        href: https://github.com/bioinfo-YCU
+        menu:
+          - text: Source Code
+            href: https://github.com/bioinfo-YCU/ConnectomeDB
+          - text: Report a Bug
+            href: https://github.com/bioinfo-YCU/ConnectomeDB
 
   page-footer:
     right: "Page built with <a href='https://quarto.org/' target='_blank'>Quarto</a>  & Biorender Images"
-    left: "© 2024 YCU Bioinformatics Lab | Perkins Systems Biology & Genomics Lab"
+    left: "©2024 [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/) | [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/)"
     background: "#F7F7F7"
 
 typography:
