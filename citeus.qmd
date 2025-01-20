@@ -1,6 +1,7 @@
 ---
-title: "Cite Us"
+title: "Relevant Publications"
 ---
+
 
 **Please cite the following papers if you use ConectomeDB in your publication:**
 
