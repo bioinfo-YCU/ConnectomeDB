@@ -1,0 +1,10 @@
+---
+title: "Resource Updates"
+---
+
+This page shows the updates with time stamp headers
+
+### 10-Jan-2025 {#10-Jan-2025}
+The home page has been revamped.\
+Tooltips were updated.
+
