@@ -344,8 +344,8 @@ table.dataTable thead th {
 
 /* Change font for navbar items */
 .navbar-nav .nav-link {
-    font-family: 'Roboto'; /* Replace with your preferred font */
+    font-family: 'Roboto Sans', sans-serif;/* Replace with your preferred font */
     font-weight: bold;  
-    font-size: 20px;    
+    font-size: 18px;    
 }
 
