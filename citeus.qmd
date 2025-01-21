@@ -2,19 +2,10 @@
 title: "Relevant Publications"
 ---
 
-
 **Please cite the following papers if you use ConnectomeDB or NATMI in your publication:**
 
-1. P Liu, et al. 2025, ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction,
-*Journal Title* **XX (YY)**, ZZZ\
-[DOI: XXX](DOI: XXX)
+1. [ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction](), P Liu, et al. *Journal Title* **XX (YY)**, ZZZ (2025)
 
-2. R Hou, et al. 2020, Predicting cell-to-cell communication networks using NATMI,
-*Nature communications* **11 (1)**, 5011\
-[https://doi.org/10.1038/s41467-020-18873-z](https://doi.org/10.1038/s41467-020-18873-z)
+2. [Predicting cell-to-cell communication networks using NATMI](https://doi.org/10.1038/s41467-020-18873-z), R Hou, et al. *Nature communications* **11 (1)**, 5011 (2020)
 
-3. JA Ramilowski, et al. 2015, A draft network of ligand–receptor-mediated multicellular signalling in human,
-*Nature communications* **6 (1)**, 7866\
-[https://doi.org/10.1038/ncomms8866](https://doi.org/10.1038/ncomms8866)
-
-
+3. [A draft network of ligand–receptor-mediated multicellular signalling in human](https://doi.org/10.1038/ncomms8866), JA Ramilowski, et al. *Nature communications* **6 (1)**, 7866 (2015)
