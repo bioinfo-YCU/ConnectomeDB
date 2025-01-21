@@ -13,7 +13,7 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: "{{< iconify mdi:home size=20px >}}Home"
+        text: "{{< iconify mdi:home inline size=20px >}}Home"
       - href: about.qmd
         text: 'About'
       - href: database.qmd
@@ -23,7 +23,7 @@ website:
         
     right:
       - url: mailto:bioinfo@yokohama-cu.ac.jp
-        text: '<i class="fas fa-envelope"></i>'
+        text: "{{< iconify mdi:email inline size=20px >}}"
       - icon: github
         menu:
           - text: Source Code
