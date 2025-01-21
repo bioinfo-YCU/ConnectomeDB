@@ -36,10 +36,6 @@ website:
     left: "©2024 [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/) | [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/)"
     background: "#F7F7F7"
 
-typography:
-  fonts:
-    - family: Roboto
-      source: google
 
 format:
   html:
