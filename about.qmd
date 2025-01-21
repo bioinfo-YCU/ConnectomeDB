@@ -8,7 +8,7 @@ title: "About ConnectomeDB"
 
 ## **What is ConnectomeDB?**
 
-**Understanding ligand-receptor (LR)-mediated cell-cell communication in homeostasis and disease is essential for advancing biological and medical research. Since its initial release in 2015, we have provided the ConnectomeDB ligand-receptor database and other tools for studying cell-cell communication in human and other species.**
+**Understanding ligand-receptor (LR)-mediated cell-cell communication is essential for advancing biological and medical research. Since its initial release in 2015, we have provided the ConnectomeDB ligand-receptor database and other tools for studying cell-cell communication in human and other species.**
 
 ### ConnectomeDB2025
 
