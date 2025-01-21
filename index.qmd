@@ -1,5 +1,5 @@
 ---
-title: "[**ConnectomeDB: Comprehensive Ligand Receptor Pairs Database →**](database.qmd)"
+title: "**ConnectomeDB: Comprehensive Ligand Receptor Pairs Database** [**→**](database.qmd)"
 execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
