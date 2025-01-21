@@ -1,6 +1,21 @@
 ---
-title: 'How to use ConnectomeDB'
+title: "[~](/)/[blog](about.qmd)"
 ---
 
+Please see the below.
+
+::: {.panel-tabset}
+
+## **What is ConnectomeDB?**
 TBA...
 
+## **How to use ConnectomeDB?**
+TBA...
+
+## **Tried NATMI?**
+TBA...
+
+## **Questions?**
+TBA...
+
+:::
