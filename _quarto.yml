@@ -32,7 +32,7 @@ website:
             href: https://github.com/bioinfo-YCU/ConnectomeDB
 
   page-footer:
-    right: "Page built with <a href='https://quarto.org/' target='_blank'>Quarto</a>  & Biorender Images"
+    right: "Built with <a href='https://quarto.org/' target='_blank'>Quarto</a> & <a href='https://www.biorender.com/' target='_blank'>BioRender</a>"
     left: "©2024 [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/) | [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/)"
 
 
