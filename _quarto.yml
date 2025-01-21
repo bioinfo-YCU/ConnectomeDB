@@ -34,13 +34,12 @@ website:
   page-footer:
     right: "Page built with <a href='https://quarto.org/' target='_blank'>Quarto</a>  & Biorender Images"
     left: "©2024 [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/) | [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/)"
-    background: "#F7F7F7"
 
 
 format:
   html:
     toc: true
-    theme: cosmo
+    theme: default
     css: css/styles.css
     embed-resources: true  # Ensures resources are embedded for standalone
     grid: 
