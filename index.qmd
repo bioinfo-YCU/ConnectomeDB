@@ -69,7 +69,7 @@ display(HTML(value))
 
 ::: {.column width="28%"}
 
-<img src="images/human.png" alt="manAndWoman" style="width:80%; margin:auto; display:block;">
+<img src="images/human.webp" alt="manAndWoman" style="width:80%; margin:auto; display:block;">
 
 :::
 
@@ -119,7 +119,7 @@ display(HTML(value))
 
 ::: {.column width="28%"}
 
-<img src="images/multispecies-dim.png" alt="multispecies" style="width:85%; display:block; margin:auto;">
+<img src="images/multispecies-dim.webp" alt="multispecies" style="width:85%; display:block; margin:auto;">
 
 :::
 
