@@ -1,5 +1,5 @@
 ---
-title: "ConnectomeDB: Comprehensive Ligand Receptor Pairs Database"
+title: "[**ConnectomeDB: Comprehensive Ligand Receptor Pairs Database →**](database.qmd)"
 execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
@@ -20,7 +20,7 @@ output = f"""
 <div style='text-align:left;'> 
     <span style='font-size:1em; color:black; font-weight:bold'> 
         <i class="fas fa-wand-sparkles"></i> Last updated: 
-        <a href='about.qmd' style='color:black;'>{last_updated}</a>
+        <a href='updates.qmd' style='color:black;'>{last_updated}</a>
     </span>
 </div>
 """
@@ -69,7 +69,7 @@ display(HTML(value))
 
 ::: {.column width="28%"}
 
-<img src="data/image/human.png" alt="manAndWoman" style="width:80%; margin:auto; display:block;">
+<img src="images/human.png" alt="manAndWoman" style="width:80%; margin:auto; display:block;">
 
 :::
 
@@ -119,8 +119,7 @@ display(HTML(value))
 
 ::: {.column width="28%"}
 
-
-<img src="data/image/multispecies.png" alt="multispecies" style="width:85%; display:block; margin:auto;">
+<img src="images/multispecies-dim.png" alt="multispecies" style="width:85%; display:block; margin:auto;">
 
 :::
 

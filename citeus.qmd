@@ -3,7 +3,7 @@ title: "Relevant Publications"
 ---
 
 
-**Please cite the following papers if you use ConectomeDB in your publication:**
+**Please cite the following papers if you use ConnectomeDB or NATMI in your publication:**
 
 1. P Liu, et al. 2025, ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction,
 *Journal Title* **XX (YY)**, ZZZ\

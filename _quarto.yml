@@ -14,10 +14,10 @@ website:
     left:
       - href: index.qmd
         text: "{{< iconify mdi:home size=20px >}}Home"
+      - href: about.qmd
+        text: 'About'
       - href: database.qmd
         text: 'ConnectomeDB'
-      - href: documentation.qmd
-        text: 'Documentation'
       - href: citeus.qmd
         text: "Cite Us!"
         
