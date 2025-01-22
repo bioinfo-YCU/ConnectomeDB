@@ -4,7 +4,7 @@ title: "About ConnectomeDB"
 
 <span class="half-break"></span>
 
-**Understanding ligand-receptor (LR)-mediated cell-cell communication is essential for advancing biological and medical research. ConnectomeDB, initially released in 2015, is a long term-project that aims to provide comprehensive and highly-accuarte database of interacting LR pairs for studying cell-cell communication in human and other species.** **The resource is developped by**: [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
+**Understanding ligand-receptor (LR)-mediated cell-cell communication is essential for advancing biological and medical research. ConnectomeDB, initially released in 2015, is a long term-project that aims to provide comprehensive and highly-accuarte database of interacting LR pairs and analysis tools for studying cell-cell communication in human and other species.** **The resource is developped by**: [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
 
 <span class="half-break"></span>
 
@@ -47,7 +47,7 @@ Please visit the [GitHub repository](https://github.com/bioinfo-YCU/ConnectomeDB
 
 ## **Try NATMI**
 
-**NATMI** (Network Analysis Toolkit for Multicellular Interactions), is our Python-based toolkit for multi-cellular communication network construction and network analysis of multispecies single-cell and bulk gene expression and proteomic data. NATMI predicts cell-to-cell communication at the level of niches, tissues and organism-wide.
+**NATMI**  (Network Analysis Toolkit for Multicellular Interactions) is our Python-based toolkit designed for constructing and analyzing multi-cellular communication networks in multiple species. NATMI can use both single-cell and bulk gene expression, as well as proteomic data, to predict cell-to-cell communication at the levels of niches, tissues, and the entire organism.
 
 **Publication**: [Predicting cell-to-cell communication networks using NATMI (Nat commun, 2020)](https://doi.org/10.1038/s41467-020-18873-z)   
 **GitHub Repo**: <https://github.com/forrest-lab/NATMI> 
