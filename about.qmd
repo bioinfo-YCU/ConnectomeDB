@@ -8,26 +8,35 @@ title: "About ConnectomeDB"
 
 ## **What is ConnectomeDB?**
 
-**Understanding ligand-receptor (LR)-mediated cell-cell communication is essential for advancing biological and medical research. Since its initial release in 2015, we have provided the ConnectomeDB ligand-receptor database and other tools for studying cell-cell communication in human and other species.**
+**Understanding ligand-receptor (LR)-mediated cell-cell communication is essential for advancing biological and medical research. ConnectomeDB, initially released in 2015, is a comprehensive and highly-accuarte database of interacting LR pairs for studying cell-cell communication in human and other species.**
 
 ### ConnectomeDB2025
 
- - comprehensive, highly accurate database and user-friendly online resource for predicting cell-to-cell communication
- - 2,361 high-quality human LR Interacting Pairs with experimental support from primary literature
- - homologues interactions in mouse and other selected non-human species (mouse, rat, etc.)
+- newest database and user-friendly free online resource for predicting cell-to-cell communication in multiple species
+ - 2,361 manually-curated human LR Interacting Pairs with extensive experimental support from primary literature
+ - homologues LR interactions in mouse (~93%) and other selected non-human species (chimpanzee, rat, etc.)
  - exploration and prioritization of LR pairs based on existing evidence and biological relevance
- - easy access to extensive annotations for 854 Ligand & 700 Receptor genes
+ - easy access to extensive metadata and annotations for 854 Ligand & 700 Receptor genes
+ - ideal for discovery of novel therapeutic targets, biomarkers, signaling pathways, and more
 
-**This work**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (2025)](https://doi.org/10.1038/s41467-020-18873-z)  
-**GitHub Repo**: <https://github.com/bioinfo-YCU/ConnectomeDB> 
----
+**This work**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Ttile, 2025)](https://doi.org/10.1038/s41467-020-18873-z)  
+**GitHub**: <https://github.com/bioinfo-YCU/ConnectomeDB>  
 **All papers**: [see here](citeus.qmd)  
+---
+**Developpers**:[Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/)
 
 ## **How to use ConnectomeDB?**
 
-The online implementation of ConnectomeDB is a user-friendly, no-code resource that only requires a browser and an internet connection. To explore ligand-receptor communication in humans, mice, or other accessible species, simply access [ConnectomeDB 2025](database.qmd).
+The online implementation of ConnectomeDB2025 is a user-friendly, no-code resource that only requires a browser and an internet connection. To explore ligand-receptor communication in humans, mice, or other available species, please read our [**Terms & Conditions**](link)(needs to be made) and access [**ConnectomeDB 2025**](database.qmd).
 
-If you are not familiar with ConnectomeDB 2025 or would like to learn more, please check out this tutorial.
+**Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorial**](link). (Needs to be made)
+
+## **Terms & Conditions**
+
+Might need to add **Terms & Conditions**; 
+see CDB as an example <https://www.cellphonedb.org/legal.html>
+
+They also have Cookie Policy. All are a part of the footer, so it is accessible when the website is loaded.
 
 ## **Contribute to ConnectomeDB**
 
@@ -37,13 +46,15 @@ Please visit the [GitHub repository](https://github.com/bioinfo-YCU/ConnectomeDB
 
 ## **Try NATMI**
 
-**NATMI** (Network Analysis Toolkit for Multicellular Interactions), is our Python-based toolkit for multi-cellular communication network construction and network analysis of multispecies single-cell and bulk gene expression and proteomic data. It allows prediction of cell-to-cell communication at the level of niches, tissues and organism-wide.
+**NATMI** (Network Analysis Toolkit for Multicellular Interactions), is our Python-based toolkit for multi-cellular communication network construction and network analysis of multispecies single-cell and bulk gene expression and proteomic data. NATMI predicts cell-to-cell communication at the level of niches, tissues and organism-wide.
 
-**Publication**: [Predicting cell-to-cell communication networks using NATMI (2020)](https://doi.org/10.1038/s41467-020-18873-z)   
+**Publication**: [Predicting cell-to-cell communication networks using NATMI (Nat commun, 2020)](https://doi.org/10.1038/s41467-020-18873-z)   
 **GitHub Repo**: <https://github.com/forrest-lab/NATMI> 
 
 ## **Questions?**
 
-For any question related to **connectomeDB** please fill out this form or contact: 
+For question related to **connectomeDB2025 online resource** please fill out [this form](this form) or use [this email](mailto:bioinfo@yokohama-cu.ac.jp).
+
+For question related to bla bla please [email](mailto:xxx@.com;mailto:xxx@.com;).
 
 :::
