@@ -11,6 +11,7 @@ website:
   reader-mode: true
   open-graph: true
   navbar:
+    background: "#0571B0"
     left:
       - href: index.qmd
         text: "{{< iconify mdi:home inline size=20px >}}Home"
@@ -20,7 +21,7 @@ website:
         text: 'ConnectomeDB'
       - href: citeus.qmd
         text: "Cite Us!"
-        
+
     right:
       - url: mailto:bioinfo@yokohama-cu.ac.jp
         text: "{{< iconify mdi:email inline size=20px >}}"
