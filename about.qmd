@@ -21,14 +21,15 @@ title: "About ConnectomeDB"
  - easy access to extensive metadata and annotations for 854 Ligand & 700 Receptor genes
  - ideal for discovery of novel therapeutic targets, biomarkers, signaling pathways, and more
 
-**This work**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Ttile, 2025)](https://doi.org/10.1038/s41467-020-18873-z)  
+**Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Ttile, 2025)](https://doi.org/10.1038/s41467-020-18873-z)  
 **GitHub**: <https://github.com/bioinfo-YCU/ConnectomeDB>  
 ---
-**All papers**: [see here](citeus.qmd)  
+**Our relevant papers**: [see here](citeus.qmd)  
 
 ## **How to use ConnectomeDB2025?**
 
-The online implementation of ConnectomeDB2025 is a user-friendly, no-code resource that only requires a browser and an internet connection. To explore ligand-receptor communication in humans, mice, or other available species, please read our [**Terms & Conditions**](link)(needs to be made) and access [**ConnectomeDB 2025**](database.qmd).
+The online implementation of ConnectomeDB2025 is a free, no-code and a user-friendly resource. Only a  web browser and an internet connection are required.  
+Please read our [**Terms & Conditions**](link)(needs to be made) and start exolring ligand-receptor communication in humans, mice, or other available species by accessing [**ConnectomeDB 2025**](database.qmd).
 
 **Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorial**](link). (Needs to be made)
 
@@ -41,8 +42,7 @@ They also have Cookie Policy. All are a part of the footer, so it is accessible 
 
 ## **Contribute to ConnectomeDB**
 
-We welcome your suggestions for **ConnectomeDB** content and would be happy to hear your ideas for future development.
-
+We welcome your feedback and suggestions to improve **ConnectomeDB** content and would be happy to hear your ideas for further developments.  
 Please visit the [GitHub repository](https://github.com/bioinfo-YCU/ConnectomeDB) or [email us](mailto:need_to_think@com).
 
 ## **Try NATMI**
