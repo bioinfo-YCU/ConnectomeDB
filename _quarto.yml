@@ -11,7 +11,7 @@ website:
   reader-mode: true
   open-graph: true
   navbar:
-    background: "#0571B0"
+    background: "#EBEDEF"
     left:
       - href: index.qmd
         text: "{{< iconify mdi:home inline size=20px >}}Home"

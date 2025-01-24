@@ -1,10 +1,10 @@
 ---
-title: "About ConnectomeDB"
+title: "{{< fa circle-info >}} About ConnectomeDB"
 ---
 
-<span class="half-break"></span>
+---
 
-**Understanding ligand-receptor (LR)-mediated cell-cell communication is essential for advancing biological and medical research. ConnectomeDB, initially released in 2015, is a long term-project that aims to provide comprehensive and highly-accuarte database of interacting LR pairs and analysis tools for studying cell-cell communication in human and other species.** **The resource is developped by**: [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
+**Understanding ligand-receptor (LR)-mediated cell-cell communication is essential for advancing biological and medical research. ConnectomeDB, initially released in 2015, is a long term-project that aims to provide comprehensive and highly-accuarte database of interacting LR pairs and analysis tools for studying cell-cell communication in human and other species. The resource is developped by:** [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
 
 <span class="half-break"></span>
 
@@ -12,14 +12,15 @@ title: "About ConnectomeDB"
 
 ## **What is ConnectomeDB2025?**
 
-#### **ConnectomeDB2025**
+#### **ConnectomeDB2025 - database and online resource for cell-to-cell communication predictions**
 <span class="half-break"></span>
 
-- Our newest database and user-friendly free online resource for predicting cell-to-cell communication in multiple species
-- 2,361 manually curated human ligand-receptor (LR) interacting pairs, supported by extensive experimental evidence from primary literature
-- Homologous LR interactions in mice (~93%) and other selected vertebrate species, including chimpanzees, rats, and more
-- Exploration and prioritizarion of LR pairs based on existing evidence and biological relevance to enhance discovery
-- Easy access to comprehensive metadata and annotations for 854 ligand and 700 receptor genes
+- **2,361 manually curated human ligand-receptor (LR) pairs**, supported by extensive experimental evidence from primary literature
+- **Homologous LR interactions** in mice (~93%) and other selected vertebrate species, including chimpanzee, rat, and other
+- **Exploration and prioritizarion of LR pairs** based on existing evidence and biological relevance to enhance discovery
+-  **Comprehensive metadata** & **annotations** for **854 ligand** and **700 receptor genes**
+
+<span class="half-break"></span>
 
 **Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Ttile, 2025)](https://doi.org/10.1038/s41467-020-18873-z)  
 **GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB>  
@@ -33,6 +34,7 @@ title: "About ConnectomeDB"
 
 The online implementation of ConnectomeDB2025 is a free, no-code, and user-friendly resource. Only a web browser and an internet connection are needed. Please read our [**Terms & Conditions**](link) and start exploring ligand-receptor communication in humans, mice, or other available species by accessing [**ConnectomeDB 2025**](database.qmd).
 
+<span class="half-break"></span>
 **Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorial**](link).
 
 ## **Terms & Conditions**
@@ -58,6 +60,8 @@ Please visit the [GitHub repository](https://github.com/bioinfo-YCU/ConnectomeDB
 <span class="half-break"></span>
 
 **NATMI** is our Python-based toolkit designed for constructing and analyzing multi-cellular communication networks in multiple species. NATMI can use both single-cell and bulk gene expression, as well as proteomic data, to predict cell-to-cell communication at the levels of niches, tissues, and the entire organism.
+
+<span class="half-break"></span>
 
 **Publication**: [Predicting cell-to-cell communication networks using NATMI (Nat commun, 2020)](https://doi.org/10.1038/s41467-020-18873-z)   
 **GitHub repo**: <https://github.com/forrest-lab/NATMI> 

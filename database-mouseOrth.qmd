@@ -1,10 +1,12 @@
 ---
-title: "ConnectomeDB2025: <span class='highlight'>Mouse</span> Ortholog LR Pairs"
+title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Mouse</span> Ortholog LR Pairs"
 execute:
   echo: false
 format:
   html:
     table: false
+---
+
 ---
 
 [**Human LR Pairs**](database.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} [**Mouse Ortholog Pairs**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" title="Currently selected"} <div class="btn-group" role="group">

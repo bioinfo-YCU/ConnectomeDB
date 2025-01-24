@@ -1,5 +1,5 @@
 ---
-title: "ConnectomeDB2025: <span class='highlight'>Zebrafish</span> Ortholog LR Pairs"
+title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Zebrafish</span> Ortholog LR Pairs"
 execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
@@ -8,6 +8,7 @@ format:
     table: false
 ---
 
+---
 
 [**Human LR Pairs**](database.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} [**Mouse Ortholog Pairs**](database-mouseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Here's a tooltip" target="_blank"} <div class="btn-group" role="group">
   <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

@@ -1,10 +1,12 @@
 ---
-title: "Relevant Publications"
+title: "{{< fa file >}} Relevant Publications"
+---
+
 ---
 
 **Please cite the following papers if you use ConnectomeDB or NATMI in your publication:**
 
-1. [ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction](), P Liu, et al. *Journal Title* **XX (YY)**, ZZZ (2025)
+1. [ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction](), P Liu, et al. *Journal Title* **XX (YY)**, ZZZ (2025)  
 This work describes ConnectomeDB2025, which is currently our most up-to-date ligand-receptor (LR) pair database and online resource.
 
 2. [Predicting cell-to-cell communication networks using NATMI](https://doi.org/10.1038/s41467-020-18873-z), R Hou, et al. *Nature communications* **11 (1)**, 5011 (2020)  
