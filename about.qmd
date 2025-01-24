@@ -14,12 +14,13 @@ title: "About ConnectomeDB"
 
 ### ConnectomeDB2025
 
-- our newest database and user-friendly free online resource for predicting cell-to-cell communication in multiple species
- - 2,361 manually-curated human LR Interacting Pairs with extensive experimental support from primary literature
- - homologues LR interactions in mouse (~93%) and other selected vertebrate species (chimpanzee, rat, etc.)
- - exploration and prioritization of LR pairs based on existing evidence and biological relevance
- - easy access to extensive metadata and annotations for 854 Ligand & 700 Receptor genes
- - ideal for discovery of novel therapeutic targets, biomarkers, signaling pathways, and more
+- Our newest database and user-friendly free online resource for predicting cell-to-cell communication in multiple species
+- 2,361 manually curated human ligand-receptor (LR) interacting pairs, supported by extensive experimental evidence from primary literature.
+- Homologous LR interactions in mice (~93%) and other selected vertebrate species, including chimpanzees, rats, and more.
+- Exploration and prioritizarion of LR pairs based on existing evidence and biological relevance to enhance discovery
+- Easy access to comprehensive metadata and annotations for 854 ligand and 700 receptor genes
+
+
 
 **Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Ttile, 2025)](https://doi.org/10.1038/s41467-020-18873-z)  
 **GitHub**: <https://github.com/bioinfo-YCU/ConnectomeDB>  
@@ -28,8 +29,7 @@ title: "About ConnectomeDB"
 
 ## **How to use ConnectomeDB2025?**
 
-The online implementation of ConnectomeDB2025 is a free, no-code and a user-friendly resource. Only a  web browser and an internet connection are required.  
-Please read our [**Terms & Conditions**](link)(needs to be made) and start exolring ligand-receptor communication in humans, mice, or other available species by accessing [**ConnectomeDB 2025**](database.qmd).
+The online implementation of ConnectomeDB2025 is a free, no-code, and user-friendly resource. Only a web browser and an internet connection are needed. Please read our [**Terms & Conditions**](link) and start exploring ligand-receptor communication in humans, mice, or other available species by accessing [**ConnectomeDB 2025**](database.qmd).
 
 **Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorial**](link). (Needs to be made)
 
@@ -42,7 +42,7 @@ They also have Cookie Policy. All are a part of the footer, so it is accessible 
 
 ## **Contribute to ConnectomeDB**
 
-We welcome your feedback and suggestions to improve **ConnectomeDB** content and would be happy to hear your ideas for further developments.  
+We welcome your feedback and suggestions for improving ConnectomeDB content and would be glad to hear any ideas for further development.  
 Please visit the [GitHub repository](https://github.com/bioinfo-YCU/ConnectomeDB) or [email us](mailto:need_to_think@com).
 
 ## **Try NATMI**
@@ -54,7 +54,7 @@ Please visit the [GitHub repository](https://github.com/bioinfo-YCU/ConnectomeDB
 
 ## **Questions?**
 
-For question related to **connectomeDB2025 online resource** please fill out [this form](this form) or use [this email](mailto:bioinfo@yokohama-cu.ac.jp).
+For questions related to the **ConnectomeDB2025 online resource**, please fill out [this form](this form) or contact us via [email](mailto:bioinfo@yokohama-cu.ac.jp).
 
 For question related to bla bla please [email](mailto:xxx@.com;mailto:xxx@.com;).
 
