@@ -15,8 +15,8 @@ title: "About ConnectomeDB"
 ### ConnectomeDB2025
 
 - Our newest database and user-friendly free online resource for predicting cell-to-cell communication in multiple species
-- 2,361 manually curated human ligand-receptor (LR) interacting pairs, supported by extensive experimental evidence from primary literature.
-- Homologous LR interactions in mice (~93%) and other selected vertebrate species, including chimpanzees, rats, and more.
+- 2,361 manually curated human ligand-receptor (LR) interacting pairs, supported by extensive experimental evidence from primary literature
+- Homologous LR interactions in mice (~93%) and other selected vertebrate species, including chimpanzees, rats, and more
 - Exploration and prioritizarion of LR pairs based on existing evidence and biological relevance to enhance discovery
 - Easy access to comprehensive metadata and annotations for 854 ligand and 700 receptor genes
 
@@ -31,7 +31,7 @@ title: "About ConnectomeDB"
 
 The online implementation of ConnectomeDB2025 is a free, no-code, and user-friendly resource. Only a web browser and an internet connection are needed. Please read our [**Terms & Conditions**](link) and start exploring ligand-receptor communication in humans, mice, or other available species by accessing [**ConnectomeDB 2025**](database.qmd).
 
-**Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorial**](link). (Needs to be made)
+**Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorial**](link).
 
 ## **Terms & Conditions**
 
