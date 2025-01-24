@@ -18,7 +18,7 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 - **2,361 manually curated human ligand-receptor (LR) pairs**, supported by extensive experimental evidence from primary literature
 - **Homologous LR interactions** in mice (~93%) and other selected vertebrate species, including chimpanzee, rat, and other
 - **Exploration and prioritizarion of LR pairs** based on existing evidence and biological relevance to enhance discovery
--  **Comprehensive metadata** & **annotations** for **854 ligand** and **700 receptor genes**
+-  **Comprehensive metadata** & **annotations** for **854 ligand** and **700 receptor genes** in human
 
 <span class="half-break"></span>
 
@@ -48,7 +48,7 @@ They also have Cookie Policy. All are a part of the footer, so it is accessible 
 
 ## **Contribute to ConnectomeDB**
 
-#### **Your feedback**
+#### **Your Feedback**
 <span class="half-break"></span>
 
 We welcome your feedback and suggestions for improving ConnectomeDB content and would be glad to hear any ideas for further development.  
