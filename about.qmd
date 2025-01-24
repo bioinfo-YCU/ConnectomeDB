@@ -12,7 +12,8 @@ title: "About ConnectomeDB"
 
 ## **What is ConnectomeDB2025?**
 
-### ConnectomeDB2025
+#### **ConnectomeDB2025**
+<span class="half-break"></span>
 
 - Our newest database and user-friendly free online resource for predicting cell-to-cell communication in multiple species
 - 2,361 manually curated human ligand-receptor (LR) interacting pairs, supported by extensive experimental evidence from primary literature
@@ -20,14 +21,15 @@ title: "About ConnectomeDB"
 - Exploration and prioritizarion of LR pairs based on existing evidence and biological relevance to enhance discovery
 - Easy access to comprehensive metadata and annotations for 854 ligand and 700 receptor genes
 
-
-
 **Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Ttile, 2025)](https://doi.org/10.1038/s41467-020-18873-z)  
-**GitHub**: <https://github.com/bioinfo-YCU/ConnectomeDB>  
+**GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB>  
 ---
 **Our relevant papers**: [see here](citeus.qmd)  
 
 ## **How to use ConnectomeDB2025?**
+
+#### **Using ConnectomeDB2025**
+<span class="half-break"></span>
 
 The online implementation of ConnectomeDB2025 is a free, no-code, and user-friendly resource. Only a web browser and an internet connection are needed. Please read our [**Terms & Conditions**](link) and start exploring ligand-receptor communication in humans, mice, or other available species by accessing [**ConnectomeDB 2025**](database.qmd).
 
@@ -35,27 +37,37 @@ The online implementation of ConnectomeDB2025 is a free, no-code, and user-frien
 
 ## **Terms & Conditions**
 
-Might need to add **Terms & Conditions**; 
-see CDB as an example <https://www.cellphonedb.org/legal.html>
+#### **Terms & Conditions**
+<span class="half-break"></span>
 
+Might need to add **Terms & Conditions**; 
+see CDB as an example <https://www.cellphonedb.org/legal.html>. 
 They also have Cookie Policy. All are a part of the footer, so it is accessible when the website is loaded.
 
 ## **Contribute to ConnectomeDB**
+
+#### **Your feedback**
+<span class="half-break"></span>
 
 We welcome your feedback and suggestions for improving ConnectomeDB content and would be glad to hear any ideas for further development.  
 Please visit the [GitHub repository](https://github.com/bioinfo-YCU/ConnectomeDB) or [email us](mailto:need_to_think@com).
 
 ## **Try NATMI**
 
-**NATMI**  (Network Analysis Toolkit for Multicellular Interactions) is our Python-based toolkit designed for constructing and analyzing multi-cellular communication networks in multiple species. NATMI can use both single-cell and bulk gene expression, as well as proteomic data, to predict cell-to-cell communication at the levels of niches, tissues, and the entire organism.
+#### **NATMI (Network Analysis Toolkit for Multicellular Interactions)**
+<span class="half-break"></span>
+
+**NATMI** is our Python-based toolkit designed for constructing and analyzing multi-cellular communication networks in multiple species. NATMI can use both single-cell and bulk gene expression, as well as proteomic data, to predict cell-to-cell communication at the levels of niches, tissues, and the entire organism.
 
 **Publication**: [Predicting cell-to-cell communication networks using NATMI (Nat commun, 2020)](https://doi.org/10.1038/s41467-020-18873-z)   
-**GitHub Repo**: <https://github.com/forrest-lab/NATMI> 
+**GitHub repo**: <https://github.com/forrest-lab/NATMI> 
 
 ## **Questions?**
 
-For questions related to the **ConnectomeDB2025 online resource**, please fill out [this form](this form) or contact us via [email](mailto:bioinfo@yokohama-cu.ac.jp).
+#### **Let Us Know**
+<span class="half-break"></span>
 
+For questions related to the **ConnectomeDB2025 online resource**, please fill out [this form](this form) or contact us via [email](mailto:bioinfo@yokohama-cu.ac.jp).  
 For question related to bla bla please [email](mailto:xxx@.com;mailto:xxx@.com;).
 
 :::
