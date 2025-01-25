@@ -28,7 +28,7 @@ body {
 }
 
 .highlight {
-        background-color: rgba(128, 128, 128, 0.2); /* Light translucent gray */
+        background-color: #EBEDEF; /* Light translucent gray */
         color: inherit; /* Keeps the text color natural */
         padding: 2px;
         border-radius: 3px; /* Subtle rounded corners */
