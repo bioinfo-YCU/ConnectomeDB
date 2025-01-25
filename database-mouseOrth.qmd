@@ -83,4 +83,4 @@ def update_table():
 update_table()
 ```
 
-**{{< fa mouse-pointer >}} Hint: Hover over the table to view additional details!**
+{{< include hint.qmd >}}
