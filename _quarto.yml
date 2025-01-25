@@ -17,7 +17,7 @@ website:
         text: "{{< iconify mdi:home inline size=20px >}}Home"
       - href: about.qmd
         text: 'About'
-      - href: database.qmd
+      - href: database-human.qmd
         text: 'ConnectomeDB'
       - href: citeus.qmd
         text: "Cite Us!"
