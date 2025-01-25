@@ -205,12 +205,10 @@ span.dt-column-title input[type="text"] {
 
 .btn.active {
     color: #fff; /* White text */
-    background-color: #007bff; /* Primary button background */
-    border-color: #007bff; /* Primary button border */
+    background-color: #1f4eb6; /* Primary button background */
+    border-color: #1f4eb6; /* Primary button border */
     pointer-events: none; /* Make it non-clickable */
 }
-
-
 
 .button:hover {
   background-color: #2780e3;
