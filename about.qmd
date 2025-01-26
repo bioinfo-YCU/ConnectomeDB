@@ -15,13 +15,12 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 #### **ConnectomeDB2025 - database and online resource for cell-to-cell communication predictions**
 <span class="half-break"></span>
 
-- **2,361 manually curated human LR pairs**: supported by extensive experimental evidence from primary literature
-- **Homologous LR interactions**: ~93% in mouse and other vertebrate species (e.q. chimpanzee, rat) and more
-- **Exploration and prioritizarion of LR pairs**: biological relevance, cancer and other diseases content
-- **Comprehensive metadata** & **annotations**: **854 ligands** and **700 receptors** in human
+- **2,361 manually curated human LR pairs**: experimental evidence from primary literature\
+- **854 ligand** and **700 receptor genes**: comprehensive metadata & annotations\
+- **Biologically relevant content**: cancer and other diseases\
+- **Homologous LR pairs**: mouse and other vertebrate species\
 
 <span class="half-break"></span>
-
 **Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Ttile, 2025)](https://doi.org/10.1038/s41467-020-18873-z)  
 **GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB>  
 ---
