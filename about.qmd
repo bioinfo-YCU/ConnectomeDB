@@ -17,8 +17,8 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 
 - **2,361 manually curated human LR pairs**: experimental evidence from primary literature\
 - **854 ligand** and **700 receptor genes**: comprehensive metadata & annotations\
-- **Biologically relevant content**: cancer and other diseases\
-- **Homologous LR pairs**: mouse and other vertebrate species\
+- **Biologically relevant content**: cellular ontologies, cancers and other diseases\
+- **Homologous LR pairs**: mouse (~93%) and other selected vertebrate species\
 
 <span class="half-break"></span>
 **Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Ttile, 2025)](https://doi.org/10.1038/s41467-020-18873-z)  
