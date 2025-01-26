@@ -4,7 +4,7 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 
 ---
 
-**Understanding ligand-receptor (LR)-mediated cell-cell communication is essential for advancing biological and medical research. ConnectomeDB, initially released in 2015, is a long term-project that aims to provide comprehensive and highly-accuarte database of interacting LR pairs and analysis tools for studying cell-cell communication in human and other species. The resource is developped by:** [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
+**Understanding how intearcting ligand-receptor (LR) pairs mediate cell-cell communication is essential for advancing biological and medical research. ConnectomeDB, initially released in 2015, is a long term-project that aims to provide comprehensive and highly-accuarte database of interacting LR pairs and analysis tools for studying cell-cell communication in human and other species. Developped by:** [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
 
 <span class="half-break"></span>
 
@@ -15,10 +15,10 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 #### **ConnectomeDB2025 - database and online resource for cell-to-cell communication predictions**
 <span class="half-break"></span>
 
-- **2,361 manually curated human LR pairs**, supported by extensive experimental evidence from primary literature
-- **Homologous LR interactions** in mice (~93%) and other vertebrate species, including chimpanzee, rat, and more
-- **Exploration and prioritizarion of LR pairs** based on existing evidence and biological relevance
-- **Comprehensive metadata** & **annotations** for **854 ligand** and **700 receptor human genes**
+- **2,361 manually curated human LR pairs**: supported by extensive experimental evidence from primary literature
+- **Homologous LR interactions**: ~93% in mouse and other vertebrate species (e.q. chimpanzee, rat) and more
+- **Exploration and prioritizarion of LR pairs**: biological relevance, cancer and other diseases content
+- **Comprehensive metadata** & **annotations**: **854 ligands** and **700 receptors** in human
 
 <span class="half-break"></span>
 
@@ -32,19 +32,10 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 #### **Using ConnectomeDB2025**
 <span class="half-break"></span>
 
-The online implementation of ConnectomeDB2025 is a free, no-code, and user-friendly resource. Only a web browser and an internet connection are needed. Please read our [**Terms & Conditions**](link) and start exploring ligand-receptor communication in humans, mice, or other available species by accessing [**ConnectomeDB 2025**](database.qmd).
+The online implementation of ConnectomeDB2025 is a free, no-code, and user-friendly resource. Only a web browser and an internet connection are needed. Please read our [**Terms & Conditions**](policy.qmd) and start exploring ligand-receptor communication in humans, mice, or other available species by accessing [**ConnectomeDB 2025**](database.qmd).
 
 <span class="half-break"></span>
 **Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorial**](link).
-
-## **Terms & Conditions**
-
-#### **Terms & Conditions**
-<span class="half-break"></span>
-
-Might need to add **Terms & Conditions**; 
-see CDB as an example <https://www.cellphonedb.org/legal.html>. 
-They also have Cookie Policy. All are a part of the footer, so it is accessible when the website is loaded.
 
 ## **Contribute to ConnectomeDB**
 

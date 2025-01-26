@@ -1,0 +1,15 @@
+---
+title: "Terms & Conditions"
+---
+
+See CDB as an example <https://www.cellphonedb.org/legal.html>. 
+
+#### General Usage
+
+
+#### Cookies and Privacy Policy
+
+
+#### License
+
+Built with <a href='https://quarto.org/' target='_blank'>Quarto</a> & <a href='https://www.biorender.com/' target='_blank'>BioRender</a>
