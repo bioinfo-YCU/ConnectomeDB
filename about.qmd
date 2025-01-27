@@ -34,7 +34,7 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 The online implementation of ConnectomeDB2025 is a free, no-code, and user-friendly resource. Only a web browser and an internet connection are needed. Please read our [**Terms & Conditions**](policy.qmd) and start exploring ligand-receptor communication in humans, mice, or other available species by accessing [**ConnectomeDB 2025**](database.qmd).
 
 <span class="half-break"></span>
-**Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorial**](link).
+**Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorial**](link_to_tutorial).
 
 ## **Contribute to ConnectomeDB**
 
