@@ -4,7 +4,7 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 
 ---
 
-**Understanding how intearcting ligand-receptor (LR) pairs mediate cell-cell communication is essential for advancing biological and medical research. ConnectomeDB, initially released in 2015, is a long term-project that aims to provide comprehensive and highly-accuarte database of interacting LR pairs and analysis tools for studying cell-cell communication in human and other species. Developped by:** [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
+**Understanding how interacting ligand-receptor (LR) pairs mediate cell-cell communication is essential for advancing biological and medical research. ConnectomeDB, initially released in 2015, is a long-term project that aims to provide comprehensive and highly-accurate database of interacting LR pairs and analysis tools for studying cell-cell communication in human and other species. Developed by:** [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
 
 <span class="half-break"></span>
 
@@ -17,11 +17,11 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 
 - **2,361 manually curated human LR pairs**: experimental evidence from primary literature\
 - **854 ligand** and **700 receptor genes**: comprehensive metadata & annotations\
-- **Biologically relevant content**: cellular ontologies, cancers and other diseases\
-- **Homologous LR pairs**: mouse (~93%) and other selected vertebrate species\
+- **Biologically relevant content**: ontologies, cancers and other diseases\
+- **Homologous LR pairs**: mouse (~93%) and selected vertebrate species\
 
 <span class="half-break"></span>
-**Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Ttile, 2025)](https://doi.org/10.1038/s41467-020-18873-z)  
+**Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Title, 2025)](https://doi.org/10.1038/s41467-020-18873-z)  
 **GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB>  
 ---
 **Our relevant papers**: [see here](citeus.qmd)  
