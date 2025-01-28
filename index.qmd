@@ -1,5 +1,5 @@
 ---
-title: "ConnectomeDB: Comprehensive Ligand-Receptor Pairs Database [{{< iconify material-symbols:right-click-rounded >}}](CDB/database-human.qmd)"
+title: "ConnectomeDB: Comprehensive Ligand-Receptor Pairs Database [{{< iconify material-symbols:right-click-rounded >}}](database-human.qmd)"
 execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally

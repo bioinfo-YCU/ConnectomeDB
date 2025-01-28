@@ -6,7 +6,6 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 
 **Understanding how interacting ligand-receptor (LR) pairs mediate cell-cell communication is essential for advancing biological and medical research. ConnectomeDB, initially released in 2015, is a long-term project that aims to provide comprehensive and highly-accurate database of interacting LR pairs and analysis tools for studying cell-cell communication in human and other species. Developed by:** [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
 
-**Using ConnectomeDB and/or related tools? Please** [cite us](citeus.qmd)  
 <span class="half-break"></span>
 
 ::: {.panel-tabset}
@@ -25,8 +24,9 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 **Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Title, 2025)](https://doi.org/10.1038/s41467-020-18873-z)  
 **GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB>  
 ---
+**Our relevant papers**: [see here](citeus.qmd)  
 
-## **How to use ConnectomeDB?**
+## **How to use ConnectomeDB2025?**
 
 #### **Using ConnectomeDB2025**
 <span class="half-break"></span>
@@ -34,7 +34,7 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 The online implementation of ConnectomeDB2025 is a free, no-code, and user-friendly resource. Only a web browser and an internet connection are needed. Please read our [**Terms & Conditions**](policy.qmd) and start exploring ligand-receptor communication in humans, mice, or other available species by accessing [**ConnectomeDB 2025**](database.qmd).
 
 <span class="half-break"></span>
-**Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorial**](tutorials.qmd).
+**Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorial**](link_to_tutorial).
 
 ## **Contribute to ConnectomeDB**
 
@@ -55,7 +55,6 @@ Please visit the [GitHub repository](https://github.com/bioinfo-YCU/ConnectomeDB
 
 **Publication**: [Predicting cell-to-cell communication networks using NATMI (Nat commun, 2020)](https://doi.org/10.1038/s41467-020-18873-z)   
 **GitHub repo**: <https://github.com/forrest-lab/NATMI> 
-
 
 ## **Questions?**
 
