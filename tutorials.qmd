@@ -9,10 +9,17 @@ title: "{{< fa computer >}} ConnectomeDB2025 Usage Tutorials"
 
 ### HTML Tutorial
 
+Want to better understand how to use ConnectomeDB2025? Please see our [online tutorial](link).
+
 
 ### Video Tutorial
 
+Prefer a visual explanation? Please see our [video tutorial](link).
 
-### Study your favorite LR pairs
+### Study your favorite LR pair
+
+Here to quickly explore your favorite LR pair? Please see [this tutorial](link).
+
+
 
 

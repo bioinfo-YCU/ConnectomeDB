@@ -24,7 +24,6 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 <span class="half-break"></span>
 **Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Title, 2025)](https://doi.org/10.1038/s41467-020-18873-z)  
 **GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB>  
----
 
 ## **How to use ConnectomeDB?**
 
@@ -34,7 +33,7 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 The online implementation of ConnectomeDB2025 is a free, no-code, and user-friendly resource. Only a web browser and an internet connection are needed. Please read our [**Terms & Conditions**](policy.qmd) and start exploring ligand-receptor communication in humans, mice, or other available species by accessing [**ConnectomeDB 2025**](database-human.qmd).
 
 <span class="half-break"></span>
-**Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorial**](tutorials.qmd).
+**Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorials**](tutorials.qmd).
 
 ## **Contribute to ConnectomeDB**
 
