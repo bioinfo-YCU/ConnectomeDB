@@ -12,15 +12,23 @@ website:
   open-graph: true
   navbar:
     background: "#1f4eb6"
+    
     left:
       - href: index.qmd
         text: "{{< iconify mdi:home inline size=20px >}}Home"
       - href: about.qmd
         text: 'About'
-      - href: database-human.qmd
-        text: 'ConnectomeDB'
-      - href: citeus.qmd
-        text: "Cite Us!"
+      - href: tutorials.qmd
+        text: "Tutorials"
+
+      - text: 'ConnectomeDB'
+        menu:
+         - href: database-human.qmd
+           text: Human LR Pairs
+         - href: database-mouseOrth.qmd
+           text: Mouse Orthologs
+         - href: database-chimpOrth.qmd
+           text: Other Species
 
     right:
       - url: mailto:bioinfo@yokohama-cu.ac.jp
