@@ -23,7 +23,7 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 - **Homologs in vertebrate species**: ~93% LR pairs in mouse and in other species\
 
 <span class="half-break"></span>
-**Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Title, 2025)](https://doi.org/10.1038/s41467-020-18873-z)  
+**Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Title, 2025 -> NOW POINTING TO THE LAST PAPER)](https://doi.org/10.1038/s41467-020-18873-z)  
 **GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB>  
 
 ## **How to use ConnectomeDB?**
