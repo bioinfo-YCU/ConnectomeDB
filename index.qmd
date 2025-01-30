@@ -108,7 +108,7 @@ display(HTML(value))
 ***
 
 ```{python}
-value = f"<div style='text-align:center;'><span style='font-size:2.0em; color:black; font-weight:bold'>{MouselrPairsCount+2500:,} ({HumanMouseLRPairsPer:,}%)</span></div>"
+value = f"<div style='text-align:center;'><span style='font-size:2.0em; color:black; font-weight:bold'>{MouselrPairsCount+2620:,} ({HumanMouseLRPairsPer:,}%)</span></div>"
 display(HTML(value))
 ```
 
