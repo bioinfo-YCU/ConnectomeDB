@@ -24,7 +24,7 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 
 <span class="half-break"></span>
 **Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Title, 2025 -> NOW POINTING TO THE LAST PAPER)](https://doi.org/10.1038/s41467-020-18873-z)  
-**GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB>  
+**GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB>  *(Currently open to developpers only)*
 
 ## **How to use ConnectomeDB?**
 
@@ -42,7 +42,7 @@ The online implementation of ConnectomeDB2025 is a free, no-code, and user-frien
 <span class="half-break"></span>
 
 We welcome your feedback and suggestions for improving ConnectomeDB content and would be glad to hear any ideas for further development.  
-If you would like to contribute to the ConnectomeDB project, please visit the [GitHub repository - NOT OPEN YET](https://github.com/bioinfo-YCU/ConnectomeDB) or [email us](mailto:need_to_think@com).
+If you would like to contribute to the ConnectomeDB project, please visit the [GitHub repository](https://github.com/bioinfo-YCU/ConnectomeDB) *(Currently open to developpers only)* or [email us](mailto:need_to_think@com).
 
 ## **Try NATMI**
 
