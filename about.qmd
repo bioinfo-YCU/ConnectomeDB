@@ -18,7 +18,7 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 <span class="half-break"></span>
 
 - **5,000+ manually curated human LR pairs**: most comprehensive and most accurate with primary literature support\
-- **2,000+ ligands** and **2,000+ receptors**: extensive gene metadata & annotations\
+- **2,500+ ligands** and **2,500+ receptors**: extensive gene metadata & annotations\
 - **Biologically relevant content**: ontologies, cancers and other diseases\
 - **Homologs in vertebrate species**: ~93% LR pairs in mouse and in other species\
 
