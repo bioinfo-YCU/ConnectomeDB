@@ -2,7 +2,7 @@
 title: "Terms & Conditions"
 ---
 
-See CDB as an example <https://www.cellphonedb.org/legal.html>. 
+WORK IN PROGRESS - see CDB as an example <https://www.cellphonedb.org/legal.html>. 
 
 #### General Usage
 
