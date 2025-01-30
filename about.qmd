@@ -4,22 +4,23 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 
 ---
 
-**Understanding how interacting ligand-receptor (LR) pairs mediate cell-cell communication is essential for advancing biological and medical research. ConnectomeDB, initially released in 2015, is a long-term project that aims to provide comprehensive and highly-accurate database of interacting LR pairs and analysis tools for studying cell-cell communication in human and other species. Developed by:** [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
+**Understanding how ligand-receptor (LR) pairs mediate cell-cell communication is essential for advancing both biological and medical research. ConnectomeDB, launched in 2015, is an ongoing project designed to create a comprehensive and highly-accurate database of interacting LR pairs and analysis tools to advance the understanding of cell-cell communication in human and other species. Developers:** [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
 
-**Using ConnectomeDB or our related tools? Please** [cite us](citeus.qmd).  
+
+**If you are using ConnectomeDB or our related tools, please** [cite our work](citeus.qmd).  
 <span class="half-break"></span>
 
 ::: {.panel-tabset}
 
 ## **What is ConnectomeDB2025?**
 
-#### **ConnectomeDB2025 - database and online resource for cell-to-cell communication predictions**
+#### **ConnectomeDB2025 - Database & Online Resource for Cell-to-Cell Communication Predictions**
 <span class="half-break"></span>
 
-- **2,361 manually curated human LR pairs**: experimental evidence from primary literature\
-- **854 ligand** and **700 receptor genes**: comprehensive metadata & annotations\
+- **5,000+ manually curated human LR pairs**: most comprehensive and most accurate with primary literature support\
+- **2,000+ ligands** and **2,000+ receptors**: extensive gene metadata & annotations\
 - **Biologically relevant content**: ontologies, cancers and other diseases\
-- **Homologous LR pairs**: mouse (~93%) and selected vertebrate species\
+- **Homologs in vertebrate species**: ~93% LR pairs in mouse and in other species\
 
 <span class="half-break"></span>
 **Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Title, 2025)](https://doi.org/10.1038/s41467-020-18873-z)  
@@ -30,7 +31,7 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 #### **Using ConnectomeDB2025**
 <span class="half-break"></span>
 
-The online implementation of ConnectomeDB2025 is a free, no-code, and user-friendly resource. Only a web browser and an internet connection are needed. Please read our [**Terms & Conditions**](policy.qmd) and start exploring ligand-receptor communication in humans, mice, or other available species by accessing [**ConnectomeDB 2025**](database-human.qmd).
+The online implementation of ConnectomeDB2025 is a free, no-code, and user-friendly resource. Only a web browser and an internet connection are needed. Please read our [**Terms & Conditions**](policy.qmd) and start exploring ligand-receptor communication in human, mouse, or other available species by accessing [**ConnectomeDB 2025**](database-human.qmd).
 
 <span class="half-break"></span>
 **Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorials**](tutorials.qmd).
@@ -41,7 +42,7 @@ The online implementation of ConnectomeDB2025 is a free, no-code, and user-frien
 <span class="half-break"></span>
 
 We welcome your feedback and suggestions for improving ConnectomeDB content and would be glad to hear any ideas for further development.  
-Please visit the [GitHub repository](https://github.com/bioinfo-YCU/ConnectomeDB) or [email us](mailto:need_to_think@com).
+If you would like to contribute to the ConnectomeDB project, please visit the [GitHub repository](https://github.com/bioinfo-YCU/ConnectomeDB) or [email us](mailto:need_to_think@com).
 
 ## **Try NATMI**
 
@@ -61,7 +62,7 @@ Please visit the [GitHub repository](https://github.com/bioinfo-YCU/ConnectomeDB
 #### **Let Us Know**
 <span class="half-break"></span>
 
-For questions related to the **ConnectomeDB2025 online resource**, please fill out [this form](this form) or contact us via [email](mailto:bioinfo@yokohama-cu.ac.jp).  
-For question related to bla bla please [email](mailto:xxx@.com;mailto:xxx@.com;).
+For questions related to the **ConnectomeDB2025 online resource**, please fill out [this form](this form) or contact us via this [email](mailto:bioinfo@yokohama-cu.ac.jp).  
+For general inquires, please send Alistair, Jordan and Rui an [email](mailto:alistair.forrest@gmail.com; jordanr@yokohama-cu.ac.jp; rui.hou@research.uwa.edu.au).
 
 :::
