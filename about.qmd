@@ -4,11 +4,8 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 
 ---
 
-**Understanding how ligand-receptor (LR) pairs mediate cell-cell communication is essential for advancing both biological and medical research. ConnectomeDB, launched in 2015, is an ongoing project designed to create a comprehensive and highly-accurate database of interacting LR pairs and analysis tools to advance the understanding of cell-cell communication in human and other species. Developers:** [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
+**Understanding how ligand-receptor (LR) pairs mediate cell-cell communication is essential for advancing biological and medical discoveries. ConnectomeDB, launched in 2015, is an ongoing project designed to create a comprehensive and highly-accurate database of interacting LR pairs and analysis tools to enhance the understanding of cell-cell communication in human and other species. Developers:** [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
 
-
-**If you are using ConnectomeDB or our related tools, please** [cite our work](citeus.qmd).  
-<span class="half-break"></span>
 
 ::: {.panel-tabset}
 
@@ -17,10 +14,10 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 #### **ConnectomeDB2025 - Database & Online Resource for Cell-to-Cell Communication Predictions**
 <span class="half-break"></span>
 
-- **5,000+ manually curated human LR pairs**: most comprehensive and most accurate with primary literature support\
-- **2,500+ ligands** and **2,500+ receptors**: extensive gene metadata & annotations\
-- **Biologically relevant content**: ontologies, cancers and other diseases\
-- **Homologs in vertebrate species**: ~93% LR pairs in mouse and in other species\
+- **5,000+ Manually Curated Human LR pairs**: most comprehensive and most accurate with primary literature support\
+- **2,500+ Ligands** & **2,500+ Receptors**: extensive gene metadata and annotations\
+- **Biologically Relevant Content**: ontologies, cancers and other diseases annotations\
+- **Homologous Interactions**: ~93% LR pairs in mouse and in other vertebrate species\
 
 <span class="half-break"></span>
 **Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Title, 2025)](about.qmd) *(TBA)*  
@@ -66,3 +63,6 @@ For questions related to the **ConnectomeDB2025 online resource**, please fill o
 For general inquires, please send Alistair, Jordan and Rui an [email](mailto:alistair.forrest@gmail.com; jordanr@yokohama-cu.ac.jp; rui.hou@research.uwa.edu.au).
 
 :::
+
+**If you are using ConnectomeDB or our related tools, please** [cite our work](citeus.qmd).  
+<span class="half-break"></span>
