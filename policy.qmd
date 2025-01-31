@@ -5,21 +5,32 @@ title: "Terms & Conditions"
 ----
 
 ### Legal Disclaimer
-<span class="half-break"></span>
 
-This website is hosted by Bioinformatics Laboratory at Yokohama City University and is co-developed by  Systems Biology & Genomics Lab from the Harry Perkins Institute of Medical Research, both governed by their legal entity. By *accessing and using this site means you agree to the terms and conditions highlited below*, which are effective from your first use of the site. We reserves the right to update these terms at any time.
+This website hosted by the Bioinformatics Laboratory at Yokohama City University and is developped in collaboration with the Systems Biology & Genomics Lab at the Harry Perkins Institute of Medical Research, both governed by their respective legal entities. 
 
-We strive to make this site as helpful as possible. If you have any questions, suggestions for improvement, or wish to report issues, please contact us via this [email](mailto:bioinfo@yokohama-cu.ac.jp).  
+By *accessing and using this site, you agree to the terms and conditions highlighted below, effective from your first use of the site*. We reserve the right to update these terms at any time.
+
+We strive to make this resource as helpful as possible. If you have any questions, suggestions for improvement, or wish to report issues, please contact us via this [email](mailto:bioinfo@yokohama-cu.ac.jp). 
+
+----
 
 ### General Usage
 
+Will be added...
+
+----
 
 ### Cookies and Privacy Policy
 
+Will be added...
+
+----
 
 ### License
 
-Built with <a href='https://quarto.org/' target='_blank'>Quarto</a> & <a href='https://www.biorender.com/' target='_blank'>BioRender</a>
+This website was built using **Quarto 1.6+** under the 
+Open Source <a href='https://opensource.org/license/mit' target='_blank'>MIT License</a>.  
+The images featured on the website were created using **BioRender** under the <a href='https://www.biorender.com/academic-license' target='_blank'>BioRender Academic License</a>.
 
 ----
 
