@@ -28,10 +28,10 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 #### **Using ConnectomeDB2025**
 <span class="half-break"></span>
 
-The online implementation of ConnectomeDB2025 is a free, no-code, and user-friendly resource. Only a web browser and an internet connection are needed. Please read our [**Terms & Conditions**](policy.qmd) and start exploring ligand-receptor communication in human, mouse, or other available species by accessing [**ConnectomeDB 2025**](database-human.qmd).
+The online implementation of ConnectomeDB2025 is a free, no-code, and user-friendly resource developped using <a href='https://quarto.org/' target='_blank'>Quarto 1.6+</a> and <a href='https://www.biorender.com/' target='_blank'> BioRender</a> images. To use this resource, only a web browser and an internet connection are needed. Please be sure to read our [**Terms & Conditions**](policy.qmd) before using this website. 
 
 <span class="half-break"></span>
-**Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [**our tutorials**](tutorials.qmd).
+**Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [our tutorials](tutorials.qmd).
 
 ## **Contribute to ConnectomeDB**
 
