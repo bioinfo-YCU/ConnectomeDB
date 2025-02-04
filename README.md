@@ -7,7 +7,7 @@ Before setting up the project, ensure you have the following installed:
 - [Miniconda](https://docs.conda.io/en/latest/miniconda.html) 
 - Git
 - [jupyter lab](https://jupyter.org/install)
-- quarto 1.6.40 or higher
+- [quarto](https://quarto.org/docs/download/) 1.6.40 or higher
 
 ## Clone the Repository
 
