@@ -211,14 +211,15 @@ span.dt-column-title input[type="text"] {
 }
 
 .button:hover {
-  background-color: #2780e3;
+  background-color: #1f4eb6;
   color: white;
 }
 
 .buttonNonclickable {
   display: inline-block;
   padding: 4px 6px;
-  background-color: black;
+  background-color: #1f4eb6; /* Primary button background */
+  border-color: #1f4eb6; /* Primary button border */
   color: white;
   text-align: center;
   text-decoration: none;

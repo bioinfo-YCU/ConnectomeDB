@@ -41,9 +41,8 @@ website:
       #      href: https://github.com/bioinfo-YCU/ConnectomeDB
 
   page-footer:
-    left: "©2024 [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/) | [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/)"
-    right: "[Terms & Conditions](policy.qmd)"
-
+    left: '©2024 <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank">YCU Bioinformatics Lab</a> | <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology & Genomics Lab</a>'
+    right: "[Terms & Conditions](https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/policy.html)"
 format:
   html:
     toc: true
@@ -55,10 +54,10 @@ format:
       sidebar-width: 0px
       margin-width: 0px
 
-header-includes: |
-  <script src="js/external_links.js"></script>
-  <script src="js/checkboxAndPopUp.js"></script>
-  <script src="js/themeSwitcher.js"></script>
-  <script src="js/adjustTableTextColor.js"></script>
+#header-includes: |
+#  <script src="js/external_links.js"></script>
+#  <script src="js/checkboxAndPopUp.js"></script>
+#  <script src="js/themeSwitcher.js"></script>
+#  <script src="js/adjustTableTextColor.js"></script>
 
 
