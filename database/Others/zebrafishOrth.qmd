@@ -59,7 +59,7 @@ def update_table():
         style="1200px;margin:auto",
            language={
             "search": "Search Any Column:",
-            "searchPlaceholder": "e.g. RGD:2298",
+            "searchPlaceholder": "e.g. ZDB-GENE-110429-1",
            # "searchBuilder": {
            #     "title": "Advanced Search <i>Multiple filtering, AND/OR condition</i>" 
            # }
