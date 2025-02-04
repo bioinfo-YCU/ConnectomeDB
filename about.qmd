@@ -59,9 +59,12 @@ If you would like to contribute to the ConnectomeDB project, please visit the [*
 #### **Let Us Know**
 <span class="half-break"></span>
 
-For questions related to the **ConnectomeDB2025 online resource**, please fill out the following form below or contact us via this [email](mailto:bioinfo@yokohama-cu.ac.jp).  
+For questions related to the **ConnectomeDB2025 online resource**, please fill out the [Inquiry form](https://forms.gle/m7k5vygRPdTRdaTh6) below or contact us via this [email](mailto:bioinfo@yokohama-cu.ac.jp).  
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSemqP51oOCW5P5nWTBEyyK4x889RZMB4ir5pL_b0lAA9EeYzA/viewform?embedded=true" width="800" height="400" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
+
+
+
 
 ***
 For general inquiries, please send Alistair, Jordan, and Rui an [email](mailto:alistair.forrest@gmail.com; jordanr@yokohama-cu.ac.jp; rui.hou@research.uwa.edu.au).
