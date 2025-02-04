@@ -277,11 +277,16 @@ span.dt-column-title input[type="text"] {
   transition: background-color 0.3s;
 }
 
+.btn-outline-primary:hover {
+    --bs-btn-hover-bg: #1f4eb6;
+}
 
-.dt-buttons button:hover {
-  background-color: #2780e3;
+
+.dt-buttons button: hover {
+  background-color: #1f4eb6;
   color: white;
 }
+
 
 /* Styling the input field text */
 .dt-input {
@@ -348,3 +353,24 @@ table.dataTable thead th {
     font-size: 18px;    
 }
 
+/* Change color on hover */
+.navbar-nav .nav-link:hover {
+    color: #d4af37; /* Change to your desired hover color */
+}
+
+/* Change color when active */
+.navbar-nav .nav-link:active {
+    color: #d4af37; /* Change to your desired active color */
+}
+
+/* Change background color on hover in the dropdown menu */
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+    background-color: #d4af37; /* Change to your desired hover background color */
+    color: #fff; /* Change text color when hovering (optional) */
+}
+
+/* Change background color when active in the dropdown menu */
+.navbar-nav .dropdown-menu .dropdown-item:active {
+    background-color: #d4af37; /* Change to your desired active background color */
+    color: #fff; /* Text color when active (optional) */
+}
