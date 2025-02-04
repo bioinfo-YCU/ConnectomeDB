@@ -1,26 +1,20 @@
 ---
-title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Mouse</span> Ortholog LR Pairs"
+title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Dog</span> Ortholog LR Pairs"
 execute:
   echo: false
+  warnings: false  # Add this line to suppress warnings globally
 format:
   html:
     table: false
 ---
 
----
+***
 
-[**Human LR Pairs**](database-human.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Human LR Pairs" target="_blank"}
-[**Mouse Ortholog Pairs**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" title="Currently selected"} 
-<div class="btn-group" role="group">
-  <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-    **Other Species**
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="database-chimpOrth.qmd" target="_blank" aria-disabled="false">Chimp Ortholog Pairs</a></li>
-    <li><a class="dropdown-item" href="database-ratOrth.qmd" target="_blank" aria-disabled="false">Rat Ortholog Pairs</a></li>
-    <li><a class="dropdown-item" href="database-zebrafishOrth.qmd" target="_blank" aria-disabled="false">Zebrafish Ortholog Pairs</a></li>
-  </ul>
-</div> 
+[**Chimp**](chimpOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Chimp Ortholog Pairs" target="_blank"}
+[**Rat**](ratOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Rat Ortholog Pairs" target="_blank"} [**Zebrafish**](zebrafishOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Zebrafish Ortholog Pairs" target="_blank"} [**Chicken**](chickenOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Chicken Ortholog Pairs" target="_blank"}  [**Pig**](pigOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Pig Ortholog Pairs" target="_blank"} [**Cow**](cowOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Cow Ortholog Pairs" target="_blank"} [**Dog**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" data-toggle="tooltip" title="Currently selected"} [**Horse**](horseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Horse Ortholog Pairs" target="_blank"} [**Sheep**](sheepOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Sheep Ortholog Pairs" target="_blank"}
+
+
+*dummy (currently rat DB)*
 
 ```{python}
 import sys
@@ -29,14 +23,16 @@ import pandas as pd
 from itables import init_notebook_mode, show
 from IPython.display import display, Javascript
 import itables.options as opt
-sys.path.append(os.path.abspath("src"))  # Add src directory to path
-from createDataTable import mouse_gene_pair1
+project_root = os.path.abspath(os.path.join(os.getcwd(), "../.."))
+os.chdir(project_root)
+sys.path.append(os.path.abspath("src"))
+from createDataTable import rat_gene_pair1
 
 
 # Function to update and display the table
 def update_table():
     show(
-        mouse_gene_pair1,
+        rat_gene_pair1,
         keys=True,
         layout={"top": ["info", "paging"]},
         #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
@@ -66,7 +62,7 @@ def update_table():
         style="1200px;margin:auto",
            language={
             "search": "Search Any Column:",
-            "searchPlaceholder": "e.g. MGI:88323",
+            "searchPlaceholder": "e.g. RGD:2298",
            # "searchBuilder": {
            #     "title": "Advanced Search <i>Multiple filtering, AND/OR condition</i>" 
            # }
@@ -85,4 +81,4 @@ def update_table():
 update_table()
 ```
 
-{{< include hint.qmd >}}
+{{< include ../hint.qmd >}}

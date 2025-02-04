@@ -19,26 +19,26 @@ website:
       - href: about.qmd
         text: 'About'
       - href: tutorials.qmd
-        text: "Tutorials"
+        text: 'Tutorials'
 
       - text: 'ConnectomeDB'
         menu:
-         - href: database-human.qmd
+         - href: database/human.qmd
            text: Human LR Pairs
-         - href: database-mouseOrth.qmd
+         - href: database/mouseOrth.qmd
            text: Mouse Orthologs
-         - href: database-chimpOrth.qmd
+         - href: database/Others/
            text: Other Species
 
     right:
       - url: mailto:bioinfo@yokohama-cu.ac.jp
         text: "{{< iconify mdi:email inline size=20px >}}"
-      - icon: github
-        menu:
-          - text: Source Code
-            href: https://github.com/bioinfo-YCU/ConnectomeDB
-          - text: Report a Bug
-            href: https://github.com/bioinfo-YCU/ConnectomeDB
+      #- icon: github
+      #  menu:
+      #    - text: Source Code
+      #      href: https://github.com/bioinfo-YCU/ConnectomeDB
+      #    - text: Report a Bug
+      #      href: https://github.com/bioinfo-YCU/ConnectomeDB
 
   page-footer:
     left: "©2024 [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/) | [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/)"
