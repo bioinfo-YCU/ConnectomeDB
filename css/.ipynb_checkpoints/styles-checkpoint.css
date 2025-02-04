@@ -28,7 +28,7 @@ body {
 }
 
 .highlight {
-        background-color: rgba(128, 128, 128, 0.2); /* Light translucent gray */
+        background-color: #EBEDEF; /* Light translucent gray */
         color: inherit; /* Keeps the text color natural */
         padding: 2px;
         border-radius: 3px; /* Subtle rounded corners */
@@ -205,22 +205,21 @@ span.dt-column-title input[type="text"] {
 
 .btn.active {
     color: #fff; /* White text */
-    background-color: #007bff; /* Primary button background */
-    border-color: #007bff; /* Primary button border */
+    background-color: #1f4eb6; /* Primary button background */
+    border-color: #1f4eb6; /* Primary button border */
     pointer-events: none; /* Make it non-clickable */
 }
 
-
-
 .button:hover {
-  background-color: #2780e3;
+  background-color: #1f4eb6;
   color: white;
 }
 
 .buttonNonclickable {
   display: inline-block;
   padding: 4px 6px;
-  background-color: black;
+  background-color: #1f4eb6; /* Primary button background */
+  border-color: #1f4eb6; /* Primary button border */
   color: white;
   text-align: center;
   text-decoration: none;
@@ -344,8 +343,8 @@ table.dataTable thead th {
 
 /* Change font for navbar items */
 .navbar-nav .nav-link {
-    font-family: 'Roboto'; /* Replace with your preferred font */
+    font-family: 'Roboto Sans', sans-serif;/* Replace with your preferred font */
     font-weight: bold;  
-    font-size: 20px;    
+    font-size: 18px;    
 }
 
