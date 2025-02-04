@@ -1,10 +1,23 @@
 ---
-title: "Resource Updates"
+title: "{{< fa refresh >}} Resource Updates"
 ---
 
-This page shows the updates with time stamp headers
+---
 
-### 10-Jan-2025 {#10-Jan-2025}
-The home page has been revamped.\
-Tooltips were updated.
+### This page contains periodic database updates
+
+#### 05-Feb-2025 {#05-Feb-2025}
+Pig, cow, and dog multispecies ortholog LR pairs were added
+
+#### 10-Jan-2025 {#10-Jan-2025}
+IDs for mouse orthologs were updated using BioMart with Ensembl Release 113 (October 2024)
+
+#### 26-Dec-2024 {#26-Dec-2024}
+ConnectomeDB2025 was released with 5,361 human-ligand receptor pairs (2,981 novel pairs from ConnectomeDB 2020) and support for multispecies
+
+
+
+
+
+
 
