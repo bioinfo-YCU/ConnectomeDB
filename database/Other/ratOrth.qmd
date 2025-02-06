@@ -6,9 +6,11 @@ execute:
 format:
   html:
     table: false
+header-includes: |
+  <script src="../../js/keepDropdownMenuGold.js"></script>
 ---
 
----
+***
 
 [**Rat**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" data-toggle="tooltip" title="Currently selected"}
 [**Zebrafish**](zebrafishOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Zebrafish Ortholog Pairs" } 
