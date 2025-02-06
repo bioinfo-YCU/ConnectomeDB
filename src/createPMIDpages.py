@@ -3,6 +3,7 @@
 import sys
 import os
 import pandas as pd
+import time
 
 # Paths
 TEMPLATE_PATH = "HTML/pmidTemplate.html"
@@ -121,6 +122,7 @@ def create_detailed_pages_with_tabs(df, gene_column, card_column, keywords_colum
             os.makedirs(OUTPUT_DIR, exist_ok=True)
             output_path = os.path.join(OUTPUT_DIR, f"{gene_name}_pmid_details.html")
             with open(output_path, "w") as file:
+                # time.sleep(0.5)
                 file.write(page_content)
 
 
