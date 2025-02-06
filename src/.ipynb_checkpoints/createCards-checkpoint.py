@@ -5,6 +5,8 @@ import jinja2
 import sys
 import pandas as pd
 import numpy as np
+import time
+
 
 sys.path.append(os.path.abspath("src"))  
 import fetchGSheet
@@ -124,6 +126,7 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
         
         output_file = os.path.join(output_dir, f"{value1} {value2}.html")
         with open(output_file, 'w') as file:
+            #time.sleep(0.5)
             file.write(rendered_content)
 
 # Main execution

@@ -358,9 +358,20 @@ table.dataTable thead th {
     color: #d4af37; /* Change to your desired hover color */
 }
 
-/* Change color when active */
+/* Change color when active (when the page is selected) */
+.navbar-nav .nav-link.active {
+    color: #d4af37 !important; /* Keeps color on active page */
+}
+
+/* Change color when clicked */
+.navbar-nav .nav-link:focus, 
 .navbar-nav .nav-link:active {
-    color: #d4af37; /* Change to your desired active color */
+    color: #d4af37 !important;
+}
+
+/* Change color when active */
+.navbar-nav .nav-link:disabled {
+    color: #d4af37;   /* Change to your desired active color */
 }
 
 /* Change background color on hover in the dropdown menu */
