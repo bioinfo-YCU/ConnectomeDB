@@ -385,3 +385,9 @@ table.dataTable thead th {
     background-color: #d4af37; /* Change to your desired active background color */
     color: #fff; /* Text color when active (optional) */
 }
+
+/* Keep dropdown header highlighted when dropdown is open */
+.navbar-nav .nav-item.dropdown.show > .nav-link {
+    color: #d4af37 !important;
+}
+

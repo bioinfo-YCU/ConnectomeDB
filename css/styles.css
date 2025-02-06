@@ -385,3 +385,21 @@ table.dataTable thead th {
     background-color: #d4af37; /* Change to your desired active background color */
     color: #fff; /* Text color when active (optional) */
 }
+
+/* Keep dropdown header highlighted when dropdown is open */
+.navbar-nav .nav-item.dropdown.show > .nav-link {
+    color: #d4af37 !important;
+}
+
+/* Keep 'ConnectomeDB' gold when any database file is active */
+.navbar-nav .nav-item.dropdown .nav-link {
+    color: inherit; /* Default color */
+}
+
+/* If any page in 'database' is active, highlight the dropdown header */
+.navbar-nav .nav-item.dropdown.active > .nav-link {
+    color: #d4af37 !important;
+}
+
+
+
