@@ -55,8 +55,7 @@ from createDataTable import (
     RatReceptorCount,
 )
 
-value = f"<div style='text-align:center;'><span style='font-size:2.0em; color:black; font-weight:bold'>{lrPairsCount+3000:,} ({ligandCount+2000:,} & {receptorCount+2000:,})</span></div>"
-
+value = f"<div style='text-align:center;'><span style='font-size:2.0em; color:black; font-weight:bold'>{lrPairsCount:,} ({ligandCount:,} & {receptorCount:,})</span></div>"
 display(HTML(value))
 ```
 
@@ -85,7 +84,7 @@ display(HTML(value))
 ***
 
 ```{python}
-value = f"<div style='text-align:center;'><span style='font-size:2.0em; color:black; font-weight:bold'>{sourceCount+2000:,}</span></div>"
+value = f"<div style='text-align:center;'><span style='font-size:2.0em; color:black; font-weight:bold'>{sourceCount:,}</span></div>"
 display(HTML(value))
 ```
 <div style="height: 3.5em;"></div>
@@ -108,7 +107,7 @@ display(HTML(value))
 ***
 
 ```{python}
-value = f"<div style='text-align:center;'><span style='font-size:2.0em; color:black; font-weight:bold'>{MouselrPairsCount+2620:,} ({HumanMouseLRPairsPer:,}%)</span></div>"
+value = f"<div style='text-align:center;'><span style='font-size:2.0em; color:black; font-weight:bold'>{MouselrPairsCount:,} ({HumanMouseLRPairsPer:,}%)</span></div>"
 display(HTML(value))
 ```
 
@@ -141,8 +140,5 @@ display(HTML(value))
 :::
 :::
 
-
-
-
-
 :::
+

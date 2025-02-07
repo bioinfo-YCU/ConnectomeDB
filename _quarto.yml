@@ -28,18 +28,18 @@ website:
            text: Human LR Pairs
          - href: database/mouseOrth.qmd
            text: Mouse Orthologs
-         - href: database/Other/ratOrth.qmd
+         - href: database/other/ratOrth.qmd
            text: Other Species
 
     right:
+      - icon: github
+        menu:
+          - text: Source Code
+            href: https://github.com/bioinfo-YCU/ConnectomeDB
+          - text: Report a Bug
+            href: https://github.com/bioinfo-YCU/ConnectomeDB
       - url: mailto:bioinfo@yokohama-cu.ac.jp
         text: "{{< iconify mdi:email inline size=20px >}}"
-      #- icon: github
-      #  menu:
-      #    - text: Source Code
-      #      href: https://github.com/bioinfo-YCU/ConnectomeDB
-      #    - text: Report a Bug
-      #      href: https://github.com/bioinfo-YCU/ConnectomeDB
 
   page-footer:
     left: '©2024 <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank">YCU Bioinformatics Lab</a> | <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology & Genomics Lab</a>'
