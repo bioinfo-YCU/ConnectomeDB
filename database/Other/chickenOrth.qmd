@@ -22,7 +22,6 @@ header-includes: |
 [**Horse**](horseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Horse Ortholog Pairs"}
 [**Sheep**](sheepOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Sheep Ortholog Pairs"}
 
-
 *dummy (currently rat DB)*
 
 ```{python}
