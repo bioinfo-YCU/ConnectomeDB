@@ -1,5 +1,5 @@
 ---
-title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Rat</span> Ortholog LR Pairs (currently only showing a subset)"
+title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Rat</span> Ortholog LR Pairs - other species are buttons only"
 execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally

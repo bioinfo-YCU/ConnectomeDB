@@ -4,7 +4,7 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 
 ---
 
-**Understanding how ligand-receptor (LR) pairs mediate cell-cell communication is essential for advancing biological and medical discoveries. ConnectomeDB, launched in 2015, is an ongoing project designed to create a comprehensive and highly accurate database of interacting LR pairs and analysis tools to enhance the understanding of cell-cell communication in humans and other species. Developers:** [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
+**Understanding how ligand-receptor (LR) pairs mediate cell-cell communication is essential for advancing biological and medical discoveries. ConnectomeDB, launched in 2015, is an ongoing project designed to create a comprehensive and highly accurate database of interacting LR pairs and analysis tools to enhance the understanding of cell-cell communication in humans and other species.**
 
 
 ::: {.panel-tabset}
@@ -67,5 +67,5 @@ For general inquiries, please send Alistair, Jordan, and Rui an [email](mailto:a
 
 :::
 
-**If you are using ConnectomeDB or our related tools, please** [cite our work](citeus.qmd).  
+**Developers**: [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/). If you are using ConnectomeDB or our related tools, please [cite us](citeus.qmd). 
 <span class="half-break"></span>
