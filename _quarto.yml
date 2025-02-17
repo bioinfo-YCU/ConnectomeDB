@@ -3,9 +3,15 @@ project:
   render: 
     - "*.qmd"
     - "!DT_R_ver.qmd"
-    - "!indexx.qmd"
     - "!index_dashboard.qmd"
     - "!*.ipynb/"
+    - "!database/other/chickenOrth.qmd"
+    - "!database/other/chimpOrth.qmd"
+    - "!database/other/cowOrth.qmd"
+    - "!database/other/dogOrth.qmd"
+    - "!database/other/horseOrth.qmd"
+    - "!database/other/pigOrth.qmd"
+    - "!database/other/sheepOrth.qmd"
 
 website:
   title: ""
@@ -32,17 +38,18 @@ website:
            text: Other Species
 
     right:
+      - url: mailto:bioinfo@yokohama-cu.ac.jp
+        text: "{{< iconify mdi:email inline size=20px >}}"
+
       - icon: github
         menu:
           - text: Source Code
             href: https://github.com/bioinfo-YCU/ConnectomeDB
           - text: Report a Bug
             href: https://github.com/bioinfo-YCU/ConnectomeDB
-      - url: mailto:bioinfo@yokohama-cu.ac.jp
-        text: "{{< iconify mdi:email inline size=20px >}}"
 
   page-footer:
-    left: '©2024 <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank">YCU Bioinformatics Lab</a> | <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology & Genomics Lab</a>'
+    left: '©2025 <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank">YCU Bioinformatics Lab</a> | <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology & Genomics Lab</a>'
     right: "[Terms & Conditions](https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/policy.html)"
 format:
   html:
