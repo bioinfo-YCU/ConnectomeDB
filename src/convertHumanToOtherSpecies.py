@@ -13,7 +13,7 @@ species_id_prefix = "ZFIN"  # "RGD" for rat, "MGI" for mouse
 dataset_name = "drerio_gene_ensembl" # "drerio_gene_ensembl" for zebra fish, "rnorvegicus_gene_ensembl" for rat, "mmusculus_gene_ensembl" for mouse
 gene_id_field = "zfin_id"  # "external_gene_name" for mouse
 gene_symbol_field = "zfin_symbol"  # "external_gene_name" for mouse
-output_filename="data/hgnc_to_zfin_mapping.csv"
+output_filename="data/hgnc_to_"+species_id_prefix+"_mapping.csv"
 
 # Define function for conversion
 def convert_hgnc_to_zfin(hgnc_ids, output_file=None):
