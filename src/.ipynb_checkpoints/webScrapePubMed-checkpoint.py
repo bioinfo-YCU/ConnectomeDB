@@ -21,14 +21,30 @@ output_file = "data/pubmed_results.csv"
 # Load your list of PMIDs
 pmid_list = source
 
-if os.path.exists(output_file):
-    existing_data = pd.read_csv(output_file)
-    existing_pmids = set(existing_data["PMID"].astype(str))  # Ensure PMIDs are strings
-else:
-    existing_pmids = set()
-    
-# Limit PMIDs to the intersection with an existing file
-#pmid_list = list(set(pmid_list).intersection(existing_pmids))
+import requests
+import xml.etree.ElementTree as ET
+import pandas as pd
+import os
+import time
+
+# Official species names and their corresponding terms (scientific names)
+species_dict = {
+    "human": "Homo sapiens",
+    "mouse": "Mus musculus",
+    "rat": "Rattus norvegicus",
+    "rabbit": "Oryctolagus cuniculus",
+    "monkey": "Macaca spp.",
+    "dog": "Canis lupus familiaris",
+    "pig": "Sus scrofa",
+    "zebra fish": "Danio rerio",
+    "chicken": "Gallus gallus",
+    "horse": "Equus ferus caballus",
+    "cat": "Felis catus",
+    "sheep": "Ovis aries",
+    "cow": "Bos taurus",
+    "fruit fly": "Drosophila melanogaster",
+    "c. elegans": "Caenorhabditis elegans",
+}
 
 def fetch_pubmed_data(pmid_list):
     base_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
@@ -38,7 +54,7 @@ def fetch_pubmed_data(pmid_list):
     if os.path.exists(output_file):
         existing_data = pd.read_csv(output_file)
     else:
-        existing_data = pd.DataFrame(columns=["PMID", "Title", "Abstract", "Journal", "Year"])
+        existing_data = pd.DataFrame(columns=["PMID", "Title", "Abstract", "Journal", "Year", "Species"])
 
     # Split PMIDs into batches
     batch_size = 50
@@ -81,13 +97,31 @@ def fetch_pubmed_data(pmid_list):
                 else:
                     year = "N/A"  # PubDate is completely missing
 
+                # Initialize species as N/A
+                species = "N/A"
+
+                # Check if the title or abstract mentions human-related terms, assume human
+                if "human" in title.lower() or "human" in abstract.lower():
+                    species = "Homo sapiens"
+                else:
+                    # Look for MeSH terms related to species
+                    for mesh_heading in article.findall(".//MeshHeadingList/MeshHeading"):
+                        descriptor_name = mesh_heading.findtext("DescriptorName")
+                        if descriptor_name:
+                            # Match official species names using the species_dict
+                            for species_term, scientific_name in species_dict.items():
+                                if species_term in descriptor_name.lower():
+                                    species = scientific_name
+                                    break  # Stop after finding the first match
+
                 # Append the result
                 results.append({
                     "PMID": article.findtext(".//MedlineCitation/PMID"),
                     "Title": title,
                     "Abstract": abstract,
                     "Journal": journal,
-                    "Year": year
+                    "Year": year,
+                    "Species": species
                 })
 
         except Exception as e:
@@ -104,13 +138,13 @@ def fetch_pubmed_data(pmid_list):
     if not new_data.empty:
         # Merge existing and new data, updating missing values
         updated_data = pd.concat([existing_data, new_data])
-        
+
         # Ensure all PMIDs are strings
         updated_data["PMID"] = updated_data["PMID"].astype(str)
-        
+
         # Drop rows with missing PMIDs
         updated_data = updated_data.dropna(subset=["PMID"])
-        
+
         # Ensure rows are ordered and remove duplicates
         updated_data = (
             updated_data.sort_values(by="PMID")  # Ensure rows are ordered
@@ -123,5 +157,4 @@ def fetch_pubmed_data(pmid_list):
 
     return results
 
-# Fetch data for the intersected PMIDs
 fetch_pubmed_data(pmid_list)
