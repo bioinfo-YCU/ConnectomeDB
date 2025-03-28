@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -15,6 +18,22 @@
             margin: 24px;
             background-color: #f4f4f4;
         }
+        .download-btn {
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 15px;
+            transition: background 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            background-color: #e67e22;
+        }
+
         .card-container {
             display: flex;
             justify-content: space-between;
@@ -118,6 +137,74 @@
         }
     </style>
 </head>
+    <script>
+    function downloadPDF() {
+        let value1 = "{{ value1 }}".trim();
+        let value2 = "{{ value2 }}".trim();
+        let fileName = `${value1} —— ${value2}.pdf`;  // Construct the file name
+        const element = document.body.cloneNode(true);
+        
+        // Remove elements that shouldn't be in the PDF
+        element.querySelectorAll('.no-print').forEach(el => el.remove());
+        element.querySelector('nav').remove();
+    
+        // Apply a CSS scale transformation to the entire content for PDF export
+        element.style.transform = 'scale(0.7)'; // Scale down to 70% of the original size
+        element.style.transformOrigin = 'top center'; // Ensure scaling from top left corner
+        element.style.width = '100%'; // Ensure the scaled content fits properly
+        element.style.height = 'auto'; // Allow the height to adjust automatically
+    
+        // Apply margin to center the content
+        element.style.margin = '0 auto';
+        element.style.display = 'block';
+    
+        // Remove background color to ensure it doesn't appear in the PDF
+        element.style.backgroundColor = 'transparent'; // Remove background
+    
+        // Adjusting the content container to make sure it's centered in the PDF
+        const container = document.createElement('div');
+        container.style.width = '100%';
+        container.style.display = 'flex';
+        container.style.justifyContent = 'center'; // Centering the content
+        container.appendChild(element);
+        
+        // Append the container to the document body temporarily
+        document.body.appendChild(container);
+    
+        html2pdf()
+            .from(element)
+            .set({
+                margin: 10,
+                filename: fileName,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { useCORS: true },  // Avoid using `scale` here since we are using CSS scaling
+                jsPDF: { 
+                    unit: 'mm', 
+                    format: 'a4', 
+                    orientation: 'portrait' 
+                }
+            })
+            .toPdf()
+            .get('pdf')
+            .then(pdf => {
+                const links = document.querySelectorAll('a');  // Find all links
+                links.forEach(link => {
+                    const { left, top, width, height } = link.getBoundingClientRect();
+                    const pageWidth = pdf.internal.pageSize.getWidth();
+                    const pageHeight = pdf.internal.pageSize.getHeight();
+        
+                    // Convert browser position to PDF position
+                    const x = (left / window.innerWidth) * pageWidth;
+                    const y = (top / window.innerHeight) * pageHeight;
+        
+                    // Add the hyperlink
+                    pdf.link(x, y, width, height, { url: link.href });
+                });
+            })
+            .save();
+    }
+    </script>
+
 <body>
     <nav>
         <div class="navbar-left">
@@ -128,10 +215,15 @@
             <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank">YCU Bioinformatics Lab</a>
             <span class="divider">|</span>
             <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology & Genomics Lab</a>
+            <button class="no-print download-btn" onclick="downloadPDF()">
+                <i class="fas fa-download"></i> PDF
+            </button>
         </div>
     </nav>
 
+
     <h1 style="text-align: center; font-size: 30px; font-weight: bold; width: 100%;">{{ value1 }} —— {{ value2 }}</h1>
+
     <div class="card-container">
         <!-- Full Row Card -->
         <div class="card-full-row">
