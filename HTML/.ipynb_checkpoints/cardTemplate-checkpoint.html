@@ -147,10 +147,10 @@
         // Remove elements that shouldn't be in the PDF
         element.querySelectorAll('.no-print').forEach(el => el.remove());
         element.querySelector('nav').remove();
-    
+        
         // Apply a CSS scale transformation to the entire content for PDF export
         element.style.transform = 'scale(0.7)'; // Scale down to 70% of the original size
-        element.style.transformOrigin = 'top center'; // Ensure scaling from top left corner
+        element.style.transformOrigin = 'top center'; // Ensure scaling from top center
         element.style.width = '100%'; // Ensure the scaled content fits properly
         element.style.height = 'auto'; // Allow the height to adjust automatically
     
@@ -160,7 +160,7 @@
     
         // Remove background color to ensure it doesn't appear in the PDF
         element.style.backgroundColor = 'transparent'; // Remove background
-    
+        
         // Adjusting the content container to make sure it's centered in the PDF
         const container = document.createElement('div');
         container.style.width = '100%';
@@ -168,11 +168,12 @@
         container.style.justifyContent = 'center'; // Centering the content
         container.appendChild(element);
         
-        // Append the container to the document body temporarily
+        // Temporarily append the container to the document body for PDF generation
         document.body.appendChild(container);
     
+        // Trigger PDF download after it has been appended
         html2pdf()
-            .from(element)
+            .from(container)
             .set({
                 margin: 10,
                 filename: fileName,
@@ -192,18 +193,22 @@
                     const { left, top, width, height } = link.getBoundingClientRect();
                     const pageWidth = pdf.internal.pageSize.getWidth();
                     const pageHeight = pdf.internal.pageSize.getHeight();
-        
+            
                     // Convert browser position to PDF position
                     const x = (left / window.innerWidth) * pageWidth;
                     const y = (top / window.innerHeight) * pageHeight;
-        
+            
                     // Add the hyperlink
                     pdf.link(x, y, width, height, { url: link.href });
                 });
             })
             .save();
+    
+        // Remove the container after the export, to avoid showing it on the HTML page
+        document.body.removeChild(container);
     }
     </script>
+
 
 <body>
     <nav>
