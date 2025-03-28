@@ -31,7 +31,6 @@ def convert_hgnc_url(col):
     new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}" target="_blank">{visible_text}</a>'
     return new_link
 
-
 def convert_hgnc_url_disease(col):
    # Extract the HGNC ID from the original URL
     hgnc_id = col.split("HGNC:")[1].split('"')[0]  # Extract the ID number (e.g., "31702")

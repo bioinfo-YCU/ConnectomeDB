@@ -10,6 +10,7 @@ import xml.etree.ElementTree as ET
 
 sys.path.append(os.path.abspath("src"))  
 from createDataTable import source
+import fetchGSheet
 
 # Read the API key from a file
 with open("data/ncbi_api_key.txt", "r") as file:
@@ -21,11 +22,18 @@ output_file = "data/pubmed_results.csv"
 # Load your list of PMIDs
 pmid_list = source
 
-import requests
-import xml.etree.ElementTree as ET
-import pandas as pd
-import os
-import time
+# Example of fetching HGNC gene symbols (you should have the `fetchGSheet.pop_up_info` dataframe ready)
+def extract_hgnc_symbols(fetchGSheet):
+    # Concatenate Approved, Alias, and Previous symbols, then extract unique symbols
+    hgnc_symbols = pd.concat([
+        fetchGSheet['Approved symbol'],
+        fetchGSheet['Alias symbol'],
+        fetchGSheet['Previous symbol']
+    ], axis=0).dropna().str.upper().unique()  # Remove NaNs and make uppercase for matching
+     # Remove any empty strings from the list
+    hgnc_symbols = [symbol for symbol in hgnc_symbols if symbol != ""]
+    return set(hgnc_symbols)  # Return as a set for fast lookup
+hgnc_symbols = extract_hgnc_symbols(fetchGSheet.pop_up_info)
 
 # Official species names and their corresponding terms (scientific names)
 species_dict = {
@@ -46,7 +54,7 @@ species_dict = {
     "c. elegans": "Caenorhabditis elegans",
 }
 
-def fetch_pubmed_data(pmid_list):
+def fetch_pubmed_data(pmid_list, hgnc_symbols):
     base_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
     results = []
 
@@ -100,19 +108,27 @@ def fetch_pubmed_data(pmid_list):
                 # Initialize species as N/A
                 species = "N/A"
 
-                # Check if the title or abstract mentions human-related terms, assume human
-                if "human" in title.lower() or "human" in abstract.lower():
+                # Check if the word "patient" is detected in title or abstract (assume human)
+                if "patient" in title.lower() or "patient" in abstract.lower():
+                    species = "Homo sapiens"
+                elif "human" in title.lower() or "human" in abstract.lower():
                     species = "Homo sapiens"
                 else:
-                    # Look for MeSH terms related to species
-                    for mesh_heading in article.findall(".//MeshHeadingList/MeshHeading"):
-                        descriptor_name = mesh_heading.findtext("DescriptorName")
-                        if descriptor_name:
-                            # Match official species names using the species_dict
-                            for species_term, scientific_name in species_dict.items():
-                                if species_term in descriptor_name.lower():
-                                    species = scientific_name
-                                    break  # Stop after finding the first match
+                    # Look for HGNC gene symbols in title or abstract (assume human if found)
+                    for gene in hgnc_symbols:
+                        if gene in title or gene in abstract:
+                            species = "Homo sapiens"
+                            break
+                    else:
+                        # Look for MeSH terms related to species
+                        for mesh_heading in article.findall(".//MeshHeadingList/MeshHeading"):
+                            descriptor_name = mesh_heading.findtext("DescriptorName")
+                            if descriptor_name:
+                                # Match official species names using the species_dict
+                                for species_term, scientific_name in species_dict.items():
+                                    if species_term in descriptor_name.lower():
+                                        species = scientific_name
+                                        break  # Stop after finding the first match
 
                 # Append the result
                 results.append({
@@ -157,4 +173,5 @@ def fetch_pubmed_data(pmid_list):
 
     return results
 
-fetch_pubmed_data(pmid_list)
+# Fetch PubMed data with your list of PMIDs, output file path, and NCBI API key
+fetch_pubmed_data(pmid_list, hgnc_symbols)
