@@ -1,0 +1,90 @@
+---
+title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Zebrafish</span> Ortholog LR Pairs - other species are buttons only"
+execute:
+  echo: false
+  warnings: false  # Add this line to suppress warnings globally
+format:
+  html:
+    table: false
+header-includes: |
+  <script src="../../js/keepDropdownMenuGold.js"></script>
+---
+
+***
+
+[**Rat**](ratOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Rat Ortholog Pairs"}
+[**Zebrafish**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" data-toggle="tooltip" title="Currently selected"}
+[**Chimp**](chimpOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Chimp Ortholog Pairs"}
+[**Chicken**](chickenOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Chicken Ortholog Pairs"}
+[**Pig**](pigOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Pig Ortholog Pairs"}
+[**Cow**](cowOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Cow Ortholog Pairs"}
+[**Dog**](dogOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Dog Ortholog Pairs"}
+[**Horse**](horseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Horse Ortholog Pairs"}
+[**Sheep**](sheepOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Sheep Ortholog Pairs"}
+
+```{python}
+import sys
+import os
+import pandas as pd
+from itables import init_notebook_mode, show
+from IPython.display import display, Javascript
+import itables.options as opt
+project_root = os.path.abspath(os.path.join(os.getcwd(), "../.."))
+os.chdir(project_root)
+sys.path.append(os.path.abspath("src"))
+from createDataTable import Zebrafish_gene_pair1
+
+
+# Function to update and display the table
+def update_table():
+    show(
+        Zebrafish_gene_pair1,
+        keys=True,
+        layout={"top": ["info", "paging"]},
+        #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
+        fixedColumns={"start": 1, "end": 0},
+        fixedHeader=True,  # Keep header fixed for alignment
+        column_filters="footer", 
+        scrollX=True,
+        classes="display nowrap cell-border compact",
+        select=True,
+        selected_rows=[],
+        responsive=True,  # Enable responsive behavior
+        theme='grid',
+        search={"regex": True, "caseInsensitive": False, "smart": True},
+        lengthMenu=[ [10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"] ],
+        buttons=[
+            "pageLength",  
+            {"extend": "colvis", "text": "Display Columns"},
+            {"extend": "csvHtml5", "title": "Source"},
+            {"extend": "excelHtml5", "title": "Source"},
+            {"extend": "copyHtml5", "title": "Source"},
+        ],
+        columnDefs=[
+            {"className": "dt-center", "targets": [9]}, 
+            # {"width": "100px", "targets": "_all"},
+            #{"targets": [-4, -3, -2, -1], "visible": False} # Hide last 4 columns by default
+        ],
+        style="1200px;margin:auto",
+           language={
+            "search": "Search Any Column:",
+            "searchPlaceholder": "e.g. ZDB-GENE-110429-1",
+           # "searchBuilder": {
+           #     "title": "Advanced Search <i>Multiple filtering, AND/OR condition</i>" 
+           # }
+        }, 
+        autoWidth=True,
+        maxBytes=0,  # So it does not downsample
+        initCode='''
+            $(document).on('draw.dt', function () {
+                $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
+            });
+    '''
+    )
+      
+
+# Call the function to render the table
+update_table()
+```
+
+{{< include ../hint.qmd >}}
