@@ -9,13 +9,13 @@
     <style>
         .title {
             text-align: center;
-            font-size: 30px;
+            font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
         }
         body {
             font-family: Arial, sans-serif;
-            margin: 24px;
+            margin: 20px;
             background-color: #f4f4f4;
         }
         .download-btn {
@@ -29,6 +29,25 @@
             margin-left: 15px;
             transition: background 0.3s ease;
         }
+        .ligand-plot {
+            width: 100%; /* Make it take full width of the card */
+            max-width: 100%; /* Prevents overflow */
+            height: auto; /* Keeps aspect ratio */
+            overflow: hidden; /* Hide overflowing parts */
+            display: flex;
+            justify-content: center; /* Center the plot */
+            align-items: center;
+        }
+         .receptor-plot {
+            width: 100%; /* Make it take full width of the card */
+            max-width: 100%; /* Prevents overflow */
+            height: auto; /* Keeps aspect ratio */
+            overflow: visible; /* Hide overflowing parts */
+            display: flex;
+            justify-content: center; /* Center the plot */
+            align-items: center;
+        }
+
         
         .download-btn:hover {
             background-color: #e67e22;
@@ -38,13 +57,13 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 5px;
             margin: 0 auto;
             max-width: 1200px;
         }
         .card {
-            width: 48%;
-            padding: 20px;
+            width: 49%;
+            padding: 10px;
             border: 1px solid #ccc;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -53,7 +72,7 @@
         }
         .card-full-row {
             width: 100%;
-            padding: 20px;
+            padding: 10px;
             border: 1px solid #ccc;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -65,7 +84,7 @@
         .card-full-row .column {
             flex: 1;
             margin: 0 10px;
-            font-size: 18px;
+            font-size: 16px;
         }
         .card-full-row .column:first-child {
             margin-left: 0;
@@ -74,8 +93,8 @@
             margin-right: 0;
         }
         .card-full-row h2 {
-            margin-bottom: 15px;
-            font-size: 24px;
+            margin-bottom: 5px;
+            font-size: 16px;
         }
         .column strong {
             font-weight: bold;
@@ -127,8 +146,8 @@
 
         /* Page Footer */
         footer {
-            margin-top: 40px;
-            padding: 10px 20px;
+            margin-top: 20px;
+            padding: 10px 10px;
             background-color: #f7f7f7;
             color: #333;
             display: flex;
@@ -138,10 +157,44 @@
     </style>
 </head>
     <script>
+    window.onload = function () {
+        var images = document.querySelectorAll("img");
+        var loaded = 0;
+        var totalImages = images.length;
+
+    
+        // Check for image load completion
+        var imagePromises = Array.from(images).map(function (img) {
+            return new Promise(function (resolve, reject) {
+                if (img.complete) {
+                    resolve(); // If already loaded
+                } else {
+                    img.onload = resolve; // Resolve promise when image is loaded
+                    img.onerror = reject; // Reject promise if image fails to load
+                }
+            });
+        });
+    
+        // Wait for all images to load before generating the PDF
+        Promise.all(imagePromises)
+            .then(function () {
+                console.log("All images loaded successfully.");
+                downloadPDF();
+            })
+            .catch(function (error) {
+                console.error("Image loading error:", error);
+                downloadPDF(); // Proceed even if there's an error
+            });
+    };
+
+        
     function downloadPDF() {
+        console.log("Starting PDF download...");
+        
         let value1 = "{{ value1 }}".trim();
         let value2 = "{{ value2 }}".trim();
         let fileName = `${value1} —— ${value2}.pdf`;  // Construct the file name
+        
         const element = document.body.cloneNode(true);
         
         // Remove elements that shouldn't be in the PDF
@@ -151,8 +204,8 @@
         // Apply a CSS scale transformation to the entire content for PDF export
         element.style.transform = 'scale(0.7)'; // Scale down to 70% of the original size
         element.style.transformOrigin = 'top center'; // Ensure scaling from top center
-        element.style.width = '100%'; // Ensure the scaled content fits properly
-        element.style.height = 'auto'; // Allow the height to adjust automatically
+        element.style.width = '120%'; // Ensure the scaled content fits properly
+        element.style.height = '100%'; 
     
         // Apply margin to center the content
         element.style.margin = '0 auto';
@@ -175,10 +228,13 @@
         html2pdf()
             .from(container)
             .set({
-                margin: 10,
+                margin: 5,
                 filename: fileName,
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { useCORS: true },  // Avoid using `scale` here since we are using CSS scaling
+                html2canvas: { useCORS: true,
+                               logging: true,
+                               allowTaint: true, // Allow images with taint to be included
+                             },  // Avoid using `scale` here since we are using CSS scaling
                 jsPDF: { 
                     unit: 'mm', 
                     format: 'a4', 
@@ -207,6 +263,17 @@
         // Remove the container after the export, to avoid showing it on the HTML page
         document.body.removeChild(container);
     }
+
+    var imagePromises = Array.from(images).map(function (img) {
+        return new Promise(function (resolve, reject) {
+            img.onload = resolve;
+            img.onerror = function() {
+                console.error('Image load failed:', img.src);
+                reject('Image failed to load');
+            };
+        });
+    });
+
     </script>
 
 
@@ -221,13 +288,13 @@
             <span class="divider">|</span>
             <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology & Genomics Lab</a>
             <button class="no-print download-btn" onclick="downloadPDF()">
-                <i class="fas fa-download"></i> PDF
+                ⇣ PDF
             </button>
         </div>
     </nav>
 
 
-    <h1 style="text-align: center; font-size: 30px; font-weight: bold; width: 100%;">{{ value1 }} —— {{ value2 }}</h1>
+    <h1 style="text-align: center; font-size: 24px; font-weight: bold; width: 100%;">{{ value1 }} —— {{ value2 }}</h1>
 
     <div class="card-container">
         <!-- Full Row Card -->
@@ -298,6 +365,19 @@
                 <strong>{{ last_column[0] }}:</strong> 
                 {{ last_column[1] }}
             </div>
+            <hr>
+            <p><strong>Expression Profile in 144 Cell Types (FANTOM5)</strong></p>
+            <div>
+                {% if ligand_image != "Plot does not exist" %}
+                    <div class="ligand-plot">
+                        <div style="width: 100%; max-width: 100%; overflow: hidden;">
+                        {{ ligand_image | safe }}  <!-- Render the HTML content directly -->
+                        </div>
+                    </div>
+                {% else %}
+                    <p>Plot does not exist</p>
+                {% endif %}
+            </div>
         </div>
         <div class="card">
             <h2>Receptor: {{ value2 }}</h2>
@@ -321,6 +401,19 @@
             <div>
                 <strong>{{ last_column[0] }}:</strong> 
                 {{ last_column[1] }}
+            </div>
+            <hr>
+            <p><strong>Expression Profile in 144 Cell types (FANTOM5)</strong></p>
+            <div>
+                {% if receptor_image != "Plot does not exist" %}
+                    <div class="receptor-plot">
+                        <div style="width: 100%; max-width: 100%; overflow: visible;">
+                        {{ receptor_image | safe }}  
+                        </div>
+                    </div>
+                {% else %}
+                    <p>Plot does not exist</p>
+                {% endif %}
             </div>
         </div>
     </div>
