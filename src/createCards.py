@@ -6,6 +6,8 @@ import sys
 import pandas as pd
 import numpy as np
 import time
+import base64
+
 
 
 sys.path.append(os.path.abspath("src"))  
@@ -15,6 +17,7 @@ from createDataTable import gene_pair0
 # Paths
 TEMPLATE_PATH = 'HTML/cardTemplate.html'
 OUTPUT_DIR = 'data/cards/'
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def load_template(template_path):
     """Load Jinja2 template from a file."""
@@ -105,7 +108,23 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
         row2 = receptor_card_1[receptor_card_1['Human LR Pair'] == value]
         row3 = ligand_card_2[ligand_card_2['Human LR Pair'] == value]
         row4 = receptor_card_2[receptor_card_2['Human LR Pair'] == value]
+
+        # Check if the HTML files exist
+        ligand_image_path = f'data/gene_expr_plots/{value1}.html'
+        receptor_image_path = f'data/gene_expr_plots/{value2}.html'
         
+        if os.path.exists(ligand_image_path):
+            with open(ligand_image_path, "r") as html_file:
+                ligand_image = html_file.read()  # Read the HTML content
+        else:
+            ligand_image = "Plot does not exist"
+        
+        if os.path.exists(receptor_image_path):
+            with open(receptor_image_path, "r") as html_file:
+                receptor_image = html_file.read()  # Read the HTML content
+        else:
+            receptor_image = "Plot does not exist"
+
 
         table0_data = row0.drop('Human LR Pair', axis=1).to_dict(orient='records')[0] if not row0.empty else {}
         table1_data = row1.drop('Human LR Pair', axis=1).to_dict(orient='records')[0] if not row1.empty else {}
@@ -120,7 +139,9 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
             table1_data=table1_data,
             table2_data=table2_data,
             table3_data=table3_data,
-            table4_data=table4_data
+            table4_data=table4_data,
+            ligand_image=ligand_image,
+            receptor_image=receptor_image
         )
         
         output_file = os.path.join(output_dir, f"{value1} {value2}.html")
