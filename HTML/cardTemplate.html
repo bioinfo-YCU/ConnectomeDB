@@ -157,6 +157,8 @@
     </style>
 </head>
     <script>
+
+    // for automatic downloading    
     window.onload = function () {
         var images = document.querySelectorAll("img");
         var loaded = 0;
@@ -186,7 +188,7 @@
                 downloadPDF(); // Proceed even if there's an error
             });
     };
-
+    // uncomment until here if not needed
         
     function downloadPDF() {
         console.log("Starting PDF download...");
@@ -263,7 +265,7 @@
         // Remove the container after the export, to avoid showing it on the HTML page
         document.body.removeChild(container);
     }
-
+    // uncomment from here if auto-downloading of pdf is not necessary
     var imagePromises = Array.from(images).map(function (img) {
         return new Promise(function (resolve, reject) {
             img.onload = resolve;
@@ -273,6 +275,7 @@
             };
         });
     });
+    //uncomment until here if auto-downloading of pdf is not necessary
 
     </script>
 
