@@ -46,14 +46,14 @@ display(HTML(output))
 sys.path.append(os.path.abspath("src"))  # Add src directory to path
 from createDataTable import (
     lrPairsCount,
-    MouselrPairsCount,
-    HumanMouseLRPairsPer, 
     ligandCount,
     receptorCount,
     sourceCount,
     RatLigandCount,
     RatReceptorCount,
 )
+from createDataTable_perSpecies import MouselrPairsCount, HumanMouseLRPairsPer
+
 
 value = f"<div style='text-align:center;'><span style='font-size:2.0em; color:black; font-weight:bold'>{lrPairsCount:,} ({ligandCount:,} & {receptorCount:,})</span></div>"
 display(HTML(value))

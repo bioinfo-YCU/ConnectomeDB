@@ -1,4 +1,5 @@
 from .createDataTable import *  # Import all functions and variables from importData.py
+from .createDataTable_perSpecies import *
 from .fetchGSheet import *
 from .createCards import *
 from .webScrapePubMed import *

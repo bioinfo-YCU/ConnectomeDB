@@ -13,6 +13,12 @@ import warnings
 warnings.simplefilter("ignore", category=UserWarning)
 
 
+# Other vertebrates
+species_list = [
+    "ptroglodytes", "ggallus", "sscrofa", "btaurus", 
+    "clfamiliaris", "ecaballus", "oarambouillet"
+]
+
 # Select only the relevant columns from pop_up_info
 
 pop_up_info = fetchGSheet.pop_up_info.rename(columns={"Mouse genome informatics (MGI) ID": "MGI ID", 
@@ -93,6 +99,66 @@ gene_pair = gene_pair.rename(columns={
                             )
 
 gene_pair = gene_pair.drop(columns=["Approved symbol_x", "Approved symbol_y"])
+
+# Function to add species-specific species Enseml ID and symbol for all other species except for mouse, rat, and zebrafish
+def appendOtherSpeciesInfo(species, origDF):
+    species_name = {
+    "ptroglodytes": "Chimpanzee",
+    "ggallus": "Chicken",
+    "sscrofa": "Pig",
+    "btaurus": "Cow",
+    "clfamiliaris": "Dog",
+    "ecaballus": "Horse",
+    "oarambouillet": "Sheep",
+    }.get(species, "Unknown species")
+    
+    # Load species-specific data
+    species_info = pd.read_csv(f"data/{species}_ID_biomart.csv")
+
+    # Keep relevant columns
+    species_info = species_info[[f"{species}_homolog_ensembl_gene", 
+                                 f"{species}_homolog_associated_gene_name", 
+                                 'hgnc_id']]
+
+    # Remove rows where 'hgnc_id' is NaN and drop duplicates
+    species_info = species_info.dropna(subset=['hgnc_id'])
+    species_info = species_info.drop_duplicates(subset=['hgnc_id'])
+
+    # Merge with ligand data
+    origDF = origDF.merge(species_info, how='left', 
+                           left_on='Ligand HGNC ID', right_on='hgnc_id')
+    
+    # Rename columns for ligand info
+    origDF = origDF.rename(columns={
+        f"{species}_homolog_associated_gene_name": f"{species_name} Ligand", 
+        f"{species}_homolog_ensembl_gene": f"{species_name} Ligand Ensembl ID"
+    })
+
+    # Drop duplicate 'hgnc_id' column
+    origDF = origDF.drop(columns=['hgnc_id'])
+
+    # Merge with receptor data
+    origDF = origDF.merge(species_info, how='left', 
+                           left_on='Receptor HGNC ID', right_on='hgnc_id')
+
+    # Rename columns for receptor info
+    origDF = origDF.rename(columns={
+        f"{species}_homolog_associated_gene_name": f"{species_name} Receptor", 
+        f"{species}_homolog_ensembl_gene": f"{species_name} Receptor Ensembl ID"
+    })
+
+        # Drop duplicate 'hgnc_id' column
+    origDF = origDF.drop(columns=['hgnc_id'])
+
+    # Drop columns where all values are NaN
+    origDF = origDF.dropna(axis=1, how='all')
+
+    return origDF
+
+
+# Loop through each species and update gene_pair
+for species in species_list:
+    gene_pair = appendOtherSpeciesInfo(species, gene_pair)
 
 # Drop columns where all values are NA in gene_pair
 gene_pair = gene_pair.dropna(axis=1, how='all')
@@ -220,21 +286,33 @@ gene_pair["Receptor RGD ID"] = [
         if pd.notna(ratOrth) and ratOrth.strip() else "" 
         for ratOrth in gene_pair["Receptor RGD ID"]
     ]
+# Add tooltip to name
 
-gene_pair["Zebrafish Ligand"] = [
-    f'<span title="{ligand_name}">{ligand_symbol}</span>'
-    for ligand_name, ligand_symbol in zip(gene_pair["Zebrafish Ligand name"], 
-                                          gene_pair["Zebrafish Ligand"])
-]
-gene_pair["Zebrafish Receptor"] = [
-    f'<span title="{ligand_name}">{ligand_symbol}</span>'
-    for ligand_name, ligand_symbol in zip(gene_pair["Zebrafish Receptor name"], 
-                                          gene_pair["Zebrafish Receptor"])
-]
+def add_geneToolTip(species):
+    gene_pair[species+" Ligand"] = [
+        f'<span title="{ligand_name}">{ligand_symbol}</span>'
+        for ligand_name, ligand_symbol in zip(gene_pair[species+" Ligand name"], gene_pair[species+" Ligand"])
+    ]
+    gene_pair[species+" Receptor"] = [
+        f'<span title="{receptor_name}">{receptor_symbol}</span>'
+        for receptor_name, receptor_symbol in zip(gene_pair[species+" Receptor name"], gene_pair[species+" Receptor"])
+    ]
+
+### Remove tooltip for name for each species for now as only zebrafish has the proper names ###     
+# speciesPrime_list = ["Zebrafish"]
+# # Loop through each species and update gene_pair
+# for species in speciesPrime_list:
+#    gene_pair = add_geneToolTip(species)
 
 mouse_columns = ['Mouse Ligand', 'Mouse Receptor','Ligand MGI ID','Receptor MGI ID'] 
 rat_columns = ['Rat Ligand','Rat Receptor','Ligand RGD ID','Receptor RGD ID']
-zebrafish = ['Zebrafish Ligand','Zebrafish Receptor','Ligand ZFIN ID','Receptor ZFIN ID']
+zebrafish_columns = ['Zebrafish Ligand','Zebrafish Receptor','Ligand ZFIN ID','Receptor ZFIN ID']
+
+# List of prefixes
+prefixes = ("Chimpanzee", "Chicken", "Pig", "Cow", "Dog", "Horse", "Sheep")
+
+# Get column names that start with any of the given prefixes
+selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)]
 
 gene_pair0 = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PMID support',
        'Ligand HGNC ID', 'Ligand location', 'Receptor HGNC ID',
@@ -242,7 +320,7 @@ gene_pair0 = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PM
 
 gene_pair = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Interaction Source', 'Perplexity', 'PMID support',
         'Ligand HGNC ID', 'Receptor HGNC ID', 'Ligand location', 'Receptor location',
-        'Ligand name', 'Receptor name'] + mouse_columns + rat_columns + zebrafish + end_columns]
+        'Ligand name', 'Receptor name'] + mouse_columns + rat_columns + zebrafish_columns + end_columns + selected_columns]
 
 
 # gene symbol
@@ -282,6 +360,7 @@ gene_pair["Human LR Pair"] = [
 ]
 
 
+
 # Add tooltips to the column headers
 gene_pair.columns = [
     f'<span title=" Ligand-Receptor Interacting Pair, as described in Liu et al. (PMID: XXXXXX)">{col}</span>' if col == "Human LR Pair" else
@@ -317,142 +396,3 @@ new_columns[:10] = [
 # Assign the modified column names back to the DataFrame
 gene_pair000.columns = new_columns
 human_columns = [col for col in gene_pair000.columns][:10]
-
-
-### MOUSE ###
-# Find columns with "Mouse" in the name
-mouse_columns = [col for col in gene_pair.columns if "MGI" in col or "Mouse" in col]
-
-# Filter rows where all "Mouse" columns are not " "
-mouse_gene_pair = gene_pair000[(gene_pair000[mouse_columns].map(str.strip) != "").all(axis=1)]
-# Dynamically identify columns containing "Ligand" and "Receptor" in their names 
-# since it is now in span format
-
-new_columns = mouse_gene_pair.columns.tolist()
-
-new_columns = [
-    col.replace("Mouse ", "").strip()
-    if "Mouse Ligand" in col or "Mouse Receptor" in col
-    else col
-    for col in new_columns
-]
-mouse_gene_pair.columns = new_columns
-        
-ligand_col = [col for col in mouse_gene_pair.columns if "Ligand&nbsp;" in col][1]
-receptor_col = [col for col in mouse_gene_pair.columns if "Receptor&nbsp;" in col][1]
-ligand_location = [col for col in mouse_gene_pair.columns if "Ligand location" in col][0]
-receptor_location = [col for col in mouse_gene_pair.columns if "Receptor location" in col][0]
-
-
-# Combine columns into "Mouse LR Pair" with appropriate replacements
-def format_lr_pair(row):
-    if row[ligand_location] == 'secreted':
-        return f"{row[ligand_col]} <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
-    elif row[ligand_location] == '':
-        return f"{row[ligand_col]} <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
-    elif row[receptor_location] == 'plasma membrane':
-        return f"{row[ligand_col]} <span style='font-size: 24px;'>⤙</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
-    else:
-        return f"{row[ligand_col]} \u2192 {row[receptor_col]}"
-
-# Apply the function row-wise and assign to the new column using .loc
-mouse_gene_pair1 = mouse_gene_pair.copy() 
-mouse_gene_pair1.loc[:, "Mouse LR Pair"] = mouse_gene_pair1.apply(format_lr_pair, axis=1)
-mouse_columns = [col for col in mouse_gene_pair1.columns if "MGI" in col]
-# Reorder the DataFrame
-new_order = ["Mouse LR Pair", ligand_col, receptor_col] + mouse_columns + human_columns
-mouse_gene_pair1 = mouse_gene_pair1[new_order]
-MouselrPairsCount = len(mouse_gene_pair1["Mouse LR Pair"].unique())
-HumanMouseLRPairsPer = (MouselrPairsCount/lrPairsCount)*100
-HumanMouseLRPairsPer = round(HumanMouseLRPairsPer, 2)
-# Round up to the nearest 0.5%
-HumanMouseLRPairsPer = ((HumanMouseLRPairsPer * 2 + 1) // 1) / 2
-
-mouse_gene_pair1 = mouse_gene_pair1.reset_index(drop=True)  
-
-
-### RAT ###
-
-## Limit to those with either Rat Ligand or Receptor
-rat_columns = [col for col in gene_pair.columns if "RGD" in col or "Rat" in col]
-# Filter rows where all "Rat" columns are not " "
-rat_gene_pair = gene_pair000[(gene_pair000[rat_columns].map(str.strip) != "").all(axis=1)]
-
-
-new_columns = rat_gene_pair.columns.tolist()
-
-new_columns = [
-    col.replace("Rat ", "").strip()
-    if "Ligand" in col or "Receptor" in col
-    else col
-    for col in new_columns
-]
-rat_gene_pair.columns = new_columns
-
-# Dynamically identify columns containing "Ligand" and "Receptor" in their names 
-# since it is now in span format
-ligand_col = [col for col in rat_gene_pair.columns if "Ligand&nbsp;" in col][2]
-receptor_col = [col for col in rat_gene_pair.columns if "Receptor&nbsp;" in col][2]
-ligand_location = [col for col in rat_gene_pair.columns if "Ligand location" in col][0]
-receptor_location = [col for col in rat_gene_pair.columns if "Receptor location" in col][0]
-
-def format_lr_pair(row):
-    if row[ligand_location] == 'secreted':
-        return f"{row[ligand_col]} <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
-    elif row[ligand_location] == '':
-        return f"{row[ligand_col]} <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
-    elif row[receptor_location] == 'plasma membrane':
-        return f"{row[ligand_col]} <span style='font-size: 24px;'>⤙</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
-    else:
-        return f"{row[ligand_col]} \u2192 {row[receptor_col]}"
-
-rat_gene_pair1 = rat_gene_pair.copy() 
-rat_gene_pair1.loc[:, "Rat LR Pair"] = rat_gene_pair1.apply(format_lr_pair, axis=1)
-rat_columns = [col for col in rat_gene_pair1.columns if "RGD" in col]
-# Reorder the DataFrame
-new_order = ["Rat LR Pair", ligand_col, receptor_col] + rat_columns + human_columns
-rat_gene_pair1 = rat_gene_pair1[new_order]
-rat_gene_pair1 = rat_gene_pair1.reset_index(drop=True)  
-
-### ZEBRAFISH ###
-
-## Limit to those with either Zebrafish Ligand or Receptor
-Zebrafish_columns = [col for col in gene_pair.columns if "ZFIN" in col or "Zebrafish" in col]
-# Filter rows where all "Zebrafish" columns are not " "
-Zebrafish_gene_pair = gene_pair000[(gene_pair000[Zebrafish_columns].map(str.strip) != "").all(axis=1)]
-
-
-new_columns = Zebrafish_gene_pair.columns.tolist()
-
-new_columns = [
-    col.replace("Zebrafish ", "").strip()
-    if "Ligand" in col or "Receptor" in col
-    else col
-    for col in new_columns
-]
-Zebrafish_gene_pair.columns = new_columns
-
-# Dynamically identify columns containing "Ligand" and "Receptor" in their names 
-# since it is now in span format
-ligand_col = [col for col in Zebrafish_gene_pair.columns if "Ligand&nbsp;" in col][3]
-receptor_col = [col for col in Zebrafish_gene_pair.columns if "Receptor&nbsp;" in col][3]
-ligand_location = [col for col in Zebrafish_gene_pair.columns if "Ligand location" in col][0]
-receptor_location = [col for col in Zebrafish_gene_pair.columns if "Receptor location" in col][0]
-
-def format_lr_pair(row):
-    if row[ligand_location] == 'secreted':
-        return f"{row[ligand_col]} <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
-    elif row[ligand_location] == '':
-        return f"{row[ligand_col]} <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
-    elif row[receptor_location] == 'plasma membrane':
-        return f"{row[ligand_col]} <span style='font-size: 24px;'>⤙</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
-    else:
-        return f"{row[ligand_col]} \u2192 {row[receptor_col]}"
-
-Zebrafish_gene_pair1 = Zebrafish_gene_pair.copy() 
-Zebrafish_gene_pair1.loc[:, "Zebrafish LR Pair"] = Zebrafish_gene_pair1.apply(format_lr_pair, axis=1)
-Zebrafish_columns = [col for col in Zebrafish_gene_pair1.columns if "ZFIN" in col]
-# Reorder the DataFrame
-new_order = ["Zebrafish LR Pair", ligand_col, receptor_col] + Zebrafish_columns + human_columns
-Zebrafish_gene_pair1 = Zebrafish_gene_pair1[new_order]
-Zebrafish_gene_pair1 = Zebrafish_gene_pair1.reset_index(drop=True)  
