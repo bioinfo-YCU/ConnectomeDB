@@ -32,13 +32,13 @@ import itables.options as opt
 project_root = os.path.abspath(os.path.join(os.getcwd(), "../.."))
 os.chdir(project_root)
 sys.path.append(os.path.abspath("src"))
-from createDataTable import Zebrafish_gene_pair1
+from createDataTable_perSpecies import zebrafish_gene_pair1
 
 
 # Function to update and display the table
 def update_table():
     show(
-        Zebrafish_gene_pair1,
+        zebrafish_gene_pair1,
         keys=True,
         layout={"top": ["info", "paging"]},
         #layout={"bottom": "searchBuilder", "title": "Advanced Search"},

@@ -55,7 +55,7 @@ def update_table():
         columnDefs=[
             {"className": "dt-center", "targets": [4]}, 
             # {"width": "100px", "targets": "_all"},
-            {"targets": list(range(-1, -13, -1)), "visible": False} # Hide last 12 columns by default
+            {"targets": list(range(-1, -17, -1)), "visible": False} # Hide last 12 columns by default
         ],
         style="1200px;margin:auto",
            language={
