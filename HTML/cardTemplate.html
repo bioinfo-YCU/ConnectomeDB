@@ -154,17 +154,28 @@
             justify-content: space-between;
             align-items: center;
         }
+            /* Hide the element for the web view */
+        .pdf-only {
+            display: none;
+        }
+    
+        /* When printing or exporting to PDF, display the element */
+        @media print {
+            .pdf-only {
+                display: block;
+            }
+        }
     </style>
 </head>
     <script>
-
-    // for automatic downloading    
+/*
+    // for automatic downloading 
     window.onload = function () {
         var images = document.querySelectorAll("img");
         var loaded = 0;
         var totalImages = images.length;
 
-    
+  
         // Check for image load completion
         var imagePromises = Array.from(images).map(function (img) {
             return new Promise(function (resolve, reject) {
@@ -189,6 +200,9 @@
             });
     };
     // uncomment until here if not needed
+*/
+        
+    
         
     function downloadPDF() {
         console.log("Starting PDF download...");
@@ -198,20 +212,23 @@
         let fileName = `${value1} —— ${value2}.pdf`;  // Construct the file name
         
         const element = document.body.cloneNode(true);
+
+            // Show elements that are hidden for the PDF (like .pdf-only)
+        element.querySelectorAll('.pdf-only').forEach(el => el.style.display = 'block');
         
         // Remove elements that shouldn't be in the PDF
         element.querySelectorAll('.no-print').forEach(el => el.remove());
         element.querySelector('nav').remove();
         
-        // Apply a CSS scale transformation to the entire content for PDF export
-        element.style.transform = 'scale(0.7)'; // Scale down to 70% of the original size
-        element.style.transformOrigin = 'top center'; // Ensure scaling from top center
-        element.style.width = '120%'; // Ensure the scaled content fits properly
-        element.style.height = '100%'; 
     
         // Apply margin to center the content
         element.style.margin = '0 auto';
         element.style.display = 'block';
+        // Apply a CSS scale transformation to the entire content for PDF export
+        element.style.transform = 'scale(0.8)'; // Scale down to 70% of the original size
+        element.style.transformOrigin = 'top center'; // Ensure scaling from top center
+        element.style.width = '100%'; // Ensure the scaled content fits properly
+        element.style.height = 'auto'; 
     
         // Remove background color to ensure it doesn't appear in the PDF
         element.style.backgroundColor = 'transparent'; // Remove background
@@ -236,11 +253,13 @@
                 html2canvas: { useCORS: true,
                                logging: true,
                                allowTaint: true, // Allow images with taint to be included
+                               scale: 3
                              },  // Avoid using `scale` here since we are using CSS scaling
                 jsPDF: { 
                     unit: 'mm', 
                     format: 'a4', 
-                    orientation: 'portrait' 
+                    orientation: 'portrait',
+                    compress: true
                 }
             })
             .toPdf()
@@ -259,12 +278,23 @@
                     // Add the hyperlink
                     pdf.link(x, y, width, height, { url: link.href });
                 });
+
+                // Adjust the page size if the content exceeds one page
+                    const contentHeight = pdf.internal.pageSize.height;
+                    const contentWidth = pdf.internal.pageSize.width;
+        
+                    // Check if content fits on a single page, if not, auto adjust
+                    if (pdf.internal.getNumberOfPages() > 1) {
+                        pdf.setPage(1);  // If there are multiple pages, reset to the first one
+                        pdf.scale(0.7, 0.7); // Scale content to fit in one page
+                    }
             })
             .save();
     
         // Remove the container after the export, to avoid showing it on the HTML page
         document.body.removeChild(container);
     }
+    /*
     // uncomment from here if auto-downloading of pdf is not necessary
     var imagePromises = Array.from(images).map(function (img) {
         return new Promise(function (resolve, reject) {
@@ -276,7 +306,7 @@
         });
     });
     //uncomment until here if auto-downloading of pdf is not necessary
-
+    */
     </script>
 
 
@@ -346,7 +376,7 @@
     <br>
     <div class="card-container">
         <div class="card">
-            <h2>Ligand: {{ value1 }}</h2>
+            <h3>Ligand: {{ value1 }}</h3>
             {% for column, value in table1_data.items() %}
                 <div>
                     <strong>{{ column }}:</strong> 
@@ -368,22 +398,9 @@
                 <strong>{{ last_column[0] }}:</strong> 
                 {{ last_column[1] }}
             </div>
-            <hr>
-            <p><strong>Expression Profile in 144 Cell Types (FANTOM5)</strong></p>
-            <div>
-                {% if ligand_image != "Plot does not exist" %}
-                    <div class="ligand-plot">
-                        <div style="width: 100%; max-width: 100%; overflow: hidden;">
-                        {{ ligand_image | safe }}  <!-- Render the HTML content directly -->
-                        </div>
-                    </div>
-                {% else %}
-                    <p>Plot does not exist</p>
-                {% endif %}
-            </div>
         </div>
         <div class="card">
-            <h2>Receptor: {{ value2 }}</h2>
+            <h3>Receptor: {{ value2 }}</h3>
             {% for column, value in table3_data.items() %}
                 <div>
                     <strong>{{ column }}:</strong> 
@@ -405,9 +422,26 @@
                 <strong>{{ last_column[0] }}:</strong> 
                 {{ last_column[1] }}
             </div>
-            <hr>
-            <p><strong>Expression Profile in 144 Cell types (FANTOM5)</strong></p>
-            <div>
+        </div>
+    </div>
+        <h1 style="text-align: center; font-size: 24px; font-weight: bold; width: 100%;">Expression Profile in 144 Cell types (FANTOM5)</h1>
+        <!-- Image shown only in the PDF -->
+        <div class="card-container">
+            <div class="card">
+                <div>
+                {% if ligand_image != "Plot does not exist" %}
+                    <div class="ligand-plot">
+                        <div style="width: 88%; max-width: 100%; overflow: hidden;">
+                        {{ ligand_image | safe }}  <!-- Render the HTML content directly -->
+                        </div>
+                    </div>
+                {% else %}
+                    <p>Plot does not exist</p>
+                {% endif %}
+                </div>
+            </div>
+            <div class="card">
+                <div>
                 {% if receptor_image != "Plot does not exist" %}
                     <div class="receptor-plot">
                         <div style="width: 100%; max-width: 100%; overflow: visible;">
@@ -417,8 +451,8 @@
                 {% else %}
                     <p>Plot does not exist</p>
                 {% endif %}
+                </div>
             </div>
-        </div>
     </div>
     <footer>
         <span>© Copyright 2024, YCU Bioinformatics Lab | Harry Perkins Systems Biology & Genomics Lab</span>
