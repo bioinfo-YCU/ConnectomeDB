@@ -24,6 +24,14 @@ def load_template(template_path):
     with open(template_path, 'r') as file:
         return jinja2.Template(file.read())
 
+def encode_image(image_path):
+    """Encode an image to base64."""
+    try:
+        with open(image_path, "rb") as image_file:
+            return base64.b64encode(image_file.read()).decode('utf-8')
+    except FileNotFoundError:
+        return None
+
 # Function to convert the links
 def convert_hgnc_url(col):
    # Extract the HGNC ID from the original URL
@@ -100,7 +108,11 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
     """Generate HTML files for each Human LR Pair."""
     column_values = interaction_card["Human LR Pair"].dropna().unique()
     os.makedirs(output_dir, exist_ok=True)
-    
+
+    # Encode the plotlegend image to base64
+    plotlegend_image_path = "data/image/plotlegend.webp"
+    plotlegend_base64 = encode_image(plotlegend_image_path)  # Convert WebP to base64
+
     for value in column_values:
         value1, value2 = value.split()
         row0 = interaction_card[interaction_card['Human LR Pair'] == value]
@@ -141,7 +153,8 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
             table3_data=table3_data,
             table4_data=table4_data,
             ligand_image=ligand_image,
-            receptor_image=receptor_image
+            receptor_image=receptor_image,
+            plotlegend_base64=plotlegend_base64 
         )
         
         output_file = os.path.join(output_dir, f"{value1} {value2}.html")

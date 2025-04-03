@@ -110,7 +110,7 @@ def plot_gene_expression(df):
             legend=dict(
                 orientation="v",  # Vertical legend
                 yanchor="top",
-                y=1,
+                y=0.5,
                 xanchor="left",
                 x=1.05,  # Position the legend outside of the plot area
                 font=dict(size=10)

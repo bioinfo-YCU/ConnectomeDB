@@ -156,15 +156,9 @@
         }
             /* Hide the element for the web view */
         .pdf-only {
-            display: none;
+            display: block;
         }
     
-        /* When printing or exporting to PDF, display the element */
-        @media print {
-            .pdf-only {
-                display: block;
-            }
-        }
     </style>
 </head>
     <script>
@@ -213,8 +207,11 @@
         
         const element = document.body.cloneNode(true);
 
-            // Show elements that are hidden for the PDF (like .pdf-only)
-        element.querySelectorAll('.pdf-only').forEach(el => el.style.display = 'block');
+    // Show elements that are hidden for the PDF (like .pdf-only)
+        const pdfOnlyImage = document.getElementById('webp-image');
+        if (pdfOnlyImage) {
+            pdfOnlyImage.style.display = 'block';  // Make WebP image visible only for PDF export
+        }
         
         // Remove elements that shouldn't be in the PDF
         element.querySelectorAll('.no-print').forEach(el => el.remove());
@@ -293,6 +290,10 @@
     
         // Remove the container after the export, to avoid showing it on the HTML page
         document.body.removeChild(container);
+        // Hide the WebP image after PDF is generated
+        if (pdfOnlyImage) {
+            pdfOnlyImage.style.display = 'none';  // Hide the WebP image again
+        }
     }
     /*
     // uncomment from here if auto-downloading of pdf is not necessary
@@ -426,6 +427,12 @@
     </div>
         <h1 style="text-align: center; font-size: 24px; font-weight: bold; width: 100%;">Expression Profile in 144 Cell types (FANTOM5)</h1>
         <!-- Image shown only in the PDF -->
+        <div class="pdf-only" id="webp-image" style="text-align: center;">
+            <img src="data:image/webp;base64,{{ plotlegend_base64 }}" alt="Plot Legend Image" style="width: 600px; height: auto;">
+        </div>
+
+        </div>
+
         <div class="card-container">
             <div class="card">
                 <div>
@@ -444,7 +451,7 @@
                 <div>
                 {% if receptor_image != "Plot does not exist" %}
                     <div class="receptor-plot">
-                        <div style="width: 100%; max-width: 100%; overflow: visible;">
+                        <div style="width: 88%; max-width: 100%; overflow: hidden;">
                         {{ receptor_image | safe }}  
                         </div>
                     </div>
