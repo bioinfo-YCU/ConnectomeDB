@@ -13,7 +13,7 @@ from createDataTable import gene_pair0
 ### Parameters
 topN = 10000 #Number of top pathways to be included
 pathway_output_file="data/pathway_annotations_per_pair.csv"
-
+output_file="data/disease_annotations_per_pair.csv"
 
 ### Pathway Annotations
 
@@ -27,7 +27,8 @@ lr_pairs.columns = lr_pairs.columns.str.lower()
 lr_progeny = li.rs.generate_lr_geneset(lr_pairs, progeny, lr_sep="^")
 # some of the pairs are missing
 len(lr_progeny["interaction"].unique())
-
+# Replace '^' with ' ' in the 2nd column
+lr_progeny.iloc[:, 1] = lr_progeny.iloc[:, 1].str.replace(r'\^', ' ', regex=True)
 lr_progeny.to_csv(pathway_output_file, index=False)
 
 ### Disease Annotations
@@ -45,9 +46,7 @@ diseases['disease'] = diseases['disease'].str.split('; ')
 diseases = diseases.explode('disease')
 lr_diseases = li.rs.generate_lr_geneset(lr_pairs, diseases, source='disease', target='genesymbol', weight=None, lr_sep="^")
 lr_diseases.sort_values("interaction")
-
 # some of the pairs are missing
 len(lr_diseases["interaction"].unique())
-
-output_file="data/disease_annotations_per_pair.csv"
+lr_diseases.iloc[:, 1] = lr_diseases.iloc[:, 1].str.replace(r'\^', ' ', regex=True)
 lr_diseases.to_csv(output_file, index=False)

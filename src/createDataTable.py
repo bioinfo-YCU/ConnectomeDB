@@ -29,6 +29,21 @@ pop_up_info_lim = pop_up_info_lim.drop_duplicates(subset="Approved symbol", keep
 
 # Drop columns where all values are NA in gene_pair
 gene_pair = fetchGSheet.gene_pair.dropna(axis=1, how='all')
+
+# Mapping for replacements
+mapping = {
+    'Ramilowski_2015_Literature_supported': "connectomeDB",
+    'Noël et al. 2020 (ICELLNET)': "ICELLNET",
+    'Hou et al. 2020 (connectomeDB2020)': "connectomeDB2020",
+    'Efremova et al. 2020 (CellphoneDB)': "CellphoneDB",
+    'Cabello-Aguilar et al. 2020 (SingleCellSignalR)': "SingleCellSignalR",
+    'Baccin et al. 2020 (RNA-Magnet)': "RNA-Magnet",
+    'ConnectomeDB2025 (this publication)': "NEW"
+}
+
+# Replace values in the column based on the mapping
+gene_pair['Source'] = gene_pair['Source'].replace(mapping)
+
 # Fetch species IDs from the dataset
 hgnc_id = [col for col in gene_pair.columns if "HGNC ID" in col]
 hgnc_id = pd.concat([gene_pair[col] for col in hgnc_id]).unique()
@@ -39,7 +54,7 @@ gene_pair = gene_pair.rename(columns={
     "Ligand gene symbol": "Ligand",
     "Receptor gene symbol": "Receptor",
     "Perplexity link": "Perplexity",
-    "Source": "Interaction Source"
+    "Source": "Database Source"
 })
 
 # Merge gene_pair with pop_up_info_lim for Ligand(L)
@@ -49,6 +64,27 @@ gene_pair = gene_pair.rename(columns={"Approved name": "Ligand name",
                                      "MGI ID": "Ligand MGI ID",
                                      "RGD ID": "Ligand RGD ID"},
                             )
+
+# Add top pathway per pair
+LR_pairs = gene_pair["Human LR Pair"].unique()
+df= pd.read_csv("data/pathway_annotations_per_pair.csv")
+df = df[df["interaction"].isin(LR_pairs)]
+# Sort by absolute value of 'weight', descending (larger abs(weight) first)
+df_sorted = df.reindex(df['weight'].abs().sort_values(ascending=False).index)
+# Keep only the first occurrence for each unique 'interaction'
+df_unique = df_sorted.drop_duplicates(subset='interaction', keep='first')
+df = df_unique.reset_index(drop=True)
+top_pathway_df = df[["interaction", "source"]]
+top_pathway_df = top_pathway_df.rename(columns={
+                                      "source": "Top pathway"
+})
+gene_pair = gene_pair.merge(top_pathway_df, how='left', left_on='Human LR Pair', right_on='interaction')
+
+# Add Disease Category per pair
+df= pd.read_csv("data/diseaseType_per_pair.csv")
+disease_df = df[df["interaction_x"].isin(LR_pairs)]
+
+gene_pair = gene_pair.merge(disease_df, how='left', left_on='Human LR Pair', right_on='interaction_x')
 
 # Add MGI annotation
 MGI_info = pd.read_csv("data/MGI_ID_biomart.csv")
@@ -68,7 +104,7 @@ ZFIN_info = ZFIN_info.drop_duplicates(subset=['HGNC ID'])
 ZFIN_info['HGNC ID'] = ZFIN_info['HGNC ID'].apply(lambda x: f'HGNC:{int(x)}')
 gene_pair = gene_pair.merge(ZFIN_info, how='left', left_on='Ligand HGNC ID', right_on='HGNC ID')
 
-gene_pair = gene_pair.drop(columns=["RGD ID", "MGI ID", "HGNC ID"])
+gene_pair = gene_pair.drop(columns=["RGD ID", "MGI ID", "HGNC ID", "interaction", "interaction_x"])
 
 gene_pair = gene_pair.rename(columns={
                                      "MGI name": "Mouse Ligand", 
@@ -170,7 +206,7 @@ if "PMID link" in gene_pair.columns:
     gene_pair = gene_pair.drop(columns=["PMID link"])
 
 # Add
-first_columns=['Human LR Pair', 'Ligand', 'Receptor', 'Interaction Source']
+first_columns=['Human LR Pair', 'Ligand', 'Receptor', 'Database Source']
 
 end_columns=['HGNC L R', 'sanity check', 'curator', 'secondary source?']
 gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns + end_columns] + end_columns]
@@ -318,9 +354,9 @@ gene_pair0 = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PM
        'Ligand HGNC ID', 'Ligand location', 'Receptor HGNC ID',
        'Receptor location', 'Ligand name', 'Receptor name'] + mouse_columns + rat_columns]
 
-gene_pair = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Interaction Source', 'Perplexity', 'PMID support',
+gene_pair = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Database Source', 'Perplexity', 'PMID support',
         'Ligand HGNC ID', 'Receptor HGNC ID', 'Ligand location', 'Receptor location',
-        'Ligand name', 'Receptor name'] + mouse_columns + rat_columns + zebrafish_columns + end_columns + selected_columns]
+        'Ligand name', 'Receptor name', 'Top pathway', 'Cancer-related', 'Disease types'] + mouse_columns + rat_columns + zebrafish_columns + end_columns + selected_columns]
 
 
 # gene symbol

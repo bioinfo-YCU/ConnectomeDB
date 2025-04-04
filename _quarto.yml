@@ -27,7 +27,7 @@ website:
            text: Human LR Pairs
          - href: database/mouseOrth.qmd
            text: Mouse Orthologs
-         - href: database/Other/ratOrth.qmd
+         - href: database/other/ratOrth.qmd
            text: Other Species
 
     right:
