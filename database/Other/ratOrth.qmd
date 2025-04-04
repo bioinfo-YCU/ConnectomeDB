@@ -6,7 +6,7 @@ execute:
 format:
   html:
     table: false
-header-includes: |
+header-includes: | 
   <script src="../../js/keepDropdownMenuGold.js"></script>
 ---
 

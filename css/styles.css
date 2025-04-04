@@ -304,6 +304,80 @@ span.dt-column-title input[type="text"] {
     opacity: 0.8; /* Optional: Slightly transparent */
 }
 
+/* Styling the placeholder text to make it transparent */
+.dtsp-paneInputButton::placeholder {
+    color: transparent;  /* Make placeholder text transparent */
+    opacity: 0;          /* Optional: Ensure the placeholder is fully invisible */
+}
+
+/* Optional: You can also adjust the tooltip style if needed */
+.dtsp-paneInputButton[title]::after {
+    content: attr(title);  /* Display the tooltip from the title attribute */
+    color: #555;           /* Tooltip text color */
+    font-size: 12px;       /* Tooltip font size */
+}
+
+.dtsp-paneInputButton {
+    padding: 5px 10px;   /* Adjust padding to make it smaller */
+}
+
+.dtsp-paneInputButton {
+    width: 150px;        /* Adjust width */
+    height: 30px;        /* Adjust height */
+    font-size: 10px;     /* Adjust font size */
+}
+
+.dtsp-searchPane table,
+.dtsp-searchPane .dtsp-name span,
+.dtsp-searchPane .dtsp-count,
+.dtsp-searchPane .dtsp-search,
+.dtsp-searchPane label,
+.dtsp-searchPane input {
+    font-size: 10px !important;
+}
+
+
+/* Target the first search pane */
+.dtsp-searchPane:first-child::before {
+    content: "Ligand";
+}
+
+/* Target the second search pane */
+.dtsp-searchPane:nth-child(2)::before {
+    content: "Receptor";
+}
+
+/* Target the third search pane */
+.dtsp-searchPane:nth-child(3)::before {
+    content: "Database Source";
+}
+
+/* Target the fourth search pane */
+.dtsp-searchPane:nth-child(4)::before {
+    content: "Ligand Location";
+}
+
+/* Target the fifth search pane */
+.dtsp-searchPane:nth-child(5)::before {
+    content: "Receptor Location";
+}
+
+/* Target the fifth search pane */
+.dtsp-searchPane:nth-child(6)::before {
+    content: "Top pathway";
+}
+
+/* Target the fifth search pane */
+.dtsp-searchPane:nth-child(7)::before {
+    content: "Cancer-related";
+}
+
+/* Target the fifth search pane */
+.dtsp-searchPane:nth-child(8)::before {
+    content: "Disease types";
+}
+
+
 /* Targeting the input fields within the th elements that have the dtfc-fixed-start and dtfc-fixed-left classes */
 th.dtfc-fixed-start.dtfc-fixed-left input[type="text"] {
     width: 50px;  /* Adjust the width to make the input field shorter */

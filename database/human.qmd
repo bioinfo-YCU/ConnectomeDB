@@ -8,10 +8,24 @@ format:
     table: false
 header-includes: |
   <script src="../js/keepDropdownMenuGold.js"></script>
-
+  <script>
+    // Custom JavaScript to collapse all search panes by default
+    $(document).on('draw.dt', function () {
+        // Collapse all the search panes by default
+        $(".searchPanes").each(function() {
+            $(this).find(".dtsp-searchPane").each(function() {
+                if ($(this).hasClass('dtsp-open')) {
+                    $(this).find(".dtsp-paneHeader").trigger("click");  // Trigger collapse
+                }
+            });
+        });
+    });
+  </script>
 ---
 
 ***
+
+
 
 ```{python}
 import sys
@@ -26,13 +40,16 @@ os.chdir(project_root)
 sys.path.append(os.path.abspath("src"))
 from createDataTable import gene_pair
 
+human_gene_pair = gene_pair.iloc[:, :-28]
 
 # Function to update and display the table
 def update_table():
     show(
-        gene_pair,
+        human_gene_pair,
         keys=True,
-        layout={"top": ["info", "paging"]},
+        layout={"top": ["searchPanes"],
+                },
+        searchPanes={"layout": "rows-1", "cascadePanes": True, "columns": [1,2,3,8,9,10,11,12], "regex": True, "caseInsensitive": False, "smart": True, "initCollapsed": True},
         #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
         fixedColumns={"start": 1, "end": 0},
         fixedHeader=True,  # Keep header fixed for alignment
@@ -61,6 +78,7 @@ def update_table():
            language={
             "search": "Search Any Column:",
             "searchPlaceholder": "e.g. CD24",
+            "searchPanesPlaceholder": "",
            # "searchBuilder": {
            #     "title": "Advanced Search <i>Multiple filtering, AND/OR condition</i>" 
            # }
@@ -71,8 +89,9 @@ def update_table():
             $(document).on('draw.dt', function () {
                 $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
             });
-    '''
+        ''',
     )
+      
       
 
 # Call the function to render the table
