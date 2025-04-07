@@ -32,13 +32,13 @@ gene_pair = fetchGSheet.gene_pair.dropna(axis=1, how='all')
 
 # Mapping for replacements
 mapping = {
-    'Ramilowski_2015_Literature_supported': "connectomeDB",
+    'Ramilowski_2015_Literature_supported': "connectomeDB2015",
     'Noël et al. 2020 (ICELLNET)': "ICELLNET",
     'Hou et al. 2020 (connectomeDB2020)': "connectomeDB2020",
     'Efremova et al. 2020 (CellphoneDB)': "CellphoneDB",
     'Cabello-Aguilar et al. 2020 (SingleCellSignalR)': "SingleCellSignalR",
     'Baccin et al. 2020 (RNA-Magnet)': "RNA-Magnet",
-    'ConnectomeDB2025 (this publication)': "NEW"
+    'ConnectomeDB2025 (this publication)': "connectomeDB2025 🆕"
 }
 
 # Replace values in the column based on the mapping
@@ -76,7 +76,7 @@ df_unique = df_sorted.drop_duplicates(subset='interaction', keep='first')
 df = df_unique.reset_index(drop=True)
 top_pathway_df = df[["interaction", "source"]]
 top_pathway_df = top_pathway_df.rename(columns={
-                                      "source": "Top pathway"
+                                      "source": "Top Pathway"
 })
 gene_pair = gene_pair.merge(top_pathway_df, how='left', left_on='Human LR Pair', right_on='interaction')
 
@@ -299,6 +299,18 @@ def generate_links_with_doi(df, gene_column, pmid_column):
 # Generate the links for the "PMID support" column
 gene_pair = generate_links_with_doi(gene_pair, gene_column="Human LR Pair", pmid_column="PMID support")
 
+# for disease type, cancer-related and top pathways, explicitly say "not available"
+gene_pair["Top Pathway"] = gene_pair["Top Pathway"].apply(
+    lambda x: "unknown" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", ""] else x
+)
+gene_pair["Disease Type"] = gene_pair["Disease Type"].apply(
+    lambda x: "unknown" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", ""] else x
+)
+
+gene_pair["Cancer-related"] = gene_pair["Cancer-related"].apply(
+    lambda x: "unknown" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", ""] else x
+)
+
 gene_pair["Ligand MGI ID"] = [
         f'<a href="https://www.informatics.jax.org/marker/{mouseOrth}" target="_blank">{mouseOrth}</a>' 
         if pd.notna(mouseOrth) and mouseOrth.strip() else "" 
@@ -352,11 +364,11 @@ selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)
 
 gene_pair0 = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PMID support',
        'Ligand HGNC ID', 'Ligand location', 'Receptor HGNC ID',
-       'Receptor location', 'Ligand name', 'Receptor name'] + mouse_columns + rat_columns]
+       'Receptor location', 'Ligand name', 'Receptor name', 'Top Pathway', 'Cancer-related', 'Disease Type'] + mouse_columns + rat_columns]
 
-gene_pair = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Database Source', 'Perplexity', 'PMID support',
+gene_pair = gene_pair[['Human LR Pair', 'Database Source', 'Ligand', 'Receptor', 'Perplexity', 'PMID support',
         'Ligand HGNC ID', 'Receptor HGNC ID', 'Ligand location', 'Receptor location',
-        'Ligand name', 'Receptor name', 'Top pathway', 'Cancer-related', 'Disease types'] + mouse_columns + rat_columns + zebrafish_columns + end_columns + selected_columns]
+        'Ligand name', 'Receptor name', 'Top Pathway', 'Cancer-related', 'Disease Type'] + mouse_columns + rat_columns + zebrafish_columns + end_columns + selected_columns]
 
 
 # gene symbol

@@ -143,6 +143,15 @@
             color: #ecf0f1;
             margin: 0 10px;
         }
+        .ptag {
+            background-color: #ffc107; /* Yellow background */
+            color: #333; /* Dark text color */
+            padding: 5px 10px; /* Adjust padding as needed */
+            border-radius: 5px; /* Rounded corners */
+            font-weight: bold; /* Bold text */
+            display: inline-block; /* Ensure inline display */
+        }
+
 
         /* Page Footer */
         footer {
@@ -348,12 +357,12 @@
                 {% endif %}
             </div>
 
-        <!-- Second Column -->
+        <!-- Third Column -->
             <div class="column">
-                <h2>Pubmed Support</h2>
+                <h2>Pubmed Support (IDs)</h2>
                 {% if "PMID support" in table0_data %}
                     <div>
-                        <strong>Pubmed IDs:</strong> {{ table0_data["PMID support"] }}
+                        {{ table0_data["PMID support"] }}
                     </div>
                 {% endif %}
             </div>
@@ -368,6 +377,30 @@
                 {% endif %}
             </div>
         </div>
+        <!-- Full Row Card -->
+        <div class="card-full-row">
+            <div class="column">
+                <h2>Interaction Annotations</h2> 
+                {% if "Top Pathway" in table0_data %}
+                    <div>
+                        <strong>Top Pathway:</strong> {{ table0_data["Top Pathway"] }}
+                    </div>
+                {% endif %}
+                {% if "Cancer-related" in table0_data %}
+                    <div>
+                        <strong>Cancer-related:</strong> {{ table0_data["Cancer-related"] }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="column">
+                <h2>Disease Type:</h2> 
+                {% if "Disease Type" in table0_data %}
+                    <div>
+                        {{ table0_data["Disease Type"] }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>        
     </div>
 
     <br>
