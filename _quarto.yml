@@ -28,8 +28,14 @@ website:
          - href: database/mouseOrth.qmd
            text: Mouse Orthologs
          - href: database/other/ratOrth.qmd
+         
            text: Other Species
-
+      - text: 'Annotations Browser'
+        menu:
+         - href: annotations/disease.qmd
+           text: Diseases
+         - href: annotations/pathway.qmd
+           text: Pathways
     right:
       - url: mailto:bioinfo@yokohama-cu.ac.jp
         text: "{{< iconify mdi:email inline size=20px >}}"

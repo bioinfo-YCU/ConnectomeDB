@@ -387,9 +387,9 @@ gene_pair["Receptor"] = [
 
 def replace_spaces(row):
     if row['Ligand location'] == 'secreted':
-        return row['Human LR Pair'].replace(" ", " <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
+        return row['Human LR Pair'].replace(" ", " <span style='font-size: 14px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
     elif row['Ligand location'] == '':
-        return row['Human LR Pair'].replace(" ", " <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
+        return row['Human LR Pair'].replace(" ", " <span style='font-size: 14px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
     elif row['Ligand location'] == 'plasma membrane':
         return row['Human LR Pair'].replace(" ", " <span style='font-size: 24px;'>⤙</span> <span style='font-size: 24px;'>⤚</span> ")
     else:
