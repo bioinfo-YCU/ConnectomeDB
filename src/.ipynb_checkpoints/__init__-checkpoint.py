@@ -9,3 +9,4 @@ from .convertHumanToOtherSpecies import *
 from .runLLMforBiologyRelevance import *
 from .prepareLLMinput import *
 from .pullPathwayDiseasesViaLiana.py import *
+from .createFunctionalAnnotTable.py import *

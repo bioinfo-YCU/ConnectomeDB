@@ -1,5 +1,5 @@
 ---
-title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Human LR Pairs</span>"
+title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Disease Annotations for LR Pairs</span>"
 execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
@@ -33,58 +33,35 @@ header-includes: |
 
 ***
 
+::: {.d-flex .justify-content-center .align-items-center .my-0}
+
+[**Diseases**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" data-toggle="tooltip" title="Currently selected"}
+[**Pathways**](pathway.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Relevant Pathways" } 
+
+:::
+			
 ```{=html}
 <style>
 /* Target the first search pane */
 .dtsp-searchPane:first-child::before {
-    content: "Database Source";
+    content: "Cancer-related";
     font-weight: bold;
 }
 
 /* Target the second search pane */
 .dtsp-searchPane:nth-child(2)::before {
-    content: "Ligand";
+    content: "Disease Type";
     font-weight: bold;
 }
 
 /* Target the third search pane */
 .dtsp-searchPane:nth-child(3)::before {
-    content: "Receptor";
+    content: "Disease";
     font-weight: bold;
 }
 
-/* Target the fourth search pane */
-.dtsp-searchPane:nth-child(4)::before {
-    content: "Ligand Location";
-    font-weight: bold;
-}
-
-/* Target the fifth search pane */
-.dtsp-searchPane:nth-child(5)::before {
-    content: "Receptor Location";
-    font-weight: bold;
-}
-
-/* Target the fifth search pane */
-.dtsp-searchPane:nth-child(6)::before {
-    content: "Top Pathway";
-    font-weight: bold;
-}
-
-/* Target the fifth search pane */
-.dtsp-searchPane:nth-child(7)::before {
-    content: "Cancer-related";
-    font-weight: bold;
-}
-
-/* Target the fifth search pane */
-.dtsp-searchPane:nth-child(8)::before {
-    content: "Disease Type";
-    font-weight: bold;
-}
 
 </style>
-
 ```
 
 
@@ -100,20 +77,18 @@ import itables.options as opt
 project_root = os.path.dirname(os.getcwd())
 os.chdir(project_root)
 sys.path.append(os.path.abspath("src"))
-from createDataTable import gene_pair
-
-human_gene_pair = gene_pair.iloc[:, :-28]
+from createFunctionalAnnotTable import gene_pair_disease
 
 # Function to update and display the table
 def update_table():
     show(
-        human_gene_pair,
+        gene_pair_disease,
         keys=True,
         layout={"top": ["searchPanes"],
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
-                     "columns": [1,2,3,8,9,10,11,12], 
+                     "columns": [3,2,1], 
                      "regex": True, "caseInsensitive": False, 
                      "smart": True, 
                      "initCollapsed": True, 
@@ -138,9 +113,7 @@ def update_table():
             {"extend": "copyHtml5", "title": "Source"},
         ],
         columnDefs=[
-            {"className": "dt-center", "targets": [4]}, 
             # {"width": "100px", "targets": "_all"},
-            {"targets": list(range(-1, -17, -1)), "visible": False} # Hide last 12 columns by default
         ],
         style="1200px;margin:auto",
            language={
@@ -165,5 +138,3 @@ def update_table():
 # Call the function to render the table
 update_table()
 ```
-
-{{< include hint.qmd >}}
