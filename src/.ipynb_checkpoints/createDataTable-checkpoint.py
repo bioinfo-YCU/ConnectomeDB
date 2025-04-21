@@ -20,55 +20,77 @@ species_list = [
 ]
 
 # Select only the relevant columns from pop_up_info
+pop_up_info = pd.read_table("data/HGNC_gene_info_full.tsv")
+pop_up_info = pop_up_info.rename(columns={"hgnc_id": "HGNC ID", 
+                                          "name": "Approved name",
+                                          "symbol": "Approved symbol",
+                                          "rgd_id": "RGD ID",
+                                          "mgd_id": "MGI ID", 
+                                          "rgd_id": "RGD ID",
+                                          "alias_symbol": "Alias symbol",
+                                          "prev_symbol": "Previous symbol",
+                                          "date_symbol_changed": "Date symbol changed"
+                                          
+                                         })
 
-pop_up_info = fetchGSheet.pop_up_info.rename(columns={"Mouse genome informatics (MGI) ID": "MGI ID", 
-                                                      "Rat genome database (RGD) ID": "RGD ID"})
-
-pop_up_info_lim = pop_up_info[["Approved symbol", "Approved name", "MGI ID", "RGD ID"]]
-pop_up_info_lim = pop_up_info_lim.drop_duplicates(subset="Approved symbol", keep="first")
+pop_up_info_lim = pop_up_info[["HGNC ID", "Approved name", "MGI ID", "RGD ID"]] # rm "Approved symbol" for now
+pop_up_info_lim = pop_up_info_lim.drop_duplicates(subset="HGNC ID", keep="first")
 
 # Drop columns where all values are NA in gene_pair
 gene_pair = fetchGSheet.gene_pair.dropna(axis=1, how='all')
 
-# Mapping for replacements
-mapping = {
-    'Ramilowski_2015_Literature_supported': "connectomeDB2015",
-    'Noël et al. 2020 (ICELLNET)': "ICELLNET",
-    'Hou et al. 2020 (connectomeDB2020)': "connectomeDB2020",
-    'Efremova et al. 2020 (CellphoneDB)': "CellphoneDB",
-    'Cabello-Aguilar et al. 2020 (SingleCellSignalR)': "SingleCellSignalR",
-    'Baccin et al. 2020 (RNA-Magnet)': "RNA-Magnet",
-    'ConnectomeDB2025 (this publication)': "connectomeDB2025 🆕"
-}
+# for now, rm some columns
+gene_pair = gene_pair[['LR pair', 'Ligand', 'Ligand.HGNC', 'Receptor', 'Receptor.HGNC',
+                       'perplexity link', 'PMID', 'binding location', 
+                       'bind in trans?', 'bidirectional signalling?',
+                       'interaction type', 'original source']]
 
+# Mapping for replacements
+mapping = dict(zip(fetchGSheet.src_info['original source'], fetchGSheet.src_info['shortname']))
 # Replace values in the column based on the mapping
-gene_pair['Source'] = gene_pair['Source'].replace(mapping)
+gene_pair['original source'] = gene_pair['original source'].replace(mapping)
+
+## add Ligand/Receptor Location
+mapping_loc = dict(zip(fetchGSheet.loc_info['ApprovedSymbol'], fetchGSheet.loc_info['Localization']))
+gene_pair['Ligand location'] = gene_pair['Ligand'].replace(mapping_loc)
+gene_pair['Receptor location'] = gene_pair['Receptor'].replace(mapping_loc)
 
 # Fetch species IDs from the dataset
-hgnc_id = [col for col in gene_pair.columns if "HGNC ID" in col]
+hgnc_id = [col for col in gene_pair.columns if "HGNC" in col]
 hgnc_id = pd.concat([gene_pair[col] for col in hgnc_id]).unique()
 
 # Rename columns for better clarity
 gene_pair = gene_pair.rename(columns={
-    "Ligand receptor pair": "Human LR Pair",
-    "Ligand gene symbol": "Ligand",
-    "Receptor gene symbol": "Receptor",
-    "Perplexity link": "Perplexity",
-    "Source": "Database Source"
+    "LR pair": "Human LR Pair",
+    "Ligand.HGNC": "Ligand HGNC ID",
+    "Receptor.HGNC": "Receptor HGNC ID",
+    "perplexity link": "Perplexity", # will be replaced with actual link later
+    "original source": "Database Source",
+    "PMID": "PMID support"
 })
 
+# Recreate Perplexity link
+# Function to generate Perplexity search link
+def create_url_basic(gene_name):
+    query = f"What is the primary evidence that {gene_name} bind-each-other-as-a-ligand-and-receptor-pair. Exclude reviews, uniprot, wiki, genecards, PIPS, iuphar as sources."
+    encoded_query = query.replace(" ", "%20")
+    return f"https://www.perplexity.ai/search?q={encoded_query}"
+
+# Apply function to the DataFrame
+gene_pair["Perplexity"] = gene_pair["Perplexity"].apply(create_url_basic)
+
 # Merge gene_pair with pop_up_info_lim for Ligand(L)
-gene_pair = gene_pair.merge(pop_up_info_lim, how='left', left_on='Ligand', right_on='Approved symbol')
+gene_pair = gene_pair.merge(pop_up_info_lim, how='left', left_on='Ligand HGNC ID', right_on='HGNC ID')
 
 gene_pair = gene_pair.rename(columns={"Approved name": "Ligand name", 
                                      "MGI ID": "Ligand MGI ID",
                                      "RGD ID": "Ligand RGD ID"},
                             )
-
+gene_pair = gene_pair.drop(columns=["HGNC ID"])
 # Add top pathway per pair
 LR_pairs = gene_pair["Human LR Pair"].unique()
 df= pd.read_csv("data/pathway_annotations_per_pair.csv")
-df = df[df["interaction"].isin(LR_pairs)]
+#df = df[df["interaction"].isin(LR_pairs)]
 # Sort by absolute value of 'weight', descending (larger abs(weight) first)
 df_sorted = df.reindex(df['weight'].abs().sort_values(ascending=False).index)
 # Keep only the first occurrence for each unique 'interaction'
@@ -78,6 +100,7 @@ top_pathway_df = df[["interaction", "source"]]
 top_pathway_df = top_pathway_df.rename(columns={
                                       "source": "Top Pathway"
 })
+top_pathway_df["interaction"] = [value.replace("^", " ") for value in top_pathway_df["interaction"]]
 gene_pair = gene_pair.merge(top_pathway_df, how='left', left_on='Human LR Pair', right_on='interaction')
 
 # Add Disease Category per pair
@@ -89,6 +112,15 @@ gene_pair = gene_pair.merge(disease_df, how='left', left_on='Human LR Pair', rig
 # Add MGI annotation
 MGI_info = pd.read_csv("data/MGI_ID_biomart.csv")
 gene_pair = gene_pair.merge(MGI_info, how='left', left_on='Ligand MGI ID', right_on='MGI ID')
+
+# Find rows where Ligand HGNC ID is missing & copy Ligand to MGI name for those rows
+mask = gene_pair['Ligand HGNC ID'].astype(str).str.strip() == ''
+gene_pair.loc[mask, 'MGI name'] = gene_pair.loc[mask, 'Ligand']
+# Map MGI ID using the MGI_info table
+gene_pair = gene_pair.merge(MGI_info, left_on='MGI name', right_on='MGI name', how='left', suffixes=('', '_from_info'))
+# Fill missing 'MGI ID' only where it was previously missing
+gene_pair['Ligand MGI ID'] = gene_pair['Ligand MGI ID'].combine_first(gene_pair['MGI ID_from_info'])
+gene_pair = gene_pair.drop(columns=['MGI ID_from_info'])
 
 # Add RGD annotation
 RGD_info = pd.read_csv("data/RGD_ID_biomart.csv")
@@ -114,14 +146,27 @@ gene_pair = gene_pair.rename(columns={
                                      "ZFIN Name": "Zebrafish Ligand name"}
                             )
 
-gene_pair = gene_pair.merge(pop_up_info_lim, how='left', left_on='Receptor', right_on='Approved symbol')
+gene_pair = gene_pair.merge(pop_up_info_lim, how='left', left_on='Receptor HGNC ID', right_on='HGNC ID')
+
 gene_pair = gene_pair.rename(columns={"Approved name": "Receptor name",
                                       "MGI ID": "Receptor MGI ID",
                                       "RGD ID": "Receptor RGD ID"}
                             )
 
+
+gene_pair = gene_pair.drop(columns=["HGNC ID"])
+
 # Add MGI name
 gene_pair = gene_pair.merge(MGI_info, how='left', left_on='Receptor MGI ID', right_on='MGI ID')
+# Find rows where Receptor HGNC ID is missing & copy Receptor to MGI name for those rows
+mask = gene_pair['Ligand HGNC ID'].astype(str).str.strip() == ''
+gene_pair.loc[mask, 'MGI name'] = gene_pair.loc[mask, 'Receptor']
+# Map MGI ID using the MGI_info table
+gene_pair = gene_pair.merge(MGI_info, left_on='MGI name', right_on='MGI name', how='left', suffixes=('', '_from_info'))
+# Fill missing 'MGI ID' only where it was previously missing
+gene_pair['Receptor MGI ID'] = gene_pair['Receptor MGI ID'].combine_first(gene_pair['MGI ID_from_info'])
+gene_pair = gene_pair.drop(columns=['MGI ID_from_info'])
+
 gene_pair = gene_pair.merge(RGD_info, how='left', left_on='Receptor RGD ID', right_on='RGD ID')
 gene_pair = gene_pair.merge(ZFIN_info, how='left', left_on='Receptor HGNC ID', right_on='HGNC ID')
 gene_pair = gene_pair.drop(columns=["RGD ID", "MGI ID", "HGNC ID"])
@@ -134,7 +179,7 @@ gene_pair = gene_pair.rename(columns={
                                      "ZFIN Name": "Zebrafish Receptor name"}
                             )
 
-gene_pair = gene_pair.drop(columns=["Approved symbol_x", "Approved symbol_y"])
+#gene_pair = gene_pair.drop(columns=["Approved symbol_x", "Approved symbol_y"])
 
 # Function to add species-specific species Enseml ID and symbol for all other species except for mouse, rat, and zebrafish
 def appendOtherSpeciesInfo(species, origDF):
@@ -202,15 +247,15 @@ gene_pair = gene_pair.dropna(axis=1, how='all')
 gene_pair = gene_pair.fillna(" ")
 gene_pair = gene_pair[gene_pair['Human LR Pair'] != ' ']
 
-if "PMID link" in gene_pair.columns:
-    gene_pair = gene_pair.drop(columns=["PMID link"])
+# if "PMID link" in gene_pair.columns:
+#    gene_pair = gene_pair.drop(columns=["PMID link"])
 
 # Add
 first_columns=['Human LR Pair', 'Ligand', 'Receptor', 'Database Source']
 
-end_columns=['HGNC L R', 'sanity check', 'curator', 'secondary source?']
-gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns + end_columns] + end_columns]
-
+#end_columns=['HGNC L R', 'sanity check', 'curator', 'secondary source?']
+#gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns + end_columns] + end_columns]
+gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns]]
 
 # number of unique vars
 
@@ -235,16 +280,25 @@ gene_pair["PMID support"] = [value.replace(" ", "") for value in gene_pair["PMID
 source = np.array(gene_pair["PMID support"].unique())
 source = source.astype(str)
 source = ",".join(sorted(set(filter(lambda x: x.lower() != 'nan', source))))
-
 # Split the string into individual elements, filter out empty strings, and get unique values
 source = sorted(
     set(filter(lambda x: x.strip() and x.strip().lower() != 'nan', source.split(',')))
 )
 source = [value.replace(" ", "") for value in source]
-sourceCount = len(source)
+
+# Function to join unique sorted values
+agg_func = lambda x: ','.join(sorted(set(map(str, x))))
+
+# Group and aggregate all columns except 'LR pair'
+gene_pair = gene_pair.groupby('Human LR Pair').agg(agg_func).reset_index()
 
 # for creating PMIDs
 gene_pair00 = gene_pair[['Human LR Pair', 'PMID support']]
+
+
+sourceCount = len(source)
+
+# Bring in PMID support
 
 # create URLs for the HGNC IDs
 
@@ -265,8 +319,6 @@ gene_pair["Perplexity"] = [
     '<a href="{}" target="_blank"> <img src="https://img.icons8.com/?size=30&id=0NbBuNOxUwps&format=png&color=000000" alt="Perplexity AI" /></a>'.format(url)
     for url in gene_pair["Perplexity"]
 ]
-
-# Function to generate hyperlinks for the "PMID support" column
 # Function to generate hyperlinks for the "PMID support" column
 def generate_links_with_doi(df, gene_column, pmid_column):
     def create_link(gene, sources):
@@ -368,7 +420,7 @@ gene_pair0 = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PM
 
 gene_pair = gene_pair[['Human LR Pair', 'Database Source', 'Ligand', 'Receptor', 'Perplexity', 'PMID support',
         'Ligand HGNC ID', 'Receptor HGNC ID', 'Ligand location', 'Receptor location',
-        'Ligand name', 'Receptor name', 'Top Pathway', 'Cancer-related', 'Disease Type'] + mouse_columns + rat_columns + zebrafish_columns + end_columns + selected_columns]
+        'Ligand name', 'Receptor name', 'Top Pathway', 'Cancer-related', 'Disease Type'] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
 
 
 # gene symbol

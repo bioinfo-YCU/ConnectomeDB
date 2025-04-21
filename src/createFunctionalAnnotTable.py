@@ -42,11 +42,11 @@ gene_pair_annot = gene_pair_annot.reset_index(drop=True)
 gene_pair_disease = gene_pair_annot[["Human LR Pair", "Disease", "Disease Type", "Cancer-related"]]
 gene_pair_disease = gene_pair_disease.drop_duplicates()
 gene_pair_disease=gene_pair_disease.reset_index(drop=True)  
-gene_pair_disease['Peplexity'] = df.apply(lambda row: f"Does-{row['D']}-bind-{row['G']}-as-a-ligand-and-receptor-pair" if row['D'] != "" else "", axis=1)
-gene_pair["Perplexity"] = [
-    '<a href="https://www.perplexity.ai/search?q=Does {}" target="_blank"> <img src="https://img.icons8.com/?size=30&id=0NbBuNOxUwps&format=png&color=000000" alt="Perplexity AI" /></a>'.format(url)
-    for url in gene_pair["Perplexity"]
-]
+gene_pair_disease["Perplexity"] = gene_pair_disease.apply(
+    lambda row: f'<a href="https://www.perplexity.ai/search?q=What-is-the-role-of-the-ligand-and-receptor-pair-{row["Human LR Pair"]}-in-{row["Disease"]}" target="_blank"> <img src="https://img.icons8.com/?size=30&id=0NbBuNOxUwps&format=png&color=000000" alt="Perplexity AI" /></a>',
+    axis=1
+)
+
 
 gene_pair_pathway = gene_pair_annot[["Human LR Pair", "Related Pathway", "Top Pathway"]]
 gene_pair_pathway = gene_pair_pathway.drop_duplicates()

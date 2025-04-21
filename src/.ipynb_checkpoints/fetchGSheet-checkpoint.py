@@ -4,7 +4,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
 
-sheet_ID = "15FfI7cVpJmAcytTBmhVE2Z77tgVQYfEZUEe700_Wzlg"
+sheet_ID = "1XP5wBDN_orSlE8RLb2TxSclIopVO1mb_1S3ENf2qYSw" #"15FfI7cVpJmAcytTBmhVE2Z77tgVQYfEZUEe700_Wzlg"
 credentials_file = 'data/connectomedb2025-a9acdf562a84.json'
 
 def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file):
@@ -39,5 +39,7 @@ def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file):
     return df
 
 # Fetching data from Google Sheets
-gene_pair = fetch_google_sheet_data(sheet_ID, "Literature supported", credentials_file)
-pop_up_info = fetch_google_sheet_data(sheet_ID, "HGNC_Dec2024", credentials_file)
+gene_pair = fetch_google_sheet_data(sheet_ID, "FROZEN LIST", credentials_file)
+loc_info = fetch_google_sheet_data(sheet_ID, "localization", credentials_file)
+src_info = fetch_google_sheet_data(sheet_ID, "sourceAbbv", credentials_file)
+#pop_up_info = fetch_google_sheet_data(sheet_ID, "HGNC_Dec2024", credentials_file)
