@@ -22,7 +22,7 @@ output_file = "data/pubmed_results.csv"
 # Load your list of PMIDs
 pmid_list = source
 
-# Example of fetching HGNC gene symbols (you should have the `fetchGSheet.pop_up_info` dataframe ready)
+# Fetch HGNC gene symbols (you should have the `fetchGSheet.pop_up_info` dataframe ready)
 def extract_hgnc_symbols(fetchGSheet):
     # Concatenate Approved, Alias, and Previous symbols, then extract unique symbols
     hgnc_symbols = pd.concat([
