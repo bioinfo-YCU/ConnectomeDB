@@ -20,6 +20,9 @@ species_list = [
 ]
 
 # Select only the relevant columns from pop_up_info
+cols_to_keep = cols_to_keep = list(range(0, 30)) 
+# Step 3: Load file using only the desired columns
+df = pd.read_table("data/HGNC_gene_info_full.tsv", usecols=cols_to_keep)
 pop_up_info = pd.read_table("data/HGNC_gene_info_full.tsv")
 pop_up_info = pop_up_info.rename(columns={"hgnc_id": "HGNC ID", 
                                           "name": "Approved name",
@@ -27,11 +30,27 @@ pop_up_info = pop_up_info.rename(columns={"hgnc_id": "HGNC ID",
                                           "rgd_id": "RGD ID",
                                           "mgd_id": "MGI ID", 
                                           "rgd_id": "RGD ID",
-                                          "alias_symbol": "Alias symbol",
-                                          "prev_symbol": "Previous symbol",
+                                          "alias_symbol": "Alias symbol", # add to table
+                                          "prev_symbol": "Previous symbol", # add to table
                                           "date_symbol_changed": "Date symbol changed"
                                           
                                          })
+# Keep only first MGI/RGD ID
+pop_up_info["MGI ID"] = pop_up_info["MGI ID"].str.split("|").str[0]
+pop_up_info["RGD ID"] = pop_up_info["RGD ID"].str.split("|").str[0]
+
+pop_up_info["Alias symbol"] = pop_up_info["Alias symbol"].apply(
+    lambda x: "N/A" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", ""] else x
+)
+
+pop_up_info["Previous symbol"] = pop_up_info["Previous symbol"].apply(
+    lambda x: "N/A" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", ""] else x
+)
+
+pop_up_info["Date symbol changed"] = pop_up_info["Date symbol changed"].apply(
+    lambda x: "N/A" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", ""] else x
+)
+
 
 pop_up_info_lim = pop_up_info[["HGNC ID", "Approved name", "MGI ID", "RGD ID"]] # rm "Approved symbol" for now
 pop_up_info_lim = pop_up_info_lim.drop_duplicates(subset="HGNC ID", keep="first")
@@ -39,12 +58,11 @@ pop_up_info_lim = pop_up_info_lim.drop_duplicates(subset="HGNC ID", keep="first"
 # Drop columns where all values are NA in gene_pair
 gene_pair = fetchGSheet.gene_pair.dropna(axis=1, how='all')
 
-# for now, rm some columns
+# for now, keep only the following columns
 gene_pair = gene_pair[['LR pair', 'Ligand', 'Ligand.HGNC', 'Receptor', 'Receptor.HGNC',
                        'perplexity link', 'PMID', 'binding location', 
                        'bind in trans?', 'bidirectional signalling?',
                        'interaction type', 'original source']]
-
 # Mapping for replacements
 mapping = dict(zip(fetchGSheet.src_info['original source'], fetchGSheet.src_info['shortname']))
 # Replace values in the column based on the mapping
@@ -102,12 +120,23 @@ top_pathway_df = top_pathway_df.rename(columns={
 })
 top_pathway_df["interaction"] = [value.replace("^", " ") for value in top_pathway_df["interaction"]]
 gene_pair = gene_pair.merge(top_pathway_df, how='left', left_on='Human LR Pair', right_on='interaction')
-
+gene_pair = gene_pair.drop(columns=["interaction"])
 # Add Disease Category per pair
-df= pd.read_csv("data/diseaseType_per_pair.csv")
-disease_df = df[df["interaction_x"].isin(LR_pairs)]
+df= pd.read_csv("data/disease_annotations_per_pair.csv")
+df_cat=pd.read_csv("data/disease_categories.csv")
+mapping = dict(zip(df_cat['Disease Name'], df_cat['Category']))
+# Replace values in the column based on the mapping
+df["Disease Type"] = df['disease'].replace(mapping)
+df = df[["interaction", "Disease Type"]].drop_duplicates()
+df['Disease Type'] = df['Disease Type'].astype(str)
+# Group by 'col1' and combine 'col2' values with ', '
+df = df.groupby('interaction')['Disease Type'].apply(', '.join).reset_index()
+# Create "Cancer-related" column based on whether "Cancers & Neoplasms" is in col2
+df['Cancer-related'] = df['Disease Type'].apply(lambda x: 'Yes' if 'Cancer' in x else 'No')
+disease_df = df[df["interaction"].isin(LR_pairs)]
+# Function to update the "Cancer-related" column and modify "col2" if needed
 
-gene_pair = gene_pair.merge(disease_df, how='left', left_on='Human LR Pair', right_on='interaction_x')
+gene_pair = gene_pair.merge(disease_df, how='left', left_on='Human LR Pair', right_on='interaction')
 
 # Add MGI annotation
 MGI_info = pd.read_csv("data/MGI_ID_biomart.csv")
@@ -136,7 +165,7 @@ ZFIN_info = ZFIN_info.drop_duplicates(subset=['HGNC ID'])
 ZFIN_info['HGNC ID'] = ZFIN_info['HGNC ID'].apply(lambda x: f'HGNC:{int(x)}')
 gene_pair = gene_pair.merge(ZFIN_info, how='left', left_on='Ligand HGNC ID', right_on='HGNC ID')
 
-gene_pair = gene_pair.drop(columns=["RGD ID", "MGI ID", "HGNC ID", "interaction", "interaction_x"])
+gene_pair = gene_pair.drop(columns=["RGD ID", "MGI ID", "HGNC ID", "interaction"])
 
 gene_pair = gene_pair.rename(columns={
                                      "MGI name": "Mouse Ligand", 
@@ -276,6 +305,8 @@ RatLigandCount = len(gene_pair["Ligand RGD ID"].unique())
 RatReceptorCount = len(gene_pair["Receptor RGD ID"].unique())
 
 gene_pair["PMID support"] = [value.replace(" ", "") for value in gene_pair["PMID support"]]
+# for now set source count as triplicates
+sourceCount = len(gene_pair[['Human LR Pair']])
 
 source = np.array(gene_pair["PMID support"].unique())
 source = source.astype(str)
@@ -286,17 +317,19 @@ source = sorted(
 )
 source = [value.replace(" ", "") for value in source]
 
+
+
 # Function to join unique sorted values
 agg_func = lambda x: ','.join(sorted(set(map(str, x))))
 
 # Group and aggregate all columns except 'LR pair'
 gene_pair = gene_pair.groupby('Human LR Pair').agg(agg_func).reset_index()
+DBlength = len(gene_pair)
+gene_pair["Interaction ID"] = [f"CDB{str(i).zfill(4)}" for i in range(1, DBlength + 1)]
 
 # for creating PMIDs
 gene_pair00 = gene_pair[['Human LR Pair', 'PMID support']]
 
-
-sourceCount = len(source)
 
 # Bring in PMID support
 
@@ -414,11 +447,11 @@ prefixes = ("Chimpanzee", "Chicken", "Pig", "Cow", "Dog", "Horse", "Sheep")
 # Get column names that start with any of the given prefixes
 selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)]
 
-gene_pair0 = gene_pair[['Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PMID support',
+gene_pair0 = gene_pair[['Interaction ID', 'Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PMID support',
        'Ligand HGNC ID', 'Ligand location', 'Receptor HGNC ID',
-       'Receptor location', 'Ligand name', 'Receptor name', 'Top Pathway', 'Cancer-related', 'Disease Type'] + mouse_columns + rat_columns]
+       'Receptor location', 'Ligand name', 'Receptor name', 'Top Pathway', 'Cancer-related', 'Disease Type', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type'] + mouse_columns + rat_columns]
 
-gene_pair = gene_pair[['Human LR Pair', 'Database Source', 'Ligand', 'Receptor', 'Perplexity', 'PMID support',
+gene_pair = gene_pair[['Interaction ID', 'Human LR Pair', 'Database Source', 'Ligand', 'Receptor', 'Perplexity', 'PMID support', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type',
         'Ligand HGNC ID', 'Receptor HGNC ID', 'Ligand location', 'Receptor location',
         'Ligand name', 'Receptor name', 'Top Pathway', 'Cancer-related', 'Disease Type'] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
 

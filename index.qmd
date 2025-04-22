@@ -9,6 +9,9 @@ toc: false
 ```{python}
 import sys
 import os
+import pandas as pd
+import warnings
+warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
 from IPython.display import display, HTML
 from datetime import datetime
 
@@ -48,9 +51,7 @@ from createDataTable import (
     lrPairsCount,
     ligandCount,
     receptorCount,
-    sourceCount,
-    RatLigandCount,
-    RatReceptorCount,
+    sourceCount
 )
 from createDataTable_perSpecies import MouselrPairsCount, HumanMouseLRPairsPer
 
