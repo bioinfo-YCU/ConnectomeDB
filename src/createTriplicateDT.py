@@ -57,5 +57,7 @@ first_columns=[gene_pair_trip.columns[6], gene_pair_trip.columns[7], 'Perplexity
 
 
 # Make ID unique
+gene_pair_trip = gene_pair_trip.sort_values(by='Year', ascending=False)
 gene_pair_trip[gene_pair_trip.columns[6]] = make_ids_unique(gene_pair_trip[gene_pair_trip.columns[6]])
+gene_pair_trip = gene_pair_trip.sort_values(by='Year', ascending=True)
 gene_pair_trip = gene_pair_trip[first_columns + [col for col in gene_pair_trip.columns if col not in first_columns]]
