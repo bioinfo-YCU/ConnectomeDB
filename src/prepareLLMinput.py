@@ -14,19 +14,15 @@ file2 = gene_pair00
 file1['PMID'] = file1['PMID'].astype(str)
 file2['PMID_List'] = file2['PMID support'].apply(lambda x: x.split(','))
 
-# Create a dictionary for quick PMID to Abstract mapping
-pmid_to_abstract = dict(zip(file1['PMID'], file1['Abstract']))
+import numpy as np
 
-# Function to get all abstracts for a list of PMIDs
-def get_abstracts(pmids):
-    return [pmid_to_abstract[pmid] for pmid in pmids if pmid in pmid_to_abstract]
+# Clean data
+file2['Abstracts'] = file2['Abstracts'].apply(lambda x: [str(a) for a in x if isinstance(a, str)])
+file2 = file2.replace({np.nan: None})
 
-# Map abstracts to LR pairs
-file2['Abstracts'] = file2['PMID_List'].apply(get_abstracts)
-
-# Convert to a list of dictionaries
+# Convert to list of dicts
 data_for_llm = file2[['Human LR Pair', 'Abstracts']].to_dict(orient='records')
 
-# Save as JSON
-with open("data/data_for_llm.json", "w") as f:
-    json.dump(data_for_llm, f, indent=4)
+# Dump safely
+with open("data/data_for_llm.json", "w", encoding="utf-8") as f:
+    json.dump(data_for_llm, f, indent=4, ensure_ascii=False)

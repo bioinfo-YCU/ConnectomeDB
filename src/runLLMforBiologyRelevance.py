@@ -122,7 +122,7 @@ def process_human_lr_pair(human_lr_pair, abstracts):
 
 
 # Stream JSON and process incrementally
-with open("data_for_llm.json", "r") as f:
+with open("data/data_for_llm.json", "r") as f:
     parser = ijson.items(f, "item")
     results = []
 

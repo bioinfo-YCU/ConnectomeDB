@@ -55,29 +55,29 @@ header-includes: |
 
 /* Target the fourth search pane */
 .dtsp-searchPane:nth-child(4)::before {
-    content: "Ligand Location";
+    content: "Binding Location";
     font-weight: bold;
 }
 
 /* Target the fifth search pane */
 .dtsp-searchPane:nth-child(5)::before {
+    content: "Ligand Location";
+    font-weight: bold;
+}
+
+/* Target the sixth search pane */
+.dtsp-searchPane:nth-child(6)::before {
     content: "Receptor Location";
     font-weight: bold;
 }
 
-/* Target the fifth search pane */
-.dtsp-searchPane:nth-child(6)::before {
+/* Target the seventh search pane */
+.dtsp-searchPane:nth-child(7)::before {
     content: "Top Pathway";
     font-weight: bold;
 }
 
-/* Target the fifth search pane */
-.dtsp-searchPane:nth-child(7)::before {
-    content: "Cancer-related";
-    font-weight: bold;
-}
-
-/* Target the fifth search pane */
+/* Target the eight search pane */
 .dtsp-searchPane:nth-child(8)::before {
     content: "Disease Type";
     font-weight: bold;
@@ -104,7 +104,7 @@ os.chdir(project_root)
 sys.path.append(os.path.abspath("src"))
 from createDataTable import gene_pair
 
-human_gene_pair = gene_pair.iloc[:, :-28]
+human_gene_pair = gene_pair.iloc[:, :-14]
 
 # Function to update and display the table
 def update_table():
@@ -115,13 +115,13 @@ def update_table():
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
-                     "columns": [1,2,3,8,9,10,11,12], 
+                     "columns": [2,3,4,7,13,14,15,16], 
                      "regex": True, "caseInsensitive": False, 
                      "smart": True, 
                      "initCollapsed": True, 
                      "controls": True},
         #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
-        fixedColumns={"start": 1, "end": 0},
+        fixedColumns={"start": 2, "end": 0},
         fixedHeader=True,  # Keep header fixed for alignment
         column_filters="footer", 
         scrollX=True,
