@@ -39,7 +39,7 @@ gene_pair_annot["Related Pathway"] = gene_pair_annot["Related Pathway"].apply(
 gene_pair_annot = gene_pair_annot.reset_index(drop=True)
 
 # Separate Disease and Pathway and then rm duplicates
-gene_pair_disease = gene_pair_annot[["Human LR Pair", "Disease", "Disease Type", "Cancer-related"]]
+gene_pair_disease = gene_pair_annot[["Interaction ID", "Human LR Pair", "Disease", "Disease Type", "Cancer-related"]]
 gene_pair_disease = gene_pair_disease.drop_duplicates()
 gene_pair_disease=gene_pair_disease.reset_index(drop=True)  
 
@@ -61,7 +61,7 @@ gene_pair_disease["Human LR Pair"] = [
     f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrPairOrig}.html">{lrPair}</a>'
     for lrPairOrig, lrPair in zip(gene_pair_disease["Human LR Pair"], gene_pair_disease["Human LR Pair"])
 ]
-gene_pair_pathway = gene_pair_annot[["Human LR Pair", "Related Pathway", "Top Pathway"]]
+gene_pair_pathway = gene_pair_annot[["Interaction ID", "Human LR Pair", "Related Pathway", "Top Pathway"]]
 gene_pair_pathway = gene_pair_pathway.drop_duplicates()
 gene_pair_pathway=gene_pair_pathway.reset_index(drop=True)  
 def generate_perplexity_link_pathway(row):
