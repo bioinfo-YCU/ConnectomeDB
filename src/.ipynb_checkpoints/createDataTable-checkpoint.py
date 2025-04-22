@@ -325,7 +325,7 @@ agg_func = lambda x: ','.join(sorted(set(map(str, x))))
 # Group and aggregate all columns except 'LR pair'
 gene_pair = gene_pair.groupby('Human LR Pair').agg(agg_func).reset_index()
 DBlength = len(gene_pair)
-gene_pair["Interaction ID"] = [f"CDB{str(i).zfill(4)}" for i in range(1, DBlength + 1)]
+gene_pair["Interaction ID"] = [f"CDB{str(i).zfill(5)}" for i in range(1, DBlength + 1)]
 
 # for creating PMIDs
 gene_pair00 = gene_pair[['Human LR Pair', 'PMID support']]
