@@ -10,6 +10,19 @@ from bs4 import BeautifulSoup
 from createDataTable import gene_pair, gene_pair0
 import warnings
 import fetchGSheet 
+import string
+
+def make_ids_unique(series):
+    return [
+        f"{id_val}{letter}"
+        #if count > 1 else id_val -- UNCOMMENT SO UNIQUE ONES ARE ALSO WITH APPENDED LETTER ["A"]
+        for id_val, count, letter in zip(
+            series,
+            series.groupby(series).transform('count'),
+            series.groupby(series).cumcount().map(lambda i: string.ascii_uppercase[i] if i < 26 else f"_{i}")
+        )
+    ]
+
 
 mapping_ID = dict(zip(gene_pair0['Human LR Pair'], gene_pair0['Interaction ID']))
 gene_pair_PMID = fetchGSheet.gene_pair.dropna(axis=1, how='all')
@@ -40,5 +53,9 @@ def generate_perplexity_link_pmid(row):
 gene_pair_trip["Perplexity"] = gene_pair_trip.apply(generate_perplexity_link_pmid, axis=1)
 # Add
 gene_pair_trip = gene_pair_trip.drop(columns=["LR pair", "original source"])
-first_columns=['PMID', gene_pair_trip.columns[6], gene_pair_trip.columns[7], 'Perplexity', 'Database Source']
+first_columns=[gene_pair_trip.columns[6], gene_pair_trip.columns[7], 'Perplexity', 'Database Source', 'PMID']
+
+
+# Make ID unique
+gene_pair_trip[gene_pair_trip.columns[6]] = make_ids_unique(gene_pair_trip[gene_pair_trip.columns[6]])
 gene_pair_trip = gene_pair_trip[first_columns + [col for col in gene_pair_trip.columns if col not in first_columns]]

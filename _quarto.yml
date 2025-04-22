@@ -25,6 +25,8 @@ website:
         menu:
          - href: database/human.qmd
            text: Human LR Pairs
+         - href: database/human-trip.qmd
+           text: Human LR Pairs (triplicate)
          - href: database/mouseOrth.qmd
            text: Mouse Orthologs
          - href: database/other/ratOrth.qmd
