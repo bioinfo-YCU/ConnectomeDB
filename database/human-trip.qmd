@@ -32,6 +32,7 @@ header-includes: |
 ---
 
 ***
+### EDIT TOMORROW [note on Apr 22, 19:36]
 
 ```{=html}
 <style>
@@ -102,14 +103,14 @@ import itables.options as opt
 project_root = os.path.dirname(os.getcwd())
 os.chdir(project_root)
 sys.path.append(os.path.abspath("src"))
-from createDataTable import gene_pair
+from createTriplicateDT import gene_pair_trip
 
-human_gene_pair = gene_pair.iloc[:, :-24]
+human_gene_pairTrip = gene_pair_trip.iloc[:, :-24]
 
 # Function to update and display the table
 def update_table():
     show(
-        human_gene_pair,
+        human_gene_pairTrip,
         keys=True,
         layout={"top": ["searchPanes"],
                 },
