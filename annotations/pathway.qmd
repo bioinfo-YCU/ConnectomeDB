@@ -81,7 +81,7 @@ def update_table():
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
-                     "columns": [2,1], 
+                     "columns": [3,2], 
                      "regex": True, "caseInsensitive": False, 
                      "smart": True, 
                      "initCollapsed": True, 
@@ -106,6 +106,7 @@ def update_table():
             {"extend": "copyHtml5", "title": "Source"},
         ],
         columnDefs=[
+            {"className": "dt-center", "targets": [4]}, 
             # {"width": "100px", "targets": "_all"},
         ],
         style="1200px;margin:auto",

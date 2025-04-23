@@ -169,5 +169,6 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
 # Main execution
 if __name__ == "__main__":
     template = load_template(TEMPLATE_PATH)
+    # if only one replace gene_pair0 to e.g. gene_pair0[gene_pair0["Human LR Pair"] == "PLG IGF2R"]
     interaction_card, ligand_card_1, receptor_card_1, ligand_card_2, receptor_card_2 = prepare_dataframes(gene_pair0)
     generate_html_files(template, interaction_card, ligand_card_1, receptor_card_1, ligand_card_2, receptor_card_2, OUTPUT_DIR)

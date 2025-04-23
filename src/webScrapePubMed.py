@@ -9,8 +9,7 @@ import os
 import xml.etree.ElementTree as ET
 
 sys.path.append(os.path.abspath("src"))  
-from createDataTable import source
-import fetchGSheet
+from createDataTable import source, pop_up_info
 
 # Read the API key from a file
 with open("data/ncbi_api_key.txt", "r") as file:
@@ -33,7 +32,7 @@ def extract_hgnc_symbols(fetchGSheet):
      # Remove any empty strings from the list
     hgnc_symbols = [symbol for symbol in hgnc_symbols if symbol != ""]
     return set(hgnc_symbols)  # Return as a set for fast lookup
-hgnc_symbols = extract_hgnc_symbols(fetchGSheet.pop_up_info)
+hgnc_symbols = extract_hgnc_symbols(pop_up_info)
 
 # Official species names and their corresponding terms (scientific names)
 species_dict = {

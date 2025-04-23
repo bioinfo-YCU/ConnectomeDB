@@ -104,7 +104,7 @@ os.chdir(project_root)
 sys.path.append(os.path.abspath("src"))
 from createDataTable import gene_pair
 
-human_gene_pair = gene_pair.iloc[:, :-24]
+human_gene_pair = gene_pair.iloc[:, :-28]
 
 # Function to update and display the table
 def update_table():
@@ -115,7 +115,7 @@ def update_table():
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
-                     "columns": [2,3,4,7,13,14,15,16], 
+                     "columns": [2,3,4,7,13,14,15,17], 
                      "regex": True, "caseInsensitive": False, 
                      "smart": True, 
                      "initCollapsed": True, 
@@ -140,9 +140,9 @@ def update_table():
             {"extend": "copyHtml5", "title": "Source"},
         ],
         columnDefs=[
-            {"className": "dt-center", "targets": [4]}, 
+            {"className": "dt-center", "targets": [5]}, 
             # {"width": "100px", "targets": "_all"},
-            {"targets": list(range(-1, -17, -1)), "visible": False} # Hide last 12 columns by default
+            {"targets": list(range(-1, -17, -1)), "visible": False} # Hide last 16 columns by default
         ],
         style="1200px;margin:auto",
            language={
