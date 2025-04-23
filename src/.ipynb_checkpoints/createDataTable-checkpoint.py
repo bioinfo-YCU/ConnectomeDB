@@ -35,6 +35,7 @@ pop_up_info = pop_up_info.rename(columns={"hgnc_id": "HGNC ID",
                                           "date_symbol_changed": "Date symbol changed"
                                           
                                          })
+
 # Keep only first MGI/RGD ID
 pop_up_info["MGI ID"] = pop_up_info["MGI ID"].str.split("|").str[0]
 pop_up_info["RGD ID"] = pop_up_info["RGD ID"].str.split("|").str[0]
@@ -52,7 +53,8 @@ pop_up_info["Date symbol changed"] = pop_up_info["Date symbol changed"].apply(
 )
 
 
-pop_up_info_lim = pop_up_info[["HGNC ID", "Approved name", "MGI ID", "RGD ID"]] # rm "Approved symbol" for now
+pop_up_info_lim = pop_up_info[["HGNC ID", "Approved name", "MGI ID", "RGD ID", "Alias symbol",
+                               "Approved symbol", "Previous symbol"]] # rm "Approved symbol" for now
 pop_up_info_lim = pop_up_info_lim.drop_duplicates(subset="HGNC ID", keep="first")
 
 # Drop columns where all values are NA in gene_pair
@@ -63,6 +65,9 @@ gene_pair = gene_pair[['LR pair', 'Ligand', 'Ligand.HGNC', 'Receptor', 'Receptor
                        'perplexity link', 'PMID', 'binding location', 
                        'bind in trans?', 'bidirectional signalling?',
                        'interaction type', 'original source']]
+# some PMIDs kick in with "," so replace
+gene_pair["PMID"] = [value.replace(",", "") for value in gene_pair["PMID"]]
+
 # Mapping for replacements
 mapping = dict(zip(fetchGSheet.src_info['original source'], fetchGSheet.src_info['shortname']))
 # Replace values in the column based on the mapping
@@ -72,6 +77,12 @@ gene_pair['original source'] = gene_pair['original source'].replace(mapping)
 mapping_loc = dict(zip(fetchGSheet.loc_info['ApprovedSymbol'], fetchGSheet.loc_info['Localization']))
 gene_pair['Ligand location'] = gene_pair['Ligand'].replace(mapping_loc)
 gene_pair['Receptor location'] = gene_pair['Receptor'].replace(mapping_loc)
+# Set missing mappings to 'unknown'
+gene_pair.loc[gene_pair['Ligand location'] == gene_pair['Ligand'], 'Ligand location'] = 'unknown'
+gene_pair.loc[gene_pair['Receptor location'] == gene_pair['Receptor'], 'Receptor location'] = 'unknown'
+# Set "n/a" to unknown
+gene_pair['Ligand location'] = [value.replace("n/a", "unknown") for value in gene_pair['Ligand location']]
+gene_pair['Receptor location'] = [value.replace("n/a", "unknown") for value in gene_pair['Receptor location']]
 
 # Fetch species IDs from the dataset
 hgnc_id = [col for col in gene_pair.columns if "HGNC" in col]
@@ -87,24 +98,18 @@ gene_pair = gene_pair.rename(columns={
     "PMID": "PMID support"
 })
 
-# Recreate Perplexity link
-# Function to generate Perplexity search link
-def create_url_basic(gene_name):
-    query = f"What is the primary evidence that {gene_name} bind-each-other-as-a-ligand-and-receptor-pair. Exclude reviews, uniprot, wiki, genecards, PIPS, iuphar as sources."
-    encoded_query = query.replace(" ", "%20")
-    return f"https://www.perplexity.ai/search?q={encoded_query}"
-
-# Apply function to the DataFrame
-gene_pair["Perplexity"] = gene_pair["Perplexity"].apply(create_url_basic)
 
 # Merge gene_pair with pop_up_info_lim for Ligand(L)
 gene_pair = gene_pair.merge(pop_up_info_lim, how='left', left_on='Ligand HGNC ID', right_on='HGNC ID')
 
 gene_pair = gene_pair.rename(columns={"Approved name": "Ligand name", 
                                      "MGI ID": "Ligand MGI ID",
-                                     "RGD ID": "Ligand RGD ID"},
+                                     "RGD ID": "Ligand RGD ID",
+                                      "Alias symbol": "Ligand Aliases",
+                                      "Previous symbol": "Ligand Old symbol",
+                                     },
                             )
-gene_pair = gene_pair.drop(columns=["HGNC ID"])
+gene_pair = gene_pair.drop(columns=["HGNC ID", "Approved symbol"])
 # Add top pathway per pair
 LR_pairs = gene_pair["Human LR Pair"].unique()
 df= pd.read_csv("data/pathway_annotations_per_pair.csv")
@@ -129,6 +134,7 @@ mapping = dict(zip(df_cat['Disease Name'], df_cat['Category']))
 df["Disease Type"] = df['disease'].replace(mapping)
 df = df[["interaction", "Disease Type"]].drop_duplicates()
 df['Disease Type'] = df['Disease Type'].astype(str)
+df = df.sort_values(by='Disease Type', ascending=True)
 # Group by 'col1' and combine 'col2' values with ', '
 df = df.groupby('interaction')['Disease Type'].apply(', '.join).reset_index()
 # Create "Cancer-related" column based on whether "Cancers & Neoplasms" is in col2
@@ -179,7 +185,9 @@ gene_pair = gene_pair.merge(pop_up_info_lim, how='left', left_on='Receptor HGNC 
 
 gene_pair = gene_pair.rename(columns={"Approved name": "Receptor name",
                                       "MGI ID": "Receptor MGI ID",
-                                      "RGD ID": "Receptor RGD ID"}
+                                      "RGD ID": "Receptor RGD ID",
+                                      "Alias symbol": "Receptor Aliases",
+                                      "Previous symbol": "Receptor Old symbol",}
                             )
 
 
@@ -330,8 +338,23 @@ gene_pair["Interaction ID"] = [f"CDB{str(i).zfill(5)}" for i in range(1, DBlengt
 # for creating PMIDs
 gene_pair00 = gene_pair[['Human LR Pair', 'PMID support']]
 
-
-# Bring in PMID support
+# Bring in Perplexity query
+# Recreate Perplexity link
+# Function to generate Perplexity search link 
+#Option 1 -- unchanged from orig DB
+def create_url_basic(perplexity_col):
+    query = f"What is the primary evidence that {perplexity_col} bind-each-other-as-a-ligand-and-receptor-pair. Exclude reviews, uniprot, wiki, genecards, PIPS, iuphar as sources."
+    encoded_query = query.replace(" ", "%20")
+    return f"https://www.perplexity.ai/search?q={encoded_query}"
+# Option 2 -- new query all together
+def generate_perplexity_link_pmid(row): 
+    query = f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-{row['Human LR Pair']}-based-on-Pubmed-ID-{row['PMID support']}"
+    return (
+        f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">'
+        f'<img src="https://img.icons8.com/?size=30&id=0NbBuNOxUwps&format=png&color=000000" alt="Perplexity AI" /></a>'
+    )
+# Apply function to the DataFrame
+gene_pair["Perplexity"] = gene_pair.apply(generate_perplexity_link_pmid, axis=1)
 
 # create URLs for the HGNC IDs
 
@@ -347,11 +370,7 @@ gene_pair["Receptor HGNC ID"] = [
     for receptor in gene_pair["Receptor HGNC ID"]
 ]
 
-# Perplexity
-gene_pair["Perplexity"] = [
-    '<a href="{}" target="_blank"> <img src="https://img.icons8.com/?size=30&id=0NbBuNOxUwps&format=png&color=000000" alt="Perplexity AI" /></a>'.format(url)
-    for url in gene_pair["Perplexity"]
-]
+
 # Function to generate hyperlinks for the "PMID support" column
 def generate_links_with_doi(df, gene_column, pmid_column):
     def create_link(gene, sources):
@@ -449,11 +468,10 @@ selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)
 
 gene_pair0 = gene_pair[['Interaction ID', 'Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PMID support',
        'Ligand HGNC ID', 'Ligand location', 'Receptor HGNC ID',
-       'Receptor location', 'Ligand name', 'Receptor name', 'Top Pathway', 'Cancer-related', 'Disease Type', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type'] + mouse_columns + rat_columns]
+       'Receptor location', 'Ligand name', 'Receptor name', 'Top Pathway', 'Cancer-related', 'Disease Type', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', "Ligand Old symbol",  "Receptor Old symbol", "Ligand Aliases", "Receptor Aliases"] + mouse_columns + rat_columns]
 
-gene_pair = gene_pair[['Interaction ID', 'Human LR Pair', 'Database Source', 'Ligand', 'Receptor', 'Perplexity', 'PMID support', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type',
-        'Ligand HGNC ID', 'Receptor HGNC ID', 'Ligand location', 'Receptor location',
-        'Ligand name', 'Receptor name', 'Top Pathway', 'Cancer-related', 'Disease Type'] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
+gene_pair = gene_pair[['Interaction ID', 'Human LR Pair', 'Database Source', 'Ligand', 'Receptor', 'Perplexity', 'PMID support', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', 'Ligand HGNC ID', 'Receptor HGNC ID', 'Ligand location', 'Receptor location',
+        'Ligand name', 'Receptor name','Top Pathway', 'Cancer-related', 'Disease Type', 'Ligand Old symbol',  'Receptor Old symbol', 'Ligand Aliases', 'Receptor Aliases'] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
 
 
 # gene symbol

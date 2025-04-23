@@ -13,6 +13,9 @@ TD = format(Sys.Date(), '%d-%b-%Y')
 #### `r TD` 
 ConnectomeDB2025 interface was updated
 
+#### 22-Apr-2025 {#05-Feb-2025}
+Updated the ConnectomeDB2025 database based on frozen list
+
 #### 05-Feb-2025 {#05-Feb-2025}
 Pig, cow, and dog multispecies ortholog LR pairs were added
 

@@ -7,7 +7,7 @@ from itables import options
 from IPython.display import HTML, display
 import numpy as np
 from bs4 import BeautifulSoup
-from createDataTable import gene_pair, gene_pair0
+from createDataTable import gene_pair, gene_pair0, generate_perplexity_link_pmid
 import warnings
 import fetchGSheet 
 import string
@@ -38,27 +38,48 @@ df_pub = pd.read_csv("data/pubmed_results.csv", usecols=[0,1,3,4,5])
 gene_pair_PMID["PMID"] = gene_pair_PMID["PMID"].astype(str)
 df_pub["PMID"] = df_pub["PMID"].astype(str)
 gene_pair_trip = pd.merge(gene_pair_PMID, df_pub, how='left', on='PMID')
+### patch for the BioRxiV ###
+gene_pair_trip["Year"] = gene_pair_trip["Year"].apply(
+    lambda x: "2024" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", "Species Specificity", "NaN", ""] else x
+)
+###
 gene_pair_trip["Year"] = pd.to_numeric(gene_pair_trip["Year"], errors="coerce").astype("Int64")
 gene_pair_trip = gene_pair_trip.merge(gene_pair, how='left', left_on='Interaction ID', right_on=gene_pair.columns[0])
 gene_pair_trip = gene_pair_trip.drop(columns=["Interaction ID", gene_pair.columns[2], gene_pair.columns[5],gene_pair.columns[6]])
 gene_pair_trip = gene_pair_trip.drop_duplicates()
 gene_pair_trip = gene_pair_trip.reset_index(drop=True)  
-def generate_perplexity_link_pmid(row): 
-    query = f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-{row['LR pair']}-based-on-Pubmed-ID-{row['PMID']}"
-    return (
-        f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">'
-        f'<img src="https://img.icons8.com/?size=30&id=0NbBuNOxUwps&format=png&color=000000" alt="Perplexity AI" /></a>'
-    )
 
+# Add perplexity query
+gene_pair_trip = gene_pair_trip.rename(columns={"LR pair": "Human LR Pair", "PMID": "PMID support"})
 gene_pair_trip["Perplexity"] = gene_pair_trip.apply(generate_perplexity_link_pmid, axis=1)
-# Add
-gene_pair_trip = gene_pair_trip.drop(columns=["LR pair", "original source"])
-first_columns=[gene_pair_trip.columns[6], gene_pair_trip.columns[7], 'Perplexity', 'Database Source', 'PMID']
+gene_pair_trip = gene_pair_trip.drop(columns=["Human LR Pair", "original source"])
+
+gene_pair_trip["Species"] = gene_pair_trip["Species"].apply(
+    lambda x: "unknown" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", "Species Specificity", "NaN", ""] else x
+)
+
+### patch for the BioRxiV ###
+gene_pair_trip["Title"] = gene_pair_trip["Title"].apply(
+    lambda x: "ACKR5/GPR182 is a scavenger receptor for the atypical chemokine CXCL17, GPR15L and various endogenous peptides" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", "NaN", ""] else x
+)
+
+gene_pair_trip["Journal"] = gene_pair_trip["Journal"].apply(
+    lambda x: "BioRxiv (preprint)" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", "NaN", ""] else x
+)
+
+gene_pair_trip["PMID support"] = [
+    f'<a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}" target="_blank">{pmid}</a>'
+    if pd.notna(pmid) and str(pmid).isdigit()
+    else f'<a href="{pmid}" target="_blank">BioRxiv preprint</a>'
+    for pmid in gene_pair_trip["PMID support"]
+]
+####
 
 
 # Make ID unique
 gene_pair_trip = gene_pair_trip.sort_values(by='Year', ascending=True)
 gene_pair_trip[gene_pair_trip.columns[6]] = make_ids_unique(gene_pair_trip[gene_pair_trip.columns[6]])
 gene_pair_trip = gene_pair_trip.sort_values(by='Year', ascending=False)
+first_columns=[gene_pair_trip.columns[6], gene_pair_trip.columns[7], 'Perplexity', 'Database Source', 'PMID support']
 gene_pair_trip = gene_pair_trip[first_columns + [col for col in gene_pair_trip.columns if col not in first_columns]]
 gene_pair_trip = gene_pair_trip.reset_index(drop=True)  

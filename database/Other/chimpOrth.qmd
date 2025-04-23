@@ -27,6 +27,8 @@ header-includes: |
 import sys
 import os
 import pandas as pd
+import warnings
+warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
 from itables import init_notebook_mode, show
 from IPython.display import display, Javascript
 import itables.options as opt
