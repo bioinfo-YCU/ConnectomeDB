@@ -33,7 +33,9 @@ header-includes: |
 
 ***
 
+
 ```{=html}
+
 <style>
 /* Target the first search pane */
 .dtsp-searchPane:first-child::before {
@@ -94,7 +96,11 @@ import sys
 import os
 import pandas as pd
 import warnings
-warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
+from pandas.errors import SettingWithCopyWarning
+
+# Suppress the SettingWithCopyWarning
+warnings.simplefilter(action='ignore', category=SettingWithCopyWarning)
+
 from itables import init_notebook_mode, show
 from IPython.display import display, Javascript
 import itables.options as opt
@@ -105,6 +111,11 @@ sys.path.append(os.path.abspath("src"))
 from createDataTable import gene_pair
 
 human_gene_pair = gene_pair.iloc[:, :-28]
+
+# Turn Interaction ID into clickable links
+human_gene_pair[human_gene_pair.columns[0]] = human_gene_pair[human_gene_pair.columns[0]].apply(
+    lambda x: f"<a href='human-trip.html?id={x}'>{x}</a>"
+)
 
 # Function to update and display the table
 def update_table():

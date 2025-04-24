@@ -76,7 +76,7 @@ def prepare_dataframes(gene_pair0):
             gene_pair0["Receptor"], gene_pair0["Receptor location"]
         )
     ]
-    interaction_card = gene_pair0[["Interaction ID", "Human LR Pair", "Interaction Type", "Perplexity", "PMID support", "Top Pathway", "Cancer-related", "Disease Type"]]
+    interaction_card = gene_pair0[["Interaction ID", "Human LR Pair", "Interaction Type", "Perplexity", "PMID", "Top Pathway", "Cancer-related", "Disease Type"]]
     interaction_card["Perplexity"] = interaction_card["Perplexity"].str.replace('size=30', 'size=80')
 
     pop_up_info_lim = pop_up_info[

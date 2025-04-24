@@ -136,7 +136,7 @@ def fetch_pubmed_data(pmid_list, hgnc_symbols):
                     "Abstract": abstract,
                     "Journal": journal,
                     "Year": year,
-                    "Species": species
+                    "Species": species,
                 })
 
         except Exception as e:
@@ -174,3 +174,11 @@ def fetch_pubmed_data(pmid_list, hgnc_symbols):
 
 # Fetch PubMed data with your list of PMIDs, output file path, and NCBI API key
 fetch_pubmed_data(pmid_list, hgnc_symbols)
+
+# Filter and print PMIDs where the Title does not end with a period this are the ones that need to be manually edited as title is not complete.
+# Filter and print PMIDs where the Title does not end with a period this are the ones that need to be manually edited as title is not complete.
+df = pd.read_csv(output_file)
+pmids_without_period = df[~df['Title'].str.endswith(('.', '?'))]['PMID']
+pmid_check= pmids_without_period.tolist()
+print("These " + str(len(pmid_check)) + " titles that have to be manually checked -- possible incomplete titles")
+print(pmid_check)
