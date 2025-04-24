@@ -100,7 +100,7 @@ from pandas.errors import SettingWithCopyWarning
 
 # Suppress the SettingWithCopyWarning
 warnings.simplefilter(action='ignore', category=SettingWithCopyWarning)
-
+warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
 from itables import init_notebook_mode, show
 from IPython.display import display, Javascript
 import itables.options as opt
