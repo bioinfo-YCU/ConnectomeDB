@@ -546,4 +546,4 @@ new_columns[:10] = [
 
 # Assign the modified column names back to the DataFrame
 gene_pair000.columns = new_columns
-human_columns = [col for col in gene_pair000.columns][:10]
+human_columns = [col for col in gene_pair000.columns][:22]
