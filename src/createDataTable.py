@@ -95,7 +95,7 @@ gene_pair = gene_pair.rename(columns={
     "Receptor.HGNC": "Receptor HGNC ID",
     "perplexity link": "Perplexity", # will be replaced with actual link later
     "original source": "Database Source",
-    "PMID": "PMID support"
+    #"PMID": "PMID support" # was PMID support
 })
 
 
@@ -312,11 +312,11 @@ RatLigandCount = len(gene_pair["Ligand RGD ID"].unique())
 
 RatReceptorCount = len(gene_pair["Receptor RGD ID"].unique())
 
-gene_pair["PMID support"] = [value.replace(" ", "") for value in gene_pair["PMID support"]]
+gene_pair["PMID"] = [value.replace(" ", "") for value in gene_pair["PMID"]] # was'PMID support'
 # for now set source count as triplicates
 sourceCount = len(gene_pair[['Human LR Pair']])
 
-source = np.array(gene_pair["PMID support"].unique())
+source = np.array(gene_pair["PMID"].unique())
 source = source.astype(str)
 source = ",".join(sorted(set(filter(lambda x: x.lower() != 'nan', source))))
 # Split the string into individual elements, filter out empty strings, and get unique values
@@ -336,7 +336,7 @@ DBlength = len(gene_pair)
 gene_pair["Interaction ID"] = [f"CDB{str(i).zfill(5)}" for i in range(1, DBlength + 1)]
 
 # for creating PMIDs
-gene_pair00 = gene_pair[['Human LR Pair', 'PMID support']]
+gene_pair00 = gene_pair[['Human LR Pair', 'PMID']] # was "PMID support"
 
 # Bring in Perplexity query
 # Recreate Perplexity link
@@ -348,7 +348,7 @@ def create_url_basic(perplexity_col):
     return f"https://www.perplexity.ai/search?q={encoded_query}"
 # Option 2 -- new query all together
 def generate_perplexity_link_pmid(row): 
-    query = f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-{row['Human LR Pair']}-based-on-Pubmed-ID-{row['PMID support']}"
+    query = f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-{row['Human LR Pair']}-based-on-Pubmed-ID-{row['PMID']}"
     return (
         f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">'
         f'<img src="https://img.icons8.com/?size=30&id=0NbBuNOxUwps&format=png&color=000000" alt="Perplexity AI" /></a>'
@@ -381,7 +381,7 @@ def generate_links_with_doi(df, gene_column, pmid_column):
             source = sources[0]
             if source.startswith("https://www.biorxiv.org/content/"):
                 # If the value starts with "https://doi.org/", use it as the hyperlink
-                return f'<a href="{source}" target="_blank">BioRxiv preprint</a>'
+                return f'<a href="{source}" target="_blank">BioRxiv</a>'
             else:
                 # If it's a single PMID, hyperlink the PMID text
                 return f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/pubmed/{gene_name}_pmid_details.html">{source}</a>'
@@ -389,8 +389,8 @@ def generate_links_with_doi(df, gene_column, pmid_column):
             # If multiple PMIDs, show the count and hyperlink to the page
             return f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/pubmed/{gene_name}_pmid_details.html" target="_blank">{len(sources)} PMIDs</a>'
 
-    # Process each row to generate the "PMID support" column
-    df["PMID support"] = [
+    # Process each row to generate the "PMID" column # was "PMID support"
+    df["PMID"] = [
         create_link(
             gene=row[gene_column], 
             sources=[s.strip() for s in row[pmid_column].split(',') if s.strip()]
@@ -400,8 +400,8 @@ def generate_links_with_doi(df, gene_column, pmid_column):
     return df
 
 
-# Generate the links for the "PMID support" column
-gene_pair = generate_links_with_doi(gene_pair, gene_column="Human LR Pair", pmid_column="PMID support")
+# Generate the links for the "PMID" column # was "PMID support"
+gene_pair = generate_links_with_doi(gene_pair, gene_column="Human LR Pair", pmid_column="PMID")
 
 # for disease type, cancer-related and top pathways, explicitly say "not available"
 gene_pair["Top Pathway"] = gene_pair["Top Pathway"].apply(
@@ -465,12 +465,12 @@ prefixes = ("Chimpanzee", "Chicken", "Pig", "Cow", "Dog", "Horse", "Sheep")
 
 # Get column names that start with any of the given prefixes
 selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)]
-
-gene_pair0 = gene_pair[['Interaction ID', 'Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PMID support',
+# was "PMID support"
+gene_pair0 = gene_pair[['Interaction ID', 'Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PMID', 
        'Ligand HGNC ID', 'Ligand location', 'Receptor HGNC ID',
        'Receptor location', 'Ligand name', 'Receptor name', 'Top Pathway', 'Cancer-related', 'Disease Type', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', "Ligand Old symbol",  "Receptor Old symbol", "Ligand Aliases", "Receptor Aliases"] + mouse_columns + rat_columns]
 
-gene_pair = gene_pair[['Interaction ID', 'Human LR Pair', 'Database Source', 'Ligand', 'Receptor', 'Perplexity', 'PMID support', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', 'Ligand HGNC ID', 'Receptor HGNC ID', 'Ligand location', 'Receptor location',
+gene_pair = gene_pair[['Interaction ID', 'Human LR Pair', 'Database Source', 'Ligand', 'Receptor', 'Perplexity', 'PMID', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', 'Ligand HGNC ID', 'Receptor HGNC ID', 'Ligand location', 'Receptor location',
         'Ligand name', 'Receptor name','Top Pathway', 'Cancer-related', 'Disease Type', 'Ligand Old symbol',  'Receptor Old symbol', 'Ligand Aliases', 'Receptor Aliases'] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
 
 
@@ -518,7 +518,7 @@ gene_pair.columns = [
     f'<span title="Click the logo below to run Perplexity on the Human LR pair">{col}&nbsp;</span>' if col == "Perplexity" else
     f'<span title=" Official Gene Symbol; Hover on symbols below to show gene names">{col}&nbsp;&nbsp;&nbsp;</span>' if col in ["Ligand", "Receptor"] else
     f'<span title="HUGO Gene Nomenclature Committee (HGNC) ID. Click on the link for more details">{col}&nbsp;&nbsp;</span>' if col in ["Ligand HGNC ID", "Receptor HGNC ID"] else
-    f'<span title=" PubMed IDs (PMID) with Literature Evidence for LR Interaction. Click on the link for more details">{col}</span>' if col == "PMID support" else
+    f'<span title=" PubMed IDs (PMID) with Literature Evidence for LR Interaction. Click on the link for more details">{col}</span>' if col == "PMID" else
     f'<span title="Rat Genome Database (RGD) ID. Click on the link for more details">{col}</span>' if col in ["Ligand RGD ID", "Receptor RGD ID"] else
     f'<span title="Mouse Genome Informatics (MGI) ID. Click on the link for more details">{col}</span>' if col in ["Ligand MGI ID", "Receptor MGI ID"]else
     f'<span title="Zebrafish Information Network (ZFIN) ID. Click on the link for more details">{col}</span>' if col in ["Ligand ZFIN ID", "Receptor ZFIN ID"] else

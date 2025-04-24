@@ -105,7 +105,7 @@ def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_in
 # Process each species
 # Mouse
 mouse_gene_pair1 = process_species(gene_pair, gene_pair000, "Mouse", "MGI", 1, 1)
-MouselrPairsCount = len(mouse_gene_pair1["Mouse LR Pair"].unique())
+MouselrPairsCount = len(mouse_gene_pair1["Mouse LR Pair"]) # non-unique for now
 HumanMouseLRPairsPer = (MouselrPairsCount/lrPairsCount)*100
 HumanMouseLRPairsPer = round(HumanMouseLRPairsPer, 2)
 # Round up to the nearest 0.5%

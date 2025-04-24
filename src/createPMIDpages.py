@@ -135,7 +135,7 @@ if __name__ == "__main__":
         df=gene_pair000,
         gene_column="Human LR Pair",
         card_column = "Cards",
-        pmid_column="PMID support",
+        pmid_column="PMID", # was "PMID support"
         keywords_column = "Relevance Keywords",
         pubmed_data=pubmed_data,
         template=template

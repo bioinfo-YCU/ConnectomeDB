@@ -2,7 +2,7 @@
 title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Human LR Pairs</span>"
 execute:
   echo: false
-  warnings: false  # Add this line to suppress warnings globally
+  warnings: false
 format:
   html:
     table: false
@@ -27,7 +27,6 @@ header-includes: |
       if (clearAllButton) {
         clearAllButton.textContent = "⌫ Reset Filters";
       }
-    });
   </script>
 ---
 
@@ -92,12 +91,14 @@ header-includes: |
 ```{python}
 import sys
 import os
+import time
 import pandas as pd
 import warnings
 warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
 from itables import init_notebook_mode, show
-from IPython.display import display, Javascript
+from IPython.display import display, Javascript, HTML
 import itables.options as opt
+import urllib.parse
 # Change working directory to ConnectomeDB
 project_root = os.path.dirname(os.getcwd())
 os.chdir(project_root)
@@ -105,6 +106,7 @@ sys.path.append(os.path.abspath("src"))
 from createTriplicateDT import gene_pair_trip
 
 human_gene_pairTrip = gene_pair_trip.iloc[:, :-28]
+human_gene_pairTrip.rename(columns={human_gene_pairTrip.columns[0]: "Interaction ID"}, inplace=True)
 
 # Function to update and display the table
 def update_table():
@@ -150,7 +152,7 @@ def update_table():
             "searchPanesPlaceholder": "",
            # "searchBuilder": {
            #     "title": "Advanced Search <i>Multiple filtering, AND/OR condition</i>" 
-           # }
+           #
         }, 
         autoWidth=True,
         maxBytes=0,  # So it does not downsample
@@ -165,6 +167,50 @@ def update_table():
 
 # Call the function to render the table
 update_table()
+```
+
+```{=html}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const filterId = urlParams.get("id") || "CDB00001";
+
+  // Wait for DataTable to initialize
+  setTimeout(() => {
+    const table = document.querySelector("table.dataTable");
+    if (!table) return;
+
+    const headerCells = Array.from(table.querySelectorAll("thead th"));
+    const idColIndex = headerCells.findIndex(th => th.textContent.trim() === "Interaction ID");  
+
+    if (idColIndex === -1) {
+      console.error("Could not find 'Interaction ID' column in table header");  // Updated error message
+      return;
+    }
+
+    const rows = table.querySelectorAll("tbody tr");
+    rows.forEach(row => {
+      const cellText = row.cells[idColIndex]?.textContent.trim();
+      if (!cellText || !cellText.startsWith(filterId)) {
+        row.style.display = "none";
+      }
+    });
+
+    // Optional: highlight first match
+    const firstMatch = [...rows].find(row => {
+      const text = row.cells[idColIndex]?.textContent.trim();
+      return text && text.startsWith(filterId);
+    });
+
+    if (firstMatch) {
+      firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
+      firstMatch.style.outline = "2px solid gold";
+    }
+  }, 1000); // Adjust delay if needed
+});
+</script>
+
+
 ```
 
 {{< include hint.qmd >}}

@@ -50,7 +50,7 @@ gene_pair_trip = gene_pair_trip.drop_duplicates()
 gene_pair_trip = gene_pair_trip.reset_index(drop=True)  
 
 # Add perplexity query
-gene_pair_trip = gene_pair_trip.rename(columns={"LR pair": "Human LR Pair", "PMID": "PMID support"})
+gene_pair_trip = gene_pair_trip.rename(columns={"LR pair": "Human LR Pair"})
 gene_pair_trip["Perplexity"] = gene_pair_trip.apply(generate_perplexity_link_pmid, axis=1)
 gene_pair_trip = gene_pair_trip.drop(columns=["Human LR Pair", "original source"])
 
@@ -60,26 +60,42 @@ gene_pair_trip["Species"] = gene_pair_trip["Species"].apply(
 
 ### patch for the BioRxiV ###
 gene_pair_trip["Title"] = gene_pair_trip["Title"].apply(
-    lambda x: "ACKR5/GPR182 is a scavenger receptor for the atypical chemokine CXCL17, GPR15L and various endogenous peptides" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", "NaN", ""] else x
+    lambda x: "ACKR5/GPR182 is a scavenger receptor for the atypical chemokine CXCL17, GPR15L and various endogenous peptides." if pd.isna(x) or str(x).strip().lower() in ["nan", "none", "NaN", ""] else x
 )
+
+### Pop-up for title
+gene_pair_trip["Title"] = [
+    f'<span title="{title}">{title}</span>'
+    for title in gene_pair_trip["Title"]
+]
 
 gene_pair_trip["Journal"] = gene_pair_trip["Journal"].apply(
     lambda x: "BioRxiv (preprint)" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", "NaN", ""] else x
 )
 
-gene_pair_trip["PMID support"] = [
+
+gene_pair_trip["PMID"] = [
     f'<a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}" target="_blank">{pmid}</a>'
     if pd.notna(pmid) and str(pmid).isdigit()
-    else f'<a href="{pmid}" target="_blank">BioRxiv preprint</a>'
-    for pmid in gene_pair_trip["PMID support"]
+    else f'<a href="{pmid}" target="_blank">BioRxiv</a>'
+    for pmid in gene_pair_trip["PMID"]
 ]
 ####
 
+df_annot=pd.read_csv("data/journal_abbv.csv")
+mapping = dict(zip(df_annot['Journal Name'], df_annot['Abbreviation']))
+# Replace values in the column based on the mapping
+gene_pair_trip["JournalAbbv"] = gene_pair_trip['Journal'].replace(mapping)
+gene_pair_trip["Journal"] = [
+    f'<span title="{Journal}">{JournalAbbv}</span>'
+    for Journal, JournalAbbv in zip(gene_pair_trip["Journal"], gene_pair_trip["JournalAbbv"])
+    ]
+gene_pair_trip = gene_pair_trip.drop(columns=['JournalAbbv'])
 
 # Make ID unique
 gene_pair_trip = gene_pair_trip.sort_values(by='Year', ascending=True)
 gene_pair_trip[gene_pair_trip.columns[6]] = make_ids_unique(gene_pair_trip[gene_pair_trip.columns[6]])
 gene_pair_trip = gene_pair_trip.sort_values(by='Year', ascending=False)
-first_columns=[gene_pair_trip.columns[6], gene_pair_trip.columns[7], 'Perplexity', 'Database Source', 'PMID support']
+first_columns=[gene_pair_trip.columns[6], gene_pair_trip.columns[7], 'Perplexity', 'Database Source', 'Year','PMID', 'Journal', 'Title']
 gene_pair_trip = gene_pair_trip[first_columns + [col for col in gene_pair_trip.columns if col not in first_columns]]
 gene_pair_trip = gene_pair_trip.reset_index(drop=True)  
