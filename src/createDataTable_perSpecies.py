@@ -7,7 +7,7 @@ from itables import options
 from IPython.display import HTML, display
 import numpy as np
 from bs4 import BeautifulSoup
-from createDataTable import gene_pair, gene_pair000, human_columns,lrPairsCount
+from createDataTable import gene_pair, gene_pair000, human_columns, lrPairsCount
 import warnings
 
 # Suppress SettingWithCopyWarning
@@ -94,7 +94,7 @@ def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_in
 
     # Identify relevant columns for the species
     species_columns = [col for col in species_gene_pair1.columns if id_prefix in col]
-    new_order = [f"{species} LR Pair", ligand_col, receptor_col] + species_columns + human_columns
+    new_order = [human_columns[0]]+ [f"{species} LR Pair", ligand_col, receptor_col] + species_columns + human_columns[1:]
 
 
     species_gene_pair1 = species_gene_pair1[new_order].reset_index(drop=True)
