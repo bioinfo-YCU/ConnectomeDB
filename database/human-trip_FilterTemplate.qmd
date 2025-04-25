@@ -1,0 +1,95 @@
+---
+title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Human LR Pairs</span>"
+execute:
+  echo: false
+  warnings: false
+format:
+  html:
+    table: false
+header-includes: |
+  <script src="../js/keepDropdownMenuGold.js"></script>
+---
+
+***
+
+```{python}
+import sys
+import os
+import time
+import pandas as pd
+import warnings
+warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
+from itables import init_notebook_mode, show
+from IPython.display import display, Javascript, HTML
+import itables.options as opt
+import urllib.parse
+# Change working directory to ConnectomeDB
+project_root = os.path.dirname(os.getcwd())
+os.chdir(project_root)
+sys.path.append(os.path.abspath("src"))
+from createTriplicateDT import gene_pair_trip
+
+human_gene_pairTrip = gene_pair_trip.iloc[:, :-39]
+human_gene_pairTrip.rename(columns={human_gene_pairTrip.columns[0]: "Interaction ID"}, inplace=True)
+
+# Function to update and display the table
+def update_table():
+    show(
+        human_gene_pairTrip,
+        keys=True,
+        # layout={"top": ["searchPanes"],
+        #        },
+        # searchPanes={"layout": "rows-1", 
+        #             "cascadePanes": True, 
+        #             "columns": [3,4,7,8,11,9,10,21], 
+        #             "regex": True, "caseInsensitive": False, 
+        #             "smart": True, 
+        #             "initCollapsed": True, 
+        #             "controls": True},
+        #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
+        fixedColumns={"start": 2, "end": 0},
+        fixedHeader=True,  # Keep header fixed for alignment
+        column_filters="footer", 
+        scrollX=True,
+        classes="display nowrap cell-border compact",
+        select=True,
+        selected_rows=[],
+        responsive=True,  # Enable responsive behavior
+        theme='grid',
+        search={"regex": True, "caseInsensitive": False, "smart": True},
+        lengthMenu=[ [10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"] ],
+        buttons=[
+            "pageLength",  
+            {"extend": "colvis", "text": "Display Columns"},
+            {"extend": "csvHtml5", "title": "Source"},
+            {"extend": "excelHtml5", "title": "Source"},
+            {"extend": "copyHtml5", "title": "Source"},
+        ],
+        columnDefs=[
+            {"className": "dt-center", "targets": [2]}, 
+            {"targets": list(range(-1, -17, -1)), "visible": False} # Hide last 16 columns by default
+        ],
+        style="1200px;margin:auto",
+           language={
+            "search": "Search Any Column:",
+            "searchPlaceholder": "e.g. CD24",
+            "searchPanesPlaceholder": "",
+           # "searchBuilder": {
+           #     "title": "Advanced Search <i>Multiple filtering, AND/OR condition</i>" 
+           #
+        }, 
+        autoWidth=True,
+        maxBytes=0,  # So it does not downsample
+        initCode='''
+            $(document).on('draw.dt', function () {
+                $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
+            });
+        ''',
+    )
+      
+      
+
+# Call the function to render the table
+update_table()
+```
+{{< include hint.qmd >}}
