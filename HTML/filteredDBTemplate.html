@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+<html>
+<meta charset="UTF-8">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 15px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .navbar-left, nav .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        nav .divider {
+            color: #ecf0f1;
+            margin: 0 10px;
+        }
+
+        /* Page Footer */
+        footer {
+            margin-top: 40px;
+            padding: 10px 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Emphasize Title */
+        
+        .title {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .info-btn {
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 15px;
+            transition: background 0.3s ease;
+        }
+        .info-btn:hover {
+            background-color: #e67e22;
+        }
+    
+    </style>
+  <title>{{ interaction_id }} - Human LR Pairs</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    table.dataTable { width: 100%; }
+    .highlight { color: gold; font-weight: bold; }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<!-- DataTables Buttons CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+    
+<!-- Buttons JS and dependencies -->
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.colVis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+  <script src="../js/keepDropdownMenuGold.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-left">
+            <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/human.html"> ← ConnectomeDB </a> 
+        </div>
+        
+        <div class="navbar-right">
+            <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank">YCU Bioinformatics Lab</a>
+            <span class="divider">|</span>
+            <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology & Genomics Lab</a>
+        </div>
+    </nav>
+    
+ <h1><i class="fa fa-database"></i> ConnectomeDB2025: Human LR Pairs ˣ Pubmed Evidence</h1>
+  <h2 style="display: flex; align-items: center; gap: 1em;">
+  Interaction ID: {{ interaction_id }}
+  <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/human-trip.html" class="btn-link" target="_blank">
+    <button class="info-btn"><i class="fa fa-info-circle"></i> Full table here</button>
+  </a>
+ </h2>
+  <table id="data-table" class="display nowrap cell-border compact">
+    <thead>
+      <tr>
+        {% for col in table.columns %}
+        <th>{{ col }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for _, row in table.iterrows() %}
+      <tr>
+        {% for col in table.columns %}
+        <td>{{ row[col] }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <script>
+    $('#data-table').DataTable({
+      scrollX: true,
+      fixedHeader: true,
+      autoWidth: true,
+      responsive: true,
+      dom: 'Bfrtip',
+      search: {
+        regex: true,
+        caseInsensitive: false,
+        smart: true
+      },
+      lengthMenu: [[10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"]],
+      buttons: [
+        "pageLength",
+        { extend: "colvis", text: "Display Columns" },
+        { extend: "csvHtml5", title: "Source" },
+        { extend: "excelHtml5", title: "Source" },
+        { extend: "copyHtml5", title: "Source" }
+      ],
+      columnDefs: [
+        { className: "dt-center", targets: [2] },
+        { width: "800px", targets: [7] },
+        { targets: [8,9], visible: false }
+      ],
+      initComplete: function () {
+        this.api().columns.adjust();
+      }
+    });
+  </script>
+
+    <footer>
+        <span>© Copyright 2024, YCU Bioinformatics Lab | Harry Perkins Systems Biology & Genomics Lab</span>
+    </footer>
+</body>
+</html>

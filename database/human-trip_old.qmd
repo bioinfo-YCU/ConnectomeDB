@@ -1,5 +1,5 @@
 ---
-title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Human LR Pairs ˣ Pubmed Evidence</span>"
+title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Human LR Pairs</span>"
 execute:
   echo: false
   warnings: false
@@ -41,44 +41,47 @@ header-includes: |
     font-weight: bold;
 }
 
-/* Target the sixth search pane */
-.dtsp-searchPane:nth-child(2)::before {
-    content: "Ligand symbols";
-    font-weight: bold;
-}
-
-/* Target the seventh search pane */
-.dtsp-searchPane:nth-child(3)::before {
-    content: "Receptor symbols";
-    font-weight: bold;
-}
-
-
 /* Target the second search pane */
-.dtsp-searchPane:nth-child(4)::before {
+.dtsp-searchPane:nth-child(2)::before {
     content: "PMID";
     font-weight: bold;
 }
 
 /* Target the third search pane */
-.dtsp-searchPane:nth-child(5)::before {
+.dtsp-searchPane:nth-child(3)::before {
     content: "Year";
     font-weight: bold;
 }
 
 /* Target the fourth search pane */
-.dtsp-searchPane:nth-child(6)::before {
+.dtsp-searchPane:nth-child(4)::before {
     content: "Species";
     font-weight: bold;
 }
 
 /* Target the fifth search pane */
-.dtsp-searchPane:nth-child(7)::before {
-    content: "Journal";
+.dtsp-searchPane:nth-child(5)::before {
+    content: "Binding Location";
     font-weight: bold;
 }
 
+/* Target the sixth search pane */
+.dtsp-searchPane:nth-child(6)::before {
+    content: "Ligand symbols";
+    font-weight: bold;
+}
 
+/* Target the seventh search pane */
+.dtsp-searchPane:nth-child(7)::before {
+    content: "Receptor symbols";
+    font-weight: bold;
+}
+
+/* Target the eight search pane */
+.dtsp-searchPane:nth-child(8)::before {
+    content: "Disease Type";
+    font-weight: bold;
+}
 
 </style>
 
@@ -87,7 +90,6 @@ header-includes: |
 
 
 ```{python}
-
 import sys
 import os
 import time
@@ -95,19 +97,19 @@ import pandas as pd
 import warnings
 warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
 from itables import init_notebook_mode, show
-from IPython.display import display, Javascript
+from IPython.display import display, Javascript, HTML
 import itables.options as opt
+import urllib.parse
 # Change working directory to ConnectomeDB
 project_root = os.path.dirname(os.getcwd())
 os.chdir(project_root)
 sys.path.append(os.path.abspath("src"))
-
 from createTriplicateDT import gene_pair_trip
 
-human_gene_pairTrip = gene_pair_trip.iloc[:, :11]
+human_gene_pairTrip = gene_pair_trip.iloc[:, :21]
 
 # Function to update and display the table
-def update_table1():
+def update_table():
     show(
         human_gene_pairTrip,
         keys=True,
@@ -115,7 +117,7 @@ def update_table1():
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
-                     "columns": [3,8,9,4,5,10,6], 
+                     "columns": [3,4,7,8,11,18,19,21], 
                      "regex": True, "caseInsensitive": False, 
                      "smart": True, 
                      "initCollapsed": True, 
@@ -141,8 +143,7 @@ def update_table1():
         ],
         columnDefs=[
             {"className": "dt-center", "targets": [2]}, 
-            {"width": "800px", "targets": [7]},
-            {"targets": [8,9], "visible": False} # Hide last 2 columns by default
+            {"targets": list(range(-1, -15, -1)), "visible": False} # Hide last 16 columns by default
         ],
         style="1200px;margin:auto",
            language={
@@ -161,12 +162,9 @@ def update_table1():
             });
         ''',
     )
-      
-      
 
 # Call the function to render the table
-update_table1()
-
+update_table()
 ```
 
 

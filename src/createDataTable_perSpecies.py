@@ -14,7 +14,7 @@ import warnings
 warnings.simplefilter("ignore", category=UserWarning)
 
 
-# Other vertibrates
+# Other vertebrates
 species_list = [
     "ptroglodytes", "ggallus", "sscrofa", "btaurus", 
     "clfamiliaris", "ecaballus", "oarambouillet"

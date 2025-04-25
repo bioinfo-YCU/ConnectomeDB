@@ -2,7 +2,7 @@
 title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Human LR Pairs</span>"
 execute:
   echo: false
-  warnings: false  # Add this line to suppress warnings globally
+  warnings: false 
 format:
   html:
     table: false
@@ -45,13 +45,13 @@ header-includes: |
 
 /* Target the second search pane */
 .dtsp-searchPane:nth-child(2)::before {
-    content: "Ligand";
+    content: "Ligand symbols";
     font-weight: bold;
 }
 
 /* Target the third search pane */
 .dtsp-searchPane:nth-child(3)::before {
-    content: "Receptor";
+    content: "Receptor symbols";
     font-weight: bold;
 }
 
@@ -114,7 +114,7 @@ human_gene_pair = gene_pair.iloc[:, :-28]
 
 # Turn Interaction ID into clickable links
 human_gene_pair[human_gene_pair.columns[0]] = human_gene_pair[human_gene_pair.columns[0]].apply(
-    lambda x: f"<a href='human-trip.html?id={x}'>{x}</a>"
+    lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
 )
 
 # Function to update and display the table
@@ -126,7 +126,7 @@ def update_table():
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
-                     "columns": [2,3,4,7,13,14,15,17], 
+                     "columns": [2,18,19,7,13,14,15,17], 
                      "regex": True, "caseInsensitive": False, 
                      "smart": True, 
                      "initCollapsed": True, 
@@ -153,7 +153,7 @@ def update_table():
         columnDefs=[
             {"className": "dt-center", "targets": [5]}, 
             # {"width": "100px", "targets": "_all"},
-            {"targets": list(range(-1, -17, -1)), "visible": False} # Hide last 16 columns by default
+            {"targets": list(range(-1, -15, -1)), "visible": False} # Hide last 14 columns by default
         ],
         style="1200px;margin:auto",
            language={
