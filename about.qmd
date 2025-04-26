@@ -4,7 +4,13 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 
 ---
 
+## Make a separate file that pulls stats out "from createDataTable_perSpecies import MouselrPairsCount, HumanMouseLRPairsPer", etc. and pass the variables into the index and here.
+
+
 **Understanding how ligand-receptor (LR) pairs mediate cell-cell communication is essential for advancing biological and medical discoveries. ConnectomeDB, launched in 2015, is an ongoing project designed to create a comprehensive and highly accurate database of interacting LR pairs and analysis tools to enhance the understanding of cell-cell communication in humans and other species.**
+
+**Developers**: [**Perkins Systems Biology & Genomics Lab**](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [**YCU Bioinformatics Lab**](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/). **Please** [**cite us**](citeus.qmd) if you are using ConnectomeDB or our related tool.
+<span class="half-break"></span>
 
 
 ::: {.panel-tabset}
@@ -14,21 +20,22 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 #### **ConnectomeDB2025 - Database & Online Resource for Cell-to-Cell Communication Predictions**
 <span class="half-break"></span>
 
-- **5,000+ Manually Curated Human LR pairs**: most comprehensive and most accurate with primary literature support\
-- **2,500+ Ligands** & **2,500+ Receptors**: gene cards with extensive metadata and annotations\
+- **3,364 <variable> Manually Curated Human LR pairs**: comprehensive and most accurate with primary literature support\
+- **1,073 <variable> Ligands** & **870 [variable] Receptors**: gene cards with extensive metadata and annotations\
 - **Biologically Relevant Content**: ontologies, cancers and other diseases annotations\
-- **Homologous Interactions**: ~93% LR pairs in mouse and other vertebrate species\
+- **Homologous Interactions**: ~98% <variable> LR pairs in mouse and other vertebrate species\
+ - **Free, no-code, and user-friendly resource**: developped with <a href='https://quarto.org/' target='_blank'>Quarto 1.6+</a> and <a href='https://www.biorender.com/' target='_blank'> BioRender</a> 
 
 <span class="half-break"></span>
-**Publication**: [ ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Title, 2025)](about.qmd) *(TBA)*  
-**GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB>  *(Currently open to developers only)*
+**Publication**: [ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Title, 2025)](about.qmd)  
+**GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB>
 
 ## **How to use ConnectomeDB?**
 
 #### **Using ConnectomeDB2025**
 <span class="half-break"></span>
 
-The online implementation of ConnectomeDB2025 is a free, no-code, and user-friendly resource developed using <a href='https://quarto.org/' target='_blank'>Quarto 1.6+</a> and <a href='https://www.biorender.com/' target='_blank'> BioRender</a> images. Only a web browser and an internet connection are needed to use this resource. Please read our [**Terms & Conditions**](policy.qmd) before using this website. 
+Online implementation of ConnectomeDB2025 requires only a web browser and an internet connection. Read our [**Terms & Conditions**](policy.qmd) before using this website. 
 
 <span class="half-break"></span>
 **Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [our tutorials](tutorials.qmd).
@@ -39,14 +46,16 @@ The online implementation of ConnectomeDB2025 is a free, no-code, and user-frien
 <span class="half-break"></span>
 
 We welcome your feedback and suggestions for improving ConnectomeDB content and would be glad to hear any ideas for further development.  
-If you would like to contribute to the ConnectomeDB project, please visit the [**GitHub repository**](https://github.com/bioinfo-YCU/ConnectomeDB) *(Currently open to developers only)* or [email us](mailto:need_to_think@com).
+If you would like to contribute to the ConnectomeDB project, please visit the [**GitHub repository**](https://github.com/bioinfo-YCU/ConnectomeDB) or [email us](mailto:need_to_think@com).
 
 ## **Try NATMI**
 
 #### **NATMI (Network Analysis Toolkit for Multicellular Interactions)**
 <span class="half-break"></span>
 
-**NATMI** is our Python-based toolkit designed for constructing and analyzing multi-cellular communication networks in multiple species. NATMI can use both single-cell and bulk gene expression and proteomic data to predict cell-to-cell communication at the levels of niches, tissues, and the entire organism.
+- our *Python-based toolkit* designed for constructing and analyzing multi-cellular communication networks in multiple species
+- predicts cell-to-cell communication at the levels of niches, tissues, and the entire organism
+- can use both single-cell and bulk gene expression and proteomic data
 
 <span class="half-break"></span>
 
@@ -56,7 +65,7 @@ If you would like to contribute to the ConnectomeDB project, please visit the [*
 
 ## **Questions?**
 
-#### **Let Us Know**
+#### **Let us Help You**
 <span class="half-break"></span>
 
 For questions related to the **ConnectomeDB2025 online resource**, please fill out the [Inquiry form](https://forms.gle/m7k5vygRPdTRdaTh6) below or contact us via this [email](mailto:bioinfo@yokohama-cu.ac.jp).  
@@ -67,5 +76,3 @@ For general inquiries, please send Alistair, Jordan, and Rui an [email](mailto:a
 
 :::
 
-**Developers**: [Perkins Systems Biology & Genomics Lab](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [YCU Bioinformatics Lab](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/). If you are using ConnectomeDB or our related tools, please [cite us](citeus.qmd). 
-<span class="half-break"></span>
