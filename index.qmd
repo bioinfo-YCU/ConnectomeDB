@@ -80,7 +80,7 @@ display(HTML(value))
 
 ::: {.card padding="3px"}
 
-### &nbsp; {{< fa search >}} PubMed Evidence Count
+### &nbsp; {{< fa search >}} Primary Literature Sources? [PubMed Evidence Count]
 
 ***
 
