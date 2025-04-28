@@ -34,8 +34,8 @@ from createDataTable import (
 #### **ConnectomeDB2025 - Database & Online Resource for Cell-to-Cell Communication Predictions**
 <span class="half-break"></span>
 
-- **`{python} lrPairsCount`  Manually Curated Human LR pairs**: comprehensive and most accurate with primary literature support\
-- **`{python} ligandCount` Ligands** & **`{python} receptorCount` Receptors**: gene cards with extensive metadata and annotations\
+- **`{python} f"{lrPairsCount:,}"`  Manually Curated Human LR pairs**: comprehensive and most accurate with primary literature support\
+- **`{python} f"{ligandCount:,}"` Ligands** & **`{python} f"{receptorCount:,}"` Receptors**: gene cards with extensive metadata and annotations\
 - **Biologically Relevant Content**: ontologies, cancers and other diseases annotations\
 - **Homologous Interactions**: ~98% <variable> LR pairs in mouse and other vertebrate species\
  - **Free, no-code, and user-friendly resource**: developped with <a href='https://quarto.org/' target='_blank'>Quarto 1.6+</a> and <a href='https://www.biorender.com/' target='_blank'> BioRender</a> 

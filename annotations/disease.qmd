@@ -44,13 +44,13 @@ header-includes: |
 <style>
 /* Target the first search pane */
 .dtsp-searchPane:first-child::before {
-    content: "Ligand symbol and aliases";
+    content: "Ligand Symbol and Aliases";
     font-weight: bold;
 }
 
 /* Target the second search pane */
 .dtsp-searchPane:nth-child(2)::before {
-    content: "Receptor symbol and aliases";
+    content: "Receptor Symbol and Aliases";
     font-weight: bold;
 }
 
