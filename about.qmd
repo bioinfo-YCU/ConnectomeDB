@@ -5,7 +5,7 @@ execute:
   warnings: false  # Add this line to suppress warnings globally
 ---
 
----
+***
 
 
 **Understanding how ligand-receptor (LR) pairs mediate cell-cell communication is essential for advancing biological and medical discoveries. ConnectomeDB, launched in 2015, is an ongoing project designed to create a comprehensive and highly accurate database of interacting LR pairs and analysis tools to enhance the understanding of cell-cell communication in humans and other species.**
@@ -17,6 +17,9 @@ execute:
 ```{python}
 import os
 import sys
+import pandas as pd
+import warnings
+warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
 sys.path.append(os.path.abspath("src"))  # Add src directory to path
 from createDataTable import (
     lrPairsCount,
@@ -38,7 +41,7 @@ from createDataTable import (
 - **`{python} f"{ligandCount:,}"` Ligands** & **`{python} f"{receptorCount:,}"` Receptors**: gene cards with extensive metadata and annotations\
 - **Biologically Relevant Content**: ontologies, cancers and other diseases annotations\
 - **Homologous Interactions**: ~98% <variable> LR pairs in mouse and other vertebrate species\
- - **Free, no-code, and user-friendly resource**: developped with <a href='https://quarto.org/' target='_blank'>Quarto 1.6+</a> and <a href='https://www.biorender.com/' target='_blank'> BioRender</a> 
+ - **Free, no-code, and user-friendly resource**: developed with <a href='https://quarto.org/' target='_blank'>Quarto 1.6+</a> and <a href='https://www.biorender.com/' target='_blank'> BioRender</a> 
 
 <span class="half-break"></span>
 **Publication**: [ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Title, 2025)](about.qmd)  
