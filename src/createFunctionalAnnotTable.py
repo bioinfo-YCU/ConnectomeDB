@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 from createDataTable import gene_pair0, gene_pair
 import warnings
 
-gene_pair_annot = gene_pair0[["Interaction ID", "Human LR Pair", "Cancer-related", "Top Pathway"]]
+gene_pair_annot = gene_pair0[["Interaction ID", "Human LR Pair", "Cancer-related", "Top Pathway", "Ligand symbol and aliases",  "Receptor symbol and aliases"]]
 df= pd.read_csv("data/disease_annotations_per_pair.csv")
 df_cat=pd.read_csv("data/disease_categories.csv")
 mapping = dict(zip(df_cat['Disease Name'], df_cat['Category']))
@@ -28,7 +28,7 @@ gene_pair_annot = gene_pair_annot.rename(columns={
                             )
 
 # reorder
-gene_pair_annot = gene_pair_annot[["Interaction ID", "Human LR Pair", "Disease", "Disease Type", "Cancer-related",  "Related Pathway", "Top Pathway"]]
+gene_pair_annot = gene_pair_annot[["Interaction ID", "Human LR Pair", "Disease", "Disease Type", "Cancer-related",  "Related Pathway", "Top Pathway", "Ligand symbol and aliases",  "Receptor symbol and aliases"]]
 gene_pair_annot["Disease"] = gene_pair_annot["Disease"].apply(
     lambda x: "unknown" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", ""] else x)
 gene_pair_annot["Disease Type"] = gene_pair_annot["Disease Type"].apply(
@@ -39,7 +39,7 @@ gene_pair_annot["Related Pathway"] = gene_pair_annot["Related Pathway"].apply(
 gene_pair_annot = gene_pair_annot.reset_index(drop=True)
 
 # Separate Disease and Pathway and then rm duplicates
-gene_pair_disease = gene_pair_annot[["Interaction ID", "Human LR Pair", "Disease", "Disease Type", "Cancer-related"]]
+gene_pair_disease = gene_pair_annot[["Interaction ID", "Human LR Pair", "Disease", "Disease Type", "Cancer-related", "Ligand symbol and aliases",  "Receptor symbol and aliases"]]
 gene_pair_disease = gene_pair_disease.drop_duplicates()
 gene_pair_disease=gene_pair_disease.reset_index(drop=True)  
 
@@ -61,7 +61,7 @@ gene_pair_disease["Human LR Pair"] = [
     f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrPairOrig}.html">{lrPair}</a>'
     for lrPairOrig, lrPair in zip(gene_pair_disease["Human LR Pair"], gene_pair_disease["Human LR Pair"])
 ]
-gene_pair_pathway = gene_pair_annot[["Interaction ID", "Human LR Pair", "Related Pathway", "Top Pathway"]]
+gene_pair_pathway = gene_pair_annot[["Interaction ID", "Human LR Pair", "Related Pathway", "Top Pathway", "Ligand symbol and aliases",  "Receptor symbol and aliases"]]
 gene_pair_pathway = gene_pair_pathway.drop_duplicates()
 gene_pair_pathway=gene_pair_pathway.reset_index(drop=True)  
 def generate_perplexity_link_pathway(row):

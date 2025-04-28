@@ -43,12 +43,24 @@ header-includes: |
 <style>
 /* Target the first search pane */
 .dtsp-searchPane:first-child::before {
-    content: "Top Pathway";
+    content: "Ligand symbol and aliases";
     font-weight: bold;
 }
 
 /* Target the second search pane */
 .dtsp-searchPane:nth-child(2)::before {
+    content: "Receptor symbol and aliases";
+    font-weight: bold;
+}
+
+/* Target the third search pane */
+.dtsp-searchPane:nth-child(3)::before {
+    content: "Top Pathway";
+    font-weight: bold;
+}
+
+/* Target the fourth search pane */
+.dtsp-searchPane:nth-child(4)::before {
     content: "Related Pathway";
     font-weight: bold;
 }
@@ -81,7 +93,7 @@ def update_table():
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
-                     "columns": [3,2], 
+                     "columns": [4,5,3,2], 
                      "regex": True, "caseInsensitive": False, 
                      "smart": True, 
                      "initCollapsed": True, 
@@ -106,7 +118,8 @@ def update_table():
             {"extend": "copyHtml5", "title": "Source"},
         ],
         columnDefs=[
-            {"className": "dt-center", "targets": [4]}, 
+            {"className": "dt-center", "targets": [6]}, 
+            {"targets": [4,5], "visible": False} 
             # {"width": "100px", "targets": "_all"},
         ],
         style="1200px;margin:auto",
