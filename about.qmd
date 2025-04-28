@@ -1,10 +1,11 @@
 ---
 title: "{{< fa circle-info >}} About ConnectomeDB"
+execute:
+  echo: false
+  warnings: false  # Add this line to suppress warnings globally
 ---
 
 ---
-
-## Make a separate file that pulls stats out "from createDataTable_perSpecies import MouselrPairsCount, HumanMouseLRPairsPer", etc. and pass the variables into the index and here.
 
 
 **Understanding how ligand-receptor (LR) pairs mediate cell-cell communication is essential for advancing biological and medical discoveries. ConnectomeDB, launched in 2015, is an ongoing project designed to create a comprehensive and highly accurate database of interacting LR pairs and analysis tools to enhance the understanding of cell-cell communication in humans and other species.**
@@ -13,6 +14,19 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 <span class="half-break"></span>
 
 
+```{python}
+import os
+import sys
+sys.path.append(os.path.abspath("src"))  # Add src directory to path
+from createDataTable import (
+    lrPairsCount,
+    ligandCount,
+    receptorCount,
+    sourceCount
+)
+
+```
+
 ::: {.panel-tabset}
 
 ## **What is ConnectomeDB2025?**
@@ -20,8 +34,8 @@ title: "{{< fa circle-info >}} About ConnectomeDB"
 #### **ConnectomeDB2025 - Database & Online Resource for Cell-to-Cell Communication Predictions**
 <span class="half-break"></span>
 
-- **3,364 <variable> Manually Curated Human LR pairs**: comprehensive and most accurate with primary literature support\
-- **1,073 <variable> Ligands** & **870 [variable] Receptors**: gene cards with extensive metadata and annotations\
+- **`{python} lrPairsCount`  Manually Curated Human LR pairs**: comprehensive and most accurate with primary literature support\
+- **`{python} ligandCount` Ligands** & **`{python} receptorCount` Receptors**: gene cards with extensive metadata and annotations\
 - **Biologically Relevant Content**: ontologies, cancers and other diseases annotations\
 - **Homologous Interactions**: ~98% <variable> LR pairs in mouse and other vertebrate species\
  - **Free, no-code, and user-friendly resource**: developped with <a href='https://quarto.org/' target='_blank'>Quarto 1.6+</a> and <a href='https://www.biorender.com/' target='_blank'> BioRender</a> 

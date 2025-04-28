@@ -44,18 +44,30 @@ header-includes: |
 <style>
 /* Target the first search pane */
 .dtsp-searchPane:first-child::before {
-    content: "Cancer-related";
+    content: "Ligand symbol and aliases";
     font-weight: bold;
 }
 
 /* Target the second search pane */
 .dtsp-searchPane:nth-child(2)::before {
-    content: "Disease Type";
+    content: "Receptor symbol and aliases";
     font-weight: bold;
 }
 
 /* Target the third search pane */
 .dtsp-searchPane:nth-child(3)::before {
+    content: "Cancer-related";
+    font-weight: bold;
+}
+
+/* Target the fourth search pane */
+.dtsp-searchPane:nth-child(4)::before {
+    content: "Disease Type";
+    font-weight: bold;
+}
+
+/* Target the fifth search pane */
+.dtsp-searchPane:nth-child(5)::before {
     content: "Disease";
     font-weight: bold;
 }
@@ -90,7 +102,7 @@ def update_table():
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
-                     "columns": [4,3,2], 
+                     "columns": [5,6,4,3,2], 
                      "regex": True, "caseInsensitive": False, 
                      "smart": True, 
                      "initCollapsed": True, 
@@ -115,8 +127,8 @@ def update_table():
             {"extend": "copyHtml5", "title": "Source"},
         ],
         columnDefs=[
-            {"className": "dt-center", "targets": [5]}, 
-            {"className": "dt-center", "targets": [5]}, 
+            {"className": "dt-center", "targets": [7]}, 
+            {"targets": [5,6], "visible": False} 
             # {"width": "100px", "targets": "_all"},
         ],
         style="1200px;margin:auto",

@@ -47,9 +47,9 @@ pop_up_info["Previous symbol"] = pop_up_info["Previous symbol"].apply(
     lambda x: "N/A" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", ""] else x
 )
 
-# Replace "|" with ";"
-pop_up_info["Alias symbol"] = [value.replace("|", ";") for value in pop_up_info["Alias symbol"]]
-pop_up_info["Previous symbol"] = [value.replace("|", ";") for value in pop_up_info["Previous symbol"]]
+# Replace "|" with ", "
+pop_up_info["Alias symbol"] = [value.replace("|", ", ") for value in pop_up_info["Alias symbol"]]
+pop_up_info["Previous symbol"] = [value.replace("|", ", ") for value in pop_up_info["Previous symbol"]]
 
 pop_up_info["Date symbol changed"] = pop_up_info["Date symbol changed"].apply(
     lambda x: "N/A" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", ""] else x
@@ -196,11 +196,11 @@ gene_pair = gene_pair.rename(columns={"Approved name": "Receptor name",
 
 gene_pair = gene_pair.drop(columns=["HGNC ID"])
 
-# Add new columns where all ligand symbols and receptor symbols merged in one column
-gene_pair['Ligand symbols'] = gene_pair['Ligand'] + ";" + gene_pair['Ligand Old symbol'] + ";" + gene_pair['Ligand Aliases']
-gene_pair['Receptor symbols'] = gene_pair['Receptor'] + ";" + gene_pair['Receptor Old symbol'] + ";" + gene_pair['Receptor Aliases']
-gene_pair['Ligand symbols'] = gene_pair['Ligand symbols'].apply(lambda x: str(x).replace(";N/A", ""))
-gene_pair['Receptor symbols'] = gene_pair['Receptor symbols'].apply(lambda x: str(x).replace(";N/A", ""))
+# Add new columns where all Ligand symbol and aliases and Receptor symbol and aliases merged in one column
+gene_pair['Ligand symbol and aliases'] = gene_pair['Ligand'] + ", " + gene_pair['Ligand Old symbol'] + ", " + gene_pair['Ligand Aliases']
+gene_pair['Receptor symbol and aliases'] = gene_pair['Receptor'] + ", " + gene_pair['Receptor Old symbol'] + ", " + gene_pair['Receptor Aliases']
+gene_pair['Ligand symbol and aliases'] = gene_pair['Ligand symbol and aliases'].apply(lambda x: str(x).replace(", N/A", ""))
+gene_pair['Receptor symbol and aliases'] = gene_pair['Receptor symbol and aliases'].apply(lambda x: str(x).replace(", N/A", ""))
 
 # Add MGI name
 gene_pair = gene_pair.merge(MGI_info, how='left', left_on='Receptor MGI ID', right_on='MGI ID')
@@ -477,10 +477,10 @@ selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)
 # was "PMID support"
 gene_pair0 = gene_pair[['Interaction ID', 'Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PMID', 
        'Ligand HGNC ID', 'Ligand location', 'Receptor HGNC ID',
-       'Receptor location', 'Ligand name', 'Receptor name', 'Top Pathway', 'Cancer-related', 'Disease Type', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', "Ligand symbols",  "Receptor symbols"] + mouse_columns + rat_columns]
+       'Receptor location', 'Ligand name', 'Receptor name', 'Top Pathway', 'Cancer-related', 'Disease Type', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', "Ligand symbol and aliases",  "Receptor symbol and aliases"] + mouse_columns + rat_columns]
 
 gene_pair = gene_pair[['Interaction ID', 'Human LR Pair', 'Database Source', 'Ligand', 'Receptor', 'Perplexity', 'PMID', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', 'Ligand HGNC ID', 'Receptor HGNC ID', 'Ligand location', 'Receptor location',
-        'Ligand name', 'Receptor name','Top Pathway', 'Cancer-related', 'Disease Type', "Ligand symbols",  "Receptor symbols"] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
+        'Ligand name', 'Receptor name','Top Pathway', 'Cancer-related', 'Disease Type', "Ligand symbol and aliases",  "Receptor symbol and aliases"] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
 
 
 # gene symbol

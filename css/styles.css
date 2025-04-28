@@ -495,5 +495,16 @@ table.dataTable thead th {
     color: #d4af37 !important;
 }
 
+.clickable-icon {
+  color: #e67e22; /* A bright orange color */
+  margin-left: 8px;
+  font-size: 0.8em; /* Slightly bigger to catch the eye */
+  vertical-align: middle; /* Aligns nicely with text */
+  transition: color 0.3s ease;
+}
+
+a:hover .clickable-icon {
+  color: #d35400; /* Darker orange on hover */
+}
 
 
