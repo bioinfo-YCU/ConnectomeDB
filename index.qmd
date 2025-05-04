@@ -40,7 +40,7 @@ display(HTML(output))
 
 ::: {.card padding="3px"}
 
-### &nbsp; Human LR Pairs (Ligand & Receptor)
+### &nbsp; Human LR Pairs (Ligands & Receptors)
 
 ***
 
