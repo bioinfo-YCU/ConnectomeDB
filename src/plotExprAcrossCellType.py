@@ -15,6 +15,8 @@ input_file = "data/ExpressionGenes.txt"
 ligand_list = gene_pair0["Ligand"].tolist()
 receptor_list = gene_pair0["Receptor"].tolist()
 unique_genes = list(set(ligand_list + receptor_list))
+output_dir = "data/gene_expr_plots"
+os.makedirs(output_dir, exist_ok=True)
 
 connectomeDB = pd.read_table(input_file, sep="\t")
 
@@ -119,6 +121,6 @@ def plot_gene_expression(df):
             paper_bgcolor='rgba(0,0,0,0)',
         )
 
-        fig.write_html(f"data/gene_expr_plots/{gene}.html")
+        fig.write_html(f"{output_dir}/{gene}.html")
 
 plot_gene_expression(connectomeDB_long)

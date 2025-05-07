@@ -62,6 +62,7 @@ pop_up_info_lim = pop_up_info_lim.drop_duplicates(subset="HGNC ID", keep="first"
 
 # Drop columns where all values are NA in gene_pair
 gene_pair = fetchGSheet.gene_pair.dropna(axis=1, how='all')
+gene_pair = gene_pair[gene_pair['LR pair'] != '']
 
 # for now, keep only the following columns
 gene_pair = gene_pair[['LR pair', 'Ligand', 'Ligand.HGNC', 'Receptor', 'Receptor.HGNC',
@@ -69,8 +70,11 @@ gene_pair = gene_pair[['LR pair', 'Ligand', 'Ligand.HGNC', 'Receptor', 'Receptor
                        'bind in trans?', 'bidirectional signalling?',
                        'interaction type', 'original source']]
 
+gene_pair = gene_pair.dropna(subset=['LR pair'])
+
 # some PMIDs kick in with "," so replace
 gene_pair["PMID"] = [value.replace(",", "") for value in gene_pair["PMID"]]
+gene_pair = gene_pair.dropna(subset=['PMID'])
 
 # Mapping for replacements
 mapping = dict(zip(fetchGSheet.src_info['original source'], fetchGSheet.src_info['shortname']))
@@ -342,6 +346,7 @@ agg_func = lambda x: ','.join(sorted(set(map(str, x))))
 
 # Group and aggregate all columns except 'LR pair'
 gene_pair = gene_pair.groupby('Human LR Pair').agg(agg_func).reset_index()
+gene_pair = gene_pair[gene_pair['Human LR Pair'] != '']
 DBlength = len(gene_pair)
 gene_pair["Interaction ID"] = [f"CDB{str(i).zfill(5)}" for i in range(1, DBlength + 1)]
 
