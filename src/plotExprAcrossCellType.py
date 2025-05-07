@@ -25,7 +25,7 @@ intersection = pd.Series(list(set(connectomeDB['ApprovedSymbol']).intersection(u
 connectomeDB = connectomeDB[connectomeDB["ApprovedSymbol"].isin(intersection)]
 
 # log(x+1) transform
-connectomeDB.iloc[:, 1:] = np.log1p(connectomeDB.iloc[:, 1:])
+#connectomeDB.iloc[:, 1:] = np.log1p(connectomeDB.iloc[:, 1:])
 
 # Reshape to long format
 connectomeDB_long = connectomeDB.melt(id_vars=["ApprovedSymbol"], 
@@ -89,7 +89,13 @@ def plot_gene_expression(df):
             autosize=True,
             width=450,
             title="",
-            xaxis_title="log(x+1) Expr value",
+            xaxis=dict(
+                title="Expr value (TPM)",
+                type="log",  # Set x-axis to log scale
+                tickmode='array',  # Manually control tick marks
+                tickvals=[1, 10, 100, 1000, 10000, 100000, 1000000],  # Define log scale ticks
+                ticktext=['1', '10', '100', '1000', '10000', '1000000'],  # Corresponding tick labels
+            ),
             yaxis=dict(
                 tickmode='array',
                 tickvals=np.arange(num_bars),
