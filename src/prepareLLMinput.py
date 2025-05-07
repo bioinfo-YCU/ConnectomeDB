@@ -15,7 +15,7 @@ file2 = gene_pair00
 file1['PMID'] = file1['PMID'].astype(str)
 
 # Split PMIDs in gene_pair00
-file2['PMID_List'] = file2['PMID support'].apply(lambda x: x.split(',') if isinstance(x, str) else [])
+file2['PMID_List'] = file2['PMID'].apply(lambda x: x.split(',') if isinstance(x, str) else [])
 
 # Create PMID → Abstract map
 pmid_to_abstract = dict(zip(file1['PMID'], file1['Abstract']))

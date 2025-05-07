@@ -23,9 +23,10 @@ def make_ids_unique(series):
         )
     ]
 
-
+gene_pair0 = gene_pair0.dropna(subset=['Human LR Pair'])
 mapping_ID = dict(zip(gene_pair0['Human LR Pair'], gene_pair0['Interaction ID']))
 gene_pair_PMID = fetchGSheet.gene_pair.dropna(axis=1, how='all')
+gene_pair_PMID = gene_pair_PMID[gene_pair_PMID['LR pair'] != '']
 gene_pair_PMID= gene_pair_PMID[["LR pair", "PMID", "original source"]]
 # Mapping for replacements
 mapping = dict(zip(fetchGSheet.src_info['original source'], fetchGSheet.src_info['shortname']))
@@ -70,7 +71,7 @@ gene_pair_trip["Title"] = [
 ]
 
 gene_pair_trip["Journal"] = gene_pair_trip["Journal"].apply(
-    lambda x: "BioRxiv (preprint)" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", "NaN", ""] else x
+    lambda x: "bioRxiv" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", "NaN", ""] else x
 )
 
 
