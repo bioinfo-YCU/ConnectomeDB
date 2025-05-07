@@ -68,6 +68,7 @@ gene_pair = gene_pair[['LR pair', 'Ligand', 'Ligand.HGNC', 'Receptor', 'Receptor
                        'perplexity link', 'PMID', 'binding location', 
                        'bind in trans?', 'bidirectional signalling?',
                        'interaction type', 'original source']]
+
 # some PMIDs kick in with "," so replace
 gene_pair["PMID"] = [value.replace(",", "") for value in gene_pair["PMID"]]
 
@@ -77,7 +78,7 @@ mapping = dict(zip(fetchGSheet.src_info['original source'], fetchGSheet.src_info
 gene_pair['original source'] = gene_pair['original source'].replace(mapping)
 
 ## add Ligand/Receptor Location
-mapping_loc = dict(zip(fetchGSheet.loc_info['ApprovedSymbol'], fetchGSheet.loc_info['Localization']))
+mapping_loc = dict(zip(fetchGSheet.loc_info['Gene name'], fetchGSheet.loc_info['Localization'])) # previously etchGSheet.loc_info['ApprovedSymbol'] # if proteome_HPA, change Gene name to Gene
 gene_pair['Ligand location'] = gene_pair['Ligand'].replace(mapping_loc)
 gene_pair['Receptor location'] = gene_pair['Receptor'].replace(mapping_loc)
 # Set missing mappings to 'unknown'

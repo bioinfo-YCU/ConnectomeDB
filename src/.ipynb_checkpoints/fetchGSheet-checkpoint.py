@@ -40,6 +40,6 @@ def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file):
 
 # Fetching data from Google Sheets
 gene_pair = fetch_google_sheet_data(sheet_ID, "FROZEN LIST", credentials_file)
-loc_info = fetch_google_sheet_data(sheet_ID, "localization", credentials_file)
+loc_info = fetch_google_sheet_data(sheet_ID, "localization_HPA", credentials_file) # previously based on localization # another option is proteome_HPA
 src_info = fetch_google_sheet_data(sheet_ID, "sourceAbbv", credentials_file)
 #pop_up_info = fetch_google_sheet_data(sheet_ID, "HGNC_Dec2024", credentials_file)
