@@ -33,6 +33,7 @@ header-includes: |
 
 ***
 
+## Species (if we have relaible evidence from PMID) | Ligand Symbol & Aliases | Receptor Symbol & Aliases are the three items than can be shown on top of the DB - no more than 1 line
 
 ```{=html}
 
