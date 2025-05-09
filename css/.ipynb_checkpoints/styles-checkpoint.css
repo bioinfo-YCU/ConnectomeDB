@@ -350,8 +350,10 @@ div.dtsp-verticalButtons button {
 }
 
 .dtsp-showAll::before {
-  content: "🔍 "; /* Add text or icons before the button */
+  content: "🔍 Advanced Search"; /* Add text or icons before the button */
   padding-right: 10px; /* Adjust the spacing between the text and button */
+  color: #1f4eb6;
+  font-style: bold;
 }
 
 .dtsp-clearAll::after {

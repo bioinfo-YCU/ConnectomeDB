@@ -33,7 +33,6 @@ header-includes: |
 
 ***
 
-
 ```{=html}
 
 <style>
@@ -90,7 +89,6 @@ header-includes: |
 ```
 
 
-
 ```{python}
 import sys
 import os
@@ -122,7 +120,7 @@ def update_table():
     show(
         human_gene_pair,
         keys=True,
-        layout={"top": ["searchPanes"],
+        layout={"bottom": ["searchPanes"],
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
@@ -141,7 +139,7 @@ def update_table():
         selected_rows=[],
         responsive=True,  # Enable responsive behavior
         theme='grid',
-        search={"regex": True, "caseInsensitive": False, "smart": True},
+        search={"regex": True, "caseInsensitive": True, "smart": True},
         lengthMenu=[ [10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"] ],
         buttons=[
             "pageLength",  
@@ -152,8 +150,9 @@ def update_table():
         ],
         columnDefs=[
             {"className": "dt-center", "targets": [5]}, 
+            {"search": False, "targets": [5]},
             # {"width": "100px", "targets": "_all"},
-            {"targets": list(range(-1, -15, -1)), "visible": False} # Hide last 14 columns by default
+            {"visible": False, "targets": list(range(-1, -15, -1))} # Hide last 14 columns by default
         ],
         style="1200px;margin:auto",
            language={
@@ -168,15 +167,39 @@ def update_table():
         maxBytes=0,  # So it does not downsample
         initCode='''
             $(document).on('draw.dt', function () {
-                $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
+                const table = $($.fn.dataTable.tables(true)).DataTable();
+                const searchTerm = table.search().trim();
+
+                table.rows().every(function () {
+                    const data = this.data();
+                    let isExactMatch = false;
+
+                    for (let i = 0; i < data.length; i++) {
+                        let cellText = $('<div>').html(data[i]).text().trim();
+                        if (cellText === searchTerm) {
+                            isExactMatch = true;
+                            break;
+                        }
+                    }
+
+                    $(this.node()).toggleClass('exact-match', isExactMatch);
+                });
+
+                const rows = table.rows({ page: 'current' }).nodes().to$();
+                rows.sort(function (a, b) {
+                    return $(b).hasClass('exact-match') - $(a).hasClass('exact-match');
+                }).appendTo(table.table().body());
             });
         ''',
-    )
-      
-      
+
+)
 
 # Call the function to render the table
 update_table()
 ```
 
 {{< include hint.qmd >}}
+
+### Advanced Search
+
+
