@@ -20,18 +20,26 @@ os.makedirs(output_dir, exist_ok=True)
 
 connectomeDB = pd.read_table(input_file, sep="\t")
 
+# Drop metadata and unwanted columns
 if "Taxon" in connectomeDB.columns:
-    connectomeDB = connectomeDB.drop(columns=["Localization", "Taxon"] + [col for col in connectomeDB.columns if col.startswith("F5_")])
+    connectomeDB = connectomeDB.drop(columns=["Localization", "Taxon"] + 
+                                     [col for col in connectomeDB.columns if col.startswith("F5_")])
 
-intersection = pd.Series(list(set(connectomeDB['ApprovedSymbol']).intersection(unique_genes)))
+# Filter to genes of interest
+intersection = set(connectomeDB['ApprovedSymbol']).intersection(unique_genes)
 connectomeDB = connectomeDB[connectomeDB["ApprovedSymbol"].isin(intersection)]
 
-# log(x+1) transform
-#connectomeDB.iloc[:, 1:] = np.log1p(connectomeDB.iloc[:, 1:])
+# Isolate expression data and normalize per gene (row)
+expr_data = connectomeDB.drop(columns=["ApprovedSymbol"])
+expr_data_scaled = expr_data.div(expr_data.max(axis=1).replace(0, np.nan), axis=0).fillna(0)
+
+# Reattach gene symbols
+connectomeDB_scaled = pd.concat([connectomeDB["ApprovedSymbol"], expr_data_scaled], axis=1)
 
 # Reshape to long format
-connectomeDB_long = connectomeDB.melt(id_vars=["ApprovedSymbol"], 
-                                      var_name="cellTypes", value_name="expr_val")
+connectomeDB_long = connectomeDB_scaled.melt(id_vars="ApprovedSymbol", 
+                                              var_name="cellTypes", 
+                                              value_name="expr_val")
 
 # Merge in categories
 cellCat = pd.read_csv("data/cell_categories.csv")
@@ -93,10 +101,10 @@ def plot_gene_expression(df):
             title="",
             xaxis=dict(
                 title="Expr value (TPM)",
-                type="log",  # Set x-axis to log scale
-                tickmode='array',  # Manually control tick marks
-                tickvals=[1, 10, 100, 1000, 10000, 100000, 1000000],  # Define log scale ticks
-                ticktext=['1', '10', '100', '1000', '10000', '1000000'],  # Corresponding tick labels
+                # type="log",  # Set x-axis to log scale
+                # tickmode='array',  # Manually control tick marks
+                #tickvals=[1, 10, 100, 1000, 10000, 100000, 1000000],  # Define log scale ticks
+                # ticktext=['1', '10', '100', '1000', '10000', '1000000'],  # Corresponding tick labels
             ),
             yaxis=dict(
                 tickmode='array',
