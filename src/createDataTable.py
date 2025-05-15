@@ -63,6 +63,8 @@ pop_up_info_lim = pop_up_info_lim.drop_duplicates(subset="HGNC ID", keep="first"
 # Drop columns where all values are NA in gene_pair
 gene_pair = fetchGSheet.gene_pair.dropna(axis=1, how='all')
 gene_pair = gene_pair[gene_pair['LR pair'] != '']
+# for now set source count as triplicates
+sourceCount = len(gene_pair[['LR pair']])
 
 # for now, keep only the following columns
 gene_pair = gene_pair[['LR pair', 'Ligand', 'Ligand.HGNC', 'Receptor', 'Receptor.HGNC',
@@ -333,8 +335,7 @@ RatLigandCount = len(gene_pair["Ligand RGD ID"].unique())
 RatReceptorCount = len(gene_pair["Receptor RGD ID"].unique())
 
 gene_pair["PMID"] = [value.replace(" ", "") for value in gene_pair["PMID"]] # was'PMID support'
-# for now set source count as triplicates
-sourceCount = len(gene_pair[['Human LR Pair']])
+
 
 source = np.array(gene_pair["PMID"].unique())
 source = source.astype(str)
