@@ -112,6 +112,7 @@ def update_table1():
         human_gene_pairTrip,
         keys=True,
         layout={"bottom": ["searchPanes"],
+                "top": ["info", "paging"],
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
