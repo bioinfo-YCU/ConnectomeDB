@@ -111,7 +111,7 @@ def update_table1():
     show(
         human_gene_pairTrip,
         keys=True,
-        layout={"top": ["searchPanes"],
+        layout={"bottom": ["searchPanes"],
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
@@ -146,8 +146,8 @@ def update_table1():
         ],
         style="1200px;margin:auto",
            language={
-            "search": "Search Any Column:",
-            "searchPlaceholder": "e.g. CD24",
+            "search": "Search Gene of Interest:",
+            "searchPlaceholder": "e.g. CD80",
             "searchPanesPlaceholder": "",
            # "searchBuilder": {
            #     "title": "Advanced Search <i>Multiple filtering, AND/OR condition</i>" 

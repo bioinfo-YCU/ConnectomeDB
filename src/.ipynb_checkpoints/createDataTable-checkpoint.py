@@ -82,7 +82,7 @@ mapping = dict(zip(fetchGSheet.src_info['original source'], fetchGSheet.src_info
 gene_pair['original source'] = gene_pair['original source'].replace(mapping)
 
 ## add Ligand/Receptor Location
-mapping_loc = dict(zip(fetchGSheet.loc_info['Gene name'], fetchGSheet.loc_info['Localization'])) # previously etchGSheet.loc_info['ApprovedSymbol'] # if proteome_HPA, change Gene name to Gene
+mapping_loc = dict(zip(fetchGSheet.loc_info['ApprovedSymbol'], fetchGSheet.loc_info['Localization'])) # previously fetchGSheet.loc_info['ApprovedSymbol'] # if proteome_HPA, change Gene name to ApprovedSymbol
 gene_pair['Ligand location'] = gene_pair['Ligand'].replace(mapping_loc)
 gene_pair['Receptor location'] = gene_pair['Receptor'].replace(mapping_loc)
 # Set missing mappings to 'unknown'
@@ -127,13 +127,19 @@ df_sorted = df.reindex(df['weight'].abs().sort_values(ascending=False).index)
 # Keep only the first occurrence for each unique 'interaction'
 df_unique = df_sorted.drop_duplicates(subset='interaction', keep='first')
 df = df_unique.reset_index(drop=True)
-top_pathway_df = df[["interaction", "source"]]
+top_pathway_df=fetchGSheet.kegg_pathway_info[["LR Pair", "kegg_pathway_id", "kegg_relationship", "kegg_pathway_name"]].copy()
+top_pathway_df["kegg_pathway_id"] = [
+    f'<a href="https://www.kegg.jp/pathway/{id}" target="_blank">{id}</a>'
+    for id in top_pathway_df["kegg_pathway_id"]]
+
 top_pathway_df = top_pathway_df.rename(columns={
-                                      "source": "Top Pathway"
+                                      "kegg_pathway_name": "KEGG Pathway",
+                                      "kegg_relationship": "KEGG relationship",
+                                      "kegg_pathway_id": "KEGG Pathway ID"
+    
 })
-top_pathway_df["interaction"] = [value.replace("^", " ") for value in top_pathway_df["interaction"]]
-gene_pair = gene_pair.merge(top_pathway_df, how='left', left_on='Human LR Pair', right_on='interaction')
-gene_pair = gene_pair.drop(columns=["interaction"])
+gene_pair = gene_pair.merge(top_pathway_df, how='left', left_on='Human LR Pair', right_on='LR Pair')
+gene_pair = gene_pair.drop(columns=["LR Pair", "KEGG relationship", "KEGG Pathway ID"])
 # Add Disease Category per pair
 df= pd.read_csv("data/disease_annotations_per_pair.csv")
 df_cat=pd.read_csv("data/disease_categories.csv")
@@ -419,7 +425,7 @@ def generate_links_with_doi(df, gene_column, pmid_column):
 gene_pair = generate_links_with_doi(gene_pair, gene_column="Human LR Pair", pmid_column="PMID")
 
 # for disease type, cancer-related and top pathways, explicitly say "not available"
-gene_pair["Top Pathway"] = gene_pair["Top Pathway"].apply(
+gene_pair["KEGG Pathway"] = gene_pair["KEGG Pathway"].apply(
     lambda x: "unknown" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", ""] else x
 )
 gene_pair["Disease Type"] = gene_pair["Disease Type"].apply(
@@ -483,10 +489,10 @@ selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)
 # was "PMID support"
 gene_pair0 = gene_pair[['Interaction ID', 'Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PMID', 
        'Ligand HGNC ID', 'Ligand location', 'Receptor HGNC ID',
-       'Receptor location', 'Ligand name', 'Receptor name', 'Top Pathway', 'Cancer-related', 'Disease Type', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', "Ligand symbol and aliases",  "Receptor symbol and aliases"] + mouse_columns + rat_columns]
+       'Receptor location', 'Ligand name', 'Receptor name', 'KEGG Pathway', 'Cancer-related', 'Disease Type', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', "Ligand symbol and aliases",  "Receptor symbol and aliases"] + mouse_columns + rat_columns]
 
 gene_pair = gene_pair[['Interaction ID', 'Human LR Pair', 'Database Source', 'Ligand', 'Receptor', 'Perplexity', 'PMID', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', 'Ligand HGNC ID', 'Receptor HGNC ID', 'Ligand location', 'Receptor location',
-        'Ligand name', 'Receptor name','Top Pathway', 'Cancer-related', 'Disease Type', "Ligand symbol and aliases",  "Receptor symbol and aliases"] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
+        'Ligand name', 'Receptor name','KEGG Pathway', 'Cancer-related', 'Disease Type', "Ligand symbol and aliases",  "Receptor symbol and aliases"] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
 
 
 # gene symbol

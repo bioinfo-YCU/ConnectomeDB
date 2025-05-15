@@ -64,9 +64,7 @@ body {
 .tooltip:hover .tooltip-text { visibility: visible;
                               opacity: 1; }
 
-.dt-input::placeholder {
-    font-style: italic !important;
-}
+
 
 
 /* Apply consistent margin for the main content */
@@ -300,9 +298,15 @@ span.dt-column-title input[type="text"] {
 /* Styling the placeholder text */
 .dt-input::placeholder {
     color: gray; /* Placeholder color */
-    font-style: italic; /* Make placeholder text italic */
+    font-style: italic; !important;/* Make placeholder text italic */
     opacity: 0.8; /* Optional: Slightly transparent */
 }
+
+
+input.dt-input {
+  width: 500px !important;
+}
+
 
 /* Make the title row a flex container aligned to the left */
 div.dtsp-titleRow {
