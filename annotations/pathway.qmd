@@ -55,13 +55,13 @@ header-includes: |
 
 /* Target the third search pane */
 .dtsp-searchPane:nth-child(3)::before {
-    content: "Top Pathway";
+    content: "KEGG Pathway";
     font-weight: bold;
 }
 
 /* Target the fourth search pane */
 .dtsp-searchPane:nth-child(4)::before {
-    content: "Related Pathway";
+    content: "PROGENy Pathway";
     font-weight: bold;
 }
 
@@ -93,7 +93,7 @@ def update_table():
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
-                     "columns": [4,5,3,2], 
+                     "columns": [6,7,3,5], 
                      "regex": True, "caseInsensitive": False, 
                      "smart": True, 
                      "initCollapsed": True, 
@@ -118,8 +118,8 @@ def update_table():
             {"extend": "copyHtml5", "title": "Source"},
         ],
         columnDefs=[
-            {"className": "dt-center", "targets": [6]}, 
-            {"targets": [4,5], "visible": False} 
+            {"className": "dt-center", "targets": [8]}, 
+            {"targets": [6,7], "visible": False} 
             # {"width": "100px", "targets": "_all"},
         ],
         style="1200px;margin:auto",

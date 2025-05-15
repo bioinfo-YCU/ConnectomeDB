@@ -69,7 +69,7 @@ def update_table():
         ],
         style="1200px;margin:auto",
            language={
-            "search": "Search Any Column:",
+            "search": "Search Gene of Interest:",
             "searchPlaceholder": "e.g. ENSCAFG00845024014",
            # "searchBuilder": {
            #     "title": "Advanced Search <i>Multiple filtering, AND/OR condition</i>" 
