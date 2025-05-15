@@ -381,9 +381,9 @@
         <div class="card-full-row">
             <div class="column">
                 <h2>Interaction Annotations</h2> 
-                {% if "Top Pathway" in table0_data %}
+                {% if "KEGG Pathway" in table0_data %}
                     <div>
-                        <strong>Top Pathway:</strong> {{ table0_data["Top Pathway"] }}
+                        <strong>KEGG Pathways:</strong> {{ table0_data["KEGG Pathway"] }}
                     </div>
                 {% endif %}
                 {% if "Cancer-related" in table0_data %}
@@ -393,7 +393,7 @@
                 {% endif %}
             </div>
             <div class="column">
-                <h2>Disease Type:</h2> 
+                <h2>Disease Types:</h2> 
                 {% if "Disease Type" in table0_data %}
                     <div>
                         {{ table0_data["Disease Type"] }}
