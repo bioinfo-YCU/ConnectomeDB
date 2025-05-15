@@ -100,7 +100,7 @@ def plot_gene_expression(df):
             width=450,
             title="",
             xaxis=dict(
-                title="Expr value (TPM)",
+                title="Expr value (TPM) scaled per gene",
                 # type="log",  # Set x-axis to log scale
                 # tickmode='array',  # Manually control tick marks
                 #tickvals=[1, 10, 100, 1000, 10000, 100000, 1000000],  # Define log scale ticks
