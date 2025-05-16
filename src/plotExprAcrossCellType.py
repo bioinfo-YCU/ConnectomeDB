@@ -30,14 +30,14 @@ intersection = set(connectomeDB['ApprovedSymbol']).intersection(unique_genes)
 connectomeDB = connectomeDB[connectomeDB["ApprovedSymbol"].isin(intersection)]
 
 # Isolate expression data and normalize per gene (row)
-expr_data = connectomeDB.drop(columns=["ApprovedSymbol"])
-expr_data_scaled = expr_data.div(expr_data.max(axis=1).replace(0, np.nan), axis=0).fillna(0)
+# expr_data = connectomeDB.drop(columns=["ApprovedSymbol"])
+# expr_data_scaled = expr_data.div(expr_data.max(axis=1).replace(0, np.nan), # axis=0).fillna(0)
 
 # Reattach gene symbols
-connectomeDB_scaled = pd.concat([connectomeDB["ApprovedSymbol"], expr_data_scaled], axis=1)
+# connectomeDB_scaled = pd.concat([connectomeDB["ApprovedSymbol"], # expr_data_scaled], axis=1)
 
 # Reshape to long format
-connectomeDB_long = connectomeDB_scaled.melt(id_vars="ApprovedSymbol", 
+connectomeDB_long = connectomeDB.melt(id_vars="ApprovedSymbol", 
                                               var_name="cellTypes", 
                                               value_name="expr_val")
 
@@ -100,7 +100,7 @@ def plot_gene_expression(df):
             width=450,
             title="",
             xaxis=dict(
-                title="Expr value (TPM) scaled per gene",
+                title="Expr value (TPM)",
                 # type="log",  # Set x-axis to log scale
                 # tickmode='array',  # Manually control tick marks
                 #tickvals=[1, 10, 100, 1000, 10000, 100000, 1000000],  # Define log scale ticks
