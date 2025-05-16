@@ -59,57 +59,60 @@ def plot_gene_expression(df):
         "missing": "#B0B0B0"
     }
 
-    # Define sorting order
+    # Sorting order by category
     category_order = {cat: i for i, cat in enumerate(colors.keys())}
 
     for gene, sub_df in df.groupby("ApprovedSymbol"):
         sub_df = sub_df.copy()
         sub_df["category_order"] = sub_df["cellCategory"].map(category_order).fillna(len(category_order))
 
-        # Sort bars top to bottom
+        # Sort by category and expression value
         sub_df = sub_df.sort_values(["category_order", "expr_val"], ascending=[True, False])
-        y_order = sub_df["cellTypes"].tolist()
+        sub_df = sub_df.reset_index(drop=True)
 
-        # Apply y-axis order explicitly
-        sub_df = sub_df.set_index("cellTypes").loc[y_order].reset_index()
-
-        # Get categories in top-down order, then reverse it for the legend to match
-        ordered_categories = sub_df["cellCategory"].dropna().unique().tolist()
+        # Fixed list of all cell types for consistent row order
+        all_cell_types = sub_df["cellTypes"].tolist()
+        all_categories = sub_df["cellCategory"].tolist()
 
         fig = go.Figure()
 
-        # Plot bars by category (reversed for legend alignment)
-        for category in ordered_categories:
-            category_data = sub_df[sub_df["cellCategory"] == category]
-            color = colors.get(category, "#B0B0B0")
+        # For each category, create a trace with all cell types
+        for cat, color in colors.items():
+            y_vals = []
+            x_vals = []
+            hover_vals = []
+
+            for i, row in sub_df.iterrows():
+                if row["cellCategory"] == cat:
+                    y_vals.append(row["cellTypes"])
+                    x_vals.append(row["expr_val"])
+                    hover_vals.append(row["cellCategory"])
+                else:
+                    y_vals.append(row["cellTypes"])
+                    x_vals.append(0)  # dummy bar to preserve alignment
+                    hover_vals.append(None)  # no hover
 
             fig.add_trace(go.Bar(
-                y=category_data["cellTypes"],
-                x=category_data["expr_val"],
+                y=y_vals,
+                x=x_vals,
                 orientation='h',
                 marker=dict(color=color),
-                hovertemplate='<b>%{y}</b><br>Expression Value: %{x}',
-                name=category,
-                showlegend=True,
+                name=cat,
+                customdata=np.array(hover_vals).reshape(-1, 1),
+                hovertemplate='<b>%{y}</b><br>Expression Value: %{x}<br>Category: %{customdata[0]}<extra></extra>',
+                showlegend=True
             ))
 
         # Layout
-        num_bars = len(sub_df)
         fig.update_layout(
             autosize=True,
             width=450,
             title="",
-            xaxis=dict(
-                title="Expr value (TPM)",
-                # type="log",  # Set x-axis to log scale
-                # tickmode='array',  # Manually control tick marks
-                #tickvals=[1, 10, 100, 1000, 10000, 100000, 1000000],  # Define log scale ticks
-                # ticktext=['1', '10', '100', '1000', '10000', '1000000'],  # Corresponding tick labels
-            ),
+            xaxis=dict(title="Expr value (TPM)"),
             yaxis=dict(
                 tickmode='array',
-                tickvals=np.arange(num_bars),
-                ticktext=sub_df["cellTypes"],
+                tickvals=np.arange(len(all_cell_types)),
+                ticktext=all_cell_types,
                 tickangle=0,
                 tickfont=dict(size=6),
             ),
@@ -124,11 +127,13 @@ def plot_gene_expression(df):
                 font=dict(size=10)
             ),
             margin=dict(t=0, b=50, l=150, r=50),
-            height=min(900, max(450, num_bars * 30)),
+            height=min(900, max(450, len(all_cell_types) * 30)),
+            barmode="stack",
             plot_bgcolor='rgba(0,0,0,0)',
             paper_bgcolor='rgba(0,0,0,0)',
         )
 
         fig.write_html(f"{output_dir}/{gene}.html")
+
 
 plot_gene_expression(connectomeDB_long)
