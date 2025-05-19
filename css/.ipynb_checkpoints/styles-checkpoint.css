@@ -56,7 +56,7 @@ body {
     margin-left: -100px; /* Adjust the tooltip's position */
     opacity: 0; 
     transition: opacity 0.3s; 
-    font-size: 14px;  /* Make the tooltip text a little bigger */
+    font-size: 20px;  /* Make the tooltip text a little bigger */
     line-height: 1.5;  /* Improve the readability of the text */
     max-width: 100%;  /* Allow the tooltip to resize if content is too long */
 } 
@@ -331,9 +331,15 @@ div.dtsp-verticalButtons button {
 /* Container holding the buttons and title */
 .dtsp-titleRow {
   display: flex;
-  flex-direction: row; /* Default, but can be omitted */
+  align-items: center;
   justify-content: space-between; /* Adjusts the space between items */
 }
+
+.dtsp-buttons {
+  display: flex;
+  gap: 2px; /* Narrow space between the buttons */
+}
+
 
 /* Set order of each item */
 .dtsp-showAll {
@@ -379,8 +385,8 @@ div.dtsp-verticalButtons button {
 /* Optional: You can also adjust the tooltip style if needed */
 .dtsp-paneInputButton[title]::after {
     content: attr(title);  /* Display the tooltip from the title attribute */
-    color: #555;           /* Tooltip text color */
-    font-size: 12px;       /* Tooltip font size */
+    color: darkgreen;           /* Tooltip text color */
+    font-size: 15px;       /* Tooltip font size */
 }
 
 .dtsp-paneInputButton {
