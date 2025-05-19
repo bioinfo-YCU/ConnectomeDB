@@ -39,7 +39,7 @@ def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file):
     return df
 
 # Fetching data from Google Sheets
-gene_pair = fetch_google_sheet_data(sheet_ID, "FROZEN LIST", credentials_file)
+gene_pair = fetch_google_sheet_data(sheet_ID, "FROZEN LIST HUMAN", credentials_file)
 loc_info = fetch_google_sheet_data(sheet_ID, "proteome_HPA", credentials_file) 
 kegg_pathway_info = fetch_google_sheet_data(sheet_ID, "KEGG_metadata_pairs in frozen", credentials_file) 
 # previously based on localization # another option is proteome_HPA
