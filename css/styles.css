@@ -342,6 +342,8 @@ div.dtsp-verticalButtons button {
 
 .dtsp-collapseAll {
   order: 2;
+  padding-left: 0px; 
+
 
 }
 
@@ -354,14 +356,14 @@ div.dtsp-verticalButtons button {
 }
 
 .dtsp-showAll::before {
-  content: "🔍 Advanced Search"; /* Add text or icons before the button */
+  content: "🔍 Display/Hide All"; /* Add text or icons before the button */
   padding-right: 10px; /* Adjust the spacing between the text and button */
   color: #1f4eb6;
   font-style: bold;
 }
 
 .dtsp-clearAll::after {
-  content: "For multiple filtering within the same column, press and hold command and click on desired values."; /* Add text or icons before the button */
+  content: "To select multiple values within a given column, press and hold command and click on desired values."; /* Add text or icons before the button */
   padding-left: 10px; /* Adjust the spacing between the text and button */
   color: #1f4eb6
 }
