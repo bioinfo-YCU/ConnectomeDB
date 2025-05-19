@@ -40,19 +40,19 @@ header-includes: |
 <style>
 /* Target the first search pane */
 .dtsp-searchPane:first-child::before {
-    content: "Ligand Symbol and Aliases";
+    content: "Ligand Official Symbol & Aliases";
     font-weight: bold;
 }
 
 /* Target the second search pane */
 .dtsp-searchPane:nth-child(2)::before {
-    content: "Receptor Symbol and Aliases";
+    content: "Receptor Official Symbol & Aliases";
     font-weight: bold;
 }
 
 /* Target the third search pane */
 .dtsp-searchPane:nth-child(3)::before {
-    content: "Binding Location";
+    content: "Database source (temp)";
     font-weight: bold;
 }
 
@@ -96,7 +96,7 @@ def update_table():
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
-                     "columns": [18,19,7], 
+                     "columns": [18,19,2], 
                      "regex": True, "caseInsensitive": False, 
                      "smart": True, 
                      "initCollapsed": True, 

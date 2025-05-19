@@ -510,6 +510,14 @@ gene_pair["Receptor"] = [
                                               gene_pair["Receptor"])
 ]
 
+# tweak Database Source so when multiple should show multiple with tool tip
+gene_pair["Database Source"] = [
+    f'<span title="{orig_dbSource}">{("multiple (CDB2025 included)" if "connectomeDB2025" in orig_dbSource and "," in orig_dbSource else "multiple" if "," in orig_dbSource else orig_dbSource)}</span>'
+    for orig_dbSource in gene_pair["Database Source"]
+]
+
+
+
 def replace_spaces(row):
     if row['Ligand location'] == 'secreted':
         return row['Human LR Pair'].replace(" ", " <span style='font-size: 14px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
@@ -536,9 +544,9 @@ gene_pair["Human LR Pair"] = [
 
 # Add tooltips to the column headers
 gene_pair.columns = [
-    f'<span title=" Ligand-Receptor Interacting Pair, as described in Liu et al. (PMID: XXXXXX)">{col}</span>' if col == "Human LR Pair" else
+    f'<span title="Ligand-Receptor Interacting Pair, as described in Liu et al. (PMID: XXXXXX)">{col}</span>' if col == "Human LR Pair" else
     f'<span title="Click the logo below to run Perplexity on the Human LR pair">{col}&nbsp;</span>' if col == "Perplexity" else
-    f'<span title=" Official Gene Symbol; Hover on symbols below to show gene names">{col}&nbsp;&nbsp;&nbsp;</span>' if col in ["Ligand", "Receptor"] else
+    f'<span title="Official Gene Symbol; Hover on symbols below to show gene names">{col}&nbsp;&nbsp;&nbsp;</span>' if col in ["Ligand", "Receptor"] else
     f'<span title="HUGO Gene Nomenclature Committee (HGNC) ID. Click on the link for more details">{col}&nbsp;&nbsp;</span>' if col in ["Ligand HGNC ID", "Receptor HGNC ID"] else
     f'<span title=" PubMed IDs (PMID) with Literature Evidence for LR Interaction. Click on the link for more details">{col}</span>' if col == "PMID" else
     f'<span title="Rat Genome Database (RGD) ID. Click on the link for more details">{col}</span>' if col in ["Ligand RGD ID", "Receptor RGD ID"] else
