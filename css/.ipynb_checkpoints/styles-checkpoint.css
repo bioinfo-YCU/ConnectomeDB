@@ -344,13 +344,18 @@ div.dtsp-verticalButtons button {
 /* Set order of each item */
 .dtsp-showAll {
   order: 1;
+
 }
 
 .dtsp-collapseAll {
   order: 2;
-  padding-left: 0px; 
+  padding: 0;
+  line-height: 1;
+}
 
-
+.dtsp-showAll + .dtsp-collapseAll {
+  margin-top: -25px; /* reduce the gap between ▼ and ▲ */
+  margin-left: -36.25px;
 }
 
 .dtsp-title {
