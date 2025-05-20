@@ -374,7 +374,7 @@ div.dtsp-verticalButtons button {
 }
 
 .dtsp-clearAll::after {
-  content: "To select multiple values within a given column, press and hold command and click on desired values."; /* Add text or icons before the button */
+  content: "Pro tip: To select multiple values within a given column, press and hold command and click on desired values."; /* Add text or icons before the button */
   padding-left: 10px; /* Adjust the spacing between the text and button */
   color: #1f4eb6
 }
