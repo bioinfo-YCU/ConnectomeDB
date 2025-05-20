@@ -57,13 +57,13 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 5px;
+            gap: 3px;
             margin: 0 auto;
             max-width: 1200px;
         }
         .card {
-            width: 49%;
-            padding: 10px;
+            width: 49.5%;
+            padding: 5px;
             border: 1px solid #ccc;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -208,98 +208,101 @@
     
         
     function downloadPDF() {
-        console.log("Starting PDF download...");
-        
-        let value1 = "{{ value1 }}".trim();
-        let value2 = "{{ value2 }}".trim();
-        let fileName = `${value1} —— ${value2}.pdf`;  // Construct the file name
-        
-        const element = document.body.cloneNode(true);
+    console.log("Starting PDF download...");
 
-    // Show elements that are hidden for the PDF (like .pdf-only)
-        const pdfOnlyImage = document.getElementById('webp-image');
-        if (pdfOnlyImage) {
-            pdfOnlyImage.style.display = 'block';  // Make WebP image visible only for PDF export
-        }
-        
-        // Remove elements that shouldn't be in the PDF
-        element.querySelectorAll('.no-print').forEach(el => el.remove());
-        element.querySelector('nav').remove();
-        
-    
-        // Apply margin to center the content
-        element.style.margin = '0 auto';
-        element.style.display = 'block';
-        // Apply a CSS scale transformation to the entire content for PDF export
-        element.style.transform = 'scale(0.8)'; // Scale down to 70% of the original size
-        element.style.transformOrigin = 'top center'; // Ensure scaling from top center
-        element.style.width = '100%'; // Ensure the scaled content fits properly
-        element.style.height = 'auto'; 
-    
-        // Remove background color to ensure it doesn't appear in the PDF
-        element.style.backgroundColor = 'transparent'; // Remove background
-        
-        // Adjusting the content container to make sure it's centered in the PDF
-        const container = document.createElement('div');
-        container.style.width = '100%';
-        container.style.display = 'flex';
-        container.style.justifyContent = 'center'; // Centering the content
-        container.appendChild(element);
-        
-        // Temporarily append the container to the document body for PDF generation
-        document.body.appendChild(container);
-    
-        // Trigger PDF download after it has been appended
-        html2pdf()
-            .from(container)
-            .set({
-                margin: 5,
-                filename: fileName,
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { useCORS: true,
-                               logging: true,
-                               allowTaint: true, // Allow images with taint to be included
-                               scale: 3
-                             },  // Avoid using `scale` here since we are using CSS scaling
-                jsPDF: { 
-                    unit: 'mm', 
-                    format: 'a4', 
-                    orientation: 'portrait',
-                    compress: true
-                }
-            })
-            .toPdf()
-            .get('pdf')
-            .then(pdf => {
-                const links = document.querySelectorAll('a');  // Find all links
-                links.forEach(link => {
-                    const { left, top, width, height } = link.getBoundingClientRect();
-                    const pageWidth = pdf.internal.pageSize.getWidth();
-                    const pageHeight = pdf.internal.pageSize.getHeight();
-            
-                    // Convert browser position to PDF position
-                    const x = (left / window.innerWidth) * pageWidth;
-                    const y = (top / window.innerHeight) * pageHeight;
-            
-                    // Add the hyperlink
-                    pdf.link(x, y, width, height, { url: link.href });
-                });
+    let value1 = "{{ value1 }}".trim();
+    let value2 = "{{ value2 }}".trim();
+    let fileName = `${value1} —— ${value2}.pdf`;
 
-                // Adjust the page size if the content exceeds one page
-                    const contentHeight = pdf.internal.pageSize.height;
-                    const contentWidth = pdf.internal.pageSize.width;
-        
-                    // Check if content fits on a single page, if not, auto adjust
-                    if (pdf.internal.getNumberOfPages() > 1) {
-                        pdf.setPage(1);  // If there are multiple pages, reset to the first one
-                        pdf.scale(0.7, 0.7); // Scale content to fit in one page
-                    }
-            })
-            .save();
-    
-        // Remove the container after the export, to avoid showing it on the HTML page
-        document.body.removeChild(container);
+    const clone = document.body.cloneNode(true);
+
+    // Show PDF-only content
+    const pdfOnlyImage = clone.querySelector('#webp-image');
+    if (pdfOnlyImage) {
+        pdfOnlyImage.style.display = 'block';
     }
+
+    // Remove elements not needed in PDF
+    clone.querySelectorAll('.no-print').forEach(el => el.remove());
+    const nav = clone.querySelector('nav');
+    if (nav) nav.remove();
+
+    // Global style injection to control sizing and scaling
+    const style = document.createElement('style');
+    style.innerHTML = `
+        /* General body text */
+        body, div, p, span, h1, h2, h3, h4 {
+            font-size: 16px !important;
+        }
+    
+        /* Plot-specific fonts */
+        .pdf-only {
+        font-size: 10px !important;
+        }
+        svg, canvas {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    `;
+    clone.appendChild(style);
+
+    // Wrapper for scaling and centering
+    const container = document.createElement('div');
+    container.style.width = '1000px';  // Fixed width to fit PDF page nicely
+    container.style.padding = '0px';
+    container.style.margin = '0 auto';
+    container.style.overflow = 'hidden';
+    container.appendChild(clone);
+
+    document.body.appendChild(container); // temporarily append to render
+
+    html2pdf()
+        .from(container)
+        .set({
+            margin: 5,
+            filename: fileName,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: {
+                useCORS: true,
+                logging: true,
+                allowTaint: true,
+                scale: 3 // improved resolution
+            },
+            jsPDF: {
+                unit: 'px',
+                format: [1000, 1414], // A4 in px
+                orientation: 'portrait',
+                compress: true
+            }
+        })
+        .toPdf()
+        .get('pdf')
+        .then(pdf => {
+            const links = document.querySelectorAll('a');
+            links.forEach(link => {
+                const { left, top, width, height } = link.getBoundingClientRect();
+                const pageWidth = pdf.internal.pageSize.getWidth();
+                const pageHeight = pdf.internal.pageSize.getHeight();
+                const x = (left / window.innerWidth) * pageWidth;
+                const y = (top / window.innerHeight) * pageHeight;
+                pdf.link(x, y, width, height, { url: link.href });
+            });
+
+            if (pdf.internal.getNumberOfPages() > 1) {
+                pdf.setPage(1);
+                // optional: pdf.scale(0.7, 0.7);  // Only if additional scaling needed
+            }
+        })
+        .save()
+        .then(() => {
+            document.body.removeChild(container);  // Clean up
+        });
+    }
+
     /*
     // uncomment from here if auto-downloading of pdf is not necessary
     var imagePromises = Array.from(images).map(function (img) {
@@ -454,20 +457,25 @@
             </div>
         </div>
     </div>
-        <h1 style="text-align: center; font-size: 24px; font-weight: bold; width: 100%;">Expression Profile in 144 Cell types (FANTOM5)</h1>
+
+    </div>
+        <br>
+        <div class="card-container">
+        <div class="card-full-row">
+        <div class="column-center">
+        <h1 style="text-align: center; font-size: 22px; font-weight: bold; width: 100%;">Expression Profile in 144 Cell types (FANTOM5)</h1>
         <!-- Image shown only in the PDF -->
         <div class="pdf-only" id="webp-image" style="text-align: center;">
-            <img src="data:image/webp;base64,{{ plotlegend_base64 }}" alt="Plot Legend Image" style="width: 600px; height: auto;">
+            <img src="data:image/webp;base64,{{ plotlegend_base64 }}" alt="Plot Legend Image" style="width: 80%; height: auto;">
+        
         </div>
-
         </div>
-
-        <div class="card-container">
+        </div>
             <div class="card">
                 <div>
                 {% if ligand_image != "Plot does not exist" %}
                     <div class="ligand-plot">
-                        <div style="width: 88%; max-width: 100%; overflow: hidden;">
+                        <div style="width: 100%; max-width: 100%; overflow: hidden;">
                         {{ ligand_image | safe }}  <!-- Render the HTML content directly -->
                         </div>
                     </div>
@@ -480,7 +488,7 @@
                 <div>
                 {% if receptor_image != "Plot does not exist" %}
                     <div class="receptor-plot">
-                        <div style="width: 88%; max-width: 100%; overflow: hidden;">
+                        <div style="width: 100%; max-width: 100%; overflow: hidden;">
                         {{ receptor_image | safe }}  
                         </div>
                     </div>
