@@ -26,7 +26,6 @@ output = f"""
     </span>
 </div>
 """
-
 display(HTML(output))
 ```
 

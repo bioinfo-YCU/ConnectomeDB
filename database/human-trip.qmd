@@ -17,11 +17,11 @@ header-includes: |
       const titleElement = document.querySelector('.dtsp-title');
 
       if (showAllButton) {
-        showAllButton.textContent = "▼ Display All";
+        showAllButton.textContent = "▼";
       }
 
       if (collapseAllButton) {
-        collapseAllButton.textContent = "▲ Hide All";
+        collapseAllButton.textContent = "▲";
       }
 
       if (clearAllButton) {

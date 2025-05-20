@@ -38,6 +38,8 @@ website:
            text: Diseases
          - href: annotations/pathway.qmd
            text: Pathways
+      - href: stats.qmd
+        text: "{{< iconify mdi:chart inline size=20px >}}Stats"
     right:
       - url: mailto:bioinfo@yokohama-cu.ac.jp
         text: "{{< iconify mdi:email inline size=20px >}}"

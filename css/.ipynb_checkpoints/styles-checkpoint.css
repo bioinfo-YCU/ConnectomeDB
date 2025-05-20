@@ -34,14 +34,14 @@ body {
         border-radius: 3px; /* Subtle rounded corners */
     }
 
-.tooltip { position: relative; 
-          display: inline-block;
-          cursor: pointer; 
-          font-size: 16px; 
-          border: 1px solid #ccc; 
-          border-radius: 5px;} 
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-color: black;
+}
 
-.tooltip .tooltip-text { 
+.tooltip .tooltiptext { 
     visibility: hidden; 
     width: 200px;
     background-color: black; 
@@ -61,7 +61,7 @@ body {
     max-width: 100%;  /* Allow the tooltip to resize if content is too long */
 } 
 
-.tooltip:hover .tooltip-text { visibility: visible;
+.tooltip:hover .tooltiptext { visibility: visible;
                               opacity: 1; }
 
 
@@ -355,7 +355,7 @@ div.dtsp-verticalButtons button {
 
 .dtsp-showAll + .dtsp-collapseAll {
   margin-top: -25px; /* reduce the gap between ▼ and ▲ */
-  margin-left: -36.25px;
+  margin-left: -35.75px;
 }
 
 .dtsp-title {
