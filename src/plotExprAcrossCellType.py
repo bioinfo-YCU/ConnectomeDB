@@ -55,8 +55,7 @@ def plot_gene_expression(df):
         "hematopoietic": "#4DAF4A",
         "endothelial": "#984EA3",
         "nervous system": "#FF7F00",
-        "other": "#D4A76A",
-        "missing": "#B0B0B0"
+        "other": "#D4A76A"
     }
 
     # Sorting order by category
@@ -104,30 +103,37 @@ def plot_gene_expression(df):
             ))
 
         # Layout
-        fig.update_layout(
-            autosize=True,
-            width=450,
-            title="",
-            xaxis=dict(title="Expr value (TPM)"),
-            yaxis=dict(
+            fig.update_layout(
+                autosize=True,
+                width=650,
+                title="",
+                xaxis=dict(
+                    title="Expr value (TPM)",
+                     range=[0, sub_df["expr_val"].max() * 1.1], 
+                ),
+             yaxis=dict(
                 tickmode='array',
                 tickvals=np.arange(len(all_cell_types)),
                 ticktext=all_cell_types,
                 tickangle=0,
-                tickfont=dict(size=6),
+                tickfont=dict(size=11),
+            ),
+            hoverlabel=dict(
+                align='left'
             ),
             showlegend=True,
-            legend_title="Cell Category",
+            legend_title="Select Cell Ontology",
             legend=dict(
-                orientation="v",
-                yanchor="top",
-                y=0.5,
-                xanchor="left",
-                x=1.05,
-                font=dict(size=10)
+                orientation="h",        
+                yanchor="bottom",     
+                y=-0.1,               # Position below the plot area
+                xanchor="center",    
+                x=0,                
+                font=dict(size=12)
             ),
-            margin=dict(t=0, b=50, l=150, r=50),
-            height=min(900, max(450, len(all_cell_types) * 30)),
+
+            margin=dict(t=0, b=50, l=100, r=150),
+            height=min(1800, max(2000, len(all_cell_types) * 100)),
             barmode="stack",
             plot_bgcolor='rgba(0,0,0,0)',
             paper_bgcolor='rgba(0,0,0,0)',
