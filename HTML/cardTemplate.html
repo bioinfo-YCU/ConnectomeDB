@@ -231,8 +231,18 @@
     const style = document.createElement('style');
     style.innerHTML = `
         /* General body text */
-        body, div, p, span, h1, h2, h3, h4 {
+        h1 {
+            font-size: 24px !important;
+        }
+        h2 {
+            font-size: 20px !important;
+        }
+        h3, h4 {
             font-size: 16px !important;
+        }
+
+        body, div, p, span {
+            font-size: 14px !important;
         }
     
         /* Plot-specific fonts */
