@@ -56,6 +56,19 @@ header-includes: |
     font-weight: bold;
 }
 
+
+/* Target the fifth search pane */
+.dtsp-searchPane:nth-child(4)::before {
+    content: "Ligand Location (temp)";
+    font-weight: bold;
+}
+
+/* Target the sixth search pane */
+.dtsp-searchPane:nth-child(5)::before {
+    content: "Receptor Location (temp)";
+    font-weight: bold;
+}
+
 </style>
 
 ```
@@ -96,7 +109,7 @@ def update_table():
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
-                     "columns": [18,19,2], 
+                     "columns": [18,19,2,13,14], 
                      "regex": True, "caseInsensitive": False, 
                      "smart": True, 
                      "initCollapsed": True, 

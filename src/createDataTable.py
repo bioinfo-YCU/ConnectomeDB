@@ -84,9 +84,69 @@ mapping = dict(zip(fetchGSheet.src_info['original source'], fetchGSheet.src_info
 gene_pair['original source'] = gene_pair['original source'].replace(mapping)
 
 ## add Ligand/Receptor Location
-mapping_loc = dict(zip(fetchGSheet.loc_info['ApprovedSymbol'], fetchGSheet.loc_info['Localization'])) # previously fetchGSheet.loc_info['ApprovedSymbol'] # if proteome_HPA, change Gene name to ApprovedSymbol
+def dedup_locations(loc_str):
+    # Split, strip, deduplicate, and sort
+    parts = [loc.strip() for loc in loc_str.split(',') if loc.strip()]
+    unique_sorted = sorted(set(parts), key=str.lower)  # case-insensitive sort
+    return unique_sorted
+
+def generate_LocToolTip(row, geneloc, loc_col):
+    ligand = row[loc_col]
+    original_locations = [loc.strip() for loc in row["location"].split(',')]
+    original_sources = [src.strip() for src in row["source"].split(',')]
+
+    # Get deduplicated locations
+    unique_locations = dedup_locations(row["location"])
+
+    if len(unique_locations) == 1:
+        # Single tooltip case
+        location = unique_locations[0]
+        matching_rows = geneloc[(geneloc[loc_col] == ligand) & (geneloc["location"].str.contains(location))]
+        all_sources = matching_rows["source"].unique()
+        sources_str = ", ".join(sorted(set(all_sources)))
+        return f'<span title="based on {sources_str}">{location}</span>'
+    else:
+        # Multiple tooltips — find each (ligand, location) match in original df
+        spans = []
+        for loc in unique_locations:
+            matching_rows = geneloc[
+                (geneloc[loc_col] == ligand) &
+                (geneloc["location"].str.contains(loc))
+            ]
+            all_sources = matching_rows["source"].unique()
+            sources_str = ", ".join(sorted(set(all_sources)))
+            spans.append(f'<span title="based on {sources_str}">{loc}</span>')
+        return ", ".join(spans)
+
+
+# Group the original loc_info by Ligand
+ligand_loc = fetchGSheet.ligand_loc.dropna(axis=1, how='all')
+grouped = ligand_loc.groupby("Ligand").agg({
+    "location": lambda x: ', '.join(x),
+    "source": lambda x: ', '.join(x)
+}).reset_index()
+
+# Generate tooltips
+grouped["Ligand location"] = grouped.apply(lambda row: generate_LocToolTip(row, ligand_loc,loc_col="Ligand"), axis=1)
+# create dict
+mapping_loc = dict(zip(grouped['Ligand'], grouped['Ligand location'])) 
 gene_pair['Ligand location'] = gene_pair['Ligand'].replace(mapping_loc)
+
+
+# Group the original loc_info by Receptor
+receptor_loc = fetchGSheet.receptor_loc.dropna(axis=1, how='all')
+grouped = receptor_loc.groupby("Receptor").agg({
+    "location": lambda x: ', '.join(x),
+    "source": lambda x: ', '.join(x)
+}).reset_index()
+
+# Generate tooltips
+grouped["Receptor location"] = grouped.apply(lambda row: generate_LocToolTip(row, receptor_loc,loc_col="Receptor"), axis=1)
+# create dict
+mapping_loc = dict(zip(grouped['Receptor'], grouped['Receptor location'])) 
 gene_pair['Receptor location'] = gene_pair['Receptor'].replace(mapping_loc)
+
+
 # Set missing mappings to 'unknown'
 gene_pair.loc[gene_pair['Ligand location'] == gene_pair['Ligand'], 'Ligand location'] = 'unknown'
 gene_pair.loc[gene_pair['Receptor location'] == gene_pair['Receptor'], 'Receptor location'] = 'unknown'
@@ -519,11 +579,11 @@ gene_pair["Database Source"] = [
 
 
 def replace_spaces(row):
-    if row['Ligand location'] == 'secreted':
+    if 'secreted' in row['Ligand location'].lower():
         return row['Human LR Pair'].replace(" ", " <span style='font-size: 14px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
-    elif row['Ligand location'] == '':
+    elif row['Ligand location'] == 'unknown':
         return row['Human LR Pair'].replace(" ", " <span style='font-size: 14px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
-    elif row['Ligand location'] == 'plasma membrane':
+    elif 'membrane' in row['Ligand location'].lower():
         return row['Human LR Pair'].replace(" ", " <span style='font-size: 24px;'>⤙</span> <span style='font-size: 24px;'>⤚</span> ")
     else:
         return row['Human LR Pair'].replace(" ", " \u2192 ")
