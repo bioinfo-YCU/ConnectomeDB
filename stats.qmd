@@ -1,0 +1,235 @@
+---
+title: "ConnectomeDB Stats"
+execute:
+  echo: false
+  warnings: false  # Add this line to suppress warnings globally
+toc: false
+---
+
+<h2> {{< fa database >}} ConnectomeDB: Database Statistics</h2>  
+[{{< fa arrow-right >}} **Proceed to Database**](database.qmd){style="font-size: 1.5em;"}
+
+---
+
+## The Charts below are Interactive. Unselect the categories you are not interested and watch the charts change!
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.panel-tabset}
+
+```{python}
+#| echo: false
+import sys
+import os
+import re
+import pandas as pd
+import plotly.express as px
+sys.path.append(os.path.abspath("src"))
+from createDataTable import gene_pair
+from createTriplicateDT import gene_pair_trip
+
+# Subset categorical columns
+gene_pair_cat = gene_pair.iloc[:, [2, 7, 8, 9, 10, 13, 14, 16]]
+cat_cols = gene_pair_cat.select_dtypes(include='object').columns
+
+figs = []
+
+for col in cat_cols:
+    # Clean values: remove HTML tags
+    cleaned_values = gene_pair_cat[col].astype(str).apply(lambda x: re.sub(r'<.*?>', '', x))
+
+    counts = cleaned_values.value_counts().reset_index()
+    counts.columns = [col, 'count']
+
+    fig = px.pie(
+        counts,
+        names=col,
+        values='count',
+        hole=0.4,
+        title=f"Distribution of {col}"
+    )
+    fig.update_traces(textinfo='percent+label', textposition='inside')
+    figs.append(fig)
+
+```
+
+## Binding Location
+
+```{python}
+#| echo: false
+figs[1]
+```
+
+## Bind in Trans
+
+```{python}
+#| echo: false
+figs[2]
+```
+
+## Bidirectional
+
+```{python}
+#| echo: false
+figs[3]
+```
+
+## Interaction Type
+
+```{python}
+#| echo: false
+figs[4]
+```
+
+
+## Ligand Location
+
+```{python}
+#| echo: false
+figs[5]
+```
+
+
+## Receptor Location
+
+```{python}
+#| echo: false
+figs[6]
+```
+
+## Cancer
+
+```{python}
+#| echo: false
+figs[7]
+```
+
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.panel-tabset}
+
+## PMID count by Year 
+
+```{python}
+#| echo: false
+import sys
+import os
+import json
+sys.path.append(os.path.abspath("src"))
+from createDataTable import gene_pair
+from createTriplicateDT import gene_pair_trip
+import re
+import plotly.express as px
+import pandas as pd
+
+# Select categorical columns
+gene_pair_trip_cat = gene_pair_trip.iloc[:, [3,6,10]]
+cat_cols_trip = gene_pair_trip_cat.select_dtypes(include='object').columns
+
+year_col = gene_pair_trip['Year']
+
+# Convert datetime64 to int nanoseconds since epoch
+ns_int = year_col.astype('int64')
+
+# Extract last 5 digits (to get a usable year approximation)
+years = ns_int % (10**5)
+
+# Count frequencies by year
+year_counts = pd.Series(years).value_counts().sort_index().reset_index()
+year_counts.columns = ['Year', 'Count']
+
+```
+
+```{python}
+#| echo: false
+# Create bar plot
+fig = px.bar(
+    year_counts,
+    x='Year',
+    y='Count',
+    title='Counts per Year',
+    labels={'Year': 'Year', 'Count': 'Count'},
+    template='plotly_white'
+)
+fig.update_layout(xaxis_tickangle=-45)
+
+```
+
+```{python}
+#| echo: false
+
+figs_trip = []
+for col in cat_cols_trip:
+    # Clean values: remove HTML tags
+    cleaned_values = gene_pair_trip_cat[col].astype(str).apply(lambda x: re.sub(r'<.*?>', '', x))
+
+    counts = cleaned_values.value_counts().reset_index()
+    counts.columns = [col, 'count']
+
+    fig_trip = px.pie(
+        counts,
+        names=col,
+        values='count',
+        hole=0.4,
+        title=f"Distribution of {col}"
+    )
+    fig_trip.update_traces(textinfo='percent+label', textposition='inside')
+    figs_trip.append(fig_trip)
+
+```
+
+## Database Source
+
+```{python}
+#| echo: false
+figs_trip[0]
+
+```
+
+
+## Journal
+
+```{python}
+#| echo: false
+figs_trip[1]
+```
+
+## Species
+
+```{python}
+#| echo: false
+figs_trip[2]
+```
+
+
+## Temp1
+
+```{python}
+#| echo: false
+figs_trip[2]
+```
+
+## Temp2
+
+```{python}
+#| echo: false
+figs_trip[2]
+```
+
+## Temp3
+
+```{python}
+#| echo: false
+figs_trip[2]
+```
+:::
+
+:::
+
+:::

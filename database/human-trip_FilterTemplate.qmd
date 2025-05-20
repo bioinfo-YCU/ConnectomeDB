@@ -37,15 +37,6 @@ def update_table():
     show(
         human_gene_pairTrip,
         keys=True,
-        # layout={"top": ["searchPanes"],
-        #        },
-        # searchPanes={"layout": "rows-1", 
-        #             "cascadePanes": True, 
-        #             "columns": [3,4,7,8,11,9,10,21], 
-        #             "regex": True, "caseInsensitive": False, 
-        #             "smart": True, 
-        #             "initCollapsed": True, 
-        #             "controls": True},
         #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
         fixedColumns={"start": 2, "end": 0},
         fixedHeader=True,  # Keep header fixed for alignment
@@ -74,9 +65,6 @@ def update_table():
             "search": "Search Any Column:",
             "searchPlaceholder": "e.g. CD80",
             "searchPanesPlaceholder": "",
-           # "searchBuilder": {
-           #     "title": "Advanced Search <i>Multiple filtering, AND/OR condition</i>" 
-           #
         }, 
         autoWidth=True,
         maxBytes=0,  # So it does not downsample

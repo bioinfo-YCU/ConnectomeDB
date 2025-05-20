@@ -85,7 +85,7 @@ from pandas.errors import SettingWithCopyWarning
 warnings.simplefilter(action='ignore', category=SettingWithCopyWarning)
 warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
 from itables import init_notebook_mode, show
-from IPython.display import display, Javascript
+from IPython.display import display, Javascript, HTML
 import itables.options as opt
 # Change working directory to ConnectomeDB
 project_root = os.path.dirname(os.getcwd())

@@ -270,10 +270,13 @@ gene_pair = gene_pair.rename(columns={"Approved name": "Receptor name",
 gene_pair = gene_pair.drop(columns=["HGNC ID"])
 
 # Add new columns where all Ligand symbol and aliases and Receptor symbol and aliases merged in one column
-gene_pair['Ligand symbol and aliases'] = gene_pair['Ligand'] + ", " + gene_pair['Ligand Old symbol'] + ", " + gene_pair['Ligand Aliases']
-gene_pair['Receptor symbol and aliases'] = gene_pair['Receptor'] + ", " + gene_pair['Receptor Old symbol'] + ", " + gene_pair['Receptor Aliases']
+gene_pair['Ligand symbol and aliases'] = gene_pair['Ligand'] + " (" + gene_pair['Ligand Old symbol'] + ", " + gene_pair['Ligand Aliases'] + ")"
+gene_pair['Receptor symbol and aliases'] = gene_pair['Receptor'] + " (" + gene_pair['Receptor Old symbol'] + ", " + gene_pair['Receptor Aliases'] + ")"
 gene_pair['Ligand symbol and aliases'] = gene_pair['Ligand symbol and aliases'].apply(lambda x: str(x).replace(", N/A", ""))
+gene_pair['Ligand symbol and aliases'] = gene_pair['Ligand symbol and aliases'].apply(lambda x: str(x).replace("N/A, ", ""))
 gene_pair['Receptor symbol and aliases'] = gene_pair['Receptor symbol and aliases'].apply(lambda x: str(x).replace(", N/A", ""))
+gene_pair['Receptor symbol and aliases'] = gene_pair['Receptor symbol and aliases'].apply(lambda x: str(x).replace("N/A, ", ""))
+
 
 # Add MGI name
 gene_pair = gene_pair.merge(MGI_info, how='left', left_on='Receptor MGI ID', right_on='MGI ID')
@@ -523,13 +526,19 @@ gene_pair["Receptor RGD ID"] = [
 # Add tooltip to name
 
 def add_geneToolTip(species):
-    gene_pair[species+" Ligand"] = [
-        f'<span title="{ligand_name}">{ligand_symbol}</span>'
-        for ligand_name, ligand_symbol in zip(gene_pair[species+" Ligand name"], gene_pair[species+" Ligand"])
+    def tooltip_html(symbol, name):
+        return (
+            f'<span class="tooltip">{symbol}'
+            f'<span class="tooltiptext">{name}</span></span>'
+        )
+
+    gene_pair[species + " Ligand"] = [
+        tooltip_html(ligand_symbol, ligand_name)
+        for ligand_name, ligand_symbol in zip(gene_pair[species + " Ligand name"], gene_pair[species + " Ligand"])
     ]
-    gene_pair[species+" Receptor"] = [
-        f'<span title="{receptor_name}">{receptor_symbol}</span>'
-        for receptor_name, receptor_symbol in zip(gene_pair[species+" Receptor name"], gene_pair[species+" Receptor"])
+    gene_pair[species + " Receptor"] = [
+        tooltip_html(receptor_symbol, receptor_name)
+        for receptor_name, receptor_symbol in zip(gene_pair[species + " Receptor name"], gene_pair[species + " Receptor"])
     ]
 
 ### Remove tooltip for name for each species for now as only zebrafish has the proper names ###     
@@ -560,9 +569,8 @@ gene_pair = gene_pair[['Interaction ID', 'Human LR Pair', 'Database Source', 'Li
 gene_pair["Ligand"] = [
     f'<span title="{ligand_name}">{ligand_symbol}</span>'
     for ligand_name, ligand_symbol in zip(gene_pair["Ligand name"], 
-                                          gene_pair["Ligand"])
+                                              gene_pair["Ligand"])
 ]
-
 # gene symbol
 gene_pair["Receptor"] = [
     f'<span title="{receptor_name}">{receptor_symbol}</span>'
