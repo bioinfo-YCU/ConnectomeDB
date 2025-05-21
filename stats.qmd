@@ -6,9 +6,6 @@ execute:
 toc: false
 ---
 
-<h2> {{< fa database >}} ConnectomeDB: Database Statistics</h2>  
----
-
 ## The Charts below are Interactive. Unselect the categories you are not interested and watch the charts change!
 
 ::: {.columns}

@@ -17,11 +17,11 @@ header-includes: |
       const titleElement = document.querySelector('.dtsp-title');
 
       if (showAllButton) {
-        showAllButton.textContent = "▼ Display All";
+        showAllButton.textContent = "▼";
       }
 
       if (collapseAllButton) {
-        collapseAllButton.textContent = "▲ Hide All";
+        collapseAllButton.textContent = "▲";
       }
 
       if (clearAllButton) {
@@ -83,6 +83,7 @@ import sys
 import os
 import pandas as pd
 import warnings
+from pandas.errors import SettingWithCopyWarning
 warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
 from itables import init_notebook_mode, show
 from IPython.display import display, Javascript
@@ -128,7 +129,8 @@ def update_table():
         ],
         columnDefs=[
             {"className": "dt-center", "targets": [7]}, 
-            {"targets": [5,6], "visible": False} 
+            {"targets": [5,6], "visible": False},
+            {"width": "425px", "targets": [2]},
             # {"width": "100px", "targets": "_all"},
         ],
         style="1200px;margin:auto",

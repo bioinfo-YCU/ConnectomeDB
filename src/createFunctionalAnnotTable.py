@@ -1,5 +1,6 @@
 ## Function to prepare functional annotation datatable
 import sys, os
+import re
 from itables import init_notebook_mode
 import pandas as pd
 from itables import show
@@ -8,9 +9,10 @@ from IPython.display import HTML, display
 import numpy as np
 from bs4 import BeautifulSoup
 from createDataTable import gene_pair0, gene_pair, top_pathway_df
+from fetchGSheet import gene_group
 import warnings
 
-gene_pair_annot = gene_pair0[["Interaction ID", "Human LR Pair", "Cancer-related", "Ligand symbol and aliases",  "Receptor symbol and aliases"]]
+gene_pair_annot = gene_pair0[["Interaction ID", "Human LR Pair", "Cancer-related", "Ligand symbol and aliases",  "Receptor symbol and aliases"]].copy()
 df= pd.read_csv("data/disease_annotations_per_pair.csv")
 df_cat=pd.read_csv("data/disease_categories.csv")
 mapping = dict(zip(df_cat['Disease Name'], df_cat['Category']))
@@ -49,7 +51,11 @@ gene_pair_annot["KEGG Pathway ID"] = gene_pair_annot["KEGG Pathway ID"].apply(
 gene_pair_annot["KEGG relationship"] = gene_pair_annot["KEGG relationship"].apply(
     lambda x: "unknown" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", ""] else x)
 
-gene_pair_annot = gene_pair_annot.reset_index(drop=True)
+gene_pair_annot = gene_pair_annot.reset_index(drop=True).copy()
+gene_pair_annot["Interaction ID"] = gene_pair_annot["Interaction ID"].apply(
+    lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
+)
+
 
 # Separate Disease and Pathway and then rm duplicates
 gene_pair_disease = gene_pair_annot[["Interaction ID", "Human LR Pair", "Disease", "Disease Type", "Cancer-related", "Ligand symbol and aliases",  "Receptor symbol and aliases"]]
@@ -74,6 +80,18 @@ gene_pair_disease["Human LR Pair"] = [
     f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrPairOrig}.html">{lrPair}</a>'
     for lrPairOrig, lrPair in zip(gene_pair_disease["Human LR Pair"], gene_pair_disease["Human LR Pair"])
 ]
+
+### Pop-up for disease, disease type
+gene_pair_disease["Disease"] = [
+    f'<span title="{disease}">{disease}</span>'
+    for disease in gene_pair_disease["Disease"]
+]
+
+gene_pair_disease["Disease Type"] = [
+    f'<span title="{disease}">{disease}</span>'
+    for disease in gene_pair_disease["Disease Type"]
+]
+
 gene_pair_pathway = gene_pair_annot[["Interaction ID", "Human LR Pair",  "KEGG Pathway ID", "KEGG Pathway", "KEGG relationship", "PROGENy Pathway", "Ligand symbol and aliases",  "Receptor symbol and aliases"]]
 gene_pair_pathway = gene_pair_pathway.drop_duplicates()
 gene_pair_pathway=gene_pair_pathway.reset_index(drop=True)  
@@ -98,3 +116,72 @@ gene_pair_pathway["Human LR Pair"] = [
     f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrPairOrig}.html">{lrPair}</a>'
     for lrPairOrig, lrPair in zip(gene_pair_pathway["Human LR Pair"], gene_pair_pathway["Human LR Pair"])
 ]
+
+### Pop-up for KEGG Pathway
+gene_pair_pathway["KEGG Pathway"] = [
+    f'<span title="{path}">{path}</span>'
+    for path in gene_pair_pathway["KEGG Pathway"]
+]
+
+
+
+# this is for HGNC gene groups
+# Prepare gene_pair_annot2 base table
+gene_pair_annot2 = gene_pair0[[
+    "Interaction ID", "Human LR Pair", 
+    'Ligand HGNC ID', 'Receptor HGNC ID', 
+    "Ligand symbol and aliases",  
+    "Receptor symbol and aliases"
+]].copy()
+
+# Extract HGNC IDs cleanly using regex only if string is valid
+def extract_hgnc_id(text):
+    if pd.isna(text): return None
+    match = re.search(r'(HGNC:\d+)', str(text))
+    return match.group(1) if match else None
+
+gene_pair_annot2["ligand_hgnc_id"] = gene_pair_annot2["Ligand HGNC ID"].apply(extract_hgnc_id)
+gene_pair_annot2["receptor_hgnc_id"] = gene_pair_annot2["Receptor HGNC ID"].apply(extract_hgnc_id)
+
+
+# Create HTML links for LR pair and interaction
+gene_pair_annot2["Human LR Pair"] = gene_pair_annot2["Human LR Pair"].apply(
+    lambda lr: f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lr}.html">{lr}</a>'
+)
+
+gene_pair_annot2["Interaction ID"] = gene_pair_annot2["Interaction ID"].apply(
+    lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
+)
+
+
+# HTML pop-ups for aliases
+def spanify(text):
+    return f'<span title="{text}">{text}</span>' if pd.notna(text) else "unknown"
+
+gene_pair_annot2["Ligand symbol and aliases"] = gene_pair_annot2["Ligand symbol and aliases"].apply(spanify)
+gene_pair_annot2["Receptor symbol and aliases"] = gene_pair_annot2["Receptor symbol and aliases"].apply(spanify)
+
+# Gene group mapping with cleaned "unknown" labels
+gene_group_lim = gene_group[['hgnc_id','root_group_name']].copy()
+gene_group_lim["root_group_name"] = gene_group_lim["root_group_name"].apply(
+    lambda x: "unknown" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", "na", ""] else x
+)
+
+# Ligand group merge and tooltip
+gene_pair_annot_ligand = gene_pair_annot2.merge(gene_group_lim, how='left', left_on='ligand_hgnc_id', right_on='hgnc_id')
+gene_pair_annot_ligand = gene_pair_annot_ligand.rename(columns={"root_group_name": "Ligand group"}).drop(columns=["hgnc_id", "ligand_hgnc_id"])
+
+gene_pair_annot_ligand["Ligand group"] = gene_pair_annot_ligand["Ligand group"].fillna("unknown")
+gene_pair_annot_ligand["Ligand group"] = gene_pair_annot_ligand["Ligand group"].apply(
+    lambda x: f'<span title="{x}">{x}</span>' if pd.notna(x) else "unknown"
+)
+
+# Receptor group merge and tooltip
+gene_pair_annot_receptor = gene_pair_annot2.merge(gene_group_lim, how='left', left_on='receptor_hgnc_id', right_on='hgnc_id')
+gene_pair_annot_receptor = gene_pair_annot_receptor.rename(columns={"root_group_name": "Receptor group"}).drop(columns=["hgnc_id", "receptor_hgnc_id"])
+
+gene_pair_annot_receptor["Receptor group"] = gene_pair_annot_receptor["Receptor group"].fillna("unknown")
+gene_pair_annot_receptor["Receptor group"] = gene_pair_annot_receptor["Receptor group"].apply(
+    lambda x: f'<span title="{x}">{x}</span>' if pd.notna(x) else "unknown"
+)
+

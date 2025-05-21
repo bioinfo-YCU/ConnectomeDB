@@ -1,5 +1,5 @@
 ---
-title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Pathway Annotations for LR Pairs</span>"
+title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Receptor Lineage Annotations for LR Pairs</span>"
 execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
@@ -33,41 +33,39 @@ header-includes: |
 
 ***
 
-
 ::: {.d-flex .justify-content-center .align-items-center .my-0}
-[**Diseases**](disease.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Relevant Diseases" } 
-[**Pathways**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" data-toggle="tooltip" title="Currently selected"}
-:::
 
+[**Ligand groups**](ligand_group.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Relevant Pathways" } 
+[**Receptor groups**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" data-toggle="tooltip" title="Currently selected"}
+
+
+:::
+			
 ```{=html}
 <style>
 /* Target the first search pane */
 .dtsp-searchPane:first-child::before {
-    content: "Ligand Symbol and Aliases";
+    content: "Receptor Symbol and Aliases";
     font-weight: bold;
 }
 
 /* Target the second search pane */
 .dtsp-searchPane:nth-child(2)::before {
-    content: "Receptor Symbol and Aliases";
+    content: "Receptor group";
     font-weight: bold;
 }
-
 /* Target the third search pane */
 .dtsp-searchPane:nth-child(3)::before {
-    content: "KEGG Pathway";
+    content: "Receptor group";
     font-weight: bold;
 }
 
-/* Target the fourth search pane */
-.dtsp-searchPane:nth-child(4)::before {
-    content: "PROGENy Pathway";
-    font-weight: bold;
-}
 
 
 </style>
 ```
+
+
 
 ```{python}
 import sys
@@ -83,18 +81,18 @@ import itables.options as opt
 project_root = os.path.dirname(os.getcwd())
 os.chdir(project_root)
 sys.path.append(os.path.abspath("src"))
-from createFunctionalAnnotTable import gene_pair_pathway
+from createFunctionalAnnotTable import gene_pair_annot_receptor
 
 # Function to update and display the table
 def update_table():
     show(
-        gene_pair_pathway,
+        gene_pair_annot_receptor,
         keys=True,
         layout={"top": ["searchPanes"],
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
-                     "columns": [6,7,3,5], 
+                     "columns": [5,7], 
                      "regex": True, "caseInsensitive": False, 
                      "smart": True, 
                      "initCollapsed": True, 
@@ -119,10 +117,10 @@ def update_table():
             {"extend": "copyHtml5", "title": "Source"},
         ],
         columnDefs=[
-            {"className": "dt-center", "targets": [8]}, 
-            {"targets": [6,7], "visible": False},
-            {"width": "400px", "targets": [3]},
-            # {"width": "100px", "targets": "_all"},
+            #{"className": "dt-center", "targets": [6]}, 
+            {"targets": [2,4,6], "visible": False}, 
+            {"width": "475px", "targets": [5]},
+            {"width": "425px", "targets": [7]},
         ],
         style="1200px;margin:auto",
            language={

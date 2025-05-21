@@ -38,8 +38,12 @@ website:
            text: Diseases
          - href: annotations/pathway.qmd
            text: Pathways
+         - href: annotations/ligand_group.qmd
+           text: Ligand Lineage
+         - href: annotations/receptor_group.qmd
+           text: Receptor Lineage
       - href: stats.qmd
-        text: "{{< iconify mdi:chart inline size=20px >}}Stats"
+        text: "{{< iconify mdi:chart-bar inline size=20px >}}Statistics"
     right:
       - url: mailto:bioinfo@yokohama-cu.ac.jp
         text: "{{< iconify mdi:email inline size=20px >}}"
