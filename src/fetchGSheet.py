@@ -41,10 +41,13 @@ def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file):
 # Fetching data from Google Sheets
 gene_pair = fetch_google_sheet_data(sheet_ID, "FROZEN LIST HUMAN", credentials_file)
 loc_info = fetch_google_sheet_data(sheet_ID, "proteome_HPA", credentials_file) 
-# Integrate 
+# Ligand and receptor location # previously based on localization 
 ligand_loc = fetch_google_sheet_data(sheet_ID, "Ligand_location_HUMAN", credentials_file) 
 receptor_loc = fetch_google_sheet_data(sheet_ID, "Receptor_location_HUMAN", credentials_file) 
+# Pathways
 kegg_pathway_info = fetch_google_sheet_data(sheet_ID, "KEGG_metadata_pairs in frozen", credentials_file) 
-# previously based on localization # another option is proteome_HPA
+# HGNC gene group
+gene_group = fetch_google_sheet_data(sheet_ID, "HGNC gene group", credentials_file)
+ 
 src_info = fetch_google_sheet_data(sheet_ID, "sourceAbbv", credentials_file)
 #pop_up_info = fetch_google_sheet_data(sheet_ID, "HGNC_Dec2024", credentials_file)
