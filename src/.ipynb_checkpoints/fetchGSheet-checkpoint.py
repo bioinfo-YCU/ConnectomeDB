@@ -7,36 +7,43 @@ import pandas as pd
 sheet_ID = "1XP5wBDN_orSlE8RLb2TxSclIopVO1mb_1S3ENf2qYSw" #"15FfI7cVpJmAcytTBmhVE2Z77tgVQYfEZUEe700_Wzlg"
 credentials_file = 'data/connectomedb2025-a9acdf562a84.json'
 
-def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file):
+import time
+import random
+import pandas as pd
+import gspread
+from google.auth.transport.requests import Request
+from google.oauth2.service_account import Credentials
+from gspread.exceptions import APIError, WorksheetNotFound
+
+def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file, max_retries=5):
     """
-    Fetch data from a specific tab of a Google Sheet and return it as a pandas DataFrame.
-    
-    Parameters:
-        sheet_ID (str): The ID of the Google Sheet.
-        tab_name (str): The name of the tab/worksheet to fetch.
-        credentials_file (str): Path to the service account JSON credentials file.
-    
-    Returns:
-        pd.DataFrame: Data from the specified Google Sheet tab.
+    Fetch data from a specific tab of a Google Sheet with retry/backoff on quota errors.
     """
-    # Define the scopes and authenticate
     SCOPES = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
     credentials = Credentials.from_service_account_file(credentials_file, scopes=SCOPES)
     client = gspread.authorize(credentials)
 
-    # Open the Google Sheet and get the specified tab
-    try:
-        sheet = client.open_by_key(sheet_ID)
-        worksheet = sheet.worksheet(tab_name)
-    except gspread.exceptions.WorksheetNotFound:
-        raise ValueError(f"Tab '{tab_name}' not found in Google Sheet with ID '{sheet_ID}'.")
+    for attempt in range(max_retries):
+        try:
+            sheet = client.open_by_key(sheet_ID)
+            worksheet = sheet.worksheet(tab_name)
+            data = worksheet.get_all_values()
+            df = pd.DataFrame(data)
+            df.columns = df.iloc[0]
+            df = df[1:].reset_index(drop=True)
+            return df
+        except WorksheetNotFound:
+            raise ValueError(f"Tab '{tab_name}' not found in Google Sheet with ID '{sheet_ID}'.")
+        except APIError as e:
+            if e.response.status_code == 429:
+                wait_time = (2 ** attempt) + random.uniform(0, 1)
+                print(f"[429 Error] Rate limit hit. Retrying in {wait_time:.2f} seconds...")
+                time.sleep(wait_time)
+            else:
+                raise
 
-    # Get all values from the tab and convert to DataFrame
-    data = worksheet.get_all_values()
-    df = pd.DataFrame(data)
-    df.columns = df.iloc[0]  # Set the first row as the header
-    df = df[1:].reset_index(drop=True)  # Remove the header row from the data
-    return df
+    raise RuntimeError(f"Failed to fetch data after {max_retries} retries due to API quota limits.")
+
 
 # Fetching data from Google Sheets
 gene_pair = fetch_google_sheet_data(sheet_ID, "FROZEN LIST HUMAN", credentials_file)
