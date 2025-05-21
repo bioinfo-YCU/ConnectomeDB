@@ -26,7 +26,7 @@ import plotly.express as px
 sys.path.append(os.path.abspath("src"))
 from createDataTable import gene_pair
 from createTriplicateDT import gene_pair_trip
-from createFunctionalAnnotTable import gene_pair_disease, gene_pair_pathway
+from createFunctionalAnnotTable import gene_pair_disease, gene_pair_pathway, gene_pair_annot_ligand, gene_pair_annot_receptor
 
 # Subset categorical columns
 gene_pair_cat = gene_pair.iloc[:, [2, 7, 8, 9, 10, 13, 14]]
@@ -61,7 +61,7 @@ for col in cat_cols:
         xanchor="left"
     ),
     width=600,
-    height=600
+    height=300
 )
    
     figs.append(fig)
@@ -155,7 +155,7 @@ fig = px.bar(
     labels={'Year': 'Year', 'Count': 'Count'},
     template='plotly_white'
 )
-fig.update_layout(xaxis_tickangle=-45, width=600, height=600)
+fig.update_layout(xaxis_tickangle=-45, width=600, height=300)
 
 
 
@@ -191,7 +191,7 @@ for col in cat_cols_trip:
         xanchor="left"
     ),
     width=600,
-    height=600
+    height=300
 )
     figs_trip.append(fig_trip)
 
@@ -253,7 +253,7 @@ figs_trip[2]
 
 ::: {.column width="100%"}
 
-### Based on the [**Disease Annotations**](annotations/disease.qmd)
+### LR pair count Based on the [**Disease Annotations**](annotations/disease.qmd)
 
 ::: {.panel-tabset}
 
@@ -291,7 +291,7 @@ for col in cat_cols:
         xanchor="left"
     ),
     width=1200,
-    height=600
+    height=300
 )
     figs_disease.append(fig_disease)
 
@@ -331,7 +331,7 @@ figs_disease[2]
 
 ::: {.column width="100%"}
 
-### Based on the [**Pathway Annotations**](annotations/pathway.qmd)
+### LR pair count Based on the [**Pathway Annotations**](annotations/pathway.qmd)
 
 ::: {.panel-tabset}
 
@@ -368,7 +368,7 @@ for col in cat_cols_trip:
         xanchor="left"
     ),
     width=1200,
-    height=600
+    height=300
 )
     figs_pathway.append(fig_pathway)
 
@@ -398,6 +398,157 @@ figs_pathway[2]
 
 ```
 :::
+
+:::
+
+:::
+
+
+::: {.columns}
+
+### LR pair count based on the [**Ligand**](annotations/ligand_group.qmd) and [**Receptor**](annotations/receptor_group.qmd) Annotations
+
+::: {.column width="100%"}
+
+::: {.panel-tabset}
+
+```{python}
+#| echo: false
+
+# Subset categorical columns
+lig_cat = gene_pair_annot_ligand.iloc[:, [6]]
+cat_cols = lig_cat.select_dtypes(include='object').columns
+
+figs_lig = []
+
+for col in cat_cols:
+    # Clean values: remove HTML tags
+    cleaned_values = lig_cat[col].astype(str).apply(lambda x: re.sub(r'<.*?>', '', x))
+
+    counts = cleaned_values.value_counts().reset_index()
+    counts.columns = [col, 'count']
+    cat_count = str(cleaned_values.nunique())
+    #fig_lig = px.pie(
+    #    counts,
+    #    names=col,
+    #    values='count',
+    #    hole=0.4,
+    #    title=f"Distribution of {cat_count} {col}"
+    #)
+    top_n = 25
+    top_counts = counts.sort_values('count', ascending=False).head(top_n)
+    
+    fig_lig = px.bar(
+        top_counts.sort_values('count', ascending=True),
+        x='count',
+        y=col,
+        orientation='h',
+        title=f"Top {top_n} of {cat_count} "
+          f"{col.rstrip() if col.rstrip().endswith('s') else col.rstrip() + 's'}"
+    )
+
+    #fig_lig.update_traces(textinfo='percent+label', textposition='inside')
+    fig_lig.update_layout(
+    yaxis=dict(
+        tickangle=0,
+        tickfont=dict(size=10)  # control size and font
+    ),
+    #legend_title_text=col,
+    #legend=dict(
+    #    orientation="v",
+    #    y=0.5,
+    #    yanchor="middle",
+    #    x=1.05,
+    #    xanchor="left"
+    #),
+    legend_title_text=col,
+    yaxis_title=col,
+    xaxis_title="Count",
+    margin=dict(l=100, r=20, t=60, b=20),
+    width=1200,
+    height=600
+)
+    figs_lig.append(fig_lig)
+
+```
+
+## Ligand Lineage
+
+```{python}
+
+#| echo: false
+figs_lig[0]
+
+```
+
+## Receptor Lineage
+
+
+```{python}
+#| echo: false
+# Select categorical columns
+# Subset categorical columns
+rec_cat = gene_pair_annot_receptor.iloc[:, [6]]
+cat_cols = rec_cat.select_dtypes(include='object').columns
+
+figs_rec = []
+
+for col in cat_cols:
+    # Clean values: remove HTML tags
+    cleaned_values = rec_cat[col].astype(str).apply(lambda x: re.sub(r'<.*?>', '', x))
+
+    counts = cleaned_values.value_counts().reset_index()
+    counts.columns = [col, 'count']
+    cat_count = str(cleaned_values.nunique())
+    #fig_rec = px.pie(
+    #    counts,
+    #    names=col,
+    #    values='count',
+    #    hole=0.4,
+    #    title=f"Distribution of {cat_count} {col}"
+    #)
+    top_n = 25
+    top_counts = counts.sort_values('count', ascending=False).head(top_n)
+    
+    fig_rec = px.bar(
+        top_counts.sort_values('count', ascending=True),
+        x='count',
+        y=col,
+        orientation='h',
+        title=f"Top {top_n} of {cat_count} "
+          f"{col.rstrip() if col.rstrip().endswith('s') else col.rstrip() + 's'}"
+    )
+
+    #fig_rec.update_traces(textinfo='percent+label', textposition='inside')
+    fig_rec.update_layout(
+    yaxis=dict(
+        tickangle=0,
+        tickfont=dict(size=10)  # control size and font
+    ),
+    #legend_title_text=col,
+    #legend=dict(
+    #    orientation="v",
+    #    y=0.5,
+    #    yanchor="middle",
+    #    x=1.05,
+    #    xanchor="left"
+    #),
+    legend_title_text=col,
+    yaxis_title=col,
+    xaxis_title="Count",
+    margin=dict(l=100, r=20, t=60, b=20),
+    width=1200,
+    height=600
+)
+    figs_rec.append(fig_rec)
+
+```
+
+```{python}
+#| echo: false
+figs_rec[0]
+
+```
 
 :::
 

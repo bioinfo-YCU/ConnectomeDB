@@ -92,7 +92,7 @@ def update_table():
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
-                     "columns": [5,7], 
+                     "columns": [5,6], 
                      "regex": True, "caseInsensitive": False, 
                      "smart": True, 
                      "initCollapsed": True, 
@@ -118,9 +118,9 @@ def update_table():
         ],
         columnDefs=[
             #{"className": "dt-center", "targets": [6]}, 
-            {"targets": [2,4,6], "visible": False}, 
+            {"targets": [2,4], "visible": False}, 
             {"width": "475px", "targets": [5]},
-            {"width": "425px", "targets": [7]},
+            {"width": "425px", "targets": [6]},
         ],
         style="1200px;margin:auto",
            language={
