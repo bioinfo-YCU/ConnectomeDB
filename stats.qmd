@@ -7,8 +7,6 @@ toc: false
 ---
 
 <h2> {{< fa database >}} ConnectomeDB: Database Statistics</h2>  
-[{{< fa arrow-right >}} **Proceed to Database**](database.qmd){style="font-size: 1.5em;"}
-
 ---
 
 ## The Charts below are Interactive. Unselect the categories you are not interested and watch the charts change!
@@ -16,6 +14,8 @@ toc: false
 ::: {.columns}
 
 ::: {.column width="50%"}
+
+### Based on the [**Human LR pairs Database**](database/human.qmd)
 
 ::: {.panel-tabset}
 
@@ -29,9 +29,10 @@ import plotly.express as px
 sys.path.append(os.path.abspath("src"))
 from createDataTable import gene_pair
 from createTriplicateDT import gene_pair_trip
+from createFunctionalAnnotTable import gene_pair_disease, gene_pair_pathway
 
 # Subset categorical columns
-gene_pair_cat = gene_pair.iloc[:, [2, 7, 8, 9, 10, 13, 14, 16]]
+gene_pair_cat = gene_pair.iloc[:, [2, 7, 8, 9, 10, 13, 14]]
 cat_cols = gene_pair_cat.select_dtypes(include='object').columns
 
 figs = []
@@ -39,18 +40,33 @@ figs = []
 for col in cat_cols:
     # Clean values: remove HTML tags
     cleaned_values = gene_pair_cat[col].astype(str).apply(lambda x: re.sub(r'<.*?>', '', x))
-
+    # Replace commas with newlines in a display-safe version of the values
+    cleaned_values = cleaned_values.apply(lambda x: x.replace('secreted by ischemic cardiomyocytes, secreted by necrotic cells', 'secreted by ischemic cardiomyocytes & necrotic cells'))
+    cleaned_values = cleaned_values.apply(lambda x: x.replace('Endoplasmic reticulum', 'ER'))
     counts = cleaned_values.value_counts().reset_index()
     counts.columns = [col, 'count']
-
+    cat_count = str(cleaned_values.nunique())
     fig = px.pie(
         counts,
         names=col,
         values='count',
         hole=0.4,
-        title=f"Distribution of {col}"
+        title=f"Distribution of {cat_count} {col}"
     )
     fig.update_traces(textinfo='percent+label', textposition='inside')
+    fig.update_layout(
+    legend_title_text=col,
+    legend=dict(
+        orientation="v",
+        y=0.5,
+        yanchor="middle",
+        x=1.05,
+        xanchor="left"
+    ),
+    width=600,
+    height=600
+)
+   
     figs.append(fig)
 
 ```
@@ -99,18 +115,13 @@ figs[5]
 figs[6]
 ```
 
-## Cancer
-
-```{python}
-#| echo: false
-figs[7]
-```
-
 :::
 
 :::
 
 ::: {.column width="50%"}
+
+### Based on the [**Human LR Pair ˣ Pubmed Evidence**](database/human-trip.qmd)
 
 ::: {.panel-tabset}
 
@@ -118,16 +129,6 @@ figs[7]
 
 ```{python}
 #| echo: false
-import sys
-import os
-import json
-sys.path.append(os.path.abspath("src"))
-from createDataTable import gene_pair
-from createTriplicateDT import gene_pair_trip
-import re
-import plotly.express as px
-import pandas as pd
-
 # Select categorical columns
 gene_pair_trip_cat = gene_pair_trip.iloc[:, [3,6,10]]
 cat_cols_trip = gene_pair_trip_cat.select_dtypes(include='object').columns
@@ -153,11 +154,13 @@ fig = px.bar(
     year_counts,
     x='Year',
     y='Count',
-    title='Counts per Year',
+    title='PMID counts per Year',
     labels={'Year': 'Year', 'Count': 'Count'},
     template='plotly_white'
 )
-fig.update_layout(xaxis_tickangle=-45)
+fig.update_layout(xaxis_tickangle=-45, width=600, height=600)
+
+
 
 ```
 
@@ -171,15 +174,28 @@ for col in cat_cols_trip:
 
     counts = cleaned_values.value_counts().reset_index()
     counts.columns = [col, 'count']
+    cat_count = str(cleaned_values.nunique())
 
     fig_trip = px.pie(
         counts,
         names=col,
         values='count',
         hole=0.4,
-        title=f"Distribution of {col}"
+        title=f"Distribution of {cat_count} {col}"
     )
     fig_trip.update_traces(textinfo='percent+label', textposition='inside')
+    fig_trip.update_layout(
+    legend_title_text=col,
+    legend=dict(
+        orientation="v",
+        y=0.5,
+        yanchor="middle",
+        x=1.05,
+        xanchor="left"
+    ),
+    width=600,
+    height=600
+)
     figs_trip.append(fig_trip)
 
 ```
@@ -233,3 +249,160 @@ figs_trip[2]
 :::
 
 :::
+
+
+
+::: {.columns}
+
+::: {.column width="100%"}
+
+### Based on the [**Disease Annotations**](annotations/disease.qmd)
+
+::: {.panel-tabset}
+
+```{python}
+#| echo: false
+
+# Subset categorical columns
+disease_cat = gene_pair_disease.iloc[:, [2, 3, 4]]
+cat_cols = disease_cat.select_dtypes(include='object').columns
+
+figs_disease = []
+
+for col in cat_cols:
+    # Clean values: remove HTML tags
+    cleaned_values = disease_cat[col].astype(str).apply(lambda x: re.sub(r'<.*?>', '', x))
+
+    counts = cleaned_values.value_counts().reset_index()
+    counts.columns = [col, 'count']
+    cat_count = str(cleaned_values.nunique())
+    fig_disease = px.pie(
+        counts,
+        names=col,
+        values='count',
+        hole=0.4,
+        title=f"Distribution of {cat_count} {col}"
+    )
+    fig_disease.update_traces(textinfo='percent+label', textposition='inside')
+    fig_disease.update_layout(
+    legend_title_text=col,
+    legend=dict(
+        orientation="v",
+        y=0.5,
+        yanchor="middle",
+        x=1.05,
+        xanchor="left"
+    ),
+    width=1200,
+    height=600
+)
+    figs_disease.append(fig_disease)
+
+```
+
+## Specific Disease
+
+```{python}
+
+#| echo: false
+figs_disease[0]
+
+```
+
+## Disease Type
+
+```{python}
+
+#| echo: false
+figs_disease[1]
+
+```
+
+## Cancer-related
+
+```{python}
+
+#| echo: false
+figs_disease[2]
+
+```
+
+
+:::
+
+:::
+
+::: {.column width="100%"}
+
+### Based on the [**Pathway Annotations**](annotations/pathway.qmd)
+
+::: {.panel-tabset}
+
+```{python}
+#| echo: false
+# Select categorical columns
+cat_pathways = gene_pair_pathway.iloc[:, [3,4,5]]
+cat_cols_trip = cat_pathways.select_dtypes(include='object').columns
+
+figs_pathway = []
+for col in cat_cols_trip:
+    # Clean values: remove HTML tags
+    cleaned_values = cat_pathways[col].astype(str).apply(lambda x: re.sub(r'<.*?>', '', x))
+
+    counts = cleaned_values.value_counts().reset_index()
+    counts.columns = [col, 'count']
+    cat_count = str(cleaned_values.nunique())
+
+    fig_pathway = px.pie(
+        counts,
+        names=col,
+        values='count',
+        hole=0.4,
+        title=f"Distribution of {cat_count} {col}"
+    )
+    fig_pathway.update_traces(textinfo='percent+label', textposition='inside')
+    fig_pathway.update_layout(
+    legend_title_text=col,
+    legend=dict(
+        orientation="v",
+        y=0.5,
+        yanchor="middle",
+        x=1.05,
+        xanchor="left"
+    ),
+    width=1200,
+    height=600
+)
+    figs_pathway.append(fig_pathway)
+
+```
+
+## KEGG Pathway
+
+```{python}
+#| echo: false
+figs_pathway[0]
+
+```
+
+## KEGG relationship
+
+```{python}
+#| echo: false
+figs_pathway[1]
+
+```
+
+## PROGENy Pathway
+
+```{python}
+#| echo: false
+figs_pathway[2]
+
+```
+:::
+
+:::
+
+:::
+
