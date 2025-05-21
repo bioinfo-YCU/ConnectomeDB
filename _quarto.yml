@@ -5,6 +5,7 @@ project:
     - "!DT_R_ver.qmd"
     - "!index_dashboard.qmd"
     - "!*.ipynb/"
+    - "!database/human-trip_old.qmd"
 
 website:
   title: ""
