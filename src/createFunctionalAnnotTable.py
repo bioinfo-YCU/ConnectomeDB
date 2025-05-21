@@ -169,7 +169,7 @@ gene_group_lim["root_group_name"] = gene_group_lim["root_group_name"].apply(
 
 # Ligand group merge and tooltip
 gene_pair_annot_ligand = gene_pair_annot2.merge(gene_group_lim, how='left', left_on='ligand_hgnc_id', right_on='hgnc_id')
-gene_pair_annot_ligand = gene_pair_annot_ligand.rename(columns={"root_group_name": "Ligand group"}).drop(columns=["hgnc_id", "ligand_hgnc_id"])
+gene_pair_annot_ligand = gene_pair_annot_ligand.rename(columns={"root_group_name": "Ligand group"}).drop(columns=["hgnc_id", "ligand_hgnc_id", "receptor_hgnc_id"])
 
 gene_pair_annot_ligand["Ligand group"] = gene_pair_annot_ligand["Ligand group"].fillna("unknown")
 gene_pair_annot_ligand["Ligand group"] = gene_pair_annot_ligand["Ligand group"].apply(
@@ -178,7 +178,7 @@ gene_pair_annot_ligand["Ligand group"] = gene_pair_annot_ligand["Ligand group"].
 
 # Receptor group merge and tooltip
 gene_pair_annot_receptor = gene_pair_annot2.merge(gene_group_lim, how='left', left_on='receptor_hgnc_id', right_on='hgnc_id')
-gene_pair_annot_receptor = gene_pair_annot_receptor.rename(columns={"root_group_name": "Receptor group"}).drop(columns=["hgnc_id", "receptor_hgnc_id"])
+gene_pair_annot_receptor = gene_pair_annot_receptor.rename(columns={"root_group_name": "Receptor group"}).drop(columns=["hgnc_id","ligand_hgnc_id", "receptor_hgnc_id"])
 
 gene_pair_annot_receptor["Receptor group"] = gene_pair_annot_receptor["Receptor group"].fillna("unknown")
 gene_pair_annot_receptor["Receptor group"] = gene_pair_annot_receptor["Receptor group"].apply(
