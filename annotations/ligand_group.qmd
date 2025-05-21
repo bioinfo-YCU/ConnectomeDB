@@ -1,5 +1,5 @@
 ---
-title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Pathway Annotations for LR Pairs</span>"
+title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Ligand Lineage Annotations for LR Pairs</span>"
 execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
@@ -33,12 +33,13 @@ header-includes: |
 
 ***
 
-
 ::: {.d-flex .justify-content-center .align-items-center .my-0}
-[**Diseases**](disease.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Relevant Diseases" } 
-[**Pathways**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" data-toggle="tooltip" title="Currently selected"}
-:::
 
+[**Ligand groups**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" data-toggle="tooltip" title="Currently selected"}
+[**Receptor groups**](receptor_group.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Relevant Pathways" } 
+
+:::
+			
 ```{=html}
 <style>
 /* Target the first search pane */
@@ -49,25 +50,21 @@ header-includes: |
 
 /* Target the second search pane */
 .dtsp-searchPane:nth-child(2)::before {
-    content: "Receptor Symbol and Aliases";
+    content: "Ligand group";
     font-weight: bold;
 }
-
 /* Target the third search pane */
 .dtsp-searchPane:nth-child(3)::before {
-    content: "KEGG Pathway";
+    content: "Ligand group";
     font-weight: bold;
 }
 
-/* Target the fourth search pane */
-.dtsp-searchPane:nth-child(4)::before {
-    content: "PROGENy Pathway";
-    font-weight: bold;
-}
 
 
 </style>
 ```
+
+
 
 ```{python}
 import sys
@@ -83,18 +80,18 @@ import itables.options as opt
 project_root = os.path.dirname(os.getcwd())
 os.chdir(project_root)
 sys.path.append(os.path.abspath("src"))
-from createFunctionalAnnotTable import gene_pair_pathway
+from createFunctionalAnnotTable import gene_pair_annot_ligand
 
 # Function to update and display the table
 def update_table():
     show(
-        gene_pair_pathway,
+        gene_pair_annot_ligand,
         keys=True,
         layout={"top": ["searchPanes"],
                 },
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
-                     "columns": [6,7,3,5], 
+                     "columns": [4,6], 
                      "regex": True, "caseInsensitive": False, 
                      "smart": True, 
                      "initCollapsed": True, 
@@ -119,10 +116,10 @@ def update_table():
             {"extend": "copyHtml5", "title": "Source"},
         ],
         columnDefs=[
-            {"className": "dt-center", "targets": [8]}, 
-            {"targets": [6,7], "visible": False},
-            {"width": "400px", "targets": [3]},
-            # {"width": "100px", "targets": "_all"},
+            #{"className": "dt-center", "targets": [6]}, 
+            {"targets": [3, 5], "visible": False}, 
+            {"width": "425px", "targets": [4]},
+            {"width": "475px", "targets": [6]},
         ],
         style="1200px;margin:auto",
            language={
