@@ -34,4 +34,7 @@
 
 `plotExprAcrossCellType.py`: Create Expression plots per gene to be placed inside the PDF/HTML card
 
+
+`createCards_scRNA.py`: Create Ligand-Receptor pair cards based on `cardTemplate_scRNA.html` from HTML directory with scRNA files
+
 `createCards.py`: Create Ligand-Receptor pair cards based on `cardTemplate.html` from HTML directory
