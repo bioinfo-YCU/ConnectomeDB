@@ -127,11 +127,18 @@ gene_pair_pathway["KEGG Pathway"] = [
 
 # this is for HGNC gene groups
 # Prepare gene_pair_annot2 base table
+# gene_pair_annot2 = gene_pair0[[
+#     "Interaction ID", "Human LR Pair", 
+#     'Ligand HGNC ID', 'Receptor HGNC ID', 
+#     "Ligand symbol and aliases",  
+#     "Receptor symbol and aliases"
+# ]].copy()
+
 gene_pair_annot2 = gene_pair0[[
-    "Interaction ID", "Human LR Pair", 
     'Ligand HGNC ID', 'Receptor HGNC ID', 
     "Ligand symbol and aliases",  
-    "Receptor symbol and aliases"
+    "Receptor symbol and aliases",
+    'Ligand location', 'Receptor location',
 ]].copy()
 
 # Extract HGNC IDs cleanly using regex only if string is valid
@@ -145,13 +152,13 @@ gene_pair_annot2["receptor_hgnc_id"] = gene_pair_annot2["Receptor HGNC ID"].appl
 
 
 # Create HTML links for LR pair and interaction
-gene_pair_annot2["Human LR Pair"] = gene_pair_annot2["Human LR Pair"].apply(
-    lambda lr: f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lr}.html">{lr}</a>'
-)
+# gene_pair_annot2["Human LR Pair"] = gene_pair_annot2["Human LR Pair"].apply(
+#     lambda lr: f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lr}.html">{lr}</a>'
+# )
 
-gene_pair_annot2["Interaction ID"] = gene_pair_annot2["Interaction ID"].apply(
-    lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
-)
+# gene_pair_annot2["Interaction ID"] = gene_pair_annot2["Interaction ID"].apply(
+#     lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
+# )
 
 
 # HTML pop-ups for aliases
@@ -168,20 +175,32 @@ gene_group_lim["root_group_name"] = gene_group_lim["root_group_name"].apply(
 )
 
 # Ligand group merge and tooltip
-gene_pair_annot_ligand = gene_pair_annot2.merge(gene_group_lim, how='left', left_on='ligand_hgnc_id', right_on='hgnc_id')
-gene_pair_annot_ligand = gene_pair_annot_ligand.rename(columns={"root_group_name": "Ligand group"}).drop(columns=["hgnc_id", "ligand_hgnc_id", "receptor_hgnc_id"])
+gene_pair_annot_ligand = gene_pair_annot2[['Ligand HGNC ID', 
+                                           'Ligand symbol and aliases',
+                                           'ligand_hgnc_id', 
+                                           'Ligand location']].copy()
+
+gene_pair_annot_ligand = gene_pair_annot_ligand.merge(gene_group_lim, how='left', left_on='ligand_hgnc_id', right_on='hgnc_id')
+gene_pair_annot_ligand = gene_pair_annot_ligand.rename(columns={"root_group_name": "Ligand group"}).drop(columns=["hgnc_id", "ligand_hgnc_id"])
 
 gene_pair_annot_ligand["Ligand group"] = gene_pair_annot_ligand["Ligand group"].fillna("unknown")
 gene_pair_annot_ligand["Ligand group"] = gene_pair_annot_ligand["Ligand group"].apply(
     lambda x: f'<span title="{x}">{x}</span>' if pd.notna(x) else "unknown"
 )
+# drop duplicates 
+gene_pair_annot_ligand = gene_pair_annot_ligand.drop_duplicates().reset_index(drop=True)
 
 # Receptor group merge and tooltip
-gene_pair_annot_receptor = gene_pair_annot2.merge(gene_group_lim, how='left', left_on='receptor_hgnc_id', right_on='hgnc_id')
-gene_pair_annot_receptor = gene_pair_annot_receptor.rename(columns={"root_group_name": "Receptor group"}).drop(columns=["hgnc_id","ligand_hgnc_id", "receptor_hgnc_id"])
+gene_pair_annot_receptor = gene_pair_annot2[['Receptor HGNC ID', 
+                                           'Receptor symbol and aliases',
+                                           'receptor_hgnc_id',
+                                           'Receptor location']].copy()
+# drop duplicates 
+gene_pair_annot_receptor = gene_pair_annot_receptor.merge(gene_group_lim, how='left', left_on='receptor_hgnc_id', right_on='hgnc_id')
+gene_pair_annot_receptor = gene_pair_annot_receptor.rename(columns={"root_group_name": "Receptor group"}).drop(columns=["hgnc_id","receptor_hgnc_id"])
 
 gene_pair_annot_receptor["Receptor group"] = gene_pair_annot_receptor["Receptor group"].fillna("unknown")
 gene_pair_annot_receptor["Receptor group"] = gene_pair_annot_receptor["Receptor group"].apply(
     lambda x: f'<span title="{x}">{x}</span>' if pd.notna(x) else "unknown"
 )
-
+gene_pair_annot_receptor = gene_pair_annot_receptor.drop_duplicates().reset_index(drop=True)

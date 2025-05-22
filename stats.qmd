@@ -42,13 +42,23 @@ for col in cat_cols:
     cleaned_values = cleaned_values.apply(lambda x: x.replace('Endoplasmic reticulum', 'ER'))
     counts = cleaned_values.value_counts().reset_index()
     counts.columns = [col, 'count']
+    # Add (n=...) to each label
+    counts['label'] = counts.apply(lambda row: f"{row[col]} (n={row['count']})", axis=1)
+    color_map = {
+        name: "#A9A9A9"  # dark gray
+        for name in counts['label']
+        if "unknown" in name.lower()
+    }
+
     cat_count = str(cleaned_values.nunique())
     fig = px.pie(
         counts,
-        names=col,
+        names='label',  # Use custom label with (n=...)
         values='count',
         hole=0.4,
-        title=f"Distribution of {cat_count} {col}"
+        title=f"Distribution of {cat_count} {col}",
+        color='label',  # Use label column for color mapping
+        color_discrete_map=color_map
     )
     fig.update_traces(textinfo='percent+label', textposition='inside')
     fig.update_layout(
@@ -171,14 +181,24 @@ for col in cat_cols_trip:
 
     counts = cleaned_values.value_counts().reset_index()
     counts.columns = [col, 'count']
+    counts['label'] = counts.apply(lambda row: f"{row[col]} (n={row['count']})", axis=1)
+    # Color map: only specify "unknown"
+    color_map = {
+        name: "#A9A9A9"  # dark gray
+        for name in counts['label']
+        if "unknown" in name.lower()
+    }
+
     cat_count = str(cleaned_values.nunique())
 
     fig_trip = px.pie(
         counts,
-        names=col,
+        names='label',  # Use custom label with (n=...)
         values='count',
         hole=0.4,
-        title=f"Distribution of {cat_count} {col}"
+        title=f"Distribution of {cat_count} {col}",
+        color='label',  # Use label column for color mapping
+        color_discrete_map=color_map
     )
     fig_trip.update_traces(textinfo='percent+label', textposition='inside')
     fig_trip.update_layout(
@@ -272,13 +292,25 @@ for col in cat_cols:
 
     counts = cleaned_values.value_counts().reset_index()
     counts.columns = [col, 'count']
+    # Label with (n=...)
+    counts['label'] = counts.apply(lambda row: f"{row[col]} (n={row['count']})", axis=1)
+
+    # Color map: only specify "unknown"
+    color_map = {
+        name: "#A9A9A9"  # dark gray
+        for name in counts['label']
+        if "unknown" in name.lower()
+    }
+
     cat_count = str(cleaned_values.nunique())
     fig_disease = px.pie(
         counts,
-        names=col,
+        names='label',  # Use custom label with (n=...)
         values='count',
         hole=0.4,
-        title=f"Distribution of {cat_count} {col}"
+        title=f"Distribution of {cat_count} {col}",
+        color='label',  # Use label column for color mapping
+        color_discrete_map=color_map
     )
     fig_disease.update_traces(textinfo='percent+label', textposition='inside')
     fig_disease.update_layout(
@@ -345,17 +377,26 @@ figs_pathway = []
 for col in cat_cols_trip:
     # Clean values: remove HTML tags
     cleaned_values = cat_pathways[col].astype(str).apply(lambda x: re.sub(r'<.*?>', '', x))
-
+    
     counts = cleaned_values.value_counts().reset_index()
     counts.columns = [col, 'count']
+    counts['label'] = counts.apply(lambda row: f"{row[col]} (n={row['count']})", axis=1)
+    # Color map: only specify "unknown"
+    color_map = {
+        name: "#A9A9A9"  # dark gray
+        for name in counts['label']
+        if "unknown" in name.lower()
+    }
     cat_count = str(cleaned_values.nunique())
 
     fig_pathway = px.pie(
         counts,
-        names=col,
+        names='label',  # Use custom label with (n=...)
         values='count',
         hole=0.4,
-        title=f"Distribution of {cat_count} {col}"
+        title=f"Distribution of {cat_count} {col}",
+        color='label',  # Use label column for color mapping
+        color_discrete_map=color_map
     )
     fig_pathway.update_traces(textinfo='percent+label', textposition='inside')
     fig_pathway.update_layout(
@@ -406,7 +447,7 @@ figs_pathway[2]
 
 ::: {.columns}
 
-### LR pair count based on the [**Ligand**](annotations/ligand_group.qmd) and [**Receptor**](annotations/receptor_group.qmd) Annotations
+### Gene count based on the [**Ligand**](annotations/ligand_group.qmd) and [**Receptor**](annotations/receptor_group.qmd) Annotations
 
 ::: {.column width="100%"}
 
@@ -416,7 +457,7 @@ figs_pathway[2]
 #| echo: false
 
 # Subset categorical columns
-lig_cat = gene_pair_annot_ligand.iloc[:, [6]]
+lig_cat = gene_pair_annot_ligand.iloc[:, [3,2]]
 cat_cols = lig_cat.select_dtypes(include='object').columns
 
 figs_lig = []
@@ -435,7 +476,7 @@ for col in cat_cols:
     #    hole=0.4,
     #    title=f"Distribution of {cat_count} {col}"
     #)
-    top_n = 25
+    top_n = 30
     top_counts = counts.sort_values('count', ascending=False).head(top_n)
     
     fig_lig = px.bar(
@@ -470,6 +511,51 @@ for col in cat_cols:
 )
     figs_lig.append(fig_lig)
 
+figs_lig2 = []
+
+for col in cat_cols:
+    # Clean values: remove HTML tags
+    cleaned_values = lig_cat[col].astype(str).apply(lambda x: re.sub(r'<.*?>', '', x))
+    # Replace commas with newlines in a display-safe version of the values
+    cleaned_values = cleaned_values.apply(lambda x: x.replace('secreted by ischemic cardiomyocytes, secreted by necrotic cells', 'secreted by ischemic cardiomyocytes & necrotic cells'))
+    cleaned_values = cleaned_values.apply(lambda x: x.replace('Endoplasmic reticulum', 'ER'))
+    counts = cleaned_values.value_counts().reset_index()
+    counts.columns = [col, 'count']
+    # Add (n=...) to each label
+    counts['label'] = counts.apply(lambda row: f"{row[col]} (n={row['count']})", axis=1)
+    color_map = {
+        name: "#A9A9A9"  # dark gray
+        for name in counts['label']
+        if "unknown" in name.lower()
+    }
+
+    cat_count = str(cleaned_values.nunique())
+    fig_lig2 = px.pie(
+        counts,
+        names='label',  # Use custom label with (n=...)
+        values='count',
+        hole=0.4,
+        title=f"Distribution of {cat_count} {col}",
+        color='label',  # Use label column for color mapping
+        color_discrete_map=color_map
+    )
+    fig_lig2.update_traces(textinfo='percent+label', textposition='inside')
+    fig_lig2.update_layout(
+    legend_title_text=col,
+    legend=dict(
+        orientation="v",
+        y=0.5,
+        yanchor="middle",
+        x=1.05,
+        xanchor="left"
+    ),
+    width=1200,
+    height=600
+)
+   
+    figs_lig2.append(fig_lig2)
+
+
 ```
 
 ## Ligand Lineage
@@ -481,6 +567,16 @@ figs_lig[0]
 
 ```
 
+
+## Ligand location
+
+```{python}
+
+#| echo: false
+figs_lig2[1]
+
+```
+
 ## Receptor Lineage
 
 
@@ -488,7 +584,7 @@ figs_lig[0]
 #| echo: false
 # Select categorical columns
 # Subset categorical columns
-rec_cat = gene_pair_annot_receptor.iloc[:, [6]]
+rec_cat = gene_pair_annot_receptor.iloc[:, [3,2]]
 cat_cols = rec_cat.select_dtypes(include='object').columns
 
 figs_rec = []
@@ -507,7 +603,7 @@ for col in cat_cols:
     #    hole=0.4,
     #    title=f"Distribution of {cat_count} {col}"
     #)
-    top_n = 25
+    top_n = 30
     top_counts = counts.sort_values('count', ascending=False).head(top_n)
     
     fig_rec = px.bar(
@@ -542,11 +638,60 @@ for col in cat_cols:
 )
     figs_rec.append(fig_rec)
 
+figs_rec2 = []
+
+for col in cat_cols:
+    # Clean values: remove HTML tags
+    cleaned_values = rec_cat[col].astype(str).apply(lambda x: re.sub(r'<.*?>', '', x))
+    counts = cleaned_values.value_counts().reset_index()
+    counts.columns = [col, 'count']
+    # Add (n=...) to each label
+    counts['label'] = counts.apply(lambda row: f"{row[col]} (n={row['count']})", axis=1)
+    color_map = {
+        name: "#A9A9A9"  # dark gray
+        for name in counts['label']
+        if "unknown" in name.lower()
+    }
+
+    cat_count = str(cleaned_values.nunique())
+    fig_rec2 = px.pie(
+        counts,
+        names='label',  # Use custom label with (n=...)
+        values='count',
+        hole=0.4,
+        title=f"Distribution of {cat_count} {col}",
+        color='label',  # Use label column for color mapping
+        color_discrete_map=color_map
+    )
+    fig_rec2.update_traces(textinfo='percent+label', textposition='inside')
+    fig_rec2.update_layout(
+    legend_title_text=col,
+    legend=dict(
+        orientation="v",
+        y=0.5,
+        yanchor="middle",
+        x=1.05,
+        xanchor="left"
+    ),
+    width=1200,
+    height=600
+)
+   
+    figs_rec2.append(fig_rec2)
+
+
 ```
 
 ```{python}
 #| echo: false
 figs_rec[0]
+
+```
+## Receptor location
+
+```{python}
+#| echo: false
+figs_rec2[1]
 
 ```
 
