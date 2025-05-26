@@ -28,6 +28,12 @@ from createDataTable import gene_pair
 from createTriplicateDT import gene_pair_trip
 from createFunctionalAnnotTable import gene_pair_disease, gene_pair_pathway, gene_pair_annot_ligand, gene_pair_annot_receptor
 
+# Parameters
+# color for unknown
+gray_color = "#d1cdcd"
+yes_color = "#dbbd27"
+no_color = "navy"
+
 # Subset categorical columns
 gene_pair_cat = gene_pair.iloc[:, [2, 7, 8, 9, 10, 13, 14]]
 cat_cols = gene_pair_cat.select_dtypes(include='object').columns
@@ -43,24 +49,42 @@ for col in cat_cols:
     counts = cleaned_values.value_counts().reset_index()
     counts.columns = [col, 'count']
     # Add (n=...) to each label
-    counts['label'] = counts.apply(lambda row: f"{row[col]} (n={row['count']})", axis=1)
-    color_map = {
-        name: "#A9A9A9"  # dark gray
-        for name in counts['label']
-        if "unknown" in name.lower()
-    }
-
+    counts['label'] = counts.apply(
+        lambda row: f"{row['count']} {row[col]}" if row[col] == "unknown" else f"{row[col]} (n={row['count']})", axis=1)   
+    
+    # Sort labels alphabetically
+    counts = counts.sort_values("label")
+    
+    # Capture the sorted labels
+    sorted_labels = counts['label'].tolist()
+    
+    # Define the color map
+    # Color map: only specify "unknown", "yes", "no"
+    color_map = {}
+    for name in counts['label']:
+        lower_name = name.lower()
+        if lower_name.startswith("yes"):
+            color_map[name] = yes_color
+        elif lower_name.startswith("no"):
+            color_map[name] = no_color
+        elif "unknown" in lower_name:
+            color_map[name] = gray_color  # your custom gray
+    
     cat_count = str(cleaned_values.nunique())
     fig = px.pie(
         counts,
-        names='label',  # Use custom label with (n=...)
+        names='label',
         values='count',
         hole=0.4,
         title=f"Distribution of {cat_count} {col}",
-        color='label',  # Use label column for color mapping
-        color_discrete_map=color_map
+        color='label',
+        color_discrete_map=color_map,
+        category_orders={'label': sorted_labels}  # Force legend order
     )
-    fig.update_traces(textinfo='percent+label', textposition='inside')
+
+    fig.update_traces(textinfo='percent+label',
+                      hovertemplate="%{label}<extra></extra>",
+                      textposition='inside')
     fig.update_layout(
     legend_title_text=col,
     legend=dict(
@@ -182,12 +206,25 @@ for col in cat_cols_trip:
     counts = cleaned_values.value_counts().reset_index()
     counts.columns = [col, 'count']
     counts['label'] = counts.apply(lambda row: f"{row[col]} (n={row['count']})", axis=1)
-    # Color map: only specify "unknown"
-    color_map = {
-        name: "#A9A9A9"  # dark gray
-        for name in counts['label']
-        if "unknown" in name.lower()
-    }
+    # Add (n=...) to each label
+    counts['label'] = counts.apply(
+        lambda row: f"{row['count']} {row[col]}" if row[col] == "unknown" else f"{row[col]} (n={row['count']})", axis=1)   
+    
+    # Sort labels alphabetically
+    counts = counts.sort_values("label")
+    
+    # Capture the sorted labels
+    sorted_labels = counts['label'].tolist()
+    # Color map: only specify "unknown", "yes", "no"
+    color_map = {}
+    for name in counts['label']:
+        lower_name = name.lower()
+        if lower_name.startswith("yes"):
+            color_map[name] = yes_color
+        elif lower_name.startswith("no"):
+            color_map[name] = no_color
+        elif "unknown" in lower_name:
+            color_map[name] = gray_color  # your custom gray
 
     cat_count = str(cleaned_values.nunique())
 
@@ -198,9 +235,12 @@ for col in cat_cols_trip:
         hole=0.4,
         title=f"Distribution of {cat_count} {col}",
         color='label',  # Use label column for color mapping
-        color_discrete_map=color_map
+        color_discrete_map=color_map,
+        category_orders={'label': sorted_labels}  # Force legend order
     )
-    fig_trip.update_traces(textinfo='percent+label', textposition='inside')
+    fig_trip.update_traces(textinfo='percent+label', 
+                           textposition='inside',
+                           hovertemplate="%{label}<extra></extra>")
     fig_trip.update_layout(
     legend_title_text=col,
     legend=dict(
@@ -292,15 +332,25 @@ for col in cat_cols:
 
     counts = cleaned_values.value_counts().reset_index()
     counts.columns = [col, 'count']
-    # Label with (n=...)
-    counts['label'] = counts.apply(lambda row: f"{row[col]} (n={row['count']})", axis=1)
-
-    # Color map: only specify "unknown"
-    color_map = {
-        name: "#A9A9A9"  # dark gray
-        for name in counts['label']
-        if "unknown" in name.lower()
-    }
+    # Add (n=...) to each label
+    counts['label'] = counts.apply(
+        lambda row: f"{row['count']} {row[col]}" if row[col] == "unknown" else f"{row[col]} (n={row['count']})", axis=1)   
+    
+    # Sort labels alphabetically
+    counts = counts.sort_values("label")
+    
+    # Capture the sorted labels
+    sorted_labels = counts['label'].tolist()
+    # Color map: only specify "unknown", "yes", "no"
+    color_map = {}
+    for name in counts['label']:
+        lower_name = name.lower()
+        if lower_name.startswith("yes"):
+            color_map[name] = yes_color
+        elif lower_name.startswith("no"):
+            color_map[name] = no_color
+        elif "unknown" in lower_name:
+            color_map[name] = gray_color  # your custom gray
 
     cat_count = str(cleaned_values.nunique())
     fig_disease = px.pie(
@@ -310,9 +360,12 @@ for col in cat_cols:
         hole=0.4,
         title=f"Distribution of {cat_count} {col}",
         color='label',  # Use label column for color mapping
-        color_discrete_map=color_map
+        color_discrete_map=color_map,
+        category_orders={'label': sorted_labels}  # Force legend order
     )
-    fig_disease.update_traces(textinfo='percent+label', textposition='inside')
+    fig_disease.update_traces(textinfo='percent+label', 
+                              textposition='inside',
+                              hovertemplate="%{label}<extra></extra>")
     fig_disease.update_layout(
     legend_title_text=col,
     legend=dict(
@@ -381,12 +434,26 @@ for col in cat_cols_trip:
     counts = cleaned_values.value_counts().reset_index()
     counts.columns = [col, 'count']
     counts['label'] = counts.apply(lambda row: f"{row[col]} (n={row['count']})", axis=1)
+    # Add (n=...) to each label
+    counts['label'] = counts.apply(
+        lambda row: f"{row['count']} {row[col]}" if row[col] == "unknown" else f"{row[col]} (n={row['count']})", axis=1)   
+    
+    # Sort labels alphabetically
+    counts = counts.sort_values("label")
+    
+    # Capture the sorted labels
+    sorted_labels = counts['label'].tolist()
     # Color map: only specify "unknown"
-    color_map = {
-        name: "#A9A9A9"  # dark gray
-        for name in counts['label']
-        if "unknown" in name.lower()
-    }
+    # Color map: only specify "unknown", "yes", "no"
+    color_map = {}
+    for name in counts['label']:
+        lower_name = name.lower()
+        if lower_name.startswith("yes"):
+            color_map[name] = yes_color
+        elif lower_name.startswith("no"):
+            color_map[name] = no_color
+        elif "unknown" in lower_name:
+            color_map[name] = gray_color  # your custom gray
     cat_count = str(cleaned_values.nunique())
 
     fig_pathway = px.pie(
@@ -396,7 +463,8 @@ for col in cat_cols_trip:
         hole=0.4,
         title=f"Distribution of {cat_count} {col}",
         color='label',  # Use label column for color mapping
-        color_discrete_map=color_map
+        color_discrete_map=color_map,
+        category_orders={'label': sorted_labels}  # Force legend order
     )
     fig_pathway.update_traces(textinfo='percent+label', textposition='inside')
     fig_pathway.update_layout(
@@ -447,18 +515,25 @@ figs_pathway[2]
 
 ::: {.columns}
 
-### Gene count based on the [**Ligand**](annotations/ligand_group.qmd) and [**Receptor**](annotations/receptor_group.qmd) Annotations
+::: {.column width="50%"}
 
-::: {.column width="100%"}
+### Gene count based on the [**Ligand**](annotations/ligand_group.qmd) Annotations
 
 ::: {.panel-tabset}
 
 ```{python}
 #| echo: false
 
+# Get top N categories
+top_n = 50 
+height = 800
+width = 600
+
 # Subset categorical columns
 lig_cat = gene_pair_annot_ligand.iloc[:, [3,2]]
 cat_cols = lig_cat.select_dtypes(include='object').columns
+
+import plotly.graph_objects as go
 
 figs_lig = []
 
@@ -466,50 +541,63 @@ for col in cat_cols:
     # Clean values: remove HTML tags
     cleaned_values = lig_cat[col].astype(str).apply(lambda x: re.sub(r'<.*?>', '', x))
 
+    # Count category frequencies
     counts = cleaned_values.value_counts().reset_index()
     counts.columns = [col, 'count']
     cat_count = str(cleaned_values.nunique())
-    #fig_lig = px.pie(
-    #    counts,
-    #    names=col,
-    #    values='count',
-    #    hole=0.4,
-    #    title=f"Distribution of {cat_count} {col}"
-    #)
-    top_n = 30
+
     top_counts = counts.sort_values('count', ascending=False).head(top_n)
     
-    fig_lig = px.bar(
-        top_counts.sort_values('count', ascending=True),
-        x='count',
-        y=col,
-        orientation='h',
-        title=f"Top {top_n} of {cat_count} "
-          f"{col.rstrip() if col.rstrip().endswith('s') else col.rstrip() + 's'}"
+    # Reverse order to show highest count at the top
+    top_counts = top_counts.iloc[::-1]
+
+    # Assign bar colors: gray for 'unknown', default blue for others
+    bar_colors = top_counts[col].apply(
+        lambda val: gray_color if "unknown" in val.lower() else "#1f77b4"
     )
 
-    #fig_lig.update_traces(textinfo='percent+label', textposition='inside')
+    # Create base bar plot
+    fig_lig = go.Figure()
+
+    fig_lig.add_trace(go.Bar(
+        x=top_counts['count'],
+        y=top_counts[col],
+        orientation='h',
+        marker_color=bar_colors,
+        hoverinfo='x+y'
+    ))
+
+    # Add annotations: "n={count}" at end of each bar
+    for i, row in top_counts.iterrows():
+        fig_lig.add_annotation(
+            x=row['count'],
+            y=row[col],
+            text=f"n={row['count']}",
+            showarrow=False,
+            xanchor="left",
+            yanchor="middle",
+            font=dict(size=11),
+            xshift=5  # spacing from the bar tip
+        )
+
+    # Update layout
     fig_lig.update_layout(
-    yaxis=dict(
-        tickangle=0,
-        tickfont=dict(size=10)  # control size and font
-    ),
-    #legend_title_text=col,
-    #legend=dict(
-    #    orientation="v",
-    #    y=0.5,
-    #    yanchor="middle",
-    #    x=1.05,
-    #    xanchor="left"
-    #),
-    legend_title_text=col,
-    yaxis_title=col,
-    xaxis_title="Count",
-    margin=dict(l=100, r=20, t=60, b=20),
-    width=1200,
-    height=600
-)
+        title=f"Top {top_n} of {cat_count} "
+              f"{col.rstrip() if col.rstrip().endswith('s') else col.rstrip() + 's'}",
+        yaxis=dict(
+            tickangle=0,
+            tickfont=dict(size=11)
+        ),
+        yaxis_title=col,
+        xaxis_title="Count",
+        margin=dict(l=100, r=20, t=60, b=20),
+        width=width,
+        height=height,
+        showlegend=False
+    )
+
     figs_lig.append(fig_lig)
+
 
 figs_lig2 = []
 
@@ -522,12 +610,24 @@ for col in cat_cols:
     counts = cleaned_values.value_counts().reset_index()
     counts.columns = [col, 'count']
     # Add (n=...) to each label
-    counts['label'] = counts.apply(lambda row: f"{row[col]} (n={row['count']})", axis=1)
-    color_map = {
-        name: "#A9A9A9"  # dark gray
-        for name in counts['label']
-        if "unknown" in name.lower()
-    }
+    counts['label'] = counts.apply(
+        lambda row: f"{row['count']} {row[col]}" if row[col] == "unknown" else f"{row[col]} (n={row['count']})", axis=1)   
+    
+    # Sort labels alphabetically
+    counts = counts.sort_values("label")
+    
+    # Capture the sorted labels
+    sorted_labels = counts['label'].tolist() 
+    # Color map: only specify "unknown", "yes", "no"
+    color_map = {}
+    for name in counts['label']:
+        lower_name = name.lower()
+        if lower_name.startswith("yes"):
+            color_map[name] = yes_color
+        elif lower_name.startswith("no"):
+            color_map[name] = no_color
+        elif "unknown" in lower_name:
+            color_map[name] = gray_color  # your custom gray
 
     cat_count = str(cleaned_values.nunique())
     fig_lig2 = px.pie(
@@ -537,20 +637,23 @@ for col in cat_cols:
         hole=0.4,
         title=f"Distribution of {cat_count} {col}",
         color='label',  # Use label column for color mapping
-        color_discrete_map=color_map
+        color_discrete_map=color_map,
+        category_orders={'label': sorted_labels}  # Force legend order
     )
-    fig_lig2.update_traces(textinfo='percent+label', textposition='inside')
+    fig_lig2.update_traces(textinfo='percent+label', 
+                           textposition='inside',
+                           hovertemplate="%{label}<extra></extra>")
     fig_lig2.update_layout(
     legend_title_text=col,
     legend=dict(
         orientation="v",
-        y=0.5,
-        yanchor="middle",
+        y=-0.5,
+        yanchor="bottom",
         x=1.05,
-        xanchor="left"
+        xanchor="center"
     ),
-    width=1200,
-    height=600
+    width=width,
+    height=height
 )
    
     figs_lig2.append(fig_lig2)
@@ -577,8 +680,20 @@ figs_lig2[1]
 
 ```
 
-## Receptor Lineage
 
+
+:::
+
+:::
+
+::: {.column width="50%"}
+
+### Gene count based on the [**Receptor**](annotations/receptor_group.qmd) Annotations
+
+
+::: {.panel-tabset}
+
+## Receptor Lineage
 
 ```{python}
 #| echo: false
@@ -587,55 +702,72 @@ figs_lig2[1]
 rec_cat = gene_pair_annot_receptor.iloc[:, [3,2]]
 cat_cols = rec_cat.select_dtypes(include='object').columns
 
+# Get top N categories
+top_n = 50 
+height = 800
+width = 600
+
+
 figs_rec = []
 
 for col in cat_cols:
     # Clean values: remove HTML tags
     cleaned_values = rec_cat[col].astype(str).apply(lambda x: re.sub(r'<.*?>', '', x))
 
+    # Count category frequencies
     counts = cleaned_values.value_counts().reset_index()
     counts.columns = [col, 'count']
     cat_count = str(cleaned_values.nunique())
-    #fig_rec = px.pie(
-    #    counts,
-    #    names=col,
-    #    values='count',
-    #    hole=0.4,
-    #    title=f"Distribution of {cat_count} {col}"
-    #)
-    top_n = 30
+
     top_counts = counts.sort_values('count', ascending=False).head(top_n)
     
-    fig_rec = px.bar(
-        top_counts.sort_values('count', ascending=True),
-        x='count',
-        y=col,
-        orientation='h',
-        title=f"Top {top_n} of {cat_count} "
-          f"{col.rstrip() if col.rstrip().endswith('s') else col.rstrip() + 's'}"
+    # Reverse order to show highest count at the top
+    top_counts = top_counts.iloc[::-1]
+
+    # Assign bar colors: gray for 'unknown', default blue for others
+    bar_colors = top_counts[col].apply(
+        lambda val: gray_color if "unknown" in val.lower() else "#1f77b4"
     )
 
-    #fig_rec.update_traces(textinfo='percent+label', textposition='inside')
+    # Create base bar plot
+    fig_rec = go.Figure()
+
+    fig_rec.add_trace(go.Bar(
+        x=top_counts['count'],
+        y=top_counts[col],
+        orientation='h',
+        marker_color=bar_colors,
+        hoverinfo='x+y'
+    ))
+
+    # Add annotations: "n={count}" at end of each bar
+    for i, row in top_counts.iterrows():
+        fig_rec.add_annotation(
+            x=row['count'],
+            y=row[col],
+            text=f"n={row['count']}",
+            showarrow=False,
+            xanchor="left",
+            yanchor="middle",
+            font=dict(size=11),
+            xshift=5  # spacing from the bar tip
+        )
+
+    # Update layout
     fig_rec.update_layout(
-    yaxis=dict(
-        tickangle=0,
-        tickfont=dict(size=10)  # control size and font
-    ),
-    #legend_title_text=col,
-    #legend=dict(
-    #    orientation="v",
-    #    y=0.5,
-    #    yanchor="middle",
-    #    x=1.05,
-    #    xanchor="left"
-    #),
-    legend_title_text=col,
-    yaxis_title=col,
-    xaxis_title="Count",
-    margin=dict(l=100, r=20, t=60, b=20),
-    width=1200,
-    height=600
-)
+        title=f"Top {top_n} of {cat_count} "
+              f"{col.rstrip() if col.rstrip().endswith('s') else col.rstrip() + 's'}",
+        yaxis=dict(
+            tickangle=0,
+            tickfont=dict(size=10)
+        ),
+        yaxis_title=col,
+        xaxis_title="Count",
+        margin=dict(l=100, r=20, t=60, b=20),
+        width=width,
+        height=height,
+        showlegend=False
+    )
     figs_rec.append(fig_rec)
 
 figs_rec2 = []
@@ -646,12 +778,24 @@ for col in cat_cols:
     counts = cleaned_values.value_counts().reset_index()
     counts.columns = [col, 'count']
     # Add (n=...) to each label
-    counts['label'] = counts.apply(lambda row: f"{row[col]} (n={row['count']})", axis=1)
-    color_map = {
-        name: "#A9A9A9"  # dark gray
-        for name in counts['label']
-        if "unknown" in name.lower()
-    }
+    counts['label'] = counts.apply(
+        lambda row: f"{row['count']} {row[col]}" if row[col] == "unknown" else f"{row[col]} (n={row['count']})", axis=1)   
+    
+    # Sort labels alphabetically
+    counts = counts.sort_values("label")
+    
+    # Capture the sorted labels
+    sorted_labels = counts['label'].tolist()
+    # Color map: only specify "unknown", "yes", "no"
+    color_map = {}
+    for name in counts['label']:
+        lower_name = name.lower()
+        if lower_name.startswith("yes"):
+            color_map[name] = yes_color
+        elif lower_name.startswith("no"):
+            color_map[name] = no_color
+        elif "unknown" in lower_name:
+            color_map[name] = gray_color  # your custom gray
 
     cat_count = str(cleaned_values.nunique())
     fig_rec2 = px.pie(
@@ -661,7 +805,8 @@ for col in cat_cols:
         hole=0.4,
         title=f"Distribution of {cat_count} {col}",
         color='label',  # Use label column for color mapping
-        color_discrete_map=color_map
+        color_discrete_map=color_map,
+        category_orders={'label': sorted_labels}  # Force legend order
     )
     fig_rec2.update_traces(textinfo='percent+label', textposition='inside')
     fig_rec2.update_layout(
@@ -673,8 +818,8 @@ for col in cat_cols:
         x=1.05,
         xanchor="left"
     ),
-    width=1200,
-    height=600
+    width=width,
+    height=height
 )
    
     figs_rec2.append(fig_rec2)
