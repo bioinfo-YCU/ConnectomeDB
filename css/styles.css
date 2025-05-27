@@ -285,6 +285,11 @@ span.dt-column-title input[type="text"] {
   color: white;
 }
 
+thead tr.top-header th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    text-align: center;
+}
 
 /* Styling the input field text */
 .dt-input {

@@ -9,25 +9,48 @@ format:
 header-includes: |
   <script src="../js/keepDropdownMenuGold.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // Check if the elements exist before changing text content
-      const showAllButton = document.querySelector('.dtsp-showAll');
-      const collapseAllButton = document.querySelector('.dtsp-collapseAll');
-      const clearAllButton = document.querySelector('.dtsp-clearAll');
-      const titleElement = document.querySelector('.dtsp-title');
-
-      if (showAllButton) {
-        showAllButton.textContent = "▼";
-      }
-
-      if (collapseAllButton) {
-        collapseAllButton.textContent = "▲";
-      }
-
-      if (clearAllButton) {
-        clearAllButton.textContent = "⌫ Reset Filters";
-      }
-    });  
+      document.addEventListener("DOMContentLoaded", function () {
+        const columnNames = [
+          "Interaction ID", "Human LR Pair","Perplexity", "Database Source", "PMID", "Year", "Journal", "Title", "Ligand Aliases", "Receptor Aliases", "Species"
+        ];
+    
+        // Add labels and placeholders to column filters
+        const headers = document.querySelectorAll("thead th");
+        headers.forEach((th, i) => {
+          const input = th.querySelector("input");
+          if (input) {
+            input.setAttribute("placeholder", "Filter");
+            if (!th.querySelector(".filter-label")) {
+              const label = document.createElement("div");
+              label.className = "filter-label";
+              label.textContent = columnNames[i] || `Column ${i + 1}`;
+              label.style.fontWeight = "bold";
+              label.style.fontSize = "0.85em";
+              label.style.marginBottom = "2px";
+              input.parentNode.insertBefore(label, input);
+            }
+          }
+        });
+    
+        // Observe click events to fix empty column visibility dropdown labels
+        document.addEventListener("click", function () {
+          const intervalId = setInterval(() => {
+            const buttons = document.querySelectorAll(".dt-button-collection button.dt-button");
+            if (buttons.length > 0) {
+              buttons.forEach((btn, idx) => {
+                if (btn.textContent.trim() === "") {
+                  const span = btn.querySelector("span");
+                  if (span) {
+                    span.textContent = columnNames[idx] || `Column ${idx + 1}`;
+                  }
+                }
+              });
+              clearInterval(intervalId);
+            }
+          }, 100);
+          setTimeout(() => clearInterval(intervalId), 3000);
+        });
+      });
   </script>
 ---
 
@@ -84,8 +107,8 @@ def update_table1():
     show(
         human_gene_pairTrip,
         keys=True,
-        layout={"top": ["searchPanes"],
-                },
+        layout={"topStart": "info", "topEnd": "paging",
+                "bottomStart": "buttons", "bottomEnd": "search"},
         searchPanes={"layout": "rows-1", 
                      "cascadePanes": True, 
                      "columns": [8,9,10], 
@@ -95,8 +118,8 @@ def update_table1():
                      "controls": True},
         #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
         fixedColumns={"start": 2, "end": 0},
-        fixedHeader=True,  # Keep header fixed for alignment
-        column_filters="footer", 
+        #fixedHeader=True,  # Keep header fixed for alignment
+        column_filters="header", 
         scrollX=True,
         classes="display nowrap cell-border compact",
         select=True,
@@ -115,7 +138,7 @@ def update_table1():
         columnDefs=[
             {"className": "dt-center", "targets": [2]}, 
             {"width": "800px", "targets": [7]},
-            {"targets": [8,9], "visible": False} # Hide last 2 columns by default
+            # {"targets": [8,9], "visible": False} # Hide last 2 columns by default
         ],
         style="1200px;margin:auto",
            language={

@@ -14,8 +14,9 @@ sys.path.append(os.path.abspath("src"))
 import fetchGSheet
 from createDataTable import pop_up_info, gene_pair0
 
-# if only one replace gene_pair0 to e.g. gene_pair0[gene_pair0["Human LR Pair"] == "APOE LRP1"]
-gene_pair_input = gene_pair0 
+# if only one replace gene_pair0 to e.g. 
+gene_pair_input = gene_pair0[gene_pair0["Human LR Pair"] == "APOE LRP1"]
+#gene_pair_input = gene_pair0 
 
 # Paths
 TEMPLATE_PATH = 'HTML/cardTemplate_scRNA.html'
@@ -125,8 +126,8 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
         row4 = receptor_card_2[receptor_card_2['Human LR Pair'] == value]
 
         # Check if the HTML files exist
-        ligand_image_path = f'data/gene_expr_plots/{value1}.html'
-        receptor_image_path = f'data/gene_expr_plots/{value2}.html'
+        ligand_image_path = f'data/tabula_sapiens/heatmap/{value1}.html'
+        receptor_image_path = f'data/tabula_sapiens/heatmap/{value2}.html'
         
         if os.path.exists(ligand_image_path):
             with open(ligand_image_path, "r") as html_file:
@@ -157,7 +158,7 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
             table4_data=table4_data,
             ligand_image=ligand_image,
             receptor_image=receptor_image,
-            plotlegend_base64=plotlegend_base64 
+            #plotlegend_base64=plotlegend_base64 
         )
         
         output_file = os.path.join(output_dir, f"{value1} {value2}.html")

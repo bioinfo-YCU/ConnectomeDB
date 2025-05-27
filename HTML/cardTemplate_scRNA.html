@@ -33,7 +33,7 @@
             width: 100%; /* Make it take full width of the card */
             max-width: 100%; /* Prevents overflow */
             height: auto; /* Keeps aspect ratio */
-            overflow: hidden; /* Hide overflowing parts */
+            overflow: visible; /* Hide overflowing parts */
             display: flex;
             justify-content: center; /* Center the plot */
             align-items: center;
@@ -62,7 +62,7 @@
             max-width: 1200px;
         }
         .card {
-            width: 49.5%;
+            width: 49.8%;
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -473,11 +473,19 @@
         <div class="card-container">
         <div class="card-full-row">
         <div class="column-center">
-        <h1 style="text-align: center; font-size: 22px; font-weight: bold; width: 100%;">Expression Profile in Tabula Sapiens across Cell types and Tissues</h1>
+<h1 style="text-align: center; font-size: 22px; font-weight: bold; width: 100%;">
+  Expression Profile in 
+  <a href="https://tabula-sapiens.sf.czbiohub.org/" target="_blank" 
+     style="display: inline-block; padding: 4px 10px; margin: 0 6px; background-color: #007BFF; color: white; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 18px;">
+    Tabula Sapiens
+  </a>
+  across 180 Human Cell types from 28 Tissues
+</h1>
         
         </div>
         </div>
         </div>
+        <div class="card-container">
             <div class="card">
                 <div>
                 {% if ligand_image != "Plot does not exist" %}

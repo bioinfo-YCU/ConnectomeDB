@@ -30,17 +30,17 @@
             transition: background 0.3s ease;
         }
         .ligand-plot {
-            width: 100%; /* Make it take full width of the card */
-            max-width: 100%; /* Prevents overflow */
+            width: 90%; /* Make it take full width of the card */
+            max-width: 90%; /* Prevents overflow */
             height: auto; /* Keeps aspect ratio */
-            overflow: hidden; /* Hide overflowing parts */
+            overflow: visible; /* Hide overflowing parts */
             display: flex;
             justify-content: center; /* Center the plot */
             align-items: center;
         }
          .receptor-plot {
-            width: 100%; /* Make it take full width of the card */
-            max-width: 100%; /* Prevents overflow */
+            width: 90%; /* Make it take full width of the card */
+            max-width: 90%; /* Prevents overflow */
             height: auto; /* Keeps aspect ratio */
             overflow: visible; /* Hide overflowing parts */
             display: flex;
@@ -57,12 +57,12 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 3px;
+            gap: 2px;
             margin: 0 auto;
             max-width: 1200px;
         }
         .card {
-            width: 49.5%;
+            width: 50%;
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -485,7 +485,7 @@
                 <div>
                 {% if ligand_image != "Plot does not exist" %}
                     <div class="ligand-plot">
-                        <div style="width: 100%; max-width: 100%; overflow: hidden;">
+                        <div style="width: 90%; max-width: 90%; overflow: hidden;">
                         {{ ligand_image | safe }}  <!-- Render the HTML content directly -->
                         </div>
                     </div>
@@ -498,7 +498,7 @@
                 <div>
                 {% if receptor_image != "Plot does not exist" %}
                     <div class="receptor-plot">
-                        <div style="width: 100%; max-width: 100%; overflow: hidden;">
+                        <div style="width: 90%; max-width: 90%; overflow: hidden;">
                         {{ receptor_image | safe }}  
                         </div>
                     </div>
