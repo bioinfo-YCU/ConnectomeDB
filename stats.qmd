@@ -281,26 +281,86 @@ figs_trip[2]
 ```
 
 
-## Temp1
+## Database (unique LR pairs) 
+
+```{python}
+#| echo: false
+
+gene_pair_trip_noPMID = gene_pair_trip.iloc[:, [1,3]]
+gene_pair_trip_noPMID = gene_pair_trip_noPMID.drop_duplicates()
+
+
+gene_pair_trip_noPMID_cat= gene_pair_trip_noPMID.iloc[:, [1]]
+gene_pair_trip_noPMID_cat = gene_pair_trip_noPMID_cat.select_dtypes(include='object').columns
+
+figs_trip_noPMID = []
+for col in gene_pair_trip_noPMID_cat:
+    # Clean values: remove HTML tags
+    cleaned_values = gene_pair_trip_noPMID[col].astype(str).apply(lambda x: re.sub(r'<.*?>', '', x))
+
+    counts = cleaned_values.value_counts().reset_index()
+    counts.columns = [col, 'count']
+    counts['label'] = counts.apply(lambda row: f"{row[col]} (n={row['count']})", axis=1)
+    # Add (n=...) to each label
+    counts['label'] = counts.apply(
+        lambda row: f"{row['count']} {row[col]}" if row[col] == "unknown" else f"{row[col]} (n={row['count']})", axis=1)   
+    
+    # Sort labels alphabetically
+    counts = counts.sort_values("label")
+    
+    # Capture the sorted labels
+    sorted_labels = counts['label'].tolist()
+    # Color map: only specify "unknown", "yes", "no"
+    color_map = {}
+    for name in counts['label']:
+        lower_name = name.lower()
+        if lower_name.startswith("yes"):
+            color_map[name] = yes_color
+        elif lower_name.startswith("no"):
+            color_map[name] = no_color
+        elif "unknown" in lower_name:
+            color_map[name] = gray_color  # your custom gray
+
+    cat_count = str(cleaned_values.nunique())
+
+    fig_trip_noPMID = px.pie(
+        counts,
+        names='label',  # Use custom label with (n=...)
+        values='count',
+        hole=0.4,
+        title=f"Distribution of {cat_count} {col}",
+        color='label',  # Use label column for color mapping
+        color_discrete_map=color_map,
+        category_orders={'label': sorted_labels}  # Force legend order
+    )
+    fig_trip_noPMID.update_traces(textinfo='percent+label', 
+                           textposition='inside',
+                           hovertemplate="%{label}<extra></extra>")
+    fig_trip_noPMID.update_layout(
+    legend_title_text=col,
+    legend=dict(
+        orientation="v",
+        y=0.5,
+        yanchor="middle",
+        x=1.05,
+        xanchor="left"
+    ),
+    width=600,
+    height=300
+)
+    figs_trip_noPMID.append(fig_trip_noPMID)
+
+
+figs_trip_noPMID[0]
+```
+
+## Temp
 
 ```{python}
 #| echo: false
 figs_trip[2]
 ```
 
-## Temp2
-
-```{python}
-#| echo: false
-figs_trip[2]
-```
-
-## Temp3
-
-```{python}
-#| echo: false
-figs_trip[2]
-```
 :::
 
 :::
@@ -653,7 +713,9 @@ for col in cat_cols:
         xanchor="center"
     ),
     width=width,
-    height=height
+    height=height,
+    plot_bgcolor='rgba(0,0,0,0)',
+    paper_bgcolor='rgba(0,0,0,0)'
 )
    
     figs_lig2.append(fig_lig2)
@@ -766,7 +828,9 @@ for col in cat_cols:
         margin=dict(l=100, r=20, t=60, b=20),
         width=width,
         height=height,
-        showlegend=False
+        showlegend=False,
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)'
     )
     figs_rec.append(fig_rec)
 

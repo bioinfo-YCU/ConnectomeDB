@@ -7,6 +7,7 @@ from tqdm import tqdm
 import requests
 import scanpy as sc
 import re
+import pickle
 sys.path.append(os.path.abspath("src"))  # Add src directory to path
 from createDataTable import gene_pair0, pop_up_info
 
@@ -82,4 +83,65 @@ gene_pair_input['ensembl_id'] = gene_pair_input['hgnc_id'].map(ensembl_id)
 
 # Drop duplicates and NaNs if needed
 gene_pair_input = gene_pair_input.drop_duplicates().dropna(subset=['ensembl_id'])
+# Final output
+# print(gene_pair_input.head())
+
+# If you want to save the scaled data again
+# --- Precompute Scaled Expression ---
+def precompute_scaled_expression(adata, gene_id_list):
+    if "scale_data" not in adata.layers:
+        raise ValueError("Layer 'scale_data' not found in adata.")
+
+    X = adata.layers["scale_data"]  # shape: cells x genes
+    var_names_stripped = [strip_version(g) for g in adata.var_names]
+    gene_indices = {gene_id: i for i, gene_id in enumerate(var_names_stripped)}
+
+    gene_expr_map = {}
+    missing_genes = []
+
+    for gene_id in tqdm(gene_id_list, desc="Precomputing scaled expression"):
+        if gene_id not in gene_indices:
+            missing_genes.append(gene_id)
+            continue
+        i = gene_indices[gene_id]
+        x = X[:, i]  # ✅ not transposed
+        expr = x.toarray().flatten() if hasattr(x, "toarray") else x.flatten()
+        gene_expr_map[gene_id] = expr
+
+    print(f"[✓] Precomputed expression for {len(gene_expr_map)} genes.")
+    if missing_genes:
+        print(f"[!] Skipped {len(missing_genes)} genes not found in adata.var_names.")
+
+    return gene_expr_map, missing_genes
+
+
+# uncomment for now so it is not accidentally ran
+# gene_expr_map, _ = precompute_scaled_expression(adata, gene_id_list_stripped)
+# If you want to save the scaled data again
+# with open("data/gene_expr_map_scaled.pkl", "wb") as f:
+#     pickle.dump(gene_expr_map, f)
+
+X = adata.layers["scale_data"]  # shape: cells x genes
+var_names_stripped = [strip_version(g) for g in adata.var_names]
+gene_indices = {gene_id: i for i, gene_id in enumerate(var_names_stripped)}
+
+# --- Normalize Ensembl IDs and build label map ---
+def strip_version(ensembl_id):
+    return ensembl_id.split('.')[0]
+
+# Rebuild gene_label_map using stripped Ensembl IDs
+gene_label_map = {
+    strip_version(row["ensembl_id"]): row["gene_symbol"]
+    for _, row in gene_pair_input.iterrows()
+}
+
+# Strip version from gene_id_list
+gene_id_list = [strip_version(g) for g in gene_id_list]
+
+# --- Filter to valid genes ---
+valid_gene_ids = [g for g in gene_id_list if g in gene_indices]
+rows = [gene_indices[g] for g in valid_gene_ids]
+missing_genes = [g for g in gene_id_list if g not in gene_indices]
+print(f"[!] Skipped {len(missing_genes)} genes not found in adata.var_names.")
+#len(valid_gene_ids)
 

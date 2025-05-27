@@ -16,7 +16,7 @@ website:
     
     left:
       - href: index.qmd
-        text: "{{< iconify mdi:home inline size=20px >}}Home"
+        text: "{{< iconify mdi:home inline size=20px >}}"
       - href: about.qmd
         text: 'About'
       - href: tutorials.qmd
