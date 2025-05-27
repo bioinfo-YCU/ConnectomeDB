@@ -222,13 +222,27 @@ def generate_heatmap(gene_id, gene_label, expr):
         height=total_rows * 20,
         plot_bgcolor="white",
         paper_bgcolor="white",
-        margin=dict(l=10, r=10, t=50, b=200),
+        margin=dict(l=10, r=10, t=50, b=150),
         title=dict(
             text=f"{gene_label} Expression",
             x=0.5,
             xanchor="center",
-            yanchor="top"
+            yanchor="top",
+            font=dict(size=20, color="black")
+        ),
+        annotations=[
+        dict(
+            text=f"{gene_label} Expression",
+            x=0.5,
+            y=-0.03,  # y=0 refers to the bottom of the plotting area
+            xref="paper",
+            yref="paper",
+            xanchor="center",
+            yanchor="bottom",
+            showarrow=False,
+            font=dict(size=20, color="black")
         )
+    ]
     )
 
     # Save
