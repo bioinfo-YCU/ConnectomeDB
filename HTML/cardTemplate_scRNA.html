@@ -247,7 +247,7 @@
     
         /* Plot-specific fonts */
         .pdf-only {
-        font-size: 10px !important;
+        font-size: 8px !important;
         }
         svg, canvas {
             max-width: 100% !important;
@@ -265,7 +265,7 @@
     container.style.width = '1000px';  // Fixed width to fit PDF page nicely
     container.style.padding = '0px';
     container.style.margin = '0 auto';
-    container.style.overflow = 'hidden';
+    container.style.overflow = 'visible';
     container.appendChild(clone);
 
     document.body.appendChild(container); // temporarily append to render
@@ -341,7 +341,11 @@
             <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology & Genomics Lab</a>
             <button class="no-print download-btn" onclick="downloadPDF()">
                 ⇣ PDF
-            </button>
+            </button> 
+            <button class="no-print download-btn" onclick="downloadHTML()">
+    ⇣ HTML
+</button>
+
         </div>
     </nav>
 
@@ -516,5 +520,22 @@
     <footer>
         <span>© Copyright 2024, YCU Bioinformatics Lab | Harry Perkins Systems Biology & Genomics Lab</span>
     </footer>
+    <script>
+function downloadHTML() {
+    const blob = new Blob(
+        [document.documentElement.outerHTML],
+        { type: 'text/html' }
+    );
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    let value1 = "{{ value1 }}".trim();
+    let value2 = "{{ value2 }}".trim();
+    a.download =  `${value1} —— ${value2}.html`;  // You can customize the filename here
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+    </script>
+
 </body>
 </html>

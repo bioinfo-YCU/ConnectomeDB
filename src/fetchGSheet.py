@@ -47,7 +47,7 @@ def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file, max_retries=5)
 
 # Fetching data from Google Sheets
 gene_pair = fetch_google_sheet_data(sheet_ID, "FROZEN LIST HUMAN", credentials_file)
-loc_info = fetch_google_sheet_data(sheet_ID, "proteome_HPA", credentials_file) 
+#loc_info = fetch_google_sheet_data(sheet_ID, "proteome_HPA", credentials_file) 
 # Ligand and receptor location # previously based on localization 
 ligand_loc = fetch_google_sheet_data(sheet_ID, "Ligand_location_HUMAN", credentials_file) 
 receptor_loc = fetch_google_sheet_data(sheet_ID, "Receptor_location_HUMAN", credentials_file) 
