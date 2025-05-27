@@ -21,7 +21,7 @@ from scipy.spatial.distance import pdist
 input_file = "data/grouping_for_heatmap.csv"
 scaled_data_file = "data/gene_expr_map_scaled.pkl"
 # Enable test mode
-test_mode = False
+test_mode = True
 max_genes = 3 if test_mode else None
 
 if os.path.exists(input_file):

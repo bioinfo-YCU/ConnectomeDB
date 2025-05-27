@@ -95,9 +95,11 @@ def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_in
     # Identify relevant columns for the species
     species_columns = [col for col in species_gene_pair1.columns if id_prefix in col]
     new_order = [human_columns[0]]+ [f"{species} LR Pair", ligand_col, receptor_col] + species_columns + human_columns[1:]
-
-
     species_gene_pair1 = species_gene_pair1[new_order].reset_index(drop=True)
+    # Turn Interaction ID into clickable links
+    species_gene_pair1[species_gene_pair1.columns[0]] = species_gene_pair1[species_gene_pair1.columns[0]].apply(
+        lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
+    )
 
     return species_gene_pair1
 
