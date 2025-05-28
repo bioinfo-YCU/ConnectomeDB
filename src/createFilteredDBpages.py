@@ -14,10 +14,7 @@ from createTriplicateDT import gene_pair_trip
 
 human_gene_pairTrip = gene_pair_trip.iloc[:, :11]
 human_gene_pairTrip.rename(columns={human_gene_pairTrip.columns[0]: "Interaction ID"}, inplace=True)
-
 # Paths
-TEMPLATE_PATH = 'HTML/cardTemplate.html'
-OUTPUT_DIR = 'data/cards/'
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 TEMPLATE_DIR = "HTML"
@@ -36,6 +33,7 @@ template = env.get_template(TEMPLATE_FILE)
 # === GENERATE HTML FILES ===
 for base_id, group_df in human_gene_pairTrip.groupby("BaseID"):
     group_df = group_df.drop(columns=["BaseID"])  # Drop it before rendering
+    group_df= group_df.sort_values(by='Year', ascending=False)
     rendered_html = template.render(interaction_id=base_id, table=group_df)
     output_path = os.path.join(OUTPUT_DIR, f"{base_id}.html")
     with open(output_path, "w", encoding="utf-8") as f:

@@ -8,53 +8,80 @@ format:
     table: false
 header-includes: |
   <script src="../js/keepDropdownMenuGold.js"></script>
-  <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const columnNames = [
-          "Interaction ID", "Human LR Pair", "Database Source", "Ligand", "Receptor",
-          "Perplexity", "PMID", "Binding Location", "Bind in Trans?", "Bidirectional Signalling",
-          "Interaction Type", "Ligand HGNC ID", "Receptor HGNC ID", "Ligand Location", "Receptor Location",
-          "KEGG Pathway", "Cancer-related", "Disease Type", "Ligand Aliases", "Receptor Aliases"
-        ];
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const columnNames = ["Interaction ID", "Human LR Pair", "Ligand", 
+                                   "Ligand symbol and aliases", "Ligand HGNC ID",
+                                   "Ligand location", "Receptor", 
+                                   "Receptor symbol and aliases", "Receptor HGNC ID",
+                                   "Receptor location", "PMID", "Perplexity",
+                                   "Database Source", "binding location",
+                                   "bind in trans?", "bidirectional signalling?",
+                                   "interaction type", "KEGG Pathway", "Cancer-related",
+                                   "Disease Type"];
     
-        // Add labels and placeholders to column filters
-        const headers = document.querySelectorAll("thead th");
-        headers.forEach((th, i) => {
-          const input = th.querySelector("input");
-          if (input) {
-            input.setAttribute("placeholder", "Filter");
-            if (!th.querySelector(".filter-label")) {
+        function addFilterLabels() {
+          const allThs = Array.from(document.querySelectorAll("thead tr th"));
+          allThs.forEach((th, idx) => {
+            // Remove any existing label first
+            const existingLabel = th.querySelector(".filter-label");
+            if (existingLabel) {
+              existingLabel.remove();
+            }
+        
+            const input = th.querySelector("input");
+            if (input) {
               const label = document.createElement("div");
               label.className = "filter-label";
-              label.textContent = columnNames[i] || `Column ${i + 1}`;
+              label.textContent = columnNames[idx] || `Column ${idx + 1}`;
               label.style.fontWeight = "bold";
               label.style.fontSize = "0.85em";
               label.style.marginBottom = "2px";
               input.parentNode.insertBefore(label, input);
             }
-          }
-        });
+          });
+      }
     
-        // Observe click events to fix empty column visibility dropdown labels
-        document.addEventListener("click", function () {
-          const intervalId = setInterval(() => {
-            const buttons = document.querySelectorAll(".dt-button-collection button.dt-button");
-            if (buttons.length > 0) {
-              buttons.forEach((btn, idx) => {
-                if (btn.textContent.trim() === "") {
-                  const span = btn.querySelector("span");
-                  if (span) {
-                    span.textContent = columnNames[idx] || `Column ${idx + 1}`;
-                  }
-                }
-              });
-              clearInterval(intervalId);
-            }
-          }, 100);
-          setTimeout(() => clearInterval(intervalId), 3000);
-        });
+      // Initial run
+      setTimeout(addFilterLabels, 200);
+    
+      // Also rerun every time thead changes (like columns becoming visible)
+      const observer = new MutationObserver(() => {
+        addFilterLabels();
       });
+    
+      const thead = document.querySelector("thead");
+      if (thead) {
+        observer.observe(thead, {
+          childList: true,
+          subtree: true,
+        });
+      }
+    
+      // Fix empty labels in column visibility dropdown
+      document.addEventListener("click", function () {
+        const intervalId = setInterval(() => {
+          const buttons = document.querySelectorAll(".dt-button-collection button.dt-button");
+    
+          if (buttons.length > 0) {
+            buttons.forEach((btn, idx) => {
+              const span = btn.querySelector("span");
+              const isEmpty = btn.textContent.trim() === "";
+              if (span && isEmpty) {
+                span.textContent = columnNames[idx] || `Column ${idx + 1}`;
+                span.style.color = "black"; // Ensure it's visible
+              }
+            });
+            clearInterval(intervalId);
+          }
+        }, 100);
+        setTimeout(() => clearInterval(intervalId), 3000); // Safety timeout
+      });
+    });
   </script>
+
+
+
 
 ---
 
@@ -124,6 +151,7 @@ div.dt-button-collection .dt-button {
 
 ```{python}
 import sys
+import re
 import os
 import pandas as pd
 import warnings
@@ -142,6 +170,27 @@ sys.path.append(os.path.abspath("src"))
 from createDataTable import gene_pair
 
 human_gene_pair = gene_pair.iloc[:, :-40]
+human_gene_pair.columns
+def clean_column_name(col):
+    # Match text between '>' and '</span>', ignoring any optional `&nbsp;`
+    match = re.search(r'>(.*?)<\/span>', col)
+    if match:
+        return match.group(1).replace('&nbsp;', '').strip()
+    return col  # Return original if no match
+
+# Apply to all column names
+human_gene_pair.columns = [clean_column_name(col) for col in human_gene_pair.columns]
+
+
+human_gene_pair = human_gene_pair[["Interaction ID", "Human LR Pair", "Ligand", 
+                                   "Ligand symbol and aliases", "Ligand HGNC ID",
+                                   "Ligand location", "Receptor", 
+                                   "Receptor symbol and aliases", "Receptor HGNC ID",
+                                   "Receptor location", "PMID", "Perplexity",
+                                   "Database Source", "binding location",
+                                   "bind in trans?", "bidirectional signalling?",
+                                   "interaction type", "KEGG Pathway", "Cancer-related",
+                                   "Disease Type"]]
 
 # Turn Interaction ID into clickable links
 human_gene_pair[human_gene_pair.columns[0]] = human_gene_pair[human_gene_pair.columns[0]].apply(
@@ -162,7 +211,7 @@ def update_table():
         classes="display nowrap cell-border compact",
         select=True,
         selected_rows=[],
-        responsive=True,  # Enable responsive behavior
+        responsive=False,  # Enable responsive behavior
         theme='grid',
         search={"regex": True, "caseInsensitive": True, "smart": True},
         lengthMenu=[ [10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"] ],
@@ -174,12 +223,13 @@ def update_table():
             {"extend": "copyHtml5", "title": "Source"},
         ],
         columnDefs=[
-            {"className": "dt-center", "targets": [5]}, 
-            {"search": False, "targets": [5]},
-            # {"width": "100px", "targets": "_all"},
-            # {"visible": False, "targets": list(range(-1, -3, -1))} # Hide last 14 columns by default
+            {"className": "dt-center", "targets": [11]}, 
+            {"search": False, "targets": [11]},
+            #{"width": "150px", "targets": [0,1]},
+            #{"visible": False, "targets": [2,7,8,9,10,15,16,17]} 
+            #{"visible": False, "targets": list(range(-1, -9, -1))} # Hide last 8 columns by default
         ],
-        style="1200px;margin:auto",
+        style="width:100%; max-width:1200px; margin:auto",
            language={
             "search": "Search Any Column:",
             "searchPlaceholder": "e.g. CD80",
@@ -188,30 +238,9 @@ def update_table():
         autoWidth=True,
         maxBytes=0,  # So it does not downsample
         initCode='''
-            $(document).on('draw.dt', function () {
-                const table = $($.fn.dataTable.tables(true)).DataTable();
-                const searchTerm = table.search().trim();
-
-                table.rows().every(function () {
-                    const data = this.data();
-                    let isExactMatch = false;
-
-                    for (let i = 0; i < data.length; i++) {
-                        let cellText = $('<div>').html(data[i]).text().trim();
-                        if (cellText === searchTerm) {
-                            isExactMatch = true;
-                            break;
-                        }
-                    }
-
-                    $(this.node()).toggleClass('exact-match', isExactMatch);
-                });
-
-                const rows = table.rows({ page: 'current' }).nodes().to$();
-                rows.sort(function (a, b) {
-                    return $(b).hasClass('exact-match') - $(a).hasClass('exact-match');
-                }).appendTo(table.table().body());
-            });
+    $(document).on('init.dt', function () {
+        document.dispatchEvent(new Event('tableReady'));
+    });
         ''',
 
 )

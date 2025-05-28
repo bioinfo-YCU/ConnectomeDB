@@ -159,8 +159,8 @@
   <script>
     $('#data-table').DataTable({
       scrollX: true,
-      fixedHeader: true,
-      autoWidth: true,
+      fixedHeader: false,
+      autoWidth: false,
       responsive: true,
       dom: 'Bfrtip',
       search: {
@@ -179,16 +179,18 @@
       columnDefs: [
         { className: "dt-center", targets: [2] },
         { width: "800px", targets: [7] },
-        { targets: [8,9], visible: false }
+        { targets: [8, 9], visible: false }
       ],
       initComplete: function () {
-        this.api().columns.adjust();
+        const table = this.api();
+        table.columns.adjust().draw(false);
       }
     });
+
   </script>
 
     <footer>
-        <span>© Copyright 2024, YCU Bioinformatics Lab | Harry Perkins Systems Biology & Genomics Lab</span>
+        <span>© Copyright 2025, YCU Bioinformatics Lab | Harry Perkins Systems Biology & Genomics Lab</span>
     </footer>
 </body>
 </html>
