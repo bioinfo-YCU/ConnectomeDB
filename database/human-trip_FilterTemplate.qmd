@@ -39,7 +39,7 @@ def update_table():
         keys=True,
         #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
         fixedColumns={"start": 2, "end": 0},
-        fixedHeader=True,  # Keep header fixed for alignment
+        fixedHeader=False,  # Keep header fixed for alignment
         column_filters="footer", 
         scrollX=True,
         classes="display nowrap cell-border compact",

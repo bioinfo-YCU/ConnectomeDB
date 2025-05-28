@@ -15,8 +15,8 @@ import fetchGSheet
 from createDataTable import pop_up_info, gene_pair0
 
 # if only one replace gene_pair0 to e.g. 
-gene_pair_input = gene_pair0[gene_pair0["Human LR Pair"] == "A2M HSPA5"]
-#gene_pair_input = gene_pair0 
+#gene_pair_input = gene_pair0[gene_pair0["Human LR Pair"] == "A2M HSPA5"]
+gene_pair_input = gene_pair0 
 
 # Paths
 TEMPLATE_PATH = 'HTML/cardTemplate_scRNA.html'
