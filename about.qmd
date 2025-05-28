@@ -48,13 +48,24 @@ from createDataTable import (
 
 ## **How to use ConnectomeDB?**
 
-#### **Using ConnectomeDB2025**
+#### **Online implementation of ConnectomeDB2025**
 <span class="half-break"></span>
 
-Online implementation of ConnectomeDB2025 requires only a web browser and an internet connection. Read our [**Terms & Conditions**](policy.qmd) before using this website. 
+**IMPORTANT: Read our [Terms & Conditions](policy.qmd) before using this resource**. 
+
+To access ConnectomeDB2025 online, an internet connection and a web browser are required. The following operating systems and major web browsers have been tested and are guaranteed to work:
+
+- **Windows 10/11**: Google Chrome, Safari, Microsoft Edge
+- **macOS 15+**: Google Chrome, Safari
+- **Rocky Linux 8/9**: Google Chrome, Mozilla Firefox
+- **Debian**: Google Chrome, Mozilla Firefox
+
+**Problems acessing/using this resource?**  
+Please fill out the [Inquiry form](https://forms.gle/m7k5vygRPdTRdaTh6) below or contact us via this [email](mailto:bioinfo@yokohama-cu.ac.jp).  
 
 <span class="half-break"></span>
-**Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [our tutorials](tutorials.qmd).
+**Not familiar with ConnectomeDB 2025 or want to learn more?**   
+Please check out [our tutorials](tutorials.qmd).
 
 ## **Contribute to ConnectomeDB**
 
