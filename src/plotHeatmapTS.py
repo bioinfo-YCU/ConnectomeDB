@@ -131,15 +131,14 @@ def generate_heatmap(gene_id, gene_label, expr):
     total_rows = sum(row_heights)
     normalized_heights = [h / total_rows for h in row_heights]
 
+    # Only 1 column (heatmap), not 2
     fig = make_subplots(
-        rows=n_panels, cols=2,
+        rows=n_panels, cols=1,
         shared_xaxes=False,
         shared_yaxes=True,
-        column_widths=[0.03, 0.96],
-        vertical_spacing=0.02,
-        horizontal_spacing=0.005,
+        vertical_spacing=0.035,
         row_heights=normalized_heights,
-        specs=[[{"type": "scatter"}, {"type": "heatmap"}]] * n_panels
+        specs=[[{"type": "heatmap"}]] * n_panels
     )
 
     for i, panel in enumerate(panel_names, start=1):
@@ -148,40 +147,19 @@ def generate_heatmap(gene_id, gene_label, expr):
         heatmap_data = global_heatmap.loc[global_heatmap.index.intersection(panel_cell_types)]
         y_labels = heatmap_data.index.astype(str).tolist()
 
-        # For hover
         hover_class_data = np.array([[cell_type_class_map[ct]] * len(heatmap_data.columns) for ct in y_labels])
 
-        # --- Colorbar scatter ---
-        fig.add_trace(go.Scatter(
-            x=[0] * len(y_labels),
-            y=y_labels,
-            mode="markers",
-            marker=dict(
-                color=[cell_type_to_color.get(ct, "gray") for ct in y_labels],
-                size=10
-            ),
-            text=[cell_type_class_map.get(ct, "") for ct in y_labels],
-            hovertemplate="Cell class: %{text}<extra></extra>",
-            showlegend=False
-        ), row=i, col=1)
-
-        # --- Heatmap ---
-        # Calculate y position in normalized paper coordinates for the **top** of the current row
-        # Default base y position (top of current panel)
-        base_y_pos = 1 - sum(normalized_heights[:i-1]) - 0.01
-        
-        # Apply per-panel tweak
+        # --- Heatmap only ---
+        base_y_pos = 1 - sum(normalized_heights[:i-1])
+        y_pos = base_y_pos
+        if i == 2:
+            y_pos = base_y_pos - 0.010
         if i == 3:
-            y_pos = base_y_pos - 0.025 # slightly lower
+            y_pos = base_y_pos - 0.035
         elif i == 4:
-            y_pos = base_y_pos - 0.015
+            y_pos = base_y_pos - 0.023
         elif i == 5:
-            y_pos = base_y_pos - 0.015
-        else:
-            y_pos = base_y_pos  # default for other panels
-
-
-
+            y_pos = base_y_pos - 0.026
         fig.add_trace(go.Heatmap(
             z=heatmap_data.values,
             x=heatmap_data.columns,
@@ -192,63 +170,114 @@ def generate_heatmap(gene_id, gene_label, expr):
             zmax=global_zmax,
             showscale=True,
             colorbar=dict(
-                title="Mean Expr",
+                title="Log(Gene Expression)",
                 orientation="h",
-                x=-1,
+                x=-0.7,
                 xanchor="left",
                 y=y_pos,
-                len=0.8,
-                thickness=12
+                len=0.9,
+                thickness=10
             ),
             hovertemplate="Tissue: %{x}<br>Cell type: %{y}<br>Class: %{customdata}<br>Expr: %{z:.2f}<extra></extra>"
-        ), row=i, col=2)
+        ), row=i, col=1)
+
+        # Axes
+        fig.update_xaxes(#title_text=panel,
+                         showticklabels=True, 
+                         tickangle=270, 
+                         tickfont=dict(size=9), row=i, col=1)
         fig.update_yaxes(
+            autorange="reversed",
+            tickfont=dict(size=9),
             title_text=panel,
             title_font=dict(size=13, color="black"),
-            title_standoff=10,
+            title_standoff=5,
             row=i,
             col=1
         )
+        # Compute the center y-position of this panel (in data coordinates)
+        mid_index = len(y_labels) // 2
+        mid_cell = y_labels[mid_index] if y_labels else ""
+        
+        # Compute the center y-position of this panel (in data coordinates)
+        mid_index = len(y_labels) // 2
+        mid_cell = y_labels[mid_index] if y_labels else ""
+        
+        fig.add_annotation(
+            text=f"<b>{panel}</b>",
+            xref=f'x{i}',  # panel's x-axis
+            yref=f'y{i}',  # panel's y-axis
+            x=heatmap_data.columns[len(heatmap_data.columns) // 2],  # center tissue
+            y=mid_cell,  # center cell type
+            showarrow=False,
+            font=dict(size=14, color='black'),
+            xanchor="center",
+            yanchor="middle"
+        )
 
-        # Axes formatting
-        fig.update_xaxes(showticklabels=False, row=i, col=1)
-        fig.update_xaxes(showticklabels=True, tickangle=45, tickfont=dict(size=10), row=i, col=2)
-        fig.update_yaxes(autorange="reversed", tickfont=dict(size=9), row=i, col=1)
-        fig.update_yaxes(autorange="reversed", tickfont=dict(size=9), row=i, col=2)
 
-    # Final layout with your spacing and background customizations
+    # Layout
     fig.update_layout(
-        width=600,
+        width=585,
         height=total_rows * 20,
         plot_bgcolor="white",
         paper_bgcolor="white",
-        margin=dict(l=10, r=10, t=50, b=150),
+        margin=dict(l=1, r=1, t=80, b=100),
         title=dict(
             text=f"{gene_label} Expression",
-            x=0.5,
+            x=0.7,
+            y= 0.995,
             xanchor="center",
             yanchor="top",
-            font=dict(size=20, color="black")
+            font=dict(size=18, color="black")
         ),
         annotations=[
-        dict(
-            text=f"{gene_label} Expression",
+            dict(
+                text=f"{gene_label} Expression",
+                x=0.5,
+                y=-0.03,
+                xref="paper",
+                yref="paper",
+                xanchor="center",
+                yanchor="bottom",
+                showarrow=False,
+                font=dict(size=18, color="black")
+            )
+        ]
+    )
+    # Add panel titles globally above each subplot
+    for i, panel in enumerate(panel_names, start=1):
+        # same as above
+        base_y_pos = 1 - sum(normalized_heights[:i-1])
+        y_pos = base_y_pos
+        if i == 2:
+            y_pos = base_y_pos - 0.010
+        if i == 3:
+            y_pos = base_y_pos - 0.035
+        elif i == 4:
+            y_pos = base_y_pos - 0.023
+        elif i == 5:
+            y_pos = base_y_pos - 0.026
+    
+        fig.add_annotation(
+            text=f"<b>{panel}</b>",
             x=0.5,
-            y=-0.03,  # y=0 refers to the bottom of the plotting area
+            y=y_pos,
             xref="paper",
             yref="paper",
-            xanchor="center",
-            yanchor="bottom",
             showarrow=False,
-            font=dict(size=20, color="black")
+            font=dict(size=14),
+            xanchor="center",
+            yanchor="bottom"
         )
-    ]
-    )
+
+
 
     # Save
     output_path = f"{output_dir}heatmap/{gene_label}.html"
     fig.write_html(output_path, include_plotlyjs="cdn")
     print(f"[✓] Heatmap written: {output_path}")
+
 
 
 def generate_heatmap_wrapper(gene_id):
