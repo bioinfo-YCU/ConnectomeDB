@@ -13,6 +13,7 @@ import re
 sys.path.append(os.path.abspath("src"))  
 import fetchGSheet
 from createDataTable import pop_up_info, gene_pair0, generate_perplexity_links
+from createFunctionalAnnotTable import gene_pair_annot_ligand, gene_pair_annot_receptor
 
 
 # Add Disease (specific) to cards
@@ -31,6 +32,14 @@ gene_pair0 = generate_perplexity_links(
 # if only one replace gene_pair0 to e.g. 
 gene_pair_input = gene_pair0[gene_pair0["Human LR Pair"].isin(["A2M HSPA5", "ADAM17 IL6R"])]
 #gene_pair_input = gene_pair0 
+
+
+# add Ligand/Receptor group info
+agg_func = lambda x: ', '.join(sorted(set(map(str, x))))
+gene_pair_annot_ligand = gene_pair_annot_ligand.groupby('Ligand HGNC ID').agg(agg_func).reset_index()
+ligand_mapping = dict(zip(gene_pair_annot_ligand['Ligand HGNC ID'],gene_pair_annot_ligand['Ligand group']))
+gene_pair_annot_receptor = gene_pair_annot_receptor.groupby('Receptor HGNC ID').agg(agg_func).reset_index()
+receptor_mapping = dict(zip(gene_pair_annot_receptor['Receptor HGNC ID'],gene_pair_annot_receptor['Receptor group']))
 
 # Paths
 TEMPLATE_PATH = 'HTML/cardTemplate.html'
@@ -62,7 +71,7 @@ def extract_hgnc_id(col):
 def convert_hgnc_url(col):
     hgnc_id = extract_hgnc_id(col)  # Extract the HGNC ID
     if hgnc_id:
-        visible_text = "genecard.org"
+        visible_text = "GeneCards"
         new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}" target="_blank">{visible_text}</a>'
         return new_link
     return None
@@ -70,7 +79,7 @@ def convert_hgnc_url(col):
 def convert_hgnc_url_disease(col):
     hgnc_id = extract_hgnc_id(col)  # Extract the HGNC ID
     if hgnc_id:
-        visible_text = "genecard.org"
+        visible_text = "MalaCards*"
         new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}#diseases" target="_blank">{visible_text}</a>'
         return new_link
     return None
@@ -78,7 +87,7 @@ def convert_hgnc_url_disease(col):
 def convert_hgnc_url_exp(col):
     hgnc_id = extract_hgnc_id(col)  # Extract the HGNC ID
     if hgnc_id:
-        visible_text = "genecard.org"
+        visible_text = "mRNA expression in normal human tissues**"
         new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}#expression" target="_blank">{visible_text}</a>'
         return new_link
     return None
@@ -111,8 +120,20 @@ def prepare_dataframes(gene_pair_input):
     ligand_card_2["HGNC gene card"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url)
     ligand_card_2["Disease relevance"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url_disease)
     ligand_card_2["Expression Profile"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url_exp)
-    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "HGNC gene card", "Disease relevance", "Expression Profile", "Ligand location"]]       
+    # Add ligand group
+    ligand_card_2["Lineage group"] = ligand_card_2['Ligand HGNC ID'].map(ligand_mapping).fillna("none")
+    # Add extra line to balance out cards if necessary
+    def add_spacing(text):
+        if len(text) <= 60:
+            return f"{text}<br><br>"  # extra line for short text
+        else:
+            return f"{text}"      # no extra line for long text
 
+
+    #ligand_card_2["Lineage group"] = ligand_card_2["Lineage group"].apply(add_spacing)
+    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "Lineage group",  "Ligand location", "HGNC gene card","Disease relevance", "Expression Profile"]]       
+
+    
     receptor_card = gene_pair_input[["Human LR Pair", "Receptor", "Receptor name", "Receptor HGNC ID", "Receptor MGI ID", "Receptor RGD ID", "Receptor location"]].merge(
         pop_up_info_lim, how='left', left_on='Receptor', right_on='Approved symbol'
     ).drop_duplicates(subset='Human LR Pair', keep="first").drop(columns=["Receptor", "Approved symbol"])
@@ -122,7 +143,11 @@ def prepare_dataframes(gene_pair_input):
     receptor_card_2["HGNC gene card"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url)
     receptor_card_2["Disease relevance"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url_disease)
     receptor_card_2["Expression Profile"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url_exp)
-    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID", "HGNC gene card", "Disease relevance", "Expression Profile", "Receptor location"]]       
+    # Add Receptor group
+    receptor_card_2["Lineage group"] = receptor_card_2['Receptor HGNC ID'].map(receptor_mapping).fillna("none")
+    # Add extra line to balance out cards if necessary
+    #receptor_card_2["Lineage group"] = receptor_card_2["Lineage group"].apply(add_spacing)
+    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID", "Lineage group", "Receptor location", "HGNC gene card","Disease relevance", "Expression Profile" ]]       
 
     return interaction_card, ligand_card_1, ligand_card_2, receptor_card_1, receptor_card_2
 
