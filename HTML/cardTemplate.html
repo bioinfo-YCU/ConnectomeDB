@@ -412,7 +412,7 @@
 
             </div>
             <div class="column">
-                <h2>Disease Annotations:</h2> 
+                <h2>Disease Annotations</h2> 
                 {% if "Cancer-related" in table0_data %}
                     <div>
                         <strong>Cancer-related:</strong> {{ table0_data["Cancer-related"] }}
@@ -423,9 +423,6 @@
                         <strong>Disease Type(s):</strong> {{ table0_data["Disease Type"] }}
                     </div>
                 {% endif %}
-            </div>
-            <div class="column">
-                <br>
                 {% if "Disease" in table0_data %}
                     <div>
                         <strong>Disease(s):</strong> {{ table0_data["Disease"] }}
@@ -447,7 +444,7 @@
             {% endfor %}
             <hr>
             {% set table2_data_items = table2_data.items() | list %}
-            {% for column, value in table2_data_items[:-1] %}
+            {% for column, value in table2_data_items[:-2] %}
                 <div>
                     <strong>{{ column }}:</strong> 
                     {{ value }}
@@ -455,11 +452,12 @@
             {% endfor %}
             <hr>
             {% set table2_data_items = table2_data.items() | list %}
-            {% set last_column = table2_data_items[-1] %}
-            <div>
-                <strong>{{ last_column[0] }}:</strong> 
-                {{ last_column[1] }}
-            </div>
+            {% for column, value in table2_data_items[-2:] %}
+                <div>
+                    <strong>{{ column }}:</strong> 
+                    {{ value }}
+                </div>
+            {% endfor %}
         </div>
         <div class="card">
             <h3>Receptor: {{ value2 }}</h3>
@@ -471,7 +469,7 @@
             {% endfor %}
             <hr>
             {% set table4_data_items = table4_data.items() | list %}
-            {% for column, value in table4_data_items[:-1] %}
+            {% for column, value in table4_data_items[:-2] %}
                 <div>
                     <strong>{{ column }}:</strong> 
                     {{ value }}
@@ -479,11 +477,12 @@
             {% endfor %}
             <hr>
             {% set table4_data_items = table4_data.items() | list %}
-            {% set last_column = table4_data_items[-1] %}
-            <div>
-                <strong>{{ last_column[0] }}:</strong> 
-                {{ last_column[1] }}
-            </div>
+            {% for column, value in table2_data_items[-2:] %}
+                <div>
+                    <strong>{{ column }}:</strong> 
+                    {{ value }}
+                </div>
+            {% endfor %}
         </div>
     </div>
 
@@ -529,7 +528,11 @@
                 {% endif %} -->
                 </div>
             </div>
+    <br>
     </div> 
+    <div class="column-center">
+        *From: OMIM®, ClinVar, GTR, LOVD, GeneCards, Orphanet, DISEASES, and Novoseek  |  **From: GTEx, Illumina, BioGPS, and SAGE
+    </div>
     <footer>
         <span>© Copyright 2025, YCU Bioinformatics Lab | Harry Perkins Systems Biology & Genomics Lab</span>
     </footer>

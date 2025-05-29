@@ -200,9 +200,17 @@ gene_pair = gene_pair.merge(top_pathway_df, how='left', left_on='Human LR Pair',
 gene_pair = gene_pair.drop(columns=["interaction"])
 #df = df_unique.reset_index(drop=True)
 top_pathway_df=fetchGSheet.kegg_pathway_info[["LR Pair", "kegg_pathway_id", "kegg_relationship", "kegg_pathway_name"]].copy()
+# add link to kegg_pathway_name
+top_pathway_df["kegg_pathway_name"] = [
+    f'<a href="https://www.kegg.jp/pathway/{kegg_id}" target="_blank">{name}</a>'
+    for kegg_id, name in zip(top_pathway_df["kegg_pathway_id"], top_pathway_df["kegg_pathway_name"])
+]
+
+# link to kegg_pathway_id
 top_pathway_df["kegg_pathway_id"] = [
     f'<a href="https://www.kegg.jp/pathway/{id}" target="_blank">{id}</a>'
     for id in top_pathway_df["kegg_pathway_id"]]
+
 
 top_pathway_df = top_pathway_df.rename(columns={
                                       "kegg_pathway_name": "KEGG Pathway",
@@ -499,11 +507,32 @@ def generate_links_with_doi(df, gene_column, pmid_column):
 gene_pair = generate_links_with_doi(gene_pair, gene_column="Human LR Pair", pmid_column="PMID")
 
 # for disease type, cancer-related and top pathways, when missing say "ask Perplexity"
-def generate_perplexity_links(
+import pandas as pd
+import urllib.parse
+
+def generate_perplexity_kegglinks(
     df,
     pathway_col="KEGG Pathway",
     default_query_template="What-biological or other functional-pathways-is-the-ligand-receptor-{pair}-associated-with"
 ):
+    def create_link(row):
+        value = row.get(pathway_col, "")
+        
+        if pd.isna(value) or str(value).strip().lower() in ["nan", "none", "", "unknown"]:
+            pair = row["Human LR Pair"]
+            label = "ask Perplexity"
+            query = default_query_template.format(pair=pair)
+            encoded_query = urllib.parse.quote(query)
+            return f'<a href="https://www.perplexity.ai/search?q={encoded_query}" target="_blank">{label}</a>'
+        else:
+            return value
+
+    df[pathway_col] = df.apply(create_link, axis=1)
+    return df
+
+gene_pair = generate_perplexity_kegglinks(gene_pair, pathway_col="KEGG Pathway")
+    
+def generate_perplexity_links(df, pathway_col, default_query_template):
     def create_link(row):
         pathway_value = str(row[pathway_col]).strip().lower()
         pair = row["Human LR Pair"]
@@ -511,16 +540,16 @@ def generate_perplexity_links(
         if pd.isna(row[pathway_col]) or pathway_value in ["nan", "none", "", "unknown"]:
             label = "ask Perplexity"
             query = default_query_template.format(pair=pair)
+            output =  f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">{label}</a>'
         else:
             label = row[pathway_col]
             query = f"What-is-the-role-of-the-ligand-and-receptor-pair-{pair}-in-{label}"
+            output = f'{label} (see <a href="https://www.perplexity.ai/search?q={query}" target="_blank">evidence in Perplexity</a>)'
         
-        return f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">{label}</a>'
+        return output
     
     df[pathway_col] = df.apply(create_link, axis=1)
     return df
-
-gene_pair = generate_perplexity_links(gene_pair, pathway_col="KEGG Pathway")
 
 gene_pair = generate_perplexity_links(
     gene_pair,
@@ -546,11 +575,12 @@ def generate_perplexity_links_yesno(
         if pd.isna(row[pathway_col]) or pathway_value in ["nan", "none", "", "unknown"]:
             label = "ask Perplexity"
             query = default_query_template.format(pair=pair)
+            output = f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">{label}</a>'
         else:
             label = row[pathway_col]
             query = f"Provide evidence to support the statement-{pair}-is-related-to-cancer-answer-is-{label}"
-        
-        return f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">{label}</a>'
+            output = f'{label} (see <a href="https://www.perplexity.ai/search?q={query}" target="_blank">evidence in Perplexity</a>)'
+        return output
     
     df[pathway_col] = df.apply(create_link, axis=1)
     return df
