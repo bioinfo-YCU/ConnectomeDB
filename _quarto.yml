@@ -8,6 +8,7 @@ project:
     - "!database/human-trip_old.qmd"
     - "!database/human-FilterOnTop.qmd"
     - "!database/human-trip-FilterOnTop.qmd"
+    - "!stats-withAnnotations.qmd"
 
 website:
   title: ""
