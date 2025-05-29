@@ -8,66 +8,10 @@ format:
     table: false
 header-includes: |
   <script src="../js/keepDropdownMenuGold.js"></script>
-   <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const columnNames = ["Interaction ID", "Human LR Pair", "Ligand”, 
-                             "Ligand symbol and aliases", "Ligand HGNC ID”,
-                             "Ligand location", "Receptor”, 
-                             "Receptor symbol and aliases", "Receptor HGNC ID”,
-                             "Receptor location", "PMID", "Perplexity”,
-                             "Database Source", "binding location”,
-                             "bind in trans?", "bidirectional signalling?”,
-                             "interaction type", "KEGG Pathway", "Cancer-related”,
-                             "Disease Type"
-        ];
-    
-        // Add labels and placeholders to column filters
-        const headers = document.querySelectorAll("thead th");
-        headers.forEach((th, i) => {
-          const input = th.querySelector("input");
-          if (input) {
-            input.setAttribute("placeholder", "Filter");
-            if (!th.querySelector(".filter-label")) {
-              const label = document.createElement("div");
-              label.className = "filter-label";
-              label.textContent = columnNames[i] || `Column ${i + 1}`;
-              label.style.fontWeight = "bold";
-              label.style.fontSize = "0.85em";
-              label.style.marginBottom = "2px";
-              input.parentNode.insertBefore(label, input);
-            }
-          }
-        });
-    
-        // Observe click events to fix empty column visibility dropdown labels
-        document.addEventListener("click", function () {
-          const intervalId = setInterval(() => {
-            const buttons = document.querySelectorAll(".dt-button-collection button.dt-button");
-            if (buttons.length > 0) {
-              buttons.forEach((btn, idx) => {
-                if (btn.textContent.trim() === "") {
-                  const span = btn.querySelector("span");
-                  if (span) {
-                    span.textContent = columnNames[idx] || `Column ${idx + 1}`;
-                  }
-                }
-              });
-              clearInterval(intervalId);
-            }
-          }, 100);
-          setTimeout(() => clearInterval(intervalId), 3000);
-        });
-      });
-  </script>
-
-
-
-
+  
 ---
 
 ***
-
-<!-- ## Species (if we have relaible evidence from PMID) | Ligand Symbol & Aliases | Receptor Symbol & Aliases are the three items than can be shown on top of the DB - no more than 1 line -->
 
 ```{=html}
 
@@ -150,27 +94,6 @@ sys.path.append(os.path.abspath("src"))
 from createDataTable import gene_pair
 
 human_gene_pair = gene_pair.iloc[:, :-40]
-human_gene_pair.columns
-def clean_column_name(col):
-    # Match text between '>' and '</span>', ignoring any optional `&nbsp;`
-    match = re.search(r'>(.*?)<\/span>', col)
-    if match:
-        return match.group(1).replace('&nbsp;', '').strip()
-    return col  # Return original if no match
-
-# Apply to all column names
-human_gene_pair.columns = [clean_column_name(col) for col in human_gene_pair.columns]
-
-
-human_gene_pair = human_gene_pair[["Interaction ID", "Human LR Pair", "Ligand", 
-                                   "Ligand symbol and aliases", "Ligand HGNC ID",
-                                   "Ligand location", "Receptor", 
-                                   "Receptor symbol and aliases", "Receptor HGNC ID",
-                                   "Receptor location", "PMID", "Perplexity",
-                                   "Database Source", "binding location",
-                                   "bind in trans?", "bidirectional signalling?",
-                                   "interaction type", "KEGG Pathway", "Cancer-related",
-                                   "Disease Type"]]
 
 # Turn Interaction ID into clickable links
 human_gene_pair[human_gene_pair.columns[0]] = human_gene_pair[human_gene_pair.columns[0]].apply(
@@ -182,18 +105,17 @@ def update_table():
     show(
         human_gene_pair,
         keys=True,
-        layout={"topStart": "info", "topEnd": "paging",
-                "bottomStart": "buttons", "bottomEnd": "search"},
+        layout={"top": ["info", "paging"]},
         fixedColumns={"start": 2, "end": 0},
         fixedHeader=True,  # Keep header fixed for alignment
-        column_filters="header", 
+        column_filters="footer", 
         scrollX=True,
         classes="display nowrap cell-border compact",
         select=True,
         selected_rows=[],
-        responsive=False,  # Enable responsive behavior
+        responsive=True,  # Enable responsive behavior
         theme='grid',
-        search={"regex": True, "caseInsensitive": True, "smart": True},
+        search={"regex": True, "caseInsensitive": False, "smart": True},
         lengthMenu=[ [10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"] ],
         buttons=[
             "pageLength",  
@@ -205,9 +127,9 @@ def update_table():
         columnDefs=[
             {"className": "dt-center", "targets": [11]}, 
             {"search": False, "targets": [11]},
-            #{"width": "150px", "targets": [0,1]},
+            {"width": "300px", "targets": [3,7]},
             #{"visible": False, "targets": [2,7,8,9,10,15,16,17]} 
-            #{"visible": False, "targets": list(range(-1, -9, -1))} # Hide last 8 columns by default
+            {"visible": False, "targets": list(range(-1, -10, -1))+ [2,6]} # Hide last n columns by default
         ],
         style="width:100%; max-width:1200px; margin:auto",
            language={
@@ -218,12 +140,11 @@ def update_table():
         autoWidth=True,
         maxBytes=0,  # So it does not downsample
         initCode='''
-    $(document).on('init.dt', function () {
-        document.dispatchEvent(new Event('tableReady'));
-    });
-        ''',
-
-)
+            $(document).on('draw.dt', function () {
+                $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
+            });
+    '''
+    )
 
 # Call the function to render the table
 update_table()

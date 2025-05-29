@@ -6,6 +6,8 @@ project:
     - "!index_dashboard.qmd"
     - "!*.ipynb/"
     - "!database/human-trip_old.qmd"
+    - "!database/human-FilterOnTop.qmd"
+    - "!database/human-trip-FilterOnTop.qmd"
 
 website:
   title: ""
@@ -33,16 +35,16 @@ website:
          - href: database/other/ratOrth.qmd
          
            text: Other Species
-      - text: 'Annotations Browser'
-        menu:
-         - href: annotations/disease.qmd
-           text: Diseases
-         - href: annotations/pathway.qmd
-           text: Pathways
-         - href: annotations/ligand_group.qmd
-           text: Ligand Lineage
-         - href: annotations/receptor_group.qmd
-           text: Receptor Lineage
+      # - text: 'Annotations Browser'
+      #   menu:
+      #    - href: annotations/disease.qmd
+      #      text: Diseases
+      #    - href: annotations/pathway.qmd
+      #      text: Pathways
+      #    - href: annotations/ligand_group.qmd
+      #      text: Ligand Lineage
+      #    - href: annotations/receptor_group.qmd
+      #      text: Receptor Lineage
       - href: stats.qmd
         text: "{{< iconify mdi:chart-bar inline size=20px >}}Statistics"
     right:

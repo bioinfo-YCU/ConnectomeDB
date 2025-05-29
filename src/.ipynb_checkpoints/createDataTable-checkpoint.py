@@ -441,10 +441,7 @@ gene_pair["Interaction ID"] = [f"CDB{str(i).zfill(5)}" for i in range(1, DBlengt
 # for creating PMIDs
 gene_pair00 = gene_pair[['Human LR Pair', 'PMID']] # was "PMID support"
 
-# Bring in Perplexity query
 # Recreate Perplexity link
-# Function to generate Perplexity search link 
-#Option 1 -- unchanged from orig DB
 def create_url_basic(perplexity_col):
     query = f"What is the primary evidence that {perplexity_col} bind-each-other-as-a-ligand-and-receptor-pair. Exclude reviews, uniprot, wiki, genecards, PIPS, iuphar as sources."
     encoded_query = query.replace(" ", "%20")
@@ -647,12 +644,19 @@ prefixes = ("Chimpanzee", "Chicken", "Pig", "Cow", "Dog", "Horse", "Sheep")
 # Get column names that start with any of the given prefixes
 selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)]
 # was "PMID support"
-gene_pair0 = gene_pair[['Interaction ID', 'Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PMID', 
-       'Ligand HGNC ID', 'Ligand location', 'Receptor HGNC ID',
+gene_pair0 = gene_pair[['Interaction ID', 'Human LR Pair', 'Ligand', "Ligand symbol and aliases",  'Ligand HGNC ID', 'Receptor', 'Perplexity', 'PMID', 
+       'Ligand location', 'Receptor HGNC ID',
        'Receptor location', 'Ligand name', 'Receptor name', 'KEGG Pathway', 'Cancer-related', 'Disease Type', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', "Ligand symbol and aliases",  "Receptor symbol and aliases", "PROGENy Pathway"] + mouse_columns + rat_columns]
 
-gene_pair = gene_pair[['Interaction ID', 'Human LR Pair', 'Database Source', 'Ligand', 'Receptor', 'Perplexity', 'PMID', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', 'Ligand HGNC ID', 'Receptor HGNC ID', 'Ligand location', 'Receptor location',
-        'Ligand name', 'Receptor name','KEGG Pathway', 'Cancer-related', 'Disease Type', "Ligand symbol and aliases",  "Receptor symbol and aliases"] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
+gene_pair = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", 
+                       "Ligand symbol and aliases", "Ligand HGNC ID",
+                       "Ligand location", "Receptor", 
+                       "Receptor symbol and aliases", "Receptor HGNC ID",
+                       "Receptor location", "PMID", "Perplexity",
+                       "Database Source", "binding location",
+                       "bind in trans?", "bidirectional signalling?",
+                        "interaction type", "KEGG Pathway", "PROGENy Pathway",
+                       "Cancer-related", "Disease Type",'Ligand name','Receptor name'] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
 
 
 # gene symbol
@@ -734,4 +738,4 @@ new_columns[:10] = [
 
 # Assign the modified column names back to the DataFrame
 gene_pair000.columns = new_columns
-human_columns = [col for col in gene_pair000.columns][:20]
+human_columns = [col for col in gene_pair000.columns][:21]
