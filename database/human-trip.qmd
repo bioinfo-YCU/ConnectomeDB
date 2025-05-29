@@ -8,50 +8,7 @@ format:
     table: false
 header-includes: |
   <script src="../js/keepDropdownMenuGold.js"></script>
-  <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const columnNames = [
-          "Interaction ID", "Human LR Pair","Perplexity", "Database Source", "PMID", "Year", "Journal", "Title", "Ligand Aliases", "Receptor Aliases", "Species"
-        ];
-    
-        // Add labels and placeholders to column filters
-        const headers = document.querySelectorAll("thead th");
-        headers.forEach((th, i) => {
-          const input = th.querySelector("input");
-          if (input) {
-            input.setAttribute("placeholder", "Filter");
-            if (!th.querySelector(".filter-label")) {
-              const label = document.createElement("div");
-              label.className = "filter-label";
-              label.textContent = columnNames[i] || `Column ${i + 1}`;
-              label.style.fontWeight = "bold";
-              label.style.fontSize = "0.85em";
-              label.style.marginBottom = "2px";
-              input.parentNode.insertBefore(label, input);
-            }
-          }
-        });
-    
-        // Observe click events to fix empty column visibility dropdown labels
-        document.addEventListener("click", function () {
-          const intervalId = setInterval(() => {
-            const buttons = document.querySelectorAll(".dt-button-collection button.dt-button");
-            if (buttons.length > 0) {
-              buttons.forEach((btn, idx) => {
-                if (btn.textContent.trim() === "") {
-                  const span = btn.querySelector("span");
-                  if (span) {
-                    span.textContent = columnNames[idx] || `Column ${idx + 1}`;
-                  }
-                }
-              });
-              clearInterval(intervalId);
-            }
-          }, 100);
-          setTimeout(() => clearInterval(intervalId), 3000);
-        });
-      });
-  </script>
+
 ---
 
 ***
@@ -100,26 +57,17 @@ sys.path.append(os.path.abspath("src"))
 
 from createTriplicateDT import gene_pair_trip
 
-human_gene_pairTrip = gene_pair_trip.iloc[:, :11]
+human_gene_pairTrip = gene_pair_trip.iloc[:, :10]
 
 # Function to update and display the table
 def update_table1():
     show(
         human_gene_pairTrip,
         keys=True,
-        layout={"topStart": "info", "topEnd": "paging",
-                "bottomStart": "buttons", "bottomEnd": "search"},
-        searchPanes={"layout": "rows-1", 
-                     "cascadePanes": True, 
-                     "columns": [8,9,10], 
-                     "regex": True, "caseInsensitive": False, 
-                     "smart": True, 
-                     "initCollapsed": True, 
-                     "controls": True},
-        #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
+        layout={"top": ["info", "paging"]},
         fixedColumns={"start": 2, "end": 0},
         #fixedHeader=True,  # Keep header fixed for alignment
-        column_filters="header", 
+        column_filters="footer",
         scrollX=True,
         classes="display nowrap cell-border compact",
         select=True,
@@ -136,9 +84,10 @@ def update_table1():
             {"extend": "copyHtml5", "title": "Source"},
         ],
         columnDefs=[
-            {"className": "dt-center", "targets": [2]}, 
-            {"width": "800px", "targets": [7]},
-            # {"targets": [8,9], "visible": False} # Hide last 2 columns by default
+            {"className": "dt-center", "targets": [4]}, 
+            {"width": "300px", "targets": [2,3]},
+            {"width": "800px", "targets": [9]},
+            {"targets": [2,3], "visible": False} # Hide last 2 columns by default
         ],
         style="1200px;margin:auto",
            language={

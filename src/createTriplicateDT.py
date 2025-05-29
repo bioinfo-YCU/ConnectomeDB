@@ -97,6 +97,6 @@ gene_pair_trip = gene_pair_trip.drop(columns=['JournalAbbv'])
 gene_pair_trip = gene_pair_trip.sort_values(by='Year', ascending=True)
 gene_pair_trip[gene_pair_trip.columns[6]] = make_ids_unique(gene_pair_trip[gene_pair_trip.columns[6]])
 gene_pair_trip = gene_pair_trip.sort_values(by='Year', ascending=False)
-first_columns=[gene_pair_trip.columns[6], gene_pair_trip.columns[7], 'Perplexity','Database Source','PMID', 'Year','Journal', 'Title',gene_pair_trip.columns[21], gene_pair_trip.columns[22]]
+first_columns=[gene_pair_trip.columns[6], gene_pair_trip.columns[7], gene_pair_trip.columns[8], gene_pair_trip.columns[10], 'Perplexity','Database Source','PMID', 'Year','Journal', 'Title',gene_pair_trip.columns[21], gene_pair_trip.columns[22]]
 gene_pair_trip = gene_pair_trip[first_columns + [col for col in gene_pair_trip.columns if col not in first_columns]]
 gene_pair_trip = gene_pair_trip.reset_index(drop=True)  

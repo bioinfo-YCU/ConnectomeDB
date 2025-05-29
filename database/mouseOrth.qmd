@@ -53,9 +53,10 @@ def update_table():
             {"extend": "copyHtml5", "title": "Source"},
         ],
         columnDefs=[
-            {"className": "dt-center", "targets": [10]}, 
+            {"className": "dt-center", "targets": [16]}, 
             # {"width": "100px", "targets": "_all"},
-            {"targets": list(range(-1, -5, -1)), "visible": False} # Hide last 8 columns by default
+            {"width": "300px", "targets": [8,12]},
+            {"targets": list(range(-1, -10, -1))+ [7, 11], "visible": False} # Hide last n columns by default
         ],
         style="1200px;margin:auto",
            language={
