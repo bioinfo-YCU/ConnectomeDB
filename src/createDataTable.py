@@ -644,9 +644,9 @@ prefixes = ("Chimpanzee", "Chicken", "Pig", "Cow", "Dog", "Horse", "Sheep")
 # Get column names that start with any of the given prefixes
 selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)]
 # was "PMID support"
-gene_pair0 = gene_pair[['Interaction ID', 'Human LR Pair', 'Ligand', "Ligand symbol and aliases",  'Ligand HGNC ID', 'Receptor', 'Perplexity', 'PMID', 
+gene_pair0 = gene_pair[['Interaction ID', 'Human LR Pair', 'Ligand', "Ligand symbol and aliases",  'Ligand HGNC ID', 'Receptor', "Receptor symbol and aliases", 'Perplexity', 'PMID', 
        'Ligand location', 'Receptor HGNC ID',
-       'Receptor location', 'Ligand name', 'Receptor name', 'KEGG Pathway', 'Cancer-related', 'Disease Type', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', "Ligand symbol and aliases",  "Receptor symbol and aliases", "PROGENy Pathway"] + mouse_columns + rat_columns]
+       'Receptor location', 'Ligand name', 'Receptor name', 'KEGG Pathway', 'Cancer-related', 'Disease Type', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', "PROGENy Pathway"] + mouse_columns + rat_columns]
 
 gene_pair = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", 
                        "Ligand symbol and aliases", "Ligand HGNC ID",
