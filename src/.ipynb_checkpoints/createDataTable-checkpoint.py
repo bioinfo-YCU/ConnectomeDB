@@ -187,8 +187,18 @@ df= pd.read_csv("data/pathway_annotations_per_pair.csv")
 # Sort by absolute value of 'weight', descending (larger abs(weight) first)
 df_sorted = df.reindex(df['weight'].abs().sort_values(ascending=False).index)
 # Keep only the first occurrence for each unique 'interaction'
-df_unique = df_sorted.drop_duplicates(subset='interaction', keep='first')
-df = df_unique.reset_index(drop=True)
+#df_unique = df_sorted.drop_duplicates(subset='interaction', keep='first')
+#Keep ALL
+df = df_sorted.reset_index(drop=True)
+top_pathway_df = df[["interaction", "source"]]
+top_pathway_df = top_pathway_df.groupby('interaction')['source'].apply(', '.join).reset_index()
+top_pathway_df = top_pathway_df.rename(columns={
+                                      "source": "PROGENy Pathway"
+})
+top_pathway_df["interaction"] = [value.replace("^", " ") for value in top_pathway_df["interaction"]]
+gene_pair = gene_pair.merge(top_pathway_df, how='left', left_on='Human LR Pair', right_on='interaction')
+gene_pair = gene_pair.drop(columns=["interaction"])
+#df = df_unique.reset_index(drop=True)
 top_pathway_df=fetchGSheet.kegg_pathway_info[["LR Pair", "kegg_pathway_id", "kegg_relationship", "kegg_pathway_name"]].copy()
 top_pathway_df["kegg_pathway_id"] = [
     f'<a href="https://www.kegg.jp/pathway/{id}" target="_blank">{id}</a>'
@@ -488,16 +498,66 @@ def generate_links_with_doi(df, gene_column, pmid_column):
 # Generate the links for the "PMID" column # was "PMID support"
 gene_pair = generate_links_with_doi(gene_pair, gene_column="Human LR Pair", pmid_column="PMID")
 
-# for disease type, cancer-related and top pathways, explicitly say "not available"
-gene_pair["KEGG Pathway"] = gene_pair["KEGG Pathway"].apply(
-    lambda x: "unknown" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", ""] else x
-)
-gene_pair["Disease Type"] = gene_pair["Disease Type"].apply(
-    lambda x: "unknown" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", ""] else x
+# for disease type, cancer-related and top pathways, when missing say "ask Perplexity"
+def generate_perplexity_links(
+    df,
+    pathway_col="KEGG Pathway",
+    default_query_template="What-biological or other functional-pathways-is-the-ligand-receptor-{pair}-associated-with"
+):
+    def create_link(row):
+        pathway_value = str(row[pathway_col]).strip().lower()
+        pair = row["Human LR Pair"]
+        
+        if pd.isna(row[pathway_col]) or pathway_value in ["nan", "none", "", "unknown"]:
+            label = "ask Perplexity"
+            query = default_query_template.format(pair=pair)
+        else:
+            label = row[pathway_col]
+            query = f"What-is-the-role-of-the-ligand-and-receptor-pair-{pair}-in-{label}"
+        
+        return f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">{label}</a>'
+    
+    df[pathway_col] = df.apply(create_link, axis=1)
+    return df
+
+gene_pair = generate_perplexity_links(gene_pair, pathway_col="KEGG Pathway")
+
+gene_pair = generate_perplexity_links(
+    gene_pair,
+    pathway_col="PROGENy Pathway",
+    default_query_template="What-major signalling pathways-is-the-ligand-receptor-pair-{pair}-associated-with"
 )
 
-gene_pair["Cancer-related"] = gene_pair["Cancer-related"].apply(
-    lambda x: "unknown" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", ""] else x
+gene_pair = generate_perplexity_links(
+    gene_pair,
+    pathway_col="Disease Type",
+    default_query_template="What-disease types-is-the-ligand-receptor-pair-{pair}-associated-with"
+)
+# if it is a yes or no question
+def generate_perplexity_links_yesno(
+    df,
+    pathway_col="Cancer-related",
+    default_query_template="Is-the-{pair}-associated-with-cancer-and-if-so-which-ones"
+):
+    def create_link(row):
+        pathway_value = str(row[pathway_col]).strip().lower()
+        pair = row["Human LR Pair"]
+        
+        if pd.isna(row[pathway_col]) or pathway_value in ["nan", "none", "", "unknown"]:
+            label = "ask Perplexity"
+            query = default_query_template.format(pair=pair)
+        else:
+            label = row[pathway_col]
+            query = f"Provide evidence to support the statement-{pair}-is-related-to-cancer-answer-is-{label}"
+        
+        return f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">{label}</a>'
+    
+    df[pathway_col] = df.apply(create_link, axis=1)
+    return df
+
+gene_pair = generate_perplexity_links_yesno(
+    gene_pair,
+    pathway_col="Cancer-related"
 )
 
 gene_pair["Ligand MGI ID"] = [
@@ -559,7 +619,7 @@ selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)
 # was "PMID support"
 gene_pair0 = gene_pair[['Interaction ID', 'Human LR Pair', 'Ligand', 'Receptor', 'Perplexity', 'PMID', 
        'Ligand HGNC ID', 'Ligand location', 'Receptor HGNC ID',
-       'Receptor location', 'Ligand name', 'Receptor name', 'KEGG Pathway', 'Cancer-related', 'Disease Type', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', "Ligand symbol and aliases",  "Receptor symbol and aliases"] + mouse_columns + rat_columns]
+       'Receptor location', 'Ligand name', 'Receptor name', 'KEGG Pathway', 'Cancer-related', 'Disease Type', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', "Ligand symbol and aliases",  "Receptor symbol and aliases", "PROGENy Pathway"] + mouse_columns + rat_columns]
 
 gene_pair = gene_pair[['Interaction ID', 'Human LR Pair', 'Database Source', 'Ligand', 'Receptor', 'Perplexity', 'PMID', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', 'Ligand HGNC ID', 'Receptor HGNC ID', 'Ligand location', 'Receptor location',
         'Ligand name', 'Receptor name','KEGG Pathway', 'Cancer-related', 'Disease Type', "Ligand symbol and aliases",  "Receptor symbol and aliases"] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]

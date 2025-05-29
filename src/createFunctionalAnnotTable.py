@@ -13,6 +13,7 @@ from fetchGSheet import gene_group
 import warnings
 
 gene_pair_annot = gene_pair0[["Interaction ID", "Human LR Pair", "Cancer-related", "Ligand symbol and aliases",  "Receptor symbol and aliases"]].copy()
+# Diseases
 df= pd.read_csv("data/disease_annotations_per_pair.csv")
 df_cat=pd.read_csv("data/disease_categories.csv")
 mapping = dict(zip(df_cat['Disease Name'], df_cat['Category']))
