@@ -12,10 +12,25 @@ import re
 
 sys.path.append(os.path.abspath("src"))  
 import fetchGSheet
-from createDataTable import pop_up_info, gene_pair0
+from createDataTable import pop_up_info, gene_pair0, generate_perplexity_links
 
-# if only one replace gene_pair0 to e.g. gene_pair0[gene_pair0["Human LR Pair"] == "APOE LRP1"]
-gene_pair_input = gene_pair0 
+
+# Add Disease (specific) to cards
+df= pd.read_csv("data/disease_annotations_per_pair.csv")
+df = df.groupby('interaction')['disease'].apply(', '.join).reset_index()
+# Map and set to unknown for now
+mapping = dict(zip(df['interaction'],df['disease']))
+gene_pair0["Disease"] = gene_pair0['Human LR Pair'].map(mapping).fillna("unknown")
+
+gene_pair0 = generate_perplexity_links(
+    gene_pair0,
+    pathway_col="Disease",
+    default_query_template="What-diseases-is-the-ligand-receptor-pair-{pair}-associated-with"
+)
+
+# if only one replace gene_pair0 to e.g. 
+gene_pair_input = gene_pair0[gene_pair0["Human LR Pair"].isin(["A2M HSPA5", "ADAM17 IL6R"])]
+#gene_pair_input = gene_pair0 
 
 # Paths
 TEMPLATE_PATH = 'HTML/cardTemplate.html'
@@ -55,7 +70,7 @@ def convert_hgnc_url(col):
 def convert_hgnc_url_disease(col):
     hgnc_id = extract_hgnc_id(col)  # Extract the HGNC ID
     if hgnc_id:
-        visible_text = "see here"
+        visible_text = "genecard.org"
         new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}#diseases" target="_blank">{visible_text}</a>'
         return new_link
     return None
@@ -63,7 +78,7 @@ def convert_hgnc_url_disease(col):
 def convert_hgnc_url_exp(col):
     hgnc_id = extract_hgnc_id(col)  # Extract the HGNC ID
     if hgnc_id:
-        visible_text = "see here"
+        visible_text = "genecard.org"
         new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}#expression" target="_blank">{visible_text}</a>'
         return new_link
     return None
@@ -79,7 +94,7 @@ def prepare_dataframes(gene_pair_input):
             gene_pair_input["Receptor"], gene_pair_input["Receptor location"]
         )
     ]
-    interaction_card = gene_pair_input[["Interaction ID", "Human LR Pair", "Interaction Type", "Perplexity", "PMID", "KEGG Pathway", "Cancer-related", "Disease Type"]]
+    interaction_card = gene_pair_input[["Interaction ID", "Human LR Pair", "Interaction Type", "Perplexity", "PMID", "KEGG Pathway",  "PROGENy Pathway", "Cancer-related", "Disease Type", "Disease"]]
     interaction_card["Perplexity"] = interaction_card["Perplexity"].str.replace('size=30', 'size=80')
 
     pop_up_info_lim = pop_up_info[
@@ -116,10 +131,6 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
     column_values = interaction_card["Human LR Pair"].dropna().unique()
     os.makedirs(output_dir, exist_ok=True)
 
-    # Encode the plotlegend image to base64
-    plotlegend_image_path = "data/image/plotlegend.png"
-    plotlegend_base64 = encode_image(plotlegend_image_path)  # Convert WebP to base64
-
     for value in column_values:
         value1, value2 = value.split()
         row0 = interaction_card[interaction_card['Human LR Pair'] == value]
@@ -129,8 +140,8 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
         row4 = receptor_card_2[receptor_card_2['Human LR Pair'] == value]
 
         # Check if the HTML files exist
-        ligand_image_path = f'data/gene_expr_plots/{value1}.html'
-        receptor_image_path = f'data/gene_expr_plots/{value2}.html'
+        ligand_image_path = f'data/tabula_sapiens/heatmap/{value1}.html'
+        receptor_image_path = f'data/tabula_sapiens/heatmap/{value2}.html'
         
         if os.path.exists(ligand_image_path):
             with open(ligand_image_path, "r") as html_file:
@@ -161,7 +172,7 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
             table4_data=table4_data,
             ligand_image=ligand_image,
             receptor_image=receptor_image,
-            plotlegend_base64=plotlegend_base64 
+            #plotlegend_base64=plotlegend_base64 
         )
         
         output_file = os.path.join(output_dir, f"{value1} {value2}.html")

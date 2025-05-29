@@ -30,8 +30,8 @@
             transition: background 0.3s ease;
         }
         .ligand-plot {
-            width: 100%; /* Make it take full width of the card */
-            max-width: 100%; /* Prevents overflow */
+            width: 90%; /* Make it take full width of the card */
+            max-width: 90%; /* Prevents overflow */
             height: auto; /* Keeps aspect ratio */
             overflow: visible; /* Hide overflowing parts */
             display: flex;
@@ -39,8 +39,8 @@
             align-items: center;
         }
          .receptor-plot {
-            width: 100%; /* Make it take full width of the card */
-            max-width: 100%; /* Prevents overflow */
+            width: 90%; /* Make it take full width of the card */
+            max-width: 90%; /* Prevents overflow */
             height: auto; /* Keeps aspect ratio */
             overflow: visible; /* Hide overflowing parts */
             display: flex;
@@ -57,12 +57,12 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 3px;
+            gap: 2px;
             margin: 0 auto;
             max-width: 1200px;
         }
         .card {
-            width: 49.8%;
+            width: 50%;
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -247,7 +247,7 @@
     
         /* Plot-specific fonts */
         .pdf-only {
-        font-size: 8px !important;
+        font-size: 10px !important;
         }
         svg, canvas {
             max-width: 100% !important;
@@ -265,7 +265,7 @@
     container.style.width = '1000px';  // Fixed width to fit PDF page nicely
     container.style.padding = '0px';
     container.style.margin = '0 auto';
-    container.style.overflow = 'visible';
+    container.style.overflow = 'hidden';
     container.appendChild(clone);
 
     document.body.appendChild(container); // temporarily append to render
@@ -339,13 +339,9 @@
             <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank">YCU Bioinformatics Lab</a>
             <span class="divider">|</span>
             <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology & Genomics Lab</a>
-            <!-- <button class="no-print download-btn" onclick="downloadPDF()">
+            <button class="no-print download-btn" onclick="downloadPDF()">
                 ⇣ PDF
-            </button>  -->
-            <button class="no-print download-btn" onclick="downloadHTML()">
-    ⇣ HTML
-</button>
-
+            </button>
         </div>
     </nav>
 
@@ -398,37 +394,22 @@
         <div class="card-full-row">
             <div class="column">
                 <h2>Interaction Annotations</h2> 
-                {% if "PROGENy Pathway" in table0_data %}
-                    <div>
-                        <strong>PROGENy Pathway(s):</strong> {{ table0_data["PROGENy Pathway"] }}
-                    </div>
-                {% endif %}
-
                 {% if "KEGG Pathway" in table0_data %}
                     <div>
-                        <strong>KEGG Pathway(s):</strong> {{ table0_data["KEGG Pathway"] }}
+                        <strong>KEGG Pathways:</strong> {{ table0_data["KEGG Pathway"] }}
                     </div>
                 {% endif %}
-
-            </div>
-            <div class="column">
-                <h2>Disease Annotations:</h2> 
                 {% if "Cancer-related" in table0_data %}
                     <div>
                         <strong>Cancer-related:</strong> {{ table0_data["Cancer-related"] }}
                     </div>
                 {% endif %}
-                {% if "Disease Type" in table0_data %}
-                    <div>
-                        <strong>Disease Type(s):</strong> {{ table0_data["Disease Type"] }}
-                    </div>
-                {% endif %}
             </div>
             <div class="column">
-                <br>
-                {% if "Disease" in table0_data %}
+                <h2>Disease Types:</h2> 
+                {% if "Disease Type" in table0_data %}
                     <div>
-                        <strong>Disease(s):</strong> {{ table0_data["Disease"] }}
+                        {{ table0_data["Disease Type"] }}
                     </div>
                 {% endif %}
             </div>
@@ -488,30 +469,27 @@
     </div>
 
     </div>
-        <!-- <br>
+        <br>
         <div class="card-container">
         <div class="card-full-row">
         <div class="column-center">
-<h1 style="text-align: center; font-size: 22px; font-weight: bold; width: 100%;">
-  <a href="https://tabula-sapiens.sf.czbiohub.org/" target="_blank" 
-     style="display: inline-block; padding: 4px 10px; margin: 0 6px; background-color: #007BFF; color: white; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 18px;">
-    Tabula Sapiens
-  </a> Expression Profile across 180 Human Cell types and 28 Tissues
-</h1>
+        <h1 style="text-align: center; font-size: 22px; font-weight: bold; width: 100%;">Expression Profile in 144 Cell types (FANTOM5)</h1>
+        <!-- Image shown only in the PDF -->
+        <div class="pdf-only" id="webp-image" style="text-align: center;">
+            <img src="data:image/webp;base64,{{ plotlegend_base64 }}" alt="Plot Legend Image" style="width: 80%; height: auto;">
         
         </div>
         </div>
         </div>
-        <div class="card-container">
             <div class="card">
                 <div>
                 {% if ligand_image != "Plot does not exist" %}
                     <div class="ligand-plot">
-                        <div style="width: 100%; max-width: 100%; overflow: hidden;">
+                        <div style="width: 90%; max-width: 90%; overflow: hidden;">
                         {{ ligand_image | safe }}  <!-- Render the HTML content directly -->
                         </div>
                     </div>
-                <!-- {% else %}
+                {% else %}
                     <p>Plot does not exist</p>
                 {% endif %}
                 </div>
@@ -520,35 +498,18 @@
                 <div>
                 {% if receptor_image != "Plot does not exist" %}
                     <div class="receptor-plot">
-                        <div style="width: 100%; max-width: 100%; overflow: hidden;">
+                        <div style="width: 90%; max-width: 90%; overflow: hidden;">
                         {{ receptor_image | safe }}  
                         </div>
                     </div>
                 {% else %}
                     <p>Plot does not exist</p>
-                {% endif %} -->
+                {% endif %}
                 </div>
             </div>
-    </div> 
+    </div>
     <footer>
-        <span>© Copyright 2025, YCU Bioinformatics Lab | Harry Perkins Systems Biology & Genomics Lab</span>
+        <span>© Copyright 2024, YCU Bioinformatics Lab | Harry Perkins Systems Biology & Genomics Lab</span>
     </footer>
-    <script>
-function downloadHTML() {
-    const blob = new Blob(
-        [document.documentElement.outerHTML],
-        { type: 'text/html' }
-    );
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    let value1 = "{{ value1 }}".trim();
-    let value2 = "{{ value2 }}".trim();
-    a.download =  `${value1} —— ${value2}.html`;  // You can customize the filename here
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-}
-    </script>
-
 </body>
 </html>
