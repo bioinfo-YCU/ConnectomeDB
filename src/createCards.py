@@ -30,8 +30,8 @@ gene_pair0 = generate_perplexity_links(
 )
 
 # if only one replace gene_pair0 to e.g. 
-gene_pair_input = gene_pair0[gene_pair0["Human LR Pair"].isin(["VEGFA KDR", "ADAM17 IL6R"])]
-#gene_pair_input = gene_pair0 
+#gene_pair_input = gene_pair0[gene_pair0["Human LR Pair"].isin(["VEGFA KDR", "ADAM17 IL6R"])]
+gene_pair_input = gene_pair0 
 
 
 # add Ligand/Receptor group info
