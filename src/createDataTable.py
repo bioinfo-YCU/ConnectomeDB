@@ -165,6 +165,12 @@ gene_pair = gene_pair.rename(columns={
     "Receptor.HGNC": "Receptor HGNC ID",
     "perplexity link": "Perplexity", # will be replaced with actual link later
     "original source": "Database Source",
+    "Ligand location": "Ligand Location",
+    "Receptor location": "Receptor Location",
+    "binding location": "Binding Location",
+    "bind in trans?" : "Trans-binding", 
+    "bidirectional signalling?": "Bidirectional Signalling",
+    "interaction type" : "Interaction Type"
     #"PMID": "PMID support" # was PMID support
 })
 
@@ -287,13 +293,32 @@ gene_pair = gene_pair.rename(columns={"Approved name": "Receptor name",
 
 gene_pair = gene_pair.drop(columns=["HGNC ID"])
 
-# Add new columns where all Ligand symbol and aliases and Receptor symbol and aliases merged in one column
-gene_pair['Ligand symbol and aliases'] = gene_pair['Ligand'] + " (" + gene_pair['Ligand Old symbol'] + ", " + gene_pair['Ligand Aliases'] + ")"
-gene_pair['Receptor symbol and aliases'] = gene_pair['Receptor'] + " (" + gene_pair['Receptor Old symbol'] + ", " + gene_pair['Receptor Aliases'] + ")"
-gene_pair['Ligand symbol and aliases'] = gene_pair['Ligand symbol and aliases'].apply(lambda x: str(x).replace(", N/A", ""))
-gene_pair['Ligand symbol and aliases'] = gene_pair['Ligand symbol and aliases'].apply(lambda x: str(x).replace("N/A, ", ""))
-gene_pair['Receptor symbol and aliases'] = gene_pair['Receptor symbol and aliases'].apply(lambda x: str(x).replace(", N/A", ""))
-gene_pair['Receptor symbol and aliases'] = gene_pair['Receptor symbol and aliases'].apply(lambda x: str(x).replace("N/A, ", ""))
+# Add new columns where all Ligand Symbol & Aliases and Receptor Symbol & Aliases merged in one column
+def format_symbol_aliases(symbol, old_symbol, aliases):
+    # Filter out "N/A" values
+    parts = [p for p in (old_symbol, aliases) if p != "N/A"]
+    # Return just the symbol if no valid aliases or old symbols
+    return f"{symbol} ({', '.join(parts)})" if parts else symbol
+
+gene_pair['Ligand Symbol & Aliases'] = gene_pair.apply(
+    lambda row: format_symbol_aliases(row['Ligand'], row['Ligand Old symbol'], row['Ligand Aliases']),
+    axis=1
+)
+
+gene_pair['Receptor Symbol & Aliases'] = gene_pair.apply(
+    lambda row: format_symbol_aliases(row['Receptor'], row['Receptor Old symbol'], row['Receptor Aliases']),
+    axis=1
+)
+
+### tooltips 
+gene_pair["Ligand Symbol & Aliases"] = [
+    f'<span title="{aliases}">{aliases}</span>'
+    for aliases in gene_pair["Ligand Symbol & Aliases"]
+]
+gene_pair["Receptor Symbol & Aliases"] = [
+    f'<span title="{aliases}">{aliases}</span>'
+    for aliases in gene_pair["Receptor Symbol & Aliases"]
+]
 
 
 # Add MGI name
@@ -430,7 +455,7 @@ source = [value.replace(" ", "") for value in source]
 
 
 # Function to join unique sorted values
-agg_func = lambda x: ','.join(sorted(set(map(str, x))))
+agg_func = lambda x: ', '.join(sorted(set(map(str, x))))
 
 # Group and aggregate all columns except 'LR pair'
 gene_pair = gene_pair.groupby('Human LR Pair').agg(agg_func).reset_index()
@@ -644,18 +669,18 @@ prefixes = ("Chimpanzee", "Chicken", "Pig", "Cow", "Dog", "Horse", "Sheep")
 # Get column names that start with any of the given prefixes
 selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)]
 # was "PMID support"
-gene_pair0 = gene_pair[['Interaction ID', 'Human LR Pair', 'Ligand', "Ligand symbol and aliases",  'Ligand HGNC ID', 'Receptor', "Receptor symbol and aliases", 'Perplexity', 'PMID', 
-       'Ligand location', 'Receptor HGNC ID',
-       'Receptor location', 'Ligand name', 'Receptor name', 'KEGG Pathway', 'Cancer-related', 'Disease Type', 'binding location', 'bind in trans?', 'bidirectional signalling?', 'interaction type', "PROGENy Pathway"] + mouse_columns + rat_columns]
+gene_pair0 = gene_pair[['Interaction ID', 'Human LR Pair', 'Ligand', "Ligand Symbol & Aliases",  'Ligand HGNC ID', 'Receptor', "Receptor Symbol & Aliases", 'Perplexity', 'PMID', 
+       'Ligand Location', 'Receptor HGNC ID',
+       'Receptor Location', 'Ligand name', 'Receptor name', 'KEGG Pathway', 'Cancer-related', 'Disease Type', 'Binding Location', 'Trans-binding', 'Bidirectional Signalling', 'Interaction Type', "PROGENy Pathway"] + mouse_columns + rat_columns]
 
 gene_pair = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", 
-                       "Ligand symbol and aliases", "Ligand HGNC ID",
-                       "Ligand location", "Receptor", 
-                       "Receptor symbol and aliases", "Receptor HGNC ID",
-                       "Receptor location", "PMID", "Perplexity",
-                       "Database Source", "binding location",
-                       "bind in trans?", "bidirectional signalling?",
-                        "interaction type", "KEGG Pathway", "PROGENy Pathway",
+                       "Ligand Symbol & Aliases", "Ligand HGNC ID",
+                       "Ligand Location", "Receptor", 
+                       "Receptor Symbol & Aliases", "Receptor HGNC ID",
+                       "Receptor Location", "PMID", "Perplexity",
+                       "Database Source", "Binding Location",
+                       "Trans-binding", "Bidirectional Signalling",
+                       "Interaction Type", "KEGG Pathway", "PROGENy Pathway",
                        "Cancer-related", "Disease Type",'Ligand name','Receptor name'] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
 
 
@@ -681,11 +706,11 @@ gene_pair["Database Source"] = [
 
 
 def replace_spaces(row):
-    if 'secreted' in row['Ligand location'].lower():
+    if 'secreted' in row['Ligand Location'].lower():
         return row['Human LR Pair'].replace(" ", " <span style='font-size: 14px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
-    elif row['Ligand location'] == 'unknown':
+    elif row['Ligand Location'] == 'unknown':
         return row['Human LR Pair'].replace(" ", " <span style='font-size: 14px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
-    elif 'membrane' in row['Ligand location'].lower():
+    elif 'membrane' in row['Ligand Location'].lower():
         return row['Human LR Pair'].replace(" ", " <span style='font-size: 24px;'>⤙</span> <span style='font-size: 24px;'>⤚</span> ")
     else:
         return row['Human LR Pair'].replace(" ", " \u2192 ")
@@ -714,7 +739,7 @@ gene_pair.columns = [
     f'<span title="Rat Genome Database (RGD) ID. Click on the link for more details">{col}</span>' if col in ["Ligand RGD ID", "Receptor RGD ID"] else
     f'<span title="Mouse Genome Informatics (MGI) ID. Click on the link for more details">{col}</span>' if col in ["Ligand MGI ID", "Receptor MGI ID"]else
     f'<span title="Zebrafish Information Network (ZFIN) ID. Click on the link for more details">{col}</span>' if col in ["Ligand ZFIN ID", "Receptor ZFIN ID"] else
-    f'<span title="Location based on the predicted subcellular localization of the human proteome, as described in Ramilowski et al. (PMID: 26198319)">{col}</span>' if col in ["Ligand location", "Receptor location"] else
+    f'<span title="Location based on the predicted subcellular localization of the human proteome, as described in Ramilowski et al. (PMID: 26198319)">{col}</span>' if col in ["Ligand Location", "Receptor Location"] else
     f'<span title="Double-click header of {col} to ensure all values are shown">{col}&nbsp;</span>'
     for col in gene_pair.columns
 ]

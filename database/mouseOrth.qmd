@@ -32,9 +32,10 @@ def update_table():
     show(
         mouse_gene_pair1,
         keys=True,
-        layout={"top": ["info", "paging"]},
+        layout = {"topEnd":["paging"]},
+        #layout={"top": ["info", "paging"]},
         #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
-        fixedColumns={"start": 1, "end": 0},
+        fixedColumns={"start": 2, "end": 0},
         fixedHeader=True,  # Keep header fixed for alignment
         column_filters="footer", 
         scrollX=True,
@@ -55,17 +56,17 @@ def update_table():
         columnDefs=[
             {"className": "dt-center", "targets": [16]}, 
             # {"width": "100px", "targets": "_all"},
-            {"width": "300px", "targets": [8,12]},
+            {"width": "275px", "targets": [8,12]},
             {"targets": list(range(-1, -10, -1))+ [7, 11], "visible": False} # Hide last n columns by default
         ],
         style="1200px;margin:auto",
-           language={
-            "search": "Search Any Column:",
-            "searchPlaceholder": "e.g. MGI:88323",
+           #language={
+           # "search": "Search Any Column:",
+           # "searchPlaceholder": "e.g. MGI:88323",
            # "searchBuilder": {
            #     "title": "Advanced Search <i>Multiple filtering, AND/OR condition</i>" 
            # }
-        }, 
+         #}, 
         autoWidth=True,
         maxBytes=0,  # So it does not downsample
         initCode='''

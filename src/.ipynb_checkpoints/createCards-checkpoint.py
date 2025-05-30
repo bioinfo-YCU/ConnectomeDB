@@ -30,7 +30,7 @@ gene_pair0 = generate_perplexity_links(
 )
 
 # if only one replace gene_pair0 to e.g. 
-gene_pair_input = gene_pair0[gene_pair0["Human LR Pair"].isin(["A2M HSPA5", "ADAM17 IL6R"])]
+gene_pair_input = gene_pair0[gene_pair0["Human LR Pair"].isin(["VEGFA KDR", "ADAM17 IL6R"])]
 #gene_pair_input = gene_pair0 
 
 
@@ -79,7 +79,7 @@ def convert_hgnc_url(col):
 def convert_hgnc_url_disease(col):
     hgnc_id = extract_hgnc_id(col)  # Extract the HGNC ID
     if hgnc_id:
-        visible_text = "MalaCards*"
+        visible_text = "MalaCards"
         new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}#diseases" target="_blank">{visible_text}</a>'
         return new_link
     return None
@@ -87,7 +87,7 @@ def convert_hgnc_url_disease(col):
 def convert_hgnc_url_exp(col):
     hgnc_id = extract_hgnc_id(col)  # Extract the HGNC ID
     if hgnc_id:
-        visible_text = "mRNA expression in normal human tissues**"
+        visible_text = "mRNA expression in normal human tissues"
         new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}#expression" target="_blank">{visible_text}</a>'
         return new_link
     return None
@@ -99,8 +99,8 @@ def prepare_dataframes(gene_pair_input):
     gene_pair_input["Interaction Type"] = [
         f'{ligand} {ligandLocation} ligand binds to {receptor} {receptorLocation} receptor'
         for ligand, ligandLocation, receptor, receptorLocation in zip(
-            gene_pair_input["Ligand"], gene_pair_input["Ligand location"],
-            gene_pair_input["Receptor"], gene_pair_input["Receptor location"]
+            gene_pair_input["Ligand"], gene_pair_input["Ligand Location"],
+            gene_pair_input["Receptor"], gene_pair_input["Receptor Location"]
         )
     ]
     interaction_card = gene_pair_input[["Interaction ID", "Human LR Pair", "Interaction Type", "Perplexity", "PMID", "KEGG Pathway",  "PROGENy Pathway", "Cancer-related", "Disease Type", "Disease"]]
@@ -109,13 +109,24 @@ def prepare_dataframes(gene_pair_input):
     pop_up_info_lim = pop_up_info[
         ["Approved symbol", "Alias symbol", "Previous symbol", "Date symbol changed"]
     ].drop_duplicates(subset="Approved symbol", keep="first")
+
+    def format_symbol_aliases(old_symbol, aliases):
+        # Filter out "N/A" values
+        parts = [p for p in (old_symbol, aliases) if p != "N/A"]
+        # Return just the symbol if no valid aliases or old symbols
+        return f"{', '.join(parts)}" if parts else aliases
+
+    pop_up_info_lim['Other Symbols'] =pop_up_info_lim.apply(
+        lambda row: format_symbol_aliases(row["Previous symbol"], row["Alias symbol"]),
+        axis=1
+    )
     
-    ligand_card = gene_pair_input[["Human LR Pair", "Ligand", "Ligand name", "Ligand HGNC ID", "Ligand MGI ID", "Ligand RGD ID", "Ligand location"]].merge(
+    ligand_card = gene_pair_input[["Human LR Pair", "Ligand", "Ligand name", "Ligand HGNC ID", "Ligand MGI ID", "Ligand RGD ID", "Ligand Location"]].merge(
         pop_up_info_lim, how='left', left_on='Ligand', right_on='Approved symbol'
     ).drop_duplicates(subset='Human LR Pair', keep="first").drop(columns=["Ligand", "Approved symbol"])
 
-    ligand_card_1 = ligand_card[["Human LR Pair", "Alias symbol", "Date symbol changed", "Ligand name"]] 
-    ligand_card_2 = ligand_card[["Human LR Pair", "Ligand HGNC ID", "Ligand location"]] 
+    ligand_card_1 = ligand_card[["Human LR Pair", "Other Symbols", "Ligand name"]] 
+    ligand_card_2 = ligand_card[["Human LR Pair", "Ligand HGNC ID", "Ligand Location"]] 
     # Convert links
     ligand_card_2["HGNC gene card"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url)
     ligand_card_2["Disease relevance"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url_disease)
@@ -131,15 +142,15 @@ def prepare_dataframes(gene_pair_input):
 
 
     #ligand_card_2["Lineage group"] = ligand_card_2["Lineage group"].apply(add_spacing)
-    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "Lineage group",  "Ligand location", "HGNC gene card","Disease relevance", "Expression Profile"]]       
+    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "HGNC gene card", "Lineage group",  "Ligand Location", "Disease relevance", "Expression Profile"]]       
 
     
-    receptor_card = gene_pair_input[["Human LR Pair", "Receptor", "Receptor name", "Receptor HGNC ID", "Receptor MGI ID", "Receptor RGD ID", "Receptor location"]].merge(
+    receptor_card = gene_pair_input[["Human LR Pair", "Receptor", "Receptor name", "Receptor HGNC ID", "Receptor MGI ID", "Receptor RGD ID", "Receptor Location"]].merge(
         pop_up_info_lim, how='left', left_on='Receptor', right_on='Approved symbol'
     ).drop_duplicates(subset='Human LR Pair', keep="first").drop(columns=["Receptor", "Approved symbol"])
     
-    receptor_card_1 = receptor_card[["Human LR Pair", "Alias symbol", "Date symbol changed", "Receptor name"]] 
-    receptor_card_2 = receptor_card[["Human LR Pair", "Receptor HGNC ID", "Receptor location"]] 
+    receptor_card_1 = receptor_card[["Human LR Pair", "Other Symbols", "Receptor name"]] 
+    receptor_card_2 = receptor_card[["Human LR Pair", "Receptor HGNC ID", "Receptor Location"]] 
     receptor_card_2["HGNC gene card"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url)
     receptor_card_2["Disease relevance"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url_disease)
     receptor_card_2["Expression Profile"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url_exp)
@@ -147,7 +158,7 @@ def prepare_dataframes(gene_pair_input):
     receptor_card_2["Lineage group"] = receptor_card_2['Receptor HGNC ID'].map(receptor_mapping).fillna("none")
     # Add extra line to balance out cards if necessary
     #receptor_card_2["Lineage group"] = receptor_card_2["Lineage group"].apply(add_spacing)
-    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID", "Lineage group", "Receptor location", "HGNC gene card","Disease relevance", "Expression Profile" ]]       
+    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID",  "HGNC gene card", "Lineage group", "Receptor Location","Disease relevance", "Expression Profile" ]]       
 
     return interaction_card, ligand_card_1, ligand_card_2, receptor_card_1, receptor_card_2
 
@@ -163,6 +174,39 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
         row2 = receptor_card_1[receptor_card_1['Human LR Pair'] == value]
         row3 = ligand_card_2[ligand_card_2['Human LR Pair'] == value]
         row4 = receptor_card_2[receptor_card_2['Human LR Pair'] == value]
+
+        # make the pair cards here
+        def convert_pair_url(df_pairs):
+            df_pairs["Human LR Pair"] = [
+                f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrpair}.html" target="_blank" '
+                f'role="button" title="Open {lrpair} card" class="btn btn-outline-primary" '
+                f'style="background-color: #3498db; color: white; border-color: #2980b9; font-size: 14px; '
+                f'padding: 2px 3px; margin: 2px; text-decoration: none; border-radius: 2px;">'
+                f'{lrpair}</a>'
+                if pd.notna(lrpair) and lrpair.strip() else ""
+                for lrpair in df_pairs["Human LR Pair"]
+            ]
+            return df_pairs
+
+        # Add other ligand receptor pairs (ligand card)
+        ligand_pairs = gene_pair0[gene_pair0['Ligand'] == value1]
+        # print out all Human LR Pair values except for value
+        ligand_pairs = ligand_pairs[ligand_pairs["Human LR Pair"] != value]
+        ligand_pairs = ligand_pairs[["Human LR Pair"]]
+        # Apply the transformation directly (no axis=1!)
+        ligand_pairs = convert_pair_url(ligand_pairs)
+        # Aggregate into one value separated by space
+        ligand_pairs = ' '.join([btn for btn in ligand_pairs["Human LR Pair"] if btn])
+
+        # Add other ligand receptor pairs (receptor card)
+        receptor_pairs = gene_pair0[gene_pair0['Receptor'] == value2]
+        # print out all Human LR Pair values except for value
+        receptor_pairs = receptor_pairs[receptor_pairs["Human LR Pair"] != value]
+        receptor_pairs = receptor_pairs[["Human LR Pair"]]
+        # Apply the transformation directly (no axis=1!)
+        receptor_pairs = convert_pair_url(receptor_pairs)
+        # Aggregate into one value separated by space
+        receptor_pairs = ' '.join([btn for btn in receptor_pairs["Human LR Pair"] if btn])
 
         # Check if the HTML files exist
         ligand_image_path = f'data/tabula_sapiens/heatmap/{value1}.html'
@@ -197,6 +241,8 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
             table4_data=table4_data,
             ligand_image=ligand_image,
             receptor_image=receptor_image,
+            ligand_pairs = ligand_pairs,
+            receptor_pairs = receptor_pairs
             #plotlegend_base64=plotlegend_base64 
         )
         

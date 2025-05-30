@@ -64,7 +64,7 @@ gene_pair_trip["Title"] = gene_pair_trip["Title"].apply(
     lambda x: "ACKR5/GPR182 is a scavenger receptor for the atypical chemokine CXCL17, GPR15L and various endogenous peptides." if pd.isna(x) or str(x).strip().lower() in ["nan", "none", "NaN", ""] else x
 )
 
-### Pop-up for title
+### tooltips for title
 gene_pair_trip["Title"] = [
     f'<span title="{title}">{title}</span>'
     for title in gene_pair_trip["Title"]
@@ -97,6 +97,6 @@ gene_pair_trip = gene_pair_trip.drop(columns=['JournalAbbv'])
 gene_pair_trip = gene_pair_trip.sort_values(by='Year', ascending=True)
 gene_pair_trip[gene_pair_trip.columns[6]] = make_ids_unique(gene_pair_trip[gene_pair_trip.columns[6]])
 gene_pair_trip = gene_pair_trip.sort_values(by='Year', ascending=False)
-first_columns=[gene_pair_trip.columns[6], gene_pair_trip.columns[7], gene_pair_trip.columns[8], gene_pair_trip.columns[10], 'Perplexity','Database Source','PMID', 'Year','Journal', 'Title',gene_pair_trip.columns[21], gene_pair_trip.columns[22]]
+first_columns=[gene_pair_trip.columns[6], gene_pair_trip.columns[7], gene_pair_trip.columns[8], gene_pair_trip.columns[10], 'Perplexity','Database Source','PMID', 'Year','Journal', 'Title', 'Species', gene_pair_trip.columns[21], gene_pair_trip.columns[22]]
 gene_pair_trip = gene_pair_trip[first_columns + [col for col in gene_pair_trip.columns if col not in first_columns]]
 gene_pair_trip = gene_pair_trip.reset_index(drop=True)  

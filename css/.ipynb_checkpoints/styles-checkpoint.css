@@ -292,26 +292,34 @@ thead tr.top-header th {
 }
 
 /* Styling the input field text */
-.dt-input {
+/* .dt-input {
     font-style: italic; /* Make the input text italic */
     border: 5px solid #ccc; /* Add a light border */
     border-radius: 4px; /* Optional: Rounded corners */
     padding: 2px; /* Add some padding */
     font-size: 14px; /* Adjust font size */
+} */
+
+
+/* **from here to "ends here" is to what removed search engine
+/* Completely hide the global search container */
+div.dataTables_filter {
+    display: none !important;
+}
+label[for^="dt-search"] {
+    display: none !important;
 }
 
-/* Styling the placeholder text */
-.dt-input::placeholder {
-    color: gray; /* Placeholder color */
-    font-style: italic; !important;/* Make placeholder text italic */
-    opacity: 0.8; /* Optional: Slightly transparent */
+/* Optional: Just in case input is still rendered directly */
+input[type="search"] {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
 }
-
-
-input.dt-input {
-  width: 500px !important;
-}
-
+/** ends here
 
 /* Make the title row a flex container aligned to the left */
 div.dtsp-titleRow {

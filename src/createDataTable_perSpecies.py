@@ -53,8 +53,8 @@ def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_in
     # Identify ligand and receptor columns dynamically
     ligand_col = [col for col in species_gene_pair.columns if "Ligand&nbsp;" in col][ligand_index]
     receptor_col = [col for col in species_gene_pair.columns if "Receptor&nbsp;" in col][receptor_index]
-    ligand_location = [col for col in species_gene_pair.columns if "Ligand location" in col][0]
-    receptor_location = [col for col in species_gene_pair.columns if "Receptor location" in col][0]
+    ligand_Location = [col for col in species_gene_pair.columns if "Ligand Location" in col][0]
+    receptor_Location = [col for col in species_gene_pair.columns if "Receptor Location" in col][0]
 
     if id_prefix == "Ensembl":
         # Extract species names dynamically
@@ -81,9 +81,9 @@ def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_in
         
             # Function to format ligand-receptor pairs
     def format_lr_pair(row):
-        if row[ligand_location] in ['secreted', '']:
+        if row[ligand_Location] in ['secreted', '']:
             return f"{row[ligand_col]} <span style='font-size: 15px;'>○</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
-        elif row[receptor_location] == 'plasma membrane':
+        elif row[receptor_Location] == 'plasma membrane':
             return f"{row[ligand_col]} <span style='font-size: 24px;'>⤙</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
         else:
             return f"{row[ligand_col]} \u2192 {row[receptor_col]}"
