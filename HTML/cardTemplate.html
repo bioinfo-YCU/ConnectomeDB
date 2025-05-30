@@ -48,7 +48,6 @@
             align-items: center;
         }
 
-        
         .download-btn:hover {
             background-color: #e67e22;
         }
@@ -58,17 +57,76 @@
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 3px;
-            margin: 0 auto;
-            max-width: 1200px;
+            margin: 5px auto;
+            max-width: 1400px;
         }
         .card {
             width: 49.8%;
-            padding: 5px;
+            padding: 10px;
             border: 1px solid #ccc;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             background-color: white;
             box-sizing: border-box;
+            overflow: hidden;
+        }
+        
+        /* Style the clickable header */
+        .card .card-full-row > summary {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 8px;
+            background-color: #f2f2f2;
+            border-radius: 6px;
+            outline: none;
+            user-select: none;
+        }
+
+        /* Keep summary content inline */
+        .card summary {
+            display: flex;
+            align-items: center;
+            padding: 4px;
+            background-color: #f39c12; 
+            border-radius: 6px;
+            cursor: pointer;
+            user-select: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+        /* Add custom arrow */
+        .card summary::before {
+            content: "▶";
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+        
+        /* Rotate arrow when open */
+        .card[open] summary::before {
+            transform: rotate(90deg);
+        }
+        
+        /* Optional: Customize the text appearance */
+        .summary-heading {
+            margin-left: 4px; /* small spacing from the arrow */
+        }
+        
+        /* Hide default disclosure triangle if you want a custom one */
+        .card summary::-webkit-details-marker {
+            display: none;
+        }
+
+        
+        /* Optional: Add animation */
+        .card-content {
+            padding: 8px;
+        }
+        
+        /* Hide the default disclosure triangle if you want custom icons */
+        .card > summary::-webkit-details-marker {
+            display: none;
         }
         .card-full-row {
             width: 100%;
@@ -98,6 +156,22 @@
         }
         .column strong {
             font-weight: bold;
+        }
+        .main-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border: 1px solid #ccc;
+            padding: 1rem;
+            background-color: #f9f9f9;
+        }
+        
+        .sub-card {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         .column-right {
             flex: 1; /* Right side */
@@ -151,6 +225,18 @@
             font-weight: bold; /* Bold text */
             display: inline-block; /* Ensure inline display */
         }
+
+        h3 {
+            display: flex;
+            align-items: center;
+            padding: 4px;
+            background-color: #f39c12; 
+            border-radius: 6px;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: inset 0 0 0 1px #ddd;
+        }
+
 
 
         /* Page Footer */
@@ -355,7 +441,7 @@
     <div class="card-container">
         <!-- Full Row Card -->
         <div class="card-full-row">
-            <div class="column">
+            <div class="column-center">
                 <h2>Interaction ID</h2>
                 {% if "Interaction ID" in table0_data %}
                     <div>
@@ -365,7 +451,7 @@
             </div>
 
             <!-- Second Column -->
-            <div class="column">
+            <div class="column-center">
                 <h2>Interaction Type</h2>
                 {% if "Interaction Type" in table0_data %}
                     <div>
@@ -375,7 +461,7 @@
             </div>
 
         <!-- Third Column -->
-            <div class="column">
+            <div class="column-center">
                 <h2>Pubmed Support (IDs)</h2>
                 {% if "PMID" in table0_data %}
                     <div>
@@ -395,41 +481,46 @@
             </div>
         </div>
         <!-- Full Row Card -->
-        <div class="card-full-row">
-            <div class="column">
-                <h2>Interaction Annotations</h2> 
-                {% if "PROGENy Pathway" in table0_data %}
-                    <div>
-                        <strong>PROGENy Pathway(s):</strong> {{ table0_data["PROGENy Pathway"] }}
-                    </div>
-                {% endif %}
+      <div class="card-full-row">
+        <details class="card" open>
+             <summary><span class="summary-heading">Interaction Annotations</span></summary>
+             <div class="card-content">
+            {% if "PROGENy Pathway" in table0_data %}
+                <div>
+                    <strong>PROGENy Pathway(s):</strong> {{ table0_data["PROGENy Pathway"] }}
+                </div>
+            {% endif %}
 
-                {% if "KEGG Pathway" in table0_data %}
-                    <div>
-                        <strong>KEGG Pathway(s):</strong> {{ table0_data["KEGG Pathway"] }}
-                    </div>
-                {% endif %}
+            {% if "KEGG Pathway" in table0_data %}
+                <div>
+                    <strong>KEGG Pathway(s):</strong> {{ table0_data["KEGG Pathway"] }}
+                </div>
+            {% endif %}
+             </div>
+        </details>
 
+        <details class="card" open>
+            <summary><span class="summary-heading">Disease Annotations</span></summary>
+            <div class="card-content">
+            {% if "Cancer-related" in table0_data %}
+                <div>
+                    <strong>Cancer-related:</strong>  {{ table0_data["Cancer-related"] }}
+                </div>
+            {% endif %}
+            {% if "Disease Type" in table0_data %}
+                <div>
+                    <strong>Disease Type(s):</strong> {{ table0_data["Disease Type"] }}
+                </div>
+            {% endif %}
+            {% if "Disease" in table0_data %}
+                <div>
+                    <strong>Disease(s)<sup id="fnref1"><a href="#fn1" class="footnote-ref">[1]</a></sup>:</strong> :</strong> {{ table0_data["Disease"] }}
+                </div>
+            {% endif %}
             </div>
-            <div class="column">
-                <h2>Disease Annotations</h2> 
-                {% if "Cancer-related" in table0_data %}
-                    <div>
-                        <strong>Cancer-related:</strong> {{ table0_data["Cancer-related"] }}
-                    </div>
-                {% endif %}
-                {% if "Disease Type" in table0_data %}
-                    <div>
-                        <strong>Disease Type(s):</strong> {{ table0_data["Disease Type"] }}
-                    </div>
-                {% endif %}
-                {% if "Disease" in table0_data %}
-                    <div>
-                        <strong>Disease(s):</strong> {{ table0_data["Disease"] }}
-                    </div>
-                {% endif %}
-            </div>
-        </div>        
+        </details>
+</div>
+
     </div>
 
     <br>
@@ -437,22 +528,6 @@
         <div class="card">
             <h3>Ligand: {{ value1 }}</h3>
             {% for column, value in table1_data.items() %}
-                <div>
-                    <strong>{{ column }}:</strong> 
-                    {{ value }}
-                </div>
-            {% endfor %}
-            <hr>
-            {% set table2_data_items = table2_data.items() | list %}
-            {% for column, value in table2_data_items[:-2] %}
-                <div>
-                    <strong>{{ column }}:</strong> 
-                    {{ value }}
-                </div>
-            {% endfor %}
-            <hr>
-            {% set table2_data_items = table2_data.items() | list %}
-            {% for column, value in table2_data_items[-2:] %}
                 <div>
                     <strong>{{ column }}:</strong> 
                     {{ value }}
@@ -467,17 +542,24 @@
                     {{ value }}
                 </div>
             {% endfor %}
-            <hr>
-            {% set table4_data_items = table4_data.items() | list %}
-            {% for column, value in table4_data_items[:-2] %}
+        </div>
+    </div>
+
+    </div>
+
+      <div class="card-container">
+        <div class="card">
+            {% set table2_data_items = table2_data.items() | list %}
+            {% for column, value in table2_data_items[:-2] %}
                 <div>
                     <strong>{{ column }}:</strong> 
                     {{ value }}
                 </div>
             {% endfor %}
-            <hr>
+        </div>
+        <div class="card">
             {% set table4_data_items = table4_data.items() | list %}
-            {% for column, value in table2_data_items[-2:] %}
+            {% for column, value in table4_data_items[:-2] %}
                 <div>
                     <strong>{{ column }}:</strong> 
                     {{ value }}
@@ -487,6 +569,61 @@
     </div>
 
     </div>
+    <div class="card-container">
+        
+        <details class="card" open>
+            <summary><span class="summary-heading">Functional Annotations</span></summary>
+            <div class="card-content">
+           {% if "Disease relevance" in table2_data %}
+                <div>
+                    <strong>Disease Relevance<sup id="fnref2"><a href="#fn2" class="footnote-ref">[2]</a></sup>:</strong> {{ table2_data["Disease relevance"] }}
+                </div>
+            {% endif %}
+            {% if "Expression Profile" in table2_data %}
+                <div>
+                    <strong>Expression Profile<sup id="fnref3"><a href="#f32" class="footnote-ref">[3]</a></sup>:</strong> {{ table2_data["Disease relevance"] }}
+                </div>
+            {% endif %}
+            </div>
+        </details>
+            
+        <details class="card" open>
+            <summary><span class="summary-heading">Functional Annotations</span></summary>
+            <div class="card-content">
+           {% if "Disease relevance" in table4_data %}
+                <div>
+                    <strong>Disease Relevance<sup id="fnref2"><a href="#fn2" class="footnote-ref">[2]</a></sup>:</strong> {{ table4_data["Disease relevance"] }}
+                </div>
+            {% endif %}
+            {% if "Expression Profile" in table4_data %}
+                <div>
+                    <strong>Expression Profile<sup id="fnref3"><a href="#f32" class="footnote-ref">[3]</a></sup>:</strong> {{ table4_data["Disease relevance"] }}
+                </div>
+            {% endif %}
+            </div>
+        </detais>
+
+    </div>
+
+     <div class="card-container">
+        <details class="card" open>
+            <summary><span class="summary-heading">Other pairs</span></summary>
+            <div class="card-content">
+                {{ ligand_pairs }}
+             </div>
+        </details>
+
+        <details class="card" open>
+            <summary><span class="summary-heading">Other pairs</span></summary>
+            <div class="card-content">
+                {{ receptor_pairs }}
+             </div>
+        </details>
+    </div>
+
+    </div>
+
+    
         <!-- <br>
         <div class="card-container">
         <div class="card-full-row">
@@ -530,8 +667,22 @@
             </div>
     <br>
     </div> 
-    <div class="column-center">
-        *From: OMIM®, ClinVar, GTR, LOVD, GeneCards, Orphanet, DISEASES, and Novoseek  |  **From: GTEx, Illumina, BioGPS, and SAGE
+    <div class="column-center">  
+            <ol class="footnotes">
+              <li id="fn1">
+                Curated using <strong>LIANA+</strong>, which integrates data from Piñero J, et al. <em>DisGeNET</em>: a comprehensive platform integrating information on human disease-associated genes and variants. <strong>Nucleic Acids Research</strong>, 2017.
+                <a href="#fnref1" class="footnote-backref">↩︎</a>
+              </li>
+              <li id="fn2">
+                Genecards.org integrates data from OMIM®, ClinVar, GTR, LOVD, GeneCards, Orphanet, DISEASES, and Novoseek 
+                <a href="#fnref2" class="footnote-backref">↩︎</a>
+              </li>
+              <li id="fn2">
+                Genecards.org shows data for RNAseq (GTEx, Illumina), Microarray (BioGPS), and SAGE
+                <a href="#fnref2" class="footnote-backref">↩︎</a>
+              </li>
+</ol>
+
     </div>
     <footer>
         <span>© Copyright 2025, YCU Bioinformatics Lab | Harry Perkins Systems Biology & Genomics Lab</span>

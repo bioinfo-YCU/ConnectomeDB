@@ -66,7 +66,6 @@ div.dt-button-collection .dt-button {
   text-align: left !important;
 }
 
-
 </style>
 
 
@@ -105,7 +104,7 @@ def update_table():
     show(
         human_gene_pair,
         keys=True,
-        layout={"top": ["info", "paging"]},
+        layout = {"topEnd":["paging"]},
         fixedColumns={"start": 2, "end": 0},
         fixedHeader=True,  # Keep header fixed for alignment
         column_filters="footer", 
@@ -115,7 +114,7 @@ def update_table():
         selected_rows=[],
         responsive=True,  # Enable responsive behavior
         theme='grid',
-        search={"regex": True, "caseInsensitive": False, "smart": True},
+        #search={"regex": True, "caseInsensitive": False, "smart": True},
         lengthMenu=[ [10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"] ],
         buttons=[
             "pageLength",  
@@ -127,16 +126,16 @@ def update_table():
         columnDefs=[
             {"className": "dt-center", "targets": [11]}, 
             {"search": False, "targets": [11]},
-            {"width": "300px", "targets": [3,7]},
+            {"width": "275px", "targets": [3,7]},
             #{"visible": False, "targets": [2,7,8,9,10,15,16,17]} 
             {"visible": False, "targets": list(range(-1, -10, -1))+ [2,6]} # Hide last n columns by default
         ],
         style="width:100%; max-width:1200px; margin:auto",
-           language={
-            "search": "Search Any Column:",
-            "searchPlaceholder": "e.g. CD80",
-            "searchPanesPlaceholder": ""
-            }, 
+           #language={
+           #"search": "_", # "Search Any Column"
+           #"searchPlaceholder":" ", # "e.g. CD80"
+           # "searchPanesPlaceholder": ""
+           # }, 
         autoWidth=True,
         maxBytes=0,  # So it does not downsample
         initCode='''

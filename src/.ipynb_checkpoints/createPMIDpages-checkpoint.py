@@ -39,8 +39,6 @@ gene_pair00["Cards"] = [
     for lrpair in gene_pair00["Human LR Pair"]
 ]
 
-
-
 gene_pair000 = gene_pair00.merge(bio_keywords, how='left', left_on="Human LR Pair", right_on='Human LR Pair')
 gene_pair000["Relevance Keywords"] = gene_pair000["Relevance Keywords"].astype(str)
 gene_pair000["Human LR Pair"]  = gene_pair000["Human LR Pair"].astype(str)

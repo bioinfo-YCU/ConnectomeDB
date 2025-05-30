@@ -57,14 +57,15 @@ sys.path.append(os.path.abspath("src"))
 
 from createTriplicateDT import gene_pair_trip
 
-human_gene_pairTrip = gene_pair_trip.iloc[:, :10]
+human_gene_pairTrip = gene_pair_trip.iloc[:, :11]
 
 # Function to update and display the table
 def update_table1():
     show(
         human_gene_pairTrip,
         keys=True,
-        layout={"top": ["info", "paging"]},
+        layout = {"topEnd":["paging"]},
+        #layout={"top": ["info", "paging"]},
         fixedColumns={"start": 2, "end": 0},
         #fixedHeader=True,  # Keep header fixed for alignment
         column_filters="footer",
@@ -74,7 +75,7 @@ def update_table1():
         selected_rows=[],
         responsive=True,  # Enable responsive behavior
         theme='grid',
-        search={"regex": True, "caseInsensitive": True, "smart": True},
+        #search={"regex": True, "caseInsensitive": True, "smart": True},
         lengthMenu=[ [10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"] ],
         buttons=[
             "pageLength",  
@@ -85,15 +86,15 @@ def update_table1():
         ],
         columnDefs=[
             {"className": "dt-center", "targets": [4]}, 
-            {"width": "300px", "targets": [2,3]},
+            {"width": "275px", "targets": [2,3]},
             {"width": "800px", "targets": [9]},
             {"targets": [2,3], "visible": False} # Hide last 2 columns by default
         ],
         style="1200px;margin:auto",
            language={
-            "search": "Search Any Column:",
-            "searchPlaceholder": "e.g. CD80",
-            "searchPanesPlaceholder": "",
+           # "search": "Search Any Column:",
+           # "searchPlaceholder": "e.g. CD80",
+           # "searchPanesPlaceholder": "",
            # "searchBuilder": {
            #     "title": "Advanced Search <i>Multiple filtering, AND/OR condition</i>" 
            #
