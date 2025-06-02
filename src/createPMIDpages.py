@@ -24,7 +24,6 @@ pubmed_data["PMID"] = pubmed_data["PMID"].astype(str)
 # add llm results
 bio_keywords = pd.read_csv("data/llm_results.csv")
 
-
 # Replace spaces in "Human LR Pair" with a placeholder
 gene_pair00["Human LR Pair"] = gene_pair00["Human LR Pair"].str.replace(" ", "——")
 
