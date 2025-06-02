@@ -34,7 +34,6 @@ pubmed_data["PMID"] = pubmed_data["PMID"].astype(str)
 # add llm results
 bio_keywords = pd.read_csv("data/llm_results.csv")
 
-
 # Replace spaces in "Human LR Pair" with a placeholder
 gene_pair00["Human LR Pair"] = gene_pair00["Human LR Pair"].str.replace(" ", "——")
 
@@ -60,7 +59,8 @@ gene_pair0 = generate_perplexity_links(
 )
 
 # if only one replace gene_pair0 to e.g. 
-gene_pair_input = gene_pair0[gene_pair0["Human LR Pair"].isin(["VEGFA KDR", "ADAM17 IL6R"])]
+test_genes = ["VEGFA KDR", "ADAM17 IL6R"]
+gene_pair_input = gene_pair0[gene_pair0["Human LR Pair"].isin(test_genes)]
 #gene_pair_input = gene_pair0 
 
 # add external link icon
@@ -217,10 +217,10 @@ def prepare_dataframes(gene_pair_input):
 
     return interaction_card, ligand_card_1, ligand_card_2, receptor_card_1, receptor_card_2
 
-import os
 
 def generate_combined_html_files(
-    template_env,
+    df,
+    template,
     interaction_card,
     ligand_card_1,
     receptor_card_1,
@@ -257,41 +257,38 @@ def generate_combined_html_files(
         ligand_pairs = gene_pair_df[gene_pair_df['Ligand'] == value1]
         ligand_pairs = ligand_pairs[ligand_pairs["Human LR Pair"] != value]
         ligand_pairs = convert_pair_url(ligand_pairs[["Human LR Pair"]])
-        ligand_pairs = ' ・ '.join([btn for btn in ligand_pairs["Human LR Pair"] if btn])
+        ligand_pairs_str = ' ・ '.join([btn for btn in ligand_pairs["Human LR Pair"] if btn])
 
         # Related receptor pairs
         receptor_pairs = gene_pair_df[gene_pair_df['Receptor'] == value2]
         receptor_pairs = receptor_pairs[receptor_pairs["Human LR Pair"] != value]
         receptor_pairs = convert_pair_url(receptor_pairs[["Human LR Pair"]])
-        receptor_pairs = ' ・ '.join([btn for btn in receptor_pairs["Human LR Pair"] if btn])
+        receptor_pairs_str = ' ・ '.join([btn for btn in receptor_pairs["Human LR Pair"] if btn])
 
-        # Heatmaps
-        ligand_image_path = f'data/tabula_sapiens/heatmap/{value1}.html'
-        receptor_image_path = f'data/tabula_sapiens/heatmap/{value2}.html'
-        ligand_image = open(ligand_image_path).read() if os.path.exists(ligand_image_path) else "Plot does not exist"
-        receptor_image = open(receptor_image_path).read() if os.path.exists(receptor_image_path) else "Plot does not exist"
-
-        # Tables
+        # Prepare table data (convert to dict)
         table0_data = row0.drop('Human LR Pair', axis=1).to_dict(orient='records')[0] if not row0.empty else {}
         table1_data = row1.drop('Human LR Pair', axis=1).to_dict(orient='records')[0] if not row1.empty else {}
         table2_data = row2.drop('Human LR Pair', axis=1).to_dict(orient='records')[0] if not row2.empty else {}
         table3_data = row3.drop('Human LR Pair', axis=1).to_dict(orient='records')[0] if not row3.empty else {}
         table4_data = row4.drop('Human LR Pair', axis=1).to_dict(orient='records')[0] if not row4.empty else {}
 
-        # PubMed Tabs
-        row_main = gene_pair_df[gene_pair_df["Human LR Pair"] == value]
-        if not row_main.empty:
-            row_main = row_main.iloc[0]
-            pmids = row_main.get("PMID", "")
-            keywords = row_main.get("Relevance Keywords", "")
-            cards = row_main.get("Cards", "")
+        # PMID stuff
+            for idx, row in df.iterrows():
+        gene_name = row[gene_column]
+        cards = row[card_column]
+        keywords = row[keywords_column]
+        pmids = row[pmid_column]
 
-            sources = [pmid.strip() for pmid in pmids.split(',') if pmid.strip()]
+        # Ensure PMIDs are properly processed
+        sources = [pmid.strip() for pmid in pmids.split(',') if pmid.strip()]
+
+        if sources:
             tab_headers = []
             tab_contents = []
 
             for i, pmid in enumerate(sources):
                 pubmed_row = pubmed_data[pubmed_data["PMID"] == pmid]
+
                 if not pubmed_row.empty:
                     title = pubmed_row["Title"].values[0]
                     abstract = pubmed_row["Abstract"].values[0]
@@ -306,16 +303,23 @@ def generate_combined_html_files(
                 active_class = "active" if i == 0 else ""
                 tab_headers.append(f'<button class="tablinks {active_class}" onclick="openTab(event, \'tab{pmid}\')">{pmid}</button>')
                 tab_contents.append(f"""
-                    <div id="tab{pmid}" class="tabcontent {active_class}">
-                        <h2>{title}</h2>
-                        <p><strong>{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">For more details, see PubMed</a></strong></p>
-                        <p>{abstract}</p>
-                    </div>
+                <div id="tab{pmid}" class="tabcontent {active_class}">
+                    <h2>{title}</h2>
+                    <p><strong>{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">For more details, see PubMed</a></strong></p>
+                    <p>{abstract}</p>
+                    
+                </div>
                 """)
-        else:
-            tab_headers, tab_contents, keywords, cards = [], [], "", ""
 
-        rendered_content = template_env.render(
+            # Fill the template with dynamic content
+            page_content = template.replace("{{GENE_NAME}}", gene_name)
+            page_content = page_content.replace("{{CARDS}}", cards)
+            page_content = page_content.replace("{{KEYWORDS}}", keywords)
+            page_content = page_content.replace("{{TAB_HEADERS}}", "".join(tab_headers))
+            page_content = page_content.replace("{{TAB_CONTENTS}}", "".join(tab_contents))
+        
+        # Render the template with all data
+        rendered_content = template.render(
             value1=value1,
             value2=value2,
             table0_data=table0_data,
@@ -325,14 +329,29 @@ def generate_combined_html_files(
             table4_data=table4_data,
             ligand_image=ligand_image,
             receptor_image=receptor_image,
-            ligand_pairs=ligand_pairs,
-            receptor_pairs=receptor_pairs,
+            ligand_pairs=ligand_pairs_str,
+            receptor_pairs=receptor_pairs_str,
             tab_headers=''.join(tab_headers),
             tab_contents=''.join(tab_contents),
-            cards=cards,
-            keywords=keywords
+            keywords=row0["Relevance Keywords"].values[0] if not row0.empty else ""
         )
 
         output_file = os.path.join(output_dir, f"{value1} {value2}.html")
-        with open(output_file, 'w') as file:
+        with open(output_file, 'w', encoding='utf-8') as file:
             file.write(rendered_content)
+
+if __name__ == "__main__":
+    # Load the HTML template
+    template = load_template(TEMPLATE_PATH)
+    generate_combined_html_files(
+        df=gene_pair000[gene_pair000["Human LR Pair"].isin(test_genes)],
+        template,
+        interaction_card,
+        ligand_card_1,
+        receptor_card_1,
+        ligand_card_2,
+        receptor_card_2,
+        pubmed_data,
+        gene_pair_input,
+        OUTPUT_DIR
+    )
