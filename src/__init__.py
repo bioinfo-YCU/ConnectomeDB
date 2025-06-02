@@ -3,6 +3,7 @@ from .createDataTable_perSpecies import *
 from .fetchGSheet import *
 from .createCards import *
 from .createCards_scRNA import *
+from .createCardsWithPMID.py import *
 from .webScrapePubMed import *
 from .createPMIDpages.py import *
 from .convertIDviaBiomart.py import *

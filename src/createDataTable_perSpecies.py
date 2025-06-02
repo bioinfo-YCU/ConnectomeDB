@@ -17,7 +17,8 @@ warnings.simplefilter("ignore", category=UserWarning)
 # Other vertebrates
 species_list = [
     "ptroglodytes", "ggallus", "sscrofa", "btaurus", 
-    "clfamiliaris", "ecaballus", "oarambouillet"
+    "clfamiliaris", "ecaballus", "oarambouillet", "cjacchus",
+    "mmulatta"
 ]
 
 def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_index, receptor_index):
@@ -59,7 +60,7 @@ def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_in
     if id_prefix == "Ensembl":
         # Extract species names dynamically
         all_species = {"Chimpanzee", "Pig", "Dog", "Cow", 
-                       "Chicken", "Horse", "Sheep"}
+                       "Chicken", "Horse", "Sheep", "Marmoset", "Rhesus Monkey"}
         # Function to clean column names by removing HTML tags
         def clean_column_name(col):
             # Remove HTML tags using BeautifulSoup
@@ -139,4 +140,10 @@ horse_gene_pair1 = process_species(gene_pair, gene_pair000, "Horse", "Ensembl", 
 
 # Sheep
 sheep_gene_pair1 = process_species(gene_pair, gene_pair000, "Sheep", "Ensembl", 10, 10)
+
+# Marmoset
+marmoset_gene_pair1 = process_species(gene_pair, gene_pair000, "Marmoset", "Ensembl", 11, 11)
+
+# Rhesus macaque
+rhesusmonkey_gene_pair1 = process_species(gene_pair, gene_pair000, "Rhesus Monkey", "Ensembl", 12, 12)
 
