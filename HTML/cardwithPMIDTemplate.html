@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
@@ -239,7 +240,7 @@
             display: inline-block; /* Ensure inline display */
         }
 
-        h3 {
+        /* h3 {
             display: flex;
             align-items: center;
             padding: 4px;
@@ -248,6 +249,13 @@
             font-size: 1.2em;
             font-weight: bold;
             box-shadow: inset 0 0 0 1px #ddd;
+        } */
+
+        h3 {
+            text-align: center;
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
         }
 
 
@@ -267,9 +275,93 @@
             display: block;
         }
     
+    /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            padding: 10px 20px;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(10% - 10px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            margin-top: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            font-size: 1.5em;
+            color: #2980b9;
+        }
+
+        .tabcontent p {
+            font-size: 1em;
+            line-height: 1.8;
+        }
+
+        /* Emphasize Title and Abstract */
+        
+        .title, .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #2980b9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
     </style>
-</head>
     <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.onload = adjustTabStyle;
 /*
     // for automatic downloading 
     window.onload = function () {
@@ -304,114 +396,6 @@
     // uncomment until here if not needed
 */
         
-    
-        
-    function downloadPDF() {
-    console.log("Starting PDF download...");
-
-    let value1 = "{{ value1 }}".trim();
-    let value2 = "{{ value2 }}".trim();
-    let fileName = `${value1} —— ${value2}.pdf`;
-
-    const clone = document.body.cloneNode(true);
-
-    // Show PDF-only content
-    const pdfOnlyImage = clone.querySelector('#webp-image');
-    if (pdfOnlyImage) {
-        pdfOnlyImage.style.display = 'block';
-    }
-
-    // Remove elements not needed in PDF
-    clone.querySelectorAll('.no-print').forEach(el => el.remove());
-    const nav = clone.querySelector('nav');
-    if (nav) nav.remove();
-
-    // Global style injection to control sizing and scaling
-    const style = document.createElement('style');
-    style.innerHTML = `
-        /* General body text */
-        h1 {
-            font-size: 24px !important;
-        }
-        h2 {
-            font-size: 20px !important;
-        }
-        h3, h4 {
-            font-size: 16px !important;
-        }
-
-        body, div, p, span {
-            font-size: 14px !important;
-        }
-    
-        /* Plot-specific fonts */
-        .pdf-only {
-        font-size: 8px !important;
-        }
-        svg, canvas {
-            max-width: 100% !important;
-            height: auto !important;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-        }
-    `;
-    clone.appendChild(style);
-
-    // Wrapper for scaling and centering
-    const container = document.createElement('div');
-    container.style.width = '1000px';  // Fixed width to fit PDF page nicely
-    container.style.padding = '0px';
-    container.style.margin = '0 auto';
-    container.style.overflow = 'visible';
-    container.appendChild(clone);
-
-    document.body.appendChild(container); // temporarily append to render
-
-    html2pdf()
-        .from(container)
-        .set({
-            margin: 5,
-            filename: fileName,
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: {
-                useCORS: true,
-                logging: true,
-                allowTaint: true,
-                scale: 3 // improved resolution
-            },
-            jsPDF: {
-                unit: 'px',
-                format: [1000, 1414], // A4 in px
-                orientation: 'portrait',
-                compress: true
-            }
-        })
-        .toPdf()
-        .get('pdf')
-        .then(pdf => {
-            const links = document.querySelectorAll('a');
-            links.forEach(link => {
-                const { left, top, width, height } = link.getBoundingClientRect();
-                const pageWidth = pdf.internal.pageSize.getWidth();
-                const pageHeight = pdf.internal.pageSize.getHeight();
-                const x = (left / window.innerWidth) * pageWidth;
-                const y = (top / window.innerHeight) * pageHeight;
-                pdf.link(x, y, width, height, { url: link.href });
-            });
-
-            if (pdf.internal.getNumberOfPages() > 1) {
-                pdf.setPage(1);
-                // optional: pdf.scale(0.7, 0.7);  // Only if additional scaling needed
-            }
-        })
-        .save()
-        .then(() => {
-            document.body.removeChild(container);  // Clean up
-        });
-    }
-
     /*
     // uncomment from here if auto-downloading of pdf is not necessary
     var imagePromises = Array.from(images).map(function (img) {
@@ -427,7 +411,7 @@
     */
     </script>
 
-
+</head>
 <body>
     <nav>
         <div class="navbar-left">
@@ -449,53 +433,32 @@
     </nav>
 
 
-    <h1 style="text-align: center; font-size: 24px; font-weight: bold; width: 100%;">{{ value1 }} —— {{ value2 }}</h1>
+    <h1 style="text-align: center; font-size: 24px; font-weight: bold; width: 100%;">{{ table0_data["Interaction ID"] }}: {{ value1 }} —— {{ value2 }}</h1>
+    <h3>{{ table1_data["Ligand name"] }} binds to {{ table2_data["Receptor name"] }}</h3>
+    <div class="tab">
+        {{TAB_HEADERS}}
+    </div>
 
-    <div class="card-container">
-        <!-- Full Row Card -->
-        <div class="card-full-row">
-            <div class="column-center">
-                <h2>Interaction ID</h2>
-                {% if "Interaction ID" in table0_data %}
-                    <div>
-                        <h3>{{ table0_data["Interaction ID"] }}</h3>
-                    </div>
-                {% endif %}
-            </div>
-
-            <!-- Second Column -->
-            <div class="column-center">
-                <h2>Interaction Type</h2>
-                {% if "Interaction Type" in table0_data %}
-                    <div>
-                        {{ table0_data["Interaction Type"] }}
-                    </div>
-                {% endif %}
-            </div>
-
-        <!-- Third Column -->
-            <div class="column-center">
-                <h2>Pubmed Support (IDs)</h2>
-                {% if "PMID" in table0_data %}
-                    <div>
-                        {{ table0_data["PMID"] }}
-                    </div>
-                {% endif %}
-            </div>
-
-            <!-- Perplexity Column -->
-            <div class="column-center">
-                {% if "Perplexity" in table0_data %}
-                    <h2>Perplexity</h2>
-                    <div>
-                        {{ table0_data["Perplexity"] }}
-                    </div>
-                {% endif %}
-            </div>
+    <div class="tabcontent" id="titleTab">
+        <div class="title">
+            <h2>Title</h2>
+            <p>{{TITLE}}</p>
+            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>   
         </div>
-        <div class="column-center">
+    </div>
+
+    <div class="tabcontent" id="abstractTab">
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>{{ABSTRACT}}</p>
+        </div>
+    </div>
+
+    {{TAB_CONTENTS}}
+
+    <div class="column-center">
                 <h2>Pair-wise Metadata</h2>
-        </div>
+    </div>
         <!-- Full Row Card -->
       <div class="card-full-row">
         <details class="card" open>
@@ -557,7 +520,7 @@
         </div>
         <div class="card">
             <h3>Receptor: {{ value2 }}</h3>
-            {% for column, value in table3_data.items() %}
+            {% for column, value in table2_data.items() %}
                 <div>
                     <strong>{{ column }}:</strong> 
                     {{ value }}
@@ -570,7 +533,7 @@
 
       <div class="card-container">
         <div class="card">
-            {% set table2_data_items = table2_data.items() | list %}
+            {% set table2_data_items = table3_data.items() | list %}
             {% for column, value in table2_data_items[:-2] %}
                 <div>
                     <strong>{{ column }}:</strong> 
@@ -595,14 +558,14 @@
         <details class="card" open>
             <summary><span class="summary-heading">Functional Annotations</span></summary>
             <div class="card-content">
-           {% if "Disease relevance" in table2_data %}
+           {% if "Disease relevance" in table3_data %}
                 <div>
-                    <strong>Disease Relevance<sup id="fnref2"><a href="#fn2" class="footnote-ref">[2]</a></sup>:</strong> {{ table2_data["Disease relevance"] }}
+                    <strong>Disease Relevance<sup id="fnref2"><a href="#fn2" class="footnote-ref">[2]</a></sup>:</strong> {{ table3_data["Disease relevance"] }}
                 </div>
             {% endif %}
-            {% if "Expression Profile" in table2_data %}
+            {% if "Expression Profile" in table3_data %}
                 <div>
-                    <strong>Expression Profile<sup id="fnref3"><a href="#f32" class="footnote-ref">[3]</a></sup>:</strong> {{ table2_data["Expression Profile"] }}
+                    <strong>Expression Profile<sup id="fnref3"><a href="#f32" class="footnote-ref">[3]</a></sup>:</strong> {{ table3_data["Expression Profile"] }}
                 </div>
             {% endif %}
             </div>
