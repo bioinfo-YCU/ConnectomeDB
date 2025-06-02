@@ -30,9 +30,21 @@ gene_pair0 = generate_perplexity_links(
 )
 
 # if only one replace gene_pair0 to e.g. 
-#gene_pair_input = gene_pair0[gene_pair0["Human LR Pair"].isin(["VEGFA KDR", "ADAM17 IL6R"])]
-gene_pair_input = gene_pair0 
+gene_pair_input = gene_pair0[gene_pair0["Human LR Pair"].isin(["VEGFA KDR", "ADAM17 IL6R"])]
+#gene_pair_input = gene_pair0 
 
+# add external link icon
+
+icon_html = '<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></a>'
+columns_to_update = [
+    "KEGG Pathway", "PROGENy Pathway", "Cancer-related",
+    "Disease Type", "Disease"
+]
+
+for col in columns_to_update:
+    gene_pair_input[col] = gene_pair_input[col].str.replace(
+        "</a>", icon_html, regex=False
+    )
 
 # add Ligand/Receptor group info
 agg_func = lambda x: ', '.join(sorted(set(map(str, x))))
@@ -71,15 +83,18 @@ def extract_hgnc_id(col):
 def convert_hgnc_url(col):
     hgnc_id = extract_hgnc_id(col)  # Extract the HGNC ID
     if hgnc_id:
-        visible_text = "GeneCards"
-        new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}" target="_blank">{visible_text}</a>'
+        visible_text = 'GeneCards <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>'
+        new_link = (
+            f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}" '
+            f'target="_blank" style="color: #0000EE; text-decoration: underline;">{visible_text}</a>'
+        )        
         return new_link
     return None
 
 def convert_hgnc_url_disease(col):
     hgnc_id = extract_hgnc_id(col)  # Extract the HGNC ID
     if hgnc_id:
-        visible_text = "MalaCards"
+        visible_text = 'MalaCards <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>'
         new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}#diseases" target="_blank">{visible_text}</a>'
         return new_link
     return None
@@ -87,7 +102,7 @@ def convert_hgnc_url_disease(col):
 def convert_hgnc_url_exp(col):
     hgnc_id = extract_hgnc_id(col)  # Extract the HGNC ID
     if hgnc_id:
-        visible_text = "mRNA expression in normal human tissues"
+        visible_text = 'mRNA expression in normal human tissues <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>'
         new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}#expression" target="_blank">{visible_text}</a>'
         return new_link
     return None
@@ -125,7 +140,7 @@ def prepare_dataframes(gene_pair_input):
         pop_up_info_lim, how='left', left_on='Ligand', right_on='Approved symbol'
     ).drop_duplicates(subset='Human LR Pair', keep="first").drop(columns=["Ligand", "Approved symbol"])
 
-    ligand_card_1 = ligand_card[["Human LR Pair", "Other Symbols", "Ligand name"]] 
+    ligand_card_1 = ligand_card[["Human LR Pair", "Ligand name", "Other Symbols" ]] 
     ligand_card_2 = ligand_card[["Human LR Pair", "Ligand HGNC ID", "Ligand Location"]] 
     # Convert links
     ligand_card_2["HGNC gene card"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url)
@@ -133,6 +148,13 @@ def prepare_dataframes(gene_pair_input):
     ligand_card_2["Expression Profile"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url_exp)
     # Add ligand group
     ligand_card_2["Lineage group"] = ligand_card_2['Ligand HGNC ID'].map(ligand_mapping).fillna("none")
+    icon_html = '<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></a>'
+    columns_to_update = ["Ligand HGNC ID"]
+    
+    for col in columns_to_update:
+        ligand_card_2[col] = ligand_card_2[col].str.replace(
+            "</a>", icon_html, regex=False
+        )
     # Add extra line to balance out cards if necessary
     def add_spacing(text):
         if len(text) <= 60:
@@ -142,23 +164,30 @@ def prepare_dataframes(gene_pair_input):
 
 
     #ligand_card_2["Lineage group"] = ligand_card_2["Lineage group"].apply(add_spacing)
-    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "HGNC gene card", "Lineage group",  "Ligand Location", "Disease relevance", "Expression Profile"]]       
+    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "HGNC gene card", "Ligand Location", "Lineage group", "Disease relevance", "Expression Profile"]]       
 
     
     receptor_card = gene_pair_input[["Human LR Pair", "Receptor", "Receptor name", "Receptor HGNC ID", "Receptor MGI ID", "Receptor RGD ID", "Receptor Location"]].merge(
         pop_up_info_lim, how='left', left_on='Receptor', right_on='Approved symbol'
     ).drop_duplicates(subset='Human LR Pair', keep="first").drop(columns=["Receptor", "Approved symbol"])
     
-    receptor_card_1 = receptor_card[["Human LR Pair", "Other Symbols", "Receptor name"]] 
+    receptor_card_1 = receptor_card[["Human LR Pair", "Receptor name", "Other Symbols"]] 
     receptor_card_2 = receptor_card[["Human LR Pair", "Receptor HGNC ID", "Receptor Location"]] 
     receptor_card_2["HGNC gene card"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url)
     receptor_card_2["Disease relevance"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url_disease)
     receptor_card_2["Expression Profile"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url_exp)
     # Add Receptor group
     receptor_card_2["Lineage group"] = receptor_card_2['Receptor HGNC ID'].map(receptor_mapping).fillna("none")
+    icon_html = '<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></a>'
+    columns_to_update = ["Receptor HGNC ID"]
+    
+    for col in columns_to_update:
+        receptor_card_2[col] = receptor_card_2[col].str.replace(
+            "</a>", icon_html, regex=False
+        )
     # Add extra line to balance out cards if necessary
     #receptor_card_2["Lineage group"] = receptor_card_2["Lineage group"].apply(add_spacing)
-    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID",  "HGNC gene card", "Lineage group", "Receptor Location","Disease relevance", "Expression Profile" ]]       
+    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID",  "HGNC gene card", "Receptor Location", "Lineage group", "Disease relevance", "Expression Profile" ]]       
 
     return interaction_card, ligand_card_1, ligand_card_2, receptor_card_1, receptor_card_2
 
@@ -179,14 +208,13 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
         def convert_pair_url(df_pairs):
             df_pairs["Human LR Pair"] = [
                 f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrpair}.html" target="_blank" '
-                f'role="button" title="Open {lrpair} card" class="btn btn-outline-primary" '
-                f'style="background-color: #3498db; color: white; border-color: #2980b9; font-size: 14px; '
-                f'padding: 2px 3px; margin: 2px; text-decoration: none; border-radius: 2px;">'
+                f'title="Open {lrpair} card" style="color: #0000EE; text-decoration: underline;">'
                 f'{lrpair}</a>'
                 if pd.notna(lrpair) and lrpair.strip() else ""
                 for lrpair in df_pairs["Human LR Pair"]
             ]
             return df_pairs
+
 
         # Add other ligand receptor pairs (ligand card)
         ligand_pairs = gene_pair0[gene_pair0['Ligand'] == value1]
@@ -195,8 +223,8 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
         ligand_pairs = ligand_pairs[["Human LR Pair"]]
         # Apply the transformation directly (no axis=1!)
         ligand_pairs = convert_pair_url(ligand_pairs)
-        # Aggregate into one value separated by space
-        ligand_pairs = ' '.join([btn for btn in ligand_pairs["Human LR Pair"] if btn])
+        # Aggregate into one value separated by dot
+        ligand_pairs = ' ・ '.join([btn for btn in ligand_pairs["Human LR Pair"] if btn])
 
         # Add other ligand receptor pairs (receptor card)
         receptor_pairs = gene_pair0[gene_pair0['Receptor'] == value2]
@@ -206,7 +234,7 @@ def generate_html_files(template, interaction_card, ligand_card_1, receptor_card
         # Apply the transformation directly (no axis=1!)
         receptor_pairs = convert_pair_url(receptor_pairs)
         # Aggregate into one value separated by space
-        receptor_pairs = ' '.join([btn for btn in receptor_pairs["Human LR Pair"] if btn])
+        receptor_pairs = ' ・ '.join([btn for btn in receptor_pairs["Human LR Pair"] if btn])
 
         # Check if the HTML files exist
         ligand_image_path = f'data/tabula_sapiens/heatmap/{value1}.html'

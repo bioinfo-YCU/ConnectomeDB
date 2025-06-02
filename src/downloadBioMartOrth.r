@@ -42,7 +42,11 @@ list_species_attributes <- function(species_dataset) {
 
 # Main
 
-# Chimp
+#  Rhesus macaque (Macaca mulatta)
+get_species_orthologs("mmulatta")
+#  Marmoset (Callithrix jacchus)
+get_species_orthologs("cjacchus")
+# Chimp (Pan troglodytes)
 get_species_orthologs("ptroglodytes")
 # Chicken (Gallus gallus)
 chicken_orthologs <- get_species_orthologs("ggallus")

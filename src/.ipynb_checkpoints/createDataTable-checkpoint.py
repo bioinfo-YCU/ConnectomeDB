@@ -16,7 +16,8 @@ warnings.simplefilter("ignore", category=UserWarning)
 # Other vertebrates
 species_list = [
     "ptroglodytes", "ggallus", "sscrofa", "btaurus", 
-    "clfamiliaris", "ecaballus", "oarambouillet"
+    "clfamiliaris", "ecaballus", "oarambouillet",
+    "cjacchus", "mmulatta"
 ]
 
 # Select only the relevant columns from pop_up_info
@@ -356,6 +357,8 @@ def appendOtherSpeciesInfo(species, origDF):
     "clfamiliaris": "Dog",
     "ecaballus": "Horse",
     "oarambouillet": "Sheep",
+    "cjacchus": "Marmoset",
+    "mmulatta": "Rhesus Monkey"    
     }.get(species, "Unknown species")
     
     # Load species-specific data
@@ -664,7 +667,7 @@ rat_columns = ['Rat Ligand','Rat Receptor','Ligand RGD ID','Receptor RGD ID']
 zebrafish_columns = ['Zebrafish Ligand','Zebrafish Receptor','Ligand ZFIN ID','Receptor ZFIN ID']
 
 # List of prefixes
-prefixes = ("Chimpanzee", "Chicken", "Pig", "Cow", "Dog", "Horse", "Sheep")
+prefixes = ("Chimpanzee", "Chicken", "Pig", "Cow", "Dog", "Horse", "Sheep", "Marmoset", "Rhesus Monkey")
 
 # Get column names that start with any of the given prefixes
 selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)]
