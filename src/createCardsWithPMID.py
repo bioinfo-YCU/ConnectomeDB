@@ -15,6 +15,9 @@ sys.path.append(os.path.abspath("src"))
 from createDataTable import pop_up_info, gene_pair0, generate_perplexity_links, gene_pair00
 from createFunctionalAnnotTable import gene_pair_annot_ligand, gene_pair_annot_receptor
 
+# Test or all
+test = False
+test_genes = ["VEGFA ITGB1", "VEGFA KDR", "VEGFA NRP1"] # Example genes
 # --- Paths ---
 MERGED_TEMPLATE_PATH = 'HTML/mergedCardWithPMIDTemplate.html'
 OUTPUT_DIR = 'data/cards/' # New output directory for combined files
@@ -226,119 +229,154 @@ def generate_combined_html_files(
     for each Human LR Pair.
     """
     os.makedirs(output_dir, exist_ok=True)
+    # --- Create a map of all pages for navigation ---
+   # 1. Clean the 'Interaction ID' column in gene_pair_main_df and add it as a new column
+    #    This ensures we have a clean ID for sorting and filename generation.
+    cleaned_main_df = gene_pair_main_df.copy()
+    cleaned_main_df["Clean Interaction ID"] = cleaned_main_df["Interaction ID"].apply(
+        lambda x: re.search(r'(CDB\d+)</a>', x).group(1)
+        if isinstance(x, str) and re.search(r'(CDB\d+)</a>', x)
+        else None
+    )
+    # Filter out rows where the clean ID could not be extracted (malformed entries)
+    cleaned_main_df = cleaned_main_df.dropna(subset=["Clean Interaction ID"])
 
-    # Iterate over the DataFrame that contains PMID, Keywords, and the LR Pair (with '——')
+    # 2. Sort the DataFrame by the clean Interaction ID to ensure correct navigation order.
+    #    This sorted DataFrame will be the single source of truth for iteration.
+    df_for_rendering_and_navigation = cleaned_main_df.sort_values(
+        by="Clean Interaction ID",
+        key=lambda series: series.str[3:].astype(int) # Now it's just "CDBXXXXX" so simple slicing works
+    ).reset_index(drop=True)
+
+
+    rendered_pages = []
+
+    # --- First pass: Collect all content and metadata ---
     for idx, row in gene_pair_keywords_df.iterrows():
-        lr_pair_name_hyphen = row["Human LR Pair"] # e.g., "VEGFA——KDR"
+        lr_pair_name_hyphen = row["Human LR Pair"]  # e.g., "VEGFA——KDR"
         keywords = row["Relevance Keywords"]
         pmids_str = row["PMID"]
+    
+        # Convert to space-separated format
+        lr_pair_name_space = lr_pair_name_hyphen.replace("——", " ")
+        value1, value2 = lr_pair_name_space.split()
+    
+        # --- Filter card dataframes ---
+        row0 = interaction_card_df[interaction_card_df['Human LR Pair'] == lr_pair_name_space]
+        if row0.empty:
+            print(f"[SKIP] No card data found for: {lr_pair_name_space}")
+            continue
+    
+        # Extract and clean interaction ID from the actual table data
+        table0_data = row0.drop('Human LR Pair', axis=1).to_dict(orient='records')[0]
+        raw_interaction_id_html = table0_data["Interaction ID"]
+        match = re.search(r'(CDB\d+)</a>', raw_interaction_id_html)
+        if not match:
+            print(f"[SKIP] Could not extract clean interaction ID for: {lr_pair_name_space}")
+            continue
+        clean_interaction_id = match.group(1)
+    
+        # Construct filename and output path
+        filename = f"{value1.strip()} {value2.strip()}_{clean_interaction_id}.html"
+        output_file = os.path.join(output_dir, filename)
+    
+        # Save for navigation
+        rendered_pages.append({
+            "interaction_id": clean_interaction_id,
+            "lr_pair_name_space": lr_pair_name_space,
+            "value1": value1,
+            "value2": value2,
+            "keywords": keywords,
+            "pmids_str": pmids_str,
+            "table0_data": table0_data,
+            "row1": ligand_card_1_df[ligand_card_1_df['Human LR Pair'] == lr_pair_name_space],
+            "row2": receptor_card_1_df[receptor_card_1_df['Human LR Pair'] == lr_pair_name_space],
+            "row3": ligand_card_2_df[ligand_card_2_df['Human LR Pair'] == lr_pair_name_space],
+            "row4": receptor_card_2_df[receptor_card_2_df['Human LR Pair'] == lr_pair_name_space],
+            "output_file": output_file,
+            "filename": filename,
+            "value1": value1,
+            "value2": value2,
+        })
 
-        # Convert LR pair name to space-separated for display and file naming
-        lr_pair_name_space = lr_pair_name_hyphen.replace("——", " ") # e.g., "VEGFA KDR"
-        value1, value2 = lr_pair_name_space.split() # Ligand and Receptor names
-
-        # --- Prepare PMID Section Data ---
+    # --- Second pass: Render each page with correct navigation ---
+    for i, page in enumerate(rendered_pages):
+        prev_page_info = rendered_pages[i - 1] if i > 0 else None
+        next_page_info = rendered_pages[i + 1] if i < len(rendered_pages) - 1 else None
+    
+        # --- Prepare PMID section ---
         tab_headers = []
         tab_contents = []
-        sources = [pmid.strip() for pmid in str(pmids_str).split(',') if pmid.strip()]
-
-        if sources:
-            for i, pmid in enumerate(sources):
-                pubmed_row = pubmed_data_df[pubmed_data_df["PMID"] == pmid]
-                
-                if not pubmed_row.empty:
-                    title = pubmed_row["Title"].values[0]
-                    abstract = pubmed_row["Abstract"].values[0]
-                    journal = pubmed_row["Journal"].values[0]
-                    year = pubmed_row["Year"].values[0]
-                    # Add this line to check abstract length
-                    print(f"PMID: {pmid}, Abstract Length (characters): {len(abstract)}, Abstract Length (words): {len(abstract.split())}")
-                else:
-                    title = "No Title Found"
-                    abstract = "No Abstract Found"
-                    journal = "Journal Unknown"
-                    year = "Year Unknown"
-                    print(f"PMID: {pmid}, No abstract found.") # Also print for missing abstracts
-        # .                
-
-                active_class = "active" if i == 0 else ""
-                tab_headers.append(f'<button class="tablinks {active_class}" onclick="openTab(event, \'tab{pmid}\')">{pmid}</button>')
-                
-                # --- MODIFIED: Abstract content with wrapper and button ---
-                tab_contents.append(f"""
-    <div id="tab{pmid}" class="tabcontent {active_class}">
-        <h2>{title}</h2>
-        <p><strong>{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">For more details, see PubMed</a></strong></p>
-        <div class="abstract-wrapper">
-            <p class="abstract-content" id="abstract-content-{pmid}">{abstract}</p>
-            <button class="read-more-btn" id="read-more-btn-{pmid}" onclick="toggleAbstract('abstract-content-{pmid}', 'read-more-btn-{pmid}')">Read more</button>
-        </div>
-    </div>
-""")
-                # --- END MODIFIED ---
-
-        # --- Prepare Card Section Data ---
-        # Filter card dataframes using the space-separated LR pair name
-        row0 = interaction_card_df[interaction_card_df['Human LR Pair'] == lr_pair_name_space]
-        row1 = ligand_card_1_df[ligand_card_1_df['Human LR Pair'] == lr_pair_name_space]
-        row2 = receptor_card_1_df[receptor_card_1_df['Human LR Pair'] == lr_pair_name_space]
-        row3 = ligand_card_2_df[ligand_card_2_df['Human LR Pair'] == lr_pair_name_space]
-        row4 = receptor_card_2_df[receptor_card_2_df['Human LR Pair'] == lr_pair_name_space]
-
-        table0_data = row0.drop('Human LR Pair', axis=1).to_dict(orient='records')[0] if not row0.empty else {}
-        table1_data = row1.drop('Human LR Pair', axis=1).to_dict(orient='records')[0] if not row1.empty else {}
-        table2_data = row2.drop('Human LR Pair', axis=1).to_dict(orient='records')[0] if not row2.empty else {}
-        table3_data = row3.drop('Human LR Pair', axis=1).to_dict(orient='records')[0] if not row3.empty else {}
-        table4_data = row4.drop('Human LR Pair', axis=1).to_dict(orient='records')[0] if not row4.empty else {}
-
-        # Related ligand pairs (using gene_pair_main_df which has space-separated LR pairs)
-        ligand_pairs_df = gene_pair_main_df[gene_pair_main_df['Ligand'] == value1]
-        # Filter out the current LR pair (which is space-separated in gene_pair_main_df)
-        ligand_pairs_df = ligand_pairs_df[ligand_pairs_df["Human LR Pair"] != lr_pair_name_space]
+        pmid_list = [pmid.strip() for pmid in str(page["pmids_str"]).split(',') if pmid.strip()]
+        for j, pmid in enumerate(pmid_list):
+            pubmed_row = pubmed_data_df[pubmed_data_df["PMID"] == pmid]
+            if not pubmed_row.empty:
+                title = pubmed_row["Title"].values[0]
+                abstract = pubmed_row["Abstract"].values[0]
+                journal = pubmed_row["Journal"].values[0]
+                year = pubmed_row["Year"].values[0]
+            else:
+                title = "No Title Found"
+                abstract = "No Abstract Found"
+                journal = "Journal Unknown"
+                year = "Year Unknown"
+    
+            active_class = "active" if j == 0 else ""
+            tab_headers.append(f'<button class="tablinks {active_class}" onclick="openTab(event, \'tab{pmid}\')">{pmid}</button>')
+            tab_contents.append(f"""
+            <div id="tab{pmid}" class="tabcontent {active_class}">
+                <h2>{title}</h2>
+                <p><strong>{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">For more details, see PubMed</a></strong></p>
+                <div class="abstract-wrapper">
+                    <p class="abstract-content" id="abstract-content-{pmid}">{abstract}</p>
+                    <button class="read-more-btn" id="read-more-btn-{pmid}" onclick="toggleAbstract('abstract-content-{pmid}', 'read-more-btn-{pmid}')">Read more</button>
+                </div>
+            </div>
+            """)
+    
+        # --- Prepare other tables ---
+        def get_table_data(df):
+            return df.drop('Human LR Pair', axis=1).to_dict(orient='records')[0] if not df.empty else {}
+    
+        table1_data = get_table_data(page["row1"])
+        table2_data = get_table_data(page["row2"])
+        table3_data = get_table_data(page["row3"])
+        table4_data = get_table_data(page["row4"])
+    
+        # --- Related pairs ---
+        ligand_pairs_df = gene_pair_main_df[(gene_pair_main_df['Ligand'] == page["value1"]) &
+                                            (gene_pair_main_df["Human LR Pair"] != page["lr_pair_name_space"])]
+        receptor_pairs_df = gene_pair_main_df[(gene_pair_main_df['Receptor'] == page["value2"]) &
+                                              (gene_pair_main_df["Human LR Pair"] != page["lr_pair_name_space"])]
+    
         ligand_pairs_df = convert_pair_url(ligand_pairs_df[["Human LR Pair"]])
-        ligand_pairs_str = ' ・ '.join([btn for btn in ligand_pairs_df["Human LR Pair"] if btn])
-
-        # Related receptor pairs (using gene_pair_main_df which has space-separated LR pairs)
-        receptor_pairs_df = gene_pair_main_df[gene_pair_main_df['Receptor'] == value2]
-        # Filter out the current LR pair (which is space-separated in gene_pair_main_df)
-        receptor_pairs_df = receptor_pairs_df[receptor_pairs_df["Human LR Pair"] != lr_pair_name_space]
         receptor_pairs_df = convert_pair_url(receptor_pairs_df[["Human LR Pair"]])
+    
+        ligand_pairs_str = ' ・ '.join([btn for btn in ligand_pairs_df["Human LR Pair"] if btn])
         receptor_pairs_str = ' ・ '.join([btn for btn in receptor_pairs_df["Human LR Pair"] if btn])
-
-        # Expression Plots (assuming HTML content is read from files)
-        # Uncomment the following block if you have these plot files and want to include them
-        ligand_image_path = f'data/tabula_sapiens/heatmap/{value1}.html'
-        receptor_image_path = f'data/tabula_sapiens/heatmap/{value2}.html'
-
-        ligand_image = "Plot does not exist"
-        if os.path.exists(ligand_image_path):
-            try:
-                with open(ligand_image_path, "r", encoding='utf-8') as html_file:
-                    ligand_image = html_file.read()
-            except Exception as e:
-                print(f"Error reading ligand image HTML for {value1}: {e}")
-                ligand_image = "Plot does not exist (Error reading file)"
-
-
-        receptor_image = "Plot does not exist"
-        if os.path.exists(receptor_image_path):
-            try:
-                with open(receptor_image_path, "r", encoding='utf-8') as html_file:
-                    receptor_image = html_file.read()
-            except Exception as e:
-                print(f"Error reading receptor image HTML for {value2}: {e}")
-                receptor_image = "Plot does not exist (Error reading file)"
-
-
-        # Render the template with all collected data
-        rendered_content = template.render(
-            GENE_NAME=lr_pair_name_space, # For PMID section title
-            KEYWORDS=keywords, # For PMID section keywords
+    
+        # --- Expression plots ---
+        def get_plot_content(path):
+            if os.path.exists(path):
+                try:
+                    with open(path, "r", encoding="utf-8") as f:
+                        return f.read()
+                except Exception as e:
+                    return f"Plot could not be loaded: {e}"
+            return "Plot does not exist"
+    
+        ligand_image = get_plot_content(f'data/tabula_sapiens/heatmap/{page["value1"]}.html')
+        receptor_image = get_plot_content(f'data/tabula_sapiens/heatmap/{page["value2"]}.html')
+    
+        # --- Final render ---
+        rendered_html = template.render(
+            GENE_NAME=page["lr_pair_name_space"],
+            KEYWORDS=page["keywords"],
             TAB_HEADERS="".join(tab_headers),
             TAB_CONTENTS="".join(tab_contents),
-            value1=value1, # For card section ligand name
-            value2=value2, # For card section receptor name
-            table0_data=table0_data,
+            value1=page["value1"],
+            value2=page["value2"],
+            table0_data=page["table0_data"],
             table1_data=table1_data,
             table2_data=table2_data,
             table3_data=table3_data,
@@ -346,23 +384,41 @@ def generate_combined_html_files(
             ligand_image=ligand_image,
             receptor_image=receptor_image,
             ligand_pairs=ligand_pairs_str,
-            receptor_pairs=receptor_pairs_str
+            receptor_pairs=receptor_pairs_str,
+            prev_page_info={
+                "interaction_id": prev_page_info["interaction_id"],
+                "url": f"https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{prev_page_info['filename']}",
+                "lr_pair_name_space": prev_page_info["lr_pair_name_space"]
+            } if prev_page_info else None,
+            next_page_info={
+                "interaction_id": next_page_info["interaction_id"],
+                "url": f"https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{next_page_info['filename']}",
+                "lr_pair_name_space": next_page_info["lr_pair_name_space"]
+            } if next_page_info else None
         )
+    
+        # --- Save HTML file ---
+        with open(page["output_file"], "w", encoding="utf-8") as f:
+            f.write(rendered_html)
 
-        # Save the HTML file
-        output_file = os.path.join(output_dir, f"{lr_pair_name_space}.html")
-        with open(output_file, 'w', encoding='utf-8') as file:
-            file.write(rendered_content)
 
 # --- Main Execution Block ---
 if __name__ == "__main__":
-    # Define test genes - these should be in the 'space' format for gene_pair0
-    # and will be converted to '——' for gene_pair000 internally.
-    test_genes = ["VEGFA KDR", "ADAM17 IL6R"] # Example genes
-
-    # Filter gene_pair0 for the test genes to be used in prepare_card_dataframes
-    # This gene_pair_input should have space-separated LR pairs
-    gene_pair_input = gene_pair0_copy[gene_pair0_copy["Human LR Pair"].isin(test_genes)]
+    if test:
+        # Define test genes - these should be in the 'space' format for gene_pair0
+        # and will be converted to '——' for gene_pair000 internally.
+        # Convert test_genes to '——' format for filtering gene_pair000
+        test_genes_hyphen = [gene.replace(" ", "——") for gene in test_genes]
+        # Filter gene_pair0 for the test genes to be used in prepare_card_dataframes
+        # This gene_pair_input should have space-separated LR pairs
+        gene_pair_input = gene_pair0_copy[gene_pair0_copy["Human LR Pair"].isin(test_genes)]
+        # Filter gene_pair000 for the test genes (which are in '——' format)
+        gene_pair_keywords_filtered = gene_pair000[gene_pair000["Human LR Pair"].isin(test_genes_hyphen)]
+    else:
+        gene_pair_input = gene_pair0_copy
+        # Filter gene_pair000 for the test genes (which are in '——' format)
+        gene_pair_keywords_filtered = gene_pair000
+        print("Making all cards")
 
     # Prepare card-specific dataframes
     interaction_card, ligand_card_1, ligand_card_2, receptor_card_1, receptor_card_2 = \
@@ -371,10 +427,6 @@ if __name__ == "__main__":
     # Load the merged HTML template
     merged_template = load_template(MERGED_TEMPLATE_PATH)
 
-    # Filter gene_pair000 for the test genes (which are in '——' format)
-    # Convert test_genes to '——' format for filtering gene_pair000
-    test_genes_hyphen = [gene.replace(" ", "——") for gene in test_genes]
-    gene_pair_keywords_filtered = gene_pair000[gene_pair000["Human LR Pair"].isin(test_genes_hyphen)]
 
     # Generate combined HTML files
     generate_combined_html_files(
