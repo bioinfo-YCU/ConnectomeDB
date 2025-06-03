@@ -10,6 +10,10 @@ project:
     - "!database/human-trip-FilterOnTop.qmd"
     - "!stats-withAnnotations.qmd"
 
+resources:
+  - images
+  - HTML
+  
 website:
   title: ""
   reader-mode: false
@@ -33,7 +37,7 @@ website:
            text: Human LR Pairs ˣ Pubmed
          - href: database/mouseOrth.qmd
            text: Mouse Orthologs
-         - href: database/other/ratOrth.qmd
+         - href: database/other/rhesusmonkeyOrth.qmd
          
            text: Other Species
       # - text: 'Annotations Browser'

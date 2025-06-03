@@ -16,8 +16,8 @@ from createDataTable import pop_up_info, gene_pair0, generate_perplexity_links, 
 from createFunctionalAnnotTable import gene_pair_annot_ligand, gene_pair_annot_receptor
 
 # Test or all
-test = False
-test_genes = ["VEGFA ITGB1", "VEGFA KDR", "VEGFA NRP1"] # Example genes
+test = True
+test_genes = ["VEGFA ITGB1", "VEGFA KDR", "VEGFA NRP1", "THPO MPL", "FGF1 FGFR3"] # Example genes
 # --- Paths ---
 MERGED_TEMPLATE_PATH = 'HTML/mergedCardWithPMIDTemplate.html'
 OUTPUT_DIR = 'data/cards/' # New output directory for combined files
