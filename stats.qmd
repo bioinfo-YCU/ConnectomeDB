@@ -140,7 +140,6 @@ figs[3]
 
 ```{python}
 #| echo: false
-print(cat_cols)
 figs[4]
 ```
 
