@@ -214,6 +214,7 @@
             margin-bottom: 10px;
             margin-left: 0px;
             text-align: left;
+            padding: 10px
         }
 
         .card-container {
@@ -392,24 +393,37 @@
             padding: 0;
         }
 
-        .read-more-btn {
-            display: none; /* Hidden by default, JS will show if needed */
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9em;
-            margin-top: 10px; /* Space above the button */
-            float: right; /* Position to the right */
-            clear: both; /* Clear floats above it */
-            transition: background-color 0.3s ease;
+        .navigation-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+}
+
+        .nav-left,
+        .nav-right {
+            flex: 1;
+        }
+        
+        .nav-left {
+            text-align: left;
+        }
+        
+        .nav-right {
+            text-align: right;
+        }
+        
+        /* If only one of them exists, center the existing one */
+        .navigation-footer:has(.nav-left):not(:has(.nav-right)) .nav-left {
+            text-align: left;
+        }
+        
+        .navigation-footer:has(.nav-right):not(:has(.nav-left)) .nav-right {
+            text-align: right;
         }
 
-        .read-more-btn:hover {
-            background-color: #2980b9;
-        }
     </style>
     <script>
         // Function from pmidTemplate for tab switching
@@ -690,6 +704,25 @@
             </li>
         </ol>
     </div>
+        <!-- for navigation -->
+     <div class="navigation-footer">
+        {% if prev_page_info %}
+            <div class="nav-left">
+                <a href="{{ prev_page_info.url }}" class="nav-link prev-link">
+                    &#8592; {{ prev_page_info.interaction_id }} {{ prev_page_info.lr_pair_name_space }}
+                </a>
+            </div>
+        {% endif %}
+        
+        {% if next_page_info %}
+            <div class="nav-right">
+                <a href="{{ next_page_info.url }}" class="nav-link next-link">
+                    {{ next_page_info.interaction_id }} {{ next_page_info.lr_pair_name_space }} &#8594;
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
 
     <footer>
         <span>© Copyright 2025, YCU Bioinformatics Lab | Harry Perkins Systems Biology & Genomics Lab</span>
