@@ -3,6 +3,20 @@
 }
 
 
+/* for carousel */
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.carousel-section {
+    flex: 0 0 auto;
+    margin-bottom: 2rem;
+}
+
+
 /* Table and general content styling */
 body {
     background-color: var(--quarto-light); /* Light background */

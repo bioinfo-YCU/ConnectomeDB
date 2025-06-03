@@ -128,7 +128,7 @@ def update_table():
             {"search": False, "targets": [11]},
             {"width": "275px", "targets": [3,7]},
             #{"visible": False, "targets": [2,7,8,9,10,15,16,17]} 
-            {"visible": False, "targets": list(range(-1, -10, -1))+ [2,6]} # Hide last n columns by default
+            {"visible": False, "targets": list(range(-1, -18, -1))+ [2,6]} # Hide last n columns by default
         ],
         style="width:100%; max-width:1200px; margin:auto",
            #language={

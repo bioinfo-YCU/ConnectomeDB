@@ -8,6 +8,7 @@ from IPython.display import HTML, display
 import numpy as np
 import fetchGSheet 
 import warnings
+import urllib.parse
 
 # Suppress SettingWithCopyWarning
 warnings.simplefilter("ignore", category=UserWarning)
@@ -225,8 +226,11 @@ top_pathway_df = top_pathway_df.rename(columns={
                                       "kegg_pathway_id": "KEGG Pathway ID"
     
 })
-gene_pair = gene_pair.merge(top_pathway_df, how='left', left_on='Human LR Pair', right_on='LR Pair')
-gene_pair = gene_pair.drop(columns=["LR Pair", "KEGG relationship", "KEGG Pathway ID"])
+top_pathway_df1 = top_pathway_df[["LR Pair", "KEGG Pathway"]].drop_duplicates()
+top_pathway_df1 = top_pathway_df1.groupby('LR Pair')['KEGG Pathway'].apply(', '.join).reset_index()
+gene_pair = gene_pair.merge(top_pathway_df1, how='left', left_on='Human LR Pair', right_on='LR Pair')
+gene_pair = gene_pair.drop(columns=["LR Pair"])
+
 # Add Disease Category per pair
 df= pd.read_csv("data/disease_annotations_per_pair.csv")
 df_cat=pd.read_csv("data/disease_categories.csv")
@@ -534,8 +538,7 @@ gene_pair = generate_links_with_doi(gene_pair, gene_column="Human LR Pair",
                                     pmid_column="PMID", id_column= "Interaction ID")
 
 # for disease type, cancer-related and top pathways, when missing say "ask Perplexity"
-import pandas as pd
-import urllib.parse
+
 
 def generate_perplexity_kegglinks(
     df,

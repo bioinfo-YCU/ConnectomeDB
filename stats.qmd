@@ -44,7 +44,7 @@ gene_pair_cat.iloc[:, 3] = gene_pair_cat.iloc[:, 3].apply(
     lambda x: 'secreted' if isinstance(x, str) and ('anchored cell membrane' in x or 'classical cell membrane' in x or 'cell membrane (' in x) else x
 )
 # for simplifying receptor location
-gene_pair_cat.iloc[:, 4] = gene_pair_cat.iloc[:, 3].apply(
+gene_pair_cat.iloc[:, 4] = gene_pair_cat.iloc[:, 4].apply(
     lambda x: 'secreted' if isinstance(x, str) and ('cell membrane (' in x) else x
 )
 cat_cols = gene_pair_cat.select_dtypes(include='object').columns
@@ -140,6 +140,7 @@ figs[3]
 
 ```{python}
 #| echo: false
+print(cat_cols)
 figs[4]
 ```
 
