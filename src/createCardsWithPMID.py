@@ -199,17 +199,34 @@ def prepare_card_dataframes(gene_pair_input_df):
 
 
 def convert_pair_url(df_pairs):
-    """Converts 'Human LR Pair' column to HTML links."""
-    # Ensure df_pairs is a copy to avoid SettingWithCopyWarning
+    """Converts 'Human LR Pair' column to HTML links with interaction IDs."""
     df_pairs = df_pairs.copy()
-    df_pairs["Human LR Pair"] = [
-        f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrpair.replace(" ", "%20")}.html" target="_blank" '
-        f'title="Open {lrpair} card" style="color: #0000EE; text-decoration: underline;">'
-        f'{lrpair}</a>'
-        if pd.notna(lrpair) and lrpair.strip() else ""
-        for lrpair in df_pairs["Human LR Pair"]
-    ]
+
+    # Extract clean Interaction ID from HTML
+    df_pairs["Clean Interaction ID"] = df_pairs["Interaction ID"].apply(
+        lambda x: re.search(r'(CDB\d+)</a>', x).group(1)
+        if isinstance(x, str) and re.search(r'(CDB\d+)</a>', x)
+        else None
+    )
+
+    # Generate new HTML anchor tag
+    def make_link(row):
+        lrpair = row["Human LR Pair"]
+        interaction_id = row["Clean Interaction ID"]
+        if pd.notna(lrpair) and lrpair.strip() and pd.notna(interaction_id):
+            encoded_lrpair = lrpair.replace(" ", "%20")
+            return (
+                f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/'
+                f'{encoded_lrpair}_{interaction_id}.html" target="_blank" '
+                f'title="Open {lrpair} card" style="color: #0000EE; text-decoration: underline;">'
+                f'{lrpair}</a>'
+            )
+        return ""
+
+    df_pairs["Human LR Pair"] = df_pairs.apply(make_link, axis=1)
+
     return df_pairs
+
 
 
 def generate_combined_html_files(
@@ -329,7 +346,6 @@ def generate_combined_html_files(
                 <p><strong>{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">For more details, see PubMed</a></strong></p>
                 <div class="abstract-wrapper">
                     <p class="abstract-content" id="abstract-content-{pmid}">{abstract}</p>
-                    <button class="read-more-btn" id="read-more-btn-{pmid}" onclick="toggleAbstract('abstract-content-{pmid}', 'read-more-btn-{pmid}')">Read more</button>
                 </div>
             </div>
             """)
@@ -349,8 +365,8 @@ def generate_combined_html_files(
         receptor_pairs_df = gene_pair_main_df[(gene_pair_main_df['Receptor'] == page["value2"]) &
                                               (gene_pair_main_df["Human LR Pair"] != page["lr_pair_name_space"])]
     
-        ligand_pairs_df = convert_pair_url(ligand_pairs_df[["Human LR Pair"]])
-        receptor_pairs_df = convert_pair_url(receptor_pairs_df[["Human LR Pair"]])
+        ligand_pairs_df = convert_pair_url(ligand_pairs_df)
+        receptor_pairs_df = convert_pair_url(receptor_pairs_df)
     
         ligand_pairs_str = ' ・ '.join([btn for btn in ligand_pairs_df["Human LR Pair"] if btn])
         receptor_pairs_str = ' ・ '.join([btn for btn in receptor_pairs_df["Human LR Pair"] if btn])
