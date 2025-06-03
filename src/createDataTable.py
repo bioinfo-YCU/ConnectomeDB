@@ -500,8 +500,8 @@ gene_pair["Receptor HGNC ID"] = [
 
 
 # Function to generate hyperlinks for the "PMID support" column
-def generate_links_with_doi(df, gene_column, pmid_column):
-    def create_link(gene, sources):
+def generate_links_with_doi(df, gene_column, pmid_column, id_column):
+    def create_link(gene, id_col, sources):
         # Replace spaces with "——" in the gene name for the link
         gene_name = gene.replace(" ", "——")
         
@@ -512,15 +512,16 @@ def generate_links_with_doi(df, gene_column, pmid_column):
                 return f'<a href="{source}" target="_blank">BioRxiv</a>'
             else:
                 # If it's a single PMID, hyperlink the PMID text
-                return f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/pubmed/{gene_name}_pmid_details.html">{source}</a>'
+                return f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{gene}_{id_col}.html">{source}</a>'
         else:
             # If multiple PMIDs, show the count and hyperlink to the page
-            return f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/pubmed/{gene_name}_pmid_details.html" target="_blank">{len(sources)} PMIDs</a>'
+            return f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{gene}_{id_col}.html" target="_blank">{len(sources)} PMIDs</a>'
 
     # Process each row to generate the "PMID" column # was "PMID support"
     df["PMID"] = [
         create_link(
             gene=row[gene_column], 
+            id_col = row[id_column],
             sources=[s.strip() for s in row[pmid_column].split(',') if s.strip()]
         )
         for _, row in df.iterrows()
@@ -529,7 +530,8 @@ def generate_links_with_doi(df, gene_column, pmid_column):
 
 
 # Generate the links for the "PMID" column # was "PMID support"
-gene_pair = generate_links_with_doi(gene_pair, gene_column="Human LR Pair", pmid_column="PMID")
+gene_pair = generate_links_with_doi(gene_pair, gene_column="Human LR Pair", 
+                                    pmid_column="PMID", id_column= "Interaction ID")
 
 # for disease type, cancer-related and top pathways, when missing say "ask Perplexity"
 import pandas as pd
@@ -726,8 +728,8 @@ gene_pair = gene_pair.drop(columns=["Ligand name", "Receptor name"])
 
 # Create the links to the HTML cards
 gene_pair["Human LR Pair"] = [
-    f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrPairOrig}.html">{lrPair}</a>'
-    for lrPairOrig, lrPair in zip(gene_pair0["Human LR Pair"], gene_pair["Human LR Pair"])
+    f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrPairOrig}_{interactionID}.html">{lrPair}</a>'
+    for interactionID, lrPairOrig, lrPair in zip(gene_pair0["Interaction ID"], gene_pair0["Human LR Pair"], gene_pair["Human LR Pair"])
 ]
 
 
