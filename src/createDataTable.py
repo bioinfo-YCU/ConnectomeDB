@@ -305,24 +305,24 @@ def format_symbol_aliases(symbol, old_symbol, aliases):
     # Return just the symbol if no valid aliases or old symbols
     return f"{symbol} ({', '.join(parts)})" if parts else symbol
 
-gene_pair['Ligand Symbol & Aliases'] = gene_pair.apply(
+gene_pair['Ligand Symbols'] = gene_pair.apply(
     lambda row: format_symbol_aliases(row['Ligand'], row['Ligand Old symbol'], row['Ligand Aliases']),
     axis=1
 )
 
-gene_pair['Receptor Symbol & Aliases'] = gene_pair.apply(
+gene_pair['Receptor Symbols'] = gene_pair.apply(
     lambda row: format_symbol_aliases(row['Receptor'], row['Receptor Old symbol'], row['Receptor Aliases']),
     axis=1
 )
 
 ### tooltips 
-gene_pair["Ligand Symbol & Aliases"] = [
+gene_pair["Ligand Symbols"] = [
     f'<span title="{aliases}">{aliases}</span>'
-    for aliases in gene_pair["Ligand Symbol & Aliases"]
+    for aliases in gene_pair["Ligand Symbols"]
 ]
-gene_pair["Receptor Symbol & Aliases"] = [
+gene_pair["Receptor Symbols"] = [
     f'<span title="{aliases}">{aliases}</span>'
-    for aliases in gene_pair["Receptor Symbol & Aliases"]
+    for aliases in gene_pair["Receptor Symbols"]
 ]
 
 
@@ -677,19 +677,21 @@ prefixes = ("Chimpanzee", "Chicken", "Pig", "Cow", "Dog", "Horse", "Sheep", "Mar
 # Get column names that start with any of the given prefixes
 selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)]
 # was "PMID support"
-gene_pair0 = gene_pair[['Interaction ID', 'Human LR Pair', 'Ligand', "Ligand Symbol & Aliases",  'Ligand HGNC ID', 'Receptor', "Receptor Symbol & Aliases", 'Perplexity', 'PMID', 
-       'Ligand Location', 'Receptor HGNC ID',
-       'Receptor Location', 'Ligand name', 'Receptor name', 'KEGG Pathway', 'Cancer-related', 'Disease Type', 'Binding Location', 'Trans-binding', 'Bidirectional Signalling', 'Interaction Type', "PROGENy Pathway"] + mouse_columns + rat_columns]
+gene_pair0 = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", "Receptor",
+                       "Ligand Symbols", "Receptor Symbols", 
+                       "Ligand Location", "Receptor Location",
+                       "Ligand HGNC ID", "Receptor HGNC ID",
+                       "Perplexity", "PMID", 'KEGG Pathway', 'Cancer-related', 'Disease Type', 'Binding Location', 'Trans-binding', 'Bidirectional Signalling', 'Interaction Type', "PROGENy Pathway"] + mouse_columns + rat_columns]
 
-gene_pair = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", 
-                       "Ligand Symbol & Aliases", "Ligand HGNC ID",
-                       "Ligand Location", "Receptor", 
-                       "Receptor Symbol & Aliases", "Receptor HGNC ID",
-                       "Receptor Location", "PMID", "Perplexity",
+gene_pair = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", "Receptor",
+                       "Ligand Symbols", "Receptor Symbols", 
+                       "Ligand Location", "Receptor Location",
+                       "Ligand HGNC ID", "Receptor HGNC ID",
+                       "Perplexity", "PMID", 
                        "Database Source", "Binding Location",
                        "Trans-binding", "Bidirectional Signalling",
-                       "Interaction Type", "KEGG Pathway", "PROGENy Pathway",
-                       "Cancer-related", "Disease Type",'Ligand name','Receptor name'] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
+                       "Interaction Type",'Ligand name','Receptor name'] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
+# rm  "KEGG Pathway", "PROGENy Pathway", "Cancer-related", "Disease Type" for now
 
 
 # gene symbol
@@ -771,4 +773,4 @@ new_columns[:10] = [
 
 # Assign the modified column names back to the DataFrame
 gene_pair000.columns = new_columns
-human_columns = [col for col in gene_pair000.columns][:21]
+human_columns = [col for col in gene_pair000.columns][:17]

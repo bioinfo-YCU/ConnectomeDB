@@ -12,7 +12,7 @@ from createDataTable import gene_pair0, gene_pair, top_pathway_df
 from fetchGSheet import gene_group
 import warnings
 
-gene_pair_annot = gene_pair0[["Interaction ID", "Human LR Pair", "Cancer-related", "Ligand Symbol & Aliases",  "Receptor Symbol & Aliases"]].copy()
+gene_pair_annot = gene_pair0[["Interaction ID", "Human LR Pair", "Cancer-related", "Ligand Symbols",  "Receptor Symbols"]].copy()
 # Diseases
 df= pd.read_csv("data/disease_annotations_per_pair.csv")
 df_cat=pd.read_csv("data/disease_categories.csv")
@@ -34,7 +34,7 @@ gene_pair_annot = gene_pair_annot.rename(columns={
 gene_pair_annot = gene_pair_annot.merge(top_pathway_df, how='left', left_on='Human LR Pair', right_on='LR Pair')
 
 # reorder
-gene_pair_annot = gene_pair_annot[["Interaction ID", "Human LR Pair", "Disease", "Disease Type", "Cancer-related", "KEGG Pathway ID", "KEGG Pathway", "KEGG relationship", "PROGENy Pathway", "Ligand Symbol & Aliases",  "Receptor Symbol & Aliases"]]
+gene_pair_annot = gene_pair_annot[["Interaction ID", "Human LR Pair", "Disease", "Disease Type", "Cancer-related", "KEGG Pathway ID", "KEGG Pathway", "KEGG relationship", "PROGENy Pathway", "Ligand Symbols",  "Receptor Symbols"]]
 
 
 gene_pair_annot["Disease"] = gene_pair_annot["Disease"].apply(
@@ -59,7 +59,7 @@ gene_pair_annot["Interaction ID"] = gene_pair_annot["Interaction ID"].apply(
 
 
 # Separate Disease and Pathway and then rm duplicates
-gene_pair_disease = gene_pair_annot[["Interaction ID", "Human LR Pair", "Disease", "Disease Type", "Cancer-related", "Ligand Symbol & Aliases",  "Receptor Symbol & Aliases"]]
+gene_pair_disease = gene_pair_annot[["Interaction ID", "Human LR Pair", "Disease", "Disease Type", "Cancer-related", "Ligand Symbols",  "Receptor Symbols"]]
 gene_pair_disease = gene_pair_disease.drop_duplicates()
 gene_pair_disease=gene_pair_disease.reset_index(drop=True)  
 
@@ -93,7 +93,7 @@ gene_pair_disease["Disease Type"] = [
     for disease in gene_pair_disease["Disease Type"]
 ]
 
-gene_pair_pathway = gene_pair_annot[["Interaction ID", "Human LR Pair",  "KEGG Pathway ID", "KEGG Pathway", "KEGG relationship", "PROGENy Pathway", "Ligand Symbol & Aliases",  "Receptor Symbol & Aliases"]]
+gene_pair_pathway = gene_pair_annot[["Interaction ID", "Human LR Pair",  "KEGG Pathway ID", "KEGG Pathway", "KEGG relationship", "PROGENy Pathway", "Ligand Symbols",  "Receptor Symbols"]]
 gene_pair_pathway = gene_pair_pathway.drop_duplicates()
 gene_pair_pathway=gene_pair_pathway.reset_index(drop=True)  
 def generate_perplexity_link_pathway(row):
@@ -131,14 +131,14 @@ gene_pair_pathway["KEGG Pathway"] = [
 # gene_pair_annot2 = gene_pair0[[
 #     "Interaction ID", "Human LR Pair", 
 #     'Ligand HGNC ID', 'Receptor HGNC ID', 
-#     "Ligand Symbol & Aliases",  
-#     "Receptor Symbol & Aliases"
+#     "Ligand Symbols",  
+#     "Receptor Symbols"
 # ]].copy()
 
 gene_pair_annot2 = gene_pair0[[
     'Ligand HGNC ID', 'Receptor HGNC ID', 
-    "Ligand Symbol & Aliases",  
-    "Receptor Symbol & Aliases",
+    "Ligand Symbols",  
+    "Receptor Symbols",
     'Ligand Location', 'Receptor Location',
 ]].copy()
 
@@ -166,18 +166,26 @@ gene_pair_annot2["receptor_hgnc_id"] = gene_pair_annot2["Receptor HGNC ID"].appl
 def spanify(text):
     return f'<span title="{text}">{text}</span>' if pd.notna(text) else "unknown"
 
-gene_pair_annot2["Ligand Symbol & Aliases"] = gene_pair_annot2["Ligand Symbol & Aliases"].apply(spanify)
-gene_pair_annot2["Receptor Symbol & Aliases"] = gene_pair_annot2["Receptor Symbol & Aliases"].apply(spanify)
+gene_pair_annot2["Ligand Symbols"] = gene_pair_annot2["Ligand Symbols"].apply(spanify)
+gene_pair_annot2["Receptor Symbols"] = gene_pair_annot2["Receptor Symbols"].apply(spanify)
 
 # Gene group mapping with cleaned "unknown" labels
-gene_group_lim = gene_group[['hgnc_id','root_group_name']].copy()
+gene_group_lim = gene_group[['hgnc_id','root_group_name', 'root_group_id']].copy()
+
+gene_group['root_group_name']  =[
+        f'<a href="https://www.genenames.org/data/genegroup/#!/group/{root_group_id}" target="_blank">{root_group_name}</a>' 
+        if pd.notna(root_group_id) and root_group_id.strip() else "" 
+        for root_group_id, root_group_name in zip(gene_group["root_group_id"], gene_group["root_group_name"])
+    ]
+            
 gene_group_lim["root_group_name"] = gene_group_lim["root_group_name"].apply(
     lambda x: "unknown" if pd.isna(x) or str(x).strip().lower() in ["nan", "none", "na", ""] else x
 )
 
+
 # Ligand group merge and tooltip
 gene_pair_annot_ligand = gene_pair_annot2[['Ligand HGNC ID', 
-                                           'Ligand Symbol & Aliases',
+                                           'Ligand Symbols',
                                            'ligand_hgnc_id', 
                                            'Ligand Location']].copy()
 
@@ -193,7 +201,7 @@ gene_pair_annot_ligand = gene_pair_annot_ligand.drop_duplicates().reset_index(dr
 
 # Receptor group merge and tooltip
 gene_pair_annot_receptor = gene_pair_annot2[['Receptor HGNC ID', 
-                                           'Receptor Symbol & Aliases',
+                                           'Receptor Symbols',
                                            'receptor_hgnc_id',
                                            'Receptor Location']].copy()
 # drop duplicates 

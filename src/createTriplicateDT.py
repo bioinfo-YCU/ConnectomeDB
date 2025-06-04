@@ -46,7 +46,8 @@ gene_pair_trip["Year"] = gene_pair_trip["Year"].apply(
 ###
 gene_pair_trip["Year"] = pd.to_numeric(gene_pair_trip["Year"], errors="coerce").astype("Int64")
 gene_pair_trip = gene_pair_trip.merge(gene_pair, how='left', left_on='Interaction ID', right_on=gene_pair.columns[0])
-gene_pair_trip = gene_pair_trip.drop(columns=["Interaction ID", gene_pair.columns[2], gene_pair.columns[5],gene_pair.columns[6]])
+# removed ligand and receptor for now
+gene_pair_trip = gene_pair_trip.drop(columns=["Interaction ID", gene_pair.columns[2], gene_pair.columns[3]]) # ,gene_pair.columns[6]
 gene_pair_trip = gene_pair_trip.drop_duplicates()
 gene_pair_trip = gene_pair_trip.reset_index(drop=True)  
 
@@ -97,6 +98,6 @@ gene_pair_trip = gene_pair_trip.drop(columns=['JournalAbbv'])
 gene_pair_trip = gene_pair_trip.sort_values(by='Year', ascending=True)
 gene_pair_trip[gene_pair_trip.columns[6]] = make_ids_unique(gene_pair_trip[gene_pair_trip.columns[6]])
 gene_pair_trip = gene_pair_trip.sort_values(by='Year', ascending=False)
-first_columns=[gene_pair_trip.columns[6], gene_pair_trip.columns[7], gene_pair_trip.columns[8], gene_pair_trip.columns[10], 'Perplexity','Database Source','PMID', 'Year','Journal', 'Title', 'Species', gene_pair_trip.columns[21], gene_pair_trip.columns[22]]
+first_columns=[gene_pair_trip.columns[6], gene_pair_trip.columns[7], gene_pair_trip.columns[8], gene_pair_trip.columns[9], 'Perplexity','Database Source','PMID', 'Year','Journal', 'Title', 'Species', gene_pair_trip.columns[21], gene_pair_trip.columns[22]]
 gene_pair_trip = gene_pair_trip[first_columns + [col for col in gene_pair_trip.columns if col not in first_columns]]
 gene_pair_trip = gene_pair_trip.reset_index(drop=True)  

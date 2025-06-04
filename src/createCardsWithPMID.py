@@ -170,15 +170,13 @@ def prepare_card_dataframes(gene_pair_input_df):
     ligand_card_2["HGNC gene card"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url)
     ligand_card_2["Disease relevance"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url_disease)
     ligand_card_2["Expression Profile"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url_exp)
-    ligand_card_2["Lineage group"] = ligand_card_2['Ligand HGNC ID'].map(ligand_mapping).fillna("none")
+    ligand_card_2["Gene Group (HGNC)"] = ligand_card_2['Ligand HGNC ID'].map(ligand_mapping).fillna("none")
     icon_html_card = '<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></a>' # Use a different name to avoid conflict
     for col in ["Ligand HGNC ID"]:
         ligand_card_2[col] = ligand_card_2[col].str.replace(
             "</a>", icon_html_card, regex=False
         )
-    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "HGNC gene card", "Ligand Location", "Lineage group", "Disease relevance", "Expression Profile"]]
-
-
+    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "HGNC gene card", "Ligand Location", "Gene Group (HGNC)", "Disease relevance", "Expression Profile"]]
     receptor_card = gene_pair_input_df[["Human LR Pair", "Receptor", "Receptor name", "Receptor HGNC ID", "Receptor MGI ID", "Receptor RGD ID", "Receptor Location"]].merge(
         pop_up_info_lim, how='left', left_on='Receptor', right_on='Approved symbol'
     ).drop_duplicates(subset='Human LR Pair', keep="first").drop(columns=["Receptor", "Approved symbol"])
@@ -188,12 +186,12 @@ def prepare_card_dataframes(gene_pair_input_df):
     receptor_card_2["HGNC gene card"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url)
     receptor_card_2["Disease relevance"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url_disease)
     receptor_card_2["Expression Profile"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url_exp)
-    receptor_card_2["Lineage group"] = receptor_card_2['Receptor HGNC ID'].map(receptor_mapping).fillna("none")
+    receptor_card_2["Gene Group (HGNC)"] = receptor_card_2['Receptor HGNC ID'].map(receptor_mapping).fillna("none")
     for col in ["Receptor HGNC ID"]:
         receptor_card_2[col] = receptor_card_2[col].str.replace(
             "</a>", icon_html_card, regex=False
         )
-    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID",  "HGNC gene card", "Receptor Location", "Lineage group", "Disease relevance", "Expression Profile" ]]
+    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID",  "HGNC gene card", "Receptor Location", "Gene Group (HGNC)", "Disease relevance", "Expression Profile" ]]
 
     return interaction_card, ligand_card_1, ligand_card_2, receptor_card_1, receptor_card_2
 
