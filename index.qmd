@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "ConnectomeDB: Manually curated, high-confidence ligand–receptor pairs"
 execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
@@ -10,7 +10,6 @@ toc: false
 
 ::: {.column width="80%"}
 <div style="text-align: center; font-size: 2.3rem; font-color:#1f4eb6;">
-**Manually curated, high-confidence ligand–receptor pairs** \
 **[ConnectomeDB 2025 release](database/human.qmd)**
 </div>
 :::
@@ -18,7 +17,7 @@ toc: false
 ::: {.column width="20%"}
 <div style="text-align: center;">
 
-![](data/image/LRmascot.png){width="90%"}
+![](data/image/LRmascot.png){width="50%"}
 
 </div>
 :::

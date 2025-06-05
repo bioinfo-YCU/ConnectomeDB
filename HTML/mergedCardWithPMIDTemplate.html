@@ -19,22 +19,29 @@
 
         h1 {
             text-align: center;
-            font-size: 2em; /* From pmidTemplate */
-            color: #2c3e50;
-            margin-bottom: 20px;
+            font-size: 1.8em; /* From pmidTemplate */
+            color: #1f4eb6;
+            margin-top: 10px;
+            margin-bottom: 0px;
+        }
+
+        h2 {
+            margin-top: 10px;
+            margin-bottom: 5px;
         }
 
         h3 {
             text-align: center;
-            font-size: 1.5em; /* From pmidTemplate */
-            background-color: #2c3e50;
+            font-size: 1.3em; /* From pmidTemplate */
+            background-color: #1f4eb6;
             color: white;
-            margin-bottom: 20px;
+            margin-top: 10px;
+            margin-bottom: 5px;
         }
 
         /* Navbar Styles (from pmidTemplate) */
         nav {
-            background-color: #2c3e50;
+            background-color: #1f4eb6;
             padding: 10px 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             color: white;
@@ -57,7 +64,7 @@
         }
 
         nav a:hover {
-            color: #f39c12;
+            color: #d4af37;
         }
 
         nav .divider {
@@ -70,7 +77,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .tab button {
@@ -79,7 +86,7 @@
             margin-bottom: 10px;
             cursor: pointer;
             background-color: #f4f4f4;
-            border: 2px solid #ddd;
+            border: 1px solid black;
             border-radius: 5px;
             font-size: 1.1em;
             transition: background-color 0.3s ease;
@@ -92,14 +99,14 @@
         }
 
         .tab button.active {
-            background-color: #3498db;
-            color: white;
-            border-color: #2980b9;
+            background-color: #d4af37;
+            color: black;
+            border-color: #1f4eb6;
         }
 
         .tabcontent {
             display: none;
-            padding: 20px;
+            padding: 10px;
             margin-top: 10px;
             background-color: #ecf0f1;
             border-radius: 5px;
@@ -111,13 +118,17 @@
         }
 
         .tabcontent h2 {
-            font-size: 1.5em;
-            color: #2980b9;
+            font-size: 1.3em;
+            /* color: #1f4eb6; */
+            /*  #2980b9 */
+            line-height:1.2;
         }
 
         .tabcontent p {
             font-size: 1em;
             line-height: 1.8;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         /* Emphasize Title and Abstract */
@@ -125,7 +136,7 @@
             background-color: #ecf0f1;
             padding: 20px;
             margin: 10px 0;
-            border-left: 5px solid #2980b9;
+            border-left: 5px solid #1f4eb6;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
@@ -135,8 +146,8 @@
 
         /* Card-specific styles (from cardTemplate) */
         .download-btn {
-            background-color: #f39c12;
-            color: white;
+            background-color: #d4af37;
+            color: black;
             border: none;
             padding: 8px 16px;
             font-size: 14px;
@@ -156,7 +167,8 @@
         }
 
         .download-btn:hover {
-            background-color: #e67e22;
+            background-color: #C0C0C0;
+            color: black
         }
 
         /* Styles for the main collapsible section */
@@ -344,6 +356,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 0;   
+            margin: 0;    
         }
 
        .metadata-title {
@@ -378,7 +392,10 @@
             overflow-y: auto; /* Key change: adds vertical scrollbar if content exceeds max-height */
             /* You can remove 'transition' if you don't want a smooth transition when content flows */
             margin-bottom: 10px;
-            padding: 10px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            padding-left: 10px;
+            padding-right: 10px;
             border: 1px solid #ddd;
             background-color: #e9f1f7;
             border-radius: 5px;
@@ -483,9 +500,8 @@
         </div>
     </nav>
 
-        <br> <h1 style="text-align: center; font-size: 28px; font-weight: bold; width: 100%;">{{ table0_data["Interaction ID"] }}: {{ value1 }} —— {{ value2 }}</h1>
-
-    <h2 style="text-align: center; font-size: 20px;"> {{ table1_data["Ligand name"] }} binds to {{ table2_data["Receptor name"] }}</h2>
+        <h1 style="text-align: center; font-size: 28px; font-weight: bold; width: 100%; margin-bottom: 5px;s">{{ table0_data["Interaction ID"] }}: {{ value1 }} —— {{ value2 }}</h1>
+    <!-- <h2 style="text-align: center; font-size: 20px;"> {{ table1_data["Ligand Name"] }} <em>binds to</em> {{ table2_data["Receptor Name"] }}</h2> -->
     <div class="tab">
         {{TAB_HEADERS}}
     </div>
@@ -494,7 +510,7 @@
         <div class="title">
             <h2>Title</h2>
             <p>{{TITLE}}</p>
-            <i> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</i>
+            <p> Journal:{{JOURNAL}}; Year Published:{{YEAR}}</p>
         </div>
     </div>
 
@@ -548,7 +564,7 @@
 </details>
  -->
     <div class="column-center">
-                <h2>Gene-wise Metadata</h2>
+                <h2>{{ value1 }} ({{ table1_data["Ligand Name"] }}) <em>binds to</em> {{ value2 }} ({{ table2_data["Receptor Name"] }})</h2>
     </div>
 
     <div class="card-container">
@@ -575,7 +591,7 @@
       <div class="card-container">
         <div class="card">
             {% set table3_data_items = table3_data.items() | list %}
-            {% for column, value in table3_data_items[:-2] %}
+            {% for column, value in table3_data_items[:-9] %}
                 <div>
                     <strong>{{ column }}:</strong>
                     {{ value }}
@@ -584,7 +600,7 @@
         </div>
         <div class="card">
             {% set table4_data_items = table4_data.items() | list %}
-            {% for column, value in table4_data_items[:-2] %}
+            {% for column, value in table4_data_items[:-9] %}
                 <div>
                     <strong>{{ column }}:</strong>
                     {{ value }}
@@ -598,32 +614,68 @@
         <details class="card" open>
             <summary><span class="summary-heading">Functional Annotations</span></summary>
             <div class="card-content">
+            {% if "AmiGO" in table3_data %}
+                <div>
+                    <strong>Gene Ontology (GO)</strong>: {{ table3_data["AmiGO"] }}
+                </div>
+           {% endif %}
+            {% if "PAN-GO" in table3_data %}
+                <div>
+                    <strong>GO Human Funtionome</strong>: {{ table3_data["PAN-GO"] }}
+                </div>
+           {% endif %}
+            <hr>
+           {% if "Expression Profile" in table3_data %}
+                <div>
+                    <strong>Expression Profile</strong>: {{ table3_data["Expression Profile"] }}<sup id="fnref2"><a href="#fn2" class="footnote-ref">[3]</a></sup>, {{ table3_data["Human Protein Atlas"] }}, {{ table3_data["Human Cell Atlas"] }}, {{ table3_data["GEPIA"] }}
+                </div>
+           {% endif %}
+            <hr>
            {% if "Disease relevance" in table3_data %}
                 <div>
-                    <strong>Disease Relevance<sup id="fnref2"><a href="#fn2" class="footnote-ref">[2]</a></sup>:</strong> {{ table3_data["Disease relevance"] }}
+                    <strong>Disease Annotations</strong><sup id="fnref2"><a href="#fn2" class="footnote-ref">[2]</a></sup>: {{ table3_data["Disease relevance"] }},  {{ table3_data["OMIM"] }}, {{ table3_data["Open Targets Platform"] }}
                 </div>
             {% endif %}
-            {% if "Expression Profile" in table3_data %}
+            {% if "JensenLab DISEASES" in table3_data %}
                 <div>
-                    <strong>Expression Profile<sup id="fnref3"><a href="#fn3" class="footnote-ref">[3]</a></sup>:</strong> {{ table3_data["Expression Profile"] }}
+                    <strong>JensenLab DISEASES</strong>: {{ table3_data["JensenLab DISEASES"] }}
                 </div>
             {% endif %}
+
             </div>
         </details>
 
         <details class="card" open>
             <summary><span class="summary-heading">Functional Annotations</span></summary>
             <div class="card-content">
+            {% if "AmiGO" in table4_data %}
+                <div>
+                    <strong>Gene Ontology (GO)</strong>: {{ table4_data["AmiGO"] }}
+                </div>
+           {% endif %}
+            {% if "PAN-GO" in table4_data %}
+                <div>
+                    <strong>GO Human Funtionome</strong>: {{ table4_data["PAN-GO"] }}
+                </div>
+           {% endif %}
+            <hr>
+           {% if "Expression Profile" in table4_data %}
+                <div>
+                    <strong>Expression Profile</strong>: {{ table4_data["Expression Profile"] }}<sup id="fnref2"><a href="#fn2" class="footnote-ref">[3]</a></sup>, {{ table4_data["Human Protein Atlas"] }}, {{ table4_data["Human Cell Atlas"] }}, {{ table4_data["GEPIA"] }}
+                </div>
+           {% endif %}
+            <hr>
            {% if "Disease relevance" in table4_data %}
                 <div>
-                    <strong>Disease Relevance<sup id="fnref2"><a href="#fn2" class="footnote-ref">[2]</a></sup>:</strong> {{ table4_data["Disease relevance"] }}
+                    <strong>Disease Annotations:</strong><sup id="fnref1"><a href="#fn1" class="footnote-ref">[2]</a></sup>: {{ table4_data["Disease relevance"] }},  {{ table4_data["OMIM"] }}, {{ table4_data["Open Targets Platform"] }}
                 </div>
             {% endif %}
-            {% if "Expression Profile" in table4_data %}
+            {% if "JensenLab DISEASES" in table4_data %}
                 <div>
-                    <strong>Expression Profile<sup id="fnref3"><a href="#fn3" class="footnote-ref">[3]</a></sup>:</strong> {{ table4_data["Expression Profile"] }}
+                    <strong>JensenLab DISEASES</strong>: {{ table4_data["JensenLab DISEASES"] }}
                 </div>
             {% endif %}
+
             </div>
         </details>
 
@@ -631,14 +683,14 @@
 
      <div class="card-container">
         <details class="card" open>
-            <summary><span class="summary-heading">Other pairs</span></summary>
+            <summary><span class="summary-heading">Interactions with other Receptors</span></summary>
             <div class="card-content">
                 {{ ligand_pairs }}
              </div>
         </details>
 
         <details class="card" open>
-            <summary><span class="summary-heading">Other pairs</span></summary>
+            <summary><span class="summary-heading">Interactions with other Ligands</span></summary>
             <div class="card-content">
                 {{ receptor_pairs }}
              </div>
@@ -691,16 +743,16 @@
 
     <div class="column-center">
         <ol class="footnotes">
-            <li id="fn1">
+            <!-- <li id="fn1">
                 Curated using <strong>LIANA+</strong>, which integrates data from Piñero J, et al. <em>DisGeNET</em>: a comprehensive platform integrating information on human disease-associated genes and variants. <strong>Nucleic Acids Research</strong>, 2017.
                 <a href="#fnref1" class="footnote-backref">↩︎</a>
-            </li>
-            <li id="fn2">
+            </li> -->
+            <li id="fn1">
                 Genecards.org integrates data from OMIM®, ClinVar, GTR, LOVD, GeneCards, Orphanet, DISEASES, and Novoseek
-                <a href="#fnref2" class="footnote-backref">↩︎</a>
+                <a href="#fnref1" class="footnote-backref">↩︎</a>
             </li>
-            <li id="fn3"> Genecards.org shows data for RNAseq (GTEx, Illumina), Microarray (BioGPS), and SAGE
-                <a href="#fnref3" class="footnote-backref">↩︎</a>
+            <li id="fn2"> Genecards.org shows data for RNAseq (GTEx, Illumina), Microarray (BioGPS), and SAGE
+                <a href="#fnref2" class="footnote-backref">↩︎</a>
             </li>
         </ol>
     </div>

@@ -180,7 +180,7 @@ gene_pair = gene_pair.rename(columns={
 # Merge gene_pair with pop_up_info_lim for Ligand(L)
 gene_pair = gene_pair.merge(pop_up_info_lim, how='left', left_on='Ligand HGNC ID', right_on='HGNC ID')
 
-gene_pair = gene_pair.rename(columns={"Approved name": "Ligand name", 
+gene_pair = gene_pair.rename(columns={"Approved name": "Ligand Name", 
                                      "MGI ID": "Ligand MGI ID",
                                      "RGD ID": "Ligand RGD ID",
                                       "Alias symbol": "Ligand Aliases",
@@ -283,12 +283,12 @@ gene_pair = gene_pair.rename(columns={
                                      "RGD name": "Rat Ligand",
                                      "ZFIN ID": "Ligand ZFIN ID",
                                      "ZFIN Symbol": "Zebrafish Ligand",
-                                     "ZFIN Name": "Zebrafish Ligand name"}
+                                     "ZFIN Name": "Zebrafish Ligand Name"}
                             )
 
 gene_pair = gene_pair.merge(pop_up_info_lim, how='left', left_on='Receptor HGNC ID', right_on='HGNC ID')
 
-gene_pair = gene_pair.rename(columns={"Approved name": "Receptor name",
+gene_pair = gene_pair.rename(columns={"Approved name": "Receptor Name",
                                       "MGI ID": "Receptor MGI ID",
                                       "RGD ID": "Receptor RGD ID",
                                       "Alias symbol": "Receptor Aliases",
@@ -346,7 +346,7 @@ gene_pair = gene_pair.rename(columns={
                                      "RGD name": "Rat Receptor",
                                      "ZFIN ID": "Receptor ZFIN ID",
                                      "ZFIN Symbol": "Zebrafish Receptor",
-                                     "ZFIN Name": "Zebrafish Receptor name"}
+                                     "ZFIN Name": "Zebrafish Receptor Name"}
                             )
 
 #gene_pair = gene_pair.drop(columns=["Approved symbol_x", "Approved symbol_y"])
@@ -654,11 +654,11 @@ def add_geneToolTip(species):
 
     gene_pair[species + " Ligand"] = [
         tooltip_html(ligand_symbol, ligand_name)
-        for ligand_name, ligand_symbol in zip(gene_pair[species + " Ligand name"], gene_pair[species + " Ligand"])
+        for ligand_name, ligand_symbol in zip(gene_pair[species + " Ligand Name"], gene_pair[species + " Ligand"])
     ]
     gene_pair[species + " Receptor"] = [
         tooltip_html(receptor_symbol, receptor_name)
-        for receptor_name, receptor_symbol in zip(gene_pair[species + " Receptor name"], gene_pair[species + " Receptor"])
+        for receptor_name, receptor_symbol in zip(gene_pair[species + " Receptor Name"], gene_pair[species + " Receptor"])
     ]
 
 ### Remove tooltip for name for each species for now as only zebrafish has the proper names ###     
@@ -681,7 +681,7 @@ gene_pair0 = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", "Receptor",
                        "Ligand Symbols", "Receptor Symbols", 
                        "Ligand Location", "Receptor Location",
                        "Ligand HGNC ID", "Receptor HGNC ID",
-                       "Perplexity", "PMID", 'KEGG Pathway', 'Cancer-related', 'Disease Type', 'Binding Location', 'Trans-binding', 'Bidirectional Signalling', 'Interaction Type', "PROGENy Pathway"] + mouse_columns + rat_columns]
+                       "Perplexity", "PMID", 'Ligand Name','Receptor Name', 'KEGG Pathway', 'Cancer-related', 'Disease Type', 'Binding Location', 'Trans-binding', 'Bidirectional Signalling', 'Interaction Type', "PROGENy Pathway"] + mouse_columns + rat_columns]
 
 gene_pair = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", "Receptor",
                        "Ligand Symbols", "Receptor Symbols", 
@@ -690,20 +690,20 @@ gene_pair = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", "Receptor",
                        "Perplexity", "PMID", 
                        "Database Source", "Binding Location",
                        "Trans-binding", "Bidirectional Signalling",
-                       "Interaction Type",'Ligand name','Receptor name'] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
+                       "Interaction Type",'Ligand Name','Receptor Name'] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
 # rm  "KEGG Pathway", "PROGENy Pathway", "Cancer-related", "Disease Type" for now
 
 
 # gene symbol
 gene_pair["Ligand"] = [
     f'<span title="{ligand_name}">{ligand_symbol}</span>'
-    for ligand_name, ligand_symbol in zip(gene_pair["Ligand name"], 
+    for ligand_name, ligand_symbol in zip(gene_pair["Ligand Name"], 
                                               gene_pair["Ligand"])
 ]
 # gene symbol
 gene_pair["Receptor"] = [
     f'<span title="{receptor_name}">{receptor_symbol}</span>'
-    for receptor_name, receptor_symbol in zip(gene_pair["Receptor name"], 
+    for receptor_name, receptor_symbol in zip(gene_pair["Receptor Name"], 
                                               gene_pair["Receptor"])
 ]
 
@@ -728,7 +728,7 @@ def replace_spaces(row):
 # Apply the function to the 'LR Pair' column
 gene_pair['Human LR Pair'] = gene_pair.apply(replace_spaces, axis=1)
 
-gene_pair = gene_pair.drop(columns=["Ligand name", "Receptor name"])
+gene_pair = gene_pair.drop(columns=["Ligand Name", "Receptor Name"])
 
 
 # Create the links to the HTML cards

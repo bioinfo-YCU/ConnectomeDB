@@ -19,7 +19,9 @@ website:
   reader-mode: false
   open-graph: true
   navbar:
+    # logo: data/image/LRmascot.png
     background: "#1f4eb6"
+    search: false
     
     left:
       - href: index.qmd
@@ -33,8 +35,8 @@ website:
         menu:
          - href: database/human.qmd
            text: Human LR Pairs
-         - href: database/human-trip.qmd
-           text: Human LR Pairs ˣ Pubmed
+         # - href: database/human-trip.qmd
+         #   text: Human LR Pairs ˣ Pubmed
          - href: database/mouseOrth.qmd
            text: Mouse Orthologs
          - href: database/other/rhesusmonkeyOrth.qmd
@@ -50,8 +52,8 @@ website:
       #      text: Ligand Lineage
       #    - href: annotations/receptor_group.qmd
       #      text: Receptor Lineage
-      - href: stats.qmd
-        text: "{{< iconify mdi:chart-bar inline size=20px >}}Statistics"
+      # - href: stats.qmd
+      #   text: "{{< iconify mdi:chart-bar inline size=20px >}}Statistics"
     right:
       - url: mailto:bioinfo@yokohama-cu.ac.jp
         text: "{{< iconify mdi:email inline size=20px >}}"
