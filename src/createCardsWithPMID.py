@@ -83,6 +83,18 @@ ligand_mapping = dict(zip(gene_pair_annot_ligand['Ligand HGNC ID'], gene_pair_an
 gene_pair_annot_receptor = gene_pair_annot_receptor.groupby('Receptor HGNC ID').agg(agg_func).reset_index()
 receptor_mapping = dict(zip(gene_pair_annot_receptor['Receptor HGNC ID'], gene_pair_annot_receptor['Receptor group']))
 
+# --- Add ENSP info for Jensen lab DISEASES to pop_info_lim ---
+ensp_df= pd.read_csv("data/ensg_ensp_biomart.csv")
+# add linking
+ensp_df["ensembl_peptide_id"] = ensp_df["ensembl_peptide_id"].apply(
+    lambda x: f"<a href='https://diseases.jensenlab.org/Entity?order=textmining,knowledge,experiments&textmining=10&knowledge=10&experiments=10&type1=9606&type2=-26&id1={x}.html'>{x}<i class='fa-solid fa-arrow-up-right-from-square' style='margin-left:4px;'></i></a>"
+)
+
+ensp_df = ensp_df.groupby('ensembl_gene_id').agg(agg_func).reset_index()
+pop_up_info= pop_up_info.merge(
+        ensp_df, how='left', left_on='ensembl_gene_id', right_on='ensembl_gene_id'
+    ).drop_duplicates(subset='ensembl_gene_id', keep="first")
+pop_up_info = pop_up_info.rename(columns={"ensembl_peptide_id": "JensenLab DISEASES"})
 
 # --- Helper Functions (Combined and adjusted) ---
 
@@ -117,6 +129,81 @@ def convert_hgnc_url(col):
         return new_link
     return None
 
+# for Malacards
+def convert_symbol_url_disease(symbol):
+    if symbol:
+        visible_text = 'MalaCards <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>'
+        new_link = f'<a href="https://www.malacards.org/search/results?q={symbol}" target="_blank">{visible_text}</a>'
+        return new_link
+    return None
+
+# for Human cell atlas
+def convert_symbol_url_exp(symbol):
+    if symbol:
+        visible_text = 'Human Cell Atlas <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>'
+        new_link = f'<a href="https://cellxgene.cziscience.com/gene-expression?ver=2&genes={symbol}" target="_blank">{visible_text}</a>'
+        return new_link
+    return None
+
+# for GEPIA, cancer exp
+def convert_symbol_url_exp_GEPIA(symbol):
+    if symbol:
+        visible_text = 'GEPIA cancer vs normal<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>'
+        new_link = f'<a href="http://gepia.cancer-pku.cn/detail.php?gene={symbol}" target="_blank">{visible_text}</a>'
+        return new_link
+    return None
+
+
+# for OMIM diseases
+def convert_omim_url_disease(omim_id):
+    if omim_id:
+        visible_text = 'OMIM <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>'
+        new_link = f'<a href="https://omim.org/entry/{omim_id}" target="_blank">{visible_text}</a>'
+        return new_link
+    return None
+
+pop_up_info['OMIM'] = pop_up_info["omim_id"].apply(convert_omim_url_disease)
+
+# For open targets platform diseases
+def convert_ensg_url_disease(ensg_id):
+    if ensg_id:
+        visible_text = 'Open Targets Platform <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>'
+        new_link = f'<a href="https://platform.opentargets.org/target/{ensg_id}/associations" target="_blank">{visible_text}</a>'
+        return new_link
+    return None
+
+pop_up_info['Open Targets Platform'] = pop_up_info["ensembl_gene_id"].apply(convert_ensg_url_disease)
+
+# For the Human protein atlas
+def convert_ensg_url_exp(ensg_id):
+    if ensg_id:
+        visible_text = 'Human Protein Atlas <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>'
+        new_link = f'<a href="https://www.proteinatlas.org/{ensg_id}" target="_blank">{visible_text}</a>'
+        return new_link
+    return None
+
+pop_up_info['Human Protein Atlas'] = pop_up_info["ensembl_gene_id"].apply(convert_ensg_url_exp)
+
+## Gene (Protein) Ontology
+def convert_uniprot_url_GO(uniprot_id):
+    if uniprot_id:
+        visible_text = 'AmiGO 2 <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>'
+        new_link = f'<a href="https://amigo.geneontology.org/amigo/gene_product/UniProtKB:{uniprot_id}" target="_blank">{visible_text}</a>'
+        return new_link
+    return None
+
+pop_up_info['AmiGO'] = pop_up_info["uniprot_ids"].apply(convert_uniprot_url_GO)
+
+def convert_uniprot_url_panGO(uniprot_id):
+    if uniprot_id:
+        visible_text = 'PAN-GO <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>'
+        new_link = f'<a href="https://functionome.geneontology.org/gene/UniProtKB:{uniprot_id}" target="_blank">{visible_text}</a>'
+        return new_link
+    return None
+
+pop_up_info['PAN-GO'] = pop_up_info["uniprot_ids"].apply(convert_uniprot_url_panGO)
+
+
 def convert_hgnc_url_disease(col):
     hgnc_id = extract_hgnc_id(col)
     if hgnc_id:
@@ -149,9 +236,9 @@ def prepare_card_dataframes(gene_pair_input_df):
     interaction_card["Perplexity"] = interaction_card["Perplexity"].str.replace('size=30', 'size=80')
 
     pop_up_info_lim = pop_up_info[
-        ["Approved symbol", "Alias symbol", "Previous symbol", "Date symbol changed"]
+        ["Approved symbol", "Alias symbol", "Previous symbol", "Date symbol changed",  'ensembl_gene_id', 'OMIM', 'Open Targets Platform', "JensenLab DISEASES", 'Human Protein Atlas', "AmiGO", "PAN-GO"]
     ].drop_duplicates(subset="Approved symbol", keep="first")
-
+    
     def format_symbol_aliases(old_symbol, aliases):
         parts = [p for p in (old_symbol, aliases) if p != "N/A"]
         return f"{', '.join(parts)}" if parts else aliases
@@ -161,14 +248,16 @@ def prepare_card_dataframes(gene_pair_input_df):
         axis=1
     )
 
-    ligand_card = gene_pair_input_df[["Human LR Pair", "Ligand", "Ligand name", "Ligand HGNC ID", "Ligand MGI ID", "Ligand RGD ID", "Ligand Location"]].merge(
+    ligand_card = gene_pair_input_df[["Human LR Pair", "Ligand", "Ligand Name", "Ligand HGNC ID", "Ligand MGI ID", "Ligand RGD ID", "Ligand Location"]].merge(
         pop_up_info_lim, how='left', left_on='Ligand', right_on='Approved symbol'
-    ).drop_duplicates(subset='Human LR Pair', keep="first").drop(columns=["Ligand", "Approved symbol"])
+    ).drop_duplicates(subset='Human LR Pair', keep="first").drop(columns=["Approved symbol"])
 
-    ligand_card_1 = ligand_card[["Human LR Pair", "Ligand name", "Other Symbols" ]]
-    ligand_card_2 = ligand_card[["Human LR Pair", "Ligand HGNC ID", "Ligand Location"]]
-    ligand_card_2["HGNC gene card"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url)
-    ligand_card_2["Disease relevance"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url_disease)
+    ligand_card_1 = ligand_card[["Human LR Pair", "Ligand Name", "Other Symbols" ]]
+    ligand_card_2 = ligand_card[["Human LR Pair", "Ligand HGNC ID", "Ligand Location", "JensenLab DISEASES", "OMIM", 'Open Targets Platform', 'Human Protein Atlas', "AmiGO", "PAN-GO"]]
+    ligand_card_2["HGNC Gene Card"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url)
+    ligand_card_2["Disease relevance"] = ligand_card["Ligand"].apply(convert_symbol_url_disease)
+    ligand_card_2["Human Cell Atlas"] = ligand_card["Ligand"].apply(convert_symbol_url_exp)
+    ligand_card_2["GEPIA"] = ligand_card["Ligand"].apply(convert_symbol_url_exp_GEPIA)
     ligand_card_2["Expression Profile"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url_exp)
     ligand_card_2["Gene Group (HGNC)"] = ligand_card_2['Ligand HGNC ID'].map(ligand_mapping).fillna("none")
     icon_html_card = '<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></a>' # Use a different name to avoid conflict
@@ -176,22 +265,25 @@ def prepare_card_dataframes(gene_pair_input_df):
         ligand_card_2[col] = ligand_card_2[col].str.replace(
             "</a>", icon_html_card, regex=False
         )
-    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "HGNC gene card", "Ligand Location", "Gene Group (HGNC)", "Disease relevance", "Expression Profile"]]
-    receptor_card = gene_pair_input_df[["Human LR Pair", "Receptor", "Receptor name", "Receptor HGNC ID", "Receptor MGI ID", "Receptor RGD ID", "Receptor Location"]].merge(
+    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "HGNC Gene Card", "Ligand Location", "Gene Group (HGNC)", "Disease relevance", "Human Cell Atlas","GEPIA", "OMIM", "JensenLab DISEASES", "Expression Profile", 'Open Targets Platform', 'Human Protein Atlas', "AmiGO", "PAN-GO"]]
+    receptor_card = gene_pair_input_df[["Human LR Pair", "Receptor", "Receptor Name", "Receptor HGNC ID", "Receptor MGI ID", "Receptor RGD ID", "Receptor Location"]].merge(
         pop_up_info_lim, how='left', left_on='Receptor', right_on='Approved symbol'
-    ).drop_duplicates(subset='Human LR Pair', keep="first").drop(columns=["Receptor", "Approved symbol"])
+    ).drop_duplicates(subset='Human LR Pair', keep="first").drop(columns=["Approved symbol"])
 
-    receptor_card_1 = receptor_card[["Human LR Pair", "Receptor name", "Other Symbols"]]
-    receptor_card_2 = receptor_card[["Human LR Pair", "Receptor HGNC ID", "Receptor Location"]]
-    receptor_card_2["HGNC gene card"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url)
-    receptor_card_2["Disease relevance"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url_disease)
+    receptor_card_1 = receptor_card[["Human LR Pair", "Receptor Name", "Other Symbols"]]
+    receptor_card_2 = receptor_card[["Human LR Pair", "Receptor HGNC ID", "Receptor Location", "JensenLab DISEASES", "OMIM", 'Open Targets Platform', 'Human Protein Atlas', "AmiGO", "PAN-GO"]]
+    receptor_card_2["HGNC Gene Card"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url)
+    receptor_card_2["Disease relevance"] = receptor_card["Receptor"].apply(convert_symbol_url_disease)
+    receptor_card_2["Human Cell Atlas"] =receptor_card["Receptor"].apply(convert_symbol_url_exp)
+    receptor_card_2["GEPIA"] = receptor_card["Receptor"].apply(convert_symbol_url_exp_GEPIA)
+
     receptor_card_2["Expression Profile"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url_exp)
     receptor_card_2["Gene Group (HGNC)"] = receptor_card_2['Receptor HGNC ID'].map(receptor_mapping).fillna("none")
     for col in ["Receptor HGNC ID"]:
         receptor_card_2[col] = receptor_card_2[col].str.replace(
             "</a>", icon_html_card, regex=False
         )
-    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID",  "HGNC gene card", "Receptor Location", "Gene Group (HGNC)", "Disease relevance", "Expression Profile" ]]
+    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID",  "HGNC Gene Card", "Receptor Location", "Gene Group (HGNC)", "Disease relevance", "Human Cell Atlas","GEPIA", "OMIM", 'Open Targets Platform', "JensenLab DISEASES", "Expression Profile",'Human Protein Atlas', "AmiGO", "PAN-GO"]]
 
     return interaction_card, ligand_card_1, ligand_card_2, receptor_card_1, receptor_card_2
 
@@ -341,7 +433,7 @@ def generate_combined_html_files(
             tab_contents.append(f"""
             <div id="tab{pmid}" class="tabcontent {active_class}">
                 <h2>{title}</h2>
-                <p><strong>{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">For more details, see PubMed</a></strong></p>
+                <p>{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">For more details, see PubMed<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></a></p>
                 <div class="abstract-wrapper">
                     <p class="abstract-content" id="abstract-content-{pmid}">{abstract}</p>
                 </div>
