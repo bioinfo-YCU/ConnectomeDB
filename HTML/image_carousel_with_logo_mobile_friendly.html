@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Improved Carousel</title>
+    <title>Mobile-Friendly Carousel</title>
     <style>
         .carousel-wrapper {
             max-width: 1600px;
@@ -19,7 +19,6 @@
             height: 500px;
             overflow: hidden;
             border-radius: 15px;
-            /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); */
         }
 
         .carousel-wrapper .logo-overlay {
@@ -30,7 +29,6 @@
             background: rgba(255, 255, 255, 0.5);
             padding: 5px;
             border-radius: 2px;
-            /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
             backdrop-filter: blur(5px);
             transition: all 0.3s ease;
         }
@@ -38,13 +36,11 @@
         .carousel-wrapper .logo-overlay:hover {
             background: transparent;
             transform: scale(1.05);
-            /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); */
         }
 
         .carousel-wrapper .logo-overlay img {
             display: block;
             max-width: 180px;
-            /* max-height: 90px; */
             width: auto;
             height: auto;
             object-fit: contain;
@@ -86,7 +82,7 @@
             color: white;
             padding: 10px;
             font-size: 12px;
-            transform: translateY(0); /* Show by default */
+            transform: translateY(0);
             transition: transform 0.3s ease;
         }
 
@@ -167,9 +163,34 @@
             transform: scale(1.1);
         }
 
+        /* Mobile Notes Section */
+        .mobile-notes {
+            display: none;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .mobile-notes h3 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+        }
+
+        .mobile-notes p {
+            margin: 0 0 8px 0;
+            line-height: 1.4;
+        }
+
         @media (max-width: 768px) {
+            .carousel-wrapper {
+                padding-bottom: 20px;
+            }
+
             .carousel-wrapper .carousel {
-                height: 380px;
+                height: 280px;
             }
             
             .carousel-wrapper .carousel-nav {
@@ -178,15 +199,62 @@
                 font-size: 16px;
             }
 
+            .carousel-wrapper .prev {
+                left: 10px;
+            }
+
+            .carousel-wrapper .next {
+                right: 10px;
+            }
+
             .carousel-wrapper .logo-overlay {
                 top: 10px;
                 right: 10px;
-                padding: 8px;
+                padding: 4px;
             }
 
             .carousel-wrapper .logo-overlay img {
-                max-width: 80px;
-                max-height: 40px;
+                max-width: 60px;
+            }
+
+            /* Hide desktop overlay on mobile */
+            .carousel-wrapper .carousel-slide .overlay {
+                display: none;
+            }
+
+            /* Show mobile notes instead */
+            .mobile-notes {
+                display: block;
+            }
+
+            .carousel-wrapper .carousel-indicators {
+                margin-top: 20px;
+                gap: 10px;
+            }
+
+            .carousel-wrapper .indicator {
+                width: 12px;
+                height: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-wrapper .carousel {
+                height: 250px;
+                border-radius: 10px;
+            }
+
+            .carousel-wrapper .logo-overlay img {
+                max-width: 50px;
+            }
+
+            .mobile-notes {
+                font-size: 13px;
+                padding: 12px;
+            }
+
+            .mobile-notes h3 {
+                font-size: 14px;
             }
         }
     </style>
@@ -208,7 +276,7 @@
 ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting complexes.</p>
 <p>CellChatDB_v2 – 3,234 original pairs (2,240 PPI; 994 non-PPI) → 3,398 PPI singlets.</p>
 <p>CellPhoneDB_v5 – 2,911 original pairs (1,878 PPI; 1,033 non-PPI) → 1,943 PPI singlets.</p>
-(% = percentage supported by primary literature)</p>
+<p>(% = percentage supported by primary literature)</p>
                     </div>
                 </div>
                 <div class="carousel-slide">
@@ -237,6 +305,18 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
             <button class="carousel-nav next" onclick="nextSlide()">›</button>
         </div>
         
+        <!-- Mobile Notes Section -->
+        <div class="mobile-notes" id="mobileNotes">
+            <h3>Notes:</h3>
+            <div id="mobileNotesContent">
+                <p>ConnectomeDB2025 only retains ligand-receptor pairs with primary experimental evidence.
+ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting complexes.</p>
+                <p>CellChatDB_v2 – 3,234 original pairs (2,240 PPI; 994 non-PPI) → 3,398 PPI singlets.</p>
+                <p>CellPhoneDB_v5 – 2,911 original pairs (1,878 PPI; 1,033 non-PPI) → 1,943 PPI singlets.</p>
+                <p>(% = percentage supported by primary literature)</p>
+            </div>
+        </div>
+        
         <div class="carousel-indicators">
             <button class="indicator active" onclick="goToSlide(0)"></button>
             <button class="indicator" onclick="goToSlide(1)"></button>
@@ -254,6 +334,19 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
         const track = document.getElementById('carouselTrack');
         const indicators = document.querySelectorAll('.indicator');
         const carouselWrapper = document.querySelector('.carousel-wrapper');
+        const mobileNotesContent = document.getElementById('mobileNotesContent');
+
+        // Notes content for each slide
+        const notesContent = [
+            `<p>ConnectomeDB2025 only retains ligand-receptor pairs with primary experimental evidence.
+ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting complexes.</p>
+<p>CellChatDB_v2 – 3,234 original pairs (2,240 PPI; 994 non-PPI) → 3,398 PPI singlets.</p>
+<p>CellPhoneDB_v5 – 2,911 original pairs (1,878 PPI; 1,033 non-PPI) → 1,943 PPI singlets.</p>
+<p>(% = percentage supported by primary literature)</p>`,
+            `<p>ConnectomeDB2025 has the most recent publications. See 2020-2025.</p>`,
+            `<p>Unique new content means they are not reported in connectomeDB2020, CelltalkDB, ICELLNET_v2, CellchatDB_v2, cellphoneDB_v5, or LIANA consensus. Freeze date: 30th May 2025.</p>`,
+            `<p>12 Vertebrate Orthologs are provided.</p>`
+        ];
 
         // Create duplicate slides for seamless looping
         function initializeCarousel() {
@@ -286,6 +379,9 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
             indicators.forEach((indicator, index) => {
                 indicator.classList.toggle('active', index === currentSlide);
             });
+
+            // Update mobile notes content
+            mobileNotesContent.innerHTML = notesContent[currentSlide];
         }
 
         function nextSlide() {
