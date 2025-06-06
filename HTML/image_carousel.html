@@ -1,180 +1,183 @@
-<style>
-.carousel-wrapper {
-    max-width: 1500px;
-    width: 100%;
-    margin: 20px auto;
-    position: relative;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improved Carousel</title>
+    <style>
+        .carousel-wrapper {
+            max-width: 1500px;
+            width: 100%;
+            margin: 20px auto;
+            position: relative;
+            padding-bottom: 60px;
+        }
 
-.carousel-wrapper .carousel-container {
-    position: relative;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
+        .carousel-wrapper .carousel {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+            border-radius: 15px;
+            /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); */
+        }
 
-.carousel-wrapper .carousel {
-    position: relative;
-    width: 100%;
-    height: 450px;
-    overflow: visible;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
+        .carousel-wrapper .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
-.carousel-wrapper .carousel-track {
-    display: flex;
-    width: 500%;
-    height: 100%;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
+        .carousel-wrapper .carousel-slide {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
 
-.carousel-wrapper .carousel-slide {
-    width: 20%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-}
+        .carousel-wrapper .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
 
-.carousel-wrapper .carousel-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-}
+        .carousel-wrapper .carousel-slide:hover img {
+            transform: scale(0.9);
+        }
 
-.carousel-wrapper .carousel-slide:hover img {
-    transform: scale(0.9);
-}
+        .carousel-wrapper .carousel-slide .overlay {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            left: auto;
+            width: 300px;
+            background: rgba(0,0,0,0.8);
+            border-radius: 8px;
+            color: white;
+            padding: 10px;
+            font-size: 12px;
+            transform: translateY(0); /* Show by default */
+            transition: transform 0.3s ease;
+        }
 
-.carousel-wrapper .carousel-slide .overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    color: white;
-    padding: 20px;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-}
+        .carousel-wrapper .carousel-slide:hover .overlay {
+            transform: translateY(0);
+        }
 
-.carousel-wrapper .carousel-slide:hover .overlay {
-    transform: translateY(0);
-}
+        .carousel-wrapper .carousel-slide .overlay h3 {
+            font-size: 14px;
+            margin: 0 0 5px 0;
+        }
+        
+        .carousel-wrapper .carousel-slide .overlay p {
+            margin: 0 0 5px 0;
+            line-height: 1.3;
+        }
 
-.carousel-wrapper .carousel-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    transition: all 0.3s ease;
-    z-index: 10;
-}
+        .carousel-wrapper .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
 
-.carousel-wrapper .carousel-nav:hover {
-    background: white;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
+        .carousel-wrapper .carousel-nav:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
 
-.carousel-wrapper .prev {
-    left: 15px;
-}
+        .carousel-wrapper .prev {
+            left: 15px;
+        }
 
-.carousel-wrapper .next {
-    right: 15px;
-}
+        .carousel-wrapper .next {
+            right: 15px;
+        }
 
-.carousel-wrapper .carousel-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-}
+        .carousel-wrapper .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 50px;
+        }
+        
+        .carousel-wrapper .indicator {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0, 0, 0, 0.6);
+        }
+        
+        .carousel-wrapper .indicator.active {
+            background: #333;
+            border-color: #333;
+            transform: scale(1.3);
+        }
+        
+        .carousel-wrapper .indicator:hover {
+            background: rgba(0, 0, 0, 0.6);
+            transform: scale(1.1);
+        }
 
-.carousel-wrapper .indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.4);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: none;
-}
-
-.carousel-wrapper .indicator.active {
-    background: white;
-    transform: scale(1.2);
-}
-
-.carousel-wrapper .indicator:hover {
-    background: rgba(255, 255, 255, 0.7);
-    transform: scale(1.1);
-}
-
-@media (max-width: 768px) {
-    .carousel-wrapper .carousel {
-        height: 300px;
-    }
-    
-    .carousel-wrapper .carousel-nav {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-    }
-    
-    .carousel-wrapper .carousel-container {
-        padding: 20px;
-    }
-}
-</style>
-
-<div class="carousel-wrapper">
-    <div class="carousel-container">
+        @media (max-width: 768px) {
+            .carousel-wrapper .carousel {
+                height: 300px;
+            }
+            
+            .carousel-wrapper .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-wrapper">
         <div class="carousel">
             <div class="carousel-track" id="carouselTrack">
                 <div class="carousel-slide">
-                                        <img src="images/data1.png" alt="Image 1">
+                    <img src="images/data1.png" alt="Image 1">
                     <div class="overlay">
                         <h3>Notes:</h3>
-                        <p>
-All pairs in each database were manually checked. Only those where primary literature showing the interaction was experimentally confirmed are included in connectomeDB2025. % indicates fraction with literature support.</p>
-
-<p>* ICELLNET_v2 contains 1,669 original PPI LR interactions and, after splitting complex interactions into singlets, comprises 1,828 individual PPI LR pairs.</p>
-
-<p>* CellChatDB_v2 contains 3,234 original LR interactions including 2,240 PPI  interactions and 994 non-PPI interactions and, after splitting complex PPI interactions into singlets, comprises 3,398 individual PPI LR pairs.</p>
-
-<p>* CellPhoneDB_v5 contains 2,911 original LR interactions including 1,878 PPI interactions and 1,033 non-PPI interactions and , after splitting complex PPI interactions into singlets, comprises 1,943 individual PPI LR pairs</p>
+                        <p>ConnectomeDB2025 only retains ligand-receptor pairs with primary experimental evidence.
+ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting complexes.</p>
+<p>CellChatDB_v2 – 3,234 original pairs (2,240 PPI; 994 non-PPI) → 3,398 PPI singlets.</p>
+<p>CellPhoneDB_v5 – 2,911 original pairs (1,878 PPI; 1,033 non-PPI) → 1,943 PPI singlets.</p>
+(% = percentage supported by primary literature)</p>
+                    </div>
                 </div>
-            </div>
                 <div class="carousel-slide">
                     <img src="images/data2.png" alt="Image 2">
                     <div class="overlay">
                         <h3>Notes:</h3>
-                        <p>ConnectomeDB2025 has the most recent publications. See 2020-2025.
-</p>
+                        <p>ConnectomeDB2025 has the most recent publications. See 2020-2025.</p>
                     </div>
                 </div>
                 <div class="carousel-slide">
                     <img src="images/data3.png" alt="Image 3">
                     <div class="overlay">
                         <h3>Notes:</h3>
-                        <p>Unique new content means they are not reported in connectomeDB2020, CelltalkDB, ICELLNET_v2, CellchatDB_v2, cellphoneDB_v5, or LIANA consensus. Freeze date: 30th May 2025. </p>
+                        <p>Unique new content means they are not reported in connectomeDB2020, CelltalkDB, ICELLNET_v2, CellchatDB_v2, cellphoneDB_v5, or LIANA consensus. Freeze date: 30th May 2025.</p>
                     </div>
                 </div>
                 <div class="carousel-slide">
@@ -182,13 +185,6 @@ All pairs in each database were manually checked. Only those where primary liter
                     <div class="overlay">
                         <h3>Notes:</h3>
                         <p>12 Vertebrate Orthologs are provided.</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <img src="images/data5.png" alt="Image 5">
-                    <div class="overlay">
-                        <h3>Notes:</h3>
-                        <p>Finding tranquility in the world around us</p>
                     </div>
                 </div>
             </div>
@@ -201,73 +197,193 @@ All pairs in each database were manually checked. Only those where primary liter
             <button class="indicator" onclick="goToSlide(1)"></button>
             <button class="indicator" onclick="goToSlide(2)"></button>
             <button class="indicator" onclick="goToSlide(3)"></button>
-            <button class="indicator" onclick="goToSlide(4)"></button>
         </div>
     </div>
-</div>
 
-<script>
-let currentSlide = 0;
-const totalSlides = 5;
-const track = document.getElementById('carouselTrack');
-const indicators = document.querySelectorAll('.indicator');
+    <script>
+        let currentSlide = 0;
+        let totalSlides = 4;
+        let autoSlideInterval = null;
+        let isHovered = false;
 
-function updateCarousel() {
-    const translateX = -currentSlide * (100 / totalSlides);
-    track.style.transform = `translateX(${translateX}%)`;
-    
-    indicators.forEach((indicator, index) => {
-        indicator.classList.toggle('active', index === currentSlide);
-    });
-}
+        const track = document.getElementById('carouselTrack');
+        const indicators = document.querySelectorAll('.indicator');
+        const carouselWrapper = document.querySelector('.carousel-wrapper');
 
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateCarousel();
-}
-
-function previousSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateCarousel();
-}
-
-function goToSlide(slideIndex) {
-    currentSlide = slideIndex;
-    updateCarousel();
-}
-
-// Auto-advance carousel every 5 seconds
-setInterval(nextSlide, 5000);
-
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') previousSlide();
-    if (e.key === 'ArrowRight') nextSlide();
-});
-
-// Touch/swipe support for mobile
-let startX = 0;
-let endX = 0;
-
-track.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-});
-
-track.addEventListener('touchend', (e) => {
-    endX = e.changedTouches[0].clientX;
-    handleSwipe();
-});
-
-function handleSwipe() {
-    const swipeThreshold = 50;
-    const diff = startX - endX;
-    
-    if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
-            nextSlide();
-        } else {
-            previousSlide();
+        // Create duplicate slides for seamless looping
+        function initializeCarousel() {
+            const originalSlides = Array.from(track.children);
+            
+            // Clone first and last for seamless loop
+            const firstClone = originalSlides[0].cloneNode(true);
+            const lastClone = originalSlides[originalSlides.length - 1].cloneNode(true);
+            
+            track.appendChild(firstClone);
+            track.insertBefore(lastClone, originalSlides[0]);
+            
+            // Set initial position (skip cloned first)
+            track.style.transform = `translateX(-100%)`;
         }
-    }
-}
-</script>
+
+        function updateCarousel(instant = false) {
+            const translateX = -(currentSlide + 1) * 100; // +1 to account for the prepended clone
+            
+            if (instant) {
+                track.style.transition = 'none';
+                track.style.transform = `translateX(${translateX}%)`;
+                // Force reflow
+                track.offsetHeight;
+                track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            } else {
+                track.style.transform = `translateX(${translateX}%)`;
+            }
+            
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            updateCarousel();
+            
+            // Check if we've reached the cloned first slide
+            if (currentSlide === totalSlides) {
+                setTimeout(() => {
+                    currentSlide = 0;
+                    updateCarousel(true);
+                }, 600); // Wait for transition to complete
+            }
+        }
+
+        function previousSlide() {
+            currentSlide--;
+            updateCarousel();
+            
+            // Check if we've reached the cloned last slide
+            if (currentSlide === -1) {
+                setTimeout(() => {
+                    currentSlide = totalSlides - 1;
+                    updateCarousel(true);
+                }, 600); // Fixed timing to match next slide
+            }
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateCarousel();
+        }
+
+        function startAutoSlide() {
+            // Clear any existing interval first
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+            }
+            
+            // Only start if not hovered
+            if (!isHovered) {
+                autoSlideInterval = setInterval(() => {
+                    // Double check we're still not hovered before advancing
+                    if (!isHovered) {
+                        nextSlide();
+                    }
+                }, 10000); // every 10 seconds
+            }
+        }
+        
+        function stopAutoSlide() {
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = null;
+            }
+        }
+
+        // Enhanced hover event handlers
+        function handleMouseEnter() {
+            isHovered = true;
+            stopAutoSlide();
+        }
+
+        function handleMouseLeave() {
+            isHovered = false;
+            // Small delay to prevent rapid hover on/off
+            setTimeout(() => {
+                if (!isHovered) {
+                    startAutoSlide();
+                }
+            }, 100);
+        }
+
+        // Initialize carousel
+        initializeCarousel();
+
+        // Start auto-sliding
+        startAutoSlide();
+
+        // Attach hover events to the entire carousel wrapper
+        carouselWrapper.addEventListener('mouseenter', handleMouseEnter);
+        carouselWrapper.addEventListener('mouseleave', handleMouseLeave);
+
+        // Also handle focus events for accessibility
+        carouselWrapper.addEventListener('focusin', handleMouseEnter);
+        carouselWrapper.addEventListener('focusout', handleMouseLeave);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                handleMouseEnter(); // Pause auto-slide when using keyboard
+                previousSlide();
+            }
+            if (e.key === 'ArrowRight') {
+                handleMouseEnter(); // Pause auto-slide when using keyboard
+                nextSlide();
+            }
+        });
+
+        // Resume auto-slide after keyboard interaction
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                setTimeout(handleMouseLeave, 2000); // Resume after 2 seconds
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let endX = 0;
+
+        track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            handleMouseEnter(); // Pause during touch interaction
+        });
+
+        track.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+            // Resume auto-slide after touch interaction
+            setTimeout(handleMouseLeave, 1000);
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+            }
+        }
+
+        // Handle manual navigation (indicators and nav buttons)
+        const navButtons = document.querySelectorAll('.carousel-nav, .indicator');
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                handleMouseEnter(); // Pause when manually navigating
+                setTimeout(handleMouseLeave, 3000); // Resume after 3 seconds
+            });
+        });
+    </script>
+</body>
+</html>

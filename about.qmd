@@ -5,14 +5,7 @@ execute:
   warnings: false  # Add this line to suppress warnings globally
 ---
 
-***
-
-**ConnectomeDB, launched in 2015, is an ongoing project aimed at creating and continually improving a comprehensive and highly accurate database of interacting LR pairs and relevant data analysis tools. Its primary goal is to enhance the understanding of cell-cell communication in humans and other mammalian species, helping to advance biological and medical discoveries.**
-
-**Developers**: [**Perkins Systems Biology & Genomics Lab**](https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/) & [**YCU Bioinformatics Lab**](https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/).
-<span class="half-break"></span>
-
-
+<i class="far fa-link"></i>
 ```{python}
 import os
 import sys
@@ -26,8 +19,26 @@ from createDataTable import (
     receptorCount,
     sourceCount
 )
-
 ```
+
+<hr>
+
+<div style="border-left: 4px solid #C28840; background-color: #F5F5F5; padding: 0px 0.3em; margin: 1em 0; font-family: Arial, sans-serif; font-size: 110%;">
+  <span class="half-break"></span>
+  <strong>Before using this resource</strong>, please read our 
+  <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/policy.html" target="_blank" style="color: #1E90FF; text-decoration: underline; font-weight: bold;">Terms &amp; Conditions</a>.
+  <span class="half-break"></span>
+</div>
+
+<div style="border: 1.5px solid #F5F5F5; border-radius: 10px; padding: 8px 10px 0px 10px; background-color: #F5F5F5; font-family: Arial, sans-serif; font-size: 110%; width: 100%; box-sizing: border-box; margin: 0; line-height: 1.25;">
+  <strong>ConnectomeDB</strong> is a comprehensive and ongoing project that provides a high-quality database of interacting ligand-receptor pairs and analysis tools. Launched in 2015, it aims to enhance understanding of cell-cell communication in humans and other mammals, supporting biological and medical research.<span class="half-break"></span>
+  <strong>Developers</strong>: 
+  <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank" style="color:#1E90FF; text-decoration:underline;">YCU Bioinformatics Lab</a>
+    &amp; 
+  <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank" style="color:#1E90FF; text-decoration:underline;">Perkins Systems Biology Genomics Lab</a>.
+</div>
+
+<span class="half-break"></span>
 
 ::: {.panel-tabset}
 
@@ -39,33 +50,29 @@ from createDataTable import (
 - **`{python} f"{lrPairsCount:,}"`  Manually Curated Human LR pairs**: comprehensive and most accurate with primary literature support\
 - **`{python} f"{ligandCount:,}"` Ligands** & **`{python} f"{receptorCount:,}"` Receptors**: gene cards with extensive metadata and annotations\
 - **Biologically Relevant Content**: ontologies, cancers and other diseases annotations\
-- **Homologous Interactions**: ~98% <variable> LR pairs in mouse and other vertebrate species\
- - **Free, no-code, and user-friendly resource**: developed with <a href='https://quarto.org/' target='_blank'>Quarto 1.6+</a> and <a href='https://www.biorender.com/' target='_blank'> BioRender</a> 
+- **Homologous Interactions**: ~98% <variable> LR pairs in mouse and other vertebrate species - [Al: see details here - might be link to another page?]\
+ - **Free, user-friendly resource**: developed with <a href='https://quarto.org/' target='_blank'>Quarto 1.7+</a> and <a href='https://www.biorender.com/' target='_blank'> BioRender</a> 
+
+<hr>
 
 <span class="half-break"></span>
 **Publication**: [ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction (Journal Title, 2025)](about.qmd)  
-**GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB>
+**GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB> *(open upon publication)*
 
 ## **How to use ConnectomeDB?**
 
-#### **Online implementation of ConnectomeDB2025**
+#### **Access ConnectomeDB2025 Online**
 <span class="half-break"></span>
 
-**IMPORTANT: Read our [Terms & Conditions](policy.qmd) before using this resource**. 
+An internet connection and a web browser are required. The following major operating systems and web browsers have been tested and are quaranteed to work:
 
-To access ConnectomeDB2025 online, an internet connection and a web browser are required. The following operating systems and major web browsers have been tested and are guaranteed to work:
-
-- **Windows 10/11**: Google Chrome, Safari, Microsoft Edge
+- **Windows 10/11**: Google Chrome, Microsoft Edge
 - **macOS 15+**: Google Chrome, Safari
-- **Rocky Linux 8/9**: Google Chrome, Mozilla Firefox
-- **Debian**: Google Chrome, Mozilla Firefox
 
-**Problems acessing/using this resource?**  
-Please fill out the [Inquiry form](https://forms.gle/m7k5vygRPdTRdaTh6) below or contact us via this [email](mailto:bioinfo@yokohama-cu.ac.jp).  
+<hr>
 
 <span class="half-break"></span>
-**Not familiar with ConnectomeDB 2025 or want to learn more?**   
-Please check out [our tutorials](tutorials.qmd).
+**Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [our tutorials](tutorials.qmd) *(currently under construction)*.
 
 ## **Contribute to ConnectomeDB**
 
@@ -73,16 +80,18 @@ Please check out [our tutorials](tutorials.qmd).
 <span class="half-break"></span>
 
 We welcome your feedback and suggestions for improving ConnectomeDB content and would be glad to hear any ideas for further development.  
-If you would like to contribute to the ConnectomeDB project, please visit the [**GitHub repository**](https://github.com/bioinfo-YCU/ConnectomeDB) or [email us](mailto:need_to_think@com).
+If you would like to contribute to the ConnectomeDB project, please visit the [GitHub repository](https://github.com/bioinfo-YCU/ConnectomeDB) *(open upon publication)* or [email us](mailto:alistair.forrest@gmail.com; jordanr@yokohama-cu.ac.jp; rui.hou@research.uwa.edu.au).
 
 ## **Try NATMI**
 
-#### **NATMI (Network Analysis Toolkit for Multicellular Interactions)**
+#### **Network Analysis Toolkit for Multicellular Interactions (NATMI)**
 <span class="half-break"></span>
 
 - our *Python-based toolkit* designed for constructing and analyzing multi-cellular communication networks in multiple species
 - predicts cell-to-cell communication at the levels of niches, tissues, and the entire organism
 - can use both single-cell and bulk gene expression and proteomic data
+
+<hr>
 
 <span class="half-break"></span>
 
@@ -92,7 +101,8 @@ If you would like to contribute to the ConnectomeDB project, please visit the [*
 ## **Cite us**
 <span class="half-break"></span>
 
-**Please cite the following papers if you use ConnectomeDB or NATMI in your publication:**
+#### **Please cite the following papers if you use ConnectomeDB or NATMI in your publication:**
+<span class="half-break"></span>
 
 1. [ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction](), P Liu, et al. *Journal Title* **XX (YY)**, ZZZ (2025)  
 This work describes ConnectomeDB2025, which is our most current ligand-receptor (LR) pair database and online resource.
@@ -103,16 +113,13 @@ This study introduces NATMI (Network Analysis Toolkit for Multicellular Interact
 3. [A draft network of ligand–receptor-mediated multicellular signalling in human](https://doi.org/10.1038/ncomms8866), JA Ramilowski, et al. *Nature communications* **6 (1)**, 7866 (2015)  
 This is the original resource upon which subsequent ConnectomeDB releases are based, and is widely used by many other LR databases.
 
-## **Questions?**
+## **Inquiries**
 
 #### **Let us Help You**
 <span class="half-break"></span>
 
-For questions related to the **ConnectomeDB2025 online resource**, please fill out the [Inquiry form](https://forms.gle/m7k5vygRPdTRdaTh6) below or contact us via this [email](mailto:bioinfo@yokohama-cu.ac.jp).  
+**General inquiries:** send Alistair, Jordan, and Rui an [email](mailto:alistair.forrest@gmail.com; jordanr@yokohama-cu.ac.jp; rui.hou@research.uwa.edu.au).
 
+<hr>
 
-***
-For general inquiries, please send Alistair, Jordan, and Rui an [email](mailto:alistair.forrest@gmail.com; jordanr@yokohama-cu.ac.jp; rui.hou@research.uwa.edu.au).
-
-:::
-
+**Online resource issues**: fill out this [Inquiry form](https://forms.gle/m7k5vygRPdTRdaTh6) or contact us via this [email](mailto:bioinfo@yokohama-cu.ac.jp; alistair.forrest@gmail.com).  

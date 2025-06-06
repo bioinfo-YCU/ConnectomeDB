@@ -755,6 +755,13 @@ gene_pair.columns = [
 ]
 
 gene_pair = gene_pair.reset_index(drop=True)  # Remove the index
+
+#######################################################################
+# Identify the column(s) that contain '(PMID)' and temporarily remove for presubmission
+pmid_cols = [col for col in gene_pair.columns if '(PMID)' in col]
+gene_pair = gene_pair.drop(columns=pmid_cols)
+#######################################################################
+
 gene_pair000 = gene_pair.copy()
 
 keywords_to_modify = ["Ligand", "Receptor"]
@@ -773,4 +780,8 @@ new_columns[:10] = [
 
 # Assign the modified column names back to the DataFrame
 gene_pair000.columns = new_columns
-human_columns = [col for col in gene_pair000.columns][:17]
+#######################################################################
+# temporarily remove 1 column for presubmission
+#human_columns = [col for col in gene_pair000.columns][:17]
+human_columns = [col for col in gene_pair000.columns][:16]
+#######################################################################

@@ -173,7 +173,7 @@ gene_pair_annot2["Receptor Symbols"] = gene_pair_annot2["Receptor Symbols"].appl
 gene_group_lim = gene_group[['hgnc_id','root_group_name', 'root_group_id']].copy()
 
 gene_group_lim['root_group_name']  =[
-        f'<a href="https://www.genenames.org/data/genegroup/#!/group/{root_group_id}" target="_blank">{root_group_name}<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></a>' 
+        f'<a href="https://www.genenames.org/data/genegroup/#!/group/{root_group_id}" target="_blank">{root_group_name}</a>' #<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i>
         if pd.notna(root_group_id) and root_group_id.strip() else "" 
         for root_group_id, root_group_name in zip(gene_group_lim["root_group_id"], gene_group_lim["root_group_name"])
     ]
