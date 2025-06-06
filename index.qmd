@@ -7,10 +7,10 @@ execute:
 toc: false
 ---
 
-<br>
+<div style="margin-top: 0.5em;"></div>
 
 ```{=html}
 
-{{< include HTML/image_carousel_with_logo.html >}}
+{{< include HTML/image_carousel_with_logo_mobile_friendly.html >}}
 
 ```
