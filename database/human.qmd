@@ -127,7 +127,7 @@ def update_table():
             {"className": "dt-center", "targets": [10]}, 
             {"search": False, "targets": [12]},
             {"width": "275px", "targets": [4,5]},
-            {"visible": False, "targets": list(range(-1, -19, -1)) + [2,3]} # Hide last n columns by default
+            {"visible": False, "targets": list(range(-1, -18, -1)) + [2,3]} # Hide last n columns by default
         ],
         style="width:100%; max-width:1200px; margin:auto",
            #language={

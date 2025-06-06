@@ -55,12 +55,12 @@ website:
       # - href: stats.qmd
       #   text: "{{< iconify mdi:chart-bar inline size=20px >}}Statistics"
     right:
-      - url: mailto:bioinfo@yokohama-cu.ac.jp
+      - url: "mailto:bioinfo@yokohama-cu.ac.jp,alistair.forrest@perkins.uwa.edu.au,rui.hou@uwa.edu.au"
         text: "{{< iconify mdi:email inline size=20px >}}"
 
       - icon: github
         menu:
-          - text: Source Code
+          - text: Source Code (upon publication)
             href: https://github.com/bioinfo-YCU/ConnectomeDB
           - text: Report a Bug
             href: https://github.com/bioinfo-YCU/ConnectomeDB

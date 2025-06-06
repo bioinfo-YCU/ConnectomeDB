@@ -1,7 +1,7 @@
 # Purpose: Download HGNC complete txt file and save in data folder
 # remember to use "R" conda env
 # Libraries
-library(tidyverse)
+# library(tidyverse)
 
 # Main
 print(paste0("Retrieving on: ", format(Sys.Date(), "%d-%b-%Y")))
@@ -13,7 +13,7 @@ download.file(
   method = "auto"
 )
 
-# Optional: read into R
+# read into R
 hgnc_data <- read.delim("hgnc_complete_set.txt", sep = "\t", header = TRUE)
 # head(hgnc_data)
 # Save to file
