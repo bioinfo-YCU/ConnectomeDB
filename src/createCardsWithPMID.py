@@ -521,7 +521,7 @@ def generate_combined_html_files(
                 <h2>{title}</h2>
                 <p>{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">PubMed</a></p>
                 <div class="abstract-wrapper">
-                    <p class="abstract-content" id="abstract-content-{pmid}"><strong>ABSTRACT:</strong> {abstract}</p>
+                    <div class="abstract-content" id="abstract-content-{pmid}"><strong>ABSTRACT:</strong> {abstract}</div>
                 </div>
             </div>
             """)
