@@ -94,10 +94,10 @@ from createDataTable import gene_pair
 
 human_gene_pair = gene_pair.iloc[:, :-36]
 
-# Turn Interaction ID into clickable links
-human_gene_pair[human_gene_pair.columns[0]] = human_gene_pair[human_gene_pair.columns[0]].apply(
-    lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
-)
+## Turn Interaction ID into clickable links (hide for now)
+# human_gene_pair[human_gene_pair.columns[0]] = human_gene_pair[human_gene_pair.columns[0]].apply(
+#    lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
+# )
 
 # Function to update and display the table
 def update_table():

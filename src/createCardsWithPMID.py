@@ -83,9 +83,11 @@ gene_pair0_copy = generate_perplexity_links(
     default_query_template="What-diseases-is-the-ligand-receptor-pair-{pair}-associated-with"
 )
 
-gene_pair0_copy["Interaction ID"] = gene_pair0_copy["Interaction ID"].apply(
-    lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
-)
+# # Hide for now (linking to actual PMID database
+# gene_pair0_copy["Interaction ID"] = gene_pair0_copy["Interaction ID"].apply(
+#     lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
+# )
+
 # Add external link icon
 # icon_html = '<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></a>'
 # columns_to_update = [
@@ -173,7 +175,7 @@ def convert_symbol_url_exp(symbol):
 # for GEPIA, cancer exp
 def convert_symbol_url_exp_GEPIA(symbol):
     if symbol:
-        visible_text = 'GEPIA cancer vs normal' #<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"> 
+        visible_text = 'GEPIA cancer vs normal (RNA)' #<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"> 
         new_link = f'<a href="http://gepia.cancer-pku.cn/detail.php?gene={symbol}" target="_blank">{visible_text}</a>'
         return new_link
     return None
@@ -240,7 +242,7 @@ def convert_hgnc_url_disease(col):
 def convert_hgnc_url_exp(col):
     hgnc_id = extract_hgnc_id(col)
     if hgnc_id:
-        visible_text = 'Gene Cards (RNA and protein)' # <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>
+        visible_text = 'GeneCards (RNA and protein)' # <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>
         new_link = f'<a href="https://www.genecards.org/cgi-bin/carddisp.pl?id_type=hgnc&id={hgnc_id}#expression" target="_blank">{visible_text}</a>'
         return new_link
     return None
@@ -288,13 +290,13 @@ def prepare_card_dataframes(gene_pair_input_df):
     ligand_card_2["Human Cell Atlas"] = ligand_card["Ligand"].apply(convert_symbol_url_exp)
     ligand_card_2["GEPIA"] = ligand_card["Ligand"].apply(convert_symbol_url_exp_GEPIA)
     ligand_card_2["Expression Profile"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url_exp)
-    ligand_card_2["Gene Group (HGNC)"] = ligand_card_2['Ligand HGNC ID'].map(ligand_mapping).fillna("none")
+    ligand_card_2["HGNC Gene Group "] = ligand_card_2['Ligand HGNC ID'].map(ligand_mapping).fillna("none")
     icon_html_card = '<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></a>' # Use a different name to avoid conflict
     for col in ["Ligand HGNC ID"]:
         ligand_card_2[col] = ligand_card_2[col].str.replace(
             "</a>", icon_html_card, regex=False
         )
-    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "GeneCards", "Gene Group (HGNC)", "Disease relevance", "Human Cell Atlas","GEPIA", "OMIM", "JensenLab DISEASES", "Expression Profile", 'Open Targets Platform', 'Human Protein Atlas', "AmiGO", "PAN-GO", "Ligand"]]
+    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "GeneCards", "HGNC Gene Group ", "Disease relevance", "Human Cell Atlas","GEPIA", "OMIM", "JensenLab DISEASES", "Expression Profile", 'Open Targets Platform', 'Human Protein Atlas', "AmiGO", "PAN-GO", "Ligand"]]
     ### Receptor cards
     receptor_card = gene_pair_input_df[["Human LR Pair", "Receptor", "Receptor Name", "Receptor HGNC ID", "Receptor MGI ID", "Receptor RGD ID", "Receptor Location"]].merge(
         pop_up_info_lim, how='left', left_on='Receptor', right_on='Approved symbol'
@@ -313,16 +315,16 @@ def prepare_card_dataframes(gene_pair_input_df):
     receptor_card_2["GEPIA"] = receptor_card["Receptor"].apply(convert_symbol_url_exp_GEPIA)
 
     receptor_card_2["Expression Profile"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url_exp)
-    receptor_card_2["Gene Group (HGNC)"] = receptor_card_2['Receptor HGNC ID'].map(receptor_mapping).fillna("none")
+    receptor_card_2["HGNC Gene Group "] = receptor_card_2['Receptor HGNC ID'].map(receptor_mapping).fillna("none")
     for col in ["Receptor HGNC ID"]:
         receptor_card_2[col] = receptor_card_2[col].str.replace(
             "</a>", icon_html_card, regex=False
         )
-    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID",  "GeneCards", "Gene Group (HGNC)", "Disease relevance", "Human Cell Atlas","GEPIA", "OMIM", 'Open Targets Platform', "JensenLab DISEASES", "Expression Profile",'Human Protein Atlas', "AmiGO", "PAN-GO", "Receptor"]]
-    # Rename Ligand HGNC ID and Receptor HGNC ID and HGNC gene symbol report and change HGNC to symbol for visible text
-    ligand_card_2= ligand_card_2.rename(columns={"Ligand HGNC ID": "HGNC gene symbol report"})
-    ligand_card_2["HGNC gene symbol report"] = ligand_card_2.apply(
-    lambda row: update_link_text_with_symbol(row["HGNC gene symbol report"], row["Ligand"]),
+    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID",  "GeneCards", "HGNC Gene Group ", "Disease relevance", "Human Cell Atlas","GEPIA", "OMIM", 'Open Targets Platform', "JensenLab DISEASES", "Expression Profile",'Human Protein Atlas', "AmiGO", "PAN-GO", "Receptor"]]
+    # Rename Ligand HGNC ID and Receptor HGNC ID and HGNC Gene Symbol Report and change HGNC to symbol for visible text
+    ligand_card_2= ligand_card_2.rename(columns={"Ligand HGNC ID": "HGNC Gene Symbol Report"})
+    ligand_card_2["HGNC Gene Symbol Report"] = ligand_card_2.apply(
+    lambda row: update_link_text_with_symbol(row["HGNC Gene Symbol Report"], row["Ligand"]),
     axis=1
 )
     # Add perplexity
@@ -330,9 +332,9 @@ def prepare_card_dataframes(gene_pair_input_df):
     ###
     ligand_card_2 = ligand_card_2.drop(columns=["Ligand"])
     
-    receptor_card_2=receptor_card_2.rename(columns={"Receptor HGNC ID": "HGNC gene symbol report"})
-    receptor_card_2["HGNC gene symbol report"] = receptor_card_2.apply(
-    lambda row: update_link_text_with_symbol(row["HGNC gene symbol report"], row["Receptor"]),
+    receptor_card_2=receptor_card_2.rename(columns={"Receptor HGNC ID": "HGNC Gene Symbol Report"})
+    receptor_card_2["HGNC Gene Symbol Report"] = receptor_card_2.apply(
+    lambda row: update_link_text_with_symbol(row["HGNC Gene Symbol Report"], row["Receptor"]),
     axis=1
 )
     # Add perplexity
@@ -353,15 +355,27 @@ def convert_pair_url(df_pairs):
         else None
     )
 
-    # Generate new HTML anchor tag
+    # # Generate new HTML anchor tag (with LR_Pair then interaction ID
+    # def make_link(row):
+    #     lrpair = row["Human LR Pair"]
+    #     interaction_id = row["Clean Interaction ID"]
+    #     if pd.notna(lrpair) and lrpair.strip() and pd.notna(interaction_id):
+    #         encoded_lrpair = lrpair.replace(" ", "%20")
+    #         return (
+    #             f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/'
+    #             f'{encoded_lrpair}_{interaction_id}.html" target="_blank" '
+    #             f'title="Open {lrpair} card">'
+    #             f'{lrpair}</a>'
+    #         )
+    #     return ""
+        # Generate new HTML anchor tag (with LR_Pair only
     def make_link(row):
         lrpair = row["Human LR Pair"]
-        interaction_id = row["Clean Interaction ID"]
-        if pd.notna(lrpair) and lrpair.strip() and pd.notna(interaction_id):
-            encoded_lrpair = lrpair.replace(" ", "%20")
+        if pd.notna(lrpair) and lrpair.strip():
+            encoded_lrpair = lrpair.replace(" ", "-")
             return (
                 f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/'
-                f'{encoded_lrpair}_{interaction_id}.html" target="_blank" '
+                f'{encoded_lrpair}.html" target="_blank" '
                 f'title="Open {lrpair} card">'
                 f'{lrpair}</a>'
             )
@@ -372,6 +386,10 @@ def convert_pair_url(df_pairs):
     return df_pairs
 
 
+
+# Find the generate_combined_html_files function and update these specific parts:
+
+# Find the generate_combined_html_files function and update these specific parts:
 
 def generate_combined_html_files(
     gene_pair_keywords_df, # Corresponds to gene_pair000 (with '——' in LR Pair)
@@ -391,14 +409,23 @@ def generate_combined_html_files(
     """
     os.makedirs(output_dir, exist_ok=True)
     # --- Create a map of all pages for navigation ---
-   # 1. Clean the 'Interaction ID' column in gene_pair_main_df and add it as a new column
+       # 1. Clean the 'Interaction ID' column in gene_pair_main_df and add it as a new column
     #    This ensures we have a clean ID for sorting and filename generation.
     cleaned_main_df = gene_pair_main_df.copy()
-    cleaned_main_df["Clean Interaction ID"] = cleaned_main_df["Interaction ID"].apply(
-        lambda x: re.search(r'(CDB\d+)</a>', x).group(1)
-        if isinstance(x, str) and re.search(r'(CDB\d+)</a>', x)
-        else None
-    )
+    
+    def extract_clean_id(x):
+        if isinstance(x, str):
+            # Try HTML format first
+            match = re.search(r'(CDB\d+)</a>', x)
+            if match:
+                return match.group(1)
+            # Try plain text format
+            match = re.search(r'(CDB\d+)', x)
+            if match:
+                return match.group(1)
+        return None
+    
+    cleaned_main_df["Clean Interaction ID"] = cleaned_main_df["Interaction ID"].apply(extract_clean_id)
     # Filter out rows where the clean ID could not be extracted (malformed entries)
     cleaned_main_df = cleaned_main_df.dropna(subset=["Clean Interaction ID"])
 
@@ -408,7 +435,6 @@ def generate_combined_html_files(
         by="Clean Interaction ID",
         key=lambda series: series.str[3:].astype(int) # Now it's just "CDBXXXXX" so simple slicing works
     ).reset_index(drop=True)
-
 
     rendered_pages = []
 
@@ -431,14 +457,21 @@ def generate_combined_html_files(
         # Extract and clean interaction ID from the actual table data
         table0_data = row0.drop('Human LR Pair', axis=1).to_dict(orient='records')[0]
         raw_interaction_id_html = table0_data["Interaction ID"]
+        
+        # Try to extract from HTML link first, then from plain text
         match = re.search(r'(CDB\d+)</a>', raw_interaction_id_html)
         if not match:
+            # If no HTML link found, try to extract from plain text
+            match = re.search(r'(CDB\d+)', raw_interaction_id_html)
+        
+        if not match:
             print(f"[SKIP] Could not extract clean interaction ID for: {lr_pair_name_space}")
+            print(f"[DEBUG] Interaction ID content: {raw_interaction_id_html}")
             continue
         clean_interaction_id = match.group(1)
     
-        # Construct filename and output path
-        filename = f"{value1.strip()} {value2.strip()}_{clean_interaction_id}.html"
+        # UPDATED: Construct filename without interaction ID
+        filename = f"{value1.strip()}-{value2.strip()}.html"
         output_file = os.path.join(output_dir, filename)
     
         # Save for navigation
@@ -456,8 +489,6 @@ def generate_combined_html_files(
             "row4": receptor_card_2_df[receptor_card_2_df['Human LR Pair'] == lr_pair_name_space],
             "output_file": output_file,
             "filename": filename,
-            "value1": value1,
-            "value2": value2,
         })
 
     # --- Second pass: Render each page with correct navigation ---
@@ -484,11 +515,10 @@ def generate_combined_html_files(
     
             active_class = "active" if j == 0 else ""
             tab_headers.append(f'<button class="tablinks {active_class}" onclick="openTab(event, \'tab{pmid}\')">{pmid}</button>')
-            # <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i>
             tab_contents.append(f"""
             <div id="tab{pmid}" class="tabcontent {active_class}">
                 <h2>{title}</h2>
-                <p>{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">For more details, see PubMed</a></p>
+                <p>{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">PubMed</a></p>
                 <div class="abstract-wrapper">
                     <p class="abstract-content" id="abstract-content-{pmid}">{abstract}</p>
                 </div>
@@ -529,7 +559,7 @@ def generate_combined_html_files(
         ligand_image = get_plot_content(f'data/tabula_sapiens/heatmap/{page["value1"]}.html')
         receptor_image = get_plot_content(f'data/tabula_sapiens/heatmap/{page["value2"]}.html')
     
-        # --- Final render ---
+        # --- UPDATED: Final render with updated navigation URLs ---
         rendered_html = template.render(
             GENE_NAME=page["lr_pair_name_space"],
             KEYWORDS=page["keywords"],
