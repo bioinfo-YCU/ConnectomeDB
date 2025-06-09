@@ -19,7 +19,7 @@ from createFunctionalAnnotTable import gene_pair_annot_ligand, gene_pair_annot_r
 test = False
 test_genes = ["VEGFA ITGB1", "VEGFA KDR", "VEGFA NRP1", "THPO MPL", "FGF1 FGFR3"] # Example genes
 # --- Paths ---
-MERGED_TEMPLATE_PATH = 'HTML/mergedCard.html'
+MERGED_TEMPLATE_PATH = 'HTML/mergedCard_tabs.html'
 OUTPUT_DIR = 'data/cards/' # New output directory for combined files
 
 # function for replacing visible text:
@@ -373,11 +373,12 @@ def convert_pair_url(df_pairs):
         lrpair = row["Human LR Pair"]
         if pd.notna(lrpair) and lrpair.strip():
             encoded_lrpair = lrpair.replace(" ", "-")
+            lrpair_dash = lrpair.replace(" ", " —— ")
             return (
                 f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/'
                 f'{encoded_lrpair}.html" target="_blank" '
                 f'title="Open {lrpair} card">'
-                f'{lrpair}</a>'
+                f'{lrpair_dash}</a>'
             )
         return ""
 
@@ -520,7 +521,7 @@ def generate_combined_html_files(
                 <h2>{title}</h2>
                 <p>{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">PubMed</a></p>
                 <div class="abstract-wrapper">
-                    <p class="abstract-content" id="abstract-content-{pmid}">{abstract}</p>
+                    <p class="abstract-content" id="abstract-content-{pmid}"><strong>ABSTRACT:</strong> {abstract}</p>
                 </div>
             </div>
             """)
