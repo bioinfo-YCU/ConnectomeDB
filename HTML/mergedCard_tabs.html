@@ -104,6 +104,7 @@
         h3 {
             text-align: center;
             font-size: 1.3em;
+            width: 100%;
             background-color: #1f4eb6;
             color: white;
             margin-top: 0px;
@@ -120,8 +121,8 @@
         }
 
         .tab button {
-            padding-top: 8px !important;
-            padding-bottom: 8px !important;
+            padding-top: 6px !important;
+            padding-bottom: 6px !important;
             padding-right: 10px !important; 
             padding-left: 10px !important;
             margin: 5px;
@@ -458,8 +459,205 @@
             text-align: right;
         }
 
+        /* NEW STYLES FOR LIGAND-RECEPTOR TABS */
+        .lr-tab-container {
+            margin: 10px 0;
+        }
+
+        .lr-tabs {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .lr-tab-button {
+            flex: 1;
+            padding: 5px 10px;
+            background-color: #f9f9f9;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .lr-tab-button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .lr-tab-button.active {
+            background-color: #1f4eb6;
+            color: white;
+            border-bottom: 2px solid #1f4eb6;
+        }
+
+        .lr-tab-content {
+            display: none;
+            background-color: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        }
+
+        .lr-tab-content.active {
+            display: block;
+        }
+
+        .lr-info-card {
+            display: flex;
+            flex-wrap: wrap; /* allows wrapping on smaller screens */
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .lr-info-card h3 {
+            background-color: #1f4eb6;
+            color: white;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+        .lr-info-columns {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;              
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .lr-info-columns .column-left {
+            flex: 1 1 48%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 250px;
+        }
+
+        .lr-info-item {
+            margin-bottom: 10px;
+            padding: 0px 0;
+        }
+
+        .lr-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .lr-info-item strong {
+            font-weight: bold;
+        }
+
+        .lr-functional-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+         .lr-functional-header {
+            background-color: #f4f4f4;
+            padding: 8px 12px;
+            margin: 0;
+            border-radius: 8px 8px 0 0; /* Keep top rounded */
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+
+        .lr-functional-header::before {
+            content: "▶";
+            display: inline-block;
+            transition: transform 0.2s ease;
+            margin-right: 8px;
+        }
+
+        .lr-functional-card.expanded .lr-functional-header::before {
+            transform: rotate(90deg);
+        }
+
+        .lr-functional-content {
+            display: none;
+            padding: 15px;
+        }
+
+        .lr-functional-card.expanded .lr-functional-content {
+            display: block;
+        }
+
+        .lr-interactions-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .lr-interactions-header {
+            background-color: #f4f4f4;
+            padding: 10px 15px;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            user-select: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            position: relative;
+        }
+
+        .lr-interactions-header::before {
+            content: "▶";
+            display: inline-block;
+            transition: transform 0.2s ease;
+            margin-right: 8px;
+        }
+
+        .lr-interactions-card.expanded .lr-interactions-header::before {
+            transform: rotate(90deg);
+        }
+
+        .lr-interactions-content {
+            display: none;
+            padding: 15px;
+        }
+
+        .lr-interactions-card.expanded .lr-interactions-content {
+            display: block;
+        }
+
         /* Mobile-specific styles */
         @media screen and (max-width: 768px) {
+            .lr-tabs {
+                flex-direction: column;
+            }
+            
+            .lr-tab-button {
+                border-radius: 0;
+                border-bottom: 1px solid #ddd;
+            }
+            
+            .lr-tab-button:first-child {
+                border-radius: 8px 8px 0 0;
+            }
+            
+            .lr-tab-button:last-child {
+                border-bottom: none;
+                border-radius: 0 0 8px 8px;
+            }
+            
+            .lr-tab-button.active {
+                border-radius: 0;
+            }
+            
+            .lr-tab-content {
+                border-radius: 8px;
+                margin-top: 10px;
+            }
+            
             .card-container {
                 flex-direction: row !important;
                 flex-wrap: nowrap !important;
@@ -531,9 +729,29 @@
             evt.currentTarget.classList.add("active");
         }
 
+        // NEW FUNCTION FOR LIGAND-RECEPTOR TABS
+        function openLRTab(evt, tabId) {
+            // Hide all tab contents
+            document.querySelectorAll(".lr-tab-content").forEach(tab => {
+                tab.classList.remove("active");
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll(".lr-tab-button").forEach(button => {
+                button.classList.remove("active");
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.add("active");
+            
+            // Add active class to clicked button
+            evt.currentTarget.classList.add("active");
+        }
+
         // Cross-browser compatible toggle function
         function toggleCard(element) {
-            const card = element.closest('.card') || element.closest('.card-full-row');
+            const card = element.closest('.card') || element.closest('.card-full-row') || 
+                         element.closest('.lr-functional-card') || element.closest('.lr-interactions-card');
             if (card) {
                 card.classList.toggle('expanded');
             }
@@ -558,11 +776,18 @@
             adjustTabStyle();
             
             // Initialize toggle functionality for all cards
-            document.querySelectorAll('.toggle-header').forEach(header => {
+            document.querySelectorAll('.toggle-header, .lr-functional-header, .lr-interactions-header').forEach(header => {
                 header.addEventListener('click', function() {
                     toggleCard(this);
                 });
             });
+            
+            // Initialize the first Ligand-Receptor tab as active
+            const firstLRTab = document.querySelector('.lr-tab-button');
+            if (firstLRTab) {
+                firstLRTab.classList.add('active');
+                document.getElementById('ligandTab').classList.add('active');
+            }
         };
     </script>
 </head>
@@ -659,130 +884,118 @@
             <h2>{{ value1 }} ({{ table1_data["Ligand Name"] }}) <em>binds to</em> {{ value2 }} ({{ table2_data["Receptor Name"] }})</h2>
         </div>
 
-        <div class="card-container">
-            <div class="card">
-                <h3>Ligand: {{ value1 }}</h3>
-                {% for column, value in table1_data.items() %}
-                    <div>
-                        <strong>{{ column }}:</strong>
-                        {{ value }}
-                    </div>
-                {% endfor %}
+        <!-- NEW LIGAND-RECEPTOR TABBED INTERFACE -->
+        <div class="lr-tab-container">
+            <div class="lr-tabs">
+                <button class="lr-tab-button" onclick="openLRTab(event, 'ligandTab')">
+                    Ligand: {{ value1 }}
+                </button>
+                <button class="lr-tab-button" onclick="openLRTab(event, 'receptorTab')">
+                    Receptor: {{ value2 }}
+                </button>
             </div>
-            <div class="card">
-                <h3>Receptor: {{ value2 }}</h3>
-                {% for column, value in table2_data.items() %}
-                    <div>
-                        <strong>{{ column }}:</strong>
-                        {{ value }}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
 
-        <div class="card-container">
-            <div class="card">
-                {% set table3_data_items = table3_data.items() | list %}
-                {% for column, value in table3_data_items[:-11] %}
-                    <div>
-                        <strong>{{ column }}:</strong>
-                        {{ value }}
+            <!-- LIGAND TAB CONTENT -->
+            <div id="ligandTab" class="lr-tab-content">
+                <div class="lr-info-card">
+                    <h3>Ligand: {{ value1 }}</h3>
+                   <div class="lr-info-columns">
+                    <div class="column-left">
+                        {% for column, value in table1_data.items() %}
+                            <div class="lr-info-item">
+                                <strong>{{ column }}:</strong> {{ value }}
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
-            </div>
-            <div class="card">
-                {% set table4_data_items = table4_data.items() | list %}
-                {% for column, value in table4_data_items[:-11] %}
-                    <div>
-                        <strong>{{ column }}:</strong>
-                        {{ value }}
+            
+                    <div class="column-left">
+                        {% set table3_data_items = table3_data.items() | list %}
+                        {% for column, value in table3_data_items[:-11] %}
+                            <div class="lr-info-item">
+                                <strong>{{ column }}:</strong> {{ value }}
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="card-container">
-            <div class="card expanded">
-                <div class="toggle-header">
-                    <span class="summary-heading">Functional Annotations</span>
-                </div>
-                <div class="card-content">
-                {% if "AmiGO" in table3_data %}
-                    <div>
-                        <strong>Gene Ontology (GO)</strong>: {{ table3_data["AmiGO"] }}
-                    </div>
-               {% endif %}
-                {% if "PAN-GO" in table3_data %}
-                    <div>
-                        <strong>GO Human Funtionome</strong>: {{ table3_data["PAN-GO"] }}
-                    </div>
-               {% endif %}
-                <hr>
-               {% if "Expression Profile" in table3_data %}
-                    <div>
-                        <strong>Expression Profile</strong>: {{ table3_data["Human Protein Atlas"] }}, {{ table3_data["Human Cell Atlas"] }}, {{ table3_data["GEPIA"] }}, {{ table3_data["Expression Profile"] }}
-                    </div>
-               {% endif %}
-                <hr>
-               {% if "Disease relevance" in table3_data %}
-                    <div>
-                        <strong>Disease Annotations:</strong> {{ table3_data["Disease relevance"] }},  {{ table3_data["OMIM"] }}, {{ table3_data["Open Targets Platform"] }}, {{ table3_data["JensenLab DISEASES"] }}, {{table3_data["Perplexity"] }}
-                    </div>
-               {% endif %} 
                 </div>
             </div>
 
-            <div class="card expanded">
-                <div class="toggle-header">
-                    <span class="summary-heading">Functional Annotations</span>
+               <div class="lr-functional-card expanded">
+                   <div class="lr-functional-header">Functional Annotations</div>
+                        <div class="lr-functional-content">
+                            {% if "AmiGO" in table3_data %}
+                            <strong>Gene Ontology (GO)</strong>: {{ table3_data["AmiGO"] }}
+                            {% endif %}
+                            {% if "PAN-GO" in table3_data %}
+                            <strong>GO Human Funtionome</strong>: {{ table3_data["PAN-GO"] }}
+                            {% endif %}
+                             <hr>
+                            {% if "Expression Profile" in table3_data %}
+                            <strong>Expression Profile</strong>: {{ table3_data["Human Protein Atlas"] }}, {{ table3_data["Human Cell Atlas"] }}, {{ table3_data["GEPIA"] }}, {{ table3_data["Expression Profile"] }}
+                            {% endif %}
+                            <hr>
+                            {% if "Disease relevance" in table3_data %}
+                            <strong>Disease Annotations:</strong> {{ table3_data["Disease relevance"] }},  {{ table3_data["OMIM"] }}, {{ table3_data["Open Targets Platform"] }}, {{ table3_data["JensenLab DISEASES"] }}, {{table3_data["Perplexity"] }}
+                            {% endif %}
+                    </div>
                 </div>
-                <div class="card-content">
-                {% if "AmiGO" in table4_data %}
-                    <div>
-                        <strong>Gene Ontology (GO)</strong>: {{ table4_data["AmiGO"] }}
+               <div class="lr-interactions-card expanded">
+                   <div class="lr-interactions-header">Interactions with other Receptors</div>
+                        <div class="lr-interactions-content">
+                                {{ ligand_pairs }}
+                        </div>
+                   </div>               
+                   
+               </div>        
+            <!-- RECEPTOR TAB CONTENT -->
+            <div id="receptorTab" class="lr-tab-content">
+                <div class="lr-info-card">
+                    <h3>Receptor: {{ value2 }}</h3>
+                   <div class="lr-info-columns">
+                    <div class="column-left">
+                        {% for column, value in table2_data.items() %}
+                            <div class="lr-info-item">
+                                <strong>{{ column }}:</strong> {{ value }}
+                            </div>
+                        {% endfor %}
                     </div>
-               {% endif %}
-                {% if "PAN-GO" in table4_data %}
-                    <div>
-                        <strong>GO Human Funtionome</strong>: {{ table4_data["PAN-GO"] }}
+            
+                    <div class="column-left">
+                        {% set table4_data_items = table4_data.items() | list %}
+                        {% for column, value in table4_data_items[:-11] %}
+                            <div class="lr-info-item">
+                                <strong>{{ column }}:</strong> {{ value }}
+                            </div>
+                        {% endfor %}
                     </div>
-               {% endif %}
-                <hr>
-               {% if "Expression Profile" in table4_data %}
-                    <div>
-                        <strong>Expression Profile</strong>: {{ table4_data["Human Protein Atlas"] }}, {{ table4_data["Human Cell Atlas"] }}, {{ table4_data["GEPIA"] }}, {{ table4_data["Expression Profile"] }}
-                    </div>
-               {% endif %}
-                <hr>
-               {% if "Disease relevance" in table4_data %}
-                    <div>
-                        <strong>Disease Annotations:</strong> {{ table4_data["Disease relevance"] }},  {{ table4_data["OMIM"] }}, {{ table4_data["Open Targets Platform"] }}, {{ table4_data["JensenLab DISEASES"] }}, {{ table4_data["Perplexity"] }}
-                    </div>
-                {% endif %}
                 </div>
             </div>
-        </div>
-
-        <div class="card-container">
-            <div class="card expanded">
-                <div class="toggle-header">
-                    <span class="summary-heading">Interactions with other Receptors</span>
+               <div class="lr-functional-card expanded">
+                   <div class="lr-functional-header">Functional Annotations</div>
+                        <div class="lr-functional-content">
+                            {% if "AmiGO" in table4_data %}
+                            <strong>Gene Ontology (GO)</strong>: {{ table4_data["AmiGO"] }}
+                            {% endif %}
+                            {% if "PAN-GO" in table4_data %}
+                            <strong>GO Human Funtionome</strong>: {{ table4_data["PAN-GO"] }}
+                            {% endif %}
+                             <hr>
+                            {% if "Expression Profile" in table4_data %}
+                            <strong>Expression Profile</strong>: {{ table4_data["Human Protein Atlas"] }}, {{ table4_data["Human Cell Atlas"] }}, {{ table4_data["GEPIA"] }}, {{ table4_data["Expression Profile"] }}
+                            {% endif %}
+                            <hr>
+                            {% if "Disease relevance" in table4_data %}
+                            <strong>Disease Annotations:</strong> {{ table4_data["Disease relevance"] }},  {{ table4_data["OMIM"] }}, {{ table4_data["Open Targets Platform"] }}, {{ table4_data["JensenLab DISEASES"] }}, {{table3_data["Perplexity"] }}
+                            {% endif %}
+                    </div>
                 </div>
-                <div class="card-content">
-                    {{ ligand_pairs }}
-                 </div>
-            </div>
-
-            <div class="card expanded">
-                <div class="toggle-header">
-                    <span class="summary-heading">Interactions with other Ligands</span>
-                </div>
-                <div class="card-content">
-                    {{ receptor_pairs }}
-                 </div>
-            </div>
-        </div>
-
+               <div class="lr-interactions-card expanded">
+                   <div class="lr-interactions-header expanded">Interactions with other Ligands</div>
+                        <div class="lr-interactions-content">
+                                {{ receptor_pairs }}
+                        </div>
+                   </div>               
+                   
+               </div>       
         <div class="navigation-footer">
             {% if prev_page_info %}
                 <div class="nav-left">
@@ -810,3 +1023,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+                            

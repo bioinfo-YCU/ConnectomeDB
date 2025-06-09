@@ -18,11 +18,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
+
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding-top: 70px;
+            margin: 0; /* Reset margin since we're using fixed navbar */
+            padding-top: 70px; /* Add padding to account for fixed navbar */
             line-height: 1.6;
             color: #333;
             background-color: #f4f4f4;
@@ -51,6 +52,7 @@
         }
 
         .dropdown-menu {
+            /* background-color: #1f4eb6; */
             background-color: white;
             border: 0px solid #d4af37;
         }
@@ -120,10 +122,10 @@
         }
 
         .tab button {
-            padding-top: 8px !important;
-            padding-bottom: 8px !important;
-            padding-right: 10px !important; 
-            padding-left: 10px !important;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-right: 10px;
+            padding-left: 10px;
             margin: 5px;
             margin-bottom: 10px;
             cursor: pointer;
@@ -132,7 +134,7 @@
             border-radius: 5px;
             font-size: 1.1em;
             transition: background-color 0.3s ease;
-            flex-basis: calc(5% - 5px);
+            flex-basis: calc(10% - 10px);
             box-sizing: border-box;
         }
 
@@ -150,6 +152,7 @@
             display: none;
             padding: 10px;
             margin-top: 10px;
+            /* #ecf0f1 */
             background-color: white;
             border-radius: 5px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -207,7 +210,7 @@
             box-sizing: border-box;
         }
         
-        .card-full-row .toggle-header {
+        .card-full-row summary {
             display: block;
             font-size: 1.5em;
             font-weight: bold;
@@ -216,32 +219,15 @@
             border-bottom: 1px solid #ddd;
             cursor: pointer;
             border-radius: 8px 8px 0 0;
-            user-select: none;
-            position: relative;
-        }
-
-        .card-full-row .toggle-header::before {
-            content: "▶";
-            display: inline-block;
-            transition: transform 0.2s ease;
-            margin-right: 8px;
-        }
-
-        .card-full-row.expanded .toggle-header::before {
-            transform: rotate(90deg);
         }
         
         .card-content-flex-container {
-            display: none;
+            display: flex; 
             flex-wrap: wrap; 
             gap: 20px;
             padding: 20px;
             justify-content: space-between; 
             align-items: flex-start; 
-        }
-
-        .card-full-row.expanded .card-content-flex-container {
-            display: flex;
         }
         
         .card.fifty-percent-width {
@@ -283,8 +269,7 @@
             overflow: hidden;
         }
 
-        /* Custom toggle styling for cards */
-        .card .toggle-header {
+        .card summary {
             display: flex;
             align-items: center;
             padding: 4px;
@@ -297,24 +282,40 @@
             margin: 0;
         }
 
-        .card .toggle-header::before {
+        .card summary::before {
             content: "▶";
             display: inline-block;
             transition: transform 0.2s ease;
-            margin-right: 4px;
         }
 
-        .card.expanded .toggle-header::before {
+        .card-full-row summary::before {
+            content: "▶";
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .card[open] summary::before {
             transform: rotate(90deg);
         }
 
-        .card .card-content {
-            display: none;
-            padding: 8px;
+        .card-full-row[open] summary::before {
+            transform: rotate(90deg);
         }
 
-        .card.expanded .card-content {
-            display: block;
+        .summary-heading {
+            margin-left: 4px;
+        }
+
+        .card-full-row summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .card summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .card-content {
+            padding: 8px;
         }
 
         .card-full-row .column {
@@ -415,6 +416,8 @@
             padding-bottom: 0px;
             padding-left: 10px;
             padding-right: 10px;
+            /* border: 1px solid #ddd; */
+            /* background-color: #ecf0f1; */
             background-color: white;
             border-radius: 5px;
         }
@@ -457,61 +460,62 @@
         .navigation-footer:has(.nav-right):not(:has(.nav-left)) .nav-right {
             text-align: right;
         }
-
         /* Mobile-specific styles */
-        @media screen and (max-width: 768px) {
-            .card-container {
-                flex-direction: row !important;
-                flex-wrap: nowrap !important;
-                overflow-x: auto;
-                gap: 10px;
-                padding: 10px;
-                align-items: stretch;
-            }
-            
-            .card-container > * {
-                flex: 0 0 auto;
-                min-width: 280px;
-                max-width: 320px;
-            }
-            
-            @media screen and (max-width: 480px) {
-                .card-container {
-                    padding: 5px;
-                    gap: 8px;
-                }
-                
-                .card-container > * {
-                    min-width: 250px;
-                    max-width: 280px;
-                }
-                
-                .metadata-title {
-                    padding-left: 8px;
-                }
-                
-                .ptag {
-                    padding: 3px 8px;
-                    font-size: 0.9em;
-                }
-                
-                footer {
-                    flex-direction: column;
-                    gap: 10px;
-                    text-align: center;
-                }
-                
-                .navigation-footer {
-                    flex-direction: column;
-                    gap: 15px;
-                }
-                
-                .nav-left,
-                .nav-right {
-                    text-align: center;
-                }
-            }
+    @media screen and (max-width: 768px) {
+    .card-container {
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        gap: 10px;
+        padding: 10px;
+        align-items: stretch;
+    }
+    
+    /* If you have individual cards within the container */
+    .card-container > * {
+        flex: 0 0 auto;
+        min-width: 280px; /* Adjust based on your card width needs */
+        max-width: 320px;
+    }
+    
+    /* For very small screens */
+    @media screen and (max-width: 480px) {
+        .card-container {
+            padding: 5px;
+            gap: 8px;
         }
+        
+        .card-container > * {
+            min-width: 250px;
+            max-width: 280px;
+        }
+        
+        .metadata-title {
+            padding-left: 8px;
+        }
+        
+        .ptag {
+            padding: 3px 8px;
+            font-size: 0.9em;
+        }
+        
+        footer {
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+        }
+        
+        .navigation-footer {
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .nav-left,
+        .nav-right {
+            text-align: center;
+        }
+    }
+}
     </style>
 
     <script>
@@ -531,14 +535,6 @@
             evt.currentTarget.classList.add("active");
         }
 
-        // Cross-browser compatible toggle function
-        function toggleCard(element) {
-            const card = element.closest('.card') || element.closest('.card-full-row');
-            if (card) {
-                card.classList.toggle('expanded');
-            }
-        }
-
         function downloadHTML() {
             const blob = new Blob(
                 [document.documentElement.outerHTML],
@@ -556,13 +552,6 @@
 
         window.onload = function() {
             adjustTabStyle();
-            
-            // Initialize toggle functionality for all cards
-            document.querySelectorAll('.toggle-header').forEach(header => {
-                header.addEventListener('click', function() {
-                    toggleCard(this);
-                });
-            });
         };
     </script>
 </head>
@@ -623,6 +612,11 @@
                             </ul>
                         </li>
                         <li class="nav-item">
+<!-- 
+                            <button class="download-btn" onclick="downloadHTML()">
+                                ⇣ HTML
+                            </button>
+ -->
                         </li>
                     </ul>
                 </div>
@@ -702,10 +696,8 @@
         </div>
 
         <div class="card-container">
-            <div class="card expanded">
-                <div class="toggle-header">
-                    <span class="summary-heading">Functional Annotations</span>
-                </div>
+            <details class="card" open>
+                <summary><span class="summary-heading">Functional Annotations</span></summary>
                 <div class="card-content">
                 {% if "AmiGO" in table3_data %}
                     <div>
@@ -730,12 +722,10 @@
                     </div>
                {% endif %} 
                 </div>
-            </div>
+            </details>
 
-            <div class="card expanded">
-                <div class="toggle-header">
-                    <span class="summary-heading">Functional Annotations</span>
-                </div>
+            <details class="card" open>
+                <summary><span class="summary-heading">Functional Annotations</span></summary>
                 <div class="card-content">
                 {% if "AmiGO" in table4_data %}
                     <div>
@@ -760,27 +750,23 @@
                     </div>
                 {% endif %}
                 </div>
-            </div>
+            </details>
         </div>
 
         <div class="card-container">
-            <div class="card expanded">
-                <div class="toggle-header">
-                    <span class="summary-heading">Interactions with other Receptors</span>
-                </div>
+            <details class="card" open>
+                <summary><span class="summary-heading">Interactions with other Receptors</span></summary>
                 <div class="card-content">
                     {{ ligand_pairs }}
                  </div>
-            </div>
+            </details>
 
-            <div class="card expanded">
-                <div class="toggle-header">
-                    <span class="summary-heading">Interactions with other Ligands</span>
-                </div>
+            <details class="card" open>
+                <summary><span class="summary-heading">Interactions with other Ligands</span></summary>
                 <div class="card-content">
                     {{ receptor_pairs }}
                  </div>
-            </div>
+            </details>
         </div>
 
         <div class="navigation-footer">
