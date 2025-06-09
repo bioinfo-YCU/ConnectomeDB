@@ -365,12 +365,7 @@
             align-items: flex-end;
         }
 
-        .column-left {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
+
 
         .column-center {
             flex: 1;
@@ -500,7 +495,7 @@
             background-color: white;
             border-radius: 0 0 8px 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 15px;
+            padding: 10px;
         }
 
         .lr-tab-content.active {
@@ -510,8 +505,9 @@
         .lr-info-card {
             display: flex;
             flex-wrap: wrap; /* allows wrapping on smaller screens */
-            background-color: #f9f9f9;
+            background-color: white;
             padding: 10px;
+            padding-bottom: 0px !important;
             border-radius: 8px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
@@ -529,7 +525,7 @@
             display: flex;
             flex-wrap: wrap;
             width: 100%;              
-            gap: 20px;
+            gap: 5px;
             align-items: flex-start;
         }
 
@@ -544,6 +540,18 @@
         .lr-info-item {
             margin-bottom: 10px;
             padding: 0px 0;
+            white-space: normal !important;
+            overflow-wrap: break-word !important;
+            word-break: break-word !important;
+            width: 100%;
+        }
+
+        .lr-info-item strong {
+            display: inline-block;
+            max-width: 100%;
+            font-weight: 600;
+            white-space: normal !important;
+            word-break: break-word !important;
         }
 
         .lr-info-item:last-child {
@@ -584,7 +592,24 @@
 
         .lr-functional-content {
             display: none;
-            padding: 15px;
+            padding: 10px;
+        }
+
+        .lr-functional-content .lr-functional-columns {
+            display: flex;           /* Use flexbox for the columns */
+            gap: 5px;               /* Space between columns */
+            flex-wrap: wrap;       
+            align-items: flex-start; /* Align items to the top */
+            width: 100%;             /* Make sure the columns take up the full width */
+        }
+        
+        .lr-functional-content .lr-functional-columns .column-left {
+            flex: 1 1 45%;        /* Each column takes 48% of the width */
+            min-width: 250px;     /* Prevent columns from becoming too small */
+            display: flex;        /* Make sure it's a flex container */
+            flex-direction: row;  /* Align content in a single row */
+            align-items: flex-start;
+            gap: 10px;            /* Space between the items inside each column */
         }
 
         .lr-functional-card.expanded .lr-functional-content {
@@ -622,7 +647,7 @@
 
         .lr-interactions-content {
             display: none;
-            padding: 15px;
+            padding: 10px;
         }
 
         .lr-interactions-card.expanded .lr-interactions-content {
@@ -632,12 +657,18 @@
         /* Mobile-specific styles */
         @media screen and (max-width: 768px) {
             .lr-tabs {
-                flex-direction: column;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                width: 100%;
             }
-            
+        
             .lr-tab-button {
-                border-radius: 0;
-                border-bottom: 1px solid #ddd;
+                flex: 1 1 50%;
+                max-width: 50%;
+                box-sizing: border-box;
+                white-space: nowrap;
+                text-align: center;
             }
             
             .lr-tab-button:first-child {
@@ -674,9 +705,22 @@
             }
             
             @media screen and (max-width: 480px) {
+                body {
+                    font-size: 80% !important;
+                }
                 .card-container {
                     padding: 5px;
                     gap: 8px;
+                }
+
+                .lr-functional-columns {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                }
+            
+                .column-left {
+                    width: 100% !important;
                 }
                 
                 .card-container > * {
@@ -916,23 +960,33 @@
                             </div>
                         {% endfor %}
                     </div>
+                   </div>
                 </div>
-            </div>
-
                <div class="lr-functional-card expanded">
                    <div class="lr-functional-header">Functional Annotations</div>
-                        <div class="lr-functional-content">
-                            {% if "AmiGO" in table3_data %}
-                            <strong>Gene Ontology (GO)</strong>: {{ table3_data["AmiGO"] }}
-                            {% endif %}
-                            {% if "PAN-GO" in table3_data %}
-                            <strong>GO Human Funtionome</strong>: {{ table3_data["PAN-GO"] }}
-                            {% endif %}
-                             <hr>
+                    <div class="lr-functional-content">
+                        <div class="lr-functional-columns">
+                            <div class="column-left">
+                                {% if "AmiGO" in table3_data %}
+                                <div class="lr-info-item">
+                                <strong>Gene Ontology (GO)</strong>: {{ table3_data["AmiGO"] }}
+                                {% endif %}
+                                </div>
+                            </div>
+                            <div class="column-left">
+                                {% if "PAN-GO" in table3_data %}
+                                <div class="lr-info-item">
+                                <strong>GO Human Funtionome</strong>: {{ table3_data["PAN-GO"] }}
+                                    
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                             <hr style="margin: 4px 0; padding: 0;">
                             {% if "Expression Profile" in table3_data %}
                             <strong>Expression Profile</strong>: {{ table3_data["Human Protein Atlas"] }}, {{ table3_data["Human Cell Atlas"] }}, {{ table3_data["GEPIA"] }}, {{ table3_data["Expression Profile"] }}
                             {% endif %}
-                            <hr>
+                            <hr style="margin: 4px 0; padding: 0;">
                             {% if "Disease relevance" in table3_data %}
                             <strong>Disease Annotations:</strong> {{ table3_data["Disease relevance"] }},  {{ table3_data["OMIM"] }}, {{ table3_data["Open Targets Platform"] }}, {{ table3_data["JensenLab DISEASES"] }}, {{table3_data["Perplexity"] }}
                             {% endif %}
@@ -943,9 +997,8 @@
                         <div class="lr-interactions-content">
                                 {{ ligand_pairs }}
                         </div>
-                   </div>               
-                   
-               </div>        
+               </div>
+            </div>
             <!-- RECEPTOR TAB CONTENT -->
             <div id="receptorTab" class="lr-tab-content">
                 <div class="lr-info-card">
@@ -958,7 +1011,6 @@
                             </div>
                         {% endfor %}
                     </div>
-            
                     <div class="column-left">
                         {% set table4_data_items = table4_data.items() | list %}
                         {% for column, value in table4_data_items[:-11] %}
@@ -972,17 +1024,28 @@
                <div class="lr-functional-card expanded">
                    <div class="lr-functional-header">Functional Annotations</div>
                         <div class="lr-functional-content">
-                            {% if "AmiGO" in table4_data %}
-                            <strong>Gene Ontology (GO)</strong>: {{ table4_data["AmiGO"] }}
-                            {% endif %}
-                            {% if "PAN-GO" in table4_data %}
-                            <strong>GO Human Funtionome</strong>: {{ table4_data["PAN-GO"] }}
-                            {% endif %}
-                             <hr>
+                            <!-- Corrected: Only one lr-info-columns here -->
+                            <div class="lr-functional-columns">
+                                <div class="column-left">
+                                    <div class="lr-info-item">
+                                    {% if "AmiGO" in table4_data %}
+                                        <strong>Gene Ontology (GO)</strong>: {{ table4_data["AmiGO"] }}
+                                    {% endif %}
+                                    </div>
+                                </div>
+                                <div class="column-left">
+                                    <div class="lr-info-item">
+                                    {% if "PAN-GO" in table4_data %}
+                                        <strong>GO Human Funtionome</strong>: {{ table4_data["PAN-GO"] }}
+                                    {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                             <hr style="margin: 4px 0; padding: 0;">
                             {% if "Expression Profile" in table4_data %}
                             <strong>Expression Profile</strong>: {{ table4_data["Human Protein Atlas"] }}, {{ table4_data["Human Cell Atlas"] }}, {{ table4_data["GEPIA"] }}, {{ table4_data["Expression Profile"] }}
                             {% endif %}
-                            <hr>
+                            <hr style="margin: 4px 0; padding: 0;">
                             {% if "Disease relevance" in table4_data %}
                             <strong>Disease Annotations:</strong> {{ table4_data["Disease relevance"] }},  {{ table4_data["OMIM"] }}, {{ table4_data["Open Targets Platform"] }}, {{ table4_data["JensenLab DISEASES"] }}, {{table3_data["Perplexity"] }}
                             {% endif %}
@@ -994,8 +1057,8 @@
                                 {{ receptor_pairs }}
                         </div>
                    </div>               
-                   
                </div>       
+         </div> 
         <div class="navigation-footer">
             {% if prev_page_info %}
                 <div class="nav-left">
