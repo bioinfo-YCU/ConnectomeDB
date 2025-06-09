@@ -5,7 +5,6 @@ execute:
   warnings: false  # Add this line to suppress warnings globally
 ---
 
-<i class="far fa-link"></i>
 ```{python}
 import os
 import sys

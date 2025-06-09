@@ -507,7 +507,7 @@ gene_pair["Receptor HGNC ID"] = [
 def generate_links_with_doi(df, gene_column, pmid_column, id_column):
     def create_link(gene, id_col, sources):
         # Replace spaces with "——" in the gene name for the link
-        gene_name = gene.replace(" ", "——")
+        gene_name = gene.replace(" ", "—")
         
         if len(sources) == 1:
             source = sources[0]
@@ -516,10 +516,10 @@ def generate_links_with_doi(df, gene_column, pmid_column, id_column):
                 return f'<a href="{source}" target="_blank">BioRxiv</a>'
             else:
                 # If it's a single PMID, hyperlink the PMID text
-                return f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{gene}_{id_col}.html">{source}</a>'
+                return f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{gene}.html">{source}</a>'
         else:
             # If multiple PMIDs, show the count and hyperlink to the page
-            return f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{gene}_{id_col}.html" target="_blank">{len(sources)} PMIDs</a>'
+            return f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{gene}.html" target="_blank">{len(sources)} PMIDs</a>'
 
     # Process each row to generate the "PMID" column # was "PMID support"
     df["PMID"] = [
@@ -733,8 +733,8 @@ gene_pair = gene_pair.drop(columns=["Ligand Name", "Receptor Name"])
 
 # Create the links to the HTML cards
 gene_pair["Human LR Pair"] = [
-    f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrPairOrig}_{interactionID}.html">{lrPair}</a>'
-    for interactionID, lrPairOrig, lrPair in zip(gene_pair0["Interaction ID"], gene_pair0["Human LR Pair"], gene_pair["Human LR Pair"])
+    f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrPairOrig.replace(" ","-")}.html">{lrPair}</a>'
+    for lrPairOrig, lrPair in zip(gene_pair0["Human LR Pair"], gene_pair["Human LR Pair"])
 ]
 
 
