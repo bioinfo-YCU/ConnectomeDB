@@ -56,10 +56,10 @@ pubmed_data = pubmed_data.reset_index(drop=True)
 bio_keywords = pd.read_csv("data/llm_results.csv")
 
 # --- Prepare gene_pair00 for PMID section (from createPMIDpages.py) ---
-# gene_pair00 is used for PMID and Keywords, so it needs the '——' placeholder
+# gene_pair00 is used for PMID and Keywords, so it needs the '—' placeholder
 # Ensure gene_pair00 is a copy to avoid SettingWithCopyWarning later
 gene_pair00_copy = gene_pair00.copy()
-gene_pair00_copy["Human LR Pair"] = gene_pair00_copy["Human LR Pair"].str.replace(" ", "——")
+gene_pair00_copy["Human LR Pair"] = gene_pair00_copy["Human LR Pair"].str.replace(" ", "—")
 
 # Merge with LLM results
 gene_pair000 = gene_pair00_copy.merge(bio_keywords, how='left', left_on="Human LR Pair", right_on='Human LR Pair')
@@ -373,7 +373,7 @@ def convert_pair_url(df_pairs):
         lrpair = row["Human LR Pair"]
         if pd.notna(lrpair) and lrpair.strip():
             encoded_lrpair = lrpair.replace(" ", "-")
-            lrpair_dash = lrpair.replace(" ", " —— ")
+            lrpair_dash = lrpair.replace(" ", " — ")
             return (
                 f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/'
                 f'{encoded_lrpair}.html" target="_blank" '
@@ -393,7 +393,7 @@ def convert_pair_url(df_pairs):
 # Find the generate_combined_html_files function and update these specific parts:
 
 def generate_combined_html_files(
-    gene_pair_keywords_df, # Corresponds to gene_pair000 (with '——' in LR Pair)
+    gene_pair_keywords_df, # Corresponds to gene_pair000 (with '—' in LR Pair)
     template,
     interaction_card_df,
     ligand_card_1_df,
@@ -441,12 +441,12 @@ def generate_combined_html_files(
 
     # --- First pass: Collect all content and metadata ---
     for idx, row in gene_pair_keywords_df.iterrows():
-        lr_pair_name_hyphen = row["Human LR Pair"]  # e.g., "VEGFA——KDR"
+        lr_pair_name_hyphen = row["Human LR Pair"]  # e.g., "VEGFA—KDR"
         keywords = row["Relevance Keywords"]
         pmids_str = row["PMID"]
     
         # Convert to space-separated format
-        lr_pair_name_space = lr_pair_name_hyphen.replace("——", " ")
+        lr_pair_name_space = lr_pair_name_hyphen.replace("—", " ")
         value1, value2 = lr_pair_name_space.split()
     
         # --- Filter card dataframes ---
@@ -598,17 +598,17 @@ def generate_combined_html_files(
 if __name__ == "__main__":
     if test:
         # Define test genes - these should be in the 'space' format for gene_pair0
-        # and will be converted to '——' for gene_pair000 internally.
-        # Convert test_genes to '——' format for filtering gene_pair000
-        test_genes_hyphen = [gene.replace(" ", "——") for gene in test_genes]
+        # and will be converted to '—' for gene_pair000 internally.
+        # Convert test_genes to '—' format for filtering gene_pair000
+        test_genes_hyphen = [gene.replace(" ", "—") for gene in test_genes]
         # Filter gene_pair0 for the test genes to be used in prepare_card_dataframes
         # This gene_pair_input should have space-separated LR pairs
         gene_pair_input = gene_pair0_copy[gene_pair0_copy["Human LR Pair"].isin(test_genes)]
-        # Filter gene_pair000 for the test genes (which are in '——' format)
+        # Filter gene_pair000 for the test genes (which are in '—' format)
         gene_pair_keywords_filtered = gene_pair000[gene_pair000["Human LR Pair"].isin(test_genes_hyphen)]
     else:
         gene_pair_input = gene_pair0_copy
-        # Filter gene_pair000 for the test genes (which are in '——' format)
+        # Filter gene_pair000 for the test genes (which are in '—' format)
         gene_pair_keywords_filtered = gene_pair000
         print("Making all cards")
 
