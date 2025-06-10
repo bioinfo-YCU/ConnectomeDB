@@ -97,8 +97,11 @@
 
         h2 {
             margin-top: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
             margin-bottom: 5px;
-            font-size: 1.3em;
+            font-size: 1.2em;
+            text-align: center;
         }
 
         h3 {
@@ -163,8 +166,8 @@
         }
 
         .tabcontent h2 {
-            font-size: 1.3em;
             line-height: 1.2;
+            text-align: left !important;
         }
 
         .tabcontent p {
@@ -469,8 +472,6 @@
         .lr-tabs {
             display: flex;
             border-bottom: 2px solid #ddd;
-            margin-left: 10px;
-            margin-right: 10px;
             margin-bottom: 10px;
             background-color: #f9f9f9;
             border-radius: 8px 8px 0 0;
@@ -504,8 +505,6 @@
             background-color: white;
             border-radius: 0 0 8px 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-right: 10px;
-            margin-left: 10px;
             padding: 10px;
         }
 
@@ -671,7 +670,7 @@
             .lr-tabs {
                 display: flex;
                 flex-direction: row;
-                flex-wrap: nowrap;
+                flex-wrap: wrap;
                 width: 100%;
             }
         
@@ -679,7 +678,7 @@
                 flex: 1 1 50%;
                 max-width: 50%;
                 box-sizing: border-box;
-                white-space: nowrap;
+                white-space: wrap;
                 text-align: center;
             }
             
@@ -699,12 +698,11 @@
             .lr-tab-content {
                 border-radius: 8px;
                 margin-top: 10px;
-                margin-right: -10px
             }
             
             .card-container {
                 flex-direction: row !important;
-                flex-wrap: nowrap !important;
+                flex-wrap: wrap !important;
                 overflow-x: auto;
                 gap: 10px;
                 padding: 10px;
