@@ -519,7 +519,7 @@ def generate_combined_html_files(
             tab_contents.append(f"""
             <div id="tab{pmid}" class="tabcontent {active_class}">
                 <h2>{title}</h2>
-                <p>{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">PubMed</a></p>
+                <div style="margin-left: 10px;">{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">PubMed</a></div>
                 <div class="abstract-wrapper">
                     <div class="abstract-content" id="abstract-content-{pmid}"><strong>ABSTRACT:</strong> {abstract}</div>
                 </div>
