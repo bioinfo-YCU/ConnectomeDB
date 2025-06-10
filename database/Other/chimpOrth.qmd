@@ -12,17 +12,17 @@ header-includes: |
 
 ***
 
+[**Chimp**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" data-toggle="tooltip" title="Currently selected"}
 [**Macaque**](macaqueOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Macaque Ortholog Pairs"}
 [**Marmoset**](marmosetOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Marmoset Ortholog Pairs"} 
 [**Rat**](ratOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Rat Ortholog Pairs"} 
-[**Zebrafish**](zebrafishOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Zebrafish Ortholog Pairs"}
-[**Chimp**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" data-toggle="tooltip" title="Currently selected"}
-[**Chicken**](chickenOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Chicken Ortholog Pairs"}
 [**Pig**](pigOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Pig Ortholog Pairs"}
 [**Cow**](cowOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Cow Ortholog Pairs"}
 [**Dog**](dogOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Dog Ortholog Pairs"}
 [**Horse**](horseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Horse Ortholog Pairs"}
 [**Sheep**](sheepOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Sheep Ortholog Pairs"}
+[**Chicken**](chickenOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Chicken Ortholog Pairs"}
+[**Zebrafish**](zebrafishOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Zebrafish Ortholog Pairs"}
 
 
 ```{python}

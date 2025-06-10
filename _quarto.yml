@@ -41,7 +41,7 @@ website:
          #   text: Human LR Pairs ˣ Pubmed
          - href: database/mouseOrth.qmd
            text: Mouse Orthologs
-         - href: database/other/macaqueOrth.qmd
+         - href: database/other/chimpOrth.qmd
          
            text: Other Species
       # - text: 'Annotations Browser'
