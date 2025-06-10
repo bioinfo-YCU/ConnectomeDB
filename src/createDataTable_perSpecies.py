@@ -145,5 +145,5 @@ sheep_gene_pair1 = process_species(gene_pair, gene_pair000, "Sheep", "Ensembl", 
 marmoset_gene_pair1 = process_species(gene_pair, gene_pair000, "Marmoset", "Ensembl", 11, 11)
 
 # Rhesus macaque
-rhesusmonkey_gene_pair1 = process_species(gene_pair, gene_pair000, "Macaque", "Ensembl", 12, 12)
+macaque_gene_pair1 = process_species(gene_pair, gene_pair000, "Macaque", "Ensembl", 12, 12)
 

@@ -482,7 +482,7 @@ def create_url_basic(perplexity_col):
 def generate_perplexity_link_pmid(row): 
     query = f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-{row['Human LR Pair']}-based-on-Pubmed-ID-{row['PMID']}"
     return (
-        f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">'
+         f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">'
         f'<img src="https://img.icons8.com/?size=30&id=0NbBuNOxUwps&format=png&color=000000" alt="Perplexity AI" /></a>'
     )
 # Apply function to the DataFrame

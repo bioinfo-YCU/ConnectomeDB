@@ -12,7 +12,7 @@ header-includes: |
 
 ***
 
-[**Rhesus Monkey**](rhesusmonkeyOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Rhesus Monkey Ortholog Pairs"}
+[**Macaque**](macaqueOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Macaque Ortholog Pairs"}
 [**Marmoset**](marmosetOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Marmoset Ortholog Pairs"} 
 [**Rat**](ratOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Rat Ortholog Pairs"} 
 [**Zebrafish**](zebrafishOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Zebrafish Ortholog Pairs"}
