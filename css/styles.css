@@ -16,7 +16,6 @@
     margin-bottom: 2rem;
 }
 
-
 /* Table and general content styling */
 body {
     background-color: var(--quarto-light); /* Light background */
@@ -533,6 +532,90 @@ table.dataTable thead th {
     color: #d4af37 !important;
 }
 
+/* nav-bar brand starts here */
+
+.navbar-brand {
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+/* Hover effects */
+.navbar-brand:hover {
+            color: #d4af37;
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+/* Active/Click effects */
+.navbar-brand:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+/* Optional: Add a subtle animation effect */
+.navbar-brand::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+.navbar-brand:hover::before {
+            left: 100%;
+    }
+
+/* Alternative style with underline effect */
+.navbar-brand-alt {
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            margin-left: 2rem;
+            position: relative;
+            transition: color 0.3s ease;
+            cursor: pointer;
+    }
+
+.navbar-brand-alt::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #d4af37;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+    }
+
+.navbar-brand-alt:hover {
+        color: #d4af37;
+    }
+
+.navbar-brand-alt:hover::after {
+        width: 100%;
+    }
+
+.navbar-brand-alt:active {
+        transform: scale(0.98);
+    }
 .clickable-icon {
   color: #e67e22; /* A bright orange color */
   margin-left: 8px;

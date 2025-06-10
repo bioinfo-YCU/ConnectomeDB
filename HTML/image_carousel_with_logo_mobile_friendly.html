@@ -5,197 +5,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile-Friendly Carousel</title>
     <style>
-        .carousel-wrapper {
-            max-width: 1600px;
-            width: 100%;
-            margin: 20px auto;
-            position: relative;
-            padding-bottom: 60px;
-        }
-
-        .carousel-wrapper .carousel {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            overflow: hidden;
-            border-radius: 15px;
-        }
-
-        .carousel-wrapper .logo-overlay {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 15;
-            background: rgba(255, 255, 255, 0.5);
-            padding: 5px;
-            border-radius: 2px;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
-
-        .carousel-wrapper .logo-overlay:hover {
-            background: transparent;
-            transform: scale(1.05);
-        }
-
-        .carousel-wrapper .logo-overlay img {
-            display: block;
-            max-width: 180px;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-        }
-
-        .carousel-wrapper .carousel-track {
-            display: flex;
-            height: 100%;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .carousel-wrapper .carousel-slide {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .carousel-wrapper .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        .carousel-wrapper .carousel-slide:hover img {
-            transform: scale(1.05);
-        }
-
-        .carousel-wrapper .carousel-slide .overlay {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            left: auto;
-            width: 275px;
-            background: rgba(0,0,0,0.8);
-            border-radius: 8px;
-            color: white;
-            padding: 10px;
-            font-size: 12px;
-            transform: translateY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .carousel-wrapper .carousel-slide:hover .overlay {
-            transform: translateY(0);
-        }
-
-        .carousel-wrapper .carousel-slide .overlay h3 {
-            font-size: 12px;
-            margin: 0 0 5px 0;
-        }
-        
-        .carousel-wrapper .carousel-slide .overlay p {
-            margin: 0 0 5px 0;
-            line-height: 1.2;
-            font-size: 10px;
-        }
-
-        .carousel-wrapper .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .carousel-wrapper .carousel-nav:hover {
-            background: white;
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .carousel-wrapper .prev {
-            left: 15px;
-        }
-
-        .carousel-wrapper .next {
-            right: 15px;
-        }
-
-        .carousel-wrapper .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 50px;
-        }
-        
-        .carousel-wrapper .indicator {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #ebcb87;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 0px solid rgba(0, 0, 0, 0.6);
-        }
-        
-        .carousel-wrapper .indicator.active {
-            background: #d4af37;
-            border-color: #d4af37;
-            transform: scale(1.3);
-        }
-        
-        .carousel-wrapper .indicator:hover {
-            background: rgba(0, 0, 0, 0.6);
-            transform: scale(1.1);
-        }
-
-        /* Mobile Notes Section */
-        /* .mobile-notes {
-            display: none;
-            background: rgba(0, 0, 0, 0.9);
-            color: white;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .mobile-notes h3 {
-            margin: 0 0 10px 0;
-            font-size: 16px;
-        }
-
-        .mobile-notes p {
-            margin: 0 0 8px 0;
-            line-height: 1.4;
-        }
- */
-        @media (max-width: 768px) {
             .carousel-wrapper {
-                padding-bottom: 20px;
+                max-width: 1500px;
+                width: 80%;
+                margin:10px auto;
+                position: relative;
+                padding-bottom: 40px; 
+            }
+    
+            .carousel-wrapper .carousel {
+                position: relative;
+                width: 100%;
+                overflow: hidden;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+    
+            .carousel-wrapper .logo-overlay {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                z-index: 15;
+                background: rgba(255, 255, 255, 0.5);
+                padding: 5px;
+                border-radius: 2px;
+                backdrop-filter: blur(5px);
+                transition: all 0.3s ease;
+            }
+    
+            .carousel-wrapper .logo-overlay:hover {
+                background: transparent;
+                transform: scale(1.05);
+            }
+    
+            .carousel-wrapper .logo-overlay img {
+                display: block;
+                max-width: 180px;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+            }
+    
+            .carousel-wrapper .carousel-track {
+                display: flex;
+                height: 100%;
+                transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+    
+            .carousel-wrapper .carousel-slide {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                overflow: hidden;
+                flex-shrink: 0;
+            }
+    
+            .carousel-wrapper .carousel-slide img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                display: block;
+                margin: 0 auto;
             }
 
-            .carousel-wrapper .carousel {
-                height: 280px;
+            .carousel-wrapper .carousel-slide:hover img {
+                transform: scale(1.05);
+            }
+    
+            .carousel-wrapper .carousel-slide .overlay {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                left: auto;
+                width: 275px;
+                background: rgba(0,0,0,0.8);
+                border-radius: 8px;
+                color: white;
+                padding: 10px;
+                font-size: 12px;
+                transform: translateY(0);
+                transition: transform 0.3s ease;
+            }
+    
+            .carousel-wrapper .carousel-slide:hover .overlay {
+                transform: translateY(0);
+            }
+    
+            .carousel-wrapper .carousel-slide .overlay h3 {
+                font-size: 12px;
+                margin: 0 0 5px 0;
+            }
+            
+            .carousel-wrapper .carousel-slide .overlay p {
+                margin: 0 0 5px 0;
+                line-height: 1.2;
+                font-size: 10px;
+            }
+    
+            .carousel-wrapper .carousel-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(255, 255, 255, 0.9);
+                border: none;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                font-weight: bold;
+                color: #333;
+                transition: all 0.3s ease;
+                z-index: 10;
+            }
+    
+            .carousel-wrapper .carousel-nav:hover {
+                background: white;
+                transform: translateY(-50%) scale(1.1);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+    
+            .carousel-wrapper .prev {
+                left: 15px;
+            }
+    
+            .carousel-wrapper .next {
+                right: 15px;
+            }
+    
+            .carousel-wrapper .carousel-indicators {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 20px; /* Fixed consistent gap */
+            }
+            
+            .carousel-wrapper .indicator {
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background: #ebcb87;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border: 0px solid rgba(0, 0, 0, 0.6);
+            }
+            
+            .carousel-wrapper .indicator.active {
+                background: #d4af37;
+                border-color: #d4af37;
+                transform: scale(1.3);
+            }
+            
+            .carousel-wrapper .indicator:hover {
+                background: #d4af37;
+                transform: scale(1.1);
+            }
+    
+        @media (max-width: 768px) {
+            .carousel-wrapper {
+                width: 100%;
             }
             
             .carousel-wrapper .carousel-nav {
-                width: 40px;
-                height: 40px;
+                width: 20px;
+                height: 20px;
                 font-size: 16px;
             }
 
@@ -222,40 +200,31 @@
                 display: none;
             }
 
-            /* Show mobile notes instead */
-            /* .mobile-notes {
-                display: block;
-            } */
-
             .carousel-wrapper .carousel-indicators {
-                margin-top: 20px;
                 gap: 10px;
+                margin-top: 12px; /* Closer for tablet */
             }
 
             .carousel-wrapper .indicator {
-                width: 12px;
-                height: 12px;
+                width: 10px;
+                height: 10px;
             }
         }
 
         @media (max-width: 480px) {
-            .carousel-wrapper .carousel {
-                height: 250px;
-                border-radius: 10px;
-            }
-
             .carousel-wrapper .logo-overlay img {
                 max-width: 50px;
             }
 
-            /* .mobile-notes {
-                font-size: 13px;
-                padding: 12px;
+            .carousel-wrapper .carousel-indicators {
+                gap: 8px;
+                margin-top: 10px; /* Even closer for mobile */
             }
 
-            .mobile-notes h3 {
-                font-size: 14px;
-            } */
+            .carousel-wrapper .indicator {
+                width: 5px;
+                height: 5px;
+            }
         }
     </style>
 </head>

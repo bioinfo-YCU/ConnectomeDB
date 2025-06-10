@@ -17,23 +17,22 @@ resources:
   - HTML
   
 website:
-  title: ""
+  title: "ConnectomeDB2025"
+
   reader-mode: false
   open-graph: true
   navbar:
-    # logo: data/image/LRmascot.png
+    # logo: images/LRmascot.webp
     background: "#1f4eb6"
     search: false
     
     left:
-      - href: index.qmd
-        text: "{{< iconify mdi:home inline size=20px >}}"
       - href: about.qmd
         text: 'About'
       - href: tutorials.qmd
         text: 'Tutorials'
 
-      - text: 'ConnectomeDB'
+      - text: 'Ligand-Receptor Browser'
         menu:
          - href: database/human.qmd
            text: Human LR Pairs
@@ -81,8 +80,7 @@ format:
       sidebar-width: 0px
       margin-width: 0px
 
-#header-includes: |
-#  <script src="js/external_links.js"></script>
+#header-includes: 
 #  <script src="js/checkboxAndPopUp.js"></script>
 #  <script src="js/themeSwitcher.js"></script>
 #  <script src="js/adjustTableTextColor.js"></script>
