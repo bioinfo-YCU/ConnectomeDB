@@ -105,7 +105,7 @@ def update_table():
         human_gene_pair,
         keys=True,
         layout = {"topEnd":["paging"]},
-        fixedColumns={"start": 2, "end": 0},
+        fixedColumns={"start": 1, "end": 0},
         fixedHeader=True,  # Keep header fixed for alignment
         column_filters="footer", 
         scrollX=True,

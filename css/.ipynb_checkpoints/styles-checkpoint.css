@@ -90,14 +90,6 @@ main {
 
 
 
-/* Global styles to ensure light theme */
-body {
-    background-color: var(--quarto-light); /* Light background */
-    color: var(--quarto-dark); /* Dark text */
-    margin: 0;
-    padding: 0;
-}
-
 /* Table-specific styles: Ensure light background and dark text */
 table {
     background-color: #ffffff !important; /* Force white background */
@@ -294,7 +286,7 @@ span.dt-column-title input[type="text"] {
 }
 
 
-.dt-buttons button: hover {
+.dt-buttons button:hover {
   background-color: #1f4eb6;
   color: white;
 }
@@ -552,5 +544,27 @@ table.dataTable thead th {
 a:hover .clickable-icon {
   color: #d35400; /* Darker orange on hover */
 }
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 80% !important;
+  }
+
+  /* Optional: further scale down specific UI elements */
+  h1, h2, h3, h4, h5, h6,
+  .btn, button, 
+  .dataTables_wrapper, 
+  .dataTable, 
+  table, 
+  th, td,
+  .itables-container,
+  .dataTables_filter input,
+  .dataTables_length select,
+  .dataTables_paginate,
+  .dataTables_info {
+    font-size: 80% !important;
+  }
+}
+
 
 
