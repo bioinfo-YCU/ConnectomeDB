@@ -635,22 +635,25 @@ a:hover .clickable-icon {
     
   span.dt-column-title input[type="text"] {
     width: 100% !important;  /* Apply width directly */
-    font-size: 80% !important;  /* Change the font size */
+    font-size: 90% !important;  /* Change the font size */
   }
-    .responsive-icon {
+    .dt-buttons, .responsive-icon {
         transform: scale(0.8);
         transform-origin: top left;
-    }
+  }
+
+  div.dt-container .dt-paging .dt-paging-button {
+        transform: scale(0.8);
+        transform-origin: top left;
+  }
 
   /* Optional: further scale down specific UI elements */
-  h1, h2, h3, h4, h5, h6, span.dt-column-title input[type="text"],
-  .dt-buttons,
-  .navbar-brand,
-  .navbar-nav .dropdown-menu .dropdown-item,
-  .navbar-nav .nav-link,
+   h2, h3, h4, h5, h6, 
   .dt-info,
+  .navbar-nav .dropdown-item,
+  .navbar .dropdown-item,
+  .dropdown-item,
   .btn, button, 
-  .dt-column-title,
   .dataTables_wrapper, 
   .dataTable, 
   table, 
@@ -663,7 +666,12 @@ a:hover .clickable-icon {
   .dataTables_info {
     font-size: 80% !important;
   }
+   h1, .navbar-brand, .dt-column-title,
+  .navbar-nav .nav-link {
+    font-size: 90% !important;
+  }
 }
+  
 
 
 
