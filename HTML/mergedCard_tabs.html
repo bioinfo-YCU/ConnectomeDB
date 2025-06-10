@@ -481,7 +481,7 @@
             flex: 1;
             padding: 5px 8px;
             background-color: #f9f9f9;
-            border: none;
+            border: 1px solid #1f4eb6;
             cursor: pointer;
             font-size: 1.2em;
             font-weight: bold;
@@ -497,7 +497,6 @@
         .lr-tab-button.active {
             background-color: #1f4eb6;
             color: white;
-            border-bottom: 2px solid #1f4eb6;
         }
 
         .lr-tab-content {
@@ -688,11 +687,7 @@
             
             .lr-tab-button:last-child {
                 border-bottom: none;
-                border-radius: 0 0 8px 8px;
-            }
-            
-            .lr-tab-button.active {
-                border-radius: 0;
+                border-radius: 8px 8px 0 0;
             }
             
             .lr-tab-content {
