@@ -60,7 +60,7 @@ def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_in
     if id_prefix == "Ensembl":
         # Extract species names dynamically
         all_species = {"Chimpanzee", "Pig", "Dog", "Cow", 
-                       "Chicken", "Horse", "Sheep", "Marmoset", "Rhesus Monkey"}
+                       "Chicken", "Horse", "Sheep", "Marmoset", "Macaque"}
         # Function to clean column names by removing HTML tags
         def clean_column_name(col):
             # Remove HTML tags using BeautifulSoup
@@ -98,9 +98,9 @@ def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_in
     new_order = [human_columns[0]]+ [f"{species} LR Pair", ligand_col, receptor_col] + species_columns + human_columns[1:]
     species_gene_pair1 = species_gene_pair1[new_order].reset_index(drop=True)
     # Turn Interaction ID into clickable links
-    species_gene_pair1[species_gene_pair1.columns[0]] = species_gene_pair1[species_gene_pair1.columns[0]].apply(
-        lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
-    )
+    # species_gene_pair1[species_gene_pair1.columns[0]] = species_gene_pair1[species_gene_pair1.columns[0]].apply(
+    #     lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
+    # )
 
     return species_gene_pair1
 
@@ -145,5 +145,5 @@ sheep_gene_pair1 = process_species(gene_pair, gene_pair000, "Sheep", "Ensembl", 
 marmoset_gene_pair1 = process_species(gene_pair, gene_pair000, "Marmoset", "Ensembl", 11, 11)
 
 # Rhesus macaque
-rhesusmonkey_gene_pair1 = process_species(gene_pair, gene_pair000, "Rhesus Monkey", "Ensembl", 12, 12)
+rhesusmonkey_gene_pair1 = process_species(gene_pair, gene_pair000, "Macaque", "Ensembl", 12, 12)
 
