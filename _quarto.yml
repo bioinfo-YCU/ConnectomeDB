@@ -5,10 +5,12 @@ project:
     - "!DT_R_ver.qmd"
     - "!index_dashboard.qmd"
     - "!*.ipynb/"
-    - "!database/human-trip_old.qmd"
-    - "!database/human-FilterOnTop.qmd"
-    - "!database/human-trip-FilterOnTop.qmd"
+    - "!database/human-trip.qmd"
     - "!stats-withAnnotations.qmd"
+    - "!stats.qmd"
+    - "!annotations/*.qmd"
+    - "!database/human-trip*.qmd"
+    - "!database/human-FilterOnTop.qmd"
 
 resources:
   - images
@@ -39,7 +41,7 @@ website:
          #   text: Human LR Pairs ˣ Pubmed
          - href: database/mouseOrth.qmd
            text: Mouse Orthologs
-         - href: database/other/rhesusmonkeyOrth.qmd
+         - href: database/other/macaqueOrth.qmd
          
            text: Other Species
       # - text: 'Annotations Browser'

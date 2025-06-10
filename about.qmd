@@ -15,8 +15,7 @@ sys.path.append(os.path.abspath("src"))  # Add src directory to path
 from createDataTable import (
   lrPairsCount,
   ligandCount,
-  receptorCount,
-  sourceCount
+  receptorCount
 )
 ```
 
@@ -30,7 +29,7 @@ from createDataTable import (
 </div>
 
 <div style="border: 1.5px solid #F5F5F5; border-radius: 10px; padding: 8px 10px 0px 10px; background-color: #F5F5F5; font-family: Arial, sans-serif; font-size: 110%; width: 100%; box-sizing: border-box; margin: 0; line-height: 1.25;">
-  <strong>ConnectomeDB</strong> is a comprehensive and ongoing project that provides a high-quality database of interacting ligand-receptor pairs and analysis tools. Launched in 2015, it aims to enhance understanding of cell-cell communication in humans and other mammals, supporting biological and medical research.<span class="half-break"></span>
+  <strong>ConnectomeDB</strong> is a comprehensive and ongoing project that provides a high-quality database of interacting ligand-receptor pairs and analysis tools. Launched in 2015, it aims to enhance understanding of cell-cell communication in humans and other species, supporting biological and medical research.<span class="half-break"></span>
   <strong>Developers</strong>: 
   <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank" style="color:#1E90FF; text-decoration:underline;">YCU Bioinformatics Lab</a>
     &amp; 
@@ -44,7 +43,7 @@ from createDataTable import (
 ## **Overview**
 
 #### **ConnectomeDB2025 - Database & Online Resource for Cell-to-Cell Communication Predictions**
-<span class="half-break"></span>
+<div style="margin-top: 1em;"></div>
 
 - **`{python} f"{lrPairsCount:,}"`  Manually Curated Human LR pairs**: comprehensive and most accurate with primary literature support\
 - **`{python} f"{ligandCount:,}"` Ligands** & **`{python} f"{receptorCount:,}"` Receptors**: metadata and functional annotations\
@@ -53,14 +52,14 @@ from createDataTable import (
 
 <hr>
 
-<span class="half-break"></span>
+<div style="margin-top: 1em;"></div>
 **Publication**: *ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction*, P Liu, et al. (TBA)\
 **GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB> *(open upon publication)*
 
 ## **Online Resource**
 
 #### **Access ConnectomeDB2025 Online**
-<span class="half-break"></span>
+<div style="margin-top: 1em;"></div>
 
 An internet connection and a web browser are required. The following major operating systems and web browsers have been tested and are quaranteed to work:
 
@@ -69,13 +68,13 @@ An internet connection and a web browser are required. The following major opera
 
 <hr>
 
-<span class="half-break"></span>
+<div style="margin-top: 1em;"></div>
 **Not familiar with ConnectomeDB 2025 or want to learn more?** Please check out [our tutorials](tutorials.qmd) *(currently under construction)*.
 
 ## **Your Feedback**
 
 #### **Your Feedback**
-<span class="half-break"></span>
+<div style="margin-top: 1em;"></div>
 
 We welcome your feedback and suggestions for improving ConnectomeDB content and would be glad to hear any ideas for further development.  
 If you would like to contribute to the ConnectomeDB project, please visit the [GitHub repository](https://github.com/bioinfo-YCU/ConnectomeDB) *(open upon publication)* or [email us](mailto:alistair.forrest@gmail.com; jordanr@yokohama-cu.ac.jp; rui.hou@research.uwa.edu.au).
@@ -83,7 +82,7 @@ If you would like to contribute to the ConnectomeDB project, please visit the [G
 ## **Try NATMI**
 
 #### **Network Analysis Toolkit for Multicellular Interactions (NATMI)**
-<span class="half-break"></span>
+<div style="margin-top: 1em;"></div>
 
 - our *Python-based toolkit* designed for constructing and analyzing multi-cellular communication networks in multiple species
 - predicts cell-to-cell communication at the levels of niches, tissues, and the entire organism
@@ -91,16 +90,15 @@ If you would like to contribute to the ConnectomeDB project, please visit the [G
 
 <hr>
 
-<span class="half-break"></span>
+<div style="margin-top: 1em;"></div>
 
 **Publication**: [Predicting cell-to-cell communication networks using NATMI (Nat commun, 2020)](https://doi.org/10.1038/s41467-020-18873-z)   
 **GitHub repo**: <https://github.com/forrest-lab/NATMI> 
 
 ## **Cite us**
-<span class="half-break"></span>
 
 #### **Please cite the following papers if you use ConnectomeDB or NATMI in your publication:**
-<span class="half-break"></span>
+<div style="margin-top: 1em;"></div>
 
 1. *ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction*, P Liu, et al. (TBA)\
 PMID: [(TBA)](); DOI: [(TBA)]()
@@ -115,7 +113,7 @@ PMID: [26198319](https://pubmed.ncbi.nlm.nih.gov/26198319/); DOI: [10.1038/ncomm
 ## **Inquiries**
 
 #### **Let us Help You**
-<span class="half-break"></span>
+<div style="margin-top: 1em;"></div>
 
 **General inquiries:** send Alistair, Jordan, and Rui an [email](mailto:alistair.forrest@gmail.com; jordanr@yokohama-cu.ac.jp; rui.hou@research.uwa.edu.au).
 
