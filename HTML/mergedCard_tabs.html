@@ -985,18 +985,10 @@
                             <div class="column-left">
                                 {% if "AmiGO" in table3_data %}
                                 <div class="lr-info-item">
-                                <strong>Gene Ontology (GO)</strong>: {{ table3_data["AmiGO"] }}
+                                <strong>Gene Ontologies</strong>: {{ table3_data["PAN-GO"] }}, {{ table3_data["AmiGO"] }}
                                 {% endif %}
                                 </div>
                             </div>
-                            <div class="column-left">
-                                {% if "PAN-GO" in table3_data %}
-                                <div class="lr-info-item">
-                                <strong>GO Human Functionome</strong>: {{ table3_data["PAN-GO"] }}
-                                    
-                                {% endif %}
-                            </div>
-                        </div>
                     </div>
                              <hr style="margin: 4px 0; padding: 0;">
                             {% if "Expression Profile" in table3_data %}
@@ -1052,14 +1044,7 @@
                                 <div class="column-left">
                                     <div class="lr-info-item">
                                     {% if "AmiGO" in table4_data %}
-                                        <strong>Gene Ontology (GO)</strong>: {{ table4_data["AmiGO"] }}
-                                    {% endif %}
-                                    </div>
-                                </div>
-                                <div class="column-left">
-                                    <div class="lr-info-item">
-                                    {% if "PAN-GO" in table4_data %}
-                                        <strong>GO Human Functionome</strong>: {{ table4_data["PAN-GO"] }}
+                                        <strong>Gene Ontologies</strong>: {{ table4_data["PAN-GO"] }}, {{ table4_data["AmiGO"] }}
                                     {% endif %}
                                     </div>
                                 </div>

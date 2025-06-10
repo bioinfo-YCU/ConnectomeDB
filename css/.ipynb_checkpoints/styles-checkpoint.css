@@ -549,10 +549,17 @@ a:hover .clickable-icon {
   body {
     font-size: 80% !important;
   }
+    
+  span.dt-column-title input[type="text"] {
+    width: 100% !important;  /* Apply width directly */
+    font-size: 80% !important;  /* Change the font size */
+  }
 
   /* Optional: further scale down specific UI elements */
-  h1, h2, h3, h4, h5, h6,
+  h1, h2, h3, h4, h5, h6, span.dt-column-title input[type="text"],
+  .dt-buttons,
   .btn, button, 
+  .dt-column-title,
   .dataTables_wrapper, 
   .dataTable, 
   table, 
@@ -561,6 +568,7 @@ a:hover .clickable-icon {
   .dataTables_filter input,
   .dataTables_length select,
   .dataTables_paginate,
+  
   .dataTables_info {
     font-size: 80% !important;
   }
