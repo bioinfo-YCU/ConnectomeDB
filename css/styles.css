@@ -554,6 +554,10 @@ a:hover .clickable-icon {
     width: 100% !important;  /* Apply width directly */
     font-size: 80% !important;  /* Change the font size */
   }
+    .responsive-icon {
+        transform: scale(0.8);
+        transform-origin: top left;
+    }
 
   /* Optional: further scale down specific UI elements */
   h1, h2, h3, h4, h5, h6, span.dt-column-title input[type="text"],

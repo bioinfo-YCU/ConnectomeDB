@@ -8,11 +8,12 @@ title: "Terms & Conditions *(under construction)*"
 
 This website hosted by the Bioinformatics Laboratory at Yokohama City University and is developped in collaboration with the Systems Biology & Genomics Lab at the Harry Perkins Institute of Medical Research, both governed by their respective legal entities. 
 
-<div style="border-left: 4px solid #C28840; background-color: #F5F5F5; padding: 0.3em 0.6em 0.1em 0.5em; margin: 1em 0 0.2em 0; font-family: Arial, sans-serif; font-size: 100%; border-radius: 6px; box-sizing: border-box; width: 100%;">
+<div style="border-left: 4px solid #C28840; background-color: #F5F5F5; padding: 0px 0.3em; margin: 1em 0; font-family: Arial, sans-serif; font-size: 100%;">
+  <span class="half-break"></span>
   <strong style="font-size: 115%;">&#9888; Important</strong><br>
-  By accessing and using this site, you agree to all terms and conditions highlighted below, effective from your first use of the site. We reserve the right to update these terms at any time.
+  By accessing this site, you agree to the terms and conditions outlined below, effective from your first visit. We reserve the right to update them at any time.
+  <span class="half-break"></span>
 </div>
-
 
 ### General Usage
 
@@ -34,4 +35,4 @@ The images featured on the website were created using **BioRender** under the <a
 
 ----
 
-We strive to make this resource as helpful as possible. If you have any questions, suggestions for improvement, or wish to report issues, please contact us via this [email](mailto:bioinfo@yokohama-cu.ac.jp; alistair.forrest@gmail.com).
+We strive to make this resource as helpful as possible. If you have any questions, suggestions or wish to report issues, please contact us via this [email](mailto:bioinfo@yokohama-cu.ac.jp; alistair.forrest@gmail.com).
