@@ -557,10 +557,15 @@ table.dataTable thead th {
         }
 
 /* Active/Click effects */
-.navbar-brand:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            background-color: rgba(255, 255, 255, 0.2);
+.navbar-brand.active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    color: #d4af37 !important;
+    background-color: rgba(212, 175, 55, 0.1) !important;
+}
+
+.navbar-brand.active::after {
+            background-color: #d4af37;
         }
 
 /* Optional: Add a subtle animation effect */
@@ -600,7 +605,7 @@ table.dataTable thead th {
             left: 50%;
             width: 0;
             height: 2px;
-            background-color: #d4af37;
+            background-color: #d4af37 !important;
             transition: all 0.3s ease;
             transform: translateX(-50%);
     }
@@ -614,8 +619,14 @@ table.dataTable thead th {
     }
 
 .navbar-brand-alt:active {
+        color: #d4af37;
         transform: scale(0.98);
     }
+
+.navbar-brand-alt.active::after {
+    width: 100%;
+}
+
 .clickable-icon {
   color: #e67e22; /* A bright orange color */
   margin-left: 8px;

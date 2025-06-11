@@ -37,7 +37,7 @@
     
             .carousel-wrapper .logo-overlay:hover {
                 background: transparent;
-                transform: scale(1.05);
+                transform: scale(1.03);
             }
     
             .carousel-wrapper .logo-overlay img {
@@ -106,12 +106,12 @@
     
             .carousel-wrapper .carousel-nav {
                 position: absolute;
-                top: 50%;
+                top: 40%;
                 transform: translateY(-50%);
                 background: rgba(255, 255, 255, 0.9);
                 border: none;
-                width: 50px;
-                height: 50px;
+                width: 30px;
+                height: 30px;
                 border-radius: 50%;
                 cursor: pointer;
                 display: flex;
@@ -131,11 +131,11 @@
             }
     
             .carousel-wrapper .prev {
-                left: 15px;
+                left: 5px;
             }
     
             .carousel-wrapper .next {
-                right: 15px;
+                right: 5px;
             }
     
             .carousel-wrapper .carousel-indicators {
@@ -178,11 +178,11 @@
             }
 
             .carousel-wrapper .prev {
-                left: 10px;
+                left: 0px;
             }
 
             .carousel-wrapper .next {
-                right: 10px;
+                right: 0px;
             }
 
             .carousel-wrapper .logo-overlay {
@@ -299,24 +299,11 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
         let totalSlides = 4;
         let autoSlideInterval = null;
         let isHovered = false;
-
+        
         const track = document.getElementById('carouselTrack');
         const indicators = document.querySelectorAll('.indicator');
         const carouselWrapper = document.querySelector('.carousel-wrapper');
-        // const mobileNotesContent = document.getElementById('mobileNotesContent');
-
-        // Notes content for each slide
-//         const notesContent = [
-//             `<p>ConnectomeDB2025 only retains ligand-receptor pairs with primary experimental evidence.</p>
-// <p>ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting complexes.</p>
-// <p>CellChatDB_v2 – 3,234 original pairs (2,240 PPI; 994 non-PPI) → 3,398 PPI singlets.</p>
-// <p>CellPhoneDB_v5 – 2,911 original pairs (1,878 PPI; 1,033 non-PPI) → 1,943 PPI singlets.</p>
-// <p>(% = percentage supported by primary literature)</p>`,
-//             `<p>ConnectomeDB2025 has the most recent publications. See 2020-2025.</p>`,
-//             `<p>Unique new content means they are not reported in connectomeDB2020, CelltalkDB, ICELLNET_v2, CellchatDB_v2, cellphoneDB_v5, or LIANA consensus. Freeze date: 30th May 2025.</p>`,
-//             `<p>12 Vertebrate Orthologs are provided.</p>`
-//         ];
-
+        
         // Create duplicate slides for seamless looping
         function initializeCarousel() {
             const originalSlides = Array.from(track.children);
@@ -331,7 +318,7 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
             // Set initial position (skip cloned first)
             track.style.transform = `translateX(-100%)`;
         }
-
+        
         function updateCarousel(instant = false) {
             const translateX = -(currentSlide + 1) * 100; // +1 to account for the prepended clone
             
@@ -348,11 +335,8 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
             indicators.forEach((indicator, index) => {
                 indicator.classList.toggle('active', index === currentSlide);
             });
-
-            // Update mobile notes content
-            // mobileNotesContent.innerHTML = notesContent[currentSlide];
         }
-
+        
         function nextSlide() {
             currentSlide++;
             updateCarousel();
@@ -365,7 +349,7 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
                 }, 600); // Wait for transition to complete
             }
         }
-
+        
         function previousSlide() {
             currentSlide--;
             updateCarousel();
@@ -378,16 +362,17 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
                 }, 600); // Fixed timing to match next slide
             }
         }
-
+        
         function goToSlide(slideIndex) {
             currentSlide = slideIndex;
             updateCarousel();
         }
-
+        
         function startAutoSlide() {
             // Clear any existing interval first
             if (autoSlideInterval) {
                 clearInterval(autoSlideInterval);
+                autoSlideInterval = null;
             }
             
             // Only start if not hovered
@@ -407,37 +392,29 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
                 autoSlideInterval = null;
             }
         }
-
-        // Enhanced hover event handlers
+        
+        // Simplified hover event handlers
         function handleMouseEnter() {
             isHovered = true;
             stopAutoSlide();
         }
-
+        
         function handleMouseLeave() {
             isHovered = false;
-            // Small delay to prevent rapid hover on/off
-            setTimeout(() => {
-                if (!isHovered) {
-                    startAutoSlide();
-                }
-            }, 100);
+            // Immediate restart without delay to prevent race conditions
+            startAutoSlide();
         }
-
+        
         // Initialize carousel
         initializeCarousel();
-
+        
         // Start auto-sliding
         startAutoSlide();
-
+        
         // Attach hover events to the entire carousel wrapper
         carouselWrapper.addEventListener('mouseenter', handleMouseEnter);
         carouselWrapper.addEventListener('mouseleave', handleMouseLeave);
-
-        // Also handle focus events for accessibility
-        carouselWrapper.addEventListener('focusin', handleMouseEnter);
-        carouselWrapper.addEventListener('focusout', handleMouseLeave);
-
+        
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
@@ -449,30 +426,45 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
                 nextSlide();
             }
         });
-
+        
         // Resume auto-slide after keyboard interaction
         document.addEventListener('keyup', (e) => {
             if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-                setTimeout(handleMouseLeave, 2000); // Resume after 2 seconds
+                setTimeout(() => {
+                    if (!isHovered) {
+                        handleMouseLeave();
+                    }
+                }, 2000); // Resume after 2 seconds only if not hovering
             }
         });
-
+        
         // Touch/swipe support for mobile
         let startX = 0;
         let endX = 0;
-
+        let touchTimeout = null;
+        
         track.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
             handleMouseEnter(); // Pause during touch interaction
         });
-
+        
         track.addEventListener('touchend', (e) => {
             endX = e.changedTouches[0].clientX;
             handleSwipe();
+            
+            // Clear any existing timeout
+            if (touchTimeout) {
+                clearTimeout(touchTimeout);
+            }
+            
             // Resume auto-slide after touch interaction
-            setTimeout(handleMouseLeave, 1000);
+            touchTimeout = setTimeout(() => {
+                if (!isHovered) {
+                    handleMouseLeave();
+                }
+            }, 1000);
         });
-
+        
         function handleSwipe() {
             const swipeThreshold = 50;
             const diff = startX - endX;
@@ -485,13 +477,17 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
                 }
             }
         }
-
+        
         // Handle manual navigation (indicators and nav buttons)
         const navButtons = document.querySelectorAll('.carousel-nav, .indicator');
         navButtons.forEach(button => {
             button.addEventListener('click', () => {
                 handleMouseEnter(); // Pause when manually navigating
-                setTimeout(handleMouseLeave, 3000); // Resume after 3 seconds
+                setTimeout(() => {
+                    if (!isHovered) {
+                        handleMouseLeave();
+                    }
+                }, 3000); // Resume after 3 seconds only if not hovering
             });
         });
     </script>
