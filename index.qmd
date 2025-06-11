@@ -5,6 +5,43 @@ execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
 toc: false
+header-includes: |
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const brand = document.querySelector(".navbar-brand");
+    
+        if (brand) {
+          // Inject CSS for shimmer animation
+          const style = document.createElement("style");
+          style.textContent = `
+            @keyframes shine {
+              to {
+                background-position: 200% center;
+              }
+            }
+    
+            .shine-text {
+              background: linear-gradient(
+                to right,
+                #d4af37 20%,
+                #ffffff 40%,
+                #d4af37 60%,
+                #d4af37 100%
+              );
+              background-size: 200% auto;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              animation: shine 2.5s linear infinite;
+            }
+          `;
+          document.head.appendChild(style);
+    
+          // Apply shine effect
+          brand.classList.add("shine-text");
+        }
+      });
+    </script>
+
 ---
 
 ```{=html}
