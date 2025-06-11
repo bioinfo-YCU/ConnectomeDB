@@ -18,6 +18,8 @@ header-includes: |
                 to right,
                 #ffffff 0%,
                 #d4af37 10%,
+                #ffffff 50%,
+                #d4af37 70%,
                 #ffffff 90%,
                 #d4af37 100%
               );

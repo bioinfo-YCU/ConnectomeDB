@@ -8,9 +8,9 @@ title: "Terms & Conditions *(under construction)*"
 
 This website hosted by the Bioinformatics Laboratory at Yokohama City University and is developped in collaboration with the Systems Biology & Genomics Lab at the Harry Perkins Institute of Medical Research, both governed by their respective legal entities. 
 
-<div style="border-left: 4px solid #C28840; background-color: #F5F5F5; padding: 0px 0.3em; margin: 1em 0; font-family: Arial, sans-serif; font-size: 100%;">
+<div style="border-left: 4px solid #C28840; background-color: #F5F5F5; padding: 0px 0.3em; margin: 1em 0;">
   <span class="half-break"></span>
-  <strong style="font-size: 115%;">&#9888; Important</strong><br>
+  <strong>&#9888; Important</strong><br>
   By accessing this site, you agree to the terms and conditions outlined below, effective from your first visit. We reserve the right to update them at any time.
   <span class="half-break"></span>
 </div>
