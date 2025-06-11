@@ -11,41 +11,36 @@ header-includes: |
         const brand = document.querySelector(".navbar-brand");
     
         if (brand) {
-          // Inject CSS for shimmer animation
           const style = document.createElement("style");
           style.textContent = `
-            @keyframes shine {
-              to {
-                background-position: 200% center;
-              }
-            }
-    
             .shine-text {
               background: linear-gradient(
                 to right,
-                #d4af37 20%,
-                #ffffff 40%,
-                #d4af37 60%,
+                #ffffff 0%,
+                #d4af37 10%,
+                #ffffff 90%,
                 #d4af37 100%
               );
-              background-size: 200% auto;
+              background-size: 100% 100%;
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
-              animation: shine 2.5s linear infinite;
+              background-clip: text;
+              color: transparent;
             }
           `;
           document.head.appendChild(style);
     
-          // Apply shine effect
           brand.classList.add("shine-text");
         }
       });
     </script>
 
+
+
 ---
 
 ```{=html}
 
-{{< include HTML/image_carousel_with_logo_mobile_friendly.html >}}
+{{< include HTML/image_carousel_mobileNoCarousel.html >}}
 
 ```
