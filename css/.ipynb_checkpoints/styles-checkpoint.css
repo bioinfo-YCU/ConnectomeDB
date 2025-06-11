@@ -81,10 +81,12 @@ body {
 
 
 /* Apply consistent margin for the main content */
+
 main {
-    margin-left: 25px;
-    margin-right: 25px;
-    max-width: calc(100% - 100px); /* Prevent overflow */
+    /* margin: 0; */
+    padding-top: 60px; 
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 
@@ -640,6 +642,10 @@ a:hover .clickable-icon {
 }
 
 @media screen and (max-width: 768px) {
+
+  main {
+    min-height: 100vh !important;
+  }
   body {
     font-size: 80% !important;
   }
