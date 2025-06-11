@@ -11,6 +11,12 @@
     min-height: 100vh;
 }
 
+h3, .h3, h4, .h4 {
+    opacity: .9;
+    margin-top: 0rem;
+}
+
+
 .carousel-section {
     flex: 0 0 auto;
     margin-bottom: 2rem;

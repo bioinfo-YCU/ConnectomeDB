@@ -21,19 +21,19 @@ from createDataTable import (
 
 <hr>
 
-<div style="border-left: 4px solid #C28840; background-color: #F5F5F5; padding: 0px 0.3em; margin: 1em 0; font-family: Arial, sans-serif; font-size: 105%;">
+<div style="border-left: 4px solid #C28840; background-color: #F5F5F5; padding: 0px 0.3em; margin: 1em 0;">
   <span class="half-break"></span>
   <strong>Before using this resource</strong>, please read our 
-  <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/policy.html" target="_blank" style="color: #1E90FF; text-decoration: underline; font-weight: bold;">Terms &amp; Conditions</a>.
+  <a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/policy.html" target="_blank">Terms &amp; Conditions</a>.
   <span class="half-break"></span>
 </div>
 
-<div style="border: 1.5px solid #F5F5F5; border-radius: 10px; padding: 8px 10px 0px 10px; background-color: #F5F5F5; font-family: Arial, sans-serif; font-size: 110%; width: 100%; box-sizing: border-box; margin: 0; line-height: 1.25;">
+<div style="border: 1.5px solid #F5F5F5; border-radius: 10px; padding: 8px 10px 0px 10px; background-color: #F5F5F5; width: 100%; box-sizing: border-box; margin: 0; line-height: 1.25;">
   <strong>ConnectomeDB</strong> is a comprehensive and ongoing project that provides a high-quality database of interacting ligand-receptor pairs and analysis tools. Launched in 2015, it aims to enhance understanding of cell-cell communication in humans and other species, supporting biological and medical research.<span class="half-break"></span>
   <strong>Developers</strong>: 
-  <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank" style="color:#1E90FF; text-decoration:underline;">YCU Bioinformatics Lab</a>
+  <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank" >YCU Bioinformatics Lab</a>
     &amp; 
-  <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank" style="color:#1E90FF; text-decoration:underline;">Perkins Systems Biology Genomics Lab</a>.
+  <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology Genomics Lab</a>.
 </div>
 
 <span class="half-break"></span>
@@ -42,7 +42,8 @@ from createDataTable import (
 
 ## **Overview**
 
-#### **ConnectomeDB2025 - Database & Online Resource for Cell-to-Cell Communication Predictions**
+### ConnectomeDB2025 - Database & Online Resource for Cell-to-Cell Communication Predictions
+
 <div style="margin-top: 1em;"></div>
 
 - **`{python} f"{lrPairsCount:,}"`  Manually Curated Human LR pairs**: comprehensive and most accurate with primary literature support\
@@ -58,7 +59,7 @@ from createDataTable import (
 
 ## **Online Resource**
 
-#### **Access ConnectomeDB2025 Online**
+### Access ConnectomeDB2025 Online
 <div style="margin-top: 1em;"></div>
 
 An internet connection and a web browser are required. The following major operating systems and web browsers have been tested and are quaranteed to work:
@@ -73,7 +74,7 @@ An internet connection and a web browser are required. The following major opera
 
 ## **Your Feedback**
 
-#### **Your Feedback**
+### Your Feedback
 <div style="margin-top: 1em;"></div>
 
 We welcome your feedback and suggestions for improving ConnectomeDB content and would be glad to hear any ideas for further development.  
@@ -81,7 +82,7 @@ If you would like to contribute to the ConnectomeDB project, please visit the [G
 
 ## **Try NATMI**
 
-#### **Network Analysis Toolkit for Multicellular Interactions (NATMI)**
+### Network Analysis Toolkit for Multicellular Interactions (NATMI)
 <div style="margin-top: 1em;"></div>
 
 - our *Python-based toolkit* designed for constructing and analyzing multi-cellular communication networks in multiple species
@@ -97,7 +98,8 @@ If you would like to contribute to the ConnectomeDB project, please visit the [G
 
 ## **Cite us**
 
-#### **Please cite the following papers if you use ConnectomeDB or NATMI in your publication:**
+### Please cite the following papers if you use ConnectomeDB or NATMI in your publication:
+
 <div style="margin-top: 1em;"></div>
 
 1. *ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction*, P Liu, et al. (TBA)\
@@ -112,7 +114,7 @@ PMID: [26198319](https://pubmed.ncbi.nlm.nih.gov/26198319/); DOI: [10.1038/ncomm
 
 ## **Inquiries**
 
-#### **Let us Help You**
+### Let us Help You
 <div style="margin-top: 1em;"></div>
 
 **General inquiries:** send Alistair, Jordan, and Rui an [email](mailto:alistair.forrest@gmail.com; jordanr@yokohama-cu.ac.jp; rui.hou@research.uwa.edu.au).
