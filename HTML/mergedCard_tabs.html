@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{GENE_NAME}} - Details</title>
+    <title>{{GENE_NAME}} - ConnectomeDB2025</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -32,11 +32,6 @@
         .navbar {
             background-color: #1f4eb6 !important;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar-brand {
-            color: white !important;
-            font-weight: bold;
         }
 
         .navbar-nav .nav-link {
@@ -395,13 +390,37 @@
         }
 
         footer {
-            margin-top: 20px;
-            padding: 10px 10px;
-            background-color: #f7f7f7;
-            color: #333;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          white-space: nowrap; /* Prevent line breaks */
+          padding: 0.5rem 1rem; /* Adjust spacing */
+        }
+        .nav-footer {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 1rem;
+          font-size: 1.1em;
+          text-align: center;
+        }
+        
+        .nav-footer a {
+            color: hsl(0, 0%, 46%);
+        }
+        .nav-footer .nav-footer-left {
+            font-size: .825em;
+        }
+       .nav-footer .nav-footer-right {
+            font-size: .825em;
+        }
+        footer.footer div.nav-footer p:last-child {
+            margin-bottom: 0;
+        }
+        footer.footer div.nav-footer p:first-child {
+            margin-top: 0;
         }
 
         .pdf-only {
@@ -452,12 +471,36 @@
             text-align: right;
         }
         
+
+        .nav-footer {
+            min-height: 3.5em;
+            color: hsl(0, 0%, 46%);
+        }
         .navigation-footer:has(.nav-left):not(:has(.nav-right)) .nav-left {
             text-align: left;
         }
         
         .navigation-footer:has(.nav-right):not(:has(.nav-left)) .nav-right {
             text-align: right;
+        }
+        @media (min-width: 768px) {
+          .nav-footer {
+            flex-direction: row;
+            justify-content: space-between;
+            text-align: inherit;
+          }
+        
+          .nav-footer-left, .nav-footer-right {
+            flex: 1;
+          }
+        
+          .nav-footer-left {
+            text-align: left;
+          }
+        
+          .nav-footer-right {
+            text-align: right;
+          }
         }
 
         /* NEW STYLES FOR LIGAND-RECEPTOR TABS */
@@ -664,6 +707,110 @@
             display: block;
         }
 
+        .nav-icon {
+                  font-size: 20px;
+        }
+        .navbar-brand {
+                display: inline-block;
+                color: #fff;
+                text-decoration: none;
+                font-size: 1.2rem;
+                font-weight: bold;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-bottom: 0px;
+                padding-top: 8px;
+                border-radius: 6px;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .navbar-brand:hover {
+                color: #d4af37;
+                background-color: rgba(255, 255, 255, 0.1);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+            
+            .navbar-brand.active {
+                transform: translateY(0) !important;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+                color: #d4af37 !important;
+                background-color: rgba(212, 175, 55, 0.1) !important;
+            }
+            .navbar-brand.active::after {
+                background-color: #d4af37;
+            }
+            
+            .navbar-brand::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+                transition: left 0.5s;
+                }
+                .navbar-brand:hover::before {
+                left: 100%;
+            }
+            
+            .navbar-brand-alt {
+                display: inline-block;
+                color: #fff;
+                text-decoration: none;
+                font-size: 1.5rem;
+                font-weight: bold;
+                padding: 0.5rem 1rem;
+                margin-left: 2rem;
+                position: relative;
+                transition: color 0.3s ease;
+                cursor: pointer;
+            }
+            .navbar-brand-alt::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background-color: #d4af37 !important;
+                transition: all 0.3s ease;
+                transform: translateX(-50%);
+            }
+
+            .navbar-brand-alt:hover {
+                color: #d4af37;
+            }
+            .navbar-brand-alt:hover::after {
+                width: 100%;
+            }
+            .navbar-brand-alt:active {
+                color: #d4af37;
+                transform: scale(0.98);
+            }
+            .navbar-brand-alt.active::after {
+                width: 100%;
+            }
+            .navbar-toggler {
+                border: none !important;
+                outline: none !important;
+                box-shadow: none !important;
+            }
+            
+            .navbar-toggler:focus {
+                border: none !important;
+                outline: none !important;
+                box-shadow: none !important;
+            }
+            .navbar-toggler:active,
+            .navbar-toggler[aria-expanded="true"] {
+                border: 1px solid rgba(255, 255, 255, 0.3) !important;
+                box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25) !important;
+            }
         /* Mobile-specific styles */
         @media screen and (max-width: 768px) {
             .lr-tabs {
@@ -710,10 +857,43 @@
                 max-width: 320px;
             }
             
+            .clickable-icon {
+                color: #e67e22; 
+                margin-left: 8px;
+                font-size: 0.8em; 
+                vertical-align: middle; 
+                transition: color 0.3s ease;
+            }
+
+            .navbar-toggler-icon {
+                 width: 1.3em !important;
+                 height: 1.3em !important;
+            }
+            
             @media screen and (max-width: 480px) {
+            .navbar-toggler-icon {
+                 width: 1.1em !important;
+                 height: 1.1em !important;
+            }
+                .nav-icon {
+                  font-size: 16px;
+                }
                 body {
                     font-size: 80% !important;
                 }
+                    
+                 p, 
+                 .navbar-nav .dropdown-item,
+                 .navbar .dropdown-item,
+                 .dropdown-item,
+                 .btn, button, 
+                    {
+                        font-size: 80% !important;
+                }
+                 .navbar-brand,
+                 .navbar-nav .nav-link {
+                    font-size: 95% !important;
+                  }
                 .card-container {
                     padding: 5px;
                     gap: 8px;
@@ -840,6 +1020,10 @@
             }
         };
     </script>
+<meta property="og:title" content="– ConnectomeDB2025">
+<meta property="og:image" content="images/data1.png">
+<meta property="og:site_name" content="ConnectomeDB2025">
+<meta property="og:image:alt" content="Image 1">
 </head>
 <body>
     <!-- New Bootstrap Navbar -->
@@ -849,15 +1033,20 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">
+    <span class="navbar-title">ConnectomeDB2025</span>
+    </a>
+  </div>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav navbar-nav-scroll me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">
+                            <!-- <a class="nav-link" href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/">
                                 <span class="menu-text">
                                     <iconify-icon role="img" inline icon="mdi:home" style="font-size: 20px;"></iconify-icon>
                                 </span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/about.html">
                                 <span class="menu-text">About</span>
@@ -883,7 +1072,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="mailto:bioinfo@yokohama-cu.ac.jp,alistair.forrest@perkins.uwa.edu.au,rui.hou@uwa.edu.au">
                                 <span class="menu-text">
-                                    <iconify-icon role="img" inline icon="mdi:email" style="font-size: 20px;"></iconify-icon>
+                                    <iconify-icon class="nav-icon" role="img" inline icon="mdi:email"></iconify-icon>
                                 </span>
                             </a>
                         </li>
@@ -1081,8 +1270,18 @@
         </div>
     </div>
 
-    <footer>
-        <span>© Copyright 2025, YCU Bioinformatics Lab | Harry Perkins Systems Biology & Genomics Lab</span>
+    <footer class="footer">
+      <div class="nav-footer">
+        <div class="nav-footer-left">
+    <p>©2025 <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank">YCU Bioinformatics</a> | <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology &amp; Genomics</a></p>
+    </div>   
+        <div class="nav-footer-center">
+           
+        </div>
+        <div class="nav-footer-right">
+    <p><a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/policy.html">Terms &amp; Conditions</a></p>
+    </div>
+      </div>
     </footer>
 
     <!-- Bootstrap 5 JavaScript -->
