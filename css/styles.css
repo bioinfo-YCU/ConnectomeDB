@@ -540,6 +540,11 @@ table.dataTable thead th {
     color: #d4af37 !important;
 }
 
+.navbar-toggler:active, .navbar-toggler[aria-expanded="true"] {
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25) !important;
+}
+
 /* nav-bar brand starts here */
 
 .navbar-brand {
@@ -555,6 +560,7 @@ table.dataTable thead th {
             position: relative;
             overflow: hidden;
         }
+
 
 /* Hover effects */
 .navbar-brand:hover {
@@ -647,6 +653,10 @@ a:hover .clickable-icon {
   color: #d35400; /* Darker orange on hover */
 }
 
+.nav-icon {
+ font-size: 20px;
+}
+
 @media screen and (max-width: 768px) {
 
   main {
@@ -671,28 +681,37 @@ a:hover .clickable-icon {
   }
 
   /* Optional: further scale down specific UI elements */
-   h2, h3, h4, h5, h6, 
-  .dt-info,
-  .navbar-nav .dropdown-item,
-  .navbar .dropdown-item,
-  .dropdown-item,
-  .btn, button, 
-  .dataTables_wrapper, 
-  .dataTable, 
-  table, 
-  th, td,
-  .itables-container,
-  .dataTables_filter input,
-  .dataTables_length select,
-  .dataTables_paginate,
-  
-  .dataTables_info {
-    font-size: 80% !important;
+  .nav-icon {
+        font-size: 16px;
   }
-   h1, .navbar-brand, .dt-column-title,
+  h1, h2, h3, .h1, .h2, .h3, h4, h5,
+  h6, .h4, .h5, .h6, .navbar-brand,
+  .dt-column-title,
   .navbar-nav .nav-link {
     font-size: 90% !important;
   }
+
+  ul li {
+  font-size: 80% !important;
+  }
+    
+  .dt-info, p, text,
+      .navbar-nav .dropdown-item,
+      .navbar .dropdown-item,
+      .dropdown-item,
+      .btn, button, 
+      .dataTables_wrapper, 
+      .dataTable, 
+      table, 
+      th, td,
+      .itables-container,
+      .dataTables_filter input,
+      .dataTables_length select,
+      .dataTables_paginate,
+      .dataTables_info {
+        font-size: 80% !important;
+      }
+
 }
   
 
