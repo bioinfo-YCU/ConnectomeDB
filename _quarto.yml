@@ -3,7 +3,7 @@ project:
   render: 
     - "*.qmd"
     - "!DT_R_ver.qmd"
-    - "!index_dashboard.qmd"
+    - "!index_*.qmd"
     - "!*.ipynb/"
     - "!database/human-trip.qmd"
     - "!stats-withAnnotations.qmd"
