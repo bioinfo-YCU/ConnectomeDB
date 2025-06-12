@@ -5,39 +5,6 @@ execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
 toc: false
-header-includes: |
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const brand = document.querySelector(".navbar-brand");
-    
-        if (brand) {
-          const style = document.createElement("style");
-          style.textContent = `
-            .shine-text {
-              background: linear-gradient(
-                to right,
-                #ffffff 0%,
-                #d4af37 10%,
-                #ffffff 50%,
-                #d4af37 70%,
-                #ffffff 90%,
-                #d4af37 100%
-              );
-              background-size: 100% 100%;
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-              background-clip: text;
-              color: transparent;
-            }
-          `;
-          document.head.appendChild(style);
-    
-          brand.classList.add("shine-text");
-        }
-      });
-    </script>
-
-
 
 ---
 
