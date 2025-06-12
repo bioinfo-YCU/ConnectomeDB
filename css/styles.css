@@ -661,6 +661,8 @@ a:hover .clickable-icon {
 
   main {
     min-height: 100vh !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
   }
   body {
     font-size: 80% !important;
@@ -682,14 +684,17 @@ a:hover .clickable-icon {
 
   /* Optional: further scale down specific UI elements */
   .nav-icon {
-        font-size: 16px;
+        font-size: 18px;
   }
+  /* .navbar-nav .nav-link  */
   h1, h2, h3, .h1, .h2, .h3, h4, h5,
-  h6, .h4, .h5, .h6, .navbar-brand,
-  .dt-column-title,
-  .navbar-nav .nav-link {
-    font-size: 90% !important;
-  }
+  h6, .h4, .h5, .h6,
+  .dt-column-title {
+    font-size: 95% !important;
+  } 
+ .navbar-nav .nav-link {
+     font-size: 98% !important;
+ }
 
   ul li {
   font-size: 80% !important;
