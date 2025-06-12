@@ -540,26 +540,57 @@ table.dataTable thead th {
     color: #d4af37 !important;
 }
 
+.navbar-toggler {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+            
+.navbar-toggler:focus {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 .navbar-toggler:active, .navbar-toggler[aria-expanded="true"] {
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25) !important;
 }
 
+
 /* nav-bar brand starts here */
 
 .navbar-brand {
-            display: inline-block;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
+    display: inline-block;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+            
+    /* Gradient text */
+    background: linear-gradient(
+        to right,
+        #ffffff 0%,
+        #d4af37 10%,
+        #ffffff 50%,
+        #d4af37 70%,
+        #ffffff 90%,
+        #d4af37 100%
+    );
+    position: relative;
+    overflow: visible;
+    background-size: 100% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent !important; /* Force override */
+    }
 
 
 /* Hover effects */
@@ -587,7 +618,6 @@ table.dataTable thead th {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
@@ -658,7 +688,6 @@ a:hover .clickable-icon {
 }
 
 @media screen and (max-width: 768px) {
-
   main {
     min-height: 100vh !important;
     padding-left: 5px !important;
@@ -666,6 +695,16 @@ a:hover .clickable-icon {
   }
   body {
     font-size: 80% !important;
+  }
+    
+ .navbar-container {
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+ }
+ .navbar-toggler-icon {
+   width: 1.1em !important;
+   height: 1.1em !important;
   }
     
   span.dt-column-title input[type="text"] {
@@ -686,24 +725,23 @@ a:hover .clickable-icon {
   .nav-icon {
         font-size: 18px;
   }
+
   /* .navbar-nav .nav-link  */
   h1, h2, h3, .h1, .h2, .h3, h4, h5,
   h6, .h4, .h5, .h6,
   .dt-column-title {
-    font-size: 95% !important;
+    font-size: 98% !important;
   } 
- .navbar-nav .nav-link {
-     font-size: 98% !important;
- }
 
   ul li {
   font-size: 80% !important;
   }
-    
+  .navbar-nav .nav-link, .navbar-nav .dropdown-item,
+  .navbar-nav .dropdown-item, .navbar .dropdown-item,
+  .dropdown-item,{
+        font-size: 90% !important;
+    }
   .dt-info, p, text,
-      .navbar-nav .dropdown-item,
-      .navbar .dropdown-item,
-      .dropdown-item,
       .btn, button, 
       .dataTables_wrapper, 
       .dataTable, 
@@ -718,7 +756,3 @@ a:hover .clickable-icon {
       }
 
 }
-  
-
-
-

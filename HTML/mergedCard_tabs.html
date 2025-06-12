@@ -45,6 +45,10 @@
             color: #d4af37 !important;
         }
 
+        .navbar-brand-container.mx-auto {
+            padding-top: 8px;
+        }
+
         .dropdown-menu {
             background-color: white;
             border: 0px solid #d4af37;
@@ -711,21 +715,33 @@
                   font-size: 20px;
         }
         .navbar-brand {
-                display: inline-block;
-                color: #fff;
-                text-decoration: none;
-                font-size: 1.2rem;
-                font-weight: bold;
-                padding-left: 1rem;
-                padding-right: 1rem;
-                padding-bottom: 0px;
-                padding-top: 8px;
-                border-radius: 6px;
-                transition: all 0.3s ease;
-                cursor: pointer;
-                position: relative;
-                overflow: hidden;
+              display: inline-block;
+              font-size: 1.35rem;
+              font-weight: bold;
+              padding: 0.5rem 1rem;
+              border-radius: 6px;
+              transition: all 0.3s ease;
+              cursor: pointer;
+            
+              /* Gradient text */
+              background: linear-gradient(
+                to right,
+                #ffffff 0%,
+                #d4af37 10%,
+                #ffffff 50%,
+                #d4af37 70%,
+                #ffffff 90%,
+                #d4af37 100%
+              );
+              position: relative;
+              overflow: hidden;
+              background-size: 100% 100%;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+              color: transparent !important; /* Force override */
             }
+
             
             .navbar-brand:hover {
                 color: #d4af37;
@@ -799,7 +815,16 @@
                 border: none !important;
                 outline: none !important;
                 box-shadow: none !important;
+                padding-left: 8px;
+                padding-right: 8px;
+                padding-top: 5px;
+                padding-bottom: 5px;
             }
+           .navbar-container {
+                width: 100%;
+                padding-left: 25px;
+                padding-right: 5px;
+             }
             
             .navbar-toggler:focus {
                 border: none !important;
@@ -811,15 +836,23 @@
                 border: 1px solid rgba(255, 255, 255, 0.3) !important;
                 box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25) !important;
             }
+
         /* Mobile-specific styles */
         @media screen and (max-width: 768px) {
+            .navbar .nav-link#nav-menu-bi-github .bi-github {
+                padding-left: 10px !important;
+            }
             .lr-tabs {
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
                 width: 100%;
             }
-        
+
+            .menu-text {
+                padding-left: 10px;
+            }
+                    
             .lr-tab-button {
                 flex: 1 1 50%;
                 max-width: 50%;
@@ -875,33 +908,30 @@
                  width: 1.1em !important;
                  height: 1.1em !important;
             }
-                .nav-icon {
-                  font-size: 16px;
-                }
-                body {
+            .nav-icon {
+                font-size: 16px;
+            }
+                body, p {
                     font-size: 80% !important;
                 }
                     
-                 p, 
-                 .navbar-nav .dropdown-item,
-                 .navbar .dropdown-item,
-                 .dropdown-item,
-                 .btn, button, 
-                    {
-                        font-size: 80% !important;
-                }
-                 .navbar-nav .nav-link {
-                    font-size: 95% !important;
-                  }
-                .card-container {
-                    padding: 5px;
-                    gap: 8px;
-                }
 
-                .lr-functional-columns {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 8px;
+          .navbar-nav .dropdown-item,
+          .navbar .dropdown-item,
+          .dropdown-item,
+          .btn, button {
+                        font-size: 80% !important;
+                    }
+        
+          .card-container {
+                padding: 5px;
+                gap: 8px;
+            }
+
+          .lr-functional-columns {
+                 display: flex;
+                 flex-direction: column;
+                 gap: 8px;
                 }
             
                 .column-left {
