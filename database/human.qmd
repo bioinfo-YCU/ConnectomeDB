@@ -1,14 +1,12 @@
 ---
-title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Human LR Pairs</span>"
+title: '{{< fa database >}} ConnectomeDB2025: <span class=''highlight''>3,436 Human(*Homo
+  sapiens*) </span>  LR Pairs'
 execute:
   echo: false
-  warnings: false 
 format:
   html:
     table: false
-header-includes: |
-  <script src="../js/keepDropdownMenuGold.js"></script>
-  
+header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
 ---
 
 ***

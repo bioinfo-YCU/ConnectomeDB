@@ -182,3 +182,12 @@ pmids_without_period = df[~df['Title'].str.endswith(('.', '?'))]['PMID']
 pmid_check= pmids_without_period.tolist()
 print("These " + str(len(pmid_check)) + " titles that have to be manually checked -- possible incomplete titles")
 print(pmid_check)
+
+# Fill NaN values in 'Abstract' column with an empty string
+df['Abstract'] = df['Abstract'].fillna('')
+
+pmids_without_period = df[~df['Abstract'].str.endswith(('.', '?', 'available', ')', 'Review', '...'))]['PMID'] # Corrected the condition to find abstracts that *do not* end with a period or question mark
+pmid_check = pmids_without_period.tolist()
+
+print("These " + str(len(pmid_check)) + " PMIDs have abstracts that might be incomplete (do not end with a period or question mark or other indicators):")
+print(pmid_check)
