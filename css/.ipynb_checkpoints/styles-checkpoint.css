@@ -3,7 +3,7 @@
 }
 
 
-/* for carousel */
+
 
 .main-content {
     display: flex;
@@ -16,11 +16,6 @@ h3, .h3, h4, .h4 {
     margin-top: 0rem;
 }
 
-
-.carousel-section {
-    flex: 0 0 auto;
-    margin-bottom: 2rem;
-}
 
 /* Table and general content styling */
 body {

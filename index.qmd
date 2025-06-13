@@ -10,6 +10,88 @@ toc: false
 
 ```{=html}
 
+<style>
+/* Ensure the entire viewport is used and prevent root scrolling */
+html, body {
+    height: 100%; /* Make html and body fill the viewport height */
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent overall page scrolling on larger screens */
+}
+
+/* Make body the primary flex container for the page layout */
+body {
+    display: flex;
+    flex-direction: column; /* Stack header, main, and footer vertically */
+    height: 100vh; /* Ensure body takes full viewport height */
+}
+
+/* Optional: Style for a header if you have one */
+.page-header {
+    flex: 0 0 auto; /* Header takes its natural height and doesn't grow/shrink */
+    padding: 1rem;
+    background-color: #e0e0e0;
+    text-align: center;
+}
+
+/* Adjust main to fill the available space */
+main {
+    flex: 1; /* Allows main to grow and shrink, taking remaining vertical space */
+    display: flex; /* Enable flexbox for its children (e.g., carousel, main-content) */
+    flex-direction: column; /* Stack children vertically within main */
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0; /* Critical for flex items with overflow */
+    overflow-y: auto; /* Allow scrolling *within* the main content area if it overflows */
+}
+
+/* Main content area should grow to take available space within 'main' */
+.main-content {
+    flex: 1; /* Allows this element to grow and shrink within 'main' */
+    display: flex; /* Keep flexbox for its internal layout if needed */
+    flex-direction: column;
+    /* If content within .main-content might overflow, allow internal scrolling */
+    overflow-y: auto; /* This allows specific content in .main-content to scroll, not the whole page */
+    min-height: 0; /* Important for flex items to shrink correctly */
+    padding: 1rem; /* Add some padding back for content */
+}
+
+/* For carousel - ensure it fits within its allocated space within 'main' */
+.carousel-section {
+    flex: 0 0 auto; /* It retains its intrinsic height/width */
+    /* You might need to set a max-height if it's very tall */
+    /* max-height: 40vh; */ /* Example: Limit carousel height to 40% of viewport */
+    overflow: hidden; /* Hide any content that overflows the carousel itself */
+}
+
+/* Style for the footer to ensure it's always visible at the bottom of the page */
+.page-footer {
+    flex: 0 0 auto; /* Footer should take its natural height and not grow or shrink */
+    padding: 1rem; /* Example padding */
+    background-color: #f0f0f0; /* Example background color */
+    text-align: center; /* Example alignment */
+}
+
+/* General responsive adjustments (example) */
+@media (max-width: 768px) {
+    /* For smaller screens, allow scrolling if content doesn't fit */
+    html, body {
+        overflow: auto; /* Allow scrolling on smaller devices if needed */
+    }
+    body {
+        height: auto; /* Auto height on smaller screens */
+    }
+    main {
+        height: auto; /* Auto height on smaller screens */
+        overflow-y: auto; /* Ensure main content can scroll on smaller screens */
+    }
+}
+
+
+```
+
+```{=html}
+
 {{< include HTML/image_carousel_mobileNoCarousel.html >}}
 
 ```

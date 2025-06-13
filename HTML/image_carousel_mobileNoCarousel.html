@@ -5,23 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile-Friendly Homepage</title>
     <style>
-            .carousel-wrapper {
-                max-width: 1500px;
-                width: 80%;
-                margin:10px auto;
-                position: relative;
-                padding-bottom: 40px; 
-            }
+        .carousel-container {
+            max-width: 1600px;
+            width: 90%;
+            margin: 10px auto;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            padding-bottom: 15px;
+        }
     
-            .carousel-wrapper .carousel {
-                position: relative;
-                width: 100%;
-                overflow: hidden;
-                border-radius: 10px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
+        .carousel-wrapper .carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     
             .carousel-wrapper .logo-overlay {
                 position: absolute;
@@ -50,7 +53,7 @@
     
             .carousel-wrapper .carousel-track {
                 display: flex;
-                height: 100%;
+                height: 95%;
                 transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             }
     
@@ -70,9 +73,25 @@
                 margin: 0 auto;
             }
             /* No popping up for now */
-            /* .carousel-wrapper .carousel-slide:hover img {
-                transform: scale(1.05);
-            } */
+            .carousel-wrapper .carousel-slide:hover img {
+                transform: scale(1);
+            }
+           .carousel-slide .pause-icon {
+                display: none;
+                position: absolute;
+                top: 60px;
+                right: 100px;
+                color: white;
+                background: rgba(0, 0, 0, 0.6);
+                padding: 5px 8px;
+                border-radius: 4px;
+                font-size: 1.2em;
+                pointer-events: none; /* Don't block image interaction */
+            }
+            
+        .carousel-slide:hover .pause-icon {
+                display: block;
+            }
     
             .carousel-wrapper .carousel-slide .overlay {
                 position: absolute;
@@ -138,11 +157,11 @@
                 right: 5px;
             }
     
-            .carousel-wrapper .carousel-indicators {
+            .carousel-indicators {
                 display: flex;
                 justify-content: center;
                 gap: 15px;
-                margin-top: 20px; /* Fixed consistent gap */
+                margin-top: 15px; /* Much smaller gap */
             }
             
             .carousel-wrapper .indicator {
@@ -174,6 +193,7 @@
         @media (max-width: 768px) {
             .carousel-wrapper {
                 width: 100%;
+                padding-bottom: 40px; /* Adjust for mobile */
             }
             
             .carousel-wrapper .carousel-nav {
@@ -205,15 +225,15 @@
                 display: none;
             }
 
-            .carousel-wrapper .carousel-indicators {
-                gap: 10px;
-                margin-top: 12px; /* Closer for tablet */
-            }
-
             .carousel-wrapper .indicator {
                 width: 10px;
                 height: 10px;
             }
+
+            /* .carousel-wrapper .carousel-indicators {
+                gap: 10px;
+                bottom: 5px;
+            } */
         }
 
         /* Portrait Mobile Stack Mode */
@@ -267,12 +287,12 @@
 
             .carousel-wrapper .carousel-indicators {
                 gap: 8px;
-                margin-top: 10px; /* Even closer for mobile */
+                bottom: 2px;
             }
 
             .carousel-wrapper .indicator {
-                width: 5px;
-                height: 5px;
+                width: 8px;
+                height: 8px;
             }
         }
     </style>
@@ -289,6 +309,7 @@
             <div class="carousel-track" id="carouselTrack">
                 <div class="carousel-slide">
                     <img src="images/data1.png" alt="Image 1">
+                    <div class="pause-icon">&#10073;&#10073;</div>  <!-- Unicode pause icon -->
                     <!-- <div class="overlay">
                         <h3>Notes:</h3>
                         <p>ConnectomeDB2025 only retains ligand-receptor pairs with primary experimental evidence.
@@ -300,6 +321,7 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
                 </div>
                 <div class="carousel-slide">
                     <img src="images/data2.png" alt="Image 2">
+                    <div class="pause-icon">&#10073;&#10073;</div>  <!-- Unicode pause icon -->
                     <!-- <div class="overlay">
                         <h3>Notes:</h3>
                         <p>ConnectomeDB2025 has the most recent publications. See 2020-2025.</p>
@@ -307,6 +329,7 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
                 </div>
                 <div class="carousel-slide">
                     <img src="images/data3.png" alt="Image 3">
+                    <div class="pause-icon">&#10073;&#10073;</div>  <!-- Unicode pause icon -->
                     <!-- <div class="overlay">
                         <h3>Notes:</h3>
                         <p>Unique new content means they are not reported in connectomeDB2020, CelltalkDB, ICELLNET_v2, CellchatDB_v2, cellphoneDB_v5, or LIANA consensus. Freeze date: 30th May 2025.</p>
@@ -314,6 +337,7 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
                 </div>
                 <div class="carousel-slide">
                     <img src="images/data4.png" alt="Image 4">
+                    <div class="pause-icon">&#10073;&#10073;</div>  <!-- Unicode pause icon -->
                     <!-- <div class="overlay">
                         <h3>Notes:</h3>
                         <p>12 Vertebrate Orthologs are provided.</p>
@@ -322,6 +346,14 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
             </div>
             <button class="carousel-nav prev" onclick="previousSlide()">‹</button>
             <button class="carousel-nav next" onclick="nextSlide()">›</button>
+        </div>
+        
+        <!-- Indicators positioned outside carousel wrapper -->
+        <div class="carousel-indicators">
+            <button class="indicator active" onclick="goToSlide(0)"></button>
+            <button class="indicator" onclick="goToSlide(1)"></button>
+            <button class="indicator" onclick="goToSlide(2)"></button>
+            <button class="indicator" onclick="goToSlide(3)"></button>
         </div>
         
         <!-- Mobile Stack Layout for Portrait Mode -->
@@ -339,13 +371,6 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
             <div class="stack-image">
                 <img src="images/data4_mobile.png" alt="Image 4">
             </div>
-        </div>
-        
-        <div class="carousel-indicators">
-            <button class="indicator active" onclick="goToSlide(0)"></button>
-            <button class="indicator" onclick="goToSlide(1)"></button>
-            <button class="indicator" onclick="goToSlide(2)"></button>
-            <button class="indicator" onclick="goToSlide(3)"></button>
         </div>
     </div>
 
@@ -437,7 +462,7 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
                     if (!isHovered) {
                         nextSlide();
                     }
-                }, 10000); // every 10 seconds
+                }, 5000); // every 5 seconds
             }
         }
         
