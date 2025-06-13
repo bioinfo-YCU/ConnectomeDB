@@ -1,4 +1,4 @@
-# Purpose: Download HGNC complete txt file and save in data folder
+`# Purpose: Download HGNC complete txt file and save in data folder
 # remember to use "R" conda env
 # Libraries
 # library(tidyverse)

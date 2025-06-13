@@ -44,7 +44,7 @@ def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_in
 
     # Filter rows where all species-specific columns are not empty
     species_gene_pair = gene_pair000_df[(gene_pair000_df[species_columns].map(str.strip) != "").all(axis=1)]
-
+    
     # Rename columns to remove species name
     species_gene_pair.columns = [
         col.replace(f"{species} ", "").strip() if "Ligand" in col or "Receptor" in col else col
@@ -101,6 +101,8 @@ def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_in
     # species_gene_pair1[species_gene_pair1.columns[0]] = species_gene_pair1[species_gene_pair1.columns[0]].apply(
     #     lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
     # )
+    col_to_rename = [col for col in species_gene_pair1.columns if "Human LR Pair" in col][0]
+    species_gene_pair1.rename(columns={col_to_rename: "LR Pair Card"}, inplace=True)
 
     return species_gene_pair1
 
