@@ -5,7 +5,13 @@ execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
 toc: false
-
+format:
+  html:
+    embed-resources: true
+    code-fold: false
+    html-math-method: webtex
+    keep-md: true
+    allow-html: true
 ---
 
 ```{=html}

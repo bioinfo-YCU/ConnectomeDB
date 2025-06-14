@@ -40,9 +40,34 @@ website:
          #   text: Human LR Pairs ˣ Pubmed
          - href: database/mouseOrth.qmd
            text: Mouse Orthologs
+         - text: 'Other Species' 
+            # No 'href' here, making it unclickable.
          - href: database/other/chimpOrth.qmd
-         
-           text: Other Species
+           text: 'Chimp Orthologs' 
+         - href: database/other/macaqueOrth.qmd
+           text: 'Macaque Orthologs' 
+         - href: database/other/marmosetOrth.qmd
+           text: 'Marmoset Orthologs' 
+         - href: database/other/ratOrth.qmd
+           text: 'Rat Orthologs' 
+         - href: database/other/pigOrth.qmd
+           text: 'Pig Orthologs' 
+         - href: database/other/cowOrth.qmd
+           text: 'Cow Orthologs' 
+         - href: database/other/dogOrth.qmd
+           text: 'Dog Orthologs' 
+         - href: database/other/horseOrth.qmd
+           text: 'Horse Orthologs' 
+         - href: database/other/cowOrth.qmd
+           text: 'Sheep Orthologs' 
+         - href: database/other/sheepOrth.qmd
+           text: 'Chicken Orthologs' 
+         - href: database/other/zebrafishOrth.qmd 
+           text: 'Zebrafish Orthologs' 
+         - href: askAIchat.qmd
+           text: 'Ask AI chatbot'
+        
+     
       # - text: 'Annotations Browser'
       #   menu:
       #    - href: annotations/disease.qmd
