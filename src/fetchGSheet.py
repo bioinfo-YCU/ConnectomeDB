@@ -47,6 +47,10 @@ def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file, max_retries=5)
 
 # Fetching data from Google Sheets
 gene_pair = fetch_google_sheet_data(sheet_ID, "FROZEN LIST HUMAN", credentials_file)
+gene_pair_mouse = fetch_google_sheet_data(sheet_ID, "FROZEN LIST MOUSE", credentials_file)
+# For now append mouse and remove in human pair later
+gene_pair = pd.concat([gene_pair, gene_pair_mouse])
+
 #loc_info = fetch_google_sheet_data(sheet_ID, "proteome_HPA", credentials_file) 
 # Ligand and receptor location # previously based on localization 
 ligand_loc = fetch_google_sheet_data(sheet_ID, "Ligand_location_HUMAN", credentials_file) 
@@ -58,3 +62,7 @@ gene_group = fetch_google_sheet_data(sheet_ID, "HGNC gene group", credentials_fi
  
 src_info = fetch_google_sheet_data(sheet_ID, "sourceAbbv", credentials_file)
 #pop_up_info = fetch_google_sheet_data(sheet_ID, "HGNC_Dec2024", credentials_file)
+
+human_gene_pair = gene_pair.iloc[:, :-36]
+# remove mouse info
+human_gene_pair= human_gene_pair.iloc[:-13]

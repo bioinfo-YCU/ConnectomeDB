@@ -7,7 +7,7 @@ import re
 # Assuming createDataTable_perSpecies module is in your path or can be imported.
 sys.path.append(os.path.abspath("src"))
 import createDataTable_perSpecies
-from createDataTable import gene_pair
+from createDataTable import human_gene_pair
 
 def update_connectomedb_qmd(qmd_file_path: str, lr_pair_data: list, species_name: str, species: str, ortholog):
     """
@@ -73,7 +73,7 @@ def update_connectomedb_qmd(qmd_file_path: str, lr_pair_data: list, species_name
 #  'Human LR Pair' data
 update_connectomedb_qmd(
     qmd_file_path="database/human.qmd",
-    lr_pair_data=gene_pair[gene_pair.columns[0]],
+    lr_pair_data=human_gene_pair[human_gene_pair.columns[0]],
     species_name="Homo sapiens",
     species = "Human",
     ortholog = False
@@ -153,7 +153,7 @@ update_connectomedb_qmd(
 
 #  'Cow LR Pair' data
 update_connectomedb_qmd(
-    qmd_file_path="database/other/dogOrth.qmd", 
+    qmd_file_path="database/other/cowOrth.qmd", 
     lr_pair_data=createDataTable_perSpecies.cow_gene_pair1["Cow LR Pair"],
     species_name="Bos taurus",
     species = "Cow",
@@ -175,6 +175,15 @@ update_connectomedb_qmd(
     lr_pair_data=createDataTable_perSpecies.zebrafish_gene_pair1["Zebrafish LR Pair"],
     species_name="Danio rerio",
     species = "Zebrafish",
+    ortholog = True
+)
+
+#  'Chicken LR Pair' data
+update_connectomedb_qmd(
+    qmd_file_path="database/other/chickenOrth.qmd", 
+    lr_pair_data=createDataTable_perSpecies.chicken_gene_pair1["Chicken LR Pair"],
+    species_name="Gallus gallus",
+    species = "Chicken",
     ortholog = True
 )
 

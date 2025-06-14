@@ -1,6 +1,6 @@
 ---
-title: '{{< fa database >}} ConnectomeDB2025: <span class=''highlight''>3,355 Mouse(*Mus
-  musculus*) </span> Ortholog LR Pairs'
+title: '{{< fa database >}} ConnectomeDB2025: <span class=''highlight''>3,368 Mouse
+  (*Mus musculus*) </span> Ortholog LR Pairs'
 execute:
   echo: false
 format:
@@ -57,7 +57,7 @@ def update_table():
             {"className": "dt-center", "targets": [15]}, 
             # {"width": "100px", "targets": "_all"},
             {"width": "275px", "targets": [9,10]},
-            {"targets": list(range(-1, -6, -1))+ [7, 8], "visible": False} # Hide last n columns by default
+            {"targets": list(range(-1, -6, -1))+ [7, 8,13,14], "visible": False} # Hide last n columns by default
         ],
         style="1200px;margin:auto",
            #language={

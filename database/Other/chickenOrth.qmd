@@ -1,28 +1,14 @@
 ---
-title: "{{< fa database >}} ConnectomeDB2025: <span class='highlight'>Chicken</span> Ortholog LR Pairs"
+title: '{{< fa database >}} ConnectomeDB2025: <span class=''highlight''>1,885 Chicken
+  (*Gallus gallus*) </span> Ortholog LR Pairs'
 execute:
   echo: false
-  warnings: false  # Add this line to suppress warnings globally
 format:
   html:
     table: false
-header-includes: |
-  <script src="../../js/keepDropdownMenuGold.js"></script>
+header-includes: <script src='../../js/keepDropdownMenuGold.js'></script>
 ---
-
 ***
-
-[**Chimp**](chimpOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Chimp Ortholog Pairs"}
-[**Macaque**](macaqueOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Macaque Ortholog Pairs"}
-[**Marmoset**](marmosetOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Marmoset Ortholog Pairs"} 
-[**Rat**](ratOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Rat Ortholog Pairs"} 
-[**Pig**](pigOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Pig Ortholog Pairs"}
-[**Cow**](cowOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Cow Ortholog Pairs"}
-[**Dog**](dogOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Dog Ortholog Pairs"}
-[**Horse**](horseOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Horse Ortholog Pairs"}
-[**Sheep**](sheepOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Sheep Ortholog Pairs"}
-[**Chicken**](){.btn .btn-outline-primary .btn .active role="button" aria-disabled="true" data-toggle="tooltip" title="Currently selected"}
-[**Zebrafish**](zebrafishOrth.qmd){.btn .btn-outline-primary .btn role="button" data-toggle="tooltip" title="Click for Zebrafish Ortholog Pairs"}
 
 ```{python}
 import sys
@@ -68,7 +54,7 @@ def update_table():
             {"className": "dt-center", "targets": [15]}, 
             # {"width": "100px", "targets": "_all"},
             {"width": "275px", "targets": [9,10]},
-            {"targets": list(range(-1, -6, -1))+ [7, 8], "visible": False} # Hide last n columns by default
+            {"targets": list(range(-1, -6, -1))+ [7, 8,13,14], "visible": False} # Hide last n columns by default
                         ],
         style="1200px;margin:auto",
            #language={

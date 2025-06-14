@@ -270,7 +270,11 @@ gene_pair = gene_pair.merge(RGD_info, how='left', left_on='Ligand RGD ID', right
 # Add ZFIN id and symbol
 ZFIN_info = pd.read_csv("data/ZFIN_ID_human_orthos.txt", sep="\t", skiprows=1)
 ZFIN_info = ZFIN_info[['ZFIN ID', 'ZFIN Symbol', 'ZFIN Name', 'HGNC ID']]
-
+ZFIN_info['ZFIN ID']=[
+        f'<a href="https://zfin.org/{zfin}" target="_blank">{zfin}</a>' 
+        if pd.notna(zfin) and zfin.strip() else "" 
+        for zfin in ZFIN_info["ZFIN ID"]
+    ]
 ZFIN_info = ZFIN_info.dropna(subset=['HGNC ID'])
 ZFIN_info = ZFIN_info.drop_duplicates(subset=['HGNC ID'])
 ZFIN_info['HGNC ID'] = ZFIN_info['HGNC ID'].apply(lambda x: f'HGNC:{int(x)}')
@@ -295,20 +299,80 @@ gene_pair = gene_pair.rename(columns={"Approved name": "Receptor Name",
                                       "Previous symbol": "Receptor Old symbol",}
                             )
 
+# add some missing MGI since they were mouse-specific
+mouse_info = pd.read_csv("data/mouse_info.csv")
+mapping = dict(zip(mouse_info['symbol'], mouse_info['mgi']))
+# Function to apply the mapping only if the MGI ID is empty
+def map_if_empty(row, gene_col, mgi_col, mapping_dict):
+    if pd.isna(row[mgi_col]) or row[mgi_col] == '':
+        return mapping_dict.get(row[gene_col], '') # Use .get() to avoid KeyError if symbol not in mapping
+    return row[mgi_col]
+
+# Apply the mapping to 'Receptor MGI ID'
+gene_pair['Receptor MGI ID'] = gene_pair.apply(
+    lambda row: map_if_empty(row, 'Receptor', 'Receptor MGI ID', mapping),
+    axis=1
+)
+
+# Apply the mapping to 'Ligand MGI ID'
+gene_pair['Ligand MGI ID'] = gene_pair.apply(
+    lambda row: map_if_empty(row, 'Ligand', 'Ligand MGI ID', mapping),
+    axis=1
+)
+
+
 
 gene_pair = gene_pair.drop(columns=["HGNC ID"])
 
 # Add new columns where all Ligand Symbol & Aliases and Receptor Symbol & Aliases merged in one column
 def format_symbol_aliases(symbol, old_symbol, aliases):
-    # Filter out "N/A" values
-    parts = [p for p in (old_symbol, aliases) if p != "N/A"]
-    # Return just the symbol if no valid aliases or old symbols
-    return f"{symbol} ({', '.join(parts)})" if parts else symbol
+    """
+    Formats symbol, old symbols, and aliases.
+    If the final formatted string would be empty after considering N/A values
+    and empty inputs, it returns "mouse-specific".
+    Otherwise, it formats based on the presence of old_symbol and aliases,
+    removing unnecessary parentheses or commas, following the structure:
+    "Symbol (Old Symbol, Aliases)" if both exist.
+    """
+    # Normalize inputs to empty strings if they are None/NaN or just whitespace
+    symbol_str = str(symbol).strip()
+    old_symbol_str = str(old_symbol).strip()
+    aliases_str = str(aliases).strip()
+
+    # Filter out values that are empty strings or "N/A" for old_symbol and aliases
+    parts_for_join = []
+    if old_symbol_str and old_symbol_str != "N/A":
+        parts_for_join.append(old_symbol_str)
+    if aliases_str and aliases_str != "N/A":
+        parts_for_join.append(aliases_str)
+
+    # Construct the preliminary result based on your original logic:
+    # "symbol (old_symbol, aliases)" if parts_for_join is not empty, else "symbol"
+    if parts_for_join:
+        prelim_result = f"{symbol_str} ({', '.join(parts_for_join)})"
+    else:
+        prelim_result = symbol_str # Just the symbol if no old_symbol or aliases
+
+    # If the preliminary result is empty (or just whitespace), replace with "mouse-specific"
+    if not prelim_result.strip():
+        return "mouse-specific"
+    else:
+        return prelim_result
+
+# This is crucial for consistent handling by the function before processing "N/A".
+gene_pair['Ligand'] = gene_pair['Ligand'].fillna('')
+gene_pair['Ligand Old symbol'] = gene_pair['Ligand Old symbol'].fillna('')
+gene_pair['Ligand Aliases'] = gene_pair['Ligand Aliases'].fillna('')
 
 gene_pair['Ligand Symbols'] = gene_pair.apply(
     lambda row: format_symbol_aliases(row['Ligand'], row['Ligand Old symbol'], row['Ligand Aliases']),
     axis=1
 )
+
+# This is crucial for consistent handling by the function before processing "N/A".
+gene_pair['Receptor'] = gene_pair['Receptor'].fillna('')
+gene_pair['Receptor Old symbol'] = gene_pair['Receptor Old symbol'].fillna('')
+gene_pair['Receptor Aliases'] = gene_pair['Receptor Aliases'].fillna('')
 
 gene_pair['Receptor Symbols'] = gene_pair.apply(
     lambda row: format_symbol_aliases(row['Receptor'], row['Receptor Old symbol'], row['Receptor Aliases']),
@@ -467,6 +531,17 @@ agg_func = lambda x: ', '.join(sorted(set(map(str, x))))
 # Group and aggregate all columns except 'LR pair'
 gene_pair = gene_pair.groupby('Human LR Pair').agg(agg_func).reset_index()
 gene_pair = gene_pair[gene_pair['Human LR Pair'] != '']
+# Identify rows where BOTH 'Ligand HGNC ID' and 'Receptor HGNC ID' are empty
+# We check if the stripped string is empty, as fillna('') converts None/NaN to empty strings
+has_hgnc_id = (gene_pair['Ligand HGNC ID'].astype(str).str.strip() != '') | \
+              (gene_pair['Receptor HGNC ID'].astype(str).str.strip() != '')
+
+# Separate the DataFrame into two parts
+rows_with_hgnc_id = gene_pair[has_hgnc_id]
+rows_without_hgnc_id = gene_pair[~has_hgnc_id] # Use ~ to negate the condition
+
+# Concatenate the DataFrames: rows with IDs first, then rows without IDs
+gene_pair = pd.concat([rows_with_hgnc_id, rows_without_hgnc_id]).reset_index(drop=True)
 DBlength = len(gene_pair)
 gene_pair["Interaction ID"] = [f"CDB{str(i).zfill(5)}" for i in range(1, DBlength + 1)]
 
@@ -764,6 +839,8 @@ gene_pair = gene_pair.drop(columns=pmid_cols)
 
 gene_pair000 = gene_pair.copy()
 
+
+
 keywords_to_modify = ["Ligand", "Receptor"]
 exclude_keywords = ["HGNC ID", "Location", "Human"]  # Columns containing this will not be modified
 
@@ -785,3 +862,5 @@ gene_pair000.columns = new_columns
 #human_columns = [col for col in gene_pair000.columns][:17]
 human_columns = [col for col in gene_pair000.columns][:16]
 #######################################################################
+human_gene_pair = gene_pair.iloc[:, :-36]
+human_gene_pair = gene_pair.iloc[:-13]

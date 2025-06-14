@@ -13,6 +13,9 @@ import warnings
 # Suppress SettingWithCopyWarning
 warnings.simplefilter("ignore", category=UserWarning)
 
+# for mouse-specific, fill out missing info
+
+
 
 # Other vertebrates
 species_list = [

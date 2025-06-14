@@ -16,9 +16,11 @@ _site/
 _site/*
 site_libs/
 site_libs/*
+site_libs
 
 # R qmd--remove for now
 DT_R_ver.qmd
+*.md
 
 # C extensions
 *.so

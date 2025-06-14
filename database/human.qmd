@@ -1,6 +1,6 @@
 ---
-title: '{{< fa database >}} ConnectomeDB2025: <span class=''highlight''>3,436 Human(*Homo
-  sapiens*) </span>  LR Pairs'
+title: '{{< fa database >}} ConnectomeDB2025: <span class=''highlight''>3,436 Human
+  (*Homo sapiens*) </span>  LR Pairs'
 execute:
   echo: false
 format:
@@ -88,9 +88,7 @@ import itables.options as opt
 project_root = os.path.dirname(os.getcwd())
 os.chdir(project_root)
 sys.path.append(os.path.abspath("src"))
-from createDataTable import gene_pair
-
-human_gene_pair = gene_pair.iloc[:, :-36]
+from createDataTable import human_gene_pair
 
 ## Turn Interaction ID into clickable links (hide for now)
 # human_gene_pair[human_gene_pair.columns[0]] = human_gene_pair[human_gene_pair.columns[0]].apply(
