@@ -1,6 +1,5 @@
 ---
-title: "{{< fa database >}} ConnectomeDB2025: Human \u2013 *Homo sapiens* </span>\
-  \  LR Pairs"
+title: "Human \u2013 *Homo sapiens* </span>"
 execute:
   echo: false
 format:

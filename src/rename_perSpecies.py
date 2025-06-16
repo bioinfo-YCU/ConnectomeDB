@@ -40,7 +40,7 @@ def update_connectomedb_qmd(qmd_file_path: str, lr_pair_data: list, species_name
     )
     
     yaml_data = {
-        "title": f"{{{{< fa database >}}}} ConnectomeDB2025: {species} – *{species_name}* </span> {Ortholog} LR Pairs",
+        "title": f"{species} – *{species_name}* </span>",
         "execute": {"echo": False},
         "format": {
             "html": {"table": False}
