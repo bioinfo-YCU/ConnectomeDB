@@ -1,6 +1,5 @@
 ---
-title: "{{< fa database >}} ConnectomeDB2025: Marmoset \u2013 *Callithrix jacchus*\
-  \ </span> Ortholog LR Pairs"
+title: "Marmoset \u2013 *Callithrix jacchus* </span>"
 execute:
   echo: false
 format:

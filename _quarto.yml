@@ -43,8 +43,6 @@ website:
            text: Mouse Orthologs
          - text: '──────────'   # ← Fake divider
          - text: 'Other Species'
-         - text: '──────────'   # ← Fake divider
-           
             # No 'href' here, making it unclickable.
          - href: database/other/chimpOrth.qmd
            text: 'Chimp Orthologs' 
