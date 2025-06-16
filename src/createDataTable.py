@@ -319,8 +319,12 @@ gene_pair['Ligand MGI ID'] = gene_pair.apply(
     lambda row: map_if_empty(row, 'Ligand', 'Ligand MGI ID', mapping),
     axis=1
 )
-
-
+# to later check which ligand-receptor pairs are non-human
+def is_mouse_specific(name):
+    if not isinstance(name, str):
+        return False
+    name = name.strip()  # remove leading/trailing spaces
+    return any(c.islower() for c in name[1:])
 
 gene_pair = gene_pair.drop(columns=["HGNC ID"])
 
@@ -353,21 +357,20 @@ def format_symbol_aliases(symbol, old_symbol, aliases):
     else:
         prelim_result = symbol_str # Just the symbol if no old_symbol or aliases
 
-    # If the preliminary result is empty (or just whitespace), replace with "mouse-specific"
-    if not prelim_result.strip():
-        return "mouse-specific"
-    else:
-        return prelim_result
+    return prelim_result
 
 # This is crucial for consistent handling by the function before processing "N/A".
 gene_pair['Ligand'] = gene_pair['Ligand'].fillna('')
 gene_pair['Ligand Old symbol'] = gene_pair['Ligand Old symbol'].fillna('')
 gene_pair['Ligand Aliases'] = gene_pair['Ligand Aliases'].fillna('')
 
+
 gene_pair['Ligand Symbols'] = gene_pair.apply(
-    lambda row: format_symbol_aliases(row['Ligand'], row['Ligand Old symbol'], row['Ligand Aliases']),
+    lambda row: "no human ortholog" if is_mouse_specific(row['Ligand']) 
+               else format_symbol_aliases(row['Ligand'], row['Ligand Old symbol'], row['Ligand Aliases']),
     axis=1
 )
+
 
 # This is crucial for consistent handling by the function before processing "N/A".
 gene_pair['Receptor'] = gene_pair['Receptor'].fillna('')
@@ -375,7 +378,8 @@ gene_pair['Receptor Old symbol'] = gene_pair['Receptor Old symbol'].fillna('')
 gene_pair['Receptor Aliases'] = gene_pair['Receptor Aliases'].fillna('')
 
 gene_pair['Receptor Symbols'] = gene_pair.apply(
-    lambda row: format_symbol_aliases(row['Receptor'], row['Receptor Old symbol'], row['Receptor Aliases']),
+    lambda row: "no human ortholog" if is_mouse_specific(row['Receptor']) 
+                else format_symbol_aliases(row['Receptor'], row['Receptor Old symbol'], row['Receptor Aliases']),
     axis=1
 )
 
@@ -768,6 +772,15 @@ gene_pair = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", "Receptor",
                        "Interaction Type",'Ligand Name','Receptor Name'] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
 # rm  "KEGG Pathway", "PROGENy Pathway", "Cancer-related", "Disease Type" for now
 
+# Quick check if there is mouse-specific
+gene_pair['Ligand'] = gene_pair.apply(
+    lambda row: "no human ortholog" if is_mouse_specific(row['Ligand']) else row['Ligand'],
+    axis=1
+)
+gene_pair['Receptor'] = gene_pair.apply(
+    lambda row: "no human ortholog" if is_mouse_specific(row['Receptor']) else row['Receptor'],
+    axis=1
+)
 
 # gene symbol
 gene_pair["Ligand"] = [
@@ -811,6 +824,7 @@ gene_pair["Human LR Pair"] = [
     f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrPairOrig.replace(" ","-")}.html">{lrPair}</a>'
     for lrPairOrig, lrPair in zip(gene_pair0["Human LR Pair"], gene_pair["Human LR Pair"])
 ]
+
 
 
 
