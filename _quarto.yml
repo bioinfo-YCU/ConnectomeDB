@@ -11,6 +11,7 @@ project:
     - "!annotations/*.qmd"
     - "!database/human-trip*.qmd"
     - "!database/human-FilterOnTop.qmd"
+    - "!askAIchat.qmd"
 
 resources:
   - images
@@ -40,7 +41,10 @@ website:
          #   text: Human LR Pairs ˣ Pubmed
          - href: database/mouseOrth.qmd
            text: Mouse Orthologs
-         - text: 'Other Species' 
+         - text: '──────────'   # ← Fake divider
+         - text: 'Other Species'
+         - text: '──────────'   # ← Fake divider
+           
             # No 'href' here, making it unclickable.
          - href: database/other/chimpOrth.qmd
            text: 'Chimp Orthologs' 
@@ -64,8 +68,8 @@ website:
            text: 'Chicken Orthologs' 
          - href: database/other/zebrafishOrth.qmd 
            text: 'Zebrafish Orthologs' 
-         - href: askAIchat.qmd
-           text: 'Ask AI chatbot'
+    # - href: askAIchat.qmd
+    #   text: 'Ask AI chatbot'
         
      
       # - text: 'Annotations Browser'
