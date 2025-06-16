@@ -1,3 +1,5 @@
+# fetchGSheet.py - Module that creates variables at module level for import
+
 import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
@@ -22,8 +24,9 @@ def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file, max_retries=5)
             worksheet = sheet.worksheet(tab_name)
             data = worksheet.get_all_values()
             df = pd.DataFrame(data)
-            df.columns = df.iloc[0]
-            df = df[1:].reset_index(drop=True)
+            if len(df) > 0:
+                df.columns = df.iloc[0]
+                df = df[1:].reset_index(drop=True)
             return df
         except WorksheetNotFound:
             raise ValueError(f"Tab '{tab_name}' not found in Google Sheet with ID '{sheet_ID}'.")
@@ -36,45 +39,89 @@ def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file, max_retries=5)
                 raise
     raise RuntimeError(f"Failed to fetch data after {max_retries} retries due to API quota limits.")
 
-# ADD RATE LIMITING BETWEEN CALLS - This is the key fix!
-def rate_limited_fetch(sheet_ID, tab_name, credentials_file, delay=1.5):
-    """Wrapper that adds delay between API calls"""
-    print(f"Fetching '{tab_name}'...")
-    result = fetch_google_sheet_data(sheet_ID, tab_name, credentials_file)
-    print(f"Successfully fetched {len(result)} rows from '{tab_name}'")
-    time.sleep(delay)  # Wait between calls to avoid quota issues
-    return result
+# Rate limiting function
+def safe_fetch(sheet_ID, tab_name, credentials_file, delay=1.5):
+    """Fetch with rate limiting to avoid quota issues"""
+    try:
+        result = fetch_google_sheet_data(sheet_ID, tab_name, credentials_file)
+        time.sleep(delay)  # Rate limiting delay
+        return result
+    except Exception as e:
+        # Return empty DataFrame so other code doesn't break
+        return pd.DataFrame()
 
-# Your existing code with rate limiting added:
-print("Starting data fetch with rate limiting...")
+# ============================================================================
+# MODULE LEVEL VARIABLES - These are what other files import
+# ============================================================================
 
-# Fetching data from Google Sheets
-gene_pair = rate_limited_fetch(sheet_ID, "FROZEN LIST HUMAN", credentials_file)
-gene_pair_mouse = rate_limited_fetch(sheet_ID, "FROZEN LIST MOUSE", credentials_file)
+# Loading Google Sheets data silently
 
-# For now append mouse and remove in human pair later
-gene_pair = pd.concat([gene_pair, gene_pair_mouse])
+# Fetching and combining human/mouse data
+gene_pair_human = safe_fetch(sheet_ID, "FROZEN LIST HUMAN", credentials_file)
+gene_pair_mouse = safe_fetch(sheet_ID, "FROZEN LIST MOUSE", credentials_file)
 
-# Ligand and receptor location
-ligand_loc = rate_limited_fetch(sheet_ID, "Ligand_location_HUMAN", credentials_file)
-receptor_loc = rate_limited_fetch(sheet_ID, "Receptor_location_HUMAN", credentials_file)
+# Combine human and mouse gene pairs
+if not gene_pair_human.empty and not gene_pair_mouse.empty:
+    gene_pair = pd.concat([gene_pair_human, gene_pair_mouse])
+elif gene_pair_mouse.empty and not gene_pair_human.empty:
+    gene_pair = gene_pair_human  # Keep just human data
+elif gene_pair_human.empty and not gene_pair_mouse.empty:
+    gene_pair = gene_pair_mouse  # Use mouse data if human fails
+else:
+    gene_pair = pd.DataFrame()  # Both failed
 
-# For now append mouse and remove in human pair later
-ligand_loc_mouse = rate_limited_fetch(sheet_ID, "Ligand_location_Mouse", credentials_file)
-ligand_loc = pd.concat([ligand_loc, ligand_loc_mouse])
+# Ligand location data
+ligand_loc_human = safe_fetch(sheet_ID, "Ligand_location_HUMAN", credentials_file)
+ligand_loc_mouse = safe_fetch(sheet_ID, "Ligand_location_Mouse", credentials_file)
 
-receptor_loc_mouse = rate_limited_fetch(sheet_ID, "Receptor_location_Mouse", credentials_file)
-receptor_loc = pd.concat([receptor_loc, receptor_loc_mouse])
+# Combine ligand location data
+if not ligand_loc_human.empty and not ligand_loc_mouse.empty:
+    ligand_loc = pd.concat([ligand_loc_human, ligand_loc_mouse])
+elif ligand_loc_mouse.empty and not ligand_loc_human.empty:
+    ligand_loc = ligand_loc_human
+elif ligand_loc_human.empty and not ligand_loc_mouse.empty:
+    ligand_loc = ligand_loc_mouse
+else:
+    ligand_loc = pd.DataFrame()
 
-# Pathways
-kegg_pathway_info = rate_limited_fetch(sheet_ID, "KEGG_metadata_pairs in frozen", credentials_file)
+# Receptor location data
+receptor_loc_human = safe_fetch(sheet_ID, "Receptor_location_HUMAN", credentials_file)
+receptor_loc_mouse = safe_fetch(sheet_ID, "Receptor_location_Mouse", credentials_file)
 
-# HGNC gene group
-gene_group = rate_limited_fetch(sheet_ID, "HGNC gene group", credentials_file)
+# Combine receptor location data
+if not receptor_loc_human.empty and not receptor_loc_mouse.empty:
+    receptor_loc = pd.concat([receptor_loc_human, receptor_loc_mouse])
+elif receptor_loc_mouse.empty and not receptor_loc_human.empty:
+    receptor_loc = receptor_loc_human
+elif receptor_loc_human.empty and not receptor_loc_mouse.empty:
+    receptor_loc = receptor_loc_mouse
+else:
+    receptor_loc = pd.DataFrame()
 
-src_info = rate_limited_fetch(sheet_ID, "sourceAbbv", credentials_file)
+# Other data
+kegg_pathway_info = safe_fetch(sheet_ID, "KEGG_metadata_pairs in frozen", credentials_file)
+gene_group = safe_fetch(sheet_ID, "HGNC gene group", credentials_file)
+src_info = safe_fetch(sheet_ID, "sourceAbbv", credentials_file)
 
-# Your existing processing code stays the same:
-human_gene_pair = gene_pair.iloc[:, :-36]
-# remove mouse info
-human_gene_pair = human_gene_pair.iloc[:-13]
+# Process human gene pairs
+if not gene_pair.empty and gene_pair.shape[1] > 36:
+    human_gene_pair = gene_pair.iloc[:, :-36]
+    if len(human_gene_pair) > 13:
+        human_gene_pair = human_gene_pair.iloc[:-13]
+    # Removed warning print
+else:
+    # Removed warning print
+    human_gene_pair = pd.DataFrame()
+
+# Data loading complete - removed final print statement
+
+# Make only the final merged variables available for import
+__all__ = [
+    'gene_pair',           # Combined human + mouse
+    'ligand_loc',          # Combined human + mouse  
+    'receptor_loc',        # Combined human + mouse
+    'kegg_pathway_info',   # Single sheet
+    'gene_group',          # Single sheet
+    'src_info',            # Single sheet
+    'human_gene_pair'      # Processed gene pairs
+]

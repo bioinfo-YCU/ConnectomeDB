@@ -15,11 +15,10 @@ format:
 ---
 
 ```{=html}
-
 <style>
 /* Ensure the entire viewport is used and prevent root scrolling */
 html, body {
-    height: 100%; /* Make html and body fill the viewport height */
+    height: 100%; /* Changed from 80% to 100% */
     margin: 0;
     padding: 0;
     overflow: hidden; /* Prevent overall page scrolling on larger screens */
@@ -41,23 +40,21 @@ body {
 }
 
 /* Adjust main to fill the available space */
+
 main {
-    flex: 1; /* Allows main to grow and shrink, taking remaining vertical space */
-    display: flex; /* Enable flexbox for its children (e.g., carousel, main-content) */
-    flex-direction: column; /* Stack children vertically within main */
-    margin: 0 !important;
-    padding: 0 !important;
-    min-height: 0; /* Critical for flex items with overflow */
-    overflow-y: auto; /* Allow scrolling *within* the main content area if it overflows */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
 }
+
 
 /* Main content area should grow to take available space within 'main' */
 .main-content {
     flex: 1; /* Allows this element to grow and shrink within 'main' */
     display: flex; /* Keep flexbox for its internal layout if needed */
     flex-direction: column;
-    /* If content within .main-content might overflow, allow internal scrolling */
-    overflow-y: auto; /* This allows specific content in .main-content to scroll, not the whole page */
+    overflow: visible; /* Allow content to be visible */
     min-height: 0; /* Important for flex items to shrink correctly */
     padding: 1rem; /* Add some padding back for content */
 }
@@ -65,9 +62,20 @@ main {
 /* For carousel - ensure it fits within its allocated space within 'main' */
 .carousel-section {
     flex: 0 0 auto; /* It retains its intrinsic height/width */
-    /* You might need to set a max-height if it's very tall */
-    /* max-height: 40vh; */ /* Example: Limit carousel height to 40% of viewport */
-    overflow: hidden; /* Hide any content that overflows the carousel itself */
+    width: 80%; /* Ensure full width usage */
+    max-height: 300px !important; 
+    overflow: visible; /* Allow carousel content to be fully visible */
+    display: flex;
+    align-items: center; /* Center carousel content vertically */
+    justify-content: center; /* Center carousel content horizontally */
+    min-height: fit-content; /* Allow natural sizing */
+}
+
+/* Add specific sizing for carousel content */
+.carousel-section > * {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 /* Style for the footer to ensure it's always visible at the bottom of the page */
@@ -78,22 +86,29 @@ main {
     text-align: center; /* Example alignment */
 }
 
-/* General responsive adjustments (example) */
+/* General responsive adjustments */
 @media (max-width: 768px) {
-    /* For smaller screens, allow scrolling if content doesn't fit */
-    html, body {
-        overflow: auto; /* Allow scrolling on smaller devices if needed */
+    .main-content {
+        padding: 0.5rem; /* Reduce padding on mobile for more space */
     }
-    body {
-        height: auto; /* Auto height on smaller screens */
-    }
-    main {
-        height: auto; /* Auto height on smaller screens */
-        overflow-y: auto; /* Ensure main content can scroll on smaller screens */
+    
+    .page-header, .page-footer {
+        padding: 0.5rem; /* Reduce header/footer padding on mobile */
     }
 }
 
+/* Additional breakpoint for very small screens */
+@media (max-width: 480px) {
+    .main-content {
+        padding: 0.25rem; /* Even less padding on very small screens */
+    }
+    
+    .page-header, .page-footer {
+        padding: 0.25rem;
+    }
+}
 
+</style>
 ```
 
 ```{=html}
