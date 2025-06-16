@@ -16,3 +16,4 @@ from .createFunctionalAnnotTable.py import *
 from .createTriplicateDT import *
 from .createFilteredDBpages import *
 from .plotHeatmapTS import *
+from .convertMouseToRat import *

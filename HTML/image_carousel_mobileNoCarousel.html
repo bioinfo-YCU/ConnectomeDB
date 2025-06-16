@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile-Friendly Homepage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
         .carousel-container {
             max-width: 1600px;
@@ -76,23 +77,44 @@
             .carousel-wrapper .carousel-slide:hover img {
                 transform: scale(1);
             }
-           .carousel-slide .pause-icon {
+        
+            .carousel-slide .pause-icon {
                 display: none;
                 position: absolute;
                 top: 60px;
-                right: 100px;
+                right: 150px;
                 color: white;
-                background: rgba(0, 0, 0, 0.6);
-                padding: 5px 8px;
-                border-radius: 4px;
-                font-size: 1.2em;
-                pointer-events: none; /* Don't block image interaction */
+                background: red;
+                padding: 10px;
+                border-radius: 50%;
+                font-size: 2em;
+                pointer-events: none;
+                width: 60px;
+                height: 60px;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
             }
             
-        .carousel-slide:hover .pause-icon {
-                display: block;
+            .carousel-slide:hover .pause-icon {
+                display: flex;
             }
-    
+            
+            .carousel-slide:hover .pause-icon::after {
+                content: "On Hold";
+                position: absolute;
+                bottom: -35px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: transparent;
+                color: gray;
+                padding: 5px 10px;
+                border-radius: 4px;
+                font-size: 0.5em;
+                white-space: nowrap;
+                pointer-events: none;
+            }
+            
             .carousel-wrapper .carousel-slide .overlay {
                 position: absolute;
                 bottom: 10px;
@@ -309,7 +331,7 @@
             <div class="carousel-track" id="carouselTrack">
                 <div class="carousel-slide">
                     <img src="images/data1.png" alt="Image 1">
-                    <div class="pause-icon">&#10073;&#10073;</div>  <!-- Unicode pause icon -->
+                      <div class="pause-icon"><i class="bi bi-pause-fill"></i></div>
                     <!-- <div class="overlay">
                         <h3>Notes:</h3>
                         <p>ConnectomeDB2025 only retains ligand-receptor pairs with primary experimental evidence.
@@ -321,7 +343,7 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
                 </div>
                 <div class="carousel-slide">
                     <img src="images/data2.png" alt="Image 2">
-                    <div class="pause-icon">&#10073;&#10073;</div>  <!-- Unicode pause icon -->
+                    <div class="pause-icon"><i class="bi bi-pause-fill"></i></div>
                     <!-- <div class="overlay">
                         <h3>Notes:</h3>
                         <p>ConnectomeDB2025 has the most recent publications. See 2020-2025.</p>
@@ -329,7 +351,7 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
                 </div>
                 <div class="carousel-slide">
                     <img src="images/data3.png" alt="Image 3">
-                    <div class="pause-icon">&#10073;&#10073;</div>  <!-- Unicode pause icon -->
+                    <div class="pause-icon"><i class="bi bi-pause-fill"></i></div>
                     <!-- <div class="overlay">
                         <h3>Notes:</h3>
                         <p>Unique new content means they are not reported in connectomeDB2020, CelltalkDB, ICELLNET_v2, CellchatDB_v2, cellphoneDB_v5, or LIANA consensus. Freeze date: 30th May 2025.</p>
@@ -337,7 +359,7 @@ ICELLNET_v2 – 1,669 original PPI pairs → 1,828 singlets after splitting comp
                 </div>
                 <div class="carousel-slide">
                     <img src="images/data4.png" alt="Image 4">
-                    <div class="pause-icon">&#10073;&#10073;</div>  <!-- Unicode pause icon -->
+                    <div class="pause-icon"><i class="bi bi-pause-fill"></i></div>
                     <!-- <div class="overlay">
                         <h3>Notes:</h3>
                         <p>12 Vertebrate Orthologs are provided.</p>

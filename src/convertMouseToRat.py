@@ -1,10 +1,11 @@
 ## Function to convert Mouse (ENSEMBL) to RGD ID via biomart
+import os
+import sys
 from pybiomart import Server
 import pandas as pd
-sys.path.append(os.path.abspath("src"))
-from createDataTable import mouse_specific_mgi_ids
+import createDataTable 
 # Full list of unique MGI IDs
-mgi_ids = mouse_specific_mgi_ids
+mgi_ids = createDataTable.mouse_specific_mgi_ids
 
 server = Server(host='http://www.ensembl.org')
 
@@ -16,11 +17,14 @@ mouse_genes = mouse_dataset.query(
     attributes=[
         'ensembl_gene_id',
         'mgi_id',
-        'mgi_symbol'
+        'mgi_symbol',
+        'mgi_description'
     ]
 )
-
+mouse_genes.rename(columns={
+    'MGI description': 'MGI name'})
 mouse_genes = mouse_genes[mouse_genes["MGI ID"].isin(mgi_ids)]
+mouse_genes.to_csv("data/mouse_name_mapping.csv", index=False)
 # Step 2: Get mouse Ensembl genes with rat ortholog Ensembl gene IDs (no mouse MGI here)
 mouse_rat_orthologs = mouse_dataset.query(
     attributes=[
@@ -38,7 +42,7 @@ mouse_to_rat = mouse_to_rat[mouse_to_rat['Norway rat - BN/NHsdMcwi gene stable I
 # Step 4: Retrieve RGD IDs for rat ortholog Ensembl gene IDs
 rat_ensembl_ids = mouse_to_rat['Norway rat - BN/NHsdMcwi gene stable ID'].unique().tolist()
 rat_ensembl_to_rgd = rat_dataset.query(
-    attributes=['ensembl_gene_id', 'rgd_id']
+    attributes=['ensembl_gene_id', 'rgd_id', 'description']
 )
 rat_ensembl_to_rgd = rat_ensembl_to_rgd[rat_ensembl_to_rgd["Gene stable ID"].isin(rat_ensembl_ids)]
 # Step 5: Merge rat RGD IDs back
@@ -54,6 +58,7 @@ final_mapping.rename(columns={
     'Gene stable ID_x': 'mouse_ensembl_gene_id',
     'Gene stable ID_y': 'rat_ensembl_gene_id',
     'Norway rat - BN/NHsdMcwi gene name': 'RGD symbol',
+    'Gene description': 'RGD name',
     'rgd_id': 'RGD ID'
 }, inplace=True)
 
