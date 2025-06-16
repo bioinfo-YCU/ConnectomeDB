@@ -319,6 +319,40 @@ gene_pair['Ligand MGI ID'] = gene_pair.apply(
     lambda row: map_if_empty(row, 'Ligand', 'Ligand MGI ID', mapping),
     axis=1
 )
+
+# add some missing RGD since they were mouse-specific
+mouse_rat_info = pd.read_csv("data/mouse_to_rat_mapping.csv")
+mapping_mouse_to_rat = dict(zip(mouse_rat_info['MGI ID'], mouse_rat_info['RGD ID']))
+mapping_mr2 = dict(zip(mouse_rat_info['RGD ID'], mouse_rat_info['RGD symbol']))
+# Function to apply the mapping only if the MGI ID is empty
+def map_if_empty(row, gene_col, mgi_col, mapping_dict):
+    if pd.isna(row[mgi_col]) or row[mgi_col] == '':
+        return mapping_dict.get(row[gene_col], '') # Use .get() to avoid KeyError if symbol not in mapping
+    return row[mgi_col]
+
+
+# Apply the mapping to 'Ligand MGI ID'
+gene_pair['Ligand RGD ID'] = gene_pair.apply(
+    lambda row: map_if_empty(row, 'Ligand MGI ID', 'Receptor RGD ID', mapping_mouse_to_rat),
+    axis=1
+) 
+
+# Apply the mapping to 'Receptor MGI ID'
+gene_pair['Receptor RGD ID'] = gene_pair.apply(
+    lambda row: map_if_empty(row, 'Receptor MGI ID', 'Receptor RGD ID', mapping_mouse_to_rat),
+    axis=1
+)
+
+### Add missing Rat ligand name
+
+# Apply the mapping to 'Ligand RGD ID to Rat Ligand'
+gene_pair['Rat Ligand'] = gene_pair.apply(
+    lambda row: map_if_empty(row, 'Ligand RGD ID', 'Rat Ligand', mapping_mr2),
+    axis=1
+)
+
+
+
 # to later check which ligand-receptor pairs are non-human
 def is_mouse_specific(name):
     if not isinstance(name, str):
@@ -327,6 +361,12 @@ def is_mouse_specific(name):
     return any(c.islower() for c in name[1:])
 
 gene_pair = gene_pair.drop(columns=["HGNC ID"])
+
+# extract the mgi that would need to be converted from mouse to rat
+mouse_specific_mgi_ids_ligand = gene_pair[gene_pair['Ligand'].apply(is_mouse_specific)]['Ligand MGI ID'].tolist()
+mouse_specific_mgi_ids_receptor = gene_pair[gene_pair['Receptor'].apply(is_mouse_specific)]['Receptor MGI ID'].tolist()
+mouse_specific_mgi_ids = mouse_specific_mgi_ids_ligand + mouse_specific_mgi_ids_receptor
+mouse_specific_mgi_ids = pd.unique(pd.Series(mouse_specific_mgi_ids))
 
 # Add new columns where all Ligand Symbol & Aliases and Receptor Symbol & Aliases merged in one column
 def format_symbol_aliases(symbol, old_symbol, aliases):
@@ -416,6 +456,14 @@ gene_pair = gene_pair.rename(columns={
                                      "ZFIN Symbol": "Zebrafish Receptor",
                                      "ZFIN Name": "Zebrafish Receptor Name"}
                             )
+
+### Add missing Rat Receptor name
+# Apply the mapping to 'Receptor RGD ID to Rat Receptor'
+gene_pair['Rat Receptor'] = gene_pair.apply(
+    lambda row: map_if_empty(row, 'Receptor RGD ID', 'Rat Receptor', mapping_mr2),
+    axis=1
+)
+
 
 #gene_pair = gene_pair.drop(columns=["Approved symbol_x", "Approved symbol_y"])
 
