@@ -1,5 +1,5 @@
 ---
-title: "{{< fa database >}} ConnectomeDB2025: Cow \u2013 (*Bos taurus*) </span> Ortholog\
+title: "{{< fa database >}} ConnectomeDB2025: Cow \u2013 *Bos taurus* </span> Ortholog\
   \ LR Pairs"
 execute:
   echo: false
