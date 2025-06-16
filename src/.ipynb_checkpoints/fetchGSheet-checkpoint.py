@@ -1,19 +1,12 @@
-## Function to fetch data from a Google Sheet tab
-
 import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
-
-sheet_ID = "1XP5wBDN_orSlE8RLb2TxSclIopVO1mb_1S3ENf2qYSw" #"15FfI7cVpJmAcytTBmhVE2Z77tgVQYfEZUEe700_Wzlg"
-credentials_file = 'data/connectomedb2025-a9acdf562a84.json'
-
 import time
 import random
-import pandas as pd
-import gspread
-from google.auth.transport.requests import Request
-from google.oauth2.service_account import Credentials
 from gspread.exceptions import APIError, WorksheetNotFound
+
+sheet_ID = "1XP5wBDN_orSlE8RLb2TxSclIopVO1mb_1S3ENf2qYSw"
+credentials_file = 'data/connectomedb2025-a9acdf562a84.json'
 
 def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file, max_retries=5):
     """
@@ -22,7 +15,7 @@ def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file, max_retries=5)
     SCOPES = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
     credentials = Credentials.from_service_account_file(credentials_file, scopes=SCOPES)
     client = gspread.authorize(credentials)
-
+    
     for attempt in range(max_retries):
         try:
             sheet = client.open_by_key(sheet_ID)
@@ -41,28 +34,47 @@ def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file, max_retries=5)
                 time.sleep(wait_time)
             else:
                 raise
-
     raise RuntimeError(f"Failed to fetch data after {max_retries} retries due to API quota limits.")
 
+# ADD RATE LIMITING BETWEEN CALLS - This is the key fix!
+def rate_limited_fetch(sheet_ID, tab_name, credentials_file, delay=1.5):
+    """Wrapper that adds delay between API calls"""
+    print(f"Fetching '{tab_name}'...")
+    result = fetch_google_sheet_data(sheet_ID, tab_name, credentials_file)
+    print(f"Successfully fetched {len(result)} rows from '{tab_name}'")
+    time.sleep(delay)  # Wait between calls to avoid quota issues
+    return result
+
+# Your existing code with rate limiting added:
+print("Starting data fetch with rate limiting...")
 
 # Fetching data from Google Sheets
-gene_pair = fetch_google_sheet_data(sheet_ID, "FROZEN LIST HUMAN", credentials_file)
-gene_pair_mouse = fetch_google_sheet_data(sheet_ID, "FROZEN LIST MOUSE", credentials_file)
+gene_pair = rate_limited_fetch(sheet_ID, "FROZEN LIST HUMAN", credentials_file)
+gene_pair_mouse = rate_limited_fetch(sheet_ID, "FROZEN LIST MOUSE", credentials_file)
+
 # For now append mouse and remove in human pair later
 gene_pair = pd.concat([gene_pair, gene_pair_mouse])
 
-#loc_info = fetch_google_sheet_data(sheet_ID, "proteome_HPA", credentials_file) 
-# Ligand and receptor location # previously based on localization 
-ligand_loc = fetch_google_sheet_data(sheet_ID, "Ligand_location_HUMAN", credentials_file) 
-receptor_loc = fetch_google_sheet_data(sheet_ID, "Receptor_location_HUMAN", credentials_file) 
-# Pathways
-kegg_pathway_info = fetch_google_sheet_data(sheet_ID, "KEGG_metadata_pairs in frozen", credentials_file) 
-# HGNC gene group
-gene_group = fetch_google_sheet_data(sheet_ID, "HGNC gene group", credentials_file)
- 
-src_info = fetch_google_sheet_data(sheet_ID, "sourceAbbv", credentials_file)
-#pop_up_info = fetch_google_sheet_data(sheet_ID, "HGNC_Dec2024", credentials_file)
+# Ligand and receptor location
+ligand_loc = rate_limited_fetch(sheet_ID, "Ligand_location_HUMAN", credentials_file)
+receptor_loc = rate_limited_fetch(sheet_ID, "Receptor_location_HUMAN", credentials_file)
 
+# For now append mouse and remove in human pair later
+ligand_loc_mouse = rate_limited_fetch(sheet_ID, "Ligand_location_Mouse", credentials_file)
+ligand_loc = pd.concat([ligand_loc, ligand_loc_mouse])
+
+receptor_loc_mouse = rate_limited_fetch(sheet_ID, "Receptor_location_Mouse", credentials_file)
+receptor_loc = pd.concat([receptor_loc, receptor_loc_mouse])
+
+# Pathways
+kegg_pathway_info = rate_limited_fetch(sheet_ID, "KEGG_metadata_pairs in frozen", credentials_file)
+
+# HGNC gene group
+gene_group = rate_limited_fetch(sheet_ID, "HGNC gene group", credentials_file)
+
+src_info = rate_limited_fetch(sheet_ID, "sourceAbbv", credentials_file)
+
+# Your existing processing code stays the same:
 human_gene_pair = gene_pair.iloc[:, :-36]
 # remove mouse info
-human_gene_pair= human_gene_pair.iloc[:-13]
+human_gene_pair = human_gene_pair.iloc[:-13]
