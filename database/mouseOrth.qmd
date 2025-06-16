@@ -1,6 +1,6 @@
 ---
-title: '{{< fa database >}} ConnectomeDB2025: <span class=''highlight''>3,368 Mouse
-  (*Mus musculus*) </span> Ortholog LR Pairs'
+title: "{{< fa database >}} ConnectomeDB2025: Mouse \u2013 (*Mus musculus*) </span>\
+  \ Ortholog LR Pairs"
 execute:
   echo: false
 format:

@@ -32,18 +32,25 @@ def update_connectomedb_qmd(qmd_file_path: str, lr_pair_data: list, species_name
     else:
         Ortholog=""
 
-    # --- 2. Build YAML content
+    # --- 2. Build YAML contents
+    header_script = (
+        "<script src='../js/keepDropdownMenuGold.js'></script>"
+        if species in ["Human", "Mouse"]
+        else "<script src='../../js/keepDropdownMenuGold.js'></script>"
+    )
+    
     yaml_data = {
-        "title": f"{{{{< fa database >}}}} ConnectomeDB2025: <span class='highlight'>{formatted_count} {species} (*{species_name}*) </span> {Ortholog} LR Pairs",
+        "title": f"{{{{< fa database >}}}} ConnectomeDB2025: {species} – *{species_name}* </span> {Ortholog} LR Pairs",
         "execute": {"echo": False},
         "format": {
             "html": {"table": False}
         },
-        "header-includes": "<script src='../js/keepDropdownMenuGold.js'></script>"
+        "header-includes": header_script
     }
+    
     yaml_block = "---\n" + yaml.dump(yaml_data, sort_keys=False) + "---"
-
-    # --- 3. Replace the YAML block in the template
+    
+    # Read the QMD template
     try:
         with open(qmd_file_path, 'r', encoding='utf-8') as f:
             template = f.read()
@@ -53,11 +60,10 @@ def update_connectomedb_qmd(qmd_file_path: str, lr_pair_data: list, species_name
     except Exception as e:
         print(f"Error reading file '{qmd_file_path}': {e}")
         return
+    
+    # Use a lambda to safely replace the YAML block without triggering backslash escapes
+    new_qmd = re.sub(r"(?s)^---.*?---", lambda m: yaml_block, template, count=1)
 
-    # Regex to match the first YAML block between --- and ---
-    # (?s) enables DOTALL mode, so . matches newlines
-    # ^---.*?--- matches from start of string, non-greedily, until next ---
-    new_qmd = re.sub(r"(?s)^---.*?---", yaml_block, template, count=1)
 
     # --- 4. Write out and render
     try:
