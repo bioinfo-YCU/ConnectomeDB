@@ -16,7 +16,7 @@ from createDataTable import pop_up_info, gene_pair0, generate_perplexity_links, 
 from createFunctionalAnnotTable import gene_pair_annot_ligand, gene_pair_annot_receptor
 
 # Test or all
-test = True
+test = False
 test_genes = ["H60a Klrk1", "H60b Klrk1", "VEGFA NRP1", "THPO MPL", "FGF1 FGFR3"] # Example genes
 # --- Paths ---
 MERGED_TEMPLATE_PATH = 'HTML/mergedCard_tabs.html'
@@ -106,6 +106,9 @@ gene_pair0_copy = generate_perplexity_links(
 mouse_rat_info = pd.read_csv("data/mouse_name_mapping.csv")
 mapping_mouse_name = dict(zip(mouse_rat_info['MGI ID'], mouse_rat_info['MGI description']))
 mapping_mouse_ens = dict(zip(mouse_rat_info['MGI ID'], mouse_rat_info['Gene stable ID']))
+mapping_mouse_aliases = dict(zip(mouse_rat_info['MGI ID'], mouse_rat_info['Other symbols']))
+mapping_mouse_uniprot = dict(zip(mouse_rat_info['MGI ID'], mouse_rat_info['Uniprot ID']))
+mapping_mouse_ncbi = dict(zip(mouse_rat_info['MGI ID'], mouse_rat_info['NCBI gene ID']))
 mouse_rat_info = pd.read_csv("data/mouse_to_rat_mapping.csv")
 mapping_mr2 = dict(zip(mouse_rat_info['RGD ID'], mouse_rat_info['RGD name']))
 
@@ -216,6 +219,86 @@ def convert_mgi_GO_url(row, mgi_col):
         )
         return new_link
     return None
+
+def convert_GEO_url(row, ncbi_col):
+    ncbi_id = row[ncbi_col]
+    if ncbi_id:
+        visible_text = 'GEO (RNA and protein)' # <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>
+        new_link = (
+            f'<a href="https://www.ncbi.nlm.nih.gov/geoprofiles?LinkName=gene_geoprofiles&from_uid={ncbi_id}" '
+            f'target="_blank">{visible_text}</a>'
+        )
+        return new_link
+    return None
+
+def convert_quickGO_url(row, uniprot_col):
+    uniprot_id = row[uniprot_col]
+    if uniprot_id:
+        visible_text = 'quickGO' # <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>
+        new_link = (
+            f'<a href="https://www.ebi.ac.uk/QuickGO/annotations?geneProductId={uniprot_id}" '
+            f'target="_blank">{visible_text}</a>'
+        )
+        return new_link
+    return None
+
+def convert_ncbi_url(row, symbol_col, ncbi_col):
+    symbol = row[symbol_col]
+    ncbi_id = row[ncbi_col]
+    
+    if ncbi_id:
+        visible_text = f'{symbol}' # <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>
+        new_link = (
+            f'<a href="https://www.ncbi.nlm.nih.gov/gene/{ncbi_id}" '
+            f'target="_blank">{visible_text}</a>'
+        )
+        return new_link
+    return None
+
+def convert_ensm_url_exp(row, ensm_col):
+    ensm_id = row[ensm_col]
+    if ensm_id:
+        visible_text = 'Expression Atlas (RNA)' # <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>
+        new_link = f'<a href="https://www.ebi.ac.uk/gxa/genes/{ensm_id}" target="_blank">{visible_text}</a>'
+        return new_link
+    return None
+
+def convert_mgi_ensembl_url(row, symbol_col, ensm_col):
+    symbol = row[symbol_col]
+    ensm_id = row[ensm_col]
+    
+    if ensm_id:
+        visible_text = f'{symbol}' # <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>
+        new_link = (
+            f'<a href="https://www.ensembl.org/id/{ensm_id}" '
+            f'target="_blank">{visible_text}</a>'
+        )
+        return new_link
+    return None
+
+def convert_symbol_url_allenBrain(row, symbol_col):
+    symbol = row[symbol_col]
+    if symbol:
+        visible_text = 'Allen Brain Atlas (RNA)'
+        new_link = (
+            f'<a href="https://celltypes.brain-map.org/rnaseq/searches?{{'
+            f'%22exact_match%22:true,%22search_term%22:%22{symbol}%22,'
+            f'%22search_type%22:%22gene%22,%22features%22:[],%22tumors%22:[],%22page_num%22:0'
+            f'}}" target="_blank">{visible_text}</a>'
+        )
+        return new_link
+    return None
+
+def convert_symbol_url_MCA(row, symbol_col):
+    symbol = row[symbol_col]
+    if symbol:
+        visible_text = 'Mouse Cell Atlas 1.1 (RNA)'
+        new_link = (
+            f'<a href="https://bis.zju.edu.cn/MCA/assets/img/mca1.1/tsne/gene-pic/{symbol}.jpg" target="_blank">{visible_text}</a>'
+        )
+        return new_link
+    return None
+
     
 # for Malacards
 def convert_symbol_url_disease(symbol):
@@ -356,21 +439,40 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
     ligand_card = gene_pair_input_df[["Human LR Pair", "Ligand", "Ligand Name", "Ligand HGNC ID", "Ligand MGI ID", "Ligand RGD ID", "Ligand Location", "is_mouse_specific"]].merge(
         pop_up_info_lim, how='left', left_on='Ligand', right_on='Approved symbol'
     ).drop_duplicates(subset='Human LR Pair', keep="first").drop(columns=["Approved symbol"])
+    # create expression atlas link
+    def create_exp_atlas_link(row):
+        if row['is_mouse_specific']:
+            base_link = convert_ensm_url_exp(row, "ensembl_gene_id")
+        else:
+            base_link = row["Human Protein Atlas"]
+        return base_link
+    
     # Apply the mapping to 'ensembl_gene_id'
     ligand_card['ensembl_gene_id'] = ligand_card.apply(
-        lambda row: mapping_mouse_name.get(row['Ligand MGI ID'], row['ensembl_gene_id'])
+        lambda row: mapping_mouse_ens.get(row['Ligand MGI ID'], row['ensembl_gene_id'])
         if pd.isna(row['ensembl_gene_id']) or str(row['ensembl_gene_id']).strip() == '' else row['ensembl_gene_id'],
         axis=1
     )
+    # actual expression atlas creation
+    ligand_card['Human Protein Atlas'] = ligand_card.apply(create_exp_atlas_link, axis=1)
+    
+        # Apply the mapping to 'Other Symbols'
+    ligand_card['Other Symbols'] = ligand_card.apply(
+        lambda row: mapping_mouse_aliases.get(row['Ligand MGI ID'], row['Other Symbols'])
+        if pd.isna(row['Other Symbols']) or str(row['Other Symbols']).strip() == '' else row['Other Symbols'],
+        axis=1
+    )
+    ligand_card['Other Symbols'] = ligand_card['Other Symbols'].apply(
+    lambda x: "None" if pd.isna(x) or (isinstance(x, str) and x.strip().lower() == 'nan') else x
+)
 
     ligand_card_1 = ligand_card[["Human LR Pair", "Ligand Name", "Other Symbols", "Ligand Location", "is_mouse_specific"]]
-    ligand_card_2 = ligand_card[["Human LR Pair", "Ligand HGNC ID", "JensenLab DISEASES", "OMIM", 'Open Targets Platform', 'Human Protein Atlas', "AmiGO", "PAN-GO", "Ligand", "is_mouse_specific", "Ligand MGI ID"]]
+    
+    ligand_card_2 = ligand_card[["Human LR Pair", "Ligand HGNC ID", "JensenLab DISEASES", "OMIM", 'Open Targets Platform', 'Human Protein Atlas', "AmiGO", "PAN-GO", "Ligand", "is_mouse_specific", "Ligand MGI ID", "ensembl_gene_id"]]
     
     # Create GeneCards - modify based on mouse-specific status
     def create_ligand_genecards_link(row):
         if row['is_mouse_specific']:
-            # For mouse-specific ligands, you might want different formatting or links
-            # Example: add a note or use different styling
             base_link = convert_mgi_url(row, "Ligand", "Ligand MGI ID")
             if base_link:
                 # Add mouse-specific indicator (example modification)
@@ -407,7 +509,23 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
     ligand_card_2["Disease relevance"] = ligand_card_2.apply(create_disease_relevance_link, axis=1)
     ligand_card_2["Human Cell Atlas"] = ligand_card["Ligand"].apply(convert_symbol_url_exp)
     ligand_card_2["GEPIA"] = ligand_card["Ligand"].apply(convert_symbol_url_exp_GEPIA)
+    # add allen brain to gepia slot
+    def create_brain_atlas_link(row):
+        if row['is_mouse_specific']:
+            base_link = convert_symbol_url_allenBrain(row, "Ligand")
+        else:
+            base_link = row["GEPIA"]
+        return base_link
+    ligand_card_2['GEPIA'] = ligand_card_2.apply(create_brain_atlas_link, axis=1)
+    
     ligand_card_2["Expression Profile"] = ligand_card_2["Ligand HGNC ID"].apply(convert_hgnc_url_exp)
+    def create_MCA_link(row):
+        if row['is_mouse_specific']:
+            base_link = convert_symbol_url_MCA(row, "Ligand")
+        else:
+            base_link = row["Expression Profile"]
+        return base_link
+    ligand_card_2['Expression Profile'] = ligand_card_2.apply(create_MCA_link, axis=1)
     ligand_card_2["HGNC Gene Group"] = ligand_card_2['Ligand HGNC ID'].map(ligand_mapping).fillna("none")
     
     icon_html_card = '<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i></a>'
@@ -415,8 +533,51 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
         ligand_card_2[col] = ligand_card_2[col].str.replace(
             "</a>", icon_html_card, regex=False
         )
+     # Apply the NCBI mapping to 'HGNC Gene Group'
+    ligand_card_2['HGNC Gene Group'] = ligand_card_2.apply(
+        lambda row: mapping_mouse_ncbi.get(row['Ligand MGI ID'], row['HGNC Gene Group'])
+        if pd.isna(row['HGNC Gene Group']) or str(row['HGNC Gene Group']).strip() == 'unknown' else row['HGNC Gene Group'],
+        axis=1
+    )
+    def create_GEO_link(row):
+        if row['is_mouse_specific']:
+            base_link = convert_GEO_url(row, "HGNC Gene Group")
+        else:
+            base_link = row["Human Cell Atlas"]
+        return base_link
     
-    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "GeneCards", "HGNC Gene Group", "Disease relevance", "Human Cell Atlas","GEPIA", "OMIM", "JensenLab DISEASES", "Expression Profile", 'Open Targets Platform', 'Human Protein Atlas', "AmiGO", "PAN-GO", "Ligand", "is_mouse_specific"]]
+    ligand_card_2["Human Cell Atlas"] = ligand_card_2.apply(create_GEO_link, axis=1)
+
+    def create_ligand_ncbi_link(row):
+        if row['is_mouse_specific']:
+            base_link = convert_ncbi_url(row, "Ligand", "HGNC Gene Group")
+            if base_link:
+                # Add mouse-specific indicator (example modification)
+                return base_link.replace('target="_blank">', 'target="_blank" class="mouse-specific">')
+            return base_link
+        else:
+            return row["HGNC Gene Group"]
+
+    ligand_card_2["HGNC Gene Group"] = ligand_card_2.apply(create_ligand_ncbi_link, axis=1)
+    
+    # Apply the uniprot mapping to 'AmiGO'
+    ligand_card_2['AmiGO'] = ligand_card_2.apply(
+        lambda row: mapping_mouse_uniprot.get(row['Ligand MGI ID'], row['AmiGO'])
+        if pd.isna(row['AmiGO']) or str(row['AmiGO']).strip() == 'unknown' else row['AmiGO'],
+        axis=1
+    )
+    def create_quickGO_link(row):
+        if row['is_mouse_specific']:
+            base_link = convert_quickGO_url(row, "AmiGO")
+        else:
+            base_link = row["AmiGO"]
+        return base_link
+    
+    ligand_card_2["AmiGO"] = ligand_card_2.apply(create_quickGO_link, axis=1)
+    
+    ligand_card_2 = ligand_card_2[["Human LR Pair", "Ligand HGNC ID", "GeneCards", "HGNC Gene Group", "Disease relevance", "Human Cell Atlas","GEPIA", "OMIM", "JensenLab DISEASES", "Expression Profile", 'Open Targets Platform', 'Human Protein Atlas', "AmiGO", "PAN-GO", "Ligand", "is_mouse_specific", "ensembl_gene_id"]]
+
+    ###HERE
     
     #ligand_card_2 = create_conditional_dataframes(ligand_card_2)
     
@@ -427,13 +588,24 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
 
     # Apply the mapping to 'ensembl_gene_id'
     receptor_card['ensembl_gene_id'] = receptor_card.apply(
-        lambda row: mapping_mouse_name.get(row['Ligand MGI ID'], row['ensembl_gene_id'])
+        lambda row: mapping_mouse_ens.get(row['Receptor MGI ID'], row['ensembl_gene_id'])
         if pd.isna(row['ensembl_gene_id']) or str(row['ensembl_gene_id']).strip() == '' else row['ensembl_gene_id'],
         axis=1
     )
+    # actual expression atlas creation
+    receptor_card['Human Protein Atlas'] = receptor_card.apply(create_exp_atlas_link, axis=1)
+    # Apply the mapping to 'Other Symbols'
+    receptor_card['Other Symbols'] = receptor_card.apply(
+        lambda row: mapping_mouse_aliases.get(row['Receptor MGI ID'], row['Other Symbols'])
+        if pd.isna(row['Other Symbols']) or str(row['Other Symbols']).strip() == '' else row['Other Symbols'],
+        axis=1
+    )
+    receptor_card['Other Symbols'] = receptor_card['Other Symbols'].apply(
+    lambda x: "None" if pd.isna(x) or (isinstance(x, str) and x.strip().lower() == 'nan') else x
+)
 
     receptor_card_1 = receptor_card[["Human LR Pair", "Receptor Name", "Other Symbols", "Receptor Location", "is_mouse_specific"]]
-    receptor_card_2 = receptor_card[["Human LR Pair", "Receptor HGNC ID", "JensenLab DISEASES", "OMIM", 'Open Targets Platform', 'Human Protein Atlas', "AmiGO", "PAN-GO", "Receptor", "is_mouse_specific", "Receptor MGI ID"]]
+    receptor_card_2 = receptor_card[["Human LR Pair", "Receptor HGNC ID", "JensenLab DISEASES", "OMIM", 'Open Targets Platform', 'Human Protein Atlas', "AmiGO", "PAN-GO", "Receptor", "is_mouse_specific", "Receptor MGI ID", "ensembl_gene_id"]]
     
     # Create GeneCards for receptors
     def create_receptor_genecards_link(row):
@@ -467,22 +639,75 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
     receptor_card_2["Disease relevance"] = receptor_card_2.apply(create_receptor_disease_relevance_link, axis=1)
     receptor_card_2["Human Cell Atlas"] = receptor_card["Receptor"].apply(convert_symbol_url_exp)
     receptor_card_2["GEPIA"] = receptor_card["Receptor"].apply(convert_symbol_url_exp_GEPIA)
+        # add allen brain to gepia slot
+    def create_brain_atlas_link_receptor(row):
+        if row['is_mouse_specific']:
+            base_link = convert_symbol_url_allenBrain(row, "Receptor")
+        else:
+            base_link = row["GEPIA"]
+        return base_link
+    receptor_card_2['GEPIA'] = receptor_card_2.apply(create_brain_atlas_link_receptor, axis=1)
     receptor_card_2["Expression Profile"] = receptor_card_2["Receptor HGNC ID"].apply(convert_hgnc_url_exp)
+    def create_MCA_link_receptor(row):
+        if row['is_mouse_specific']:
+            base_link = convert_symbol_url_MCA(row, "Receptor")
+        else:
+            base_link = row["Expression Profile"]
+        return base_link
+    receptor_card_2['Expression Profile'] = receptor_card_2.apply(create_MCA_link_receptor, axis=1)
     receptor_card_2["HGNC Gene Group"] = receptor_card_2['Receptor HGNC ID'].map(receptor_mapping).fillna("none")
     
     for col in ["Receptor HGNC ID"]:
         receptor_card_2[col] = receptor_card_2[col].str.replace(
             "</a>", icon_html_card, regex=False
         )
+    # Apply the NCBI mapping to 'HGNC Gene Group'
+    receptor_card_2['HGNC Gene Group'] = receptor_card_2.apply(
+        lambda row: mapping_mouse_ncbi.get(row['Receptor MGI ID'], row['HGNC Gene Group'])
+        if pd.isna(row['HGNC Gene Group']) or str(row['HGNC Gene Group']).strip() == 'unknown' else row['HGNC Gene Group'],
+        axis=1
+    )
+    receptor_card_2["Human Cell Atlas"] = receptor_card_2.apply(create_GEO_link, axis=1)
+
+    def create_ligand_ncbi_link_receptor(row):
+        if row['is_mouse_specific']:
+            base_link = convert_ncbi_url(row, "Receptor", "HGNC Gene Group")
+            if base_link:
+                # Add mouse-specific indicator (example modification)
+                return base_link.replace('target="_blank">', 'target="_blank" class="mouse-specific">')
+            return base_link
+        else:
+            return row["HGNC Gene Group"]
+
+    receptor_card_2["HGNC Gene Group"] = receptor_card_2.apply(create_ligand_ncbi_link_receptor, axis=1)
+ # Apply the uniprot mapping to 'AmiGO'
+    receptor_card_2['AmiGO'] = receptor_card_2.apply(
+        lambda row: mapping_mouse_uniprot.get(row['Receptor MGI ID'], row['AmiGO'])
+        if pd.isna(row['AmiGO']) or str(row['AmiGO']).strip() == 'unknown' else row['AmiGO'],
+        axis=1
+    )
+    receptor_card_2["AmiGO"] = receptor_card_2.apply(create_quickGO_link, axis=1)
     
-    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID",  "GeneCards", "HGNC Gene Group", "Disease relevance", "Human Cell Atlas","GEPIA", "OMIM", 'Open Targets Platform', "JensenLab DISEASES", "Expression Profile",'Human Protein Atlas', "AmiGO", "PAN-GO", "Receptor", "is_mouse_specific"]]
+
+    
+    receptor_card_2 = receptor_card_2[["Human LR Pair", "Receptor HGNC ID",  "GeneCards", "HGNC Gene Group", "Disease relevance", "Human Cell Atlas","GEPIA", "OMIM", 'Open Targets Platform', "JensenLab DISEASES", "Expression Profile",'Human Protein Atlas', "AmiGO", "PAN-GO", "Receptor", "is_mouse_specific", "ensembl_gene_id"]]
     
     # Rename and update HGNC columns
     ligand_card_2 = ligand_card_2.rename(columns={"Ligand HGNC ID": "HGNC Gene Symbol Report"})
-    ligand_card_2["HGNC Gene Symbol Report"] = ligand_card_2.apply(
-        lambda row: update_link_text_with_symbol(row["HGNC Gene Symbol Report"], row["Ligand"]),
-        axis=1
-    )
+    # ligand_card_2["HGNC Gene Symbol Report"] = ligand_card_2.apply(
+    #     lambda row: update_link_text_with_symbol(row["HGNC Gene Symbol Report"], row["Ligand"]),
+    #     axis=1
+    # )
+    def create_ensemblcards_link(row):
+        if row['is_mouse_specific']:
+            base_link = convert_mgi_ensembl_url(row, "Ligand", "ensembl_gene_id")
+            if base_link:
+                return base_link.replace('target="_blank">', 'target="_blank" class="mouse-specific">')
+            return base_link
+        else:
+            return update_link_text_with_symbol(row["HGNC Gene Symbol Report"], row["Ligand"])
+    
+    ligand_card_2["HGNC Gene Symbol Report"] = ligand_card_2.apply(create_ensemblcards_link, axis=1)
     
     # Add perplexity with conditional formatting
     def create_ligand_perplexity_link(row):
@@ -500,11 +725,16 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
     ligand_card_2 = ligand_card_2.drop(columns=["Ligand", "is_mouse_specific"])
     
     receptor_card_2 = receptor_card_2.rename(columns={"Receptor HGNC ID": "HGNC Gene Symbol Report"})
-    receptor_card_2["HGNC Gene Symbol Report"] = receptor_card_2.apply(
-        lambda row: update_link_text_with_symbol(row["HGNC Gene Symbol Report"], row["Receptor"]),
-        axis=1
-    )
+    def create_ensemblcards_link_receptor(row):
+        if row['is_mouse_specific']:
+            base_link = convert_mgi_ensembl_url(row, "Receptor", "ensembl_gene_id")
+            if base_link:
+                return base_link.replace('target="_blank">', 'target="_blank" class="mouse-specific">')
+            return base_link
+        else:
+            return update_link_text_with_symbol(row["HGNC Gene Symbol Report"], row["Receptor"])
     
+    receptor_card_2["HGNC Gene Symbol Report"] = receptor_card_2.apply(create_ensemblcards_link_receptor, axis=1)
     # Add perplexity for receptors
     def create_receptor_perplexity_link(row):
         if row['is_mouse_specific']:
@@ -573,6 +803,10 @@ def convert_pair_url(df_pairs):
 
 # Find the generate_combined_html_files function and update these specific parts:
 
+import os
+import re
+import pandas as pd # Assuming pandas is already imported
+
 def generate_combined_html_files(
     gene_pair_keywords_df, # Corresponds to gene_pair000 (with '—' in LR Pair)
     template,
@@ -616,22 +850,12 @@ def generate_combined_html_files(
 
     rendered_pages = []
 
-    # Define create_conditional_dataframes locally or ensure it's accessible
-    # (It's already in the global scope if you copy-pasted it above)
     def create_conditional_dataframes(dataframe, is_mouse_column='is_mouse_specific'):
         """
         Split dataframe into mouse-specific and regular dataframes with different column names
         """
         mouse_specific_df = dataframe[dataframe[is_mouse_column] == True].copy()
         regular_df = dataframe[dataframe[is_mouse_column] == False].copy()
-        
-        if not mouse_specific_df.empty:
-            mouse_specific_df = mouse_specific_df.rename(columns={
-                "GeneCards": "MGI",
-                "Disease relevance": "Mouse Disease Models",
-                "Human Cell Atlas": "Mouse Cell Atlas",
-                "GEPIA": "Mouse Expression Atlas"
-            })
         
         if not mouse_specific_df.empty and not regular_df.empty:
             combined_df = pd.concat([regular_df, mouse_specific_df], ignore_index=True)
@@ -642,6 +866,22 @@ def generate_combined_html_files(
             
         return combined_df
 
+    # --- Helper function to clean 'nan' values in dictionaries ---
+    def clean_nan_values_in_dict(data_dict):
+        cleaned_dict = {}
+        for key, value in data_dict.items():
+            if isinstance(value, str):
+                # Aggressively clean and check
+                stripped_lower_value = value.strip().lower()
+                if stripped_lower_value == "nan" or stripped_lower_value == "null" or stripped_lower_value == "":
+                    cleaned_dict[key] = "" # Replace with empty string
+                else:
+                    cleaned_dict[key] = value.strip() # Keep the original value, but trim it
+            elif pd.isna(value): # Catches numpy/pandas NaNs (float type)
+                cleaned_dict[key] = "" # Replace NaN float with empty string
+            else:
+                cleaned_dict[key] = value # Keep non-string, non-NaN values as is
+        return cleaned_dict
 
     # --- First pass: Collect all content and metadata ---
     for idx, row in gene_pair_keywords_df.iterrows():
@@ -671,14 +911,15 @@ def generate_combined_html_files(
             current_ligand_card_2 = current_ligand_card_2.rename(columns={
                 "GeneCards": "MGI",
                 "Ligand Name": "Mouse Ligand Name",
-                "HGNC Gene Symbol Report": "Ensembl Report"
+                "HGNC Gene Symbol Report": "Ensembl Gene Symbol Report",
+                "HGNC Gene Group" : "NCBI"
             })
             current_receptor_card_2 = current_receptor_card_2.rename(columns={
                 "GeneCards": "MGI",
                 "Receptor Name": "Receptor Ligand Name",
-                "HGNC Gene Symbol Report": "Ensembl Report"
+                "HGNC Gene Symbol Report": "Ensembl Gene Symbol Report",
+                "HGNC Gene Group" : "NCBI"
             })
-
 
         # Extract and clean interaction ID from the actual table data
         table0_data = current_interaction_card.drop('Human LR Pair', axis=1).to_dict(orient='records')[0]
@@ -704,7 +945,7 @@ def generate_combined_html_files(
         current_ligand_card_1 = current_ligand_card_1.drop(columns=['is_mouse_specific', 'Human LR Pair'], errors='ignore')
         current_receptor_card_1 = current_receptor_card_1.drop(columns=['is_mouse_specific', 'Human LR Pair'], errors='ignore')
         current_ligand_card_2 = current_ligand_card_2.drop(columns=['Ligand', 'is_mouse_specific', 'Human LR Pair'], errors='ignore')
-        current_receptor_card_2 = current_receptor_card_2.drop(columns=['Receptor', 'is_mouse_specific'], errors='ignore')
+        current_receptor_card_2 = current_receptor_card_2.drop(columns=['Receptor', 'is_mouse_specific', 'Human LR Pair'], errors='ignore')
 
         # Save for navigation
         rendered_pages.append({
@@ -759,14 +1000,18 @@ def generate_combined_html_files(
         
         # --- Prepare other tables ---
         def get_table_data(df):
-            # No need to drop 'Human LR Pair' here, as it's handled when creating current_*_card dfs
             return df.to_dict(orient='records')[0] if not df.empty else {}
         
         table1_data = get_table_data(page["row1"])
         table2_data = get_table_data(page["row2"])
-        table3_data = get_table_data(page["row3"])
-        table4_data = get_table_data(page["row4"])
         
+        # Apply the cleaning function to table3_data and table4_data here
+        table3_data_raw = get_table_data(page["row3"])
+        table3_data = clean_nan_values_in_dict(table3_data_raw) 
+        
+        table4_data_raw = get_table_data(page["row4"])
+        table4_data = clean_nan_values_in_dict(table4_data_raw) 
+
         # --- Related pairs ---
         ligand_pairs_df = gene_pair_main_df[(gene_pair_main_df['Ligand'] == page["value1"]) &
                                              (gene_pair_main_df["Human LR Pair"] != page["lr_pair_name_space"])].copy()
@@ -803,8 +1048,8 @@ def generate_combined_html_files(
             table0_data=page["table0_data"],
             table1_data=table1_data,
             table2_data=table2_data,
-            table3_data=table3_data,
-            table4_data=table4_data,
+            table3_data=table3_data, # Use the cleaned table3_data
+            table4_data=table4_data, # Use the cleaned table4_data
             ligand_image=ligand_image,
             receptor_image=receptor_image,
             ligand_pairs=ligand_pairs_str,

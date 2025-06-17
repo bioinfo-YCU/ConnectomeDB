@@ -1092,17 +1092,67 @@
                                 <span class="menu-text">Tutorials</span>
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="nav-menu-connectomedb" role="link" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="menu-text">ConnectomeDB</span>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="nav-menu-connectomedb">
-                                <li><a class="dropdown-item" href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/human.html"><span class="dropdown-text">Human LR Pairs</span></a></li>
-                                <li><a class="dropdown-item" href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/mouseOrth.html"><span class="dropdown-text">Mouse Orthologs</span></a></li>
-                                <li><a class="dropdown-item" href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/other/rhesusmonkeyOrth.html"><span class="dropdown-text">Other Species</span></a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                        <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ligand-receptor-browser" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Ligand-Receptor Browser</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ligand-receptor-browser">    
+        <li>
+    <a class="dropdown-item" href="./database/human.html">
+ <span class="dropdown-text">Human LR Pairs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./database/mouseOrth.html">
+ <span class="dropdown-text">Mouse Orthologs</span></a>
+  </li>  
+        <li class="dropdown-header" style="margin-top: 0; padding-top: 0px; padding-bottom: 0px;">──────────</li>
+<li class="dropdown-header">OTHER SPECIES</li>
+    <a class="dropdown-item" href="./database/other/chimpOrth.html">
+ <span class="dropdown-text">Chimp Orthologs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./database/other/macaqueOrth.html">
+ <span class="dropdown-text">Macaque Orthologs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./database/other/marmosetOrth.html">
+ <span class="dropdown-text">Marmoset Orthologs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./database/other/ratOrth.html">
+ <span class="dropdown-text">Rat Orthologs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./database/other/pigOrth.html">
+ <span class="dropdown-text">Pig Orthologs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./database/other/cowOrth.html">
+ <span class="dropdown-text">Cow Orthologs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./database/other/dogOrth.html">
+ <span class="dropdown-text">Dog Orthologs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./database/other/horseOrth.html">
+ <span class="dropdown-text">Horse Orthologs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./database/other/cowOrth.html">
+ <span class="dropdown-text">Sheep Orthologs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./database/other/sheepOrth.html">
+ <span class="dropdown-text">Chicken Orthologs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./database/other/zebrafishOrth.html">
+ <span class="dropdown-text">Zebrafish Orthologs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
                     <ul class="navbar-nav navbar-nav-scroll ms-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="mailto:bioinfo@yokohama-cu.ac.jp,alistair.forrest@perkins.uwa.edu.au,rui.hou@uwa.edu.au">
@@ -1195,7 +1245,7 @@
                         
                                     <div class="lr-info-item">
                                         {% set table3_data_items = table3_data.items() | list %}
-                                        {% for column, value in table3_data_items[:-11] %}
+                                        {% for column, value in table3_data_items[:-12] %}
                                         <div><strong>{{ column }}:</strong> {{ value }}</div>
                                         {% endfor %}
                                     </div>
@@ -1222,7 +1272,21 @@
                             {% endif %}
                             <hr style="margin: 4px 0; padding: 0;">
                             {% if "Disease relevance" in table3_data %}
-                            <strong>Disease Annotations:</strong> {{ table3_data["Disease relevance"] }},  {{ table3_data["OMIM"] }}, {{ table3_data["Open Targets Platform"] }}, {{ table3_data["JensenLab DISEASES"] }}, {{table3_data["Perplexity"] }}
+                                <strong>Disease Annotations:</strong>
+                                {% set temp_annotations = [] %}
+                                
+                                {# Collect potentially empty strings into a temporary list #}
+                                {% set temp_annotations = temp_annotations + [table3_data.get("Disease relevance", "")] %}
+                                {% set temp_annotations = temp_annotations + [table3_data.get("OMIM", "")] %}
+                                {% set temp_annotations = temp_annotations + [table3_data.get("Open Targets Platform", "")] %}
+                                {% set temp_annotations = temp_annotations + [table3_data.get("JensenLab DISEASES", "")] %}
+                                {% set temp_annotations = temp_annotations + [table3_data.get("Perplexity", "")] %}
+                            
+                                {# Filter out all empty strings from the list #}
+                                {% set final_annotations = temp_annotations | select('ne', '') | list %}
+                            
+                                {# Join only the non-empty strings that remain #}
+                                {{ final_annotations | join(', ') }}
                             {% endif %}
                     </div>
                 </div>
@@ -1252,7 +1316,7 @@
                                 <div class="column-left">
                                      <div class="lr-info-item">
                                     {% set table4_data_items = table4_data.items() | list %}
-                                    {% for column, value in table4_data_items[:-11] %}
+                                    {% for column, value in table4_data_items[:-12] %}
                                             <div><strong>{{ column }}:</strong> {{ value }}</div>
                                         {% endfor %}
                                     </div>
@@ -1281,7 +1345,21 @@
                             {% endif %}
                             <hr style="margin: 4px 0; padding: 0;">
                             {% if "Disease relevance" in table4_data %}
-                            <strong>Disease Annotations:</strong> {{ table4_data["Disease relevance"] }},  {{ table4_data["OMIM"] }}, {{ table4_data["Open Targets Platform"] }}, {{ table4_data["JensenLab DISEASES"] }}, {{table3_data["Perplexity"] }}
+                                <strong>Disease Annotations:</strong>
+                                {% set temp_annotations = [] %}
+                                
+                                {# Collect potentially empty strings into a temporary list #}
+                                {% set temp_annotations = temp_annotations + [table4_data.get("Disease relevance", "")] %}
+                                {% set temp_annotations = temp_annotations + [table4_data.get("OMIM", "")] %}
+                                {% set temp_annotations = temp_annotations + [table4_data.get("Open Targets Platform", "")] %}
+                                {% set temp_annotations = temp_annotations + [table4_data.get("JensenLab DISEASES", "")] %}
+                                {% set temp_annotations = temp_annotations + [table4_data.get("Perplexity", "")] %}
+                            
+                                {# Filter out all empty strings from the list #}
+                                {% set final_annotations = temp_annotations | select('ne', '') | list %}
+                            
+                                {# Join only the non-empty strings that remain #}
+                                {{ final_annotations | join(', ') }}
                             {% endif %}
                     </div>
                 </div>
