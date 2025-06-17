@@ -48,6 +48,6 @@ The S100A1 ○ ⤚ TLR4 pair involves interaction of S100A1 which is normally in
 
 ### Orthologous pairs
 
-Within connectomeDB2025 there are 3,436 ligand-receptor pairs linked to human gene symbols and 12 mouse specific pairs linked to mouse gene symbols. Human and mouse gene symbols were mapped to HGNC and MGI identifiers respectively. Expand...
+Within connectomeDB2025 there are 3,436 ligand-receptor pairs linked to human gene symbols and 12 mouse specific pairs linked to mouse gene symbols. Human and mouse gene symbols were mapped to HGNC and MGI identifiers respectively via the BioMart at Ensembl.
 
 
