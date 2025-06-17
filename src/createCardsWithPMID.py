@@ -257,24 +257,31 @@ def convert_ncbi_url(row, symbol_col, ncbi_col):
 
 def convert_ensm_url_exp(row, ensm_col):
     ensm_id = row[ensm_col]
-    if ensm_id:
-        visible_text = 'Expression Atlas (RNA)' # <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>
-        new_link = f'<a href="https://www.ebi.ac.uk/gxa/genes/{ensm_id}" target="_blank">{visible_text}</a>'
-        return new_link
+    # Check if ensm_id is NaN or empty
+    if pd.isna(ensm_id) or not ensm_id:
+        visible_text = f'Expression Atlas (RNA) <i>(no ensemble gene id)</i>'
+        return visible_text
+    visible_text = 'Expression Atlas (RNA)' # <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>
+    new_link = f'<a href="https://www.ebi.ac.uk/gxa/genes/{ensm_id}" target="_blank">{visible_text}</a>'
+    return new_link
     return None
 
 def convert_mgi_ensembl_url(row, symbol_col, ensm_col):
     symbol = row[symbol_col]
     ensm_id = row[ensm_col]
     
-    if ensm_id:
-        visible_text = f'{symbol}' # <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>
-        new_link = (
-            f'<a href="https://www.ensembl.org/id/{ensm_id}" '
-            f'target="_blank">{visible_text}</a>'
-        )
-        return new_link
-    return None
+    # Check if ensm_id is NaN or empty
+    if pd.isna(ensm_id) or not ensm_id:
+        visible_text = f'{symbol} <i>(not in the official report)</i>'
+        return visible_text
+    
+    # If ensm_id exists, create the link
+    visible_text = f'{symbol}' # <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 4px;"></i>
+    new_link = (
+        f'<a href="https://www.ensembl.org/id/{ensm_id}" '
+        f'target="_blank">{visible_text}</a>'
+    )
+    return new_link
 
 def convert_symbol_url_allenBrain(row, symbol_col):
     symbol = row[symbol_col]
