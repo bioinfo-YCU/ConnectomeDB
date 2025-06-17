@@ -19,6 +19,7 @@ from createDataTable import (
 )
 ```
 
+
 <hr>
 
 <div style="border-left: 4px solid #C28840; background-color: #F5F5F5; padding: 0px 0.3em; margin: 1em 0;">
@@ -56,10 +57,12 @@ from createDataTable import (
 
 <div style="margin-top: 1em;"></div>
 
-**Want to learn more about connectomeDB2025?** Please refer to the [Methods](methods.qmd) section.
-
 **Publication**: *ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction*, P Liu, et al. (TBA)\
 **GitHub repo**: <https://github.com/bioinfo-YCU/ConnectomeDB> *(open upon publication)*
+
+## **Methods**
+
+**Want to learn more about connectomeDB2025?** Please refer to the [Methods](methods.qmd) section.
 
 ## **Online Resource**
 

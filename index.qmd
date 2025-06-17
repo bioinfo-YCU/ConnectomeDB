@@ -12,13 +12,15 @@ format:
     html-math-method: webtex
     keep-md: true
     allow-html: true
+    page-footer: false
 ---
 
 ```{=html}
+
 <style>
 /* Ensure the entire viewport is used and prevent root scrolling */
 html, body {
-    height: 100%; /* Changed from 80% to 100% */
+    height: 100%; /* Make html and body fill the viewport height */
     margin: 0;
     padding: 0;
     overflow: hidden; /* Prevent overall page scrolling on larger screens */
@@ -31,6 +33,7 @@ body {
     height: 100vh; /* Ensure body takes full viewport height */
 }
 
+
 /* Optional: Style for a header if you have one */
 .page-header {
     flex: 0 0 auto; /* Header takes its natural height and doesn't grow/shrink */
@@ -40,86 +43,51 @@ body {
 }
 
 /* Adjust main to fill the available space */
-
 main {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: hidden;
-    /* Remove any implicit space above the main content */
-    margin-top: 0 !important;
-    padding-top: 0px !important;
+    flex: 1; /* Allows main to grow and shrink, taking remaining vertical space */
+    display: flex; /* Enable flexbox for its children (e.g., carousel, main-content) */
+    flex-direction: column; /* Stack children vertically within main */
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0; /* Critical for flex items with overflow */
+    overflow-y: auto; /* Allow scrolling *within* the main content area if it overflows */
 }
-
 
 /* Main content area should grow to take available space within 'main' */
 .main-content {
-    flex: 1;
-    display: flex;
+    flex: 1; /* Allows this element to grow and shrink within 'main' */
+    display: flex; /* Keep flexbox for its internal layout if needed */
     flex-direction: column;
-    overflow: visible;
-    min-height: 0;
-    /* Reduce or remove padding here if it's contributing to the gap */
-    padding: 0.5rem 1rem; /* Example: reduced top/bottom padding */
+    /* If content within .main-content might overflow, allow internal scrolling */
+    overflow-y: auto; /* This allows specific content in .main-content to scroll, not the whole page */
+    min-height: 0; /* Important for flex items to shrink correctly */
+    padding: 1rem; /* Add some padding back for content */
 }
 
 /* For carousel - ensure it fits within its allocated space within 'main' */
 .carousel-section {
-    flex: 0 0 auto;
-    width: 80%;
-    /* max-height:;  */
-    overflow: visible;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: fit-content;
-    /* Remove padding or set to 0 if this element is causing the space */
-    padding: 0;
+    flex: 0 0 auto; /* It retains its intrinsic height/width */
+    /* You might need to set a max-height if it's very tall */
+    /* max-height: 40vh; */ /* Example: Limit carousel height to 40% of viewport */
+    overflow: hidden; /* Hide any content that overflows the carousel itself */
 }
 
-/* Add specific sizing for carousel content */
-.carousel-section > * {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-.page-header {
-    flex: 0 0 auto;
-    padding-top: 0em !important; /* Reduced padding */
-    background-color: #e0e0e0;
-    text-align: center;
-}
-/* Style for the footer to ensure it's always visible at the bottom of the page */
-.page-footer {
-    flex: 0 0 auto; /* Footer should take its natural height and not grow or shrink */
-    padding: 1rem; /* Example padding */
-    background-color: #f0f0f0; /* Example background color */
-    text-align: center; /* Example alignment */
-}
-
-/* General responsive adjustments */
+/* General responsive adjustments (example) */
 @media (max-width: 768px) {
-    .main-content {
-        padding: 0.5rem; /* Reduce padding on mobile for more space */
+    /* For smaller screens, allow scrolling if content doesn't fit */
+    html, body {
+        overflow: auto; /* Allow scrolling on smaller devices if needed */
     }
-    
-    .page-header, .page-footer {
-        padding: 0.5rem; /* Reduce header/footer padding on mobile */
+    body {
+        height: auto; /* Auto height on smaller screens */
     }
-}
-
-/* Additional breakpoint for very small screens */
-@media (max-width: 480px) {
-    .main-content {
-        padding: 0.25rem; /* Even less padding on very small screens */
-    }
-    
-    .page-header, .page-footer {
-        padding: 0.25rem;
+    main {
+        height: auto; /* Auto height on smaller screens */
+        overflow-y: auto; /* Ensure main content can scroll on smaller screens */
     }
 }
 
-</style>
+
 ```
 
 ```{=html}
@@ -127,3 +95,5 @@ main {
 {{< include HTML/image_carousel_mobileNoCarousel.html >}}
 
 ```
+
+
