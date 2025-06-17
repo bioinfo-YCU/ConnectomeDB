@@ -26,82 +26,86 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MDUuMDA=)'>
-<rect x='0.00' y='-0.000000000000057' width='720.00' height='405.00' style='stroke-width: 1.07; stroke: #FFFFFF; fill: #FFFFFF;' />
+<rect x='0.000000000000064' y='-0.000000000000057' width='720.00' height='405.00' style='stroke-width: 1.07; stroke: none;' />
 </g>
 <defs>
-  <clipPath id='cpMzIuNjN8Njc1LjE3fDc2LjQ3fDI1OC41Nw=='>
-    <rect x='32.63' y='76.47' width='642.54' height='182.10' />
+  <clipPath id='cpMTMuMjB8Njk5LjU4fDY3LjAxfDI2OC4wNA=='>
+    <rect x='13.20' y='67.01' width='686.38' height='201.03' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMzIuNjN8Njc1LjE3fDc2LjQ3fDI1OC41Nw==)'>
+<g clip-path='url(#cpMTMuMjB8Njk5LjU4fDY3LjAxfDI2OC4wNA==)'>
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MDUuMDA=)'>
 </g>
 <defs>
-  <clipPath id='cpMTQuOTR8NzA1LjA2fDM5LjczfDE1Ny45OQ=='>
-    <rect x='14.94' y='39.73' width='690.11' height='118.26' />
+  <clipPath id='cpNS40OHw3MTQuNTJ8MzUuMjV8MTU1LjUw'>
+    <rect x='5.48' y='35.25' width='709.04' height='120.26' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMTQuOTR8NzA1LjA2fDM5LjczfDE1Ny45OQ==)'>
+<g clip-path='url(#cpNS40OHw3MTQuNTJ8MzUuMjV8MTU1LjUw)'>
+<rect x='5.48' y='35.25' width='709.04' height='120.26' style='stroke-width: 1.07; stroke: none;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MDUuMDA=)'>
 </g>
 <defs>
-  <clipPath id='cpMTQuOTR8NzA1LjA2fDE1Ny45OXwzOTAuMDY='>
-    <rect x='14.94' y='157.99' width='690.11' height='232.06' />
+  <clipPath id='cpNS40OHw3MTQuNTJ8MTU1LjUwfDM5OS41Mg=='>
+    <rect x='5.48' y='155.50' width='709.04' height='244.02' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMTQuOTR8NzA1LjA2fDE1Ny45OXwzOTAuMDY=)'>
+<g clip-path='url(#cpNS40OHw3MTQuNTJ8MTU1LjUwfDM5OS41Mg==)'>
+<rect x='5.48' y='155.50' width='709.04' height='244.02' style='stroke-width: 1.07; stroke: none;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MDUuMDA=)'>
 </g>
 <defs>
-  <clipPath id='cpMzIuNjN8Njc1LjE3fDc2LjQ3fDE0MC4zMQ=='>
-    <rect x='32.63' y='76.47' width='642.54' height='63.84' />
+  <clipPath id='cpMTMuMjB8Njk5LjU4fDY3LjAxfDE0Ny43OA=='>
+    <rect x='13.20' y='67.01' width='686.38' height='80.77' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMzIuNjN8Njc1LjE3fDc2LjQ3fDE0MC4zMQ==)'>
-<rect x='32.63' y='76.47' width='511.83' height='63.84' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFACD;' />
-<rect x='544.45' y='76.47' width='130.71' height='63.84' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFEC4B;' />
-<text x='288.54' y='116.54' text-anchor='middle' style='font-size: 22.76px; font-weight: bold; font-family: "Arial";' textLength='56.95px' lengthAdjust='spacingAndGlyphs'>2,737</text>
-<text x='609.81' y='116.54' text-anchor='middle' style='font-size: 22.76px; font-weight: bold; font-family: "Arial";' textLength='37.97px' lengthAdjust='spacingAndGlyphs'>699</text>
-<rect x='32.63' y='76.47' width='642.54' height='63.84' style='stroke-width: 1.71;' />
+<g clip-path='url(#cpMTMuMjB8Njk5LjU4fDY3LjAxfDE0Ny43OA==)'>
+<rect x='13.20' y='67.01' width='686.38' height='80.77' style='stroke-width: 1.07; stroke: none;' />
+<rect x='13.20' y='67.01' width='546.74' height='80.77' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFACD;' />
+<rect x='559.94' y='67.01' width='139.63' height='80.77' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFEC4B;' />
+<text x='286.57' y='115.54' text-anchor='middle' style='font-size: 22.76px; font-weight: bold; font-family: "Arial";' textLength='56.95px' lengthAdjust='spacingAndGlyphs'>2,737</text>
+<text x='629.76' y='115.54' text-anchor='middle' style='font-size: 22.76px; font-weight: bold; font-family: "Arial";' textLength='37.97px' lengthAdjust='spacingAndGlyphs'>699</text>
+<rect x='13.20' y='67.01' width='686.38' height='80.77' style='stroke-width: 1.71;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MDUuMDA=)'>
-<text x='32.63' y='61.15' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='196.67px' lengthAdjust='spacingAndGlyphs'>New ligand-receptor pairs</text>
+<text x='13.20' y='51.68' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='196.67px' lengthAdjust='spacingAndGlyphs'>New ligand-receptor pairs</text>
 </g>
 <defs>
-  <clipPath id='cpMzIuNjN8Njc1LjE3fDE5NC43NHwyNTguNTc='>
-    <rect x='32.63' y='194.74' width='642.54' height='63.84' />
+  <clipPath id='cpMTMuMjB8Njk5LjU4fDE4Ny4yN3wyNjguMDQ='>
+    <rect x='13.20' y='187.27' width='686.38' height='80.77' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMzIuNjN8Njc1LjE3fDE5NC43NHwyNTguNTc=)'>
-<rect x='32.63' y='194.74' width='469.02' height='63.84' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFACD;' />
-<rect x='501.65' y='194.74' width='173.52' height='63.84' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFEC4B;' />
-<text x='267.14' y='234.80' text-anchor='middle' style='font-size: 22.76px; font-weight: bold; font-family: "Arial";' textLength='55.70px' lengthAdjust='spacingAndGlyphs'>2,011</text>
-<text x='588.41' y='234.80' text-anchor='middle' style='font-size: 22.76px; font-weight: bold; font-family: "Arial";' textLength='37.97px' lengthAdjust='spacingAndGlyphs'>744</text>
-<rect x='32.63' y='194.74' width='642.54' height='63.84' style='stroke-width: 1.71;' />
+<g clip-path='url(#cpMTMuMjB8Njk5LjU4fDE4Ny4yN3wyNjguMDQ=)'>
+<rect x='13.20' y='187.27' width='686.38' height='80.77' style='stroke-width: 1.07; stroke: none;' />
+<rect x='13.20' y='187.27' width='501.02' height='80.77' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFACD;' />
+<rect x='514.22' y='187.27' width='185.36' height='80.77' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFEC4B;' />
+<text x='263.71' y='235.79' text-anchor='middle' style='font-size: 22.76px; font-weight: bold; font-family: "Arial";' textLength='55.70px' lengthAdjust='spacingAndGlyphs'>2,011</text>
+<text x='606.90' y='235.79' text-anchor='middle' style='font-size: 22.76px; font-weight: bold; font-family: "Arial";' textLength='37.97px' lengthAdjust='spacingAndGlyphs'>744</text>
+<rect x='13.20' y='187.27' width='686.38' height='80.77' style='stroke-width: 1.71;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw0MDUuMDA=)'>
-<polyline points='32.63,258.57 675.17,258.57 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='32.63,261.31 32.63,258.57 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='193.26,261.31 193.26,258.57 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='353.90,261.31 353.90,258.57 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='514.53,261.31 514.53,258.57 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<polyline points='675.17,261.31 675.17,258.57 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<text x='32.63' y='272.77' text-anchor='middle' style='font-size: 16.00px; font-weight: bold;fill: #4D4D4D; font-family: "Arial";' textLength='23.14px' lengthAdjust='spacingAndGlyphs'>0%</text>
-<text x='193.26' y='272.77' text-anchor='middle' style='font-size: 16.00px; font-weight: bold;fill: #4D4D4D; font-family: "Arial";' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>25%</text>
-<text x='353.90' y='272.77' text-anchor='middle' style='font-size: 16.00px; font-weight: bold;fill: #4D4D4D; font-family: "Arial";' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>50%</text>
-<text x='514.53' y='272.77' text-anchor='middle' style='font-size: 16.00px; font-weight: bold;fill: #4D4D4D; font-family: "Arial";' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>75%</text>
-<text x='675.17' y='272.77' text-anchor='middle' style='font-size: 16.00px; font-weight: bold;fill: #4D4D4D; font-family: "Arial";' textLength='40.95px' lengthAdjust='spacingAndGlyphs'>100%</text>
-<text x='32.63' y='179.41' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='361.30px' lengthAdjust='spacingAndGlyphs'>More evidence (PubMed IDs of primary articles)</text>
-<rect x='148.16' y='292.58' width='17.28' height='17.28' style='stroke-width: 0.85;' />
-<rect x='148.87' y='293.29' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFACD;' />
-<rect x='336.60' y='292.58' width='17.28' height='17.28' style='stroke-width: 0.85;' />
-<rect x='337.31' y='293.29' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFEC4B;' />
-<text x='170.92' y='306.94' style='font-size: 16.00px; font-family: "Arial";' textLength='160.20px' lengthAdjust='spacingAndGlyphs'>Shared with other DBs</text>
-<text x='359.36' y='306.94' style='font-size: 16.00px; font-family: "Arial";' textLength='200.28px' lengthAdjust='spacingAndGlyphs'>Unique to connectomeDB25</text>
-<text x='352.53' y='21.42' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='634.44px' lengthAdjust='spacingAndGlyphs'>High Quality Manually Curated Primary Literature Supported Ligand-Receptor Pairs</text>
+<polyline points='13.20,268.04 699.58,268.04 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='13.20,270.78 13.20,268.04 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='184.79,270.78 184.79,268.04 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='356.39,270.78 356.39,268.04 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='527.98,270.78 527.98,268.04 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='699.58,270.78 699.58,268.04 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<text x='13.20' y='282.23' text-anchor='middle' style='font-size: 16.00px; font-weight: bold;fill: #4D4D4D; font-family: "Arial";' textLength='23.14px' lengthAdjust='spacingAndGlyphs'>0%</text>
+<text x='184.79' y='282.23' text-anchor='middle' style='font-size: 16.00px; font-weight: bold;fill: #4D4D4D; font-family: "Arial";' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>25%</text>
+<text x='356.39' y='282.23' text-anchor='middle' style='font-size: 16.00px; font-weight: bold;fill: #4D4D4D; font-family: "Arial";' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>50%</text>
+<text x='527.98' y='282.23' text-anchor='middle' style='font-size: 16.00px; font-weight: bold;fill: #4D4D4D; font-family: "Arial";' textLength='32.05px' lengthAdjust='spacingAndGlyphs'>75%</text>
+<text x='699.58' y='282.23' text-anchor='middle' style='font-size: 16.00px; font-weight: bold;fill: #4D4D4D; font-family: "Arial";' textLength='40.95px' lengthAdjust='spacingAndGlyphs'>100%</text>
+<text x='13.20' y='171.94' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='361.30px' lengthAdjust='spacingAndGlyphs'>More evidence (PubMed IDs of primary articles)</text>
+<rect x='150.65' y='302.04' width='17.28' height='17.28' style='stroke-width: 0.85;' />
+<rect x='151.36' y='302.75' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFACD;' />
+<rect x='339.09' y='302.04' width='17.28' height='17.28' style='stroke-width: 0.85;' />
+<rect x='339.80' y='302.75' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFEC4B;' />
+<text x='173.41' y='316.41' style='font-size: 16.00px; font-family: "Arial";' textLength='160.20px' lengthAdjust='spacingAndGlyphs'>Shared with other DBs</text>
+<text x='361.85' y='316.41' style='font-size: 16.00px; font-family: "Arial";' textLength='200.28px' lengthAdjust='spacingAndGlyphs'>Unique to connectomeDB25</text>
+<text x='355.02' y='16.93' text-anchor='middle' style='font-size: 16.00px; font-weight: bold; font-family: "Arial";' textLength='634.44px' lengthAdjust='spacingAndGlyphs'>High Quality Manually Curated Primary Literature Supported Ligand-Receptor Pairs</text>
 </g>
 </g>
 </svg>
