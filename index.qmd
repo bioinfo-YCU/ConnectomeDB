@@ -46,29 +46,35 @@ main {
     flex-direction: column;
     height: 100%;
     overflow: hidden;
+    /* Remove any implicit space above the main content */
+    margin-top: 0 !important;
+    padding-top: 0px !important;
 }
 
 
 /* Main content area should grow to take available space within 'main' */
 .main-content {
-    flex: 1; /* Allows this element to grow and shrink within 'main' */
-    display: flex; /* Keep flexbox for its internal layout if needed */
+    flex: 1;
+    display: flex;
     flex-direction: column;
-    overflow: visible; /* Allow content to be visible */
-    min-height: 0; /* Important for flex items to shrink correctly */
-    padding: 1rem; /* Add some padding back for content */
+    overflow: visible;
+    min-height: 0;
+    /* Reduce or remove padding here if it's contributing to the gap */
+    padding: 0.5rem 1rem; /* Example: reduced top/bottom padding */
 }
 
 /* For carousel - ensure it fits within its allocated space within 'main' */
 .carousel-section {
-    flex: 0 0 auto; /* It retains its intrinsic height/width */
-    width: 80%; /* Ensure full width usage */
-    max-height: 300px !important; 
-    overflow: visible; /* Allow carousel content to be fully visible */
+    flex: 0 0 auto;
+    width: 80%;
+    /* max-height:;  */
+    overflow: visible;
     display: flex;
-    align-items: center; /* Center carousel content vertically */
-    justify-content: center; /* Center carousel content horizontally */
-    min-height: fit-content; /* Allow natural sizing */
+    align-items: center;
+    justify-content: center;
+    min-height: fit-content;
+    /* Remove padding or set to 0 if this element is causing the space */
+    padding: 0;
 }
 
 /* Add specific sizing for carousel content */
@@ -77,7 +83,12 @@ main {
     max-height: 100%;
     object-fit: contain;
 }
-
+.page-header {
+    flex: 0 0 auto;
+    padding-top: 0em !important; /* Reduced padding */
+    background-color: #e0e0e0;
+    text-align: center;
+}
 /* Style for the footer to ensure it's always visible at the bottom of the page */
 .page-footer {
     flex: 0 0 auto; /* Footer should take its natural height and not grow or shrink */
