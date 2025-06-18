@@ -925,4 +925,6 @@ gene_pair000.columns = new_columns
 human_columns = [col for col in gene_pair000.columns][:16]
 #######################################################################
 human_gene_pair = gene_pair.iloc[:, :-36]
-human_gene_pair = gene_pair.iloc[:-fetchGSheet.numOfMouseOrth]
+# remove mouse specific ones from the datatable
+numOfMouseOrth = fetchGSheet.numOfMouseOrth
+human_gene_pair = gene_pair.iloc[:-numOfMouseOrth]
