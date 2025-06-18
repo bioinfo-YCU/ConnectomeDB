@@ -12,6 +12,7 @@ project:
     - "!database/human-trip*.qmd"
     - "!database/human-FilterOnTop.qmd"
     - "!askAIchat.qmd"
+  post-render: "python src/remove_footer.py"
 
 resources:
   - images
@@ -104,11 +105,13 @@ format:
     toc: true
     theme: default
     css: css/styles.css
+    # page-footer: false
     embed-resources: true  # Ensures resources are embedded for standalone
     grid: 
       body-width: 2500px
       sidebar-width: 0px
       margin-width: 0px
+    
 
 #header-includes: 
 #  <script src="js/checkboxAndPopUp.js"></script>
