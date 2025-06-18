@@ -15,7 +15,8 @@ sys.path.append(os.path.abspath("src"))  # Add src directory to path
 from createDataTable import (
   lrPairsCount,
   ligandCount,
-  receptorCount
+  receptorCount,
+  numOfMouseOrth
 )
 ```
 
@@ -48,7 +49,7 @@ from createDataTable import (
 
 <div style="margin-top: 1em;"></div>
 
-- **`{python} f"{lrPairsCount:,}"` Manually Curated Ligand–Receptor Pairs (Primarily Human; includes 12 Mouse-specific): comprehensive and most accurate with primary literature support\
+- **`{python} f"{lrPairsCount:,}"` Manually Curated Ligand–Receptor Pairs (Primarily Human; includes f"{numOfMouseOrth:,}" Mouse-specific): comprehensive and most accurate with primary literature support\
 - **`{python} f"{ligandCount:,}"` Ligands** & **`{python} f"{receptorCount:,}"` Receptors**: metadata and functional annotations\
 - **Homologous Interactions**: ~98% LR pairs in mouse and in 11 other vertebrate species\
  - **Free, user-friendly resource**: developed with <a href='https://quarto.org/' target='_blank'>Quarto 1.7+</a> and <a href='https://www.biorender.com/' target='_blank'> BioRender</a> 
