@@ -7,7 +7,7 @@ execute:
 toc: false
 format:
   html:
-    embed-resources: true
+    # embed-resources: true
     code-fold: false
     html-math-method: webtex
     keep-md: true
