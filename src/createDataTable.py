@@ -545,7 +545,7 @@ first_columns=['Human LR Pair', 'Ligand', 'Receptor', 'Database Source']
 #gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns + end_columns] + end_columns]
 gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns]]
 
-# number of unique vars
+# number of unique vars (Human and Mouse both counted)
 
 lrPairsCount = len(gene_pair["Human LR Pair"].unique())
 
@@ -925,4 +925,4 @@ gene_pair000.columns = new_columns
 human_columns = [col for col in gene_pair000.columns][:16]
 #######################################################################
 human_gene_pair = gene_pair.iloc[:, :-36]
-human_gene_pair = gene_pair.iloc[:-13]
+human_gene_pair = gene_pair.iloc[:-fetchGSheet.numOfMouseOrth]
