@@ -11,6 +11,10 @@ data/*
 DT_R_ver_files/
 *.zip
 
+#images
+images/
+images/*
+
 # output file
 _site/
 _site/*
