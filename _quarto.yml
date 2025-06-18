@@ -106,7 +106,7 @@ format:
     theme: default
     css: css/styles.css
     # page-footer: false
-    embed-resources: true  # Ensures resources are embedded for standalone
+    embed-resources: false  # Ensures resources are embedded for standalone
     grid: 
       body-width: 2500px
       sidebar-width: 0px
