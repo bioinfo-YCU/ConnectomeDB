@@ -17,7 +17,7 @@ The current version of connectomeDB does not model signalling via non-peptide li
 
 ### Incorporation of Existing LR Pairs
 
-Protein ligand mediated ligand-receptor pairs from our previous database releases (connectomeDB2015 and 2020) and other databases including CellTalkDB, ICELLNET_v2, CellChatDB_v2, CellPhoneDB_v5 and LIANA_consensus were downloaded (and frozen May 2025). Non-protein ligands were removed and the complex pairs present in ICELLNET_v2, CellCHatDB_v2, CellPhoneDB_v5 and LIANA_consensus were split into singlet pairs (see `Ligand-Receptor Interaction Modelling`) for manual curation.
+Protein ligand mediated ligand-receptor pairs from our previous database releases (connectomeDB2015 and 2020) and other databases including CellTalkDB, ICELLNET_v2, CellChatDB_v2, CellPhoneDB_v5 and LIANA_consensus were downloaded (and frozen in May 2025). Non-protein ligands were removed and the complex pairs present in ICELLNET_v2, CellCHatDB_v2, CellPhoneDB_v5 and LIANA_consensus were split into singlet pairs (see [Ligand-Receptor Interaction Modelling](#ligand-receptor-interaction-modelling)) for manual curation.
 
 ### Identification of Putative New LR Pairs
 
@@ -32,21 +32,22 @@ All candidate pairs were parsed to extract gene symbols, and only those represen
 Each interaction in ConnectomeDB is recorded as a triplet: ligand symbol : receptor symbol : PubMed ID. Only interactions supported by primary experimental evidence are included; literature reviews are excluded, as they often overgeneralise (e.g. “Eph receptors interact with ephrins”) without specifying direct evidence for individual pairs.
 
 For entries from existing databases with a PubMed ID, a single curator manually assessed the cited article. If it contained primary evidence for the interaction, the triplet was retained in ConnectomeDB2025.
+
 For interactions lacking primary evidence—due to incorrect, retracted or missing PubMed IDs, review-only citations, or newly identified pairs (via manual or AI-assisted searches)—two independent curators conducted manual literature searches. One curator identified a candidate publication, and a second curator independently verified whether it provided valid primary evidence. If there was disagreement, a third expert curator acted as a tie-breaker to determine inclusion.
 
 The unique triplet dataset will be publicly released in conjunction with the publication, ensuring both data integrity and protection against premature use.
 
 ### Subcellular localization
 
-The sub-cellular localization of ligands and receptors were annotated using Perplexity, Uniprot, The Human Protein Atlas (HPA) and manual confirmation. For HPA data, only localization information with "Enhanced", "Supported", or "Approved" reliability was considered; sublocation entries marked as "Uncertain" were excluded.
+The subcellular localization of ligands and receptors were annotated using Perplexity, Uniprot, The Human Protein Atlas (HPA) and manual confirmation. For HPA data, only localization information with "Enhanced", "Supported", or "Approved" reliability was considered; sublocation entries marked as "Uncertain" were excluded.
 
 The vast majority of pairs involve ligands that are secreted or on the plasma membrane of the sending cell, interacting with a receptor on the plasma membrane of the receiving cell.
 
 Note connectomeDB also incorporates some non-canonical pairs that are worth mentioning.
 
-The PENK ○ ⤚ OGFR pair involves interaction of an endogenous opioid peptide (OGF processed from PENK) that binds to OGFR which is localised to the nuclear membrane.
+- The PENK ○ ⤚ OGFR pair involves interaction of an endogenous opioid peptide (OGF processed from PENK) that binds to OGFR which is localised to the nuclear membrane.
 
-The S100A1 ○ ⤚ TLR4 pair involves interaction of S100A1 which is normally intracellular but released via non-canonical means upon cellular stress or damage.
+- The S100A1 ○ ⤚ TLR4 pair involves interaction of S100A1 which is normally intracellular but released via non-canonical means upon cellular stress or damage.
 
 ### Orthologous pairs
 
