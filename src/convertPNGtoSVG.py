@@ -3,8 +3,11 @@
 import base64
 from PIL import Image
 
+script_dir = os.path.dirname(os.path.abspath(__file__))  # src folder
+parent_dir = os.path.dirname(script_dir)  # parent of src
 # Parameter (Relative Directory and image name)
-filename ="images/data4_mobile"
+filename = "images/data4_mobile"
+filename = parent_dir + filename
 
 def png_to_svg(png_path, svg_path):
     # Read and encode PNG

@@ -4,7 +4,6 @@ import sys, os
 from bs4 import BeautifulSoup
 
 def remove_footer():
-    # Get the path to index.html in _site folder
     script_dir = os.path.dirname(os.path.abspath(__file__))  # src folder
     parent_dir = os.path.dirname(script_dir)  # parent of src
     html_file = os.path.join(parent_dir, "_site", "index.html")
