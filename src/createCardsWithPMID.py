@@ -470,7 +470,7 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
         axis=1
     )
     ligand_card['Other Symbols'] = ligand_card['Other Symbols'].apply(
-    lambda x: "None" if pd.isna(x) or (isinstance(x, str) and x.strip().lower() == 'nan') else x
+    lambda x: "N/A" if pd.isna(x) or (isinstance(x, str) and x.strip().lower() == 'nan') else x
 )
 
     ligand_card_1 = ligand_card[["Human LR Pair", "Ligand Name", "Other Symbols", "Ligand Location", "is_mouse_specific"]]
@@ -608,7 +608,7 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
         axis=1
     )
     receptor_card['Other Symbols'] = receptor_card['Other Symbols'].apply(
-    lambda x: "None" if pd.isna(x) or (isinstance(x, str) and x.strip().lower() == 'nan') else x
+    lambda x: "N/A" if pd.isna(x) or (isinstance(x, str) and x.strip().lower() == 'nan') else x
 )
 
     receptor_card_1 = receptor_card[["Human LR Pair", "Receptor Name", "Other Symbols", "Receptor Location", "is_mouse_specific"]]
