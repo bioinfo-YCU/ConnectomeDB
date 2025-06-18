@@ -12,7 +12,6 @@ format:
     html-math-method: webtex
     keep-md: true
     allow-html: true
-    page-footer: false
 ---
 
 ```{=html}
