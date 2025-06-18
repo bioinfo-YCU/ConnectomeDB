@@ -93,6 +93,7 @@ from createDataTable import human_gene_pair
 # human_gene_pair[human_gene_pair.columns[0]] = human_gene_pair[human_gene_pair.columns[0]].apply(
 #    lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
 # )
+human_gene_pair = human_gene_pair.iloc[:, :-36]
 
 # Function to update and display the table
 def update_table():
