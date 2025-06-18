@@ -34,8 +34,8 @@ from createDataTable import (
   
   <strong>Developers</strong>: 
   <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank" >YCU Bioinformatics Lab</a>
-    &amp; 
-  <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology Genomics Lab</a>.
+    and 
+  <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology &amp; Genomics Lab</a>.
 </div>
 
 <span class="half-break"></span>
@@ -48,7 +48,7 @@ from createDataTable import (
 
 <div style="margin-top: 1em;"></div>
 
-- **`{python} f"{lrPairsCount:,}"`  Manually Curated Human LR pairs**: comprehensive and most accurate with primary literature support\
+- **`{python} f"{lrPairsCount:,}"` Manually Curated Ligand–Receptor Pairs (Primarily Human; includes 12 Mouse-specific): comprehensive and most accurate with primary literature support\
 - **`{python} f"{ligandCount:,}"` Ligands** & **`{python} f"{receptorCount:,}"` Receptors**: metadata and functional annotations\
 - **Homologous Interactions**: ~98% LR pairs in mouse and in 11 other vertebrate species\
  - **Free, user-friendly resource**: developed with <a href='https://quarto.org/' target='_blank'>Quarto 1.7+</a> and <a href='https://www.biorender.com/' target='_blank'> BioRender</a> 
@@ -69,7 +69,7 @@ from createDataTable import (
 ### Access ConnectomeDB2025 Online
 <div style="margin-top: 1em;"></div>
 
-An internet connection and a web browser are required. No username and no password are required. The following major operating systems and web browsers have been tested and are quaranteed to work:
+An internet connection and a web browser are required. No username and no password are required. The following major operating systems and web browsers have been tested and are guaranteed to work:
 
 - **Windows 10/11**: Google Chrome, Microsoft Edge
 - **macOS 15+**: Google Chrome, Safari
@@ -123,7 +123,7 @@ PMID: [26198319](https://pubmed.ncbi.nlm.nih.gov/26198319/); DOI: [10.1038/ncomm
 **Online resource issues**: fill out this [Inquiry form](https://forms.gle/m7k5vygRPdTRdaTh6) or contact us via this [email](mailto:bioinfo@yokohama-cu.ac.jp; alistair.forrest@gmail.com). 
 <hr>
 
-### Feeback
+### Feedback
 
 <div style="margin-top: 1em;"></div>
 

@@ -59,7 +59,7 @@ def safe_fetch(sheet_ID, tab_name, credentials_file, delay=1.5):
 # Fetching and combining human/mouse data
 gene_pair_human = safe_fetch(sheet_ID, "FROZEN LIST HUMAN", credentials_file)
 gene_pair_mouse = safe_fetch(sheet_ID, "FROZEN LIST MOUSE", credentials_file)
-
+numOfMouseOrth = len(gene_pair_mouse[0:])
 # Combine human and mouse gene pairs
 if not gene_pair_human.empty and not gene_pair_mouse.empty:
     gene_pair = pd.concat([gene_pair_human, gene_pair_mouse])
@@ -73,6 +73,8 @@ else:
 # Ligand location data
 ligand_loc_human = safe_fetch(sheet_ID, "Ligand_location_HUMAN", credentials_file)
 ligand_loc_mouse = safe_fetch(sheet_ID, "Ligand_location_Mouse", credentials_file)
+
+
 
 # Combine ligand location data
 if not ligand_loc_human.empty and not ligand_loc_mouse.empty:
