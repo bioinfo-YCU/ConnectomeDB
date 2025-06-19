@@ -21,6 +21,8 @@ _site/*
 site_libs/
 site_libs/*
 site_libs
+JSON/
+JSON/*
 
 # R qmd--remove for now
 DT_R_ver.qmd

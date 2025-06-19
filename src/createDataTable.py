@@ -608,19 +608,19 @@ def create_url_basic(perplexity_col):
     
 # Option 2 -- new query all together
 
-def generate_perplexity_link_pmid(row): 
-    query = f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-{row['Human LR Pair']}-based-on-Pubmed-ID-{row['PMID']}"
-    return (
-         f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">'
-        f'<img src="https://img.icons8.com/?size=30&id=0NbBuNOxUwps&format=png&color=000000" alt="Perplexity AI" /></a>'
-    )
-
-# uncomment for now for testing
 # def generate_perplexity_link_pmid(row): 
 #     query = f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-{row['Human LR Pair']}-based-on-Pubmed-ID-{row['PMID']}"
 #     return (
-#          f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">Perplexity</a>'
+#          f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">'
+#         f'<img src="https://img.icons8.com/?size=30&id=0NbBuNOxUwps&format=png&color=000000" alt="Perplexity AI" /></a>'
 #     )
+
+# cannot use perplexity logo
+def generate_perplexity_link_pmid(row): 
+    query = f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-{row['Human LR Pair']}-based-on-Pubmed-ID-{row['PMID']}"
+    return (
+         f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank" style="text-decoration: none;">&#128269;</a>'
+    )
 
 # Apply function to the DataFrame
 gene_pair["Perplexity"] = gene_pair.apply(generate_perplexity_link_pmid, axis=1)

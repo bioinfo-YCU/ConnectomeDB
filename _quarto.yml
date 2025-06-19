@@ -12,11 +12,17 @@ project:
     - "!database/human-trip*.qmd"
     - "!database/human-FilterOnTop.qmd"
     - "!askAIchat.qmd"
-  post-render: "python src/remove_footer.py"
+    - "!database/human_*.qmd"
+    - "!database/qmd_template/*.qmd"
+    
+  post-render: 
+    - "python src/remove_footer.py"
+    - "python src/render_table.py"
 
 resources:
   - images
   - HTML
+  - JSON
   
 website:
   title: "ConnectomeDB2025"
