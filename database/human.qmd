@@ -93,7 +93,7 @@ from createDataTable import human_gene_pair
 # human_gene_pair[human_gene_pair.columns[0]] = human_gene_pair[human_gene_pair.columns[0]].apply(
 #    lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
 # )
-human_gene_pair = human_gene_pair.iloc[:, :-36]
+human_gene_pair = human_gene_pair.iloc[:, :-48]
 
 # Function to update and display the table
 def update_table():
@@ -123,7 +123,7 @@ def update_table():
             {"className": "dt-center", "targets": [10]}, 
             {"search": False, "targets": [12]},
             {"width": "275px", "targets": [4,5]},
-            {"visible": False, "targets": list(range(-1, -18, -1)) + [2,3]} # Hide last n columns by default
+            {"visible": False, "targets": list(range(-1, -6, -1)) + [2,3]} # Hide last n columns by default
         ],
         style="width:100%; max-width:1200px; margin:auto",
            #language={
