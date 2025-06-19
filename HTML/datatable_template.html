@@ -1,0 +1,308 @@
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
+
+<style>
+table.dataTable tbody tr.selected td.select-checkbox::after {
+            content: '✓';
+            font-size: 1rem;
+            color: #333;
+            font-weight: normal;
+            margin-top: -2px;
+        }
+
+table.dataTable td.select-checkbox {
+            text-align: center;
+            vertical-align: middle;
+            padding: 0.5rem;
+            width: 3rem;
+            min-width: 2rem;
+        }
+
+table.dataTable td.select-checkbox::before {
+            content: '';
+            width: 1rem;
+            height: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            display: inline-block;
+            background: white;
+        }
+
+table.dataTable tbody tr.selected td.select-checkbox::before {
+            background: #f0f8ff;
+            border-color: #337ab7;
+        }
+        /* Mobile responsive checkboxes */
+        @media (max-width: 768px) {
+            table.dataTable td.select-checkbox {
+                padding: 0.25rem;
+                width: 2rem;
+                min-width: 1.5rem;
+            }
+            
+            table.dataTable td.select-checkbox::before {
+                width: 0.8rem;
+                height: 0.8rem;
+            }
+            
+            table.dataTable tbody tr.selected td.select-checkbox::after {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            table.dataTable td.select-checkbox {
+                padding: 0.2rem;
+                width: 1.5rem;
+                min-width: 1.2rem;
+            }
+            
+            table.dataTable td.select-checkbox::before {
+                width: 0.6rem;
+                height: 0.6rem;
+            }
+            
+            table.dataTable tbody tr.selected td.select-checkbox::after {
+                font-size: 0.7rem;
+            }
+        }
+
+/* Hide the default search box */
+.dataTables_filter {
+  display: none !important;
+}
+/* italicized placeholder */
+input[type="text"]::placeholder {
+  font-style: italic;
+}
+</style>
+
+<table id="{{ table_id }}" class="display nowrap cell-border compact" style="width:100%">
+  <thead></thead>
+  <tfoot></tfoot>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<script>
+$.getJSON("{{ json_path }}", function(data) {
+  const columns = {{ columns_json | safe }};
+  
+  // Build header HTML - add checkbox column back
+  // Set the header for the first column to 'Copy' with a tooltip
+  var headerHtml = '<tr><th title="Tick the boxes of the rows you would like to copy/download via the buttons above">Select</th>'; 
+  columns.forEach(function(col) {
+    headerHtml += '<th>' + (col.title || col.data || '') + '</th>';
+  });
+  headerHtml += '</tr>';
+  $('#{{ table_id }} thead').html(headerHtml);
+  
+  // Calculate hidden columns based on total column count (adjust for checkbox column)
+  var totalColumns = columns.length + 1; // +1 for checkbox column
+  var hiddenColumns = [3, 4]; // Always hide columns 3 and 4 (adjusted for checkbox column)
+  
+  // Add last 5 columns to hidden list (adjust this number as needed)
+  for (var i = 5; i > 0; i--) {
+    if (totalColumns - i >= 0) {
+      hiddenColumns.push(totalColumns - i);
+    }
+  }
+  
+  // Remove duplicates
+  hiddenColumns = [...new Set(hiddenColumns)];
+  
+  console.log('Total columns:', totalColumns);
+  console.log('Hidden columns:', hiddenColumns);
+  
+  var table = $('#{{ table_id }}').DataTable({
+    data: data,
+    columns: [
+      {
+        data: null,
+        defaultContent: '', 
+        orderable: false,
+        className: 'select-checkbox',
+        width: '20px'
+      }
+    ].concat(columns), // Add checkbox column as first column
+    scrollX: true,
+    fixedHeader: false,
+    fixedColumns: {
+        start: 1,
+    },
+    autoWidth: true,
+    responsive: false,
+    dom: 'Bfrtip',
+    searching: true,
+    select: {
+      style: 'multi',
+      selector: 'td:first-child'
+    },
+    lengthMenu: [[10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"]],
+    buttons: [
+      'pageLength',
+      { extend: 'colvis', text: 'Display Columns' },
+      'selectAll',
+      'selectNone',
+      { 
+        extend: 'csvHtml5', 
+        filename: 'ConnectomeDB2025',
+        action: function(e, dt, button, config) {
+          var selectedRows = dt.rows('.selected').count();
+          if (selectedRows > 0) {
+            // Export only selected rows
+            config.exportOptions = { modifier: { selected: true } };
+          } else {
+            // Export all rows
+            config.exportOptions = { modifier: { page: 'all', search: 'none' } };
+          }
+          $.fn.dataTable.ext.buttons.csvHtml5.action.call(this, e, dt, button, config);
+        }
+      },
+      { 
+        extend: 'excelHtml5', 
+        filename: 'ConnectomeDB2025',
+        title: null,
+        action: function(e, dt, button, config) {
+          var selectedRows = dt.rows('.selected').count();
+          if (selectedRows > 0) {
+            // Export only selected rows
+            config.exportOptions = { modifier: { selected: true } };
+          } else {
+            // Export all rows
+            config.exportOptions = { modifier: { page: 'all', search: 'none' } };
+          }
+          $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config);
+        }
+      },
+      { 
+        extend: 'copyHtml5', 
+        filename: 'ConnectomeDB2025', 
+        title: null,
+        action: function(e, dt, button, config) {
+          var selectedRows = dt.rows('.selected').count();
+          if (selectedRows > 0) {
+            // Export only selected rows
+            config.exportOptions = { modifier: { selected: true } };
+          } else {
+            // Export all rows
+            config.exportOptions = { modifier: { page: 'all', search: 'none' } };
+          }
+          $.fn.dataTable.ext.buttons.copyHtml5.action.call(this, e, dt, button, config);
+        }
+      }
+    ],
+    columnDefs: [
+      {
+        orderable: false,
+        className: 'select-checkbox',
+        targets: 0
+      },
+      {"className": "dt-center", "targets": [11]}, // Adjusted for checkbox column
+      {"searchable": false, "targets": [13]}, // Adjusted for checkbox column
+      {"width": "275px", "targets": [5,6]}, // Adjusted for checkbox column
+      {"visible": false, "targets": hiddenColumns}
+    ],
+    initComplete: function () {
+      var api = this.api();
+      
+      // Wait for DOM to be ready, then add filter
+      setTimeout(function() {
+        // Create a filter container directly above the table and headers
+        var filterContainer = $('<div id="column-filters" style="background: white; padding: 10px; border: 0px solid #ddd; margin-bottom: 30; width: 100%;"><h3 style="margin: 0 0 15px 0;">Search Ligand/Receptor here! (Separate multiple values with commas)</h3></div>');
+        $('#{{ table_id }}').closest('.dataTables_wrapper').prepend(filterContainer);
+        
+        // Get unique values from both columns 4 and 5 (indices 4 and 5 with checkbox)
+        var uniqueValues = new Set();
+        
+        // Collect values from column 4 (index 4 with checkbox)
+        api.column(4).data().each(function(d) {
+          if (d && d.toString().trim() !== '') {
+            uniqueValues.add(d.toString().trim());
+          }
+        });
+        
+        // Collect values from column 5 (index 5 with checkbox)
+        api.column(5).data().each(function(d) {
+          if (d && d.toString().trim() !== '') {
+            uniqueValues.add(d.toString().trim());
+          }
+        });
+        
+        // Convert to sorted array
+        var sortedValues = Array.from(uniqueValues).sort();
+        
+        var filterDiv = $('<div style="max-width: 100%;"></div>');
+        var label = $('<label></label>');
+        
+        // Create input without datalist (no autofill)
+        var input = $('<input type="text" placeholder="i.e. CD24, TNF, A2M" />') // Updated placeholder
+          .css({
+            'width': '100%',
+            'padding': '8px',
+            'font-size': '1rem',
+            'border': '1px solid #ccc',
+            'border-radius': '4px'
+          })
+          .on('input keyup', function () {
+            var val = this.value;
+            
+            // Remove any existing custom search
+            while($.fn.dataTable.ext.search.length > 0) {
+              $.fn.dataTable.ext.search.pop();
+            }
+        // Append a style block with media query for smaller screens
+        $('head').append(`
+            <style>
+                @media (max-width: 480px) { /* Adjust breakpoint as needed for "mobile" */
+                    .mobile-tiny-input { /* Add a class to your input for targeting */
+                        font-size: 0.8rem !important; /* Make font smaller */
+                        padding: 5px !important;      /* Reduce padding */
+                    }
+                }
+            </style>
+        `);
+
+// Add the class to your input element
+input.addClass('mobile-tiny-input');
+            
+            if (val === '') {
+              // If empty, don't add any custom search
+              api.draw();
+            } else {
+              // Split the input by comma and trim whitespace for each search term
+              const searchTerms = val.split(',').map(term => term.trim().toLowerCase()).filter(term => term !== '');
+
+              if (searchTerms.length > 0) {
+                // Add custom search function for columns 4 and 5
+                $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+                  var col4Value = data[4] ? data[4].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
+                  var col5Value = data[5] ? data[5].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
+                  
+                  // Check if any of the search terms are present in either column
+                  return searchTerms.some(term => 
+                    col4Value.includes(term) || col5Value.includes(term)
+                  );
+                });
+              }
+              
+              api.draw();
+            }
+          });
+        
+        filterDiv.append(label).append(input);
+        filterContainer.append(filterDiv);
+      }, 100);
+    }
+  });
+});
+</script>

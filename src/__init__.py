@@ -18,3 +18,4 @@ from .createFilteredDBpages import *
 from .plotHeatmapTS import *
 from .convertMouseToRat import *
 from .remove_footer.py import *
+from .render_table.py import *
