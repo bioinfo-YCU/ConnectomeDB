@@ -12,76 +12,88 @@ header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
 
 ```{=html}
 <!-- Injected automatically via Jinja -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">Add commentMore actions
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
 
 <style>
+/* Base checkbox styling (the square box) */
 table.dataTable tbody tr.selected td.select-checkbox::after {
-            content: '✓';
-            font-size: 1rem;
-            color: #333;
-            font-weight: normal;
-            margin-top: -2px;
-        }
+    content: '✓';
+    font-size: 0.8rem; /* Keep this or adjust slightly if needed */
+    color: #333;
+    font-weight: bold;
+    position: absolute;
+    top: 50%; /* Start at 50% */
+    left: 50%; /* Keep centered horizontally */
+    transform: translate(-50%, -50%); /* Base centering */
+    line-height: 1;
+    pointer-events: none;
+}
 
-table.dataTable td.select-checkbox {
-            text-align: center;
-            vertical-align: middle;
-            padding: 0.5rem;
-            width: 3rem;
-            min-width: 2rem;
-        }
+table.dataTable.compact>tbody>tr.selected>td.select-checkbox:after, table.dataTable.compact>tbody>tr.selected>th.select-checkbox:after{
+    margin-top: -0.425rem; 
+    margin-left: -0.110rem;
+}
 
+/* Also, ensure your ::before has position: relative */
 table.dataTable td.select-checkbox::before {
-            content: '';
-            width: 1rem;
-            height: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 2px;
-            display: inline-block;
-            background: white;
-        }
+    /* ... existing styles ... */
+    position: relative; /* Make sure this is still here */
+    /* ... existing styles ... */
+}
 
+/* Styling for the cell containing the checkbox */
+table.dataTable td.select-checkbox {
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.5rem;
+    width: 3.5rem;
+    min-width: 2.5rem;
+    position: relative; /* Make sure the ::before element's relative positioning works within this */
+}
+
+/* Background for selected checkbox */
 table.dataTable tbody tr.selected td.select-checkbox::before {
-            background: #f0f8ff;
-            border-color: #337ab7;
-        }
-        /* Mobile responsive checkboxes */
-        @media (max-width: 768px) {
-            table.dataTable td.select-checkbox {
-                padding: 0.25rem;
-                width: 2rem;
-                min-width: 1.5rem;
-            }
-            
-            table.dataTable td.select-checkbox::before {
-                width: 0.8rem;
-                height: 0.8rem;
-            }
-            
-            table.dataTable tbody tr.selected td.select-checkbox::after {
-                font-size: 0.8rem;
-            }
-        }
+    background: #f0f8ff; /* Light blue background for selected */
+    border-color: #337ab7; /* Darker blue border for selected */
+}
 
-        @media (max-width: 480px) {
-            table.dataTable td.select-checkbox {
-                padding: 0.2rem;
-                width: 1.5rem;
-                min-width: 1.2rem;
-            }
-            
-            table.dataTable td.select-checkbox::before {
-                width: 0.6rem;
-                height: 0.6rem;
-            }
-            
-            table.dataTable tbody tr.selected td.select-checkbox::after {
-                font-size: 0.7rem;
-            }
-        }
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    table.dataTable td.select-checkbox {
+        padding: 0.25rem;
+        width: 2rem;
+        min-width: 1.5rem;
+    }
+    
+    table.dataTable td.select-checkbox::before {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+    
+    table.dataTable tbody tr.selected td.select-checkbox::after {
+        font-size: 0.7rem; /* Adjusted for smaller box */
+    }
+}
+
+@media (max-width: 480px) {
+    table.dataTable td.select-checkbox {
+        padding: 0.2rem;
+        width: 1.5rem;
+        min-width: 1.2rem;
+    }
+    
+    table.dataTable td.select-checkbox::before {
+        width: 0.6rem;
+        height: 0.6rem;
+    }
+    
+    table.dataTable tbody tr.selected td.select-checkbox::after {
+        font-size: 0.6rem; /* Adjusted for even smaller box */
+    }
+}
 
 /* Hide the default search box */
 .dataTables_filter {
