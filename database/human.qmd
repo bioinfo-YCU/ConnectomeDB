@@ -239,59 +239,111 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
       selector: 'td:first-child'
     },
     lengthMenu: [[10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"]],
-    buttons: [
-      'pageLength',
-      { extend: 'colvis', text: 'Display Columns' },
-      'selectAll',
-      'selectNone',
-      { 
-        extend: 'csvHtml5', 
-        filename: 'ConnectomeDB2025',
-        action: function(e, dt, button, config) {
-          var selectedRows = dt.rows('.selected').count();
-          if (selectedRows > 0) {
-            // Export only selected rows
-            config.exportOptions = { modifier: { selected: true } };
-          } else {
-            // Export all rows
-            config.exportOptions = { modifier: { page: 'all', search: 'none' } };
+// Replace your existing buttons array with this updated version:
+// Replace your existing buttons array with this updated version:
+// Replace your existing buttons array with this updated version:
+// Replace your existing buttons array with this updated version:
+buttons: [
+  'pageLength',
+  { extend: 'colvis', text: 'Display Columns' },
+  'selectAll',
+  'selectNone',
+  { 
+    extend: 'csvHtml5', 
+    filename: 'ConnectomeDB2025',
+    exportOptions: {
+      columns: ':not(:first-child)', // Exclude the first column (checkbox)
+      format: {
+        body: function(data, row, column, node) {
+          // For column 10 (the URL column), extract the href attribute
+          if (column === 10) {
+            var $temp = $('<div>').html(data);
+            var href = $temp.find('a').attr('href');
+            // Encode spaces and other special characters to make URL properly clickable
+            return href ? encodeURI(href) : data;
           }
-          $.fn.dataTable.ext.buttons.csvHtml5.action.call(this, e, dt, button, config);
-        }
-      },
-      { 
-        extend: 'excelHtml5', 
-        filename: 'ConnectomeDB2025',
-        title: null,
-        action: function(e, dt, button, config) {
-          var selectedRows = dt.rows('.selected').count();
-          if (selectedRows > 0) {
-            // Export only selected rows
-            config.exportOptions = { modifier: { selected: true } };
-          } else {
-            // Export all rows
-            config.exportOptions = { modifier: { page: 'all', search: 'none' } };
-          }
-          $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config);
-        }
-      },
-      { 
-        extend: 'copyHtml5', 
-        filename: 'ConnectomeDB2025', 
-        title: null,
-        action: function(e, dt, button, config) {
-          var selectedRows = dt.rows('.selected').count();
-          if (selectedRows > 0) {
-            // Export only selected rows
-            config.exportOptions = { modifier: { selected: true } };
-          } else {
-            // Export all rows
-            config.exportOptions = { modifier: { page: 'all', search: 'none' } };
-          }
-          $.fn.dataTable.ext.buttons.copyHtml5.action.call(this, e, dt, button, config);
+          // For all other columns, strip HTML tags (keep existing behavior)
+          return data.replace ? data.replace(/<[^>]*>/g, '') : data;
         }
       }
-    ],
+    },
+    action: function(e, dt, button, config) {
+      var selectedRows = dt.rows('.selected').count();
+      if (selectedRows > 0) {
+        // Export only selected rows
+        config.exportOptions.modifier = { selected: true };
+      } else {
+        // Export all rows
+        config.exportOptions.modifier = { page: 'all', search: 'none' };
+      }
+      $.fn.dataTable.ext.buttons.csvHtml5.action.call(this, e, dt, button, config);
+    }
+  },
+  { 
+    extend: 'excelHtml5', 
+    filename: 'ConnectomeDB2025',
+    title: null,
+    exportOptions: {
+      columns: ':not(:first-child)', // Exclude the first column (checkbox)
+      format: {
+        body: function(data, row, column, node) {
+          // For column 10 (the URL column), extract the href attribute
+          if (column === 10) {
+            var $temp = $('<div>').html(data);
+            var href = $temp.find('a').attr('href');
+            // Encode spaces and other special characters to make URL properly clickable
+            return href ? encodeURI(href) : data;
+          }
+          // For all other columns, strip HTML tags (keep existing behavior)
+          return data.replace ? data.replace(/<[^>]*>/g, '') : data;
+        }
+      }
+    },
+    action: function(e, dt, button, config) {
+      var selectedRows = dt.rows('.selected').count();
+      if (selectedRows > 0) {
+        // Export only selected rows
+        config.exportOptions.modifier = { selected: true };
+      } else {
+        // Export all rows
+        config.exportOptions.modifier = { page: 'all', search: 'none' };
+      }
+      $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config);
+    }
+  },
+  { 
+    extend: 'copyHtml5', 
+    filename: 'ConnectomeDB2025', 
+    title: null,
+    exportOptions: {
+      columns: ':not(:first-child)', // Exclude the first column (checkbox)
+      format: {
+        body: function(data, row, column, node) {
+          // For column 10 (the URL column), extract the href attribute
+          if (column === 10) {
+            var $temp = $('<div>').html(data);
+            var href = $temp.find('a').attr('href');
+            // Encode spaces and other special characters to make URL properly clickable
+            return href ? encodeURI(href) : data;
+          }
+          // For all other columns, strip HTML tags (keep existing behavior)
+          return data.replace ? data.replace(/<[^>]*>/g, '') : data;
+        }
+      }
+    },
+    action: function(e, dt, button, config) {
+      var selectedRows = dt.rows('.selected').count();
+      if (selectedRows > 0) {
+        // Export only selected rows
+        config.exportOptions.modifier = { selected: true };
+      } else {
+        // Export all rows
+        config.exportOptions.modifier = { page: 'all', search: 'none' };
+      }
+      $.fn.dataTable.ext.buttons.copyHtml5.action.call(this, e, dt, button, config);
+    }
+  }
+],
     columnDefs: [
       {
         orderable: false,
