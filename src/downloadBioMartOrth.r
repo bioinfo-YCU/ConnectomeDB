@@ -7,38 +7,78 @@ library(tidyverse)
 print(paste0("Retrieving on: ", format(Sys.Date(), "%d-%b-%Y")))
 
 # Function to retrieve orthologs for different species
-get_species_orthologs <- function(species_name) {
-  # Connect to Ensembl BioMart
-  ensembl <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
+library(biomaRt)
+library(readr)
 
+get_species_orthologs <- function(species_name) {
+  # Connect to Ensembl BioMart (human)
+  ensembl <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
   # Retrieve all human genes with their Ensembl IDs and HGNC symbols
-    human_genes <- getBM(
+  human_genes <- getBM(
         attributes = c("hgnc_id", "hgnc_symbol", "ensembl_gene_id"),
         mart = ensembl
     )
-  
-  # Define species-specific attributes dynamically based on species name
+  # Define species-specific ortholog attribute names
   species_column <- paste0(species_name, "_homolog_ensembl_gene")
   species_gene_name <- paste0(species_name, "_homolog_associated_gene_name")
+  species_gene_GOC <- paste0(species_name, "_homolog_goc_score")
+  species_gene_WGA <- paste0(species_name, "_homolog_wga_coverage")
+  species_gene_identToQuery <- paste0(species_name, "_homolog_perc_id") 
+  species_gene_identToTarget <- paste0(species_name, "_homolog_perc_id_r1") 
+  species_gene_confidence <- paste0(species_name, "_homolog_orthology_confidence") 
+
+  # Ensure attributes are from a single species' ortholog page
+  attributes_list <- c(
+    "ensembl_gene_id",
+    species_column, 
+    species_gene_name,
+    species_gene_GOC,
+    species_gene_WGA,
+    species_gene_identToQuery,
+    species_gene_identToTarget,
+    species_gene_confidence
+  )
   
-  # Get orthologs for the specified species
-  orthologs <- getBM(
-    attributes = c("ensembl_gene_id", 
-                   species_column, 
-                   species_gene_name),
+  # Retrieve orthologs from human dataset
+  orth_genes <- getBM(
+    attributes = attributes_list,
     mart = ensembl
   )
-  final_result <- merge(human_genes, orthologs, by = "ensembl_gene_id", all.x = TRUE)
-  readr::write_csv(final_result, paste0("data/",species_name, "_ID_biomart.csv"))
+  result <- merge(human_genes, orth_genes, by = "ensembl_gene_id", all.x = TRUE)
+  # Connect to ortholog species dataset
+  ensembl_orthologs <- useMart("ensembl", dataset = paste0(species_name, "_gene_ensembl"))
+  
+  # Set species-specific gene ID and description fields
+  species_id <- switch(species_name,
+                       "mmusculus" = "mgi_id",
+                       "rnorvegicus" = "rgd_id",
+                       "drerio" = "zfin_id_id",
+                       "ensembl_gene_id")  # default
+
+  species_gene_name_long <- if (species_name == "mmusculus") {
+    "mgi_description"
+  } else {
+    "description"
+  }
+
+  # Get gene info from ortholog species dataset
+  orthologs <- getBM(
+    attributes = c("ensembl_gene_id", species_id, species_gene_name_long),
+    mart = ensembl_orthologs
+  )
+
+  # Merge based on the ortholog ensembl gene ID (species_column)
+  colnames(orthologs)[1] <- species_column  # rename for correct merge
+  final_result <- merge(result, orthologs, by = species_column, all.x = TRUE)
+  final_result <- final_result[final_result$hgnc_id != "", ]
+  final_result <- final_result[!is.na(final_result$hgnc_id), ]
+  # Write result
+  write_csv(final_result, paste0("data/", species_name, "_ID_biomart.csv"))
+
   return(final_result)
 }
 
-# Function to list available attributes for a given Ensembl species dataset
-list_species_attributes <- function(species_dataset) {
-  ensembl <- useMart("ensembl", dataset = species_dataset)
-  attributes <- listAttributes(ensembl)
-  return(attributes)
-}
+# searchAttributes(ensembl, pattern) useful for looking for column names
 
 # Main
 
@@ -49,18 +89,20 @@ get_species_orthologs("cjacchus")
 # Chimp (Pan troglodytes)
 get_species_orthologs("ptroglodytes")
 # Chicken (Gallus gallus)
-chicken_orthologs <- get_species_orthologs("ggallus")
+get_species_orthologs("ggallus")
 # Pig (Sus scrofa)
-pig_orthologs <- get_species_orthologs("sscrofa")
+get_species_orthologs("sscrofa")
 # Cow (Bos taurus)
-cow_orthologs <- get_species_orthologs("btaurus")
+get_species_orthologs("btaurus")
 # Dog (Canis lupus familiaris)
-dog_orthologs <- get_species_orthologs("clfamiliaris")
+get_species_orthologs("clfamiliaris")
 # Horse (Equus caballus)
-horse_orthologs <- get_species_orthologs("ecaballus")
+get_species_orthologs("ecaballus")
 # Sheep (Ovis aries rambouillet)
-sheep_orthologs <- get_species_orthologs("oarambouillet")
-# Mouse (Mus musculus) # test
-mouse_orthologs <- get_species_orthologs("mmusculus")
+get_species_orthologs("oarambouillet")
+# Mouse (Rattus norvegicus) # test
+get_species_orthologs("rnorvegicus")
+# Rat (Mus musculus) # test
+get_species_orthologs("mmusculus")
 # Zebrafish (Danio rerio) # test
-zebra_orthologs <- get_species_orthologs("drerio")
+get_species_orthologs("drerio")
