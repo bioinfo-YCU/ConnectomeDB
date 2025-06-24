@@ -15,7 +15,27 @@ import warnings
 # Suppress SettingWithCopyWarning
 warnings.simplefilter("ignore", category=UserWarning)
 
-
+def cleanup_species_info(species_info, species_name):
+    """
+    Simple cleanup: replace empty associated_gene_name with homolog_ensembl_gene
+    """
+    # Find the associated gene name column
+    associated_gene_col = None
+    homolog_ensembl_col = None
+    
+    for col in species_info.columns:
+        if species_name in col and 'homolog' in col and 'associated_gene_name' in col:
+            associated_gene_col = col
+        elif species_name in col and 'homolog_ensembl_gene' in col:
+            homolog_ensembl_col = col
+    
+    if associated_gene_col and homolog_ensembl_col:
+        # Replace empty or NaN values in associated_gene_name with homolog_ensembl_gene
+        mask = (species_info[associated_gene_col] == "") | (species_info[associated_gene_col].isna())
+        species_info.loc[mask, associated_gene_col] = species_info.loc[mask, homolog_ensembl_col]
+    
+    return species_info
+    
 def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_index, receptor_index):
     """
     Processes ligand-receptor interactions for a given species.
@@ -108,7 +128,8 @@ def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_in
     
     # Load species-specific data
     species_info = pd.read_csv(f"data/{species_name}_ID_biomart.csv")
-
+    # replace empty ligand/receptor symbols with ens id for now
+    species_info = cleanup_species_info(species_info, species_name)
     # Keep relevant columns - use species code, not species_name
     species_mapping = {
         "mmusculus": "mgi_id",
@@ -284,7 +305,7 @@ def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_in
             return f"{row[ligand_col]} <span style='font-size: 24px;'>⤙</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
         else:
             return f"{row[ligand_col]} \u2192 {row[receptor_col]}"
-
+            
     species_gene_pair1.loc[:, f"{species} LR Pair"] = species_gene_pair1.apply(format_lr_pair, axis=1)
        # Identify relevant columns for the species
     species_lr_pair_col = f"{species} LR Pair"
