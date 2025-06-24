@@ -35,22 +35,28 @@ website:
     search: false
     
     left:
-      - href: about.qmd
-        text: 'About'
-      - href: tutorials.qmd
-        text: 'Tutorials'
+      - text: 'Documentation'
+        menu:
+         - href: policy.qmd
+           text: 'Terms & Conditions'
+         - href: about.qmd
+           text: 'Introduction'
+         - href: methods.qmd
+           text: 'Methods'
+         - href: tutorials.qmd
+           text: 'Tutorials'
+         - href: help.qmd
+           text: 'HELP'
 
+           
       - text: 'Ligand-Receptor Browser'
         menu:
          - href: database/human.qmd
-           text: Human LR Pairs
+           text: '**Human LR Pairs**'
          # - href: database/human-trip.qmd
          #   text: Human LR Pairs ˣ Pubmed
          - href: database/mouseOrth.qmd
-           text: Mouse Orthologs
-         - text: '──────────'   # ← Fake divider
-         - text: 'Other Species'
-            # No 'href' here, making it unclickable.
+           text: '**Mouse Orthologs**'
          - href: database/other/chimpOrth.qmd
            text: 'Chimp Orthologs' 
          - href: database/other/macaqueOrth.qmd
@@ -67,9 +73,9 @@ website:
            text: 'Dog Orthologs' 
          - href: database/other/horseOrth.qmd
            text: 'Horse Orthologs' 
-         - href: database/other/cowOrth.qmd
-           text: 'Sheep Orthologs' 
          - href: database/other/sheepOrth.qmd
+           text: 'Sheep Orthologs' 
+         - href: database/other/chickenOrth.qmd
            text: 'Chicken Orthologs' 
          - href: database/other/zebrafishOrth.qmd 
            text: 'Zebrafish Orthologs' 
