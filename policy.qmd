@@ -4,7 +4,7 @@ title: "Terms & Conditions *(under construction)*"
 
 ----
 
-### Legal Disclaimer
+### **Legal Disclaimer**
 
 This website hosted by the Bioinformatics Laboratory at Yokohama City University and is developed in collaboration with the Systems Biology & Genomics Lab at the Harry Perkins Institute of Medical Research, both governed by their respective legal entities. 
 
@@ -15,19 +15,19 @@ This website hosted by the Bioinformatics Laboratory at Yokohama City University
   <span class="half-break"></span>
 </div>
 
-### General Usage
+### **General Usage**
 
 *Under construction...*
 
 ----
 
-### Cookies and Privacy Policy
+### **Cookies and Privacy Policy**
 
 *Under construction...*
 
 ----
 
-### License
+### **License**
 
 This website was built using **Quarto 1.7+** under the 
 Open Source <a href='https://opensource.org/license/mit' target='_blank'>MIT License</a>.  

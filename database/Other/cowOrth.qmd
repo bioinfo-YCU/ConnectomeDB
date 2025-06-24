@@ -51,11 +51,11 @@ def update_table():
             {"extend": "copyHtml5", "filename": "ConnectomeDB2025", "title": None},
         ],
         columnDefs=[
-            {"className": "dt-center", "targets": [15]}, 
+            {"className": "dt-center", "targets": [-6]}, 
             # {"width": "100px", "targets": "_all"},
-            {"width": "275px", "targets": [9,10]},
-            {"targets": list(range(-1, -6, -1))+ [7, 8,13,14], "visible": False} # Hide last n columns by default
-                        ],
+            {"width": "275px", "targets": [21,22]},
+            {"targets": list(range(-1, -6, -1))+ [2,3,19,20], "visible": False} # Hide last n columns by default
+        ],
         style="1200px;margin:auto",
            #language={
            # "search": "Search Gene of Interest:",

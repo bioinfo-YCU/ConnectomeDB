@@ -546,17 +546,28 @@ mouse_rat_info = pd.read_csv("data/mouse_to_rat_mapping.csv")
 mapping_mouse_to_rat = dict(zip(mouse_rat_info['MGI ID'], mouse_rat_info['RGD ID']))
 mapping_mr2 = dict(zip(mouse_rat_info['RGD ID'], mouse_rat_info['RGD symbol']))
 
+def format_rgd_ids(cell):
+    if pd.isna(cell):
+        return ""
+    ids = str(cell).split(",")
+    cleaned = []
+    for rgd in ids:
+        rgd = rgd.strip()
+        if not rgd or rgd.lower() == "none":
+            continue
+        try:
+            rgd_clean = f"RGD:{int(float(rgd))}"
+        except ValueError:
+            rgd_clean = f"RGD:{rgd}"
+        cleaned.append(rgd_clean)
+    return ", ".join(cleaned)
 
-### Add missing Rat Receptor name
-# Apply the mapping to 'Receptor RGD ID to Rat Receptor'
-gene_pair['Rat Receptor'] = gene_pair.apply(
-    lambda row: map_if_empty(row, 'Receptor RGD ID', 'Rat Receptor', mapping_mr2),
-    axis=1
-)
-
+    
+gene_pair["Ligand RGD ID"] = gene_pair["Ligand RGD ID"].apply(format_rgd_ids)
+gene_pair["Receptor RGD ID"] = gene_pair["Receptor RGD ID"].apply(format_rgd_ids)
 # Apply the mapping to 'Ligand MGI ID'
 gene_pair['Ligand RGD ID'] = gene_pair.apply(
-    lambda row: map_if_empty(row, 'Ligand MGI ID', 'Receptor RGD ID', mapping_mouse_to_rat),
+    lambda row: map_if_empty(row, 'Ligand MGI ID', 'Ligand RGD ID', mapping_mouse_to_rat),
     axis=1
 ) 
 
@@ -566,9 +577,39 @@ gene_pair['Receptor RGD ID'] = gene_pair.apply(
     axis=1
 )
 
-### Add missing Rat ligand name
+def map_if_empty(row, source_col, target_col, mapping_dict):
+    current_val = row[target_col]
+    source_val = row[source_col]
 
-# Apply the mapping to 'Ligand RGD ID to Rat Ligand'
+    # Don't overwrite if target already has a value
+    if pd.notna(current_val) and str(current_val).strip():
+        return current_val
+
+    # Only try mapping if source is non-empty
+    if pd.isna(source_val) or not str(source_val).strip():
+        return ""
+
+    # Clean source value
+    key = str(source_val).strip()
+    
+    # ✅ If multiple IDs (comma-separated), map only the first one
+    key = key.split(",")[0].strip()
+    
+    # ✅ Ensure it starts with "RGD:"
+    if not key.startswith("RGD:"):
+        try:
+            key = f"RGD:{int(float(key))}"
+        except ValueError:
+            pass
+
+    return mapping_dict.get(key, "")
+
+    
+gene_pair['Rat Receptor'] = gene_pair.apply(
+    lambda row: map_if_empty(row, 'Receptor RGD ID', 'Rat Receptor', mapping_mr2),
+    axis=1
+)
+
 gene_pair['Rat Ligand'] = gene_pair.apply(
     lambda row: map_if_empty(row, 'Ligand RGD ID', 'Rat Ligand', mapping_mr2),
     axis=1
@@ -580,6 +621,12 @@ mouse_specific_mgi_ids_ligand = gene_pair[gene_pair['Ligand'].apply(is_mouse_spe
 mouse_specific_mgi_ids_receptor = gene_pair[gene_pair['Receptor'].apply(is_mouse_specific)]['Receptor MGI ID'].tolist()
 mouse_specific_mgi_ids = mouse_specific_mgi_ids_ligand + mouse_specific_mgi_ids_receptor
 mouse_specific_mgi_ids = pd.unique(pd.Series(mouse_specific_mgi_ids))
+
+
+# Linkify multiple RGD IDs in Ligand column
+
+def clean_rgd_id(rgd):
+    rgd = str(rgd).strip()
 
 # Linkify multiple MGI IDs in Ligand column
 gene_pair["Ligand MGI ID"] = gene_pair["Ligand MGI ID"].apply(
@@ -599,25 +646,26 @@ gene_pair["Receptor MGI ID"] = gene_pair["Receptor MGI ID"].apply(
     ) if pd.notna(cell) else ""
 )
 
-# Linkify multiple RGD IDs in Ligand column
+
+
+# Linkify multiple RGD IDs in Receptor column
 gene_pair["Ligand RGD ID"] = gene_pair["Ligand RGD ID"].apply(
     lambda cell: ", ".join(
-        f'<a href="https://rgd.mcw.edu/rgdweb/report/gene/main.html?id={rgd.strip().replace("RGD:", "")}" target="_blank">{rgd.strip()}</a>'
+        f'<a href="https://rgd.mcw.edu/rgdweb/report/gene/main.html?id={rgd.strip()}" target="_blank">{rgd.strip()}</a>'
         for rgd in str(cell).split(", ")
         if rgd.strip()
     ) if pd.notna(cell) else ""
 )
+
 
 # Linkify multiple RGD IDs in Receptor column
 gene_pair["Receptor RGD ID"] = gene_pair["Receptor RGD ID"].apply(
     lambda cell: ", ".join(
-        f'<a href="https://rgd.mcw.edu/rgdweb/report/gene/main.html?id={rgd.strip().replace("RGD:", "")}" target="_blank">{rgd.strip()}</a>'
+        f'<a href="https://rgd.mcw.edu/rgdweb/report/gene/main.html?id={rgd.strip()}" target="_blank">{rgd.strip()}</a>'
         for rgd in str(cell).split(", ")
         if rgd.strip()
     ) if pd.notna(cell) else ""
 )
-
-
 
 # if "PMID link" in gene_pair.columns:
 #    gene_pair = gene_pair.drop(columns=["PMID link"])

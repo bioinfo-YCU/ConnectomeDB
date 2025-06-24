@@ -6,7 +6,7 @@ execute:
 ---
 
 
-### Ligand-Receptor Interaction Modelling 
+### **Ligand-Receptor Interaction Modelling**
 
 ConnectomeDB models all ligand receptor pairs as simplex directional interactions.
 
@@ -15,11 +15,11 @@ For heteromeric receptors and ligands, connectomeDB splits complexes into simple
 In the case of bidirectional signalling where signals are triggered in both cells the pair is modelled as two directional interactions. E.g. CD28 ⤙ ⤚ CD86 and CD86 ⤙ ⤚ CD28.\
 The current version of connectomeDB does not model signalling via non-peptide ligands.
 
-### Incorporation of Existing LR Pairs
+### **Incorporation of Existing LR Pairs**
 
 Protein ligand mediated ligand-receptor pairs from our previous database releases (connectomeDB2015 and 2020) and other databases including CellTalkDB, ICELLNET_v2, CellChatDB_v2, CellPhoneDB_v5 and LIANA_consensus were downloaded (and frozen in May 2025). Non-protein ligands were removed and the complex pairs present in ICELLNET_v2, CellCHatDB_v2, CellPhoneDB_v5 and LIANA_consensus were split into singlet pairs (see [Ligand-Receptor Interaction Modelling](#ligand-receptor-interaction-modelling)) for manual curation.
 
-### Identification of Putative New LR Pairs
+### **Identification of Putative New LR Pairs**
 
 Multiple strategies were used to identify novel ligand–receptor (LR) pairs. Initially, we conducted non-exhaustive manual searches of abstracts using keywords such as ligand and receptor, and collected candidate pairs encountered over the past five years.
 
@@ -27,7 +27,7 @@ This process was significantly accelerated using prompt-based queries to large l
 
 All candidate pairs were parsed to extract gene symbols, and only those representing valid gene pairs not already present in ConnectomeDB2020 were retained for manual validation.
 
-### Manual Curation of Ligand–Receptor Triplets
+### **Manual Curation of Ligand–Receptor Triplets**
 
 Each interaction in ConnectomeDB is recorded as a triplet: ligand symbol : receptor symbol : PubMed ID. Only interactions supported by primary experimental evidence are included; literature reviews are excluded, as they often overgeneralise (e.g. “Eph receptors interact with ephrins”) without specifying direct evidence for individual pairs.
 
@@ -37,7 +37,7 @@ For interactions lacking primary evidence—due to incorrect, retracted or missi
 
 The unique triplet dataset will be publicly released in conjunction with the publication, ensuring both data integrity and protection against premature use.
 
-### Subcellular localization
+### **Subcellular localization**
 
 The subcellular localization of ligands and receptors were annotated using Perplexity, Uniprot, The Human Protein Atlas (HPA) and manual confirmation. For HPA data, only localization information with "Enhanced", "Supported", or "Approved" reliability was considered; sublocation entries marked as "Uncertain" were excluded.
 
@@ -49,6 +49,6 @@ Note connectomeDB also incorporates some non-canonical pairs that are worth ment
 
 - The S100A1 ○ ⤚ TLR4 pair involves interaction of S100A1 which is normally intracellular but released via non-canonical means upon cellular stress or damage.
 
-### Orthologous pairs
+### **Orthologous Pairs**
 
 ConnectomeDB2025 contains 3,436 ligand-receptor pairs linked to human gene symbols and 12 mouse specific pairs linked to mouse gene symbols. Human and mouse gene symbols were mapped to HGNC and MGI identifiers respectively via the BioMart at Ensembl.
