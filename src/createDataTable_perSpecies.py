@@ -315,7 +315,7 @@ def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_in
         and col not in [ligand_col, receptor_col, species_lr_pair_col]  # <- singular
     ]
 
-    new_order = [human_columns[0]]+ [f"{species} LR Pair", ligand_col, receptor_col] + species_columns + ["LR Pair Card"] + human_columns[2:]
+    new_order = [human_columns[0]]+ ["LR Pair Card"] + [f"{species} LR Pair", ligand_col, receptor_col] + species_columns +  human_columns[2:]
     species_gene_pair1 = species_gene_pair1[new_order].reset_index(drop=True)
     species_gene_pair1 = species_gene_pair1.loc[:, ~species_gene_pair1.columns.duplicated()]
     species_gene_pair1.columns = [
