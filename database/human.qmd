@@ -18,6 +18,10 @@ header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
 
 <style>
+/* italicized placeholder */
+input[type="text"]::placeholder {
+  font-style: italic;
+}
 /* Base checkbox styling (the square box) */
 table.dataTable tbody tr.selected td.select-checkbox::after {
     content: '✓';
@@ -31,19 +35,16 @@ table.dataTable tbody tr.selected td.select-checkbox::after {
     line-height: 1;
     pointer-events: none;
 }
-
 table.dataTable.compact>tbody>tr.selected>td.select-checkbox:after, table.dataTable.compact>tbody>tr.selected>th.select-checkbox:after{
-    margin-top: -0.425rem; 
-    margin-left: -0.110rem;
+    margin-top: -0.325rem; /* Adjusted from -0.425rem to account for the 2px added to ::before */
+    margin-left: -0.05rem;
 }
-
 /* Also, ensure your ::before has position: relative */
 table.dataTable td.select-checkbox::before {
     /* ... existing styles ... */
     position: relative; /* Make sure this is still here */
     /* ... existing styles ... */
 }
-
 /* Styling for the cell containing the checkbox */
 table.dataTable td.select-checkbox {
     text-align: center;
@@ -53,13 +54,15 @@ table.dataTable td.select-checkbox {
     min-width: 2.5rem;
     position: relative; /* Make sure the ::before element's relative positioning works within this */
 }
-
 /* Background for selected checkbox */
 table.dataTable tbody tr.selected td.select-checkbox::before {
     background: #f0f8ff; /* Light blue background for selected */
     border-color: #337ab7; /* Darker blue border for selected */
 }
-
+table.dataTable.compact>tbody>tr>td.select-checkbox:before, 
+table.dataTable.compact>tbody>tr>th.select-checkbox:before {
+    margin-top: -0.3rem;
+}
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
     table.dataTable td.select-checkbox {
@@ -77,7 +80,6 @@ table.dataTable tbody tr.selected td.select-checkbox::before {
         font-size: 0.7rem; /* Adjusted for smaller box */
     }
 }
-
 @media (max-width: 480px) {
     table.dataTable td.select-checkbox {
         padding: 0.2rem;
@@ -86,23 +88,22 @@ table.dataTable tbody tr.selected td.select-checkbox::before {
     }
     
     table.dataTable td.select-checkbox::before {
-        width: 0.6rem;
-        height: 0.6rem;
+        width: 0.5rem;
+        height: 0.5rem;
     }
     
     table.dataTable tbody tr.selected td.select-checkbox::after {
         font-size: 0.6rem; /* Adjusted for even smaller box */
     }
+    input[type="text"]::placeholder {
+      font-size: 80% !important;
+    }
 }
-
 /* Hide the default search box */
 .dataTables_filter {
   display: none !important;
 }
-/* italicized placeholder */
-input[type="text"]::placeholder {
-  font-style: italic;
-}
+
 </style>
 
 <table id="human-table" class="display nowrap cell-border compact" style="width:100%">
@@ -361,21 +362,21 @@ buttons: [
       // Wait for DOM to be ready, then add filter
       setTimeout(function() {
         // Create a filter container directly above the table and headers
-        var filterContainer = $('<div id="column-filters" style="background: white; padding: 10px; border: 0px solid #ddd; margin-bottom: 30; width: 100%;"><h3 style="margin: 0 0 15px 0;">Search Ligand/Receptor here! (Separate multiple values with commas)</h3></div>');
+        var filterContainer = $('<div id="column-filters" style="background: white; padding-left: 0px; padding-right: 0px; padding-bottom: 10px; border: 0px solid #ddd; margin-bottom: 30; width: 100%;"><h4 style="margin: 0 0 15px 0;">Search Ligand(s) / Receptor(s) here</h4></div>');
         $('#human-table').closest('.dataTables_wrapper').prepend(filterContainer);
         
-        // Get unique values from both columns 4 and 5 (indices 4 and 5 with checkbox)
+        // Get unique values from both columns 5 and 6 (with checkbox)
         var uniqueValues = new Set();
         
-        // Collect values from column 4 (index 4 with checkbox)
-        api.column(4).data().each(function(d) {
+        // Collect values from column 5 (index 5 with checkbox)
+        api.column(5).data().each(function(d) {
           if (d && d.toString().trim() !== '') {
             uniqueValues.add(d.toString().trim());
           }
         });
         
-        // Collect values from column 5 (index 5 with checkbox)
-        api.column(5).data().each(function(d) {
+        // Collect values from column 6 (index 6 with checkbox)
+        api.column(6).data().each(function(d) {
           if (d && d.toString().trim() !== '') {
             uniqueValues.add(d.toString().trim());
           }
@@ -388,7 +389,7 @@ buttons: [
         var label = $('<label></label>');
         
         // Create input without datalist (no autofill)
-        var input = $('<input type="text" placeholder="i.e. CD24, TNF, A2M" />') // Updated placeholder
+        var input = $('<input type="text" placeholder="i.e. CD24, EGFR, A2M" />') // Updated placeholder
           .css({
             'width': '100%',
             'padding': '8px',

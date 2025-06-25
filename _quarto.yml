@@ -99,6 +99,8 @@ website:
       # - href: stats.qmd
       #   text: "{{< iconify mdi:chart-bar inline size=20px >}}Statistics"
     right:
+      - url: "updates.qmd"
+        text: "{{< iconify mdi:update inline >}}"
       - url: "mailto:bioinfo@yokohama-cu.ac.jp,alistair.forrest@perkins.uwa.edu.au,rui.hou@uwa.edu.au"
         text: "{{< iconify mdi:email inline >}}"
 
