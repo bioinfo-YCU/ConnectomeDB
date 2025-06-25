@@ -49,7 +49,7 @@ Accesing all parts of the online resource requires no username and no password.
 
 <div style="margin-top: 1em;"></div>
 
-### **Developpers**
+### **Developers**
 
 This resource was developed and is maintained by <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank" >YCU Bioinformatics Lab</a>
 and 
