@@ -19,6 +19,7 @@ for col in score_cols:
 def summarize_orthologs(human_col, species_col, label,
                         confidence_orth_col=None, confidence_orth_threshold=None,
                         GOC_col=None, GOC_threshold=None,
+                        perc_identity_col= None, perc_identity_thres= None,
                         ligand_human_inparalog_score_col=None, ligand_human_inparalog_score_threshold=None,
                         receptor_human_inparalog_score_col=None, receptor_human_inparalog_score_threshold=None,
                         ligand_mouse_inparalog_score_col=None, ligand_mouse_inparalog_score_threshold=None,
@@ -36,6 +37,7 @@ def summarize_orthologs(human_col, species_col, label,
     filters = [
         (confidence_orth_col, lambda x: x == confidence_orth_threshold),
         (GOC_col, lambda x: x >= GOC_threshold),
+        (perc_identity_col, lambda x: x >= perc_identity_thres),
         (ligand_human_inparalog_score_col, lambda x: x >= ligand_human_inparalog_score_threshold),
         (receptor_human_inparalog_score_col, lambda x: x >= receptor_human_inparalog_score_threshold),
         (ligand_mouse_inparalog_score_col, lambda x: x >= ligand_mouse_inparalog_score_threshold),
@@ -80,7 +82,6 @@ def summarize_orthologs(human_col, species_col, label,
         filter_tag += f"_LHISge{ligand_human_inparalog_score_threshold}"
     if receptor_bit_score_threshold is not None:
         filter_tag += f"_RBSge{receptor_bit_score_threshold}"
-    # Add more tags as needed...
 
     counts.to_csv(f"data/human_mouse_orth_count_{filter_tag}.csv", index=False)
 
@@ -96,6 +97,8 @@ def summarize_orthologs(human_col, species_col, label,
             active_filters.append(f"{confidence_orth_col} equals '{confidence_orth_threshold}'")
     if GOC_col and GOC_threshold is not None:
         active_filters.append(f"{GOC_col} ≥ {GOC_threshold}")
+    if perc_identity_col and perc_identity_thres is not None:
+        active_filters.append(f"{perc_identity_col} ≥ {perc_identity_thres}")
     if ligand_human_inparalog_score_col and ligand_human_inparalog_score_threshold is not None:
         active_filters.append(f"{ligand_human_inparalog_score_col} ≥ {ligand_human_inparalog_score_threshold}")
     if receptor_human_inparalog_score_col and receptor_human_inparalog_score_threshold is not None:
@@ -133,8 +136,10 @@ def summarize_orthologs(human_col, species_col, label,
 
 
 # Detect columns
+# Ligand
 confidence_orth_ligand = [col for col in final_result.columns if "Ligand Orthology Confidence" in col][0]
 GOC_col_ligand = [col for col in final_result.columns if "Ligand GOC" in col][0]
+percIdent_col_ligand = [col for col in final_result.columns if "Ligand % Identity" in col][0]
 human_ligand_col = [col for col in final_result.columns if "Ligand HGNC ID" in col][0]
 ligand_col = [col for col in final_result.columns if "Ligand" in col][0]
 ligand_col = [col for col in final_result.columns if "Ligand" in col][0]
@@ -144,16 +149,18 @@ ligand_human_seed_score = [col for col in final_result.columns if "Ligand_human_
 ligand_mouse_seed_score = [col for col in final_result.columns if "Ligand_mouse_seed_score" in col][0]
 ligand_bit_score = [col for col in final_result.columns if "Ligand_bitscore" in col][0]
 
-
+#Receptor
 human_receptor_col = [col for col in final_result.columns if "Receptor HGNC ID" in col][0]
 confidence_orth_receptor = [col for col in final_result.columns if "Receptor Orthology Confidence" in col][0]
 GOC_col_receptor = [col for col in final_result.columns if "Receptor GOC" in col][0]
+percIdent_col_receptor = [col for col in final_result.columns if "Receptor % Identity" in col][0]
 receptor_col = [col for col in final_result.columns if "Receptor" in col][0]
 receptor_human_inparalog_score = [col for col in final_result.columns if "Receptor_human_inparalog_score" in col][0]
 receptor_mouse_inparalog_score = [col for col in final_result.columns if "Receptor_mouse_inparalog_score" in col][0]
 receptor_human_seed_score = [col for col in final_result.columns if "Receptor_human_seed_score" in col][0]
 receptor_mouse_seed_score = [col for col in final_result.columns if "Receptor_mouse_seed_score" in col][0]
 receptor_bit_score = [col for col in final_result.columns if "Receptor_bitscore" in col][0]
+
 
 ligand_summary = summarize_orthologs(
     human_col=human_ligand_col,
