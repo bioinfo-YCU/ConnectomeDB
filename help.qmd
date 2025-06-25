@@ -1,3 +1,8 @@
+---
+title: "Help"
+header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
+---
+
 ## Inquiries & Feedback
 
 We welcome your feedback and suggestions for improving ConnectomeDB content and would be glad to hear any ideas for further development.\

@@ -3,6 +3,7 @@ title: "{{< fa circle-info >}} Introduction"
 execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
+header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
 ---
 
 <hr>

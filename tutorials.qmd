@@ -1,5 +1,6 @@
 ---
 title: "{{< fa computer >}} ConnectomeDB2025 User Guide"
+header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
 ---
 
 ---
