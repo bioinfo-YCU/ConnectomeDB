@@ -79,6 +79,9 @@ website:
            text: 'Chicken Orthologs' 
          - href: database/other/zebrafishOrth.qmd 
            text: 'Zebrafish Orthologs' 
+         - href: downloads.qmd
+           text: 'Downloads'
+        
     # - href: askAIchat.qmd
     #   text: 'Ask AI chatbot'
         
@@ -96,8 +99,6 @@ website:
       # - href: stats.qmd
       #   text: "{{< iconify mdi:chart-bar inline size=20px >}}Statistics"
     right:
-      - url: "https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/human.html"
-        text: "{{< iconify mdi:search inline >}}"
       - url: "mailto:bioinfo@yokohama-cu.ac.jp,alistair.forrest@perkins.uwa.edu.au,rui.hou@uwa.edu.au"
         text: "{{< iconify mdi:email inline >}}"
 
