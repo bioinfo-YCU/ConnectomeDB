@@ -273,12 +273,8 @@ $.getJSON("{{ json_path }}", function(data) {
 
                         body: function(data, row, column, node) {
 
-                            // Get the actual column index in the full table (including hidden columns)
-                            var actualColumnIndex = table.column(column + ':visible').index();
-
-                            // Check if this is the URL column (original column 10, DataTables index 11)
-
-                            if (actualColumnIndex === 11) {
+                            // Check if this cell contains the &#128269; (🔍) symbol AND a link (Perplexity column detection)
+                            if (data && data.toString().includes('&#128269;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
 
                                 var $temp = $('<div>').html(data);
 
@@ -334,12 +330,8 @@ $.getJSON("{{ json_path }}", function(data) {
 
                         body: function(data, row, column, node) {
 
-                            // Get the actual column index in the full table (including hidden columns)
-                            var actualColumnIndex = table.column(column + ':visible').index();
-
-                            // Check if this is the URL column (original column 10, DataTables index 11)
-
-                            if (actualColumnIndex === 11) {
+                            // Check if this cell contains the &#128269; (🔍) symbol AND a link (Perplexity column detection)
+                            if (data && data.toString().includes('&#128269;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
 
                                 var $temp = $('<div>').html(data);
 
@@ -393,12 +385,8 @@ $.getJSON("{{ json_path }}", function(data) {
 
                         body: function(data, row, column, node) {
 
-                            // Get the actual column index in the full table (including hidden columns)
-                            var actualColumnIndex = table.column(column + ':visible').index();
-
-                            // Check if this is the URL column (original column 10, DataTables index 11)
-
-                            if (actualColumnIndex === 11) {
+                            // Check if this cell contains the &#128269; (🔍) symbol AND a link (Perplexity column detection)
+                            if (data && data.toString().includes('&#128269;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
 
                                 var $temp = $('<div>').html(data);
 
