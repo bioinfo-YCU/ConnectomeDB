@@ -51,5 +51,14 @@
 ### for an accurate number of pairs in the title
 `rename_perSpecies.py`
 
+### Ortholog QC scores from Biomart Compara and inParanoid
+the following have to be ran in this order:
+
+`convertOrthUniprotToEnsembl.r`
+`pullPairWiseFromInParanoid.py`
+`mergeBiomartInParanoid.py`
+`summarize_Orthstats_filter.py`
+
+
 
 

@@ -73,8 +73,6 @@ def update_connectomedb_qmd(qmd_file_path: str, lr_pair_data: list, species_name
     except Exception as e:
         print(f"Error writing to file '{qmd_file_path}': {e}")
 
-# --- Example Usage ---
-
 # The order should be (qmd_file_path, lr_pair_data, species_name,species,ortholog= True)
 #  'Human LR Pair' data
 update_connectomedb_qmd(
@@ -134,7 +132,7 @@ update_connectomedb_qmd(
 update_connectomedb_qmd(
     qmd_file_path="database/other/sheepOrth.qmd", 
     lr_pair_data=createDataTable_perSpecies.sheep_gene_pair1["Sheep LR Pair"],
-    species_name="Ovis aries",
+    species_name="Ovis aries rambouillet",
     species = "Sheep",
     ortholog = True
 )

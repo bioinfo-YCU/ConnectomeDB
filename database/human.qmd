@@ -18,111 +18,138 @@ header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
 
 <style>
-/* italicized placeholder */
-input[type="text"]::placeholder {
-  font-style: italic;
-}
-/* Base checkbox styling (the square box) */
-table.dataTable tbody tr.selected td.select-checkbox::after {
-    content: '✓';
-    font-size: 0.8rem; /* Keep this or adjust slightly if needed */
-    color: #333;
-    font-weight: bold;
-    position: absolute;
-    top: 50%; /* Start at 50% */
-    left: 50%; /* Keep centered horizontally */
-    transform: translate(-50%, -50%); /* Base centering */
-    line-height: 1;
-    pointer-events: none;
-}
-table.dataTable.compact>tbody>tr.selected>td.select-checkbox:after, table.dataTable.compact>tbody>tr.selected>th.select-checkbox:after{
-    margin-top: -0.325rem; /* Adjusted from -0.425rem to account for the 2px added to ::before */
-    margin-left: -0.05rem;
-}
-/* Also, ensure your ::before has position: relative */
-table.dataTable td.select-checkbox::before {
-    /* ... existing styles ... */
-    position: relative; /* Make sure this is still here */
-    /* ... existing styles ... */
-}
-/* Styling for the cell containing the checkbox */
-table.dataTable td.select-checkbox {
-    text-align: center;
-    vertical-align: middle;
-    padding: 0.5rem;
-    width: 3.5rem;
-    min-width: 2.5rem;
-    position: relative; /* Make sure the ::before element's relative positioning works within this */
-}
-/* Background for selected checkbox */
-table.dataTable tbody tr.selected td.select-checkbox::before {
-    background: #f0f8ff; /* Light blue background for selected */
-    border-color: #337ab7; /* Darker blue border for selected */
-}
-table.dataTable.compact>tbody>tr>td.select-checkbox:before, 
-table.dataTable.compact>tbody>tr>th.select-checkbox:before {
-    margin-top: -0.3rem;
-}
-/* Mobile responsive adjustments */
-@media (max-width: 768px) {
-    table.dataTable td.select-checkbox {
-        padding: 0.25rem;
-        width: 2rem;
-        min-width: 1.5rem;
+    :root {
+        --table-underline-offset: 1px;
+        --table-underline-thickness: 1px;
+        --table-line-height: 1.1;
     }
-    
-    table.dataTable td.select-checkbox::before {
-        width: 0.8rem;
-        height: 0.8rem;
-    }
-    
-    table.dataTable tbody tr.selected td.select-checkbox::after {
-        font-size: 0.7rem; /* Adjusted for smaller box */
-    }
-}
-@media (max-width: 480px) {
-    table.dataTable td.select-checkbox {
-        padding: 0.2rem;
-        width: 1.5rem;
-        min-width: 1.2rem;
-    }
-    
-    table.dataTable td.select-checkbox::before {
-        width: 0.5rem;
-        height: 0.5rem;
-    }
-    
-    table.dataTable tbody tr.selected td.select-checkbox::after {
-        font-size: 0.6rem; /* Adjusted for even smaller box */
-    }
-    input[type="text"]::placeholder {
-      font-size: 80% !important;
-    }
-}
-/* Hide the default search box */
-.dataTables_filter {
-  display: none !important;
-}
 
+    /* Apply controlled underlines using CSS variables */
+    table.dataTable {
+        --underline-offset: var(--table-underline-offset);
+        --underline-thickness: var(--table-underline-thickness);
+        line-height: var(--table-line-height);
+    }
+
+    /* If you want to control header and body separately */
+    table.dataTable thead th {
+        font-size: 90% !important; /* Header font size */
+    }
+    
+    table.dataTable tbody td {
+        font-size: 90% !important; /* Body font size */
+    }
+
+
+    /* italicized placeholder */
+    input[type="text"]::placeholder {
+        font-style: italic;
+        font-size: 80%;
+    }
+    /* Base checkbox styling (the square box) */
+    table.dataTable tbody tr.selected td.select-checkbox::after {
+        content: '✓';
+        font-size: 0.8rem; /* Keep this or adjust slightly if needed */
+        color: #333;
+        font-weight: bold;
+        position: absolute;
+        top: 50%; /* Start at 50% */
+        left: 50%; /* Keep centered horizontally */
+        transform: translate(-50%, -50%); /* Base centering */
+        line-height: 1;
+        pointer-events: none;
+    }
+    table.dataTable.compact>tbody>tr.selected>td.select-checkbox:after, table.dataTable.compact>tbody>tr.selected>th.select-checkbox:after{
+        margin-top: -0.025rem;
+        margin-left: -0.05rem;
+    }
+    /* Also, ensure your ::before has position: relative */
+    table.dataTable td.select-checkbox::before {
+        /* ... existing styles ... */
+        position: relative; /* Make sure this is still here */
+        /* ... existing styles ... */
+    }
+    /* Styling for the cell containing the checkbox */
+    table.dataTable td.select-checkbox {
+        text-align: center;
+        vertical-align: middle;
+        padding: 0.5rem;
+        width: 3.5rem;
+        min-width: 2.5rem;
+        position: relative; /* Make sure the ::before element's relative positioning works within this */
+    }
+    /* Background for selected checkbox */
+    table.dataTable tbody tr.selected td.select-checkbox::before {
+        background: #f0f8ff; /* Light blue background for selected */
+        border-color: #337ab7; /* Darker blue border for selected */
+    }
+    table.dataTable.compact>tbody>tr>td.select-checkbox:before,
+    table.dataTable.compact>tbody>tr>th.select-checkbox:before {
+        margin-top: -0.3rem;
+    }
+    /* Mobile responsive adjustments */
+    @media (max-width: 768px) {
+        table.dataTable td.select-checkbox {
+            padding: 0.25rem;
+            width: 2rem;
+            min-width: 1.5rem;
+        }
+
+        table.dataTable td.select-checkbox::before {
+            width: 0.8rem;
+            height: 0.8rem;
+        }
+
+        table.dataTable tbody tr.selected td.select-checkbox::after {
+            font-size: 0.7rem; /* Adjusted for smaller box */
+        }
+    }
+    @media (max-width: 480px) {
+        table.dataTable td.select-checkbox {
+            padding: 0.2rem;
+            width: 1.5rem;
+            min-width: 1.2rem;
+        }
+
+        table.dataTable td.select-checkbox::before {
+            width: 0.5rem;
+            height: 0.5rem;
+        }
+
+        table.dataTable tbody tr.selected td.select-checkbox::after {
+            font-size: 0.6rem; /* Adjusted for even smaller box */
+        }
+        input[type="text"]::placeholder {
+            font-size: 80% !important;
+        }
+    }
+    /* Hide the default search box */
+    .dataTables_filter {
+        display: none !important;
+    }
 </style>
 
 <table id="human-table" class="display nowrap cell-border compact" style="width:100%">
-  <thead></thead>
-  <tfoot></tfoot>
+    <thead></thead>
+    <tfoot></tfoot>
 </table>
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.colVis.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.colVis.min.js"></script>
 <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.copy.min.js"></script>
+
 
 <script>
 $.getJSON("../JSON/human_gene_pair.json", function(data) {
-  const columns = [
+    const columns = [
   {
     "data": "Interaction ID",
     "title": "<span title=\"Double-click header of Interaction ID to ensure all values are shown\">Interaction ID&nbsp;</span>"
@@ -188,266 +215,319 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
     "title": "<span title=\"Double-click header of Interaction Type to ensure all values are shown\">Interaction Type&nbsp;</span>"
   }
 ];
-  
-  // Build header HTML - add checkbox column back
-  // Set the header for the first column to 'Copy' with a tooltip
-  var headerHtml = '<tr><th title="Tick the boxes of the rows you would like to copy/download via the buttons above">Select</th>'; 
-  columns.forEach(function(col) {
-    headerHtml += '<th>' + (col.title || col.data || '') + '</th>';
-  });
-  headerHtml += '</tr>';
-  $('#human-table thead').html(headerHtml);
-  
-  // Calculate hidden columns based on total column count (adjust for checkbox column)
-  var totalColumns = columns.length + 1; // +1 for checkbox column
-  var hiddenColumns = [3, 4]; // Always hide columns 3 and 4 (adjusted for checkbox column)
-  
-  // Add last 5 columns to hidden list (adjust this number as needed)
-  for (var i = 5; i > 0; i--) {
-    if (totalColumns - i >= 0) {
-      hiddenColumns.push(totalColumns - i);
-    }
-  }
-  
-  // Remove duplicates
-  hiddenColumns = [...new Set(hiddenColumns)];
-  
-  console.log('Total columns:', totalColumns);
-  console.log('Hidden columns:', hiddenColumns);
-  
-  var table = $('#human-table').DataTable({
-    data: data,
-    columns: [
-      {
-        data: null,
-        defaultContent: '', 
-        orderable: false,
-        className: 'select-checkbox',
-        width: '20px'
-      }
-    ].concat(columns), // Add checkbox column as first column
-    scrollX: true,
-    fixedHeader: false,
-    fixedColumns: {
-        start: 1,
-    },
-    autoWidth: true,
-    responsive: false,
-    dom: 'Bfrtip',
-    searching: true,
-    select: {
-      style: 'multi',
-      selector: 'td:first-child'
-    },
-    lengthMenu: [[10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"]],
-// Replace your existing buttons array with this updated version:
-// Replace your existing buttons array with this updated version:
-// Replace your existing buttons array with this updated version:
-// Replace your existing buttons array with this updated version:
-buttons: [
-  'pageLength',
-  { extend: 'colvis', text: 'Display Columns' },
-  'selectAll',
-  'selectNone',
-  { 
-    extend: 'csvHtml5', 
-    filename: 'ConnectomeDB2025',
-    exportOptions: {
-      columns: ':not(:first-child)', // Exclude the first column (checkbox)
-      format: {
-        body: function(data, row, column, node) {
-          // For column 10 (the URL column), extract the href attribute
-          if (column === 10) {
-            var $temp = $('<div>').html(data);
-            var href = $temp.find('a').attr('href');
-            // Encode spaces and other special characters to make URL properly clickable
-            return href ? encodeURI(href) : data;
-          }
-          // For all other columns, strip HTML tags (keep existing behavior)
-          return data.replace ? data.replace(/<[^>]*>/g, '') : data;
+
+    // Build header HTML - add checkbox column back
+    // Set the header for the first column to 'Copy' with a tooltip
+    var headerHtml = '<tr><th title="Tick the boxes of the rows you would like to copy/download via the buttons above">Select</th>';
+    columns.forEach(function(col) {
+        headerHtml += '<th>' + (col.title || col.data || '') + '</th>';
+    });
+    headerHtml += '</tr>';
+    $('#human-table thead').html(headerHtml);
+
+    // Calculate hidden columns based on total column count (adjust for checkbox column)
+    var totalColumns = columns.length + 1; // +1 for checkbox column
+    // The original columns 3 and 4 (indices 2 and 3 in the `columns` array)
+    // become indices 3 and 4 after the checkbox column is prepended.
+    var hiddenColumns = [3, 4]; // Hide original columns 3 and 4
+
+    // Add last 5 columns to hidden list (adjust this number as needed)
+    // Remember to adjust for the prepended checkbox column
+    for (var i = 5; i > 0; i--) {
+        if (totalColumns - i >= 0) {
+            hiddenColumns.push(totalColumns - i);
         }
-      }
-    },
-    action: function(e, dt, button, config) {
-      var selectedRows = dt.rows('.selected').count();
-      if (selectedRows > 0) {
-        // Export only selected rows
-        config.exportOptions.modifier = { selected: true };
-      } else {
-        // Export all rows
-        config.exportOptions.modifier = { page: 'all', search: 'none' };
-      }
-      $.fn.dataTable.ext.buttons.csvHtml5.action.call(this, e, dt, button, config);
     }
-  },
-  { 
-    extend: 'excelHtml5', 
-    filename: 'ConnectomeDB2025',
-    title: null,
-    exportOptions: {
-      columns: ':not(:first-child)', // Exclude the first column (checkbox)
-      format: {
-        body: function(data, row, column, node) {
-          // For column 10 (the URL column), extract the href attribute
-          if (column === 10) {
-            var $temp = $('<div>').html(data);
-            var href = $temp.find('a').attr('href');
-            // Encode spaces and other special characters to make URL properly clickable
-            return href ? encodeURI(href) : data;
-          }
-          // For all other columns, strip HTML tags (keep existing behavior)
-          return data.replace ? data.replace(/<[^>]*>/g, '') : data;
-        }
-      }
-    },
-    action: function(e, dt, button, config) {
-      var selectedRows = dt.rows('.selected').count();
-      if (selectedRows > 0) {
-        // Export only selected rows
-        config.exportOptions.modifier = { selected: true };
-      } else {
-        // Export all rows
-        config.exportOptions.modifier = { page: 'all', search: 'none' };
-      }
-      $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config);
-    }
-  },
-  { 
-    extend: 'copyHtml5', 
-    filename: 'ConnectomeDB2025', 
-    title: null,
-    exportOptions: {
-      columns: ':not(:first-child)', // Exclude the first column (checkbox)
-      format: {
-        body: function(data, row, column, node) {
-          // For column 10 (the URL column), extract the href attribute
-          if (column === 10) {
-            var $temp = $('<div>').html(data);
-            var href = $temp.find('a').attr('href');
-            // Encode spaces and other special characters to make URL properly clickable
-            return href ? encodeURI(href) : data;
-          }
-          // For all other columns, strip HTML tags (keep existing behavior)
-          return data.replace ? data.replace(/<[^>]*>/g, '') : data;
-        }
-      }
-    },
-    action: function(e, dt, button, config) {
-      var selectedRows = dt.rows('.selected').count();
-      if (selectedRows > 0) {
-        // Export only selected rows
-        config.exportOptions.modifier = { selected: true };
-      } else {
-        // Export all rows
-        config.exportOptions.modifier = { page: 'all', search: 'none' };
-      }
-      $.fn.dataTable.ext.buttons.copyHtml5.action.call(this, e, dt, button, config);
-    }
-  }
-],
-    columnDefs: [
-      {
-        orderable: false,
-        className: 'select-checkbox',
-        targets: 0
-      },
-      {"className": "dt-center", "targets": [11]}, // Adjusted for checkbox column
-      {"searchable": false, "targets": [13]}, // Adjusted for checkbox column
-      {"width": "275px", "targets": [5,6]}, // Adjusted for checkbox column
-      {"visible": false, "targets": hiddenColumns}
-    ],
-    initComplete: function () {
-      var api = this.api();
-      
-      // Wait for DOM to be ready, then add filter
-      setTimeout(function() {
-        // Create a filter container directly above the table and headers
-        var filterContainer = $('<div id="column-filters" style="background: white; padding-left: 0px; padding-right: 0px; padding-bottom: 10px; border: 0px solid #ddd; margin-bottom: 30; width: 100%;"><h4 style="margin: 0 0 15px 0;">Search Ligand(s) / Receptor(s) here</h4></div>');
-        $('#human-table').closest('.dataTables_wrapper').prepend(filterContainer);
-        
-        // Get unique values from both columns 5 and 6 (with checkbox)
-        var uniqueValues = new Set();
-        
-        // Collect values from column 5 (index 5 with checkbox)
-        api.column(5).data().each(function(d) {
-          if (d && d.toString().trim() !== '') {
-            uniqueValues.add(d.toString().trim());
-          }
-        });
-        
-        // Collect values from column 6 (index 6 with checkbox)
-        api.column(6).data().each(function(d) {
-          if (d && d.toString().trim() !== '') {
-            uniqueValues.add(d.toString().trim());
-          }
-        });
-        
-        // Convert to sorted array
-        var sortedValues = Array.from(uniqueValues).sort();
-        
-        var filterDiv = $('<div style="max-width: 100%;"></div>');
-        var label = $('<label></label>');
-        
-        // Create input without datalist (no autofill)
-        var input = $('<input type="text" placeholder="i.e. CD24, EGFR, A2M" />') // Updated placeholder
-          .css({
-            'width': '100%',
-            'padding': '8px',
-            'font-size': '1rem',
-            'border': '1px solid #ccc',
-            'border-radius': '4px'
-          })
-          .on('input keyup', function () {
-            var val = this.value;
-            
-            // Remove any existing custom search
-            while($.fn.dataTable.ext.search.length > 0) {
-              $.fn.dataTable.ext.search.pop();
+
+    // Remove duplicates
+    hiddenColumns = [...new Set(hiddenColumns)];
+
+    console.log('Total columns:', totalColumns);
+    console.log('Hidden columns:', hiddenColumns);
+
+    var table = $('#human-table').DataTable({
+        data: data,
+        columns: [
+            {
+                data: null,
+                defaultContent: '',
+                orderable: false,
+                className: 'select-checkbox',
+                width: '20px'
             }
-        // Append a style block with media query for smaller screens
-        $('head').append(`
-            <style>
-                @media (max-width: 480px) { /* Adjust breakpoint as needed for "mobile" */
-                    .mobile-tiny-input { /* Add a class to your input for targeting */
-                        font-size: 0.8rem !important; /* Make font smaller */
-                        padding: 5px !important;      /* Reduce padding */
+        ].concat(columns), // Add checkbox column as first column
+        scrollX: true,
+        fixedHeader: false,
+        fixedColumns: {
+            start: 1,
+        },
+        autoWidth: true,
+        responsive: false,
+        dom: 'Bfrtip',
+        searching: true,
+        select: {
+            style: 'multi',
+            selector: 'td:first-child'
+        },
+        lengthMenu: [[10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"]],
+        buttons: [
+            'pageLength',
+            { extend: 'colvis', text: 'Display Columns' },
+            'selectAll',
+            'selectNone',
+            {
+                extend: 'csvHtml5',
+                filename: 'ConnectomeDB2025',
+                exportOptions: {
+                    columns: ':not(:first-child)', // Exclude the first column (checkbox)
+                    format: {
+                        body: function(data, row, column, node) {
+                            // For original column 10 (the URL column), extract the href attribute
+                            // In exportOptions format.body, `column` is the *visible* column index.
+                            // If original column 10 is at internal index 11 (after checkbox),
+                            // and if it's visible, then `column` will be its visible index.
+                            // Assuming original column 10 is visible and is the 11th visible column (index 10).
+                            // This `column` index is relative to the `columns` selected for export.
+                            // If you are excluding the first column (:not(:first-child)), then the
+                            // effective index for the original column 10 would be 9 (10 - 1).
+                            // Let's use the full DataTables internal index for robustness if possible,
+                            // or verify the `column` parameter's meaning carefully.
+                            // For simplicity, let's assume `column` here refers to the index within the exported columns.
+                            // If original column 10 is at DataTables index 11, and we export all but first,
+                            // then it will be at export index 10.
+                            if (column === 10) { // This refers to the visible column index for export (original column 11 if checkbox is removed)
+                                var $temp = $('<div>').html(data);
+                                var href = $temp.find('a').attr('href');
+                                return href ? encodeURI(href) : data;
+                            }
+                            // For all other columns, strip HTML tags (keep existing behavior)
+                            return data.replace ? data.replace(/<[^>]*>/g, '') : data;
+                        }
                     }
+                },
+                action: function(e, dt, button, config) {
+                    var selectedRows = dt.rows('.selected').count();
+                    if (selectedRows > 0) {
+                        config.exportOptions.modifier = { selected: true };
+                    } else {
+                        config.exportOptions.modifier = { page: 'all', search: 'none' };
+                    }
+                    $.fn.dataTable.ext.buttons.csvHtml5.action.call(this, e, dt, button, config);
                 }
-            </style>
-        `);
-
-// Add the class to your input element
-input.addClass('mobile-tiny-input');
-            
-            if (val === '') {
-              // If empty, don't add any custom search
-              api.draw();
-            } else {
-              // Split the input by comma and trim whitespace for each search term
-              const searchTerms = val.split(',').map(term => term.trim().toLowerCase()).filter(term => term !== '');
-
-              if (searchTerms.length > 0) {
-                // Add custom search function for columns 4 and 5
-                $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-                  var col4Value = data[4] ? data[4].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
-                  var col5Value = data[5] ? data[5].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
-                  
-                  // Check if any of the search terms are present in either column
-                  return searchTerms.some(term => 
-                    col4Value.includes(term) || col5Value.includes(term)
-                  );
-                });
-              }
-              
-              api.draw();
+            },
+            {
+                extend: 'excelHtml5',
+                filename: 'ConnectomeDB2025',
+                title: null,
+                exportOptions: {
+                    columns: ':not(:first-child)', // Exclude the first column (checkbox)
+                    format: {
+                        body: function(data, row, column, node) {
+                            // Similar logic for column index in exportOptions
+                            if (column === 10) { // Assuming original column 10 is at export index 9
+                                var $temp = $('<div>').html(data);
+                                var href = $temp.find('a').attr('href');
+                                return href ? encodeURI(href) : data;
+                            }
+                            return data.replace ? data.replace(/<[^>]*>/g, '') : data;
+                        }
+                    }
+                },
+                action: function(e, dt, button, config) {
+                    var selectedRows = dt.rows('.selected').count();
+                    if (selectedRows > 0) {
+                        config.exportOptions.modifier = { selected: true };
+                    } else {
+                        config.exportOptions.modifier = { page: 'all', search: 'none' };
+                    }
+                    $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config);
+                }
+            },
+            {
+                extend: 'copyHtml5',
+                filename: 'ConnectomeDB2025',
+                title: null,
+                exportOptions: {
+                    columns: ':not(:first-child)', // Exclude the first column (checkbox)
+                    format: {
+                        body: function(data, row, column, node) {
+                            // Similar logic for column index in exportOptions
+                            if (column === 10) { // Assuming original column 10 is at export index 9
+                                var $temp = $('<div>').html(data);
+                                var href = $temp.find('a').attr('href');
+                                return href ? encodeURI(href) : data;
+                            }
+                            return data.replace ? data.replace(/<[^>]*>/g, '') : data;
+                        }
+                    }
+                },
+                action: function(e, dt, button, config) {
+                    var selectedRows = dt.rows('.selected').count();
+                    if (selectedRows > 0) {
+                        config.exportOptions.modifier = { selected: true };
+                    } else {
+                        config.exportOptions.modifier = { page: 'all', search: 'none' };
+                    }
+                    $.fn.dataTable.ext.buttons.copyHtml5.action.call(this, e, dt, button, config);
+                }
             }
-          });
-        
-        filterDiv.append(label).append(input);
-        filterContainer.append(filterDiv);
-      }, 100);
-    }
-  });
+        ],
+        columnDefs: [
+            {
+                orderable: false,
+                className: 'select-checkbox',
+                targets: 0
+            },
+            // Adjusted for checkbox column: Original column 10 is now at index 11
+            { "className": "dt-center", "targets": [11] },
+            // Adjusted for checkbox column: Original columns 5 and 6 are now at indices 5 and 6
+            { "width": "275px", "targets": [4, 5] },
+            { "visible": false, "targets": hiddenColumns }
+        ],
+        initComplete: function () {
+            var api = this.api();
+
+            // Wait for DOM to be ready, then add filter
+            setTimeout(function() {
+                // Create a filter container directly above the table and headers
+                var filterContainer = $('<div id="column-filters" style="background: white; padding-left: 0px; padding-right: 0px; padding-bottom: 10px; border: 0px solid #ddd; margin-bottom: 30; width: 100%;"><h4 style="margin: 0 0 15px 0;">Search Ligand(s) / Receptor(s) here</h4></div>');
+                $('#human-table').closest('.dataTables_wrapper').prepend(filterContainer);
+
+                // Append a style block with media query for smaller screens
+                $('head').append(`
+                    <style>
+                        @media (max-width: 480px) { /* Adjust breakpoint as needed for "mobile" */
+                            .mobile-tiny-input { /* Add a class to your input for targeting */
+                                font-size: 0.8rem !important; /* Make font smaller */
+                                padding: 5px !important;       /* Reduce padding */
+                            }
+                        }
+                    </style>
+                `);
+
+                var filterDiv = $('<div style="max-width: 100%;"></div>');
+                var label = $('<label></label>');
+
+                // Create input without datalist (no autofill)
+                var input = $('<input type="text" placeholder="i.e. CD24, EGFR, A2M" />') // Updated placeholder
+                    .css({
+                        'width': '100%',
+                        'padding': '8px',
+                        'font-size': '1rem',
+                        'border': '1px solid #ccc',
+                        'border-radius': '4px'
+                    })
+                    .addClass('mobile-tiny-input') // Add the class for mobile styling
+                    .on('input keyup', function () {
+                        var val = this.value;
+
+                        // Remove any existing custom search
+                        while($.fn.dataTable.ext.search.length > 0) {
+                            $.fn.dataTable.ext.search.pop();
+                        }
+
+                        if (val === '') {
+                            // If empty, don't add any custom search and reset ordering
+                            api.order([]); // Remove custom ordering
+                            api.draw();
+                        } else {
+                            const searchTerms = val.split(',').map(term => term.trim().toLowerCase()).filter(term => term !== '');
+
+                            if (searchTerms.length > 0) {
+                                // Add custom search function for original columns 5 (DataTables index 5) and 6 (DataTables index 6)
+                                $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+                                    // In $.fn.dataTable.ext.search, 'data' array
+                                    // contains values for ALL columns including the prepended checkbox column.
+                                    // So, original column 5 is at data[5] and original column 6 is at data[6].
+                                    var col5Value = data[5] ? data[5].toString().replace(/<[^>]*>/g, '').toLowerCase() : ''; // Original column 5
+                                    var col6Value = data[6] ? data[6].toString().replace(/<[^>]*>/g, '').toLowerCase() : ''; // Original column 6
+                                    console.log("Searching for:", searchTerms);
+                                    console.log("Column 5 value:", col5Value);
+                                    console.log("Column 6 value:", col6Value); // <<< ADD THIS LINE
+
+                                    return searchTerms.some(term =>
+                                        col5Value.includes(term) || col6Value.includes(term)
+                                    );
+                                });
+
+                                // After filtering, apply the custom sort.
+                                // We'll force a redraw which will trigger the 'order.dt' event and our custom sort.
+                                api.draw();
+                            } else {
+                                api.order([]); // Remove custom ordering if no valid search terms
+                                api.draw();
+                            }
+                        }
+                    });
+
+                filterDiv.append(label).append(input);
+                filterContainer.append(filterDiv);
+            }, 100);
+
+            // Custom sort function to prioritize search results based on the active search input
+            api.on('order.dt search.dt', function () {
+                var searchVal = $('#column-filters input[type="text"]').val();
+
+                if (searchVal && searchVal.trim() !== '') {
+                    const searchTerms = searchVal.split(',').map(term => term.trim().toLowerCase()).filter(term => term !== '');
+                    if (searchTerms.length === 0) return; // No terms, no special order
+
+                    api.rows().sort(function (rowIdxA, rowIdxB) {
+                        let scoreA = 0;
+                        let scoreB = 0;
+
+                        // Get the full data for the rows.
+                        // IMPORTANT: row().data() returns data for ALL columns, including the prepended checkbox column.
+                        // So, original column 5 is at index 5, and original column 6 is at index 6.
+                        const rowDataA = api.row(rowIdxA).data();
+                        const rowDataB = api.row(rowIdxB).data();
+
+                        // Accessing original column 5 data (DataTables index 5)
+                        const col5ValueA = rowDataA[5] ? rowDataA[5].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
+                        const col6ValueA = rowDataA[6] ? rowDataA[6].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
+
+                        // Accessing original column 6 data (DataTables index 6)
+                        const col5ValueB = rowDataB[5] ? rowDataB[5].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
+                        const col6ValueB = rowDataB[6] ? rowDataB[6].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
+
+                        searchTerms.forEach(term => {
+                            // Score for A
+                            if (col5ValueA === term || col6ValueA === term) scoreA -= 1000; // Exact match
+                            else if (col5ValueA.includes(term + ' ()') || col6ValueA.includes(term + ' ()')) scoreA -= 900; // Match followed by ()
+                            else if (col5ValueA.includes('(' + term + ')') || col6ValueA.includes('(' + term + ')') ) scoreA -= 800; // Match within parentheses
+                            else if (col5ValueA.startsWith(term) || col6ValueA.startsWith(term)) scoreA -= 700; // Match at the beginning
+                            else if (col5ValueA.includes(term) || col6ValueA.includes(term)) scoreA -= 100; // General includes
+
+                            // Score for B
+                            if (col5ValueB === term || col6ValueB === term) scoreB -= 1000;
+                            else if (col5ValueB.includes(term + ' ()') || col6ValueB.includes(term + ' ()')) scoreB -= 900;
+                            else if (col5ValueB.includes('(' + term + ')') || col6ValueB.includes('(' + term + ')') ) scoreB -= 800;
+                            else if (col5ValueB.startsWith(term) || col6ValueB.startsWith(term)) scoreB -= 700;
+                            else if (col5ValueB.includes(term) || col6ValueB.includes(term)) scoreB -= 100;
+                        });
+
+                        // Sort by score (lower score = higher priority)
+                        if (scoreA < scoreB) return -1;
+                        if (scoreA > scoreB) return 1;
+
+                        // If scores are equal, maintain original order or use another column for tie-breaking
+                        return 0;
+                    });
+                } else {
+                    // If search input is empty, reset to default order if one exists, or no special order
+                    api.order([[1, 'asc']]); // Example: Sort by original col 1 ascending (DataTables index 1)
+                }
+            });
+        }
+    });
+
+    // Event listener for when the search input is cleared manually
+    $('#column-filters input[type="text"]').on('input', function() {
+        if (this.value === '') {
+            // When cleared, the 'search.dt' event handler above will reset the order
+            table.draw();
+        }
+    });
 });
 </script>
 ```
