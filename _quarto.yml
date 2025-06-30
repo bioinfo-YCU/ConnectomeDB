@@ -79,8 +79,9 @@ website:
            text: 'Chicken Orthologs' 
          - href: database/other/zebrafishOrth.qmd 
            text: 'Zebrafish Orthologs' 
-         - href: downloads.qmd
-           text: 'Downloads'
+           
+      - href: downloads.qmd
+        text: 'Downloads'
         
     # - href: askAIchat.qmd
     #   text: 'Ask AI chatbot'
