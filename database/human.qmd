@@ -397,7 +397,7 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
 
                 extend: 'excelHtml5',
 
-                filename: 'ConnectomeDB2025',
+                filename: 'ConnectomeDB2025_human',
 
                 title: null,
 
@@ -452,7 +452,7 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
 
                 extend: 'copyHtml5',
 
-                filename: 'ConnectomeDB2025',
+                filename: 'ConnectomeDB2025_human',
 
                 title: null,
 

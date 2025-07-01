@@ -46,9 +46,9 @@ def update_table():
         buttons=[
             "pageLength", 
             {"extend": "colvis", "text": "Display Columns"},
-            {"extend": "csvHtml5", "filename": "ConnectomeDB2025"},
-            {"extend": "excelHtml5", "filename": "ConnectomeDB2025"},
-            {"extend": "copyHtml5", "filename": "ConnectomeDB2025", "title": None},
+            {"extend": "csvHtml5", "filename": "ConnectomeDB2025_sheep"},
+            {"extend": "excelHtml5", "filename": "ConnectomeDB2025_sheep"},
+            {"extend": "copyHtml5", "filename": "ConnectomeDB2025_sheep", "title": None},
         ],
         columnDefs=[
             {"className": "dt-center", "targets": [-6]}, 
