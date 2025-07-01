@@ -4,6 +4,10 @@ title: "Downloads"
 
 ## Download the following tables:
 
+### 2025-07-01 
 
+**Humans**: 3436 LR pairs (3436 rows x 16 columns)
 
+<a href="downloads/20250701/ConnectomeDB2025_human.csv" download><button>CSV</button></a> <a href="downloads/20250071/ConnectomeDB2025_human.xlsx" download>
+<button>Excel</button></a>
 
