@@ -364,12 +364,24 @@ mouse_gene_pair1['Ligand Name'] = mouse_gene_pair1.apply(
     axis=1
 )
 
+mouse_gene_pair1["Ligand Name"] = [
+    f'<span title="{ligand_name}">{ligand_symbol}</span>'
+    for ligand_name, ligand_symbol in zip(mouse_gene_pair1["Ligand Name"], 
+                                              mouse_gene_pair1["Ligand Name"])
+]
+
  # Apply the mapping to 'Receptor Name'
 mouse_gene_pair1['Receptor Name'] = mouse_gene_pair1.apply(
     lambda row: mapping_mouse_name.get(row['Receptor MGI ID'], row['Receptor Name'])
     if pd.isna(row['Receptor Name']) or str(row['Receptor Name']).strip() == '' else row['Receptor Name'],
     axis=1
 )
+
+mouse_gene_pair1["Receptor Name"] = [
+    f'<span title="{receptor_name}">{receptor_symbol}</span>'
+    for receptor_name, receptor_symbol in zip(mouse_gene_pair1["Receptor Name"], 
+                                              mouse_gene_pair1["Receptor Name"])
+]
 
 # Apply the mapping to 'Ligand Ensembl ID'
 mouse_gene_pair1['Ligand Ensembl ID'] = mouse_gene_pair1.apply(

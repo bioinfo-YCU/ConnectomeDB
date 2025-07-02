@@ -45,6 +45,43 @@ body {
         border-radius: 3px; /* Subtle rounded corners */
     }
 
+/* buttons */
+
+.download-btn-minimal {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   padding: 8px 12px;
+   margin: 8px;
+   background: white;
+   color: #374151;
+   text-decoration: none;
+   border: 2px solid #e5e7eb;
+   border-radius: 8px;
+   font-weight: 500;
+   font-size: 14px;
+   cursor: pointer;
+   transition: all 0.2s ease;
+   min-width: 120px;
+}
+
+.download-btn-minimal:hover {
+   border-color: #6366f1;
+   color: #6366f1;
+   background: #f8fafc;
+}
+
+.download-btn-minimal.clicked {
+   background: #6366f1;
+   color: white;
+   border-color: #6366f1;
+}
+
+.download-icon {
+   margin-right: 8px;
+   font-size: 18px;
+}
+
 .tooltip {
   position: relative;
   display: inline-block;

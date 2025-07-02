@@ -8,6 +8,29 @@ title: "Downloads"
 
 **Humans**: 3436 LR pairs (3436 rows x 16 columns)
 
-<a href="downloads/20250701/ConnectomeDB2025_human.csv" download><button>CSV</button></a> <a href="downloads/20250701/ConnectomeDB2025_human.xlsx" download>
-<button>Excel</button></a>
+<a href="downloads/20250701/ConnectomeDB2025_human.csv" download class="download-btn-minimal">
+    <span class="download-icon">⤓</span>
+    CSV
+</a> <a href="downloads/20250701/ConnectomeDB2025_human.xlsx" download class="download-btn-minimal">
+    <span class="download-icon">⤓</span>
+    Excel
+</a>
+
+<script>
+document.querySelectorAll('.download-btn-minimal').forEach(button => {
+    button.addEventListener('click', function() {
+        this.classList.add('clicked');
+        
+        // Change text to indicate download started
+        const originalText = this.innerHTML;
+        this.innerHTML = '<span class="download-icon">⤓</span>Downloaded!';
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+            this.classList.remove('clicked');
+            this.innerHTML = originalText;
+        }, 2000);
+    });
+});
+</script>
 
