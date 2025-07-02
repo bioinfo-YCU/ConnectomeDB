@@ -1,17 +1,3 @@
----
-title: "Mouse \u2013 *Mus musculus* </span>"
-execute:
-  echo: false
-format:
-  html:
-    table: false
-header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
----
-
-***
-
-```{=html}
-<!-- Injected automatically via Jinja -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
@@ -146,7 +132,7 @@ header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
     }
 </style>
 
-<table id="mouse-table" class="display nowrap cell-border compact" style="width:100%">
+<table id="{{ table_id }}" class="display nowrap cell-border compact" style="width:100%">
     <thead></thead>
     <tfoot></tfoot>
 </table>
@@ -165,151 +151,10 @@ header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
 $(document).ready(function() {
     console.log('Starting DataTable initialization...');
     
-    $.getJSON("../JSON/mouse_gene_pair.json", function(data) {
+    $.getJSON("{{ json_path }}", function(data) {
         console.log('JSON data loaded successfully:', data.length, 'rows');
         
-        const columns = [
-  {
-    "data": "Interaction ID",
-    "title": "<span title=\"Double-click header of Interaction ID to ensure all values are shown\">Interaction ID&nbsp;</span>"
-  },
-  {
-    "data": "LR Pair Card",
-    "title": "LR Pair Card"
-  },
-  {
-    "data": "Mouse LR Pair",
-    "title": "Mouse LR Pair"
-  },
-  {
-    "data": "Ligand",
-    "title": "<span title=\"Double-click header of Ligand to ensure all values are shown\">Ligand&nbsp;</span>"
-  },
-  {
-    "data": "Receptor",
-    "title": "<span title=\"Double-click header of Receptor to ensure all values are shown\">Receptor&nbsp;</span>"
-  },
-  {
-    "data": "Ligand MGI ID",
-    "title": "<span title=\"Genome Informatics (MGI) ID. Click on the link for more details\">Ligand MGI ID</span>"
-  },
-  {
-    "data": "Receptor MGI ID",
-    "title": "<span title=\"Genome Informatics (MGI) ID. Click on the link for more details\">Receptor MGI ID</span>"
-  },
-  {
-    "data": "Ligand Ensembl ID",
-    "title": "Ligand Ensembl ID"
-  },
-  {
-    "data": "Ligand GOC score",
-    "title": "Ligand GOC score"
-  },
-  {
-    "data": "Ligand WGA coverage",
-    "title": "Ligand WGA coverage"
-  },
-  {
-    "data": "Ligand % Identity",
-    "title": "Ligand % Identity"
-  },
-  {
-    "data": "Ligand Target % Identity",
-    "title": "Ligand Target % Identity"
-  },
-  {
-    "data": "Ligand Orthology Confidence",
-    "title": "Ligand Orthology Confidence"
-  },
-  {
-    "data": "Ligand Name",
-    "title": "Ligand Name"
-  },
-  {
-    "data": "Receptor Ensembl ID",
-    "title": "Receptor Ensembl ID"
-  },
-  {
-    "data": "Receptor GOC score",
-    "title": "Receptor GOC score"
-  },
-  {
-    "data": "Receptor WGA coverage",
-    "title": "Receptor WGA coverage"
-  },
-  {
-    "data": "Receptor % Identity",
-    "title": "Receptor % Identity"
-  },
-  {
-    "data": "Receptor Target % Identity",
-    "title": "Receptor Target % Identity"
-  },
-  {
-    "data": "Receptor Orthology Confidence",
-    "title": "Receptor Orthology Confidence"
-  },
-  {
-    "data": "Receptor Name",
-    "title": "Receptor Name"
-  },
-  {
-    "data": "Human Ligand",
-    "title": "<span title=\"Official Gene Symbol; Hover on symbols below to show gene names\"\">Human Ligand&nbsp;&nbsp;&nbsp;</span</span>"
-  },
-  {
-    "data": "Human Receptor",
-    "title": "<span title=\"Official Gene Symbol; Hover on symbols below to show gene names\"\">Human Receptor&nbsp;&nbsp;&nbsp;</span</span>"
-  },
-  {
-    "data": "Human Ligand Symbols",
-    "title": "<span title=\"Double-click header of Ligand Symbols to ensure all values are shown\"\">Human Ligand Symbols&nbsp;</span</span>"
-  },
-  {
-    "data": "Human Receptor Symbols",
-    "title": "<span title=\"Double-click header of Receptor Symbols to ensure all values are shown\"\">Human Receptor Symbols&nbsp;</span</span>"
-  },
-  {
-    "data": "Ligand Location",
-    "title": "<span title=\"Location based on the predicted subcellular localization of the human proteome, as described in Ramilowski et al. (PMID: 26198319)\">Ligand Location</span>"
-  },
-  {
-    "data": "Receptor Location",
-    "title": "<span title=\"Location based on the predicted subcellular localization of the human proteome, as described in Ramilowski et al. (PMID: 26198319)\">Receptor Location</span>"
-  },
-  {
-    "data": "Ligand HGNC ID",
-    "title": "<span title=\"HUGO Gene Nomenclature Committee (HGNC) ID. Click on the link for more details\">Ligand HGNC ID&nbsp;&nbsp;</span>"
-  },
-  {
-    "data": "Receptor HGNC ID",
-    "title": "<span title=\"HUGO Gene Nomenclature Committee (HGNC) ID. Click on the link for more details\">Receptor HGNC ID&nbsp;&nbsp;</span>"
-  },
-  {
-    "data": "Perplexity",
-    "title": "<span title=\"Click the logo below to run Perplexity on the Human LR pair\">Perplexity&nbsp;</span>"
-  },
-  {
-    "data": "Database Source",
-    "title": "<span title=\"Double-click header of Database Source to ensure all values are shown\">Database Source&nbsp;</span>"
-  },
-  {
-    "data": "Binding Location",
-    "title": "<span title=\"Double-click header of Binding Location to ensure all values are shown\">Binding Location&nbsp;</span>"
-  },
-  {
-    "data": "Trans-binding",
-    "title": "<span title=\"Double-click header of Trans-binding to ensure all values are shown\">Trans-binding&nbsp;</span>"
-  },
-  {
-    "data": "Bidirectional Signalling",
-    "title": "<span title=\"Double-click header of Bidirectional Signalling to ensure all values are shown\">Bidirectional Signalling&nbsp;</span>"
-  },
-  {
-    "data": "Interaction Type",
-    "title": "<span title=\"Double-click header of Interaction Type to ensure all values are shown\">Interaction Type&nbsp;</span>"
-  }
-];
+        const columns = {{ columns_json | safe }};
         console.log('Columns config:', columns);
 
         // Build header HTML - add checkbox column back
@@ -319,7 +164,7 @@ $(document).ready(function() {
             headerHtml += '<th>' + (col.title || col.data || '') + '</th>';
         });
         headerHtml += '</tr>';
-        $('#mouse-table thead').html(headerHtml);
+        $('#{{ table_id }} thead').html(headerHtml);
 
         // Calculate hidden columns based on total column count (adjust for checkbox column)
         var totalColumns = columns.length + 1; // +1 for checkbox column
@@ -339,7 +184,7 @@ $(document).ready(function() {
         console.log('Total columns:', totalColumns);
         console.log('Hidden columns:', hiddenColumns);
 
-        var table = $('#mouse-table').DataTable({
+        var table = $('#{{ table_id }}').DataTable({
             data: data,
             columns: [
                 {
@@ -371,7 +216,7 @@ $(document).ready(function() {
                 'selectNone',
                 {
                     extend: 'csvHtml5',
-                    filename: 'ConnectomeDB2025_mouse',
+                    filename: 'ConnectomeDB2025_{{ species }}',
                     exportOptions: {
                         columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
                         format: {
@@ -399,7 +244,7 @@ $(document).ready(function() {
                 },
                 {
                     extend: 'excelHtml5',
-                    filename: 'ConnectomeDB2025_mouse',
+                    filename: 'ConnectomeDB2025_{{ species }}',
                     title: null,
                     exportOptions: {
                         columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
@@ -427,7 +272,7 @@ $(document).ready(function() {
                 },
                 {
                     extend: 'copyHtml5',
-                    filename: 'ConnectomeDB2025_mouse',
+                    filename: 'ConnectomeDB2025_{{ species }}',
                     title: null,
                     exportOptions: {
                         columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
@@ -474,13 +319,13 @@ $(document).ready(function() {
                 setTimeout(function() {
                     // Create a filter container directly above the table and headers
                     var filterContainer = $('<div id="column-filters" style="background: white; padding-left: 0px; padding-right: 0px; padding-bottom: 10px; border: 0px solid #ddd; margin-bottom: 1px; width: 100%;"><h4 style="margin: 0 0 15px 0;">Search Ligand(s) / Receptor(s) here</h4></div>');
-                    $('#mouse-table').closest('.dataTables_wrapper').prepend(filterContainer);
+                    $('#{{ table_id }}').closest('.dataTables_wrapper').prepend(filterContainer);
 
                     var filterDiv = $('<div style="max-width: 100%;"></div>');
                     var label = $('<label></label>');
 
                     // Create input without datalist (no autofill)
-                    var input = $('<input type="text" placeholder="i.e. CD24, EGFR, A2M, Epha3, 5430401F13Rik, no human ortholog" />')
+                    var input = $('<input type="text" placeholder="i.e. CD24, EGFR, A2M, {{ species_addl_search }}" />')
                         .css({
                             'width': '100%',
                             'padding': '8px',
@@ -602,14 +447,8 @@ $(document).ready(function() {
 
     }).fail(function(jqxhr, textStatus, error) {
         console.error("Failed to load JSON data:", textStatus, error);
-        console.error("JSON path:", "../JSON/mouse_gene_pair.json");
+        console.error("JSON path:", "{{ json_path }}");
         alert("Failed to load table data. Please check the console for details.");
     });
 });
 </script>
-```
-
-{{< include hint.qmd >}}
-
-
-

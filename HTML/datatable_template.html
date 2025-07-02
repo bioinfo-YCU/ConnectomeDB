@@ -106,7 +106,7 @@
             font-size: 0.6rem; /* Adjusted for even smaller box */
         }
         input[type="text"]::placeholder {
-            font-size: 80% !important;
+            font-size: 60% !important;
         }
     }
     /* Hide the default search box */
@@ -263,7 +263,7 @@ $.getJSON("{{ json_path }}", function(data) {
 
                 extend: 'csvHtml5',
 
-                filename: 'ConnectomeDB2025',
+                filename: 'ConnectomeDB2025_human',
 
                 exportOptions: {
 
@@ -462,7 +462,7 @@ $.getJSON("{{ json_path }}", function(data) {
 
                 // Create a filter container directly above the table and headers
 
-                var filterContainer = $('<div id="column-filters" style="background: white; padding-left: 0px; padding-right: 0px; padding-bottom: 10px; border: 0px solid #ddd; margin-bottom: 30; width: 100%;"><h4 style="margin: 0 0 15px 0;">Search Ligand(s) / Receptor(s) here</h4></div>');
+                var filterContainer = $('<div id="column-filters" style="background: white; padding-left: 0px; padding-right: 0px; padding-bottom: 10px; border: 0px solid #ddd; margin-bottom: 1px; width: 100%;"><h4 style="margin: 0 0 15px 0;">Search Ligand(s) / Receptor(s) here</h4></div>');
 
                 $('#{{ table_id }}').closest('.dataTables_wrapper').prepend(filterContainer);
 
@@ -613,110 +613,58 @@ $.getJSON("{{ json_path }}", function(data) {
             // Custom sort function to prioritize search results based on the active search input
 
             api.on('order.dt search.dt', function () {
-
                 var searchVal = $('#column-filters input[type="text"]').val();
-
-
-
+            
                 if (searchVal && searchVal.trim() !== '') {
-
-                    const searchTerms = searchVal.split(',').map(term => term.trim().toLowerCase()).filter(term => term !== '');
-
-                    if (searchTerms.length === 0) return; // No terms, no special order
-
-
-
+                    const searchTerms = searchVal
+                        .split(',')
+                        .map(term => term.trim().toLowerCase())
+                        .filter(term => term !== '');
+            
+                    if (searchTerms.length === 0) return;
+            
                     api.rows().sort(function (rowIdxA, rowIdxB) {
-
                         let scoreA = 0;
-
                         let scoreB = 0;
-
-
-
-                        // Get the full data for the rows.
-
-                        // IMPORTANT: row().data() returns data for ALL columns, including the prepended checkbox column.
-
-                        // So, original column 5 is at index 5, and original column 6 is at index 6.
-
+            
                         const rowDataA = api.row(rowIdxA).data();
-
                         const rowDataB = api.row(rowIdxB).data();
-
-
-
-                        // Accessing original column 5 data (DataTables index 5)
-
-                        const col5ValueA = rowDataA[5] ? rowDataA[5].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
-
-                        const col6ValueA = rowDataA[6] ? rowDataA[6].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
-
-
-
-                        // Accessing original column 6 data (DataTables index 6)
-
-                        const col5ValueB = rowDataB[5] ? rowDataB[5].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
-
-                        const col6ValueB = rowDataB[6] ? rowDataB[6].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
-
-
-
+            
+                        const normalize = str =>
+                            str ? str.toString().replace(/<[^>]*>/g, '').toLowerCase().trim() : '';
+            
+                        const valuesA = [normalize(rowDataA[5]), normalize(rowDataA[6])];
+                        const valuesB = [normalize(rowDataB[5]), normalize(rowDataB[6])];
+            
                         searchTerms.forEach(term => {
-
-                            // Score for A
-
-                            if (col5ValueA === term || col6ValueA === term) scoreA -= 1000; // Exact match
-
-                            else if (col5ValueA.includes(term + ' ()') || col6ValueA.includes(term + ' ()')) scoreA -= 900; // Match followed by ()
-
-                            else if (col5ValueA.includes('(' + term + ')') || col6ValueA.includes('(' + term + ')') ) scoreA -= 800; // Match within parentheses
-
-                            else if (col5ValueA.startsWith(term) || col6ValueA.startsWith(term)) scoreA -= 700; // Match at the beginning
-
-                            else if (col5ValueA.includes(term) || col6ValueA.includes(term)) scoreA -= 100; // General includes
-
-
-
-                            // Score for B
-
-                            if (col5ValueB === term || col6ValueB === term) scoreB -= 1000;
-
-                            else if (col5ValueB.includes(term + ' ()') || col6ValueB.includes(term + ' ()')) scoreB -= 900;
-
-                            else if (col5ValueB.includes('(' + term + ')') || col6ValueB.includes('(' + term + ')') ) scoreB -= 800;
-
-                            else if (col5ValueB.startsWith(term) || col6ValueB.startsWith(term)) scoreB -= 700;
-
-                            else if (col5ValueB.includes(term) || col6ValueB.includes(term)) scoreB -= 100;
-
+                            valuesA.forEach(value => {
+                                if (value === term) scoreA -= 1000;
+                                else if (value.startsWith(term + ',')) scoreA -= 950;
+                                else if (value.startsWith(term + ' ')) scoreA -= 900;
+                                else if (value.includes('(' + term + ')')) scoreA -= 850;
+                                else if (value.includes(term + ' ()')) scoreA -= 800;
+                                else if (value.startsWith(term)) scoreA -= 700;
+                                else if (value.includes(term)) scoreA -= 100;
+                            });
+            
+                            valuesB.forEach(value => {
+                                if (value === term) scoreB -= 1000;
+                                else if (value.startsWith(term + ',')) scoreB -= 950;
+                                else if (value.startsWith(term + ' ')) scoreB -= 900;
+                                else if (value.includes('(' + term + ')')) scoreB -= 850;
+                                else if (value.includes(term + ' ()')) scoreB -= 800;
+                                else if (value.startsWith(term)) scoreB -= 700;
+                                else if (value.includes(term)) scoreB -= 100;
+                            });
                         });
-
-
-
-                        // Sort by score (lower score = higher priority)
-
-                        if (scoreA < scoreB) return -1;
-
-                        if (scoreA > scoreB) return 1;
-
-
-
-                        // If scores are equal, maintain original order or use another column for tie-breaking
-
-                        return 0;
-
+            
+                        return scoreA - scoreB;
                     });
-
                 } else {
-
-                    // If search input is empty, reset to default order if one exists, or no special order
-
-                    api.order([[1, 'asc']]); // Example: Sort by original col 1 ascending (DataTables index 1)
-
+                    api.order([[1, 'asc']]); // fallback to column 1 ascending
                 }
-
             });
+
 
         }
 

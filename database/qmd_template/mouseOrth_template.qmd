@@ -1,0 +1,21 @@
+---
+title: "Mouse \u2013 *Mus musculus* </span>"
+execute:
+  echo: false
+format:
+  html:
+    table: false
+header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
+---
+
+***
+
+```{=html}
+<!-- Injected automatically via Jinja -->
+{{ table_block }}
+```
+
+{{< include hint.qmd >}}
+
+
+
