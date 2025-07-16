@@ -32,6 +32,17 @@
         font-style: italic;
         font-size: 80%;
     }
+    .dataTables_wrapper .dataTables_info {
+        float: right !important;
+        margin-left: 20px !important;
+        padding-top: 8px !important;
+        clear: none !important;
+    }
+    
+    .dataTables_wrapper .dt-buttons {
+        float: left !important;
+    }
+
     /* Base checkbox styling (the square box) */
     table.dataTable tbody tr.selected td.select-checkbox::after {
         content: '✓';
@@ -247,7 +258,7 @@ $.getJSON("{{ json_path }}", function(data) {
 
         },
 
-        lengthMenu: [[10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"]],
+        lengthMenu: [[15, 25, 50, 100, -1], ["15", "25", "50", "100", "All"]],
 
         buttons: [
 
@@ -255,9 +266,23 @@ $.getJSON("{{ json_path }}", function(data) {
 
             { extend: 'colvis', text: 'Display Columns' },
 
-            'selectAll',
+            { extend: 'selectAll', text: 'Select All',
+            action: function(e, dt, node, config) {
+                $.fn.dataTable.ext.buttons.selectAll.action.call(this, e, dt, node, config);
+                setTimeout(function() {
+                    updateInfoDisplay();
+                }, 100);
+            }
+        },
 
-            'selectNone',
+            { extend: 'selectNone', text: 'Deselect All',
+        action: function(e, dt, node, config) {
+            $.fn.dataTable.ext.buttons.selectNone.action.call(this, e, dt, node, config);
+            setTimeout(function() {
+                updateInfoDisplay();
+            }, 100);
+        }
+    },
 
             {
 
@@ -453,6 +478,43 @@ $.getJSON("{{ json_path }}", function(data) {
         initComplete: function () {
 
             var api = this.api();
+            // Add these functions right after var api = this.api();
+            window.updateInfoDisplay = function() {
+                var info = api.page.info();
+                var selectedCount = api.rows('.selected').count();
+                var filteredCount = api.rows({ search: 'applied' }).count();
+                var totalCount = api.rows().count();
+                
+                var infoText = `Showing ${info.start + 1} to ${info.end} of ${filteredCount} entries`;
+                
+                if (filteredCount !== totalCount) {
+                    infoText += ` (filtered from ${totalCount} total entries)`;
+                }
+                
+                if (selectedCount > 0) {
+                    var selectedInFiltered = api.rows({ search: 'applied' }).nodes().to$().filter('.selected').length;
+                    infoText += ` - ${selectedInFiltered} rows selected`;
+                }
+                
+                $('.dataTables_info').html(infoText);
+            };
+            
+            window.updateButtonText = function() {
+                var filteredCount = api.rows({ search: 'applied' }).count();
+                var totalCount = api.rows().count();
+                
+                if (filteredCount === totalCount) {
+                    $('.buttons-select-all').text('Select All (' + totalCount + ')');
+                } else {
+                    $('.buttons-select-all').text('Select All Filtered (' + filteredCount + ')');
+                }
+            };
+            
+            // Add this event listener
+            api.on('draw.dt select.dt deselect.dt', function() {
+                    setTimeout(updateButtonText, 100);
+                    setTimeout(updateInfoDisplay, 100);
+            });
 
 
 

@@ -59,7 +59,7 @@ bio_keywords = pd.read_csv("data/llm_results.csv")
 # gene_pair00 is used for PMID and Keywords, so it needs the '—' placeholder
 # Ensure gene_pair00 is a copy to avoid SettingWithCopyWarning later
 gene_pair00_copy = gene_pair00.copy()
-gene_pair00_copy["Human LR Pair"] = gene_pair00_copy["Human LR Pair"].str.replace(" ", "—")
+#gene_pair00_copy["Human LR Pair"] = gene_pair00_copy["Human LR Pair"].str.replace(" ", "—")
 
 # Merge with LLM results
 gene_pair000 = gene_pair00_copy.merge(bio_keywords, how='left', left_on="Human LR Pair", right_on='Human LR Pair')

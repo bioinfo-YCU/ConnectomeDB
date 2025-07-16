@@ -969,20 +969,20 @@ gene_pair["Database Source"] = [
 ]
 
 
+# FOR NOW just make it as simple as em-dash/arrow
+# def replace_spaces(row):
+#     if 'secreted' in row['Ligand Location'].lower():
+#         return row['Human LR Pair'].replace(" ", " <span style='font-size: 14px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
+#     elif row['Ligand Location'] == 'unknown':
+#         return row['Human LR Pair'].replace(" ", " <span style='font-size: 14px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
+#     elif 'membrane' in row['Ligand Location'].lower():
+#         return row['Human LR Pair'].replace(" ", " <span style='font-size: 24px;'>⤙</span> <span style='font-size: 24px;'>⤚</span> ")
+#     else:
+#         return row['Human LR Pair'].replace(" ", " \u2192 ")
 
-def replace_spaces(row):
-    if 'secreted' in row['Ligand Location'].lower():
-        return row['Human LR Pair'].replace(" ", " <span style='font-size: 14px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
-    elif row['Ligand Location'] == 'unknown':
-        return row['Human LR Pair'].replace(" ", " <span style='font-size: 14px;'>○</span> <span style='font-size: 24px;'>⤚</span> ")
-    elif 'membrane' in row['Ligand Location'].lower():
-        return row['Human LR Pair'].replace(" ", " <span style='font-size: 24px;'>⤙</span> <span style='font-size: 24px;'>⤚</span> ")
-    else:
-        return row['Human LR Pair'].replace(" ", " \u2192 ")
-
-# Apply the function to the 'LR Pair' column
-gene_pair['Human LR Pair'] = gene_pair.apply(replace_spaces, axis=1)
-
+# # Apply the function to the 'LR Pair' column
+# gene_pair['Human LR Pair'] = gene_pair.apply(replace_spaces, axis=1)
+# gene_pair["Human LR Pair"] = gene_pair["Human LR Pair"].str.replace(" ", "-")
 gene_pair = gene_pair.drop(columns=["Ligand Name", "Receptor Name"])
 
 
