@@ -304,7 +304,7 @@ def process_species(gene_pair_df, gene_pair000_df, species, id_prefix, ligand_in
         elif row[receptor_Location] == 'plasma membrane':
             return f"{row[ligand_col]} <span style='font-size: 24px;'>⤙</span> <span style='font-size: 24px;'>⤚</span> {row[receptor_col]}"
         else:
-            return f"{row[ligand_col]} \u2192 {row[receptor_col]}"
+            return f"{row[ligand_col]} {row[receptor_col]}" #\u2192 was the arrow but removed for now
             
     species_gene_pair1.loc[:, f"{species} LR Pair"] = species_gene_pair1.apply(format_lr_pair, axis=1)
        # Identify relevant columns for the species
