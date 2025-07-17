@@ -16,7 +16,7 @@ header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
     :root {
         --table-underline-offset: 1px;
@@ -47,14 +47,129 @@ header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
         font-size: 80%;
     }
     .dataTables_wrapper .dataTables_info {
-        float: right !important;
-        margin-left: 20px !important;
+        color: darkgreen;
+        font-weight: bold;
+        margin-left: 0px !important;
         padding-top: 8px !important;
+        font-size: 80%;
         clear: none !important;
     }
     
     .dataTables_wrapper .dt-buttons {
         float: left !important;
+    }
+
+    #top_info_display {
+        float: none !important;
+        text-align: right;
+    }
+
+    .selection-counter {
+    color: darkgreen;
+    font-weight: bold;
+    font-size: 80%;
+    float: right;
+    margin-top: 8px;
+    margin-right: 10px;
+    padding: 5px 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    clear: right; /* ADD THIS */
+    text-align: right; /* ADD THIS */
+    }
+    
+    @media (max-width: 768px) {
+        .selection-counter {
+            float: right; /* CHANGED from 'none' to 'right' */
+            display: block;
+            margin: 10px 10px 10px 0; /* ADJUSTED margins */
+            text-align: right; /* KEEP right alignment on mobile too */
+        }
+    }
+
+
+
+
+
+
+
+
+        /* NEW: Add these styles after your existing CSS */
+    .top-controls-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .buttons-container {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+    
+    .info-display-container {
+        color: darkgreen;
+        font-weight: bold;
+        font-size: 80%;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-left: auto;
+        padding-left: 15px;
+    }
+    
+    /* Mobile responsive for new layout */
+    @media (max-width: 768px) {
+        .top-controls-container {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .info-display-container {
+            margin-left: 0;
+            padding-left: 0;
+        }
+    }
+
+        /* Target the container that holds both buttons and your new info */
+    .dataTables_wrapper .dt-layout-row.dt-layout-top .dt-layout-cell.dt-start {
+        display: flex; /* Make it a flex container */
+        align-items: center; /* Vertically center items (buttons and info) */
+        flex-wrap: wrap; /* Allow items to wrap to the next line if space is limited */
+        gap: 10px; /* Add some space between the buttons and your info container */
+    }
+    
+    /* Style for your custom info container */
+    .custom-info-container {
+        display: inline-flex; /* Keep this for internal icon+text alignment */
+        align-items: center;
+        gap: 5px; /* Space between icon and text */
+        /* Remove any floats or absolute positioning here that might conflict */
+    }
+    
+    /* Ensure the Font Awesome icon is styled correctly */
+    .custom-info-container .fa-solid {
+        font-size: 1em; /* Adjust as needed */
+        color: darkgreen; /* Matches the text color */
+    }
+    
+    /* Remove this if it's still present, as it contradicts flexbox */
+    /* #top_info_display {
+        float: none !important;
+        text-align: right;
+    } */
+    
+    /* Ensure buttons are not floating independently if they are within a flex container */
+    .dataTables_wrapper .dt-buttons {
+        /* float: left !important; <--- You might be able to remove this now if the parent flex handles it */
+        /* Just ensure it's not set to 'block' which would break inline flow */
+        display: inline-flex; /* Ensure buttons themselves are a flex row */
+        gap: 5px; /* Space between buttons */
     }
 
     /* Base checkbox styling (the square box) */
@@ -235,7 +350,7 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
 
     // Set the header for the first column to 'Copy' with a tooltip
 
-    var headerHtml = '<tr><th title="Tick the boxes of the rows you would like to copy/download via the buttons above">Select</th>';
+    var headerHtml = '<tr><th title="Tick the boxes of the rows you would like to download via the buttons above">Select</th>';
 
     columns.forEach(function(col) {
 
@@ -473,60 +588,60 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
 
             },
 
-            {
+            // {
 
-                extend: 'copyHtml5',
+            //     extend: 'copyHtml5',
 
-                filename: 'ConnectomeDB2025_human',
+            //     filename: 'ConnectomeDB2025_human',
 
-                title: null,
+            //     title: null,
 
-                exportOptions: {
+            //     exportOptions: {
 
-                    columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
+            //         columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
 
-                    format: {
+            //         format: {
 
-                        body: function(data, row, column, node) {
+            //             body: function(data, row, column, node) {
 
-                            // Check if this cell contains the &#128269; (🔍) symbol AND a link (Perplexity column detection)
-                            if (data && data.toString().includes('&#128269;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
+            //                 // Check if this cell contains the &#128269; (🔍) symbol AND a link (Perplexity column detection)
+            //                 if (data && data.toString().includes('&#128269;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
 
-                                var $temp = $('<div>').html(data);
+            //                     var $temp = $('<div>').html(data);
 
-                                var href = $temp.find('a').attr('href');
+            //                     var href = $temp.find('a').attr('href');
 
-                                return href ? encodeURI(href) : data;
+            //                     return href ? encodeURI(href) : data;
 
-                            }
+            //                 }
 
-                            return data.replace ? data.replace(/<[^>]*>/g, '') : data;
+            //                 return data.replace ? data.replace(/<[^>]*>/g, '') : data;
 
-                        }
+            //             }
 
-                    }
+            //         }
 
-                },
+            //     },
 
-                action: function(e, dt, button, config) {
+            //     action: function(e, dt, button, config) {
 
-                    var selectedRows = dt.rows('.selected').count();
+            //         var selectedRows = dt.rows('.selected').count();
 
-                    if (selectedRows > 0) {
+            //         if (selectedRows > 0) {
 
-                        config.exportOptions.modifier = { selected: true };
+            //             config.exportOptions.modifier = { selected: true };
 
-                    } else {
+            //         } else {
 
-                        config.exportOptions.modifier = { page: 'all', search: 'none' };
+            //             config.exportOptions.modifier = { page: 'all', search: 'none' };
 
-                    }
+            //         }
 
-                    $.fn.dataTable.ext.buttons.copyHtml5.action.call(this, e, dt, button, config);
+            //         $.fn.dataTable.ext.buttons.copyHtml5.action.call(this, e, dt, button, config);
 
-                }
+            //     }
 
-            }
+            // }
 
         ],
 
@@ -557,26 +672,51 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
         initComplete: function () {
 
             var api = this.api();
-            // Add these functions right after var api = this.api();
+
+            $('.dataTables_wrapper .dt-layout-row.dt-layout-top .dt-layout-cell.dt-end').append('<div class="dataTables_info" id="top_info_display"></div>');
+
+             // ADD THIS LINE: Create separate selection counter
+            $('.dt-buttons').after('<div class="selection-counter" id="selection_counter">0 rows selected</div>');
+        
+            // --- Adjust your updateInfoDisplay function ---
             window.updateInfoDisplay = function() {
                 var info = api.page.info();
                 var selectedCount = api.rows('.selected').count();
                 var filteredCount = api.rows({ search: 'applied' }).count();
                 var totalCount = api.rows().count();
-                
+        
                 var infoText = `Showing ${info.start + 1} to ${info.end} of ${filteredCount} entries`;
-                
+        
                 if (filteredCount !== totalCount) {
                     infoText += ` (filtered from ${totalCount} total entries)`;
                 }
-                
+        
                 if (selectedCount > 0) {
                     var selectedInFiltered = api.rows({ search: 'applied' }).nodes().to$().filter('.selected').length;
                     infoText += ` - ${selectedInFiltered} rows selected`;
                 }
-                
-                $('.dataTables_info').html(infoText);
+        
+                // Update BOTH the original (bottom) and the cloned (top) info elements
+                // Make sure to update the one with the new ID for the top display
+                $('#top_info_display_clone_2').html(infoText); // Update the cloned one
+                $('.dataTables_wrapper .dataTables_info').html(infoText); // This will update the original bottom one
             };
+
+            // ADD THIS: Simple counter update function
+                window.updateSelectionCounter = function() {
+                    var selectedCount = api.rows('.selected').count();
+                    var filteredCount = api.rows({ search: 'applied' }).count();
+                    var totalCount = api.rows().count();
+                    
+                    if (selectedCount > 0) {
+                        var selectedInFiltered = api.rows({ search: 'applied' }).nodes().to$().filter('.selected').length;
+                        $('#selection_counter').text(selectedInFiltered + ' rows selected');
+                        $('#selection_counter').show();
+                    } else {
+                        $('#selection_counter').text('0 rows selected');
+                    }
+                };
+
             
             window.updateButtonText = function() {
                 var filteredCount = api.rows({ search: 'applied' }).count();
@@ -588,14 +728,16 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
                     $('.buttons-select-all').text('Select All Filtered (' + filteredCount + ')');
                 }
             };
-            
+
             // Add this event listener
             api.on('draw.dt select.dt deselect.dt', function() {
-                    setTimeout(updateButtonText, 100);
-                    setTimeout(updateInfoDisplay, 100);
+                setTimeout(updateButtonText, 100);
+                setTimeout(updateInfoDisplay, 100);
+                setTimeout(updateSelectionCounter, 100); // ADD THIS LINE
             });
 
-
+            updateInfoDisplay(); // Call it once after setup
+            updateSelectionCounter(); // ADD THIS LINE
 
             // Wait for DOM to be ready, then add filter
 
