@@ -6,8 +6,6 @@ library(tidyverse)
 library(readr)
 print(paste0("Retrieving on: ", format(Sys.Date(), "%d-%b-%Y")))
 
-orig_species = "mmusculus"
-
 get_species_orthologs <- function(orig_species, species_name) {
   # Set species-specific gene ID and symbol fields for original species
   orig_species_id <- switch(orig_species,
@@ -170,6 +168,7 @@ get_species_orthologs("hsapiens", "oarambouillet")
 get_species_orthologs("hsapiens", "rnorvegicus")
 # human to Zebrafish (Danio rerio) # test
 get_species_orthologs("hsapiens", "drerio")
-
+# human to Mouse (Danio rerio) # test
+get_species_orthologs("hsapiens", "mmusculus")
 
 
