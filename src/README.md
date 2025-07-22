@@ -59,6 +59,8 @@ the following have to be ran in this order:
 `mergeBiomartInParanoid.py`
 `summarize_Orthstats_filter.py`
 
+`uniProtFetcher_parallel.py`: Pull uniProt id and name from UniProtKB SwissProt, reviewed version
+
 
 
 
