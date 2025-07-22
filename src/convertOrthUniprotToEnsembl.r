@@ -5,7 +5,7 @@ library(biomaRt)
 library(tidyverse)
 
 # Set species here
-species_name <- "horse"  # options: mouse, rat, cow, etc.
+species_name <- "macaque"  # options: mouse, rat, cow, etc.
 
 # Lookup table: species → Ensembl code
 species_lookup <- list(
