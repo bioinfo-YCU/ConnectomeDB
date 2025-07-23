@@ -172,3 +172,7 @@ get_species_orthologs("hsapiens", "drerio")
 get_species_orthologs("hsapiens", "mmusculus")
 
 
+# human has no frog "xtropicalis_homolog_wga_coverage"
+# get_species_orthologs("hsapiens", "xtropicalis")
+# frog has no "hsapiens_homolog_wga_coverage"
+# get_species_orthologs("xtropicalis", "hsapiens")
