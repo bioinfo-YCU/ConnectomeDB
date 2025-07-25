@@ -11,6 +11,9 @@ data/*
 DT_R_ver_files/
 *.zip
 
+# notebooks
+*.ipynb
+
 #images
 images/
 images/*
