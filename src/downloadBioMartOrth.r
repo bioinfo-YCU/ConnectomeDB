@@ -49,17 +49,28 @@ get_species_orthologs <- function(orig_species, species_name) {
   species_gene_confidence <- paste0(species_name, "_homolog_orthology_confidence")
   
   # Get orthologs from original species mart
-  attributes_list <- c(
-    "ensembl_gene_id",
-    species_column, 
-    species_gene_name,
-    species_gene_GOC,
-    species_gene_WGA,
-    species_gene_identToQuery,
-    species_gene_identToTarget,
-    species_gene_confidence
-  )
-  
+ if (species_name == "xtropicalis"|orig_species =="xtropicalis") {
+      attributes_list <- c(
+        "ensembl_gene_id",
+        species_column, 
+        species_gene_name,
+        species_gene_GOC,
+        species_gene_identToQuery,
+        species_gene_identToTarget,
+        species_gene_confidence
+      )
+ } else {
+      attributes_list <- c(
+        "ensembl_gene_id",
+        species_column, 
+        species_gene_name,
+        species_gene_GOC,
+        species_gene_WGA,
+        species_gene_identToQuery,
+        species_gene_identToTarget,
+        species_gene_confidence
+      )
+ }
   orth_genes <- biomaRt::getBM(
     attributes = attributes_list,
     mart = ensembl
@@ -141,6 +152,17 @@ get_species_orthologs("rnorvegicus", "mmusculus")
 # Zebrafish (Danio rerio) to human
 get_species_orthologs("drerio", "hsapiens")
 
+# Guinea pig to Human
+get_species_orthologs("cporcellus", "hsapiens")
+
+# Rabbit to Human
+get_species_orthologs("ocuniculus", "hsapiens")
+
+# green-spotted puffer to human
+get_species_orthologs("tnigroviridis", "hsapiens")
+
+# Frog has no "hsapiens_homolog_wga_coverage"
+get_species_orthologs("xtropicalis", "hsapiens")
 
 # searchAttributes(ensembl, pattern) useful for looking for column names
 
@@ -164,15 +186,18 @@ get_species_orthologs("hsapiens", "clfamiliaris")
 get_species_orthologs("hsapiens", "ecaballus")
 # human to Sheep (Ovis aries rambouillet)
 get_species_orthologs("hsapiens", "oarambouillet")
-# human to Rat (Rattus norvegicus)  # test
+# human to Rat (Rattus norvegicus)  
 get_species_orthologs("hsapiens", "rnorvegicus")
-# human to Zebrafish (Danio rerio) # test
+# human to Zebrafish (Danio rerio) 
 get_species_orthologs("hsapiens", "drerio")
-# human to Mouse (Danio rerio) # test
+# human to Mouse (Danio rerio) 
 get_species_orthologs("hsapiens", "mmusculus")
+# Human to Rabbit
+get_species_orthologs("hsapiens", "ocuniculus")
+# Human to Guinea pig
+get_species_orthologs("hsapiens", "cporcellus")
+# Human to green-spotted puffer
+get_species_orthologs("hsapiens", "tnigroviridis")
+# Human has no frog "xtropicalis_homolog_wga_coverage"
+get_species_orthologs("hsapiens", "xtropicalis")
 
-
-# human has no frog "xtropicalis_homolog_wga_coverage"
-# get_species_orthologs("hsapiens", "xtropicalis")
-# frog has no "hsapiens_homolog_wga_coverage"
-# get_species_orthologs("xtropicalis", "hsapiens")

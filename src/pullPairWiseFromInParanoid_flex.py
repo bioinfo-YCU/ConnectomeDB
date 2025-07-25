@@ -10,9 +10,9 @@ from itertools import product
 # === USER INPUT ===
 data_dir = "data"
 # original species
-orig_species_input = "mouse"
+orig_species_input = "human"
 # Ortholog species
-species_input = "human"  # Options: "mouse", "zebrafish", # No sheep in inParanoid
+species_input = "frog"  # Options: "mouse", "zebrafish", # No sheep in inParanoid
 
 # species_to_process = ["mouse", "rat", "human", "zebrafish", "chimpanzee", "chicken", "pig", "cow", "dog", "horse", "marmoset",   "macaque"]
 
@@ -31,6 +31,10 @@ orig_species_info = {
     #"sheep":         {"taxid": "9940",  "code": "oarambouillet"},
     "marmoset":      {"taxid": "9483",  "code": "cjacchus"},
     "macaque":       {"taxid": "9544",  "code": "mmulatta"},
+    "frog":          {"taxid": "8364",  "code": "xtropicalis"},
+    "rabbit":        {"taxid": "9986",  "code": "ocuniculus"},
+    "guineapig":     {"taxid": "10141",  "code": "cporcellus"},
+    "pufferfish":    {"taxid": "99883",  "code": "tnigroviridis"},
     "human":         {"taxid": "9606",  "code": "hsapiens"},
 }
 
@@ -48,6 +52,10 @@ species_info = {
     #"sheep":         {"taxid": "9940",  "code": "oarambouillet"},
     "marmoset":      {"taxid": "9483",  "code": "cjacchus"},
     "macaque":       {"taxid": "9544",  "code": "mmulatta"},
+    "frog":          {"taxid": "8364",  "code": "xtropicalis"},
+    "rabbit":        {"taxid": "9986",  "code": "ocuniculus"},
+    "guineapig":     {"taxid": "10141",  "code": "cporcellus"},
+    "pufferfish":    {"taxid": "99883",  "code": "tnigroviridis"},
     "human":         {"taxid": "9606",  "code": "hsapiens"},
 }
 
@@ -176,45 +184,3 @@ df_merged.to_csv(output_file, index=False)
 print(f"Successfully saved {len(df_merged)} annotated entries for {species_input}.")
 
 print("\nAnnotation process completed for all specified species.")
-
-#### 
-
-# === Step 5: Human UniProt → HGNC/Ensembl mapping ===
-hgnc_df = pd.read_csv("data/HGNC_gene_info_full.tsv", sep="\t", dtype=str)
-hgnc_df = hgnc_df.dropna(subset=["uniprot_ids", "ensembl_gene_id"])
-hgnc_exploded = hgnc_df.assign(uniprot_id=hgnc_df["uniprot_ids"].str.split(",")).explode("uniprot_id")
-hgnc_exploded["uniprot_id"] = hgnc_exploded["uniprot_id"].str.strip()
-
-df_merged = df_orthologs.merge(
-    hgnc_exploded[["uniprot_id", "ensembl_gene_id", "symbol"]],
-    left_on=f"{orig_species_input}_protein",
-    right_on="uniprot_id",
-    how="left"
-)
-
-df_merged = df_merged.rename(columns={
-    "symbol": "human_gene",
-    "ensembl_gene_id": "human_ensembl_gene_id"
-}).drop(columns=["uniprot_id"])
-
-df_merged = df_merged.dropna(subset=["human_ensembl_gene_id"])
-df_merged.to_csv(f"data/{species_input}_inParanoid_withHGNC.tsv", sep="\t", index=False)
-
-# === Step 6: Optional - Species UniProt → Ensembl mapping ===
-map_path = f"data/{species_input}_uniprot_to_ensembl.tsv"
-try:
-    species_map = pd.read_csv(map_path, sep="\t", dtype=str)
-    df_merged = df_merged.merge(
-        species_map,
-        left_on=f"{species_input}_protein",
-        right_on="uniprotswissprot",
-        how="left"
-    ).rename(columns={"ensembl_gene_id": f"{species_input}_ensembl_gene_id"}) \
-     .drop(columns=["uniprotswissprot"])
-except FileNotFoundError:
-    print(f"⚠️  Mapping file not found: {map_path}")
-
-df_merged.to_csv(f"data/df_merged_with_{species_input}_ensembl.tsv", sep="\t", index=False)
-
-
-
