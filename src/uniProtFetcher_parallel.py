@@ -5,7 +5,8 @@ import os
 from multiprocessing import Pool, cpu_count
 
 # Specify a list of species here to process in parallel
-species_to_process = ["mouse", "rat", "human", "zebrafish", "chimpanzee", "chicken", "pig", "cow", "dog", "horse", "marmoset",   "macaque"]
+species_to_process = ["frog", "rabbit", "guineapig", "pufferfish"]
+# ["mouse", "rat", "human", "zebrafish", "chimpanzee", "chicken", "pig", "cow", "dog", "horse", "marmoset",   "macaque"]
 
                       # === INTERNAL MAPPINGS ===
 species_info = {
@@ -21,6 +22,10 @@ species_info = {
     "sheep":        {"taxid": "9940",  "code": "oarambouillet"},
     "marmoset":     {"taxid": "9483",  "code": "cjacchus"},
     "macaque":      {"taxid": "9544",  "code": "mmulatta"},
+    "frog":          {"taxid": "8364",  "code": "xtropicalis"},
+    "rabbit":        {"taxid": "9986",  "code": "ocuniculus"},
+    "guineapig":     {"taxid": "10141",  "code": "cporcellus"},
+    "pufferfish":    {"taxid": "99883",  "code": "tnigroviridis"},
     "human":        {"taxid": "9606",  "code": "hsapiens"},
 }
 
