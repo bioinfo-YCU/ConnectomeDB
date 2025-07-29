@@ -21,7 +21,8 @@ template_name = "datatable_template.html"
 output_json.parent.mkdir(parents=True, exist_ok=True)
 
 # === Clean column names and Save DataFrame to JSON
-human_gene_pair = human_gene_pair.iloc[:, :-48]
+# For latest on no need for this one
+#human_gene_pair = human_gene_pair.iloc[:, :-48]
 def clean_column_names_and_generate_metadata(df):
     # Extract visible column names from HTML
     def visible_text(html_string):

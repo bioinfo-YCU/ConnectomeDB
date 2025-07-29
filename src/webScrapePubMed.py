@@ -9,6 +9,8 @@ import os
 import xml.etree.ElementTree as ET
 
 import numpy as np
+from fetchGSheet import gene_pair_human
+
 source = np.array(gene_pair_human["PMID"].unique())
 
 # Read the API key from a file

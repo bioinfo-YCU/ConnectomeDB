@@ -289,27 +289,27 @@ $.getJSON("{{ json_path }}", function(data) {
 
     var totalColumns = columns.length + 1; // +1 for checkbox column
 
-    // The original columns 3 and 4 (indices 2 and 3 in the `columns` array)
+    // The original columns 4 and 5 (indices 3 and 4 in the `columns` array)
 
-    // become indices 3 and 4 after the checkbox column is prepended.
+    // become indices 4 and 5 after the checkbox column is prepended.
 
-    var hiddenColumns = [3, 4]; // Hide original columns 3 and 4
+    var hiddenColumns = [4, 5]; // Hide original columns 3 and 4
 
 
 
-    // Add last 5 columns to hidden list (adjust this number as needed)
+    // // NO NEED for now --- Add last 5 columns to hidden list (adjust this number as needed)
 
-    // Remember to adjust for the prepended checkbox column
+    // // Remember to adjust for the prepended checkbox column
 
-    for (var i = 5; i > 0; i--) {
+    // for (var i = 5; i > 0; i--) {
 
-        if (totalColumns - i >= 0) {
+    //     if (totalColumns - i >= 0) {
 
-            hiddenColumns.push(totalColumns - i);
+    //         hiddenColumns.push(totalColumns - i);
 
-        }
+    //     }
 
-    }
+    // }
 
 
 
@@ -369,7 +369,9 @@ $.getJSON("{{ json_path }}", function(data) {
 
             style: 'multi',
 
-            selector: 'td:first-child'
+            selector: 'td:first-child',
+            
+            info: false //to remove flashing of XX rows selected
 
         },
 
@@ -578,13 +580,13 @@ $.getJSON("{{ json_path }}", function(data) {
 
             },
 
-            // Adjusted for checkbox column: Original column 10 is now at index 11
+            // Adjusted for checkbox column: Original column 11 is index 12
 
-            { "className": "dt-center", "targets": [11] },
+            { "className": "dt-center", "targets": [12] },
 
             // Adjusted for checkbox column: Original columns 5 and 6 are now at indices 5 and 6
 
-            { "width": "275px", "targets": [4, 5] },
+            { "width": "275px", "targets": [5, 6] },
 
             { "visible": false, "targets": hiddenColumns }
 
@@ -762,23 +764,23 @@ $.getJSON("{{ json_path }}", function(data) {
 
                                     // contains values for ALL columns including the prepended checkbox column.
 
-                                    // So, original column 5 is at data[5] and original column 6 is at data[6].
-
-                                    var col5Value = data[5] ? data[5].toString().replace(/<[^>]*>/g, '').toLowerCase() : ''; // Original column 5
+                                    // So, original column 6 is at data[6] and original column 7 is at data[7].
 
                                     var col6Value = data[6] ? data[6].toString().replace(/<[^>]*>/g, '').toLowerCase() : ''; // Original column 6
 
+                                    var col7Value = data[7] ? data[7].toString().replace(/<[^>]*>/g, '').toLowerCase() : ''; // Original column 7
+
                                     console.log("Searching for:", searchTerms);
 
-                                    console.log("Column 5 value:", col5Value);
+                                    console.log("Column 6 value:", col6Value);
 
-                                    console.log("Column 6 value:", col6Value); // <<< ADD THIS LINE
+                                    console.log("Column 7 value:", col7Value); // <<< ADD THIS LINE
 
 
 
                                     return searchTerms.some(term =>
 
-                                        col5Value.includes(term) || col6Value.includes(term)
+                                        col6Value.includes(term) || col7Value.includes(term)
 
                                     );
 
@@ -837,8 +839,8 @@ $.getJSON("{{ json_path }}", function(data) {
                         const normalize = str =>
                             str ? str.toString().replace(/<[^>]*>/g, '').toLowerCase().trim() : '';
             
-                        const valuesA = [normalize(rowDataA[5]), normalize(rowDataA[6])];
-                        const valuesB = [normalize(rowDataB[5]), normalize(rowDataB[6])];
+                        const valuesA = [normalize(rowDataA[6]), normalize(rowDataA[7])];
+                        const valuesB = [normalize(rowDataB[6]), normalize(rowDataB[7])];
             
                         searchTerms.forEach(term => {
                             valuesA.forEach(value => {
