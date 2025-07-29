@@ -18,7 +18,7 @@ warnings.simplefilter("ignore", category=UserWarning)
 species_list = [
     "mmusculus", "rnorvegicus", "drerio", "ptroglodytes", "ggallus", "sscrofa", "btaurus", 
     "clfamiliaris", "ecaballus", "oarambouillet",
-    "cjacchus", "mmulatta"
+    "cjacchus", "mmulatta", "xtropicalis"
 ]
 
 # Select only the relevant columns from pop_up_info
@@ -62,27 +62,32 @@ pop_up_info_lim = pop_up_info[["HGNC ID", "Approved name", "Alias symbol", # "MG
 pop_up_info_lim = pop_up_info_lim.drop_duplicates(subset="HGNC ID", keep="first")
 
 # Drop columns where all values are NA in gene_pair
-gene_pair = fetchGSheet.gene_pair.dropna(axis=1, how='all')
-gene_pair = gene_pair[gene_pair['LR pair'] != '']
+gene_pair = fetchGSheet.gene_pair_human.dropna(axis=1, how='all')
+gene_pair = gene_pair[gene_pair['LR_pair_orig'] != '']
 # for now set source count as triplicates
-sourceCount = len(gene_pair[['LR pair']])
+sourceCount = len(gene_pair[['LR_pair_orig']])
 
+### KEEP ALL AS OF LATEST input datatable
 # for now, keep only the following columns
-gene_pair = gene_pair[['LR pair', 'Ligand', 'Ligand.HGNC', 'Receptor', 'Receptor.HGNC',
-                       'perplexity link', 'PMID', 'binding location', 
-                       'bind in trans?', 'bidirectional signalling?',
-                       'interaction type', 'original source']]
+# gene_pair = gene_pair[['LR pair', 'Ligand', 'Ligand.HGNC', 'Receptor', 'Receptor.HGNC',
+#                        'perplexity link', 'PMID', 'binding location', 
+#                        'bind in trans?', 'bidirectional signalling?',
+#                        'interaction type', 'original source']]
 
-gene_pair = gene_pair.dropna(subset=['LR pair'])
+gene_pair = gene_pair.dropna(subset=['LR_pair_orig'])
 
 # some PMIDs kick in with "," so replace
 gene_pair["PMID"] = [value.replace(",", "") for value in gene_pair["PMID"]]
 gene_pair = gene_pair.dropna(subset=['PMID'])
 
+### NO NEED FOR MAPPING AS OF LATEST input datatable
 # Mapping for replacements
-mapping = dict(zip(fetchGSheet.src_info['original source'], fetchGSheet.src_info['shortname']))
-# Replace values in the column based on the mapping
-gene_pair['original source'] = gene_pair['original source'].replace(mapping)
+# mapping = dict(zip(fetchGSheet.src_info['original source'], fetchGSheet.src_info['shortname']))
+# # Replace values in the column based on the mapping
+# gene_pair['original source'] = gene_pair['original source'].replace(mapping)
+
+gene_pair.columns = gene_pair.columns.str.strip()
+gene_pair[['Ligand', 'Receptor']] = gene_pair['LR Pair Card'].str.split(' ', n=1, expand=True)
 
 ## add Ligand/Receptor Location
 def dedup_locations(loc_str):
@@ -155,27 +160,35 @@ gene_pair.loc[gene_pair['Receptor location'] == gene_pair['Receptor'], 'Receptor
 gene_pair['Ligand location'] = [value.replace("n/a", "unknown") for value in gene_pair['Ligand location']]
 gene_pair['Receptor location'] = [value.replace("n/a", "unknown") for value in gene_pair['Receptor location']]
 
-# Fetch species IDs from the dataset
+# Fetch HGNC IDs from the dataset
 hgnc_id = [col for col in gene_pair.columns if "HGNC" in col]
 hgnc_id = pd.concat([gene_pair[col] for col in hgnc_id]).unique()
 
+gene_pair['Human LR Pair'] = np.where(
+    gene_pair['Human evidence'] == "absent in human", 
+    "no human ortholog",                                  
+    gene_pair['Homo sapiens_ligand'] + " " + gene_pair['Homo sapiens_receptor'] 
+)
+
 # Rename columns for better clarity
 gene_pair = gene_pair.rename(columns={
-    "LR pair": "Human LR Pair",
-    "Ligand.HGNC": "Ligand HGNC ID",
-    "Receptor.HGNC": "Receptor HGNC ID",
-    "perplexity link": "Perplexity", # will be replaced with actual link later
-    "original source": "Database Source",
+    "LR_pair_orig": "LR Pair",
+    "HGNC ligand": "Ligand HGNC ID",
+    "HGNC receptor": "Receptor HGNC ID",
+    "ENSEMBL ligand": "Ligand ENSEMBL ID",
+    "ENSEMBL receptor": "Receptor ENSEMBL ID",
+    # "perplexity link": "Perplexity", # will be replaced with actual link later
+    # "original source": "Database Source",
     "Ligand location": "Ligand Location",
     "Receptor location": "Receptor Location",
-    "binding location": "Binding Location",
-    "bind in trans?" : "Trans-binding", 
-    "bidirectional signalling?": "Bidirectional Signalling",
-    "interaction type" : "Interaction Type"
+    # "binding location": "Binding Location",
+    # "bind in trans?" : "Trans-binding", 
+    # "bidirectional signalling?": "Bidirectional Signalling",
+    # "interaction type" : "Interaction Type"
     #"PMID": "PMID support" # was PMID support
 })
 
-
+gene_pair = gene_pair.drop(columns=["Homo sapiens_ligand", "Homo sapiens_receptor"])
 # Merge gene_pair with pop_up_info_lim for Ligand(L)
 gene_pair = gene_pair.merge(pop_up_info_lim, how='left', left_on='Ligand HGNC ID', right_on='HGNC ID')
 
@@ -187,66 +200,7 @@ gene_pair = gene_pair.rename(columns={"Approved name": "Ligand Name",
                                      },
                             )
 gene_pair = gene_pair.drop(columns=["HGNC ID", "Approved symbol"])
-# Add top pathway per pair
-LR_pairs = gene_pair["Human LR Pair"].unique()
-df= pd.read_csv("data/pathway_annotations_per_pair.csv")
-#df = df[df["interaction"].isin(LR_pairs)]
-# Sort by absolute value of 'weight', descending (larger abs(weight) first)
-df_sorted = df.reindex(df['weight'].abs().sort_values(ascending=False).index)
-# Keep only the first occurrence for each unique 'interaction'
-#df_unique = df_sorted.drop_duplicates(subset='interaction', keep='first')
-#Keep ALL
-df = df_sorted.reset_index(drop=True)
-top_pathway_df = df[["interaction", "source"]]
-top_pathway_df = top_pathway_df.groupby('interaction')['source'].apply(', '.join).reset_index()
-top_pathway_df = top_pathway_df.rename(columns={
-                                      "source": "PROGENy Pathway"
-})
-top_pathway_df["interaction"] = [value.replace("^", " ") for value in top_pathway_df["interaction"]]
-gene_pair = gene_pair.merge(top_pathway_df, how='left', left_on='Human LR Pair', right_on='interaction')
-gene_pair = gene_pair.drop(columns=["interaction"])
-#df = df_unique.reset_index(drop=True)
-top_pathway_df=fetchGSheet.kegg_pathway_info[["LR Pair", "kegg_pathway_id", "kegg_relationship", "kegg_pathway_name"]].copy()
-# add link to kegg_pathway_name
-top_pathway_df["kegg_pathway_name"] = [
-    f'<a href="https://www.kegg.jp/pathway/{kegg_id}" target="_blank">{name}</a>'
-    for kegg_id, name in zip(top_pathway_df["kegg_pathway_id"], top_pathway_df["kegg_pathway_name"])
-]
 
-# link to kegg_pathway_id
-top_pathway_df["kegg_pathway_id"] = [
-    f'<a href="https://www.kegg.jp/pathway/{id}" target="_blank">{id}</a>'
-    for id in top_pathway_df["kegg_pathway_id"]]
-
-
-top_pathway_df = top_pathway_df.rename(columns={
-                                      "kegg_pathway_name": "KEGG Pathway",
-                                      "kegg_relationship": "KEGG relationship",
-                                      "kegg_pathway_id": "KEGG Pathway ID"
-    
-})
-top_pathway_df1 = top_pathway_df[["LR Pair", "KEGG Pathway"]].drop_duplicates()
-top_pathway_df1 = top_pathway_df1.groupby('LR Pair')['KEGG Pathway'].apply(', '.join).reset_index()
-gene_pair = gene_pair.merge(top_pathway_df1, how='left', left_on='Human LR Pair', right_on='LR Pair')
-gene_pair = gene_pair.drop(columns=["LR Pair"])
-
-# Add Disease Category per pair
-df= pd.read_csv("data/disease_annotations_per_pair.csv")
-df_cat=pd.read_csv("data/disease_categories.csv")
-mapping = dict(zip(df_cat['Disease Name'], df_cat['Category']))
-# Replace values in the column based on the mapping
-df["Disease Type"] = df['disease'].replace(mapping)
-df = df[["interaction", "Disease Type"]].drop_duplicates()
-df['Disease Type'] = df['Disease Type'].astype(str)
-df = df.sort_values(by='Disease Type', ascending=True)
-# Group by 'col1' and combine 'col2' values with ', '
-df = df.groupby('interaction')['Disease Type'].apply(', '.join).reset_index()
-# Create "Cancer-related" column based on whether "Cancers & Neoplasms" is in col2
-df['Cancer-related'] = df['Disease Type'].apply(lambda x: 'Yes' if 'Cancer' in x else 'No')
-disease_df = df[df["interaction"].isin(LR_pairs)]
-# Function to update the "Cancer-related" column and modify "col2" if needed
-
-gene_pair = gene_pair.merge(disease_df, how='left', left_on='Human LR Pair', right_on='interaction')
 
 gene_pair = gene_pair.merge(pop_up_info_lim, how='left', left_on='Receptor HGNC ID', right_on='HGNC ID')
 
@@ -257,6 +211,7 @@ gene_pair = gene_pair.rename(columns={"Approved name": "Receptor Name",
                                       "Previous symbol": "Receptor Old symbol",}
                             )
 
+### AS OF LATEST DB skip pathways for now (code in addPathwayDiseaseAnnot_temp.py)
 
 # Add new columns where all Ligand Symbol & Aliases and Receptor Symbol & Aliases merged in one column
 def format_symbol_aliases(symbol, old_symbol, aliases):
@@ -332,370 +287,45 @@ gene_pair["Receptor Symbols"] = [
     for aliases in gene_pair["Receptor Symbols"]
 ]
 
+# might be used later just save info for now (for mouse cards)
+grab_mouse_info = gene_pair["LR Pair Card"][gene_pair["Human evidence"] == "absent in human"]
+grab_mouse_info = grab_mouse_info.unique()
+grab_mouse_info
 
-
-
+# Add an empty Perplexity column filled with None (just to save it's order
+gene_pair['Perplexity'] = None
 #gene_pair = gene_pair.drop(columns=["Approved symbol_x", "Approved symbol_y"])
 
-# Function to add species-specific species Enseml ID and symbol for all other species except for mouse, rat, and zebrafish
-def appendOtherSpeciesInfo(species, origDF):
-    species_name = {
-        "mmusculus": "Mouse",
-        "rnorvegicus": "Rat",
-        "drerio": "Zebrafish",
-        "ptroglodytes": "Chimpanzee",
-        "ggallus": "Chicken",
-        "sscrofa": "Pig",
-        "btaurus": "Cow",
-        "clfamiliaris": "Dog",
-        "ecaballus": "Horse",
-        "oarambouillet": "Sheep",
-        "cjacchus": "Marmoset",
-        "mmulatta": "Macaque"    
-    }.get(species, "Unknown species")
-    
-    # Load species-specific data
-    species_info = pd.read_csv(f"data/{species}_ID_biomart.csv")
-
-    # Keep relevant columns - use species code, not species_name
-    species_mapping = {
-        "mmusculus": "mgi_id",
-        "rnorvegicus": "rgd_id", 
-        "drerio": "zfin_id_id"
-    }
-    
-    # Fix: Use species (not species_name) for lookup
-    species_id = species_mapping.get(species, f"{species}_homolog_ensembl_gene")
-    
-    # Check what columns actually exist in the CSV
-    available_cols = [col for col in [species_id, f"{species}_homolog_associated_gene_name", 'hgnc_id'] 
-                     if col in species_info.columns]
-    
-    species_info = species_info[available_cols]
-
-    # Remove rows where 'hgnc_id' is NaN and handle groupby properly
-    if 'hgnc_id' in species_info.columns:
-        species_info = species_info.dropna(subset=['hgnc_id'])
-        # Fix the groupby - aggregate non-hgnc_id columns properly
-        species_info = species_info.groupby('hgnc_id').agg({
-            col: lambda x: ', '.join(x.dropna().astype(str).unique()) 
-            for col in species_info.columns if col != 'hgnc_id'
-        }).reset_index()
-
-    # Merge with ligand data
-    origDF = origDF.merge(species_info, how='left', 
-                           left_on='Ligand HGNC ID', right_on='hgnc_id',
-                           suffixes=('', '_lig'))
-    
-    # Rename columns for ligand info
-    rename_dict = {}
-    if f"{species}_homolog_associated_gene_name" in origDF.columns:
-        rename_dict[f"{species}_homolog_associated_gene_name"] = f"{species_name} Ligand"
-    if f"{species}_homolog_ensembl_gene" in origDF.columns:
-        rename_dict[f"{species}_homolog_ensembl_gene"] = f"{species_name} Ligand Ensembl ID"
-    if species_id in origDF.columns and species_id != f"{species}_homolog_ensembl_gene":
-        rename_dict[species_id] = f"{species_name} Ligand ID"
-        
-    origDF = origDF.rename(columns=rename_dict)
-
-    # Drop hgnc_id column
-    if 'hgnc_id' in origDF.columns:
-        origDF = origDF.drop(columns=['hgnc_id'])
-
-    # Merge with receptor data
-    origDF = origDF.merge(species_info, how='left', 
-                           left_on='Receptor HGNC ID', right_on='hgnc_id',
-                           suffixes=('', '_rec'))
-
-    # Rename columns for receptor info
-    rename_dict = {}
-    if f"{species}_homolog_associated_gene_name" in origDF.columns:
-        rename_dict[f"{species}_homolog_associated_gene_name"] = f"{species_name} Receptor"
-    elif f"{species}_homolog_associated_gene_name_rec" in origDF.columns:
-        rename_dict[f"{species}_homolog_associated_gene_name_rec"] = f"{species_name} Receptor"
-        
-    if f"{species}_homolog_ensembl_gene" in origDF.columns:
-        rename_dict[f"{species}_homolog_ensembl_gene"] = f"{species_name} Receptor Ensembl ID"
-    elif f"{species}_homolog_ensembl_gene_rec" in origDF.columns:
-        rename_dict[f"{species}_homolog_ensembl_gene_rec"] = f"{species_name} Receptor Ensembl ID"
-        
-    if species_id in origDF.columns and species_id != f"{species}_homolog_ensembl_gene":
-        rename_dict[species_id] = f"{species_name} Receptor ID"
-    elif f"{species_id}_rec" in origDF.columns:
-        rename_dict[f"{species_id}_rec"] = f"{species_name} Receptor ID"
-        
-    origDF = origDF.rename(columns=rename_dict)
-
-    # Drop hgnc_id columns
-    cols_to_drop = [col for col in origDF.columns if col in ['hgnc_id', 'hgnc_id_rec']]
-    if cols_to_drop:
-        origDF = origDF.drop(columns=cols_to_drop)
-
-    # Drop columns where all values are NaN
-    origDF = origDF.dropna(axis=1, how='all')
-
-    return origDF
-
-
-# Loop through each species and update gene_pair
-for species in species_list:
-    gene_pair = appendOtherSpeciesInfo(species, gene_pair)
-
-# Drop columns where all values are NA in gene_pair
-gene_pair = gene_pair.dropna(axis=1, how='all')
-
-gene_pair = gene_pair.fillna(" ")
-gene_pair = gene_pair[gene_pair['Human LR Pair'] != ' ']
-# Step 1: Identify rows where 'Ligand HGNC ID' is missing or empty,
-# and set 'Mouse Ligand' to match the human 'Ligand' name.
-mask = gene_pair['Ligand HGNC ID'].astype(str).str.strip() == ''
-gene_pair.loc[mask, 'Mouse Ligand'] = gene_pair.loc[mask, 'Ligand']
-
-# Step 2: Load MGI info table and keep only relevant, non-null mappings
-MGI_info = pd.read_csv("data/mouse_name_mapping.csv")
-MGI_info = MGI_info[["MGI symbol", "MGI ID"]].dropna()
-# Strip leading/trailing whitespace
-gene_pair['Mouse Ligand'] = gene_pair['Mouse Ligand'].astype(str).str.strip()
-MGI_info['MGI symbol'] = MGI_info['MGI symbol'].astype(str).str.strip()
-# Step 3: Merge to get MGI ID where 'Mouse Ligand' matches the mouse gene name
-gene_pair = gene_pair.merge(
-    MGI_info,
-    left_on='Mouse Ligand',
-    right_on='MGI symbol',
-    how='left')
-
-gene_pair['Mouse Ligand ID'] = gene_pair.apply(
-    lambda row: row['MGI ID'] if is_mouse_specific(row['Ligand']) else row['Mouse Ligand ID'],
-    axis=1
-)
-
-# Step 5: Drop temporary columns from merge
-gene_pair = gene_pair.drop(columns=['MGI ID', 'MGI symbol'])
-
-# and set 'Mouse Receptor' to match the human 'Receptor' name.
-mask = gene_pair['Receptor HGNC ID'].astype(str).str.strip() == ''
-gene_pair.loc[mask, 'Mouse Receptor'] = gene_pair.loc[mask, 'Receptor']
-
-gene_pair['Mouse Receptor'] = gene_pair['Mouse Receptor'].astype(str).str.strip()
-MGI_info['MGI symbol'] = MGI_info['MGI symbol'].astype(str).str.strip()
-gene_pair = gene_pair.merge(
-    MGI_info,
-    left_on='Mouse Receptor',
-    right_on='MGI symbol',
-    how='left')
-
-gene_pair['Mouse Receptor ID'] = gene_pair.apply(
-    lambda row: row['MGI ID'] if is_mouse_specific(row['Receptor']) else row['Mouse Receptor ID'],
-    axis=1
-)
-
-gene_pair = gene_pair.drop(columns=['MGI ID', 'MGI symbol'])
-
-
-# Linkify multiple Zebrafish Receptor IDs
-gene_pair['Zebrafish Receptor ID'] = gene_pair['Zebrafish Receptor ID'].apply(
-    lambda cell: ", ".join(
-        f'<a href="https://zfin.org/{zfin.strip()}" target="_blank">{zfin.strip()}</a>'
-        for zfin in str(cell).split(", ")
-        if zfin.strip()
-    ) if pd.notna(cell) else ""
-)
-
-# Linkify multiple Zebrafish Ligand IDs
-gene_pair['Zebrafish Ligand ID'] = gene_pair['Zebrafish Ligand ID'].apply(
-    lambda cell: ", ".join(
-        f'<a href="https://zfin.org/{zfin.strip()}" target="_blank">{zfin.strip()}</a>'
-        for zfin in str(cell).split(", ")
-        if zfin.strip()
-    ) if pd.notna(cell) else ""
-)
-
-gene_pair = gene_pair.rename(columns={
-                                     "Mouse Ligand ID": "Ligand MGI ID", 
-                                     "Rat Ligand ID": "Ligand RGD ID",
-                                     "Zebrafish Ligand ID": "Ligand ZFIN ID",
-                                     "Mouse Receptor ID": "Receptor MGI ID", 
-                                     "Rat Receptor ID": "Receptor RGD ID",
-                                     "Zebrafish Receptor ID": "Receptor ZFIN ID",}
-                            )
-
-
-
-# add some missing MGI since they were mouse-specific
-MGI_info = dict(zip(MGI_info['MGI symbol'], MGI_info['MGI ID']))
-# Function to apply the mapping only if the MGI ID is empty
-def map_if_empty(row, gene_col, mgi_col, mapping_dict):
-    if pd.isna(row[mgi_col]) or row[mgi_col] == '':
-        return mapping_dict.get(row[gene_col], '') # Use .get() to avoid KeyError if symbol not in mapping
-    return row[mgi_col]
-
-# Apply the mapping to 'Receptor MGI ID'
-gene_pair['Receptor MGI ID'] = gene_pair.apply(
-    lambda row: map_if_empty(row, 'Receptor', 'Receptor MGI ID', mapping),
-    axis=1
-)
-
-# Apply the mapping to 'Ligand MGI ID'
-gene_pair['Ligand MGI ID'] = gene_pair.apply(
-    lambda row: map_if_empty(row, 'Ligand', 'Ligand MGI ID', mapping),
-    axis=1
-)
-
-# add some missing RGD since they were mouse-specific
-mouse_rat_info = pd.read_csv("data/mouse_to_rat_mapping.csv")
-mapping_mouse_to_rat = dict(zip(mouse_rat_info['MGI ID'], mouse_rat_info['RGD ID']))
-mapping_mr2 = dict(zip(mouse_rat_info['RGD ID'], mouse_rat_info['RGD symbol']))
-
-def format_rgd_ids(cell):
-    if pd.isna(cell):
-        return ""
-    ids = str(cell).split(",")
-    cleaned = []
-    for rgd in ids:
-        rgd = rgd.strip()
-        if not rgd or rgd.lower() == "none":
-            continue
-        try:
-            rgd_clean = f"RGD:{int(float(rgd))}"
-        except ValueError:
-            rgd_clean = f"RGD:{rgd}"
-        cleaned.append(rgd_clean)
-    return ", ".join(cleaned)
-
-    
-gene_pair["Ligand RGD ID"] = gene_pair["Ligand RGD ID"].apply(format_rgd_ids)
-gene_pair["Receptor RGD ID"] = gene_pair["Receptor RGD ID"].apply(format_rgd_ids)
-# Apply the mapping to 'Ligand MGI ID'
-gene_pair['Ligand RGD ID'] = gene_pair.apply(
-    lambda row: map_if_empty(row, 'Ligand MGI ID', 'Ligand RGD ID', mapping_mouse_to_rat),
-    axis=1
-) 
-
-# Apply the mapping to 'Receptor MGI ID'
-gene_pair['Receptor RGD ID'] = gene_pair.apply(
-    lambda row: map_if_empty(row, 'Receptor MGI ID', 'Receptor RGD ID', mapping_mouse_to_rat),
-    axis=1
-)
-
-def map_if_empty(row, source_col, target_col, mapping_dict):
-    current_val = row[target_col]
-    source_val = row[source_col]
-
-    # Don't overwrite if target already has a value
-    if pd.notna(current_val) and str(current_val).strip():
-        return current_val
-
-    # Only try mapping if source is non-empty
-    if pd.isna(source_val) or not str(source_val).strip():
-        return ""
-
-    # Clean source value
-    key = str(source_val).strip()
-    
-    # ✅ If multiple IDs (comma-separated), map only the first one
-    key = key.split(",")[0].strip()
-    
-    # ✅ Ensure it starts with "RGD:"
-    if not key.startswith("RGD:"):
-        try:
-            key = f"RGD:{int(float(key))}"
-        except ValueError:
-            pass
-
-    return mapping_dict.get(key, "")
-
-    
-gene_pair['Rat Receptor'] = gene_pair.apply(
-    lambda row: map_if_empty(row, 'Receptor RGD ID', 'Rat Receptor', mapping_mr2),
-    axis=1
-)
-
-gene_pair['Rat Ligand'] = gene_pair.apply(
-    lambda row: map_if_empty(row, 'Ligand RGD ID', 'Rat Ligand', mapping_mr2),
-    axis=1
-)
-
-
-# extract the mgi that would need to be converted from mouse to rat
-mouse_specific_mgi_ids_ligand = gene_pair[gene_pair['Ligand'].apply(is_mouse_specific)]['Ligand MGI ID'].tolist()
-mouse_specific_mgi_ids_receptor = gene_pair[gene_pair['Receptor'].apply(is_mouse_specific)]['Receptor MGI ID'].tolist()
-mouse_specific_mgi_ids = mouse_specific_mgi_ids_ligand + mouse_specific_mgi_ids_receptor
-mouse_specific_mgi_ids = pd.unique(pd.Series(mouse_specific_mgi_ids))
-
-
-# Linkify multiple RGD IDs in Ligand column
-
-def clean_rgd_id(rgd):
-    rgd = str(rgd).strip()
-
-# Linkify multiple MGI IDs in Ligand column
-gene_pair["Ligand MGI ID"] = gene_pair["Ligand MGI ID"].apply(
-    lambda cell: ", ".join(
-        f'<a href="https://www.informatics.jax.org/marker/{mgi.strip()}" target="_blank">{mgi.strip()}</a>'
-        for mgi in str(cell).split(", ")
-        if mgi.strip()
-    ) if pd.notna(cell) else ""
-)
-
-# Linkify multiple MGI IDs in Receptor column
-gene_pair["Receptor MGI ID"] = gene_pair["Receptor MGI ID"].apply(
-    lambda cell: ", ".join(
-        f'<a href="https://www.informatics.jax.org/marker/{mgi.strip()}" target="_blank">{mgi.strip()}</a>'
-        for mgi in str(cell).split(", ")
-        if mgi.strip()
-    ) if pd.notna(cell) else ""
-)
-
-
-
-# Linkify multiple RGD IDs in Receptor column
-gene_pair["Ligand RGD ID"] = gene_pair["Ligand RGD ID"].apply(
-    lambda cell: ", ".join(
-        f'<a href="https://rgd.mcw.edu/rgdweb/report/gene/main.html?id={rgd.strip()}" target="_blank">{rgd.strip()}</a>'
-        for rgd in str(cell).split(", ")
-        if rgd.strip()
-    ) if pd.notna(cell) else ""
-)
-
-
-# Linkify multiple RGD IDs in Receptor column
-gene_pair["Receptor RGD ID"] = gene_pair["Receptor RGD ID"].apply(
-    lambda cell: ", ".join(
-        f'<a href="https://rgd.mcw.edu/rgdweb/report/gene/main.html?id={rgd.strip()}" target="_blank">{rgd.strip()}</a>'
-        for rgd in str(cell).split(", ")
-        if rgd.strip()
-    ) if pd.notna(cell) else ""
-)
-
-# if "PMID link" in gene_pair.columns:
-#    gene_pair = gene_pair.drop(columns=["PMID link"])
+### For latest DB, skip (code saved as addOrth_temp.py)
 
 # Add
-first_columns=['Human LR Pair', 'Ligand', 'Receptor', 'Database Source']
+first_columns=['LR Pair Card', 'Human LR Pair', 'Ligand', 'Receptor', 'Ligand Symbols', 'Receptor Symbols', 'Ligand Location', 'Receptor Location',	'Ligand HGNC ID', 'Receptor HGNC ID', 'Perplexity', 'Human evidence'] # 'Database Source'
 
-#end_columns=['HGNC L R', 'sanity check', 'curator', 'secondary source?']
-#gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns + end_columns] + end_columns]
-gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns]]
+end_columns=['PMID', 'Pair_species', 'lig_species', 'rec_species', 'ligand_orig', 'receptor_orig']
+gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns + end_columns] + end_columns]
+# gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns]]
 
 # number of unique vars (Human and Mouse both counted)
 
-lrPairsCount = len(gene_pair["Human LR Pair"].unique())
+lrPairsCount = len(gene_pair["LR Pair Card"].unique())
 
 ligandCount = len(gene_pair["Ligand"].unique())
 
 receptorCount = len(gene_pair["Receptor"].unique())
 
-# Mouse Orthologue
-MouseLigandCount = len(gene_pair["Ligand MGI ID"].unique())
 
-MouseReceptorCount = len(gene_pair["Receptor MGI ID"].unique())
+### Remove from here for latest DB
+# # Mouse Orthologue
+# MouseLigandCount = len(gene_pair["Ligand MGI ID"].unique())
 
-# Rat Orthologue
-RatLigandCount = len(gene_pair["Ligand RGD ID"].unique())
+# MouseReceptorCount = len(gene_pair["Receptor MGI ID"].unique())
 
-RatReceptorCount = len(gene_pair["Receptor RGD ID"].unique())
+# # Rat Orthologue
+# RatLigandCount = len(gene_pair["Ligand RGD ID"].unique())
 
-gene_pair["PMID"] = [value.replace(" ", "") for value in gene_pair["PMID"]] # was'PMID support'
+# RatReceptorCount = len(gene_pair["Receptor RGD ID"].unique())
+
+# gene_pair["PMID"] = [value.replace(" ", "") for value in gene_pair["PMID"]] # was'PMID support'
 
 
 source = np.array(gene_pair["PMID"].unique())
@@ -707,32 +337,30 @@ source = sorted(
 )
 source = [value.replace(" ", "") for value in source]
 
-
-
 # Function to join unique sorted values
 agg_func = lambda x: ', '.join(sorted(set(map(str, x))))
 
-# Group and aggregate all columns except 'LR pair'
-gene_pair = gene_pair.groupby('Human LR Pair').agg(agg_func).reset_index()
-gene_pair = gene_pair[gene_pair['Human LR Pair'] != '']
+# Group and aggregate all columns except 'LR Pair Card'
+gene_pair = gene_pair.groupby('LR Pair Card').agg(agg_func).reset_index()
+gene_pair = gene_pair[gene_pair['LR Pair Card'] != '']
 # Identify rows where BOTH 'Ligand HGNC ID' and 'Receptor HGNC ID' are empty
 # We check if the stripped string is empty, as fillna('') converts None/NaN to empty strings
 has_hgnc_id = (gene_pair['Ligand HGNC ID'].astype(str).str.strip() != '') | \
               (gene_pair['Receptor HGNC ID'].astype(str).str.strip() != '')
 
-# Separate the DataFrame into two parts
-rows_with_hgnc_id = gene_pair[has_hgnc_id]
-rows_without_hgnc_id = gene_pair[~has_hgnc_id] # Use ~ to negate the condition
+# Separate the DataFrame into two parts (human-based cards and mouse based)
+human_rows = gene_pair[~(gene_pair["Human evidence"] == "absent in human")]
+mouse_rows = gene_pair[gene_pair["Human evidence"] == "absent in human"] 
 
 # Concatenate the DataFrames: rows with IDs first, then rows without IDs
-gene_pair = pd.concat([rows_with_hgnc_id, rows_without_hgnc_id]).reset_index(drop=True)
+gene_pair = pd.concat([human_rows, mouse_rows]).reset_index(drop=True)
 DBlength = len(gene_pair)
 gene_pair["Interaction ID"] = [f"CDB{str(i).zfill(5)}" for i in range(1, DBlength + 1)]
 
 # for creating PMIDs
-gene_pair00 = gene_pair[['Human LR Pair', 'PMID']] # was "PMID support"
+gene_pair00 = gene_pair[['LR Pair Card', 'PMID']] # was "PMID support"
 
-# Recreate Perplexity link
+# create Perplexity link
 def create_url_basic(perplexity_col):
     query = f"What is the primary evidence that {perplexity_col} bind-each-other-as-a-ligand-and-receptor-pair. Exclude reviews, uniprot, wiki, genecards, PIPS, iuphar as sources."
     encoded_query = query.replace(" ", "%20")
@@ -850,44 +478,46 @@ def generate_perplexity_links(df, pathway_col, default_query_template):
     df[pathway_col] = df.apply(create_link, axis=1)
     return df
 
-gene_pair = generate_perplexity_links(
-    gene_pair,
-    pathway_col="PROGENy Pathway",
-    default_query_template="What-major signalling pathways-is-the-ligand-receptor-pair-{pair}-associated-with"
-)
+### SKIP for latest DB
 
-gene_pair = generate_perplexity_links(
-    gene_pair,
-    pathway_col="Disease Type",
-    default_query_template="What-disease types-is-the-ligand-receptor-pair-{pair}-associated-with"
-)
-# if it is a yes or no question
-def generate_perplexity_links_yesno(
-    df,
-    pathway_col="Cancer-related",
-    default_query_template="Is-the-{pair}-associated-with-cancer-and-if-so-which-ones"
-):
-    def create_link(row):
-        pathway_value = str(row[pathway_col]).strip().lower()
-        pair = row["Human LR Pair"]
+# gene_pair = generate_perplexity_links(
+#     gene_pair,
+#     pathway_col="PROGENy Pathway",
+#     default_query_template="What-major signalling pathways-is-the-ligand-receptor-pair-{pair}-associated-with"
+# )
+
+# gene_pair = generate_perplexity_links(
+#     gene_pair,
+#     pathway_col="Disease Type",
+#     default_query_template="What-disease types-is-the-ligand-receptor-pair-{pair}-associated-with"
+# )
+# # if it is a yes or no question
+# def generate_perplexity_links_yesno(
+#     df,
+#     pathway_col="Cancer-related",
+#     default_query_template="Is-the-{pair}-associated-with-cancer-and-if-so-which-ones"
+# ):
+#     def create_link(row):
+#         pathway_value = str(row[pathway_col]).strip().lower()
+#         pair = row["Human LR Pair"]
         
-        if pd.isna(row[pathway_col]) or pathway_value in ["nan", "none", "", "unknown"]:
-            label = "ask Perplexity"
-            query = default_query_template.format(pair=pair)
-            output = f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">{label}</a>'
-        else:
-            label = row[pathway_col]
-            query = f"Provide evidence to support the statement-{pair}-is-related-to-cancer-answer-is-{label}"
-            output = f'{label} (see <a href="https://www.perplexity.ai/search?q={query}" target="_blank">evidence in Perplexity</a>)'
-        return output
+#         if pd.isna(row[pathway_col]) or pathway_value in ["nan", "none", "", "unknown"]:
+#             label = "ask Perplexity"
+#             query = default_query_template.format(pair=pair)
+#             output = f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank">{label}</a>'
+#         else:
+#             label = row[pathway_col]
+#             query = f"Provide evidence to support the statement-{pair}-is-related-to-cancer-answer-is-{label}"
+#             output = f'{label} (see <a href="https://www.perplexity.ai/search?q={query}" target="_blank">evidence in Perplexity</a>)'
+#         return output
     
-    df[pathway_col] = df.apply(create_link, axis=1)
-    return df
+#     df[pathway_col] = df.apply(create_link, axis=1)
+#     return df
 
-gene_pair = generate_perplexity_links_yesno(
-    gene_pair,
-    pathway_col="Cancer-related"
-)
+# gene_pair = generate_perplexity_links_yesno(
+#     gene_pair,
+#     pathway_col="Cancer-related"
+# )
 
 # Add tooltip to name
 
@@ -918,25 +548,28 @@ rat_columns = ['Rat Ligand','Rat Receptor','Ligand RGD ID','Receptor RGD ID']
 zebrafish_columns = ['Zebrafish Ligand','Zebrafish Receptor','Ligand ZFIN ID','Receptor ZFIN ID']
 
 # List of prefixes
-prefixes = ("Chimpanzee", "Chicken", "Pig", "Cow", "Dog", "Horse", "Sheep", "Marmoset", "Macaque")
+prefixes = ("Chimpanzee", "Chicken", "Pig", "Cow", "Dog", "Horse", "Sheep", "Marmoset", "Macaque", "Frog")
 
 # Get column names that start with any of the given prefixes
 selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)]
 # was "PMID support"
-gene_pair0 = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", "Receptor",
-                       "Ligand Symbols", "Receptor Symbols", 
-                       "Ligand Location", "Receptor Location",
-                       "Ligand HGNC ID", "Receptor HGNC ID",
-                       "Perplexity", "PMID", 'Ligand Name','Receptor Name', 'KEGG Pathway', 'Cancer-related', 'Disease Type', 'Binding Location', 'Trans-binding', 'Bidirectional Signalling', 'Interaction Type', "PROGENy Pathway"] + mouse_columns + rat_columns]
+gene_pair0 = gene_pair[["Interaction ID"]+ first_columns+["PMID"]]
+# gene_pair0 = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", "Receptor",
+#                        "Ligand Symbols", "Receptor Symbols", 
+#                        "Ligand Location", "Receptor Location",
+#                        "Ligand HGNC ID", "Receptor HGNC ID",
+#                        "Perplexity", "PMID", 'Ligand Name','Receptor Name', 'KEGG Pathway', 'Cancer-related', 'Disease Type', 'Binding Location', 'Trans-binding', 'Bidirectional Signalling', 'Interaction Type', "PROGENy Pathway"] + mouse_columns + rat_columns]
 
-gene_pair = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", "Receptor",
-                       "Ligand Symbols", "Receptor Symbols", 
-                       "Ligand Location", "Receptor Location",
-                       "Ligand HGNC ID", "Receptor HGNC ID",
-                       "Perplexity", "PMID", 
-                       "Database Source", "Binding Location",
-                       "Trans-binding", "Bidirectional Signalling",
-                       "Interaction Type",'Ligand Name','Receptor Name'] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
+gene_pair = gene_pair[["Interaction ID"]+ first_columns+["Ligand Name", "Receptor Name"]]
+
+# gene_pair = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", "Receptor",
+#                        "Ligand Symbols", "Receptor Symbols", 
+#                        "Ligand Location", "Receptor Location",
+#                        "Ligand HGNC ID", "Receptor HGNC ID",
+#                        "Perplexity", "PMID", 
+#                        "Database Source", "Binding Location",
+#                        "Trans-binding", "Bidirectional Signalling",
+#                        "Interaction Type",'Ligand Name','Receptor Name'] + mouse_columns + rat_columns + zebrafish_columns + selected_columns]
 # rm  "KEGG Pathway", "PROGENy Pathway", "Cancer-related", "Disease Type" for now
 
 # Quick check if there is mouse-specific
@@ -962,11 +595,12 @@ gene_pair["Receptor"] = [
                                               gene_pair["Receptor"])
 ]
 
+### SKIP for latest DB
 # tweak Database Source so when multiple should show multiple with tool tip
-gene_pair["Database Source"] = [
-    f'<span title="{orig_dbSource}">{("multiple (CDB2025 included)" if "connectomeDB2025" in orig_dbSource and "," in orig_dbSource else "multiple" if "," in orig_dbSource else orig_dbSource)}</span>'
-    for orig_dbSource in gene_pair["Database Source"]
-]
+# gene_pair["Database Source"] = [
+#     f'<span title="{orig_dbSource}">{("multiple (CDB2025 included)" if "connectomeDB2025" in orig_dbSource and "," in orig_dbSource else "multiple" if "," in orig_dbSource else orig_dbSource)}</span>'
+#     for orig_dbSource in gene_pair["Database Source"]
+# ]
 
 
 # FOR NOW just make it as simple as em-dash/arrow
@@ -987,12 +621,10 @@ gene_pair = gene_pair.drop(columns=["Ligand Name", "Receptor Name"])
 
 
 # Create the links to the HTML cards
-gene_pair["Human LR Pair"] = [
+gene_pair["LR Pair Card"] = [
     f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrPairOrig.replace(" ","-")}.html">{lrPair}</a>'
-    for lrPairOrig, lrPair in zip(gene_pair0["Human LR Pair"], gene_pair["Human LR Pair"])
+    for lrPairOrig, lrPair in zip(gene_pair0["LR Pair Card"], gene_pair["LR Pair Card"])
 ]
-
-
 
 
 # Add tooltips to the column headers
@@ -1005,7 +637,7 @@ gene_pair.columns = [
     f'<span title="Rat Genome Database (RGD) ID. Click on the link for more details">{col}</span>' if col in ["Ligand RGD ID", "Receptor RGD ID"] else
     f'<span title="Mouse Genome Informatics (MGI) ID. Click on the link for more details">{col}</span>' if col in ["Ligand MGI ID", "Receptor MGI ID"]else
     f'<span title="Zebrafish Information Network (ZFIN) ID. Click on the link for more details">{col}</span>' if col in ["Ligand ZFIN ID", "Receptor ZFIN ID"] else
-    f'<span title="Location based on the predicted subcellular localization of the human proteome, as described in Ramilowski et al. (PMID: 26198319)">{col}</span>' if col in ["Ligand Location", "Receptor Location"] else
+    f'<span title="Location based on the predicted subcellular localization of the human proteome">{col}</span>' if col in ["Ligand Location", "Receptor Location"] else
     f'<span title="Double-click header of {col} to ensure all values are shown">{col}&nbsp;</span>'
     for col in gene_pair.columns
 ]
@@ -1019,8 +651,6 @@ gene_pair = gene_pair.drop(columns=pmid_cols)
 #######################################################################
 
 gene_pair000 = gene_pair.copy()
-
-
 
 keywords_to_modify = ["Ligand", "Receptor"]
 exclude_keywords = ["HGNC ID", "Location", "Human"]  # Columns containing this will not be modified
@@ -1039,11 +669,10 @@ new_columns[:10] = [
 # Assign the modified column names back to the DataFrame
 gene_pair000.columns = new_columns
 #######################################################################
-# temporarily remove 1 column for presubmission
-#human_columns = [col for col in gene_pair000.columns][:17]
+### For latest DB, no need to limit columns
 human_columns = [col for col in gene_pair000.columns][:16]
 #######################################################################
-human_gene_pair = gene_pair.iloc[:, :-36]
+#human_gene_pair = gene_pair.iloc[:, :-36]
 # remove mouse specific ones from the datatable
-numOfMouseOrth = fetchGSheet.numOfMouseOrth
-human_gene_pair = gene_pair.iloc[:-numOfMouseOrth]
+evidence_cols = [col for col in gene_pair.columns if 'Human evidence' in col]
+human_gene_pair = gene_pair[~(gene_pair[evidence_cols[0]] == "absent in human")]
