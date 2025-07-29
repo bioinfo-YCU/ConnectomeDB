@@ -42,11 +42,11 @@
 
 **The following scripts should be rerun when there are new LR pairs:**
 
-### for HGNC
+### for HGNC, MGI, RGD, ZFIN databases:
+`downloadFull_HGNC_MGI_RGD_ZFINdb.py`
 
-`downloadHGNCfullList.r`
+#### if additional human and other species annotations is needed, use this:
 `downloadBioMartOrth.r`
-`convertHGNCtoENSP.r`
 
 ### for an accurate number of pairs in the title
 `rename_perSpecies.py`

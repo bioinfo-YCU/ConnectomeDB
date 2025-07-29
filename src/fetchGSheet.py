@@ -57,8 +57,8 @@ def safe_fetch(sheet_ID, tab_name, credentials_file, delay=1.5):
 # Loading Google Sheets data silently
 
 # Fetching and combining human/mouse data
-gene_pair_human = safe_fetch(sheet_ID, "FROZEN LIST HUMAN", credentials_file)
-gene_pair_mouse = safe_fetch(sheet_ID, "FROZEN LIST MOUSE", credentials_file)
+gene_pair_human = safe_fetch(sheet_ID, "FROZEN_human", credentials_file)
+gene_pair_mouse = safe_fetch(sheet_ID, "FROZEN_mouse", credentials_file)
 numOfMouseOrth = len(gene_pair_mouse[0:])
 # Combine human and mouse gene pairs
 if not gene_pair_human.empty and not gene_pair_mouse.empty:
@@ -106,14 +106,14 @@ gene_group = safe_fetch(sheet_ID, "HGNC gene group", credentials_file)
 src_info = safe_fetch(sheet_ID, "sourceAbbv", credentials_file)
 
 # Process human gene pairs
-if not gene_pair.empty and gene_pair.shape[1] > 36:
-    human_gene_pair = gene_pair.iloc[:, :-36]
-    if len(human_gene_pair) > 13:
-        human_gene_pair = human_gene_pair.iloc[:-13]
-    # Removed warning print
-else:
-    # Removed warning print
-    human_gene_pair = pd.DataFrame()
+# if not gene_pair.empty and gene_pair.shape[1] > 36:
+#     human_gene_pair = gene_pair.iloc[:, :-36]
+#     if len(human_gene_pair) > 13:
+#         human_gene_pair = human_gene_pair.iloc[:-13]
+#     # Removed warning print
+# else:
+#     # Removed warning print
+#     human_gene_pair = pd.DataFrame()
 
 # Data loading complete - removed final print statement
 
@@ -125,5 +125,6 @@ __all__ = [
     'kegg_pathway_info',   # Single sheet
     'gene_group',          # Single sheet
     'src_info',            # Single sheet
-    'human_gene_pair'      # Processed gene pairs
+    'gene_pair_human',      # Processed gene pairs
+    'gene_pair_mouse'
 ]
