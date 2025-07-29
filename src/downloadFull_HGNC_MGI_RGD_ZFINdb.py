@@ -5,10 +5,56 @@ import requests
 from io import StringIO
 from itertools import product
 import csv
+import os
 from datetime import datetime
 
 # today's date for version control
 today = datetime.now().strftime("%Y%m%d")  # e.g., '20250723'
+
+### HGNC database
+
+# --- 1. Download HGNC complete txt file ---
+# Define the URL and the destination file path
+url = "https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt"
+temp_destfile = "hgnc_complete_set.txt"
+final_destfile = "data/HGNC_gene_info_full.tsv"
+
+print(f"Downloading file from {url}...")
+
+# Send a GET request to the URL
+response = requests.get(url)
+
+# Check if the request was successful (status code 200)
+if response.status_code == 200:
+    # Open the destination file in write-binary mode and write the content
+    with open(temp_destfile, 'wb') as f:
+        f.write(response.content)
+    print(f"File successfully downloaded to {temp_destfile}")
+
+    # --- 2. Read the file into a pandas DataFrame ---
+    # The 'read_csv' function can handle tab-separated files by specifying the separator
+    hgnc_data = pd.read_csv(temp_destfile, sep='\t', header=0, low_memory=False)
+    # print("First 5 rows of the data:")
+    # print(hgnc_data.head())
+
+    # --- 3. Save the DataFrame to a new file ---
+    # Create the 'data' directory if it doesn't exist
+    os.makedirs(os.path.dirname(final_destfile), exist_ok=True)
+    
+    # Write the DataFrame to a new tab-separated file
+    # index=False is equivalent to R's row.names=FALSE
+    # quote=False is the default behavior in pandas' to_csv when not specified for non-numeric types
+    hgnc_data.to_csv(final_destfile, sep='\t', index=False, quotechar='"', quoting=1) # quoting=1 is csv.QUOTE_MINIMAL
+    
+    print(f"Data successfully saved to {final_destfile}")
+
+    # Optional: Clean up the temporary downloaded file
+    os.remove(temp_destfile)
+    print(f"Removed temporary file: {temp_destfile}")
+
+else:
+    print(f"Failed to download file. Status code: {response.status_code}")
+
 
 ### MGI database (https://www.informatics.jax.org/downloads/reports/index.html)
 

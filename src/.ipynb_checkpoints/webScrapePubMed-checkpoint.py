@@ -8,8 +8,8 @@ import time
 import os
 import xml.etree.ElementTree as ET
 
-sys.path.append(os.path.abspath("src"))  
-from createDataTable import source, pop_up_info
+import numpy as np
+source = np.array(gene_pair_human["PMID"].unique())
 
 # Read the API key from a file
 with open("data/ncbi_api_key.txt", "r") as file:
@@ -17,43 +17,45 @@ with open("data/ncbi_api_key.txt", "r") as file:
 
 # File to save the results
 output_file = "data/pubmed_results.csv"
+# previous file to grab info from
+prev_file = "data/pubmed_results_20250729.csv"
 
 # Load your list of PMIDs
 pmid_list = source
 
 # Fetch HGNC gene symbols (you should have the `fetchGSheet.pop_up_info` dataframe ready)
-def extract_hgnc_symbols(fetchGSheet):
-    # Concatenate Approved, Alias, and Previous symbols, then extract unique symbols
-    hgnc_symbols = pd.concat([
-        fetchGSheet['Approved symbol'],
-        fetchGSheet['Alias symbol'],
-        fetchGSheet['Previous symbol']
-    ], axis=0).dropna().str.upper().unique()  # Remove NaNs and make uppercase for matching
-     # Remove any empty strings from the list
-    hgnc_symbols = [symbol for symbol in hgnc_symbols if symbol != ""]
-    return set(hgnc_symbols)  # Return as a set for fast lookup
-hgnc_symbols = extract_hgnc_symbols(pop_up_info)
+# def extract_hgnc_symbols(fetchGSheet):
+#     # Concatenate Approved, Alias, and Previous symbols, then extract unique symbols
+#     hgnc_symbols = pd.concat([
+#         fetchGSheet['Approved symbol'],
+#         fetchGSheet['Alias symbol'],
+#         fetchGSheet['Previous symbol']
+#     ], axis=0).dropna().str.upper().unique()  # Remove NaNs and make uppercase for matching
+#      # Remove any empty strings from the list
+#     hgnc_symbols = [symbol for symbol in hgnc_symbols if symbol != ""]
+#     return set(hgnc_symbols)  # Return as a set for fast lookup
+# hgnc_symbols = extract_hgnc_symbols(pop_up_info)
 
 # Official species names and their corresponding terms (scientific names)
-species_dict = {
-    "human": "Homo sapiens",
-    "mouse": "Mus musculus",
-    "rat": "Rattus norvegicus",
-    "rabbit": "Oryctolagus cuniculus",
-    "monkey": "Macaca spp.",
-    "dog": "Canis lupus familiaris",
-    "pig": "Sus scrofa",
-    "zebra fish": "Danio rerio",
-    "chicken": "Gallus gallus",
-    "horse": "Equus ferus caballus",
-    "cat": "Felis catus",
-    "sheep": "Ovis aries",
-    "cow": "Bos taurus",
-    "fruit fly": "Drosophila melanogaster",
-    "c. elegans": "Caenorhabditis elegans",
-}
+# species_dict = {
+#     "human": "Homo sapiens",
+#     "mouse": "Mus musculus",
+#     "rat": "Rattus norvegicus",
+#     "rabbit": "Oryctolagus cuniculus",
+#     "monkey": "Macaca spp.",
+#     "dog": "Canis lupus familiaris",
+#     "pig": "Sus scrofa",
+#     "zebra fish": "Danio rerio",
+#     "chicken": "Gallus gallus",
+#     "horse": "Equus ferus caballus",
+#     "cat": "Felis catus",
+#     "sheep": "Ovis aries",
+#     "cow": "Bos taurus",
+#     "fruit fly": "Drosophila melanogaster",
+#     "c. elegans": "Caenorhabditis elegans",
+# }
 
-def fetch_pubmed_data(pmid_list, hgnc_symbols):
+def fetch_pubmed_data(pmid_list):
     base_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
     results = []
 
@@ -61,7 +63,7 @@ def fetch_pubmed_data(pmid_list, hgnc_symbols):
     if os.path.exists(output_file):
         existing_data = pd.read_csv(output_file)
     else:
-        existing_data = pd.DataFrame(columns=["PMID", "Title", "Abstract", "Journal", "Year", "Species"])
+        existing_data = pd.DataFrame(columns=["PMID", "Title", "Abstract", "Journal", "Year"])
 
     # Split PMIDs into batches
     batch_size = 50
@@ -103,31 +105,31 @@ def fetch_pubmed_data(pmid_list, hgnc_symbols):
                         year = medline_date_tag.text.split()[0] if medline_date_tag is not None else "N/A"
                 else:
                     year = "N/A"  # PubDate is completely missing
-
+# 
                 # Initialize species as N/A
-                species = "N/A"
+                # species = "N/A"
 
-                # Check if the word "patient" is detected in title or abstract (assume human)
-                if "patient" in title.lower() or "patient" in abstract.lower():
-                    species = "Homo sapiens"
-                elif "human" in title.lower() or "human" in abstract.lower():
-                    species = "Homo sapiens"
-                else:
-                    # Look for HGNC gene symbols in title or abstract (assume human if found)
-                    for gene in hgnc_symbols:
-                        if gene in title or gene in abstract:
-                            species = "Homo sapiens"
-                            break
-                    else:
-                        # Look for MeSH terms related to species
-                        for mesh_heading in article.findall(".//MeshHeadingList/MeshHeading"):
-                            descriptor_name = mesh_heading.findtext("DescriptorName")
-                            if descriptor_name:
-                                # Match official species names using the species_dict
-                                for species_term, scientific_name in species_dict.items():
-                                    if species_term in descriptor_name.lower():
-                                        species = scientific_name
-                                        break  # Stop after finding the first match
+                # # Check if the word "patient" is detected in title or abstract (assume human)
+                # if "patient" in title.lower() or "patient" in abstract.lower():
+                #     species = "Homo sapiens"
+                # elif "human" in title.lower() or "human" in abstract.lower():
+                #     species = "Homo sapiens"
+                # else:
+                #     # Look for HGNC gene symbols in title or abstract (assume human if found)
+                #     for gene in hgnc_symbols:
+                #         if gene in title or gene in abstract:
+                #             species = "Homo sapiens"
+                #             break
+                #     else:
+                #         # Look for MeSH terms related to species
+                #         for mesh_heading in article.findall(".//MeshHeadingList/MeshHeading"):
+                #             descriptor_name = mesh_heading.findtext("DescriptorName")
+                #             if descriptor_name:
+                #                 # Match official species names using the species_dict
+                #                 for species_term, scientific_name in species_dict.items():
+                #                     if species_term in descriptor_name.lower():
+                #                         species = scientific_name
+                #                         break  # Stop after finding the first match
 
                 # Append the result
                 results.append({
@@ -136,7 +138,7 @@ def fetch_pubmed_data(pmid_list, hgnc_symbols):
                     "Abstract": abstract,
                     "Journal": journal,
                     "Year": year,
-                    "Species": species,
+                    #"Species": species,
                 })
 
         except Exception as e:
@@ -173,15 +175,17 @@ def fetch_pubmed_data(pmid_list, hgnc_symbols):
     return results
 
 # Fetch PubMed data with your list of PMIDs, output file path, and NCBI API key
-fetch_pubmed_data(pmid_list, hgnc_symbols)
+fetch_pubmed_data(pmid_list)
 
 # Filter and print PMIDs where the Title does not end with a period this are the ones that need to be manually edited as title is not complete.
-# Filter and print PMIDs where the Title does not end with a period this are the ones that need to be manually edited as title is not complete.
 df = pd.read_csv(output_file)
-pmids_without_period = df[~df['Title'].str.endswith(('.', '?'))]['PMID']
+pmids_without_period = df[df['Title'].isna() | ~df['Title'].str.endswith(('.', '?')).fillna(False)]['PMID']
 pmid_check= pmids_without_period.tolist()
 print("These " + str(len(pmid_check)) + " titles that have to be manually checked -- possible incomplete titles")
 print(pmid_check)
+
+df =df[df["PMID"].isin(pmid_check)]
+df.to_csv("data/missing_PMID_title_info.csv")
 
 # Fill NaN values in 'Abstract' column with an empty string
 df['Abstract'] = df['Abstract'].fillna('')
@@ -191,3 +195,6 @@ pmid_check = pmids_without_period.tolist()
 
 print("These " + str(len(pmid_check)) + " PMIDs have abstracts that might be incomplete (do not end with a period or question mark or other indicators):")
 print(pmid_check)
+
+df =df[df["PMID"].isin(pmid_check)]
+df.to_csv("data/missing_PMID_abstract_info.csv")
