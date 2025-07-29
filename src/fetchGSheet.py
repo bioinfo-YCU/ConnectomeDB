@@ -124,7 +124,7 @@ __all__ = [
     'receptor_loc',        # Combined human + mouse
     'kegg_pathway_info',   # Single sheet
     'gene_group',          # Single sheet
-    'src_info',            # Single sheet
+    #'src_info',            # Single sheet
     'gene_pair_human',      # Processed gene pairs
     'gene_pair_mouse'
 ]
