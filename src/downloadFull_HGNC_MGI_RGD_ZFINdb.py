@@ -58,20 +58,70 @@ else:
 
 ### MGI database (https://www.informatics.jax.org/downloads/reports/index.html)
 
-# 1. URL and date-formatted filename
-url = "https://www.informatics.jax.org/downloads/reports/HGNC_AllianceHomology.rpt"
-filename = f"data/HGNC_AllianceHomology_{today}_MGI_DB.tsv"
+import pandas as pd
+import requests
+from datetime import datetime
+import os
 
-# 2. Fetch the file
-response = requests.get(url)
-response.raise_for_status()  # stop if download failed
+# Create data folder if it doesn't exist
+os.makedirs("data", exist_ok=True)
 
-# 3. Save with TSV extension
-with open(filename, "wb") as f:
+# Today's date for versioning
+today = datetime.now().strftime("%Y%m%d")
+
+# URLs and filenames
+homology_url = "https://www.informatics.jax.org/downloads/reports/HGNC_AllianceHomology.rpt"
+mrk_url = "https://www.informatics.jax.org/downloads/reports/MRK_Sequence.rpt"
+mrk_list_url = "https://www.informatics.jax.org/downloads/reports/MRK_List2.rpt"
+
+homology_file = f"data/HGNC_AllianceHomology_{today}.tsv"
+mrk_file = f"data/MRK_Sequence_{today}.tsv"
+mrk_list_file = f"data/MRK_List2_{today}.tsv"
+merged_file = f"data/MRK_Merged_{today}_MGI_DB.tsv"
+
+# Download HGNC_AllianceHomology.rpt
+response = requests.get(homology_url)
+response.raise_for_status()
+with open(homology_file, "wb") as f:
     f.write(response.content)
 
-print(f"✅ Saved as {filename}")
+# Download MRK_Sequence.rpt
+response = requests.get(mrk_url)
+response.raise_for_status()
+with open(mrk_file, "wb") as f:
+    f.write(response.content)
 
+# Download MRK_List2.rpt
+response = requests.get(mrk_list_url)
+response.raise_for_status()
+with open(mrk_list_file, "wb") as f:
+    f.write(response.content)
+
+# Load files
+df_mrk = pd.read_csv(mrk_file, sep="\t", dtype=str)
+df_homology = pd.read_csv(homology_file, sep="\t", dtype=str, index_col = False)
+
+df_mrk_list = pd.read_csv(mrk_list_file, sep="\t", dtype=str)
+df_mrk_list= df_mrk_list[["MGI Accession ID","Marker Synonyms (pipe-separated)"]].rename(columns={"MGI Accession ID": "MGI Marker Accession ID",
+                                                                                                  "Marker Synonyms (pipe-separated)": "Aliases"})
+df_homology = df_homology.rename(columns={"MGI Accession ID": "MGI Marker Accession ID"})
+# Keep only relevant columns from HGNC_AllianceHomology
+columns_to_keep = [
+    "MGI Marker Accession ID",
+    "EntrezGene ID",
+    "CCDS IDs",
+    "HGNC ID"
+]
+df_homology_subset = df_homology[columns_to_keep]
+# Merge: MRK + homology
+df_merged = df_mrk.merge(df_homology_subset, how="left", on="MGI Marker Accession ID")
+
+# Merge with synonyms
+df_merged = df_merged.merge(df_mrk_list, how="left", on="MGI Marker Accession ID")
+
+# Save result
+df_merged.to_csv(merged_file, sep="\t", index=False)
+print(f"Merged file saved to: {merged_file}")
 
 ### RGD database (https://download.rgd.mcw.edu/data_release/)
 
