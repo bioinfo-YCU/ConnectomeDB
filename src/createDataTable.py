@@ -288,7 +288,7 @@ gene_pair["Receptor Symbols"] = [
 ]
 
 # might be used later just save info for now (for mouse cards)
-grab_mouse_info = gene_pair["LR Pair Card"][gene_pair["Human evidence"] == "absent in human"]
+grab_mouse_info = gene_pair["LR Pair Card"][gene_pair["Human evidence"].isin(["absent in human", "not conserved"])]
 grab_mouse_info = grab_mouse_info.unique()
 grab_mouse_info
 
@@ -349,8 +349,8 @@ has_hgnc_id = (gene_pair['Ligand HGNC ID'].astype(str).str.strip() != '') | \
               (gene_pair['Receptor HGNC ID'].astype(str).str.strip() != '')
 
 # Separate the DataFrame into two parts (human-based cards and mouse based)
-human_rows = gene_pair[~(gene_pair["Human evidence"] == "absent in human")]
-mouse_rows = gene_pair[gene_pair["Human evidence"] == "absent in human"] 
+human_rows = gene_pair[~(gene_pair["Human evidence"].isin(["absent in human", "not conserved"]))]
+mouse_rows = gene_pair[gene_pair["Human evidence"].isin(["absent in human", "not conserved"])]
 
 # Concatenate the DataFrames: rows with IDs first, then rows without IDs
 gene_pair = pd.concat([human_rows, mouse_rows]).reset_index(drop=True)
@@ -553,7 +553,7 @@ prefixes = ("Chimpanzee", "Chicken", "Pig", "Cow", "Dog", "Horse", "Sheep", "Mar
 # Get column names that start with any of the given prefixes
 selected_columns = [col for col in gene_pair.columns if col.startswith(prefixes)]
 # was "PMID support"
-gene_pair0 = gene_pair[["Interaction ID"]+ first_columns+["PMID"]]
+gene_pair0 = gene_pair[["Interaction ID"]+ first_columns+["PMID"]+["Ligand Name", "Receptor Name"]]
 # gene_pair0 = gene_pair[["Interaction ID", "Human LR Pair", "Ligand", "Receptor",
 #                        "Ligand Symbols", "Receptor Symbols", 
 #                        "Ligand Location", "Receptor Location",
