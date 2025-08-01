@@ -39,6 +39,11 @@ header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
     table.dataTable tbody td {
         font-size: 90% !important; /* Body font size */
     }
+    
+    table.dataTable.compact tbody td {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    }
 
     /* italicized placeholder */
     input[type="text"]::placeholder {
@@ -136,6 +141,30 @@ header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
     .dataTables_filter {
         display: none !important;
     }
+    
+    .selection-counter {
+    color: darkgreen;
+    font-weight: bold;
+    font-size: 80%;
+    float: right;
+    margin-top: 8px;
+    margin-right: 10px;
+    padding: 5px 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    clear: right; /* ADD THIS */
+    text-align: right; /* ADD THIS */
+    }
+    
+    @media (max-width: 768px) {
+        .selection-counter {
+            float: right; /* CHANGED from 'none' to 'right' */
+            display: block;
+            margin: 10px 10px 10px 0; /* ADJUSTED margins */
+            text-align: right; /* KEEP right alignment on mobile too */
+        }
+    }
 
     /* Mobile styling for input */
     @media (max-width: 480px) {
@@ -144,6 +173,7 @@ header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
             padding: 5px !important;
         }
     }
+    
 </style>
 
 <table id="mouse-table" class="display nowrap cell-border compact" style="width:100%">
@@ -182,139 +212,51 @@ $(document).ready(function() {
     "title": "Mouse LR Pair"
   },
   {
-    "data": "Ligand",
-    "title": "<span title=\"Double-click header of Ligand to ensure all values are shown\">Ligand&nbsp;</span>"
+    "data": "Ligand Symbols",
+    "title": "Ligand Symbols"
   },
   {
-    "data": "Receptor",
-    "title": "<span title=\"Double-click header of Receptor to ensure all values are shown\">Receptor&nbsp;</span>"
-  },
-  {
-    "data": "Ligand MGI ID",
-    "title": "<span title=\"Genome Informatics (MGI) ID. Click on the link for more details\">Ligand MGI ID</span>"
-  },
-  {
-    "data": "Receptor MGI ID",
-    "title": "<span title=\"Genome Informatics (MGI) ID. Click on the link for more details\">Receptor MGI ID</span>"
-  },
-  {
-    "data": "Ligand Ensembl ID",
-    "title": "Ligand Ensembl ID"
-  },
-  {
-    "data": "Ligand GOC score",
-    "title": "Ligand GOC score"
-  },
-  {
-    "data": "Ligand WGA coverage",
-    "title": "Ligand WGA coverage"
-  },
-  {
-    "data": "Ligand % Identity",
-    "title": "Ligand % Identity"
-  },
-  {
-    "data": "Ligand Target % Identity",
-    "title": "Ligand Target % Identity"
-  },
-  {
-    "data": "Ligand Orthology Confidence",
-    "title": "Ligand Orthology Confidence"
-  },
-  {
-    "data": "Ligand Name",
-    "title": "Ligand Name"
-  },
-  {
-    "data": "Receptor Ensembl ID",
-    "title": "Receptor Ensembl ID"
-  },
-  {
-    "data": "Receptor GOC score",
-    "title": "Receptor GOC score"
-  },
-  {
-    "data": "Receptor WGA coverage",
-    "title": "Receptor WGA coverage"
-  },
-  {
-    "data": "Receptor % Identity",
-    "title": "Receptor % Identity"
-  },
-  {
-    "data": "Receptor Target % Identity",
-    "title": "Receptor Target % Identity"
-  },
-  {
-    "data": "Receptor Orthology Confidence",
-    "title": "Receptor Orthology Confidence"
-  },
-  {
-    "data": "Receptor Name",
-    "title": "Receptor Name"
-  },
-  {
-    "data": "Human Ligand",
-    "title": "<span title=\"Official Gene Symbol; Hover on symbols below to show gene names\"\">Human Ligand&nbsp;&nbsp;&nbsp;</span</span>"
-  },
-  {
-    "data": "Human Receptor",
-    "title": "<span title=\"Official Gene Symbol; Hover on symbols below to show gene names\"\">Human Receptor&nbsp;&nbsp;&nbsp;</span</span>"
-  },
-  {
-    "data": "Human Ligand Symbols",
-    "title": "<span title=\"Double-click header of Ligand Symbols to ensure all values are shown\"\">Human Ligand Symbols&nbsp;</span</span>"
-  },
-  {
-    "data": "Human Receptor Symbols",
-    "title": "<span title=\"Double-click header of Receptor Symbols to ensure all values are shown\"\">Human Receptor Symbols&nbsp;</span</span>"
+    "data": "Receptor Symbols",
+    "title": "Receptor Symbols"
   },
   {
     "data": "Ligand Location",
-    "title": "<span title=\"Location based on the predicted subcellular localization of the human proteome, as described in Ramilowski et al. (PMID: 26198319)\">Ligand Location</span>"
+    "title": "<span title=\"Location based on the predicted subcellular localization of the human proteome\">Ligand Location</span>"
   },
   {
     "data": "Receptor Location",
-    "title": "<span title=\"Location based on the predicted subcellular localization of the human proteome, as described in Ramilowski et al. (PMID: 26198319)\">Receptor Location</span>"
+    "title": "<span title=\"Location based on the predicted subcellular localization of the human proteome\">Receptor Location</span>"
   },
   {
-    "data": "Ligand HGNC ID",
-    "title": "<span title=\"HUGO Gene Nomenclature Committee (HGNC) ID. Click on the link for more details\">Ligand HGNC ID&nbsp;&nbsp;</span>"
+    "data": "Ligand MGI ID",
+    "title": "Ligand MGI ID"
   },
   {
-    "data": "Receptor HGNC ID",
-    "title": "<span title=\"HUGO Gene Nomenclature Committee (HGNC) ID. Click on the link for more details\">Receptor HGNC ID&nbsp;&nbsp;</span>"
+    "data": "Receptor MGI ID",
+    "title": "Receptor MGI ID"
   },
   {
     "data": "Perplexity",
-    "title": "<span title=\"Click the logo below to run Perplexity on the Human LR pair\">Perplexity&nbsp;</span>"
+    "title": "Perplexity"
   },
   {
-    "data": "Database Source",
-    "title": "<span title=\"Double-click header of Database Source to ensure all values are shown\">Database Source&nbsp;</span>"
+    "data": "Mouse evidence",
+    "title": "Mouse evidence"
   },
   {
-    "data": "Binding Location",
-    "title": "<span title=\"Double-click header of Binding Location to ensure all values are shown\">Binding Location&nbsp;</span>"
+    "data": "Human Ligand Symbols",
+    "title": "Human Ligand Symbols"
   },
   {
-    "data": "Trans-binding",
-    "title": "<span title=\"Double-click header of Trans-binding to ensure all values are shown\">Trans-binding&nbsp;</span>"
-  },
-  {
-    "data": "Bidirectional Signalling",
-    "title": "<span title=\"Double-click header of Bidirectional Signalling to ensure all values are shown\">Bidirectional Signalling&nbsp;</span>"
-  },
-  {
-    "data": "Interaction Type",
-    "title": "<span title=\"Double-click header of Interaction Type to ensure all values are shown\">Interaction Type&nbsp;</span>"
+    "data": "Human Receptor Symbols",
+    "title": "Human Receptor Symbols"
   }
 ];
         console.log('Columns config:', columns);
 
         // Build header HTML - add checkbox column back
         // Set the header for the first column to 'Copy' with a tooltip
-        var headerHtml = '<tr><th title="Tick the boxes of the rows you would like to copy/download via the buttons above">Select</th>';
+        var headerHtml = '<tr><th title="Tick the boxes of the rows you would like to download via the buttons above">Select</th>';
         columns.forEach(function(col) {
             headerHtml += '<th>' + (col.title || col.data || '') + '</th>';
         });
@@ -325,11 +267,11 @@ $(document).ready(function() {
         var totalColumns = columns.length + 1; // +1 for checkbox column
         
         // Only include valid positive column indices for hiding
-        var hiddenColumns = [4, 5, 22, 23];
+        var hiddenColumns = [3];
         
-        // Add last 5 columns to hidden list (adjust this number as needed)
+        // Add last 2 columns to hidden list (adjust this number as needed)
         // Remember to adjust for the prepended checkbox column
-        for (var i = 5; i > 0; i--) {
+        for (var i = 2; i > 0; i--) {
             var colIndex = totalColumns - i;
             if (colIndex > 0 && hiddenColumns.indexOf(colIndex) === -1) {
                 hiddenColumns.push(colIndex);
@@ -425,34 +367,34 @@ $(document).ready(function() {
                         $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config);
                     }
                 },
-                {
-                    extend: 'copyHtml5',
-                    filename: 'ConnectomeDB2025_mouse',
-                    title: null,
-                    exportOptions: {
-                        columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
-                        format: {
-                            body: function(data, row, column, node) {
-                                // Check if this cell contains the &#128269; (🔍) symbol AND a link (Perplexity column detection)
-                                if (data && typeof data.toString === 'function' && data.toString().includes('&#128269;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
-                                    var $temp = $('<div>').html(data);
-                                    var href = $temp.find('a').attr('href');
-                                    return href ? encodeURI(href) : data;
-                                }
-                                return (data && data.replace) ? data.replace(/<[^>]*>/g, '') : data;
-                            }
-                        }
-                    },
-                    action: function(e, dt, button, config) {
-                        var selectedRows = dt.rows('.selected').count();
-                        if (selectedRows > 0) {
-                            config.exportOptions.modifier = { selected: true };
-                        } else {
-                            config.exportOptions.modifier = { page: 'all', search: 'none' };
-                        }
-                        $.fn.dataTable.ext.buttons.copyHtml5.action.call(this, e, dt, button, config);
-                    }
-                }
+                // {
+                //     extend: 'copyHtml5',
+                //     filename: 'ConnectomeDB2025_mouse',
+                //     title: null,
+                //     exportOptions: {
+                //         columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
+                //         format: {
+                //             body: function(data, row, column, node) {
+                //                 // Check if this cell contains the &#128269; (🔍) symbol AND a link (Perplexity column detection)
+                //                 if (data && typeof data.toString === 'function' && data.toString().includes('&#128269;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
+                //                     var $temp = $('<div>').html(data);
+                //                     var href = $temp.find('a').attr('href');
+                //                     return href ? encodeURI(href) : data;
+                //                 }
+                //                 return (data && data.replace) ? data.replace(/<[^>]*>/g, '') : data;
+                //             }
+                //         }
+                //     },
+                //     action: function(e, dt, button, config) {
+                //         var selectedRows = dt.rows('.selected').count();
+                //         if (selectedRows > 0) {
+                //             config.exportOptions.modifier = { selected: true };
+                //         } else {
+                //             config.exportOptions.modifier = { page: 'all', search: 'none' };
+                //         }
+                //         $.fn.dataTable.ext.buttons.copyHtml5.action.call(this, e, dt, button, config);
+                //     }
+                // }
             ],
             columnDefs: [
                 {
@@ -461,14 +403,78 @@ $(document).ready(function() {
                     targets: 0
                 },
                 // Adjusted for checkbox column: Original column 10 is now at index 11
-                { "className": "dt-center", "targets": [-6] },
+                { "className": "dt-center", "targets": [10] },
                 // Adjusted for checkbox column: Original columns 5 and 6 are now at indices 5 and 6
-                { "width": "275px", "targets": [23,24] },
+                { "width": "275px", "targets": [3,4] },
                 { "visible": false, "targets": hiddenColumns }
             ],
             initComplete: function () {
                 console.log('DataTable initialization complete');
                 var api = this.api();
+                
+                $('.dataTables_wrapper .dt-layout-row.dt-layout-top .dt-layout-cell.dt-end').append('<div class="dataTables_info" id="top_info_display"></div>');
+
+
+                 // ADD THIS LINE: Create separate selection counter
+                $('.dt-buttons').after('<div class="selection-counter" id="selection_counter">0 rows selected</div>');
+                // --- Adjust your updateInfoDisplay function ---
+                window.updateInfoDisplay = function() {
+                    var info = api.page.info();
+                    var selectedCount = api.rows('.selected').count();
+                    var filteredCount = api.rows({ search: 'applied' }).count();
+                    var totalCount = api.rows().count();
+            
+                    var infoText = `Showing ${info.start + 1} to ${info.end} of ${filteredCount} entries`;
+            
+                    if (filteredCount !== totalCount) {
+                        infoText += ` (filtered from ${totalCount} total entries)`;
+                    }
+            
+                    if (selectedCount > 0) {
+                        var selectedInFiltered = api.rows({ search: 'applied' }).nodes().to$().filter('.selected').length;
+                        infoText += ` - ${selectedInFiltered} rows selected`;
+                    }
+            
+                    // Update BOTH the original (bottom) and the cloned (top) info elements
+                    // Make sure to update the one with the new ID for the top display
+                    $('#top_info_display_clone_2').html(infoText); // Update the cloned one
+                    $('.dataTables_wrapper .dataTables_info').html(infoText); // This will update the original bottom one
+                };
+
+            // ADD THIS: Simple counter update function
+                    window.updateSelectionCounter = function() {
+                        var selectedCount = api.rows('.selected').count();
+                        var filteredCount = api.rows({ search: 'applied' }).count();
+                        var totalCount = api.rows().count();
+                        
+                        if (selectedCount > 0) {
+                            var selectedInFiltered = api.rows({ search: 'applied' }).nodes().to$().filter('.selected').length;
+                            $('#selection_counter').text(selectedInFiltered + ' rows selected');
+                            $('#selection_counter').show();
+                        } else {
+                            $('#selection_counter').text('0 rows selected');
+                        }
+                    };
+            window.updateButtonText = function() {
+                var filteredCount = api.rows({ search: 'applied' }).count();
+                var totalCount = api.rows().count();
+                
+                if (filteredCount === totalCount) {
+                    $('.buttons-select-all').text('Select All (' + totalCount + ')');
+                } else {
+                    $('.buttons-select-all').text('Select All Filtered (' + filteredCount + ')');
+                }
+            };
+
+            // Add this event listener
+            api.on('draw.dt select.dt deselect.dt', function() {
+                setTimeout(updateButtonText, 100);
+                setTimeout(updateInfoDisplay, 100);
+                setTimeout(updateSelectionCounter, 100); // ADD THIS LINE
+            });
+
+            updateInfoDisplay(); // Call it once after setup
+            updateSelectionCounter(); // ADD THIS LINE
 
                 // Wait for DOM to be ready, then add filter
                 setTimeout(function() {
@@ -506,18 +512,18 @@ $(document).ready(function() {
                                 const searchTerms = val.split(',').map(term => term.trim().toLowerCase()).filter(term => term !== '');
 
                                 if (searchTerms.length > 0) {
-                                    // Update the search function to include columns 3, 4, 23, 24
+                                    // Update the search function to include columns 3, 4, 11, 12
                                     $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-                                        var col3Value = data[3] ? data[3].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
                                         var col4Value = data[4] ? data[4].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
-                                        var col24Value = data[24] ? data[24].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
-                                        var col25Value = data[25] ? data[25].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
+                                        var col5Value = data[5] ? data[5].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
+                                        var col12Value = data[12] ? data[12].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
+                                        var col13Value = data[13] ? data[13].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
                                     
                                         return searchTerms.some(term =>
-                                            col3Value.includes(term) || 
                                             col4Value.includes(term) || 
-                                            col24Value.includes(term) || 
-                                            col25Value.includes(term)
+                                            col5Value.includes(term) || 
+                                            col12Value.includes(term) || 
+                                            col13Value.includes(term)
                                         );
                                     });
 
@@ -556,8 +562,8 @@ $(document).ready(function() {
                             const normalize = str =>
                                 str ? str.toString().replace(/<[^>]*>/g, '').toLowerCase().trim() : '';
                 
-                            const valuesA = [normalize(rowDataA[3]), normalize(rowDataA[4]), normalize(rowDataA[24]), normalize(rowDataA[25])];
-                            const valuesB = [normalize(rowDataB[3]), normalize(rowDataB[4]), normalize(rowDataB[24]), normalize(rowDataB[25])];
+                            const valuesA = [normalize(rowDataA[4]), normalize(rowDataA[5]), normalize(rowDataA[12]), normalize(rowDataA[13])];
+                            const valuesB = [normalize(rowDataB[4]), normalize(rowDataB[5]), normalize(rowDataB[12]), normalize(rowDataB[13])];
                 
                             searchTerms.forEach(term => {
                                 valuesA.forEach(value => {

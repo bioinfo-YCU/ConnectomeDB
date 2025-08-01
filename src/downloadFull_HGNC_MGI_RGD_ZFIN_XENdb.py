@@ -11,6 +11,7 @@ from datetime import datetime
 # today's date for version control
 today = datetime.now().strftime("%Y%m%d")  # e.g., '20250723'
 
+
 ### HGNC database
 
 # --- 1. Download HGNC complete txt file ---
@@ -18,7 +19,7 @@ today = datetime.now().strftime("%Y%m%d")  # e.g., '20250723'
 url = "https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt"
 temp_destfile = "hgnc_complete_set.txt"
 final_destfile = "data/HGNC_gene_info_full.tsv"
-
+final_destfile_today = f"data/HGNC_gene_info_full_{today}.tsv"
 print(f"Downloading file from {url}...")
 
 # Send a GET request to the URL
@@ -40,7 +41,7 @@ if response.status_code == 200:
     # --- 3. Save the DataFrame to a new file ---
     # Create the 'data' directory if it doesn't exist
     os.makedirs(os.path.dirname(final_destfile), exist_ok=True)
-    
+    os.makedirs(os.path.dirname(final_destfile_today), exist_ok=True)
     # Write the DataFrame to a new tab-separated file
     # index=False is equivalent to R's row.names=FALSE
     # quote=False is the default behavior in pandas' to_csv when not specified for non-numeric types
@@ -128,8 +129,8 @@ print(f"Merged file saved to: {merged_file}")
 # 1. Define URL and dated filename
 import csv
 url = "https://download.rgd.mcw.edu/data_release/GENES_RAT.txt"
-out_file = f"data/GENES_RAT_{today}_RGD_DB.tsv"
-
+out_file = f"data/GENES_RAT_RGD_DB.tsv"
+out_file_today = f"data/GENES_RAT_{today}_RGD_DB.tsv"
 # 2. Fetch raw content as text
 response = requests.get(url)
 response.raise_for_status()
@@ -145,12 +146,17 @@ data_rows = rows[2:]
 
 
 # 5. Write as proper TSV
-with open(out_file, "w", newline="", encoding="utf-8") as f:
+with open(out_file_today, "w", newline="", encoding="utf-8") as f:
     writer = csv.writer(f, delimiter="\t")
     writer.writerow(header)
     writer.writerows(data_rows)
 
-print(f"✅ Written {len(rows)} rows to {out_file}")
+print(f"✅ Written {len(rows)} rows to {out_file_today}")
+
+with open(out_file, "w", newline="", encoding="utf-8") as f:
+    writer = csv.writer(f, delimiter="\t")
+    writer.writerow(header)
+    writer.writerows(data_rows)
 
 
 ### ZFIN database (https://zfin.org/downloads)
@@ -214,7 +220,103 @@ merged = merged.drop(columns=['SO ID_gene', 'Symbol', 'Evidence','Pub ID', 'ZFIN
 merged = merged.drop_duplicates()
 
 # 4. Save 
-output = f"data/Zebrafish_merged_{today}_ZFIN_DB.tsv"
+output = f"data/Zebrafish_merged_ZFIN_DB.tsv"
+output_today = f"data/Zebrafish_merged_{today}_ZFIN_DB.tsv"
 merged.to_csv(output, sep="\t", index=False, encoding="utf-8")
+merged.to_csv(output_today, sep="\t", index=False, encoding="utf-8")
 
-print(f"✅ Merged file saved: {output} — shape: {merged.shape}")
+print(f"✅ Merged file saved: {output_today} — shape: {merged.shape}")
+
+### Xenbase database (https://www.xenbase.org/entry/)
+# Define Xenbase URL and output files
+### Xenbase database (https://www.xenbase.org/entry/)
+
+# Define Xenbase URL and output files
+xenbase_url = "https://download.xenbase.org/xenbase/GenePageReports/GenePageGeneralInfo_ManuallyCurated.txt"
+xenbase_file = f"data/GenePageGeneralInfo_Xenbase_DB.tsv"
+xenbase_file_today = f"data/GenePageGeneralInfo_{today}_Xenbase_DB.tsv"
+
+# Download the file
+response = requests.get(xenbase_url)
+response.raise_for_status()
+
+# Manually assign headers since the file has no header row
+full_header = [
+    "Xenbase genepage ID",      # 0
+    "gene symbol",              # 1
+    "gene name",                # 2
+    "gene function",            # 3
+    "gene synonyms",            # 4
+    "JGI ID",                   # 5
+    # ... The file likely has more columns after this, which we will ignore
+]
+
+# Read the file without header and assign column names
+# Define Xenbase URL and output files
+xenbase_url = "https://download.xenbase.org/xenbase/GenePageReports/GenePageGeneralInfo_ManuallyCurated.txt"
+xenbase_file = f"data/GenePageGeneralInfo_Xenbase_DB.tsv"
+xenbase_file_today = f"data/GenePageGeneralInfo_{today}_Xenbase_DB.tsv"
+
+# Download the file
+response = requests.get(xenbase_url)
+response.raise_for_status()
+
+# Manually assign headers since the file has no header row
+full_header = [
+    "Xenbase genepage ID",      # 0
+    "gene symbol",              # 1
+    "gene name",                # 2
+    "gene function",            # 3
+    "gene synonyms",            # 4
+    "JGI ID",                   # 5
+    # ... The file likely has more columns after this, which we will ignore
+]
+
+# Read the file without header and assign column names
+df_xenbase = pd.read_csv(
+    StringIO(response.text),
+    sep="\t",
+    header=None,
+    names=full_header + [f"extra_{i}" for i in range(6, 20)],  # pad extra dummy headers
+    dtype=str
+)
+
+# Keep only the desired columns
+df_xenbase = df_xenbase[full_header]
+
+xenbase_url_add = "https://download.xenbase.org/xenbase/GenePageReports/XenbaseGenepageToGeneIdMapping.txt"
+xenbase_file = f"data/GenePageGeneralInfo_Xenbase_DB.tsv"
+xenbase_file_today = f"data/GenePageGeneralInfo_{today}_Xenbase_DB.tsv"
+
+# Download the file
+response_add = requests.get(xenbase_url_add)
+response_add.raise_for_status()
+
+full_header = [
+    "Xenbase genepage ID",     
+    "Xenbase genepage symbol",             
+    "tropicalis gene ID",              
+    "tropicalis gene symbol",          
+    "laevis.L gene ID",            
+    "laevis.L gene symbol",   
+    "laevis.S gene ID",
+    "laevis.S gene symbol"
+]
+# Read the file without header and assign column names
+df_xenbase_add = pd.read_csv(
+    StringIO(response_add.text),
+    sep="\t",
+    header=None,
+    names=full_header + [f"extra_{i}" for i in range(6, 20)],  # pad extra dummy headers
+    dtype=str
+)
+# Keep only the desired columns
+df_xenbase_add = df_xenbase_add[full_header]
+df_xenbase_add = df_xenbase_add[['Xenbase genepage ID', 'tropicalis gene ID', 'tropicalis gene symbol']]
+df_xenbase=df_xenbase.merge(df_xenbase_add, how="left", on="Xenbase genepage ID")
+
+# Save to file
+df_xenbase.to_csv(xenbase_file, sep="\t", index=False, encoding="utf-8")
+df_xenbase.to_csv(xenbase_file_today, sep="\t", index=False, encoding="utf-8")
+
+print(f"✅ Xenbase gene info saved: {xenbase_file_today} — shape: {df_xenbase.shape}")

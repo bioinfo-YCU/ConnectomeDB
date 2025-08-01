@@ -60,15 +60,16 @@ def safe_fetch(sheet_ID, tab_name, credentials_file, delay=1.5):
 gene_pair_human = safe_fetch(sheet_ID, "FROZEN_human", credentials_file)
 gene_pair_mouse = safe_fetch(sheet_ID, "FROZEN_mouse", credentials_file)
 numOfMouseOrth = len(gene_pair_mouse[0:])
+conservation =  safe_fetch(sheet_ID, "conservation", credentials_file)
 # Combine human and mouse gene pairs
-if not gene_pair_human.empty and not gene_pair_mouse.empty:
-    gene_pair = pd.concat([gene_pair_human, gene_pair_mouse])
-elif gene_pair_mouse.empty and not gene_pair_human.empty:
-    gene_pair = gene_pair_human  # Keep just human data
-elif gene_pair_human.empty and not gene_pair_mouse.empty:
-    gene_pair = gene_pair_mouse  # Use mouse data if human fails
-else:
-    gene_pair = pd.DataFrame()  # Both failed
+# if not gene_pair_human.empty and not gene_pair_mouse.empty:
+#     gene_pair = pd.concat([gene_pair_human, gene_pair_mouse])
+# elif gene_pair_mouse.empty and not gene_pair_human.empty:
+#     gene_pair = gene_pair_human  # Keep just human data
+# elif gene_pair_human.empty and not gene_pair_mouse.empty:
+#     gene_pair = gene_pair_mouse  # Use mouse data if human fails
+# else:
+#     gene_pair = pd.DataFrame()  # Both failed
 
 # Ligand location data
 ligand_loc_human = safe_fetch(sheet_ID, "Ligand_location_HUMAN", credentials_file)
@@ -119,12 +120,13 @@ src_info = safe_fetch(sheet_ID, "sourceAbbv", credentials_file)
 
 # Make only the final merged variables available for import
 __all__ = [
-    'gene_pair',           # Combined human + mouse
+    #'gene_pair',           # Combined human + mouse
     'ligand_loc',          # Combined human + mouse  
     'receptor_loc',        # Combined human + mouse
     'kegg_pathway_info',   # Single sheet
     'gene_group',          # Single sheet
-    'src_info',            # Single sheet
+    #'src_info',            # Single sheet
     'gene_pair_human',      # Processed gene pairs
-    'gene_pair_mouse'
+    'gene_pair_mouse',
+    'conservation'
 ]

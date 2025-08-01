@@ -11,7 +11,7 @@ sys.path.append(os.path.abspath("src"))
 
 # Import necessary modules from your existing src files
 # Ensure createDataTable and createFunctionalAnnotTable are in your 'src' directory
-from fetchGSheet import gene_pair_mouse
+from fetchGSheet import gene_pair_mouse, conservation
 from createDataTable import pop_up_info, gene_pair0, generate_perplexity_links, gene_pair00, is_mouse_specific, grab_mouse_info
 from createFunctionalAnnotTable import gene_pair_annot_ligand, gene_pair_annot_receptor
 
@@ -96,7 +96,7 @@ mouse_interaction_ids = gene_pair0_copy["Interaction ID"][gene_pair0_copy["Human
 ### SHOULD BE ACTIVATED ONCE WE DECIDE TO OPEN DB 
 # # Hide for now (linking to actual PMID database
 # gene_pair0_copy["Interaction ID"] = gene_pair0_copy["Interaction ID"].apply(
-#     lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/database/filter/{x}.html'>{x}</a>"
+#     lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/database/filter/{x}.html'>{x}</a>"
 # )
 
 # Add external link icon
@@ -111,7 +111,8 @@ mouse_interaction_ids = gene_pair0_copy["Interaction ID"][gene_pair0_copy["Human
 #     )
 
 # Add missing ligand name for mouse-specific
-mouse_info = pd.read_csv("data/MRK_Merged_20250730_MGI_DB.tsv", sep="\t", dtype=str)
+mouse_info = pd.read_csv("data/MRK_Merged_MGI_DB.tsv", sep="\t", dtype=str)
+mouse_info["Aliases"] = mouse_info["Aliases"].str.replace("|", ", ", regex=False)
 mapping_mouse_name = dict(zip(mouse_info['MGI Marker Accession ID'], mouse_info['Marker Name']))
 mapping_mouse_aliases = dict(zip(mouse_info['MGI Marker Accession ID'], mouse_info['Aliases']))
 mapping_mouse_uniprot = dict(zip(mouse_info['MGI Marker Accession ID'], mouse_info['UniProt IDs']))
@@ -179,10 +180,37 @@ gene_pair0_copy['Receptor Name'] = gene_pair0_copy.apply(
     if pd.notna(row['Receptor MGI ID']) else row['Receptor Name'],
     axis=1
 )
+# for grouping (flattening file)
+agg_func = lambda x: ', '.join(sorted(set(map(str, x))))
+
+## add the conservation info
+conservation = fetchGSheet.conservation[["LR Pair Card", "Direct", "Conserved"]]
+conservation = conservation.groupby('LR Pair Card').agg(agg_func).reset_index()
+# Sample data (assuming your DataFrame is named df)
+def clean_species_column(series):
+    def clean_cell(cell):
+        if pd.isna(cell) or cell.strip() == "":
+            return ""
+        # Split by comma, strip whitespace, and remove empty entries
+        items = [x.strip() for x in cell.split(",") if x.strip()]
+        # Remove duplicates while preserving order
+        seen = set()
+        deduped = []
+        for item in items:
+            if item not in seen:
+                seen.add(item)
+                deduped.append(item)
+        return ", ".join(deduped)
+    
+    return series.apply(clean_cell)
+
+# Apply to Direct and Conserved columns
+conservation["Direct"] = clean_species_column(conservation["Direct"])
+conservation["Conserved"] = clean_species_column(conservation["Conserved"])
+gene_pair0_copy = gene_pair0_copy.merge(conservation, how= 'left', on = "LR Pair Card")
 
 
 # Add Ligand/Receptor group info
-agg_func = lambda x: ', '.join(sorted(set(map(str, x))))
 gene_pair_annot_ligand = gene_pair_annot_ligand.groupby('Ligand HGNC ID').agg(agg_func).reset_index()
 ligand_mapping = dict(zip(gene_pair_annot_ligand['Ligand HGNC ID'], gene_pair_annot_ligand['Ligand group']))
 
@@ -461,10 +489,10 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
     gene_pair_input_df['is_mouse_specific'] = gene_pair_input_df['Interaction ID'].isin(mouse_interaction_ids)
 
     gene_pair_input_df["Interaction Type"] = [
-        f'{ligand} {ligandLocation} ligand binds to {receptor} {receptorLocation} receptor'
-        for ligand, ligandLocation, receptor, receptorLocation in zip(
+        f'{ligand} {ligandLocation} ligand binds to {receptor} {receptorLocation} receptor; Direct Pair in {direct} and Conserved in {conserved}'
+        for ligand, ligandLocation, receptor, receptorLocation, direct, conserved in zip(
             gene_pair_input_df["Ligand"], gene_pair_input_df["Ligand Location"],
-            gene_pair_input_df["Receptor"], gene_pair_input_df["Receptor Location"]
+            gene_pair_input_df["Receptor"], gene_pair_input_df["Receptor Location"],  gene_pair_input_df["Direct"],  gene_pair_input_df["Conserved"]
         )
     ]
     
@@ -886,7 +914,7 @@ def convert_pair_url(df_pairs):
     #     if pd.notna(lrpair) and lrpair.strip() and pd.notna(interaction_id):
     #         encoded_lrpair = lrpair.replace(" ", "%20")
     #         return (
-    #             f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/'
+    #             f'<a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/'
     #             f'{encoded_lrpair}_{interaction_id}.html" target="_blank" '
     #             f'title="Open {lrpair} card">'
     #             f'{lrpair}</a>'
@@ -899,7 +927,7 @@ def convert_pair_url(df_pairs):
             encoded_lrpair = lrpair.replace(" ", "-")
             lrpair_dash = lrpair.replace(" ", " — ")
             return (
-                f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/'
+                f'<a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/'
                 f'{encoded_lrpair}.html" target="_blank" '
                 f'title="Open {lrpair} card">'
                 f'{lrpair_dash}</a>'
@@ -1164,12 +1192,12 @@ def generate_combined_html_files(
             receptor_pairs=receptor_pairs_str,
             prev_page_info={
                 "interaction_id": prev_page_info["interaction_id"],
-                "url": f"https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{prev_page_info['filename']}",
+                "url": f"https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/{prev_page_info['filename']}",
                 "lr_pair_name_space": prev_page_info["lr_pair_name_space"]
             } if prev_page_info else None,
             next_page_info={
                 "interaction_id": next_page_info["interaction_id"],
-                "url": f"https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{next_page_info['filename']}",
+                "url": f"https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/{next_page_info['filename']}",
                 "lr_pair_name_space": next_page_info["lr_pair_name_space"]
             } if next_page_info else None
         )

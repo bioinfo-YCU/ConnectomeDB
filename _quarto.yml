@@ -18,7 +18,7 @@ project:
   post-render: 
     - "python src/remove_footer.py"
     - "python src/render_table.py"
-    # - "python src/render_Orthtable.py"
+    - "python src/render_Orthtable.py"
 
 resources:
   - images

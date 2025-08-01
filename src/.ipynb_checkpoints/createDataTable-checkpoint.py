@@ -165,10 +165,11 @@ hgnc_id = [col for col in gene_pair.columns if "HGNC" in col]
 hgnc_id = pd.concat([gene_pair[col] for col in hgnc_id]).unique()
 
 gene_pair['Human LR Pair'] = np.where(
-    gene_pair['Human evidence'] == "absent in human", 
+    gene_pair['Human evidence'] == "not conserved", 
     "no human ortholog",                                  
     gene_pair['Homo sapiens_ligand'] + " " + gene_pair['Homo sapiens_receptor'] 
 )
+
 
 # Rename columns for better clarity
 gene_pair = gene_pair.rename(columns={
@@ -187,8 +188,8 @@ gene_pair = gene_pair.rename(columns={
     # "interaction type" : "Interaction Type"
     #"PMID": "PMID support" # was PMID support
 })
-
-gene_pair = gene_pair.drop(columns=["Homo sapiens_ligand", "Homo sapiens_receptor"])
+gene_pair = gene_pair.drop(columns=["Ligand", "Receptor"])
+gene_pair = gene_pair.rename(columns={"Homo sapiens_ligand": "Ligand", "Homo sapiens_receptor": "Receptor"})
 # Merge gene_pair with pop_up_info_lim for Ligand(L)
 gene_pair = gene_pair.merge(pop_up_info_lim, how='left', left_on='Ligand HGNC ID', right_on='HGNC ID')
 
@@ -413,10 +414,10 @@ def generate_links_with_doi(df, gene_column, pmid_column, id_column):
                 return f'<a href="{source}" target="_blank">BioRxiv</a>'
             else:
                 # If it's a single PMID, hyperlink the PMID text
-                return f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{gene}.html">{source}</a>'
+                return f'<a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/{gene}.html">{source}</a>'
         else:
             # If multiple PMIDs, show the count and hyperlink to the page
-            return f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{gene}.html" target="_blank">{len(sources)} PMIDs</a>'
+            return f'<a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/{gene}.html" target="_blank">{len(sources)} PMIDs</a>'
 
     # Process each row to generate the "PMID" column # was "PMID support"
     df["PMID"] = [
@@ -537,6 +538,9 @@ def add_geneToolTip(species):
         for receptor_name, receptor_symbol in zip(gene_pair[species + " Receptor Name"], gene_pair[species + " Receptor"])
     ]
 
+## Make the Human evidence consistent
+gene_pair["Human evidence"] = gene_pair["Human evidence"].replace("CONSERVATION, DIRECT", "DIRECT, CONSERVATION")
+
 ### Remove tooltip for name for each species for now as only zebrafish has the proper names ###     
 # speciesPrime_list = ["Zebrafish"]
 # # Loop through each species and update gene_pair
@@ -622,7 +626,7 @@ gene_pair = gene_pair.drop(columns=["Ligand Name", "Receptor Name"])
 
 # Create the links to the HTML cards
 gene_pair["LR Pair Card"] = [
-    f'<a href="https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/cards/{lrPairOrig.replace(" ","-")}.html">{lrPair}</a>'
+    f'<a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/{lrPairOrig.replace(" ","-")}.html">{lrPair}</a>'
     for lrPairOrig, lrPair in zip(gene_pair0["LR Pair Card"], gene_pair["LR Pair Card"])
 ]
 
@@ -675,4 +679,4 @@ human_columns = [col for col in gene_pair000.columns][:16]
 #human_gene_pair = gene_pair.iloc[:, :-36]
 # remove mouse specific ones from the datatable
 evidence_cols = [col for col in gene_pair.columns if 'Human evidence' in col]
-human_gene_pair = gene_pair[~(gene_pair[evidence_cols[0]] == "absent in human")]
+human_gene_pair = gene_pair[~(gene_pair[evidence_cols[0]] == "not conserved")]
