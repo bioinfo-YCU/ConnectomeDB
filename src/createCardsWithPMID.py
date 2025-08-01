@@ -16,8 +16,8 @@ from createDataTable import pop_up_info, gene_pair0, generate_perplexity_links, 
 from createFunctionalAnnotTable import gene_pair_annot_ligand, gene_pair_annot_receptor
 
 # Test or all
-test = True
-test_genes = ["H60A Klrk1", "H60B Klrk1", "VEGFA NRP1", "THPO MPL", "FGF1 FGFR3", "Lair1 Lilrb4A"] # Example genes
+test = False
+test_genes = ["H60a Klrk1", "H60b Klrk1", "VEGFA NRP1", "THPO MPL", "FGF1 FGFR3", "Lair1 Lilrb4a"] # Example genes
 # --- Paths ---
 MERGED_TEMPLATE_PATH = 'HTML/mergedCard_tabs.html'
 OUTPUT_DIR = 'data/cards/' # New output directory for combined files
@@ -184,7 +184,7 @@ gene_pair0_copy['Receptor Name'] = gene_pair0_copy.apply(
 agg_func = lambda x: ', '.join(sorted(set(map(str, x))))
 
 ## add the conservation info
-conservation = fetchGSheet.conservation[["LR Pair Card", "Direct", "Conserved"]]
+conservation = conservation[["LR Pair Card", "Direct", "Conserved"]]
 conservation = conservation.groupby('LR Pair Card').agg(agg_func).reset_index()
 # Sample data (assuming your DataFrame is named df)
 def clean_species_column(series):
@@ -497,7 +497,7 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
     ]
     
     # Create base interaction card
-    interaction_card = gene_pair_input_df[["Interaction ID", "LR Pair Card", "Interaction Type", "PMID", "is_mouse_specific"]] # "KEGG Pathway", "Perplexity" "PROGENy Pathway", "Cancer-related", "Disease Type", "Disease",
+    interaction_card = gene_pair_input_df[["Interaction ID", "LR Pair Card", "Interaction Type", "PMID", "is_mouse_specific", "Direct", "Conserved"]] # "KEGG Pathway", "Perplexity" "PROGENy Pathway", "Cancer-related", "Disease Type", "Disease",
 ### For the latest DB, skip for now
     # interaction_card["Perplexity"] = interaction_card["Perplexity"].str.replace('size=30', 'size=80')
 
@@ -1096,6 +1096,7 @@ def generate_combined_html_files(
             "row2": current_receptor_card_1,
             "row3": current_ligand_card_2,
             "row4": current_receptor_card_2,
+            "row5":current_interaction_card,
             "output_file": output_file,
             "filename": filename,
         })
@@ -1148,6 +1149,9 @@ def generate_combined_html_files(
         table4_data_raw = get_table_data(page["row4"])
         table4_data = clean_nan_values_in_dict(table4_data_raw) 
 
+        table5_data_raw = get_table_data(page["row5"])
+        table5_data = clean_nan_values_in_dict(table5_data_raw) 
+
         # --- Related pairs ---
         ligand_pairs_df = gene_pair_main_df[(gene_pair_main_df['Ligand'] == page["value1"]) &
                                              (gene_pair_main_df["LR Pair Card"] != page["lr_pair_name_space"])].copy()
@@ -1186,6 +1190,7 @@ def generate_combined_html_files(
             table2_data=table2_data,
             table3_data=table3_data, # Use the cleaned table3_data
             table4_data=table4_data, # Use the cleaned table4_data
+            table5_data=table5_data, # Use the cleaned table5_data
             ligand_image=ligand_image,
             receptor_image=receptor_image,
             ligand_pairs=ligand_pairs_str,
