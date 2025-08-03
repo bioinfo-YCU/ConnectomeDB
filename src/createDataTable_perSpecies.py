@@ -211,4 +211,15 @@ gene_pair[f"Receptor {species_id} ID"] = gene_pair[f"Receptor {species_id} ID"].
     ) if pd.notna(cell) else ""
 )
 
+### tooltips 
+gene_pair["Ligand Symbols"] = [
+    f'<span title="{aliases}">{aliases}</span>'
+    for aliases in gene_pair["Ligand Symbols"]
+]
+gene_pair["Receptor Symbols"] = [
+    f'<span title="{aliases}">{aliases}</span>'
+    for aliases in gene_pair["Receptor Symbols"]
+]
+
+
 mouse_gene_pair1 = gene_pair

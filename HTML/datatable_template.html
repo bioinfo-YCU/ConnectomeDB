@@ -38,7 +38,7 @@
         font-size: 80%;
     }
     .dataTables_wrapper .dataTables_info {
-        color: darkgreen;
+        /* color: darkgreen; */
         font-weight: bold;
         margin-left: 0px !important;
         padding-top: 8px !important;
@@ -56,18 +56,18 @@
     }
 
     .selection-counter {
-    color: darkgreen;
-    font-weight: bold;
-    font-size: 80%;
-    float: right;
-    margin-top: 8px;
-    margin-right: 10px;
-    padding: 5px 10px;
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    clear: right; /* ADD THIS */
-    text-align: right; /* ADD THIS */
+        color: #1f4eb6;
+        font-weight: bold;
+        font-size: 80%;
+        float: right;
+        margin-top: 8px;
+        margin-right: 0px;
+        padding: 5px 10px;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        clear: right; /* ADD THIS */
+        text-align: right; /* ADD THIS */
     }
     
     @media (max-width: 768px) {
@@ -102,7 +102,7 @@
         flex-wrap: wrap;
     }
     
-    .info-display-container {
+    /* .info-display-container {
         color: darkgreen;
         font-weight: bold;
         font-size: 80%;
@@ -112,7 +112,7 @@
         margin-left: auto;
         padding-left: 15px;
     }
-    
+     */
     /* Mobile responsive for new layout */
     @media (max-width: 768px) {
         .top-controls-container {
@@ -818,68 +818,84 @@ $.getJSON("{{ json_path }}", function(data) {
                 filterContainer.append(filterDiv);
 
             }, 100);
-
+        } 
+    });
 
 
             // Custom sort function to prioritize search results based on the active search input
 
-            api.on('order.dt search.dt', function () {
-                var searchVal = $('#column-filters input[type="text"]').val();
-            
-                if (searchVal && searchVal.trim() !== '') {
-                    const searchTerms = searchVal
-                        .split(',')
-                        .map(term => term.trim().toLowerCase())
-                        .filter(term => term !== '');
-            
-                    if (searchTerms.length === 0) return;
-            
-                    api.rows().sort(function (rowIdxA, rowIdxB) {
-                        let scoreA = 0;
-                        let scoreB = 0;
-            
-                        const rowDataA = api.row(rowIdxA).data();
-                        const rowDataB = api.row(rowIdxB).data();
-            
-                        const normalize = str =>
-                            str ? str.toString().replace(/<[^>]*>/g, '').toLowerCase().trim() : '';
-            
-                        const valuesA = [normalize(rowDataA[6]), normalize(rowDataA[7])];
-                        const valuesB = [normalize(rowDataB[6]), normalize(rowDataB[7])];
-            
-                        searchTerms.forEach(term => {
-                            valuesA.forEach(value => {
-                                if (value === term) scoreA -= 1000;
-                                else if (value.startsWith(term + ',')) scoreA -= 950;
-                                else if (value.startsWith(term + ' ')) scoreA -= 900;
-                                else if (value.includes('(' + term + ')')) scoreA -= 850;
-                                else if (value.includes(term + ' ()')) scoreA -= 800;
-                                else if (value.startsWith(term)) scoreA -= 700;
-                                else if (value.includes(term)) scoreA -= 100;
-                            });
-            
-                            valuesB.forEach(value => {
-                                if (value === term) scoreB -= 1000;
-                                else if (value.startsWith(term + ',')) scoreB -= 950;
-                                else if (value.startsWith(term + ' ')) scoreB -= 900;
-                                else if (value.includes('(' + term + ')')) scoreB -= 850;
-                                else if (value.includes(term + ' ()')) scoreB -= 800;
-                                else if (value.startsWith(term)) scoreB -= 700;
-                                else if (value.includes(term)) scoreB -= 100;
-                            });
-                        });
-            
-                        return scoreA - scoreB;
-                    });
-                } else {
-                    api.order([[1, 'asc']]); // fallback to column 1 ascending
-                }
-            });
+            // Replace your existing custom sort function with this updated version
+api.on('order.dt search.dt', function () {
+    var searchVal = $('#column-filters input[type="text"]').val();
 
+    if (searchVal && searchVal.trim() !== '') {
+        const searchTerms = searchVal
+            .split(',')
+            .map(term => term.trim().toLowerCase())
+            .filter(term => term !== '');
 
+        if (searchTerms.length === 0) return;
+
+        // Get current order information from DataTables
+        var currentOrder = api.order();
+        var isCustomSearchActive = true;
+
+        // Check if user is trying to sort by a specific column
+        if (currentOrder.length > 0) {
+            var sortColumnIndex = currentOrder[0][0];
+            var sortDirection = currentOrder[0][1]; // 'asc' or 'desc'
+            
+            // If sorting by a column other than our search columns (6 or 7), 
+            // let DataTables handle it normally
+            if (sortColumnIndex !== 6 && sortColumnIndex !== 7) {
+                isCustomSearchActive = false;
+            }
         }
 
-    });
+        if (isCustomSearchActive) {
+            api.rows().sort(function (rowIdxA, rowIdxB) {
+                let scoreA = 0;
+                let scoreB = 0;
+
+                const rowDataA = api.row(rowIdxA).data();
+                const rowDataB = api.row(rowIdxB).data();
+
+                const normalize = str =>
+                    str ? str.toString().replace(/<[^>]*>/g, '').toLowerCase().trim() : '';
+
+                const valuesA = [normalize(rowDataA[6]), normalize(rowDataA[7])];
+                const valuesB = [normalize(rowDataB[6]), normalize(rowDataB[7])];
+
+                searchTerms.forEach(term => {
+                    valuesA.forEach(value => {
+                        if (value === term) scoreA -= 1000;
+                        else if (value.startsWith(term + ',')) scoreA -= 950;
+                        else if (value.startsWith(term + ' ')) scoreA -= 900;
+                        else if (value.includes('(' + term + ')')) scoreA -= 850;
+                        else if (value.includes(term + ' ()')) scoreA -= 800;
+                        else if (value.startsWith(term)) scoreA -= 700;
+                        else if (value.includes(term)) scoreA -= 100;
+                    });
+
+                    valuesB.forEach(value => {
+                        if (value === term) scoreB -= 1000;
+                        else if (value.startsWith(term + ',')) scoreB -= 950;
+                        else if (value.startsWith(term + ' ')) scoreB -= 900;
+                        else if (value.includes('(' + term + ')')) scoreB -= 850;
+                        else if (value.includes(term + ' ()')) scoreB -= 800;
+                        else if (value.startsWith(term)) scoreB -= 700;
+                        else if (value.includes(term)) scoreB -= 100;
+                    });
+                });
+
+                return scoreA - scoreB;
+            });
+        }
+    } else {
+        // When no search is active, let DataTables handle sorting normally
+        // Don't override with custom sorting
+    }
+});
 
 
 

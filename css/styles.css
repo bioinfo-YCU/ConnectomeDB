@@ -445,7 +445,7 @@ div.dtsp-verticalButtons button {
 /* Optional: You can also adjust the tooltip style if needed */
 .dtsp-paneInputButton[title]::after {
     content: attr(title);  /* Display the tooltip from the title attribute */
-    color: darkgreen;           /* Tooltip text color */
+    color: #d4af37;           /* Tooltip text color */
     font-size: 15px;       /* Tooltip font size */
 }
 

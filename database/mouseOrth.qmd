@@ -143,12 +143,12 @@ header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
     }
     
     .selection-counter {
-    color: darkgreen;
+    color: #1f4eb6;
     font-weight: bold;
     font-size: 80%;
     float: right;
     margin-top: 8px;
-    margin-right: 10px;
+    margin-right: 0px;
     padding: 5px 10px;
     background: #f9f9f9;
     border: 1px solid #ddd;
@@ -201,7 +201,7 @@ $(document).ready(function() {
         const columns = [
   {
     "data": "Interaction ID",
-    "title": "<span title=\"Double-click header of Interaction ID to ensure all values are shown\">Interaction ID&nbsp;</span>"
+    "title": "<span title=\"Double-click header of Interaction ID to reverse sort\">Interaction ID&nbsp;</span>"
   },
   {
     "data": "LR Pair Card",
@@ -542,59 +542,77 @@ $(document).ready(function() {
                 }, 100);
 
                 // Custom sort function to prioritize search results based on the active search input
-                api.on('order.dt search.dt', function () {
-                    var searchVal = $('#column-filters input[type="text"]').val();
-                
-                    if (searchVal && searchVal.trim() !== '') {
-                        const searchTerms = searchVal
-                            .split(',')
-                            .map(term => term.trim().toLowerCase())
-                            .filter(term => term !== '');
-                        if (searchTerms.length === 0) return;
-                
-                        api.rows().sort(function (rowIdxA, rowIdxB) {
-                            let scoreA = 0;
-                            let scoreB = 0;
-                
-                            const rowDataA = api.row(rowIdxA).data();
-                            const rowDataB = api.row(rowIdxB).data();
-                
-                            const normalize = str =>
-                                str ? str.toString().replace(/<[^>]*>/g, '').toLowerCase().trim() : '';
-                
-                            const valuesA = [normalize(rowDataA[4]), normalize(rowDataA[5]), normalize(rowDataA[12]), normalize(rowDataA[13])];
-                            const valuesB = [normalize(rowDataB[4]), normalize(rowDataB[5]), normalize(rowDataB[12]), normalize(rowDataB[13])];
-                
-                            searchTerms.forEach(term => {
-                                valuesA.forEach(value => {
-                                    if (value === term) scoreA -= 1000;
-                                    else if (value.startsWith(term + ',')) scoreA -= 950;
-                                    else if (value.startsWith(term + ' ')) scoreA -= 900;
-                                    else if (value.includes('(' + term + ')')) scoreA -= 850;
-                                    else if (value.includes(term + ' ()')) scoreA -= 800;
-                                    else if (value.startsWith(term)) scoreA -= 700;
-                                    else if (value.includes(term)) scoreA -= 100;
-                                });
-                
-                                valuesB.forEach(value => {
-                                    if (value === term) scoreB -= 1000;
-                                    else if (value.startsWith(term + ',')) scoreB -= 950;
-                                    else if (value.startsWith(term + ' ')) scoreB -= 900;
-                                    else if (value.includes('(' + term + ')')) scoreB -= 850;
-                                    else if (value.includes(term + ' ()')) scoreB -= 800;
-                                    else if (value.startsWith(term)) scoreB -= 700;
-                                    else if (value.includes(term)) scoreB -= 100;
-                                });
-                            });
-                
-                            return scoreA - scoreB;
-                        });
-                
-                    } else {
-                        // Reset to default sort when input is cleared
-                        api.order([[1, 'asc']]);
-                    }
+api.on('order.dt search.dt', function () {
+    var searchVal = $('#column-filters input[type="text"]').val();
+
+    if (searchVal && searchVal.trim() !== '') {
+        const searchTerms = searchVal
+            .split(',')
+            .map(term => term.trim().toLowerCase())
+            .filter(term => term !== '');
+            
+        if (searchTerms.length === 0) return;
+
+        // Get current order information from DataTables
+        var currentOrder = api.order();
+        var isCustomSearchActive = true;
+
+        // Check if user is trying to sort by a specific column
+        if (currentOrder.length > 0) {
+            var sortColumnIndex = currentOrder[0][0];
+            var sortDirection = currentOrder[0][1]; // 'asc' or 'desc'
+            
+            // If sorting by a column other than our search columns (4, 5, 12, 13), 
+            // let DataTables handle it normally
+            if (sortColumnIndex !== 4 && sortColumnIndex !== 5 && sortColumnIndex !== 12 && sortColumnIndex !== 13) {
+                isCustomSearchActive = false;
+            }
+        }
+
+        if (isCustomSearchActive) {
+            api.rows().sort(function (rowIdxA, rowIdxB) {
+                let scoreA = 0;
+                let scoreB = 0;
+
+                const rowDataA = api.row(rowIdxA).data();
+                const rowDataB = api.row(rowIdxB).data();
+
+                const normalize = str =>
+                    str ? str.toString().replace(/<[^>]*>/g, '').toLowerCase().trim() : '';
+
+                const valuesA = [normalize(rowDataA[4]), normalize(rowDataA[5]), normalize(rowDataA[12]), normalize(rowDataA[13])];
+                const valuesB = [normalize(rowDataB[4]), normalize(rowDataB[5]), normalize(rowDataB[12]), normalize(rowDataB[13])];
+
+                searchTerms.forEach(term => {
+                    valuesA.forEach(value => {
+                        if (value === term) scoreA -= 1000;
+                        else if (value.startsWith(term + ',')) scoreA -= 950;
+                        else if (value.startsWith(term + ' ')) scoreA -= 900;
+                        else if (value.includes('(' + term + ')')) scoreA -= 850;
+                        else if (value.includes(term + ' ()')) scoreA -= 800;
+                        else if (value.startsWith(term)) scoreA -= 700;
+                        else if (value.includes(term)) scoreA -= 100;
+                    });
+
+                    valuesB.forEach(value => {
+                        if (value === term) scoreB -= 1000;
+                        else if (value.startsWith(term + ',')) scoreB -= 950;
+                        else if (value.startsWith(term + ' ')) scoreB -= 900;
+                        else if (value.includes('(' + term + ')')) scoreB -= 850;
+                        else if (value.includes(term + ' ()')) scoreB -= 800;
+                        else if (value.startsWith(term)) scoreB -= 700;
+                        else if (value.includes(term)) scoreB -= 100;
+                    });
                 });
+
+                return scoreA - scoreB;
+            });
+        }
+    } else {
+        // When no search is active, let DataTables handle sorting normally
+        // Don't override with custom sorting
+    }
+});
             }
         });
 
