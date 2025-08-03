@@ -210,6 +210,18 @@ conservation["Conserved"] = clean_species_column(conservation["Conserved"])
 gene_pair0_copy = gene_pair0_copy.merge(conservation, how= 'left', on = "LR Pair Card")
 
 
+# Replace known null-like strings with NaN
+col = gene_pair0_copy["Conserved"].astype(str).str.strip().str.lower()
+# Replace known null-like strings with NaN
+col = col.replace(["", "na", "nan", "null", "none"], np.nan)
+# Fill any remaining NaNs with "none"
+gene_pair0_copy["Conserved"] = col.fillna("none")
+
+# Make sure the Ligand and Receptor are the LR Pair
+# Split the "LR Pair Card" into two new columns: "Ligand" and "Receptor"
+gene_pair0_copy[["Ligand", "Receptor"]] = gene_pair0_copy["LR Pair Card"].str.split(" ", n=1, expand=True)
+
+
 # Add Ligand/Receptor group info
 gene_pair_annot_ligand = gene_pair_annot_ligand.groupby('Ligand HGNC ID').agg(agg_func).reset_index()
 ligand_mapping = dict(zip(gene_pair_annot_ligand['Ligand HGNC ID'], gene_pair_annot_ligand['Ligand group']))

@@ -1105,8 +1105,8 @@
     <a class="dropdown-item" href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/database/mouseOrth.html">
  <span class="dropdown-text">Mouse Orthologs</span></a>
   </li>  
-        <li class="dropdown-header" style="margin-top: 0; padding-top: 0px; padding-bottom: 0px;">──────────</li>
-<li class="dropdown-header">OTHER SPECIES</li>
+        <!-- <li class="dropdown-header" style="margin-top: 0; padding-top: 0px; padding-bottom: 0px;">──────────</li> -->
+<!-- <li class="dropdown-header">OTHER SPECIES</li> -->
     <a class="dropdown-item" href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/database/other/chimpOrth.html">
  <span class="dropdown-text">Chimp Orthologs</span></a>
   </li>  
@@ -1212,7 +1212,8 @@
         {{TAB_CONTENTS}}
 
         <div class="column-center">
-            <h2>{{ value1 }} ({{ table1_data["Ligand Name"] }}) <em>binds to</em> {{ value2 }} ({{ table2_data["Receptor Name"] }}); Direct Pair in {{ table5_data["Direct"] }} and Conserved in {{ table5_data["Conserved"] }}</h2>
+            <!-- <h2>{{ value1 }} ({{ table1_data["Ligand Name"] }}) <em>binds to</em> {{ value2 }} ({{ table2_data["Receptor Name"] }}); Direct Pair in {{ table5_data["Direct"] }} and Conserved in {{ table5_data["Conserved"] }}</h2> -->
+            <h2> Pairs are experimentally validated in {{ table5_data["Direct"] }}; Orthology-inferred in {{ table5_data["Conserved"] }}</h2>
         </div>
 
         <!-- NEW LIGAND-RECEPTOR TABBED INTERFACE -->

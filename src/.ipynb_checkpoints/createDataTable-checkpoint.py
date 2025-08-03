@@ -642,7 +642,7 @@ gene_pair.columns = [
     f'<span title="Mouse Genome Informatics (MGI) ID. Click on the link for more details">{col}</span>' if col in ["Ligand MGI ID", "Receptor MGI ID"]else
     f'<span title="Zebrafish Information Network (ZFIN) ID. Click on the link for more details">{col}</span>' if col in ["Ligand ZFIN ID", "Receptor ZFIN ID"] else
     f'<span title="Location based on the predicted subcellular localization of the human proteome">{col}</span>' if col in ["Ligand Location", "Receptor Location"] else
-    f'<span title="Double-click header of {col} to ensure all values are shown">{col}&nbsp;</span>'
+    f'<span title="Double-click header of {col} to reverse sort">{col}&nbsp;</span>'
     for col in gene_pair.columns
 ]
 
