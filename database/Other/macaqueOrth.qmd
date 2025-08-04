@@ -10,72 +10,638 @@ header-includes: <script src='../../js/keepDropdownMenuGold.js'></script>
 
 ***
 
-```{python}
-import sys
-import os
-import pandas as pd
-import warnings
-warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
-from itables import init_notebook_mode, show
-from IPython.display import display, Javascript
-import itables.options as opt
-project_root = os.path.abspath(os.path.join(os.getcwd(), "../.."))
-os.chdir(project_root)
-sys.path.append(os.path.abspath("src"))
-from createDataTable_perSpecies import macaque_gene_pair1
+```{=html}
+<!-- Injected automatically via Jinja -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
+
+<style>
+    :root {
+        --table-underline-offset: 1px;
+        --table-underline-thickness: 1px;
+        --table-line-height: 1.1;
+    }
+
+    /* Apply controlled underlines using CSS variables */
+    table.dataTable {
+        --underline-offset: var(--table-underline-offset);
+        --underline-thickness: var(--table-underline-thickness);
+        line-height: var(--table-line-height);
+    }
+
+    /* If you want to control header and body separately */
+    table.dataTable thead th {
+        font-size: 90% !important; /* Header font size */
+    }
+    
+    table.dataTable tbody td {
+        font-size: 90% !important; /* Body font size */
+    }
+    
+    table.dataTable.compact tbody td {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    }
+
+    /* italicized placeholder */
+    input[type="text"]::placeholder {
+        font-style: italic;
+        font-size: 80%;
+    }
+    
+    .dataTables_wrapper .dataTables_info {
+        /* color: darkgreen; */
+        font-weight: bold;
+        margin-left: 0px !important;
+        padding-top: 8px !important;
+        clear: none !important;
+    }
+    
+    /* Base checkbox styling (the square box) */
+    table.dataTable tbody tr.selected td.select-checkbox::after {
+        content: '✓';
+        font-size: 0.8rem; /* Keep this or adjust slightly if needed */
+        color: #333;
+        font-weight: bold;
+        position: absolute;
+        top: 50%; /* Start at 50% */
+        left: 50%; /* Keep centered horizontally */
+        transform: translate(-50%, -50%); /* Base centering */
+        line-height: 1;
+        pointer-events: none;
+    }
+    
+    table.dataTable.compact>tbody>tr.selected>td.select-checkbox:after, table.dataTable.compact>tbody>tr.selected>th.select-checkbox:after{
+        margin-top: -0.025rem;
+        margin-left: -0.05rem;
+    }
+    
+    /* Also, ensure your ::before has position: relative */
+    table.dataTable td.select-checkbox::before {
+        /* ... existing styles ... */
+        position: relative; /* Make sure this is still here */
+        /* ... existing styles ... */
+    }
+    
+    /* Styling for the cell containing the checkbox */
+    table.dataTable td.select-checkbox {
+        text-align: center;
+        vertical-align: middle;
+        padding: 0.5rem;
+        width: 3.5rem;
+        min-width: 2.5rem;
+        position: relative; /* Make sure the ::before element's relative positioning works within this */
+    }
+    
+    /* Background for selected checkbox */
+    table.dataTable tbody tr.selected td.select-checkbox::before {
+        background: #f0f8ff; /* Light blue background for selected */
+        border-color: #337ab7; /* Darker blue border for selected */
+    }
+    
+    table.dataTable.compact>tbody>tr>td.select-checkbox:before,
+    table.dataTable.compact>tbody>tr>th.select-checkbox:before {
+        margin-top: -0.3rem;
+    }
+    
+    /* Mobile responsive adjustments */
+    @media (max-width: 768px) {
+        table.dataTable td.select-checkbox {
+            padding: 0.25rem;
+            width: 2rem;
+            min-width: 1.5rem;
+        }
+
+        table.dataTable td.select-checkbox::before {
+            width: 0.8rem;
+            height: 0.8rem;
+        }
+
+        table.dataTable tbody tr.selected td.select-checkbox::after {
+            font-size: 0.7rem; /* Adjusted for smaller box */
+        }
+    }
+    
+    @media (max-width: 480px) {
+        table.dataTable td.select-checkbox {
+            padding: 0.2rem;
+            width: 1.5rem;
+            min-width: 1.2rem;
+        }
+
+        table.dataTable td.select-checkbox::before {
+            width: 0.5rem;
+            height: 0.5rem;
+        }
+
+        table.dataTable tbody tr.selected td.select-checkbox::after {
+            font-size: 0.6rem; /* Adjusted for even smaller box */
+        }
+        
+        input[type="text"]::placeholder {
+            font-size: 60% !important;
+        }
+    }
+    
+    /* Hide the default search box */
+    .dataTables_filter {
+        display: none !important;
+    }
+    
+    .selection-counter {
+        color: #1f4eb6;
+        font-weight: bold;
+        font-size: 80%;
+        float: right;
+        margin-top: 8px;
+        margin-right: 0px;
+        padding: 5px 10px;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        clear: right; /* ADD THIS */
+        text-align: right; /* ADD THIS */
+    }
+    
+    @media (max-width: 768px) {
+        .selection-counter {
+            float: right; /* CHANGED from 'none' to 'right' */
+            display: block;
+            margin: 10px 10px 10px 0; /* ADJUSTED margins */
+            text-align: right; /* KEEP right alignment on mobile too */
+        }
+    }
+
+    /* Mobile styling for input */
+    @media (max-width: 480px) {
+        .mobile-tiny-input {
+            font-size: 0.8rem !important;
+            padding: 5px !important;
+        }
+    }
+    
+</style>
+
+<table id="macaque-table" class="display nowrap cell-border compact" style="width:100%">
+    <thead></thead>
+    <tfoot></tfoot>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.copy.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    console.log('Starting DataTable initialization...');
+    
+    $.getJSON("../../JSON/macaque_gene_pair.json", function(data) {
+        console.log('JSON data loaded successfully:', data.length, 'rows');
+        
+        const columns = [
+  {
+    "data": "Interaction ID",
+    "title": "<span title=\"Double-click header of Interaction ID to reverse sort\">Interaction ID&nbsp;</span>"
+  },
+  {
+    "data": "LR Pair Card",
+    "title": "LR Pair Card"
+  },
+  {
+    "data": "Macaque LR Pair",
+    "title": "Macaque LR Pair"
+  },
+  {
+    "data": "Ligand Symbols",
+    "title": "Ligand Symbols"
+  },
+  {
+    "data": "Receptor Symbols",
+    "title": "Receptor Symbols"
+  },
+  {
+    "data": "Ligand Location",
+    "title": "<span title=\"Location based on the predicted subcellular localization of the human proteome\">Ligand Location</span>"
+  },
+  {
+    "data": "Receptor Location",
+    "title": "<span title=\"Location based on the predicted subcellular localization of the human proteome\">Receptor Location</span>"
+  },
+  {
+    "data": "Ligand ENSEMBL ID",
+    "title": "Ligand ENSEMBL ID"
+  },
+  {
+    "data": "Receptor ENSEMBL ID",
+    "title": "Receptor ENSEMBL ID"
+  },
+  {
+    "data": "Perplexity",
+    "title": "Perplexity"
+  },
+  {
+    "data": "Macaque evidence",
+    "title": "Macaque evidence"
+  },
+  {
+    "data": "Human Ligand Symbols",
+    "title": "Human Ligand Symbols"
+  },
+  {
+    "data": "Human Receptor Symbols",
+    "title": "Human Receptor Symbols"
+  }
+];
+        console.log('Columns config:', columns);
+
+        // Build header HTML - add checkbox column back
+        // Set the header for the first column to 'Copy' with a tooltip
+        var headerHtml = '<tr><th title="Tick the boxes of the rows you would like to download via the buttons above">Select</th>';
+        columns.forEach(function(col) {
+            headerHtml += '<th>' + (col.title || col.data || '') + '</th>';
+        });
+        headerHtml += '</tr>';
+        $('#macaque-table thead').html(headerHtml);
+
+        // Calculate hidden columns based on total column count (adjust for checkbox column)
+        var totalColumns = columns.length + 1; // +1 for checkbox column
+        
+        // Only include valid positive column indices for hiding
+        var hiddenColumns = [3];
+        
+        // Add last 2 columns to hidden list (adjust this number as needed)
+        // Remember to adjust for the prepended checkbox column
+        for (var i = 2; i > 0; i--) {
+            var colIndex = totalColumns - i;
+            if (colIndex > 0 && hiddenColumns.indexOf(colIndex) === -1) {
+                hiddenColumns.push(colIndex);
+            }
+        }
+
+        console.log('Total columns:', totalColumns);
+        console.log('Hidden columns:', hiddenColumns);
+
+        var table = $('#macaque-table').DataTable({
+            data: data,
+            columns: [
+                {
+                    data: null,
+                    defaultContent: '',
+                    orderable: false,
+                    className: 'select-checkbox',
+                    width: '20px'
+                }
+            ].concat(columns), // Add checkbox column as first column
+            scrollX: true,
+            fixedHeader: false,
+            fixedColumns: {
+                start: 1,
+            },
+            autoWidth: true,
+            responsive: false,
+            dom: 'Bfrtip',
+            searching: true,
+            select: {
+                style: 'multi',
+                selector: 'td:first-child'
+            },
+            lengthMenu: [[15, 25, 50, 100, -1], ["15", "25", "50", "100", "All"]],
+            buttons: [
+                'pageLength',
+                { extend: 'colvis', text: 'Display Columns' },
+                'selectAll',
+                'selectNone',
+                {
+                    extend: 'csvHtml5',
+                    filename: 'ConnectomeDB2025_macaque',
+                    exportOptions: {
+                        columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
+                        format: {
+                            body: function(data, row, column, node) {
+                                // Check if this cell contains the &#128269; (🔍) symbol AND a link (Perplexity column detection)
+                                if (data && typeof data.toString === 'function' && data.toString().includes('&#128269;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
+                                    var $temp = $('<div>').html(data);
+                                    var href = $temp.find('a').attr('href');
+                                    return href ? encodeURI(href) : data;
+                                }
+                                // For all other columns, strip HTML tags
+                                return (data && data.replace) ? data.replace(/<[^>]*>/g, '') : data;
+                            }
+                        }
+                    },
+                    action: function(e, dt, button, config) {
+                        var selectedRows = dt.rows('.selected').count();
+                        if (selectedRows > 0) {
+                            config.exportOptions.modifier = { selected: true };
+                        } else {
+                            config.exportOptions.modifier = { page: 'all', search: 'none' };
+                        }
+                        $.fn.dataTable.ext.buttons.csvHtml5.action.call(this, e, dt, button, config);
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    filename: 'ConnectomeDB2025_macaque',
+                    title: null,
+                    exportOptions: {
+                        columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
+                        format: {
+                            body: function(data, row, column, node) {
+                                // Check if this cell contains the &#128269; (🔍) symbol AND a link (Perplexity column detection)
+                                if (data && typeof data.toString === 'function' && data.toString().includes('&#128269;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
+                                    var $temp = $('<div>').html(data);
+                                    var href = $temp.find('a').attr('href');
+                                    return href ? encodeURI(href) : data;
+                                }
+                                return (data && data.replace) ? data.replace(/<[^>]*>/g, '') : data;
+                            }
+                        }
+                    },
+                    action: function(e, dt, button, config) {
+                        var selectedRows = dt.rows('.selected').count();
+                        if (selectedRows > 0) {
+                            config.exportOptions.modifier = { selected: true };
+                        } else {
+                            config.exportOptions.modifier = { page: 'all', search: 'none' };
+                        }
+                        $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config);
+                    }
+                },
+                // {
+                //     extend: 'copyHtml5',
+                //     filename: 'ConnectomeDB2025_macaque',
+                //     title: null,
+                //     exportOptions: {
+                //         columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
+                //         format: {
+                //             body: function(data, row, column, node) {
+                //                 // Check if this cell contains the &#128269; (🔍) symbol AND a link (Perplexity column detection)
+                //                 if (data && typeof data.toString === 'function' && data.toString().includes('&#128269;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
+                //                     var $temp = $('<div>').html(data);
+                //                     var href = $temp.find('a').attr('href');
+                //                     return href ? encodeURI(href) : data;
+                //                 }
+                //                 return (data && data.replace) ? data.replace(/<[^>]*>/g, '') : data;
+                //             }
+                //         }
+                //     },
+                //     action: function(e, dt, button, config) {
+                //         var selectedRows = dt.rows('.selected').count();
+                //         if (selectedRows > 0) {
+                //             config.exportOptions.modifier = { selected: true };
+                //         } else {
+                //             config.exportOptions.modifier = { page: 'all', search: 'none' };
+                //         }
+                //         $.fn.dataTable.ext.buttons.copyHtml5.action.call(this, e, dt, button, config);
+                //     }
+                // }
+            ],
+            columnDefs: [
+                {
+                    orderable: false,
+                    className: 'select-checkbox',
+                    targets: 0
+                },
+                // Adjusted for checkbox column: Original column 10 is now at index 11
+                { "className": "dt-center", "targets": [10] },
+                // Adjusted for checkbox column: Original columns 5 and 6 are now at indices 5 and 6
+                { "width": "275px", "targets": [3,4] },
+                { "visible": false, "targets": hiddenColumns }
+            ],
+            initComplete: function () {
+                console.log('DataTable initialization complete');
+                var api = this.api();
+                
+                $('.dataTables_wrapper .dt-layout-row.dt-layout-top .dt-layout-cell.dt-end').append('<div class="dataTables_info" id="top_info_display"></div>');
 
 
-# Function to update and display the table
-def update_table():
-    show(
-        macaque_gene_pair1,
-        keys=True,
-        layout = {"topEnd":["paging"]},
-        #layout={"bottom": "searchBuilder", "title": "Advanced Search"},
-        fixedColumns={"start": 1, "end": 0},
-        fixedHeader=True,  # Keep header fixed for alignment
-        column_filters="footer", 
-        scrollX=True,
-        classes="display nowrap cell-border compact",
-        select=True,
-        selected_rows=[],
-        responsive=True,  # Enable responsive behavior
-        theme='grid',
-        search={"regex": True, "caseInsensitive": True, "smart": True},
-        lengthMenu=[ [10, 20, 50, 100, -1], ["10", "20", "50", "100", "All"] ],
-        buttons=[
-            "pageLength", 
-            {"extend": "colvis", "text": "Display Columns"},
-            {"extend": "csvHtml5", "filename": "ConnectomeDB2025_macaque"},
-            {"extend": "excelHtml5", "filename": "ConnectomeDB2025_macaque"},
-            {"extend": "copyHtml5", "filename": "ConnectomeDB2025_macaque", "title": None},
-        ],
-        columnDefs=[
-            {"className": "dt-center", "targets": [-6]}, 
-            # {"width": "100px", "targets": "_all"},
-            {"width": "275px", "targets": [21,22]},
-            {"targets": list(range(-1, -6, -1))+ [3,4,19,20], "visible": False} # Hide last n columns by default
-        ],
-        style="1200px;margin:auto",
-           #language={
-           #"search": "Search Gene of Interest:",
-           #"searchPlaceholder": "e.g. ENSMMUG00000008212",
-           # "searchBuilder": {
-           #     "title": "Advanced Search <i>Multiple filtering, AND/OR condition</i>" 
-           # }
-        #}, 
-        autoWidth=True,
-        maxBytes=0,  # So it does not downsample
-        initCode='''
-            $(document).on('draw.dt', function () {
-                $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
+                 // ADD THIS LINE: Create separate selection counter
+                $('.dt-buttons').after('<div class="selection-counter" id="selection_counter">0 rows selected</div>');
+                // --- Adjust your updateInfoDisplay function ---
+                window.updateInfoDisplay = function() {
+                    var info = api.page.info();
+                    var selectedCount = api.rows('.selected').count();
+                    var filteredCount = api.rows({ search: 'applied' }).count();
+                    var totalCount = api.rows().count();
+            
+                    var infoText = `Showing ${info.start + 1} to ${info.end} of ${filteredCount} entries`;
+            
+                    if (filteredCount !== totalCount) {
+                        infoText += ` (filtered from ${totalCount} total entries)`;
+                    }
+            
+                    if (selectedCount > 0) {
+                        var selectedInFiltered = api.rows({ search: 'applied' }).nodes().to$().filter('.selected').length;
+                        infoText += ` - ${selectedInFiltered} rows selected`;
+                    }
+            
+                    // Update BOTH the original (bottom) and the cloned (top) info elements
+                    // Make sure to update the one with the new ID for the top display
+                    $('#top_info_display_clone_2').html(infoText); // Update the cloned one
+                    $('.dataTables_wrapper .dataTables_info').html(infoText); // This will update the original bottom one
+                };
+
+            // ADD THIS: Simple counter update function
+                    window.updateSelectionCounter = function() {
+                        var selectedCount = api.rows('.selected').count();
+                        var filteredCount = api.rows({ search: 'applied' }).count();
+                        var totalCount = api.rows().count();
+                        
+                        if (selectedCount > 0) {
+                            var selectedInFiltered = api.rows({ search: 'applied' }).nodes().to$().filter('.selected').length;
+                            $('#selection_counter').text(selectedInFiltered + ' rows selected');
+                            $('#selection_counter').show();
+                        } else {
+                            $('#selection_counter').text('0 rows selected');
+                        }
+                    };
+            window.updateButtonText = function() {
+                var filteredCount = api.rows({ search: 'applied' }).count();
+                var totalCount = api.rows().count();
+                
+                if (filteredCount === totalCount) {
+                    $('.buttons-select-all').text('Select All (' + totalCount + ')');
+                } else {
+                    $('.buttons-select-all').text('Select All Filtered (' + filteredCount + ')');
+                }
+            };
+
+            // Add this event listener
+            api.on('draw.dt select.dt deselect.dt', function() {
+                setTimeout(updateButtonText, 100);
+                setTimeout(updateInfoDisplay, 100);
+                setTimeout(updateSelectionCounter, 100); // ADD THIS LINE
             });
-    '''
-    )
-      
 
-# Call the function to render the table
-update_table()
+            updateInfoDisplay(); // Call it once after setup
+            updateSelectionCounter(); // ADD THIS LINE
+
+                // Wait for DOM to be ready, then add filter
+                setTimeout(function() {
+                    // Create a filter container directly above the table and headers
+                    var filterContainer = $('<div id="column-filters" style="background: white; padding-left: 0px; padding-right: 0px; padding-bottom: 10px; border: 0px solid #ddd; margin-bottom: 1px; width: 100%;"><h4 style="margin: 0 0 15px 0;">Search Ligand(s) / Receptor(s) here</h4></div>');
+                    $('#macaque-table').closest('.dataTables_wrapper').prepend(filterContainer);
+
+                    var filterDiv = $('<div style="max-width: 100%;"></div>');
+                    var label = $('<label></label>');
+
+                    // Create input without datalist (no autofill)
+                    var input = $('<input type="text" placeholder="i.e. CD24, EGFR, A2M, EPHA3, CADM1, no human ortholog" />')
+                        .css({
+                            'width': '100%',
+                            'padding': '8px',
+                            'font-size': '1rem',
+                            'border': '1px solid #ccc',
+                            'border-radius': '4px'
+                        })
+                        .addClass('mobile-tiny-input') // Add the class for mobile styling
+                        .on('input keyup', function () {
+                            var val = this.value;
+                            console.log('Search input changed:', val);
+
+                            // Remove any existing custom search
+                            while($.fn.dataTable.ext.search.length > 0) {
+                                $.fn.dataTable.ext.search.pop();
+                            }
+
+                            if (val === '') {
+                                // If empty, don't add any custom search and reset ordering
+                                api.order([]); // Remove custom ordering
+                                api.draw();
+                            } else {
+                                const searchTerms = val.split(',').map(term => term.trim().toLowerCase()).filter(term => term !== '');
+
+                                if (searchTerms.length > 0) {
+                                    // Update the search function to include columns 3, 4, 11, 12
+                                    $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+                                        var col4Value = data[4] ? data[4].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
+                                        var col5Value = data[5] ? data[5].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
+                                        var col12Value = data[12] ? data[12].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
+                                        var col13Value = data[13] ? data[13].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
+                                    
+                                        return searchTerms.some(term =>
+                                            col4Value.includes(term) || 
+                                            col5Value.includes(term) || 
+                                            col12Value.includes(term) || 
+                                            col13Value.includes(term)
+                                        );
+                                    });
+
+                                    // After filtering, apply the custom sort.
+                                    // We'll force a redraw which will trigger the 'order.dt' event and our custom sort.
+                                    api.draw();
+                                } else {
+                                    api.order([]); // Remove custom ordering if no valid search terms
+                                    api.draw();
+                                }
+                            }
+                        });
+
+                    filterDiv.append(label).append(input);
+                    filterContainer.append(filterDiv);
+                }, 100);
+
+                // Custom sort function to prioritize search results based on the active search input
+api.on('order.dt search.dt', function () {
+    var searchVal = $('#column-filters input[type="text"]').val();
+
+    if (searchVal && searchVal.trim() !== '') {
+        const searchTerms = searchVal
+            .split(',')
+            .map(term => term.trim().toLowerCase())
+            .filter(term => term !== '');
+            
+        if (searchTerms.length === 0) return;
+
+        // Get current order information from DataTables
+        var currentOrder = api.order();
+        var isCustomSearchActive = true;
+
+        // Check if user is trying to sort by a specific column
+        if (currentOrder.length > 0) {
+            var sortColumnIndex = currentOrder[0][0];
+            var sortDirection = currentOrder[0][1]; // 'asc' or 'desc'
+            
+            // If sorting by a column other than our search columns (4, 5, 12, 13), 
+            // let DataTables handle it normally
+            if (sortColumnIndex !== 4 && sortColumnIndex !== 5 && sortColumnIndex !== 12 && sortColumnIndex !== 13) {
+                isCustomSearchActive = false;
+            }
+        }
+
+        if (isCustomSearchActive) {
+            api.rows().sort(function (rowIdxA, rowIdxB) {
+                let scoreA = 0;
+                let scoreB = 0;
+
+                const rowDataA = api.row(rowIdxA).data();
+                const rowDataB = api.row(rowIdxB).data();
+
+                const normalize = str =>
+                    str ? str.toString().replace(/<[^>]*>/g, '').toLowerCase().trim() : '';
+
+                const valuesA = [normalize(rowDataA[4]), normalize(rowDataA[5]), normalize(rowDataA[12]), normalize(rowDataA[13])];
+                const valuesB = [normalize(rowDataB[4]), normalize(rowDataB[5]), normalize(rowDataB[12]), normalize(rowDataB[13])];
+
+                searchTerms.forEach(term => {
+                    valuesA.forEach(value => {
+                        if (value === term) scoreA -= 1000;
+                        else if (value.startsWith(term + ',')) scoreA -= 950;
+                        else if (value.startsWith(term + ' ')) scoreA -= 900;
+                        else if (value.includes('(' + term + ')')) scoreA -= 850;
+                        else if (value.includes(term + ' ()')) scoreA -= 800;
+                        else if (value.startsWith(term)) scoreA -= 700;
+                        else if (value.includes(term)) scoreA -= 100;
+                    });
+
+                    valuesB.forEach(value => {
+                        if (value === term) scoreB -= 1000;
+                        else if (value.startsWith(term + ',')) scoreB -= 950;
+                        else if (value.startsWith(term + ' ')) scoreB -= 900;
+                        else if (value.includes('(' + term + ')')) scoreB -= 850;
+                        else if (value.includes(term + ' ()')) scoreB -= 800;
+                        else if (value.startsWith(term)) scoreB -= 700;
+                        else if (value.includes(term)) scoreB -= 100;
+                    });
+                });
+
+                return scoreA - scoreB;
+            });
+        }
+    } else {
+        // When no search is active, let DataTables handle sorting normally
+        // Don't override with custom sorting
+    }
+});
+            }
+        });
+
+        // Event listener for when the search input is cleared manually
+        $(document).on('input', '#column-filters input[type="text"]', function() {
+            if (this.value === '') {
+                // When cleared, the 'search.dt' event handler above will reset the order
+                table.draw();
+            }
+        });
+
+    }).fail(function(jqxhr, textStatus, error) {
+        console.error("Failed to load JSON data:", textStatus, error);
+        console.error("JSON path:", "../../JSON/macaque_gene_pair.json");
+        alert("Failed to load table data. Please check the console for details.");
+    });
+});
+</script>
 ```
 
 {{< include ../hint.qmd >}}
+
+
+

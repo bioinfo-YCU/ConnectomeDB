@@ -82,12 +82,21 @@ def process_species_table(species, species_addl_search, createDataTable_perSpeci
 
 
 # === Run for each species
-species_list = ["mouse", "rat", "zebrafish", "frog"]
+species_list = ["mouse", "rat", "zebrafish", "frog", "chicken", "macaque", "pig", "dog", "cow", "chimp", "horse", "marmoset", "sheep"]
 species_addl_search_dict = {
     "mouse": "Epha3, 5430401F13Rik, no human ortholog",
     "rat": "Cck, Vav1, no human ortholog",
     "zebrafish": "adam10b, zp3a.2, no human ortholog",
-    "frog": "ccl5, rantes, no human ortholog"
+    "frog": "ccl5, rantes, no human ortholog",
+    "chicken": "BDKRB2, LOC395551, no human ortholog",
+    "macaque": "EPHA3, CADM1, no human ortholog",
+    "pig": "ACKR4, CCL21, no human ortholog",
+    "dog": "LOC480600, CTLA4, no human ortholog",
+    "chimp": "CEACAM5, NRXN3, no human ortholog", 
+    "cow": "LOC508666, CCR10, no human ortholog",
+    "horse": "LOC100065387, OSCAR, no human ortholog",
+    "marmoset": "LOC100065387, OSCAR, no human ortholog",
+    "sheep": "ENSOARG00020015296, IL10RA, no human ortholog",
 }
 
 for sp in species_list:

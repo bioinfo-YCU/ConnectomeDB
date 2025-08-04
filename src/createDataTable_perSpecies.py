@@ -20,7 +20,7 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
         "Mouse": "mmusculus",
         "Rat": "rnorvegicus",
         "Zebrafish":"drerio" ,
-        "Chimpanzee":"ptroglodytes",
+        "Chimp":"ptroglodytes",
         "Chicken":"ggallus",
         "Pig":"sscrofa",
         "Cow":"btaurus",
@@ -340,10 +340,10 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     else:
         def make_ens_link(cell):
             links = []
-            for xid in str(cell).split(","):
-                xid = eid.strip()
+            for eid in str(cell).split(","):
+                eid = eid.strip()
                 if eid.startswith("ENS"):
-                    url = f" http://www.ensembl.org/id/{xid}"
+                    url = f" http://www.ensembl.org/id/{eid}"
                     links.append(f'<a href="{url}" target="_blank">{eid}</a>')
             return ", ".join(links)
 
@@ -368,3 +368,11 @@ rat_gene_pair1 = process_species_gene_pair("Rat", fetchGSheet, gene_pair)
 zebrafish_gene_pair1 = process_species_gene_pair("Zebrafish", fetchGSheet, gene_pair)
 frog_gene_pair1 = process_species_gene_pair("Frog", fetchGSheet, gene_pair)
 chicken_gene_pair1 = process_species_gene_pair("Chicken", fetchGSheet, gene_pair)
+macaque_gene_pair1 = process_species_gene_pair("Macaque", fetchGSheet, gene_pair)
+pig_gene_pair1 = process_species_gene_pair("Pig", fetchGSheet, gene_pair)
+dog_gene_pair1 = process_species_gene_pair("Dog", fetchGSheet, gene_pair)
+cow_gene_pair1 = process_species_gene_pair("Cow", fetchGSheet, gene_pair)
+chimp_gene_pair1 = process_species_gene_pair("Chimp", fetchGSheet, gene_pair)
+horse_gene_pair1 = process_species_gene_pair("Horse", fetchGSheet, gene_pair)
+marmoset_gene_pair1 = process_species_gene_pair("Marmoset", fetchGSheet, gene_pair)
+sheep_gene_pair1 = process_species_gene_pair("Sheep", fetchGSheet, gene_pair)

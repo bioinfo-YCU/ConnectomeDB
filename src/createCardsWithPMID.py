@@ -21,6 +21,14 @@ test_genes = ["H60a Klrk1", "H60b Klrk1", "VEGFA NRP1", "THPO MPL", "FGF1 FGFR3"
 # --- Paths ---
 MERGED_TEMPLATE_PATH = 'HTML/mergedCard_tabs.html'
 OUTPUT_DIR = 'data/cards/' # New output directory for combined files
+OUTPUT_DIR_h = 'data/cards/human' 
+OUTPUT_DIR_m = 'data/cards/mouse'
+
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+os.makedirs(OUTPUT_DIR_h, exist_ok=True)
+os.makedirs(OUTPUT_DIR_m, exist_ok=True)
+
+gene_pair_per_row = gene_pair_mouse[["LR_pair_orig", "PMID", "lig_species", "rec_species", "ligand_orig", "receptor_orig", "LR Pair Card"]]
 
 # function for replacing visible text:
 def update_link_text_with_symbol(html_str, new_symbol):
@@ -909,52 +917,38 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
 
 
 def convert_pair_url(df_pairs):
-    """Converts 'LR Pair Card' column to HTML links with interaction IDs."""
-    df_pairs = df_pairs.copy()
-
-    # Extract clean Interaction ID from HTML
-    df_pairs["Clean Interaction ID"] = df_pairs["Interaction ID"].apply(
-        lambda x: re.search(r'(CDB\d+)</a>', x).group(1)
-        if isinstance(x, str) and re.search(r'(CDB\d+)</a>', x)
-        else None
-    )
-
-    # # Generate new HTML anchor tag (with LR_Pair then interaction ID
-    # def make_link(row):
-    #     lrpair = row["Human LR Pair"]
-    #     interaction_id = row["Clean Interaction ID"]
-    #     if pd.notna(lrpair) and lrpair.strip() and pd.notna(interaction_id):
-    #         encoded_lrpair = lrpair.replace(" ", "%20")
-    #         return (
-    #             f'<a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/'
-    #             f'{encoded_lrpair}_{interaction_id}.html" target="_blank" '
-    #             f'title="Open {lrpair} card">'
-    #             f'{lrpair}</a>'
-    #         )
-    #     return ""
-        # Generate new HTML anchor tag (with LR_Pair only
-    def make_link(row):
-        lrpair = row["LR Pair Card"]
-        if pd.notna(lrpair) and lrpair.strip():
-            encoded_lrpair = lrpair.replace(" ", "-")
-            lrpair_dash = lrpair.replace(" ", " — ")
-            return (
-                f'<a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/'
-                f'{encoded_lrpair}.html" target="_blank" '
-                f'title="Open {lrpair} card">'
-                f'{lrpair_dash}</a>'
+        """Converts 'LR Pair Card' column to HTML links with interaction IDs."""
+        df_pairs = df_pairs.copy()
+        
+            # Extract clean Interaction ID from HTML
+        df_pairs["Clean Interaction ID"] = df_pairs["Interaction ID"].apply(
+                lambda x: re.search(r'(CDB\d+)</a>', x).group(1)
+                if isinstance(x, str) and re.search(r'(CDB\d+)</a>', x)
+                else None
             )
-        return ""
-
-    df_pairs["LR Pair Card"] = df_pairs.apply(make_link, axis=1)
-
-    return df_pairs
+        # Generate new HTML anchor tag (with LR_Pair only
+        def make_link(row):
+            lrpair = row["LR Pair Card"]
+            if pd.notna(lrpair) and lrpair.strip():
+                encoded_lrpair = lrpair.replace(" ", "-")
+                lrpair_dash = lrpair.replace(" ", " — ")
+                
+                # Determine subdirectory: 'mouse/' if any lowercase, else 'human/'
+                subdir = "mouse/" if any(c.islower() for c in lrpair) else "human/"
+                
+                return (
+                    f'<a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/'
+                    f'{subdir}{encoded_lrpair}.html" target="_blank" '
+                    f'title="Open {lrpair} card">'
+                    f'{lrpair_dash}</a>'
+                )
+            return ""
+        
+        df_pairs["LR Pair Card"] = df_pairs.apply(make_link, axis=1)
+        
+        return df_pairs
 
 # Find the generate_combined_html_files function and update these specific parts:
-
-import os
-import re
-import pandas as pd # Assuming pandas is already imported
 
 def generate_combined_html_files(
     gene_pair_keywords_df, # Corresponds to gene_pair000 (with '—' in LR Pair)
@@ -966,13 +960,12 @@ def generate_combined_html_files(
     receptor_card_2_df,
     pubmed_data_df,
     gene_pair_main_df, # Corresponds to gene_pair0 (with spaces in LR Pair)
-    output_dir
+    output_dir, 
 ):
     """
     Generate combined HTML pages with PMID details on top and card details at the bottom
     for each LR Pair Card.
     """
-    os.makedirs(output_dir, exist_ok=True)
     
     # --- Create a map of all pages for navigation ---
     cleaned_main_df = gene_pair_main_df.copy()
@@ -1083,8 +1076,14 @@ def generate_combined_html_files(
             continue
         clean_interaction_id = match.group(1)
         
+        subdir = "mouse" if any(c.islower() for c in lr_pair_name_space) else "human"
+
+        # Make sure the directory exists before writing
+        target_dir = os.path.join(output_dir, subdir)
+        os.makedirs(target_dir, exist_ok=True)
+        
         filename = f"{value1.strip()}-{value2.strip()}.html"
-        output_file = os.path.join(output_dir, filename)
+        output_file = os.path.join(target_dir, filename)
         
         # Now drop the 'is_mouse_specific' and 'Ligand'/'Receptor' columns from the individual pair DataFrames
         # since their purpose for conditional renaming has been served.
@@ -1119,6 +1118,10 @@ def generate_combined_html_files(
         next_page_info = rendered_pages[i + 1] if i < len(rendered_pages) - 1 else None
         
         # --- Prepare PMID section ---
+# Find this section in your code (around line 800-850 in the generate_combined_html_files function)
+# and replace the PMID section preparation with this:
+
+        # --- Prepare PMID section ---
         tab_headers = []
         tab_contents = []
         pmid_list = [pmid.strip() for pmid in str(page["pmids_str"]).split(',') if pmid.strip()]
@@ -1129,18 +1132,39 @@ def generate_combined_html_files(
                 abstract = pubmed_row["Abstract"].values[0]
                 journal = pubmed_row["Journal"].values[0]
                 year = pubmed_row["Year"].values[0]
+                
+                # NEW: Extract species and original gene info from gene_pair_per_row
+                species_row = gene_pair_per_row[
+                    (gene_pair_per_row["LR Pair Card"] == page["lr_pair_name_space"]) & 
+                    (gene_pair_per_row["PMID"] == pmid)
+                ]
+                
+                if not species_row.empty:
+                    ligand_species = species_row["lig_species"].values[0]
+                    ligand_orig = species_row["ligand_orig"].values[0]
+                    receptor_species = species_row["rec_species"].values[0]
+                    receptor_orig = species_row["receptor_orig"].values[0]
+                else:
+                    ligand_species = "Unknown"
+                    ligand_orig = "Unknown"
+                    receptor_species = "Unknown"
+                    receptor_orig = "Unknown"
             else:
                 title = "No Title Found"
                 abstract = "No Abstract Found"
                 journal = "Journal Unknown"
                 year = "Year Unknown"
+                ligand_species = "Unknown"
+                ligand_orig = "Unknown"
+                receptor_species = "Unknown"
+                receptor_orig = "Unknown"
             
             active_class = "active" if j == 0 else ""
             tab_headers.append(f'<button class="tablinks {active_class}" onclick="openTab(event, \'tab{pmid}\')">{pmid}</button>')
             tab_contents.append(f"""
             <div id="tab{pmid}" class="tabcontent {active_class}">
-                <h2>{title}</h2>
-                <div style="margin-left: 10px;">{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">PubMed</a></div>
+                <h2 strong>{title}</h2>
+                <div style="margin-left: 10px;">{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">PubMed</a>, <strong>{ligand_species} {ligand_orig} — {receptor_species} {receptor_orig}</strong></div> 
                 <div class="abstract-wrapper">
                     <div class="abstract-content" id="abstract-content-{pmid}"><strong>ABSTRACT:</strong> {abstract}</div>
                 </div>
@@ -1170,11 +1194,14 @@ def generate_combined_html_files(
         receptor_pairs_df = gene_pair_main_df[(gene_pair_main_df['Receptor'] == page["value2"]) &
                                                (gene_pair_main_df["LR Pair Card"] != page["lr_pair_name_space"])].copy()
         
+        # Apply URL conversion early
         ligand_pairs_df = convert_pair_url(ligand_pairs_df)
         receptor_pairs_df = convert_pair_url(receptor_pairs_df)
         
+        # Now generate the joined string
         ligand_pairs_str = ' ・ '.join([btn for btn in ligand_pairs_df["LR Pair Card"] if btn])
         receptor_pairs_str = ' ・ '.join([btn for btn in receptor_pairs_df["LR Pair Card"] if btn])
+
         
         # --- Expression plots ---
         def get_plot_content(path):
@@ -1200,24 +1227,35 @@ def generate_combined_html_files(
             table0_data=page["table0_data"],
             table1_data=table1_data,
             table2_data=table2_data,
-            table3_data=table3_data, # Use the cleaned table3_data
-            table4_data=table4_data, # Use the cleaned table4_data
-            table5_data=table5_data, # Use the cleaned table5_data
+            table3_data=table3_data,  # Use the cleaned table3_data
+            table4_data=table4_data,  # Use the cleaned table4_data
+            table5_data=table5_data,  # Use the cleaned table5_data
             ligand_image=ligand_image,
             receptor_image=receptor_image,
             ligand_pairs=ligand_pairs_str,
             receptor_pairs=receptor_pairs_str,
-            prev_page_info={
-                "interaction_id": prev_page_info["interaction_id"],
-                "url": f"https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/{prev_page_info['filename']}",
-                "lr_pair_name_space": prev_page_info["lr_pair_name_space"]
-            } if prev_page_info else None,
-            next_page_info={
-                "interaction_id": next_page_info["interaction_id"],
-                "url": f"https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/{next_page_info['filename']}",
-                "lr_pair_name_space": next_page_info["lr_pair_name_space"]
-            } if next_page_info else None
+            prev_page_info=(
+                {
+                    "interaction_id": prev_page_info["interaction_id"],
+                    "url": f"https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/"
+                           f"{'mouse/' if any(c.islower() for c in prev_page_info['lr_pair_name_space']) else 'human/'}"
+                           f"{prev_page_info['filename']}",
+                    "lr_pair_name_space": prev_page_info["lr_pair_name_space"]
+                }
+                if prev_page_info else None
+            ),
+            next_page_info=(
+                {
+                    "interaction_id": next_page_info["interaction_id"],
+                    "url": f"https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/"
+                           f"{'mouse/' if any(c.islower() for c in next_page_info['lr_pair_name_space']) else 'human/'}"
+                           f"{next_page_info['filename']}",
+                    "lr_pair_name_space": next_page_info["lr_pair_name_space"]
+                }
+                if next_page_info else None
+            )
         )
+
         
         # --- Save HTML file ---
         with open(page["output_file"], "w", encoding="utf-8") as f:
