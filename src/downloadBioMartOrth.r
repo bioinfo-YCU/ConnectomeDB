@@ -34,8 +34,15 @@ get_species_orthologs <- function(orig_species, species_name) {
   ensembl <- biomaRt::useMart("ensembl", dataset = paste0(orig_species, "_gene_ensembl"))
   
   # Retrieve genes from original species
+  orig_attributes <- c(
+      orig_species_id, 
+      orig_species_symbol, 
+      "external_synonym",  # common for many species
+      "ensembl_gene_id"
+    )
+    
   orig_genes <- biomaRt::getBM(
-    attributes = c(orig_species_id, orig_species_symbol, "ensembl_gene_id"),
+    attributes = c(orig_attributes),
     mart = ensembl
   )
   
@@ -70,7 +77,7 @@ get_species_orthologs <- function(orig_species, species_name) {
         species_gene_identToTarget,
         species_gene_confidence
       )
- }
+     }
   orth_genes <- biomaRt::getBM(
     attributes = attributes_list,
     mart = ensembl
@@ -119,10 +126,10 @@ get_species_orthologs("mmusculus", "btaurus")
 #  Rhesus macaque (Macaca mulatta) to human
 get_species_orthologs("mmulatta", "hsapiens")
 
-#  Marmoset (Callithrix jacchus)
+#  Marmoset (Callithrix jacchus) to human
 get_species_orthologs("cjacchus", "hsapiens")
 
-# Chimp (Pan troglodytes)
+# Chimp (Pan troglodytes) to human
 get_species_orthologs("ptroglodytes", "hsapiens")
 
 # Chicken (Gallus gallus) to human

@@ -1188,7 +1188,9 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <h1 style="text-align: center; font-size: 28px; font-weight: bold; width: 100%; margin-bottom: 5px;">{{ table0_data["Interaction ID"] }}: {{ value1 }} — {{ value2 }}</h1>
+        <h1 style="text-align: center; font-size: 28px; font-weight: bold; width: 100%; margin-bottom: 5px;">{{ table0_data["Interaction ID"] }}: {{ value1 }} — {{ value2 }}
+        </h1>
+        <h2> Experimentally validated in {{ table5_data["Direct"] }}; Orthology-inferred in {{ table5_data["Conserved"] }}</h2> 
         
         <div class="tab">
             {{TAB_HEADERS}}
@@ -1213,7 +1215,7 @@
 
         <div class="column-center">
             <!-- <h2>{{ value1 }} ({{ table1_data["Ligand Name"] }}) <em>binds to</em> {{ value2 }} ({{ table2_data["Receptor Name"] }}); Direct Pair in {{ table5_data["Direct"] }} and Conserved in {{ table5_data["Conserved"] }}</h2> -->
-            <h2> Pairs are experimentally validated in {{ table5_data["Direct"] }}; Orthology-inferred in {{ table5_data["Conserved"] }}</h2>
+            <!-- <h2> Pairs are experimentally validated in {{ table5_data["Direct"] }}; Orthology-inferred in {{ table5_data["Conserved"] }}</h2> -->
         </div>
 
         <!-- NEW LIGAND-RECEPTOR TABBED INTERFACE -->

@@ -15,10 +15,30 @@ import fetchGSheet
 # Suppress SettingWithCopyWarning
 warnings.simplefilter("ignore", category=UserWarning)
 
+# "Mouse"
+species = "Rat"
+if species == "Mouse":
+    species_id = "MGI"
+    species_info = pd.read_csv(f"data/MRK_Merged_{species_id}_DB.tsv", sep="\t", dtype=str)
+elif species == "Rat":
+    species_id = "RGD"
+    species_info = pd.read_csv(f"data/GENES_RAT_{species_id}_DB.tsv", sep="\t", dtype=str)
+elif species == "Frog":
+    species_id = "XEN"
+    species_info = pd.read_csv(f"data/GenePageGeneralInfo_{species_id.capitalize()}base_DB.tsv", sep="\t", dtype=str)
+elif species == "Zebrafish":
+    species_id = "ZFIN"
+    species_info = pd.read_csv(f"data/Zebrafish_merged_{species_id}_DB.tsv", sep="\t", dtype=str)
+else: 
+    species_info = pd.read_csv(f"data/GenePageGeneralInfo_{species_id}base_DB.tsv", sep="\t", dtype=str)
 
-species = "Mouse"
-species_id = "MGI"
+
 species_lower = species.lower()
+
+if species == "Mouse":
+    gene_pair_species = getattr(fetchGSheet, f"gene_pair_{species_lower}")  
+else:
+    gene_pair_species = fetchGSheet.safe_fetch(fetchGSheet.sheet_ID, f"FROZEN_{species_lower}", credentials_file)
 
 def extract_visible_text(col):
     """Extract visible text between '>' and '</a>'."""
@@ -52,7 +72,7 @@ receptor_symbols_col = [col for col in gene_pair.columns if "Receptor Symbols" i
 gene_pair = gene_pair.rename(columns={ligand_symbols_col: "Human Ligand Symbols",
                                       receptor_symbols_col: "Human Receptor Symbols"})
 
-gene_pair_species = getattr(fetchGSheet, f"gene_pair_{species_lower}")  
+
 gene_pair_species = gene_pair_species[[
     "LR Pair Card",
     f"{species}_ligand",
@@ -65,7 +85,7 @@ gene_pair_species = gene_pair_species[[
 
 
 gene_pair =gene_pair_species.merge(gene_pair,how="left", on="LR Pair Card")
-species_info = pd.read_csv(f"data/MRK_Merged_{species_id}_DB.tsv", sep="\t", dtype=str)
+
 species_info = species_info[[f"{species_id} Marker Accession ID", 'Marker Name','Aliases']]
 species_info["Aliases"] = species_info["Aliases"].str.replace("|", ", ", regex=False)
 gene_pair = gene_pair.merge(species_info,how="left", left_on = f"{species_id} ligand",right_on=f"{species_id} Marker Accession ID")
