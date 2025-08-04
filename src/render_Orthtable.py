@@ -16,7 +16,10 @@ species = "mouse"
 species_addl_search = "Epha3, 5430401F13Rik, no human ortholog"
 output_json = Path(f"JSON/{species}_gene_pair.json")  
 qmd_template = Path(f"database/qmd_template/{species}Orth_template.qmd") 
-qmd_output = Path(f"database/{species}Orth.qmd")  
+if species == "mouse":
+    qmd_output = Path(f"database/{species}Orth.qmd")  
+else:
+    qmd_output = Path(f"database/other/{species}Orth.qmd")
 template_dir = "HTML"
 template_name = "datatableOrth_template.html"
 
