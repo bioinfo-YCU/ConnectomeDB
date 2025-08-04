@@ -336,6 +336,19 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
 
         gene_pair[f"Ligand {species_id} ID"] = gene_pair['Ligand XEN ID'].apply(make_xenbase_link)
         gene_pair[f"Receptor {species_id} ID"] = gene_pair['Receptor XEN ID'].apply(make_xenbase_link)
+        
+    else:
+        def make_ens_link(cell):
+            links = []
+            for xid in str(cell).split(","):
+                xid = eid.strip()
+                if eid.startswith("ENS"):
+                    url = f" http://www.ensembl.org/id/{xid}"
+                    links.append(f'<a href="{url}" target="_blank">{eid}</a>')
+            return ", ".join(links)
+
+        gene_pair[f"Ligand {species_id} ID"] = gene_pair['Ligand ENSEMBL ID'].apply(make_ens_link)
+        gene_pair[f"Receptor {species_id} ID"] = gene_pair['Receptor ENSEMBL ID'].apply(make_ens_link)
 
     
     ### tooltips 
@@ -354,3 +367,4 @@ mouse_gene_pair1 = process_species_gene_pair("Mouse", fetchGSheet, gene_pair)
 rat_gene_pair1 = process_species_gene_pair("Rat", fetchGSheet, gene_pair)
 zebrafish_gene_pair1 = process_species_gene_pair("Zebrafish", fetchGSheet, gene_pair)
 frog_gene_pair1 = process_species_gene_pair("Frog", fetchGSheet, gene_pair)
+chicken_gene_pair1 = process_species_gene_pair("Chicken", fetchGSheet, gene_pair)

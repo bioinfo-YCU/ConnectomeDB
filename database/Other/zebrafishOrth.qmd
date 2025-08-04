@@ -143,18 +143,18 @@ header-includes: <script src='../../js/keepDropdownMenuGold.js'></script>
     }
     
     .selection-counter {
-    color: #1f4eb6;
-    font-weight: bold;
-    font-size: 80%;
-    float: right;
-    margin-top: 8px;
-    margin-right: 0px;
-    padding: 5px 10px;
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    clear: right; /* ADD THIS */
-    text-align: right; /* ADD THIS */
+        color: #1f4eb6;
+        font-weight: bold;
+        font-size: 80%;
+        float: right;
+        margin-top: 8px;
+        margin-right: 0px;
+        padding: 5px 10px;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        clear: right; /* ADD THIS */
+        text-align: right; /* ADD THIS */
     }
     
     @media (max-width: 768px) {
