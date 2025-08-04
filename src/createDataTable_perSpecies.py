@@ -15,231 +15,342 @@ import fetchGSheet
 # Suppress SettingWithCopyWarning
 warnings.simplefilter("ignore", category=UserWarning)
 
-# "Mouse"
-species = "Rat"
-if species == "Mouse":
-    species_id = "MGI"
-    species_info = pd.read_csv(f"data/MRK_Merged_{species_id}_DB.tsv", sep="\t", dtype=str)
-elif species == "Rat":
-    species_id = "RGD"
-    species_info = pd.read_csv(f"data/GENES_RAT_{species_id}_DB.tsv", sep="\t", dtype=str)
-elif species == "Frog":
-    species_id = "XEN"
-    species_info = pd.read_csv(f"data/GenePageGeneralInfo_{species_id.capitalize()}base_DB.tsv", sep="\t", dtype=str)
-elif species == "Zebrafish":
-    species_id = "ZFIN"
-    species_info = pd.read_csv(f"data/Zebrafish_merged_{species_id}_DB.tsv", sep="\t", dtype=str)
-else: 
-    species_info = pd.read_csv(f"data/GenePageGeneralInfo_{species_id}base_DB.tsv", sep="\t", dtype=str)
+def process_species_gene_pair(species, fetchGSheet, gene_pair):
+    species_name = {
+        "Mouse": "mmusculus",
+        "Rat": "rnorvegicus",
+        "Zebrafish":"drerio" ,
+        "Chimpanzee":"ptroglodytes",
+        "Chicken":"ggallus",
+        "Pig":"sscrofa",
+        "Cow":"btaurus",
+        "Dog":"clfamiliaris",
+        "Horse":"ecaballus",
+        "Sheep":"oarambouillet",
+        "Marmoset": "cjacchus" ,
+        "Macaque": "mmulatta",
+        "Frog": "xtropicalis"
+    }.get(species, "Unknown species")
 
-
-species_lower = species.lower()
-
-if species == "Mouse":
-    gene_pair_species = getattr(fetchGSheet, f"gene_pair_{species_lower}")  
-else:
-    gene_pair_species = fetchGSheet.safe_fetch(fetchGSheet.sheet_ID, f"FROZEN_{species_lower}", credentials_file)
-
-def extract_visible_text(col):
-    """Extract visible text between '>' and '</a>'."""
-    match = re.search(r'>([^<]+)</a>', col)
-    if match:
-        return match.group(1).strip()
-    return None
-
-# Grab the Interaction ID and 
-gene_pair = gene_pair.iloc[:, :9]
-# Next, drop columns at index positions 3 and 4 ("Ligand and Receptor" since we already have ligand symbols and receptor symbols)
-gene_pair = gene_pair.drop(gene_pair.columns[[3, 4]], axis=1)
-exclude_keywords = ["HGNC ID", "Location", "Human"]  # Columns containing this will not be modified
-keywords_to_modify = ["Ligand Symbols", "Receptor Symbols"]
-# Copy the original columns so we can modify only the first 10
-new_columns = gene_pair.columns.tolist()
-
-# Modify only the first 10 columns
-new_columns = [
-    f'{col.split(">")[0]}">Human {col.split(">")[1]}</span>'
-    if any(keyword in col for keyword in keywords_to_modify) and not any(exclude in col for exclude in exclude_keywords)
-    else col
-    for col in new_columns
-]
-# Assign the modified column names back to the DataFrame
-gene_pair.columns = new_columns
-
-gene_pair["LR Pair Card"] = gene_pair.iloc[:, 1].apply(extract_visible_text)
-ligand_symbols_col = [col for col in gene_pair.columns if "Ligand Symbols" in col][0]
-receptor_symbols_col = [col for col in gene_pair.columns if "Receptor Symbols" in col][0]
-gene_pair = gene_pair.rename(columns={ligand_symbols_col: "Human Ligand Symbols",
-                                      receptor_symbols_col: "Human Receptor Symbols"})
-
-
-gene_pair_species = gene_pair_species[[
-    "LR Pair Card",
-    f"{species}_ligand",
-    f"{species}_receptor",
-    f"{species} evidence",
-    f"{species_id} ligand",
-    f"{species_id} receptor",
-    "PMID"
-]]
-
-
-gene_pair =gene_pair_species.merge(gene_pair,how="left", on="LR Pair Card")
-
-species_info = species_info[[f"{species_id} Marker Accession ID", 'Marker Name','Aliases']]
-species_info["Aliases"] = species_info["Aliases"].str.replace("|", ", ", regex=False)
-gene_pair = gene_pair.merge(species_info,how="left", left_on = f"{species_id} ligand",right_on=f"{species_id} Marker Accession ID")
-gene_pair = gene_pair.drop(columns=[f"{species_id} Marker Accession ID"])
-gene_pair = gene_pair.rename(columns={
-                                      "Marker Name": "Ligand Name",
-                                      "Aliases": "Ligand Symbols"
-                                     }
-                            )
-gene_pair = gene_pair.merge(
-    species_info,
-    how="left",
-    left_on=f"{species_id} receptor",
-    right_on=f"{species_id} Marker Accession ID"
-)
-
-gene_pair = gene_pair.drop(columns=[f"{species_id} Marker Accession ID"])
-gene_pair = gene_pair.rename(columns={
-                                      "Marker Name": "Receptor Name",
-                                      "Aliases": "Receptor Symbols"
-                                     }
-                            )
-
-gene_pair[f"{species} LR Pair"] = np.where(
-    gene_pair[f"{species} evidence"] == "not conserved", 
-    f"no {species_lower} ortholog",                                  
-    gene_pair[f"{species}_ligand"] + " " + gene_pair[f"{species}_receptor"] 
-)
-
-gene_pair = gene_pair[~(gene_pair[f"{species} evidence"] == "not conserved")]
-def format_symbol_aliases(symbol, aliases):
-    """
-    Formats symbol, old symbols, and aliases.
-    If the final formatted string would be empty after considering N/A values
-    and empty inputs, it returns "species-specific".
-    Otherwise, it formats based on the presence of old_symbol and aliases,
-    removing unnecessary parentheses or commas, following the structure:
-    "Symbol (Old Symbol, Aliases)" if both exist.
-    """
-    # Normalize inputs to empty strings if they are None/NaN or just whitespace
-    symbol_str = str(symbol).strip()
-    # old_symbol_str = str(old_symbol).strip()
-    aliases_str = str(aliases).strip()
-
-    # Filter out values that are empty strings or "N/A" for old_symbol and aliases
-    parts_for_join = []
-    # if old_symbol_str and old_symbol_str != "N/A":
-    #     parts_for_join.append(old_symbol_str)
-    if aliases_str and aliases_str != "N/A":
-        parts_for_join.append(aliases_str)
-
-    # Construct the preliminary result based on your original logic:
-    # "symbol (old_symbol, aliases)" if parts_for_join is not empty, else "symbol"
-    if parts_for_join:
-        prelim_result = f"{symbol_str} ({', '.join(parts_for_join)})"
+    if species == "Mouse":
+        species_id = "MGI"
+        species_info = pd.read_csv(f"data/MRK_Merged_{species_id}_DB.tsv", sep="\t", dtype=str)
+    elif species == "Rat":
+        species_id = "RGD"
+        species_info = pd.read_csv(f"data/GENES_RAT_{species_id}_DB.tsv", sep="\t", dtype=str)
+        # combine all known aliases also old ones
+        species_info["ALIASES"] = species_info[["MARKER_SYMBOL", "OLD_SYMBOL"]].apply(
+            lambda row: ";".join(pd.unique(row.dropna().astype(str))), axis=1
+        )
+    elif species == "Frog":
+        species_id = "XEN"
+        species_info = pd.read_csv(f"data/GenePageGeneralInfo_{species_id.capitalize()}base_DB.tsv", sep="\t", dtype=str)
+    elif species == "Zebrafish":
+        species_id = "ZFIN"
+        species_info = pd.read_csv(f"data/Zebrafish_merged_{species_id}_DB.tsv", sep="\t", dtype=str)
+        # combine all known aliases also old ones
+        species_info["Aliases"] = species_info[["Current Name", "Previous Name"]].apply(
+            lambda row: ", ".join(pd.unique(row.dropna().astype(str))), axis=1
+        )
+    else: 
+        species_id = "ENSEMBL"
+        species_info = pd.read_csv(f"data/hsapiens_ID_biomart_{species_name}_centric.csv", dtype=str)
+    
+    
+    species_lower = species.lower()
+    
+    if species == "Mouse":
+        gene_pair_species = getattr(fetchGSheet, f"gene_pair_{species_lower}")  
     else:
-        prelim_result = symbol_str # Just the symbol if no old_symbol or aliases
+        gene_pair_species = fetchGSheet.safe_fetch(fetchGSheet.sheet_ID, f"FROZEN_{species_lower}", fetchGSheet.credentials_file)
+    
+    def extract_visible_text(col):
+        """Extract visible text between '>' and '</a>'."""
+        match = re.search(r'>([^<]+)</a>', col)
+        if match:
+            return match.group(1).strip()
+        return None
+    
+    # Grab the Interaction ID and 
+    gene_pair = gene_pair.iloc[:, :9]
+    # Next, drop columns at index positions 3 and 4 ("Ligand and Receptor" since we already have ligand symbols and receptor symbols)
+    gene_pair = gene_pair.drop(gene_pair.columns[[3, 4]], axis=1)
+    exclude_keywords = ["HGNC ID", "Location", "Human"]  # Columns containing this will not be modified
+    keywords_to_modify = ["Ligand Symbols", "Receptor Symbols"]
+    # Copy the original columns so we can modify only the first 10
+    new_columns = gene_pair.columns.tolist()
+    
+    # Modify only the first 10 columns
+    new_columns = [
+        f'{col.split(">")[0]}">Human {col.split(">")[1]}</span>'
+        if any(keyword in col for keyword in keywords_to_modify) and not any(exclude in col for exclude in exclude_keywords)
+        else col
+        for col in new_columns
+    ]
+    # Assign the modified column names back to the DataFrame
+    gene_pair.columns = new_columns
+    
+    gene_pair["LR Pair Card"] = gene_pair.iloc[:, 1].apply(extract_visible_text)
+    ligand_symbols_col = [col for col in gene_pair.columns if "Ligand Symbols" in col][0]
+    receptor_symbols_col = [col for col in gene_pair.columns if "Receptor Symbols" in col][0]
+    gene_pair = gene_pair.rename(columns={ligand_symbols_col: "Human Ligand Symbols",
+                                          receptor_symbols_col: "Human Receptor Symbols"})
+    
+    
+    gene_pair_species = gene_pair_species[[
+        "LR Pair Card",
+        f"{species}_ligand",
+        f"{species}_receptor",
+        f"{species} evidence",
+        f"{species_id} ligand",
+        f"{species_id} receptor",
+        "PMID"
+    ]]
+    
+    
+    gene_pair =gene_pair_species.merge(gene_pair,how="left", on="LR Pair Card")
+    
+    if species == "Mouse":
+        spec_id = f"{species_id} Marker Accession ID"
+        spec_name = "Marker Name"
+        spec_alias = "Aliases"
+    elif species == "Rat":
+        spec_id = f"GENE_{species_id}_ID"
+        spec_name = "NAME"
+        spec_alias = "ALIASES"
+    elif species == "Zebrafish":
+        spec_id = f"{species_id}_ID"
+        spec_name = "Current Name"
+        spec_alias = "Aliases"
+    elif species == "Frog":
+        spec_id = "tropicalis gene ID"
+        spec_name = "gene name"
+        spec_alias = "gene synonyms"
+    else:
+        spec_id = "ensembl_gene_id"
+        spec_name = "external_gene_name"
+        spec_alias = "external_synonym"
+    
+    
+    species_info = species_info[[spec_id, spec_name,spec_alias]]
+    
+    if species in ["Mouse", "Frog"]:
+        species_info[spec_alias] = species_info[spec_alias].str.replace("|", ", ", regex=False)
+    elif species == "Rat":
+        species_info[spec_alias] = species_info[spec_alias].str.replace(";", ", ", regex=False)
 
-    return prelim_result
-
-# This is crucial for consistent handling by the function before processing "N/A".
-gene_pair[f"{species}_ligand"] = gene_pair[f"{species}_ligand"].fillna('')
-gene_pair['Ligand Symbols'] = gene_pair['Ligand Symbols'].fillna('')
-
-gene_pair['Ligand Symbols'] = gene_pair.apply(
-    lambda row: format_symbol_aliases(row[f"{species}_ligand"], row['Ligand Symbols']),
-    axis=1
-)
-
-gene_pair[f"{species}_receptor"] = gene_pair[f"{species}_receptor"].fillna('')
-gene_pair['Receptor Symbols'] = gene_pair['Receptor Symbols'].fillna('')
-
-gene_pair['Receptor Symbols'] = gene_pair.apply(
-    lambda row: format_symbol_aliases(row[f"{species}_receptor"], row['Receptor Symbols']),
-    axis=1
-)
-# The list of columns to group by
-interaction_id_col = [col for col in gene_pair.columns if "Interaction ID" in col][0]
-
-grouping_cols = [
-    interaction_id_col, f"{species} LR Pair", "Ligand Symbols", "Receptor Symbols" 
-]
-
-aggregation_cols = [
-    col for col in gene_pair.columns if col not in grouping_cols
-]
-
-# 3. Create a dictionary mapping each aggregation column to the joining function
-agg_dict = {
-    col: lambda x: ', '.join(x.astype(str).unique()) for col in aggregation_cols
-}
-
-# 4. Perform the groupby and aggregation
-gene_pair = gene_pair.groupby(grouping_cols).agg(agg_dict).reset_index()
-
-# make direct, conservation and conservation, direct the same
-gene_pair[f"{species} evidence"] = gene_pair[f"{species} evidence"].replace("CONSERVATION, DIRECT", "DIRECT, CONSERVATION")
-
-
-def generate_perplexity_link_pmid(row, species, species_lower): 
-    query = (
-        f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-"
-        f"{row[f'{species} LR Pair']}-based-on-Pubmed-ID-"
-        f"{row['PMID']}-in-{species_lower}"
+    
+    gene_pair = gene_pair.merge(species_info,how="left", left_on = f"{species_id} ligand",right_on=spec_id)
+    gene_pair = gene_pair.drop(columns=[spec_id])
+    gene_pair = gene_pair.rename(columns={
+                                          spec_name: "Ligand Name",
+                                          spec_alias: "Ligand Symbols"
+                                         }
+                                )
+    gene_pair = gene_pair.merge(
+        species_info,
+        how="left",
+        left_on=f"{species_id} receptor",
+        right_on=spec_id
     )
-    return (
-         f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank" style="text-decoration: none;">&#128269;</a>'
+    
+    gene_pair = gene_pair.drop(columns=[spec_id])
+    gene_pair = gene_pair.rename(columns={
+                                          spec_name: "Receptor Name",
+                                          spec_alias: "Receptor Symbols"
+                                         }
+                                )
+    
+    
+    
+    gene_pair[f"{species} LR Pair"] = np.where(
+        gene_pair[f"{species} evidence"] == "not conserved", 
+        f"no {species_lower} ortholog",                                  
+        gene_pair[f"{species}_ligand"] + " " + gene_pair[f"{species}_receptor"] 
     )
+    
+    gene_pair = gene_pair[~(gene_pair[f"{species} evidence"] == "not conserved")]
+    def format_symbol_aliases(symbol, aliases):
+        """
+        Formats symbol, old symbols, and aliases.
+        If the final formatted string would be empty after considering N/A values
+        and empty inputs, it returns "species-specific".
+        Otherwise, it formats based on the presence of old_symbol and aliases,
+        removing unnecessary parentheses or commas, following the structure:
+        "Symbol (Old Symbol, Aliases)" if both exist.
+        """
+        # Normalize inputs to empty strings if they are None/NaN or just whitespace
+        symbol_str = str(symbol).strip()
+        # old_symbol_str = str(old_symbol).strip()
+        aliases_str = str(aliases).strip()
+    
+        # Filter out values that are empty strings or "N/A" for old_symbol and aliases
+        parts_for_join = []
+        # if old_symbol_str and old_symbol_str != "N/A":
+        #     parts_for_join.append(old_symbol_str)
+        if aliases_str and aliases_str != "N/A":
+            parts_for_join.append(aliases_str)
+    
+        # Construct the preliminary result based on your original logic:
+        # "symbol (old_symbol, aliases)" if parts_for_join is not empty, else "symbol"
+        if parts_for_join:
+            prelim_result = f"{symbol_str} ({', '.join(parts_for_join)})"
+        else:
+            prelim_result = symbol_str # Just the symbol if no old_symbol or aliases
+    
+        return prelim_result
+    
+    # This is crucial for consistent handling by the function before processing "N/A".
+    gene_pair[f"{species}_ligand"] = gene_pair[f"{species}_ligand"].fillna('')
+    gene_pair['Ligand Symbols'] = gene_pair['Ligand Symbols'].fillna('')
+    
+    gene_pair['Ligand Symbols'] = gene_pair.apply(
+        lambda row: format_symbol_aliases(row[f"{species}_ligand"], row['Ligand Symbols']),
+        axis=1
+    )
+    
+    gene_pair[f"{species}_receptor"] = gene_pair[f"{species}_receptor"].fillna('')
+    gene_pair['Receptor Symbols'] = gene_pair['Receptor Symbols'].fillna('')
+    
+    gene_pair['Receptor Symbols'] = gene_pair.apply(
+        lambda row: format_symbol_aliases(row[f"{species}_receptor"], row['Receptor Symbols']),
+        axis=1
+    )
+    # The list of columns to group by
+    interaction_id_col = [col for col in gene_pair.columns if "Interaction ID" in col][0]
+    
+    grouping_cols = [
+        interaction_id_col, f"{species} LR Pair" #, "Ligand Symbols", "Receptor Symbols" 
+    ]
+    
+    aggregation_cols = [
+        col for col in gene_pair.columns if col not in grouping_cols
+    ]
+    
+    # 3. Create a dictionary mapping each aggregation column to the joining function
+    agg_dict = {
+        col: lambda x: ', '.join(x.astype(str).unique()) for col in aggregation_cols
+    }
+    
+    # 4. Perform the groupby and aggregation
+    gene_pair = gene_pair.groupby(grouping_cols).agg(agg_dict).reset_index()
+    
+    # make direct, conservation and conservation, direct the same
+    gene_pair[f"{species} evidence"] = gene_pair[f"{species} evidence"].replace("CONSERVATION, DIRECT", "DIRECT, CONSERVATION")
+    
+    
+    def generate_perplexity_link_pmid(row, species, species_lower): 
+        query = (
+            f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-"
+            f"{row[f'{species} LR Pair']}-based-on-Pubmed-ID-"
+            f"{row['PMID']}-in-{species_lower}"
+        )
+        return (
+             f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank" style="text-decoration: none;">&#128269;</a>'
+        )
+    
+    
+    # Apply function to the DataFrame
+    gene_pair["Perplexity"] = gene_pair.apply(
+        generate_perplexity_link_pmid, axis=1, args=(species, species_lower)
+    )
+    
+    
+    gene_pair = gene_pair.rename(columns={
+                                          f"{species_id} ligand": f"Ligand {species_id} ID",
+                                          f"{species_id} receptor": f"Receptor {species_id} ID"
+                                         }
+                                )
+    ligand_loc_col = [col for col in gene_pair.columns if "Ligand Location" in col][0]
+    receptor_loc_col = [col for col in gene_pair.columns if "Receptor Location" in col][0]
+    lr_pair_card = [col for col in gene_pair.columns if ">LR Pair Card" in col][0]
+    # gene_pair.columns
+    gene_pair["LR Pair Card"] = gene_pair[lr_pair_card]
+    gene_pair = gene_pair[[interaction_id_col, "LR Pair Card",f"{species} LR Pair", 'Ligand Symbols', 'Receptor Symbols', ligand_loc_col, receptor_loc_col, f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Perplexity", f"{species} evidence", "Human Ligand Symbols", "Human Receptor Symbols"]]
+    if species == "Mouse":
+        # Linkify multiple species IDs in Ligand column
+        gene_pair[f"Ligand {species_id} ID"] = gene_pair[f"Ligand {species_id} ID"].apply(
+            lambda cell: ", ".join(
+                f'<a href="https://www.informatics.jax.org/marker/{mgi.strip()}" target="_blank">{mgi.strip()}</a>'
+                for mgi in str(cell).split(", ")
+                if mgi.strip()
+            ) if pd.notna(cell) else ""
+        )
+        
+        # Linkify multiple MGI IDs in Receptor column
+        gene_pair[f"Receptor {species_id} ID"] = gene_pair[f"Receptor {species_id} ID"].apply(
+            lambda cell: ", ".join(
+                f'<a href="https://www.informatics.jax.org/marker/{mgi.strip()}" target="_blank">{mgi.strip()}</a>'
+                for mgi in str(cell).split(", ")
+                if mgi.strip()
+            ) if pd.notna(cell) else ""
+        )
+        
+    elif species == "Rat":
+        # Linkify multiple RGD IDs in Receptor column
+        gene_pair[f"Ligand {species_id} ID"] = gene_pair["Ligand RGD ID"].apply(
+            lambda cell: ", ".join(
+                f'<a href="https://rgd.mcw.edu/rgdweb/report/gene/main.html?id={rgd.strip()}" target="_blank">{"RGD:"+rgd.strip()}</a>'
+                for rgd in str(cell).split(", ")
+                if rgd.strip()
+            ) if pd.notna(cell) else ""
+        )
+        
+        
+        # Linkify multiple RGD IDs in Receptor column
+        gene_pair[f"Receptor {species_id} ID"] = gene_pair["Receptor RGD ID"].apply(
+            lambda cell: ", ".join(
+                f'<a href="https://rgd.mcw.edu/rgdweb/report/gene/main.html?id={rgd.strip()}" target="_blank">{"RGD:"+rgd.strip()}</a>'
+                for rgd in str(cell).split(", ")
+                if rgd.strip()
+            ) if pd.notna(cell) else ""
+        )
+        
+    elif species == "Zebrafish":
+        # Linkify multiple Zebrafish Receptor IDs
+        gene_pair[f"Ligand {species_id} ID"] = gene_pair['Ligand ZFIN ID'].apply(
+            lambda cell: ", ".join(
+                f'<a href="https://zfin.org/{zfin.strip()}" target="_blank">{zfin.strip()}</a>'
+                for zfin in str(cell).split(", ")
+                if zfin.strip()
+            ) if pd.notna(cell) else ""
+        )
+        
+        # Linkify multiple Zebrafish Ligand IDs
+        gene_pair[f"Receptor {species_id} ID"] = gene_pair['Receptor ZFIN ID'].apply(
+            lambda cell: ", ".join(
+                f'<a href="https://zfin.org/{zfin.strip()}" target="_blank">{zfin.strip()}</a>'
+                for zfin in str(cell).split(", ")
+                if zfin.strip()
+            ) if pd.notna(cell) else ""
+        )
+    elif species == "Frog":
+        def make_xenbase_link(cell):
+            links = []
+            for xid in str(cell).split(","):
+                xid = xid.strip()
+                if xid.startswith("XB-GENE-"):
+                    url = f"https://www.xenbase.org/xenbase/gene/showgene.do?method=display&geneId={xid}"
+                    links.append(f'<a href="{url}" target="_blank">{xid}</a>')
+            return ", ".join(links)
+
+        gene_pair[f"Ligand {species_id} ID"] = gene_pair['Ligand XEN ID'].apply(make_xenbase_link)
+        gene_pair[f"Receptor {species_id} ID"] = gene_pair['Receptor XEN ID'].apply(make_xenbase_link)
+
+    
+    ### tooltips 
+    gene_pair["Ligand Symbols"] = [
+        f'<span title="{aliases}">{aliases}</span>'
+        for aliases in gene_pair["Ligand Symbols"]
+    ]
+    gene_pair["Receptor Symbols"] = [
+        f'<span title="{aliases}">{aliases}</span>'
+        for aliases in gene_pair["Receptor Symbols"]
+    ]
+    return gene_pair
 
 
-# Apply function to the DataFrame
-gene_pair["Perplexity"] = gene_pair.apply(
-    generate_perplexity_link_pmid, axis=1, args=(species, species_lower)
-)
-
-
-gene_pair = gene_pair.rename(columns={
-                                      f"{species_id} ligand": f"Ligand {species_id} ID",
-                                      f"{species_id} receptor": f"Receptor {species_id} ID"
-                                     }
-                            )
-ligand_loc_col = [col for col in gene_pair.columns if "Ligand Location" in col][0]
-receptor_loc_col = [col for col in gene_pair.columns if "Receptor Location" in col][0]
-lr_pair_card = [col for col in gene_pair.columns if ">LR Pair Card" in col][0]
-# gene_pair.columns
-gene_pair["LR Pair Card"] = gene_pair[lr_pair_card]
-gene_pair = gene_pair[[interaction_id_col, "LR Pair Card",f"{species} LR Pair", 'Ligand Symbols', 'Receptor Symbols', ligand_loc_col, receptor_loc_col, f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Perplexity", f"{species} evidence", "Human Ligand Symbols", "Human Receptor Symbols"]]
-# Linkify multiple species IDs in Ligand column
-gene_pair[f"Ligand {species_id} ID"] = gene_pair[f"Ligand {species_id} ID"].apply(
-    lambda cell: ", ".join(
-        f'<a href="https://www.informatics.jax.org/marker/{mgi.strip()}" target="_blank">{mgi.strip()}</a>'
-        for mgi in str(cell).split(", ")
-        if mgi.strip()
-    ) if pd.notna(cell) else ""
-)
-
-# Linkify multiple MGI IDs in Receptor column
-gene_pair[f"Receptor {species_id} ID"] = gene_pair[f"Receptor {species_id} ID"].apply(
-    lambda cell: ", ".join(
-        f'<a href="https://www.informatics.jax.org/marker/{mgi.strip()}" target="_blank">{mgi.strip()}</a>'
-        for mgi in str(cell).split(", ")
-        if mgi.strip()
-    ) if pd.notna(cell) else ""
-)
-
-### tooltips 
-gene_pair["Ligand Symbols"] = [
-    f'<span title="{aliases}">{aliases}</span>'
-    for aliases in gene_pair["Ligand Symbols"]
-]
-gene_pair["Receptor Symbols"] = [
-    f'<span title="{aliases}">{aliases}</span>'
-    for aliases in gene_pair["Receptor Symbols"]
-]
-
-
-mouse_gene_pair1 = gene_pair
+mouse_gene_pair1 = process_species_gene_pair("Mouse", fetchGSheet, gene_pair)
+rat_gene_pair1 = process_species_gene_pair("Rat", fetchGSheet, gene_pair)
+zebrafish_gene_pair1 = process_species_gene_pair("Zebrafish", fetchGSheet, gene_pair)
+frog_gene_pair1 = process_species_gene_pair("Frog", fetchGSheet, gene_pair)

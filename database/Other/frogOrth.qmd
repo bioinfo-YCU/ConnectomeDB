@@ -1,5 +1,5 @@
 ---
-title: "Rat \u2013 *Rattus norvegicus* </span>"
+title: "Frog \u2013 *Xenopus tropicalis* </span>"
 execute:
   echo: false
 format:
@@ -176,7 +176,7 @@ header-includes: <script src='../../js/keepDropdownMenuGold.js'></script>
     
 </style>
 
-<table id="rat-table" class="display nowrap cell-border compact" style="width:100%">
+<table id="frog-table" class="display nowrap cell-border compact" style="width:100%">
     <thead></thead>
     <tfoot></tfoot>
 </table>
@@ -195,7 +195,7 @@ header-includes: <script src='../../js/keepDropdownMenuGold.js'></script>
 $(document).ready(function() {
     console.log('Starting DataTable initialization...');
     
-    $.getJSON("../../JSON/rat_gene_pair.json", function(data) {
+    $.getJSON("../../JSON/frog_gene_pair.json", function(data) {
         console.log('JSON data loaded successfully:', data.length, 'rows');
         
         const columns = [
@@ -208,8 +208,8 @@ $(document).ready(function() {
     "title": "LR Pair Card"
   },
   {
-    "data": "Rat LR Pair",
-    "title": "Rat LR Pair"
+    "data": "Frog LR Pair",
+    "title": "Frog LR Pair"
   },
   {
     "data": "Ligand Symbols",
@@ -228,20 +228,20 @@ $(document).ready(function() {
     "title": "<span title=\"Location based on the predicted subcellular localization of the human proteome\">Receptor Location</span>"
   },
   {
-    "data": "Ligand RGD ID",
-    "title": "Ligand RGD ID"
+    "data": "Ligand XEN ID",
+    "title": "Ligand XEN ID"
   },
   {
-    "data": "Receptor RGD ID",
-    "title": "Receptor RGD ID"
+    "data": "Receptor XEN ID",
+    "title": "Receptor XEN ID"
   },
   {
     "data": "Perplexity",
     "title": "Perplexity"
   },
   {
-    "data": "Rat evidence",
-    "title": "Rat evidence"
+    "data": "Frog evidence",
+    "title": "Frog evidence"
   },
   {
     "data": "Human Ligand Symbols",
@@ -261,7 +261,7 @@ $(document).ready(function() {
             headerHtml += '<th>' + (col.title || col.data || '') + '</th>';
         });
         headerHtml += '</tr>';
-        $('#rat-table thead').html(headerHtml);
+        $('#frog-table thead').html(headerHtml);
 
         // Calculate hidden columns based on total column count (adjust for checkbox column)
         var totalColumns = columns.length + 1; // +1 for checkbox column
@@ -281,7 +281,7 @@ $(document).ready(function() {
         console.log('Total columns:', totalColumns);
         console.log('Hidden columns:', hiddenColumns);
 
-        var table = $('#rat-table').DataTable({
+        var table = $('#frog-table').DataTable({
             data: data,
             columns: [
                 {
@@ -313,7 +313,7 @@ $(document).ready(function() {
                 'selectNone',
                 {
                     extend: 'csvHtml5',
-                    filename: 'ConnectomeDB2025_rat',
+                    filename: 'ConnectomeDB2025_frog',
                     exportOptions: {
                         columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
                         format: {
@@ -341,7 +341,7 @@ $(document).ready(function() {
                 },
                 {
                     extend: 'excelHtml5',
-                    filename: 'ConnectomeDB2025_rat',
+                    filename: 'ConnectomeDB2025_frog',
                     title: null,
                     exportOptions: {
                         columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
@@ -369,7 +369,7 @@ $(document).ready(function() {
                 },
                 // {
                 //     extend: 'copyHtml5',
-                //     filename: 'ConnectomeDB2025_rat',
+                //     filename: 'ConnectomeDB2025_frog',
                 //     title: null,
                 //     exportOptions: {
                 //         columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
@@ -480,13 +480,13 @@ $(document).ready(function() {
                 setTimeout(function() {
                     // Create a filter container directly above the table and headers
                     var filterContainer = $('<div id="column-filters" style="background: white; padding-left: 0px; padding-right: 0px; padding-bottom: 10px; border: 0px solid #ddd; margin-bottom: 1px; width: 100%;"><h4 style="margin: 0 0 15px 0;">Search Ligand(s) / Receptor(s) here</h4></div>');
-                    $('#rat-table').closest('.dataTables_wrapper').prepend(filterContainer);
+                    $('#frog-table').closest('.dataTables_wrapper').prepend(filterContainer);
 
                     var filterDiv = $('<div style="max-width: 100%;"></div>');
                     var label = $('<label></label>');
 
                     // Create input without datalist (no autofill)
-                    var input = $('<input type="text" placeholder="i.e. CD24, EGFR, A2M, Cck, Vav1, no human ortholog" />')
+                    var input = $('<input type="text" placeholder="i.e. CD24, EGFR, A2M, ccl5, rantes, no human ortholog" />')
                         .css({
                             'width': '100%',
                             'padding': '8px',
@@ -626,7 +626,7 @@ api.on('order.dt search.dt', function () {
 
     }).fail(function(jqxhr, textStatus, error) {
         console.error("Failed to load JSON data:", textStatus, error);
-        console.error("JSON path:", "../../JSON/rat_gene_pair.json");
+        console.error("JSON path:", "../../JSON/frog_gene_pair.json");
         alert("Failed to load table data. Please check the console for details.");
     });
 });
