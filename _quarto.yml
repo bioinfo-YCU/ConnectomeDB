@@ -78,6 +78,8 @@ website:
            text: 'Sheep Orthologs' 
          - href: database/other/chickenOrth.qmd
            text: 'Chicken Orthologs' 
+         - href: database/other/frogOrth.qmd
+           text: 'Frog Orthologs' 
          - href: database/other/zebrafishOrth.qmd 
            text: 'Zebrafish Orthologs' 
            

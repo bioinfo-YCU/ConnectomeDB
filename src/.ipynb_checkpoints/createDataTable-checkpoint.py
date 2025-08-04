@@ -626,9 +626,10 @@ gene_pair = gene_pair.drop(columns=["Ligand Name", "Receptor Name"])
 
 # Create the links to the HTML cards
 gene_pair["LR Pair Card"] = [
-    f'<a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/{lrPairOrig.replace(" ","-")}.html">{lrPair}</a>'
-    for lrPairOrig, lrPair in zip(gene_pair0["LR Pair Card"], gene_pair["LR Pair Card"])
+    f'<a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/{ "mouse" if evidence == "not conserved" else "human" }/{lrPairOrig.replace(" ","-")}.html">{lrPair}</a>'
+    for lrPairOrig, lrPair, evidence in zip(gene_pair0["LR Pair Card"], gene_pair["LR Pair Card"], gene_pair["Human evidence"])
 ]
+
 
 
 # Add tooltips to the column headers
@@ -680,3 +681,5 @@ human_columns = [col for col in gene_pair000.columns][:16]
 # remove mouse specific ones from the datatable
 evidence_cols = [col for col in gene_pair.columns if 'Human evidence' in col]
 human_gene_pair = gene_pair[~(gene_pair[evidence_cols[0]] == "not conserved")]
+# add number of mouse pair cards
+numOfMouseOrth = len(gene_pair[evidence_cols][(gene_pair[evidence_cols[0]] == "not conserved")])

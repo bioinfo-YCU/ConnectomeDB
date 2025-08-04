@@ -56,7 +56,6 @@ header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
         font-weight: bold;
         margin-left: 0px !important;
         padding-top: 8px !important;
-        font-size: 80%;
         clear: none !important;
     }
     
