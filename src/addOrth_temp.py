@@ -286,8 +286,6 @@ mouse_specific_mgi_ids = pd.unique(pd.Series(mouse_specific_mgi_ids))
 
 # Linkify multiple RGD IDs in Ligand column
 
-def clean_rgd_id(rgd):
-    rgd = str(rgd).strip()
 
 # Linkify multiple MGI IDs in Ligand column
 gene_pair["Ligand MGI ID"] = gene_pair["Ligand MGI ID"].apply(
@@ -309,6 +307,9 @@ gene_pair["Receptor MGI ID"] = gene_pair["Receptor MGI ID"].apply(
 
 
 
+def clean_rgd_id(rgd):
+    rgd = str(rgd).strip()
+    
 # Linkify multiple RGD IDs in Receptor column
 gene_pair["Ligand RGD ID"] = gene_pair["Ligand RGD ID"].apply(
     lambda cell: ", ".join(
