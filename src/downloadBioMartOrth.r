@@ -56,33 +56,31 @@ get_species_orthologs <- function(orig_species, species_name) {
   species_gene_confidence <- paste0(species_name, "_homolog_orthology_confidence")
   
   # Get orthologs from original species mart
- if (species_name == "xtropicalis"|orig_species =="xtropicalis") {
-      attributes_list <- c(
-        "ensembl_gene_id",
-        species_column, 
-        species_gene_name,
-        species_gene_GOC,
-        species_gene_identToQuery,
-        species_gene_identToTarget,
-        species_gene_confidence
+    available_attributes <- biomaRt::listAttributes(ensembl)[["name"]]
+    
+    wga_attribute <- paste0(species_name, "_homolog_wga_coverage")
+    
+    include_wga <- wga_attribute %in% available_attributes
+    
+    attributes_list <- c(
+      "ensembl_gene_id",
+      species_column,
+      species_gene_name,
+      species_gene_GOC,
+      species_gene_identToQuery,
+      species_gene_identToTarget,
+      species_gene_confidence
+    )
+    
+    if (include_wga) {
+      attributes_list <- append(attributes_list, wga_attribute, after = 4)
+    }
+    
+      orth_genes <- biomaRt::getBM(
+        attributes = attributes_list,
+        mart = ensembl
       )
- } else {
-      attributes_list <- c(
-        "ensembl_gene_id",
-        species_column, 
-        species_gene_name,
-        species_gene_GOC,
-        species_gene_WGA,
-        species_gene_identToQuery,
-        species_gene_identToTarget,
-        species_gene_confidence
-      )
-     }
-  orth_genes <- biomaRt::getBM(
-    attributes = attributes_list,
-    mart = ensembl
-  )
-  
+      
   result <- merge(orig_genes, orth_genes, by = "ensembl_gene_id", all.x = TRUE)
   
   # Connect to ortholog species dataset
