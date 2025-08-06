@@ -12,7 +12,7 @@ sys.path.append(os.path.abspath("src"))
 # Import necessary modules from your existing src files
 # Ensure createDataTable and createFunctionalAnnotTable are in your 'src' directory
 from fetchGSheet import gene_pair_mouse, conservation
-from createDataTable import pop_up_info, gene_pair0, generate_perplexity_links, gene_pair00, is_mouse_specific, grab_mouse_info
+from createDataTable import pop_up_info, gene_pair0, site_url, generate_perplexity_links, gene_pair00, is_mouse_specific, grab_mouse_info
 from createFunctionalAnnotTable import gene_pair_annot_ligand, gene_pair_annot_receptor
 
 # Test or all
@@ -104,7 +104,7 @@ mouse_interaction_ids = gene_pair0_copy["Interaction ID"][gene_pair0_copy["Human
 ### SHOULD BE ACTIVATED ONCE WE DECIDE TO OPEN DB 
 # # Hide for now (linking to actual PMID database
 # gene_pair0_copy["Interaction ID"] = gene_pair0_copy["Interaction ID"].apply(
-#     lambda x: f"<a href='https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/database/filter/{x}.html'>{x}</a>"
+#     lambda x: f"<a href='{site_url}database/filter/{x}.html'>{x}</a>"
 # )
 
 # Add external link icon
@@ -937,7 +937,7 @@ def convert_pair_url(df_pairs):
                 subdir = "mouse/" if any(c.islower() for c in lrpair) else "human/"
                 
                 return (
-                    f'<a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/'
+                    f'<a href="{site_url}cards/'
                     f'{subdir}{encoded_lrpair}.html" target="_blank" '
                     f'title="Open {lrpair} card">'
                     f'{lrpair_dash}</a>'
@@ -961,6 +961,7 @@ def generate_combined_html_files(
     pubmed_data_df,
     gene_pair_main_df, # Corresponds to gene_pair0 (with spaces in LR Pair)
     output_dir, 
+    site
 ):
     """
     Generate combined HTML pages with PMID details on top and card details at the bottom
@@ -1234,10 +1235,11 @@ def generate_combined_html_files(
             receptor_image=receptor_image,
             ligand_pairs=ligand_pairs_str,
             receptor_pairs=receptor_pairs_str,
+            site = site,
             prev_page_info=(
                 {
                     "interaction_id": prev_page_info["interaction_id"],
-                    "url": f"https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/"
+                    "url": f"{site}cards/"
                            f"{'mouse/' if any(c.islower() for c in prev_page_info['lr_pair_name_space']) else 'human/'}"
                            f"{prev_page_info['filename']}",
                     "lr_pair_name_space": prev_page_info["lr_pair_name_space"]
@@ -1247,7 +1249,7 @@ def generate_combined_html_files(
             next_page_info=(
                 {
                     "interaction_id": next_page_info["interaction_id"],
-                    "url": f"https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/"
+                    "url": f"{site}cards/"
                            f"{'mouse/' if any(c.islower() for c in next_page_info['lr_pair_name_space']) else 'human/'}"
                            f"{next_page_info['filename']}",
                     "lr_pair_name_space": next_page_info["lr_pair_name_space"]
@@ -1302,6 +1304,7 @@ if __name__ == "__main__":
         receptor_card_2_df=receptor_card_2,
         pubmed_data_df=pubmed_data,
         gene_pair_main_df=gene_pair0_copy, # Use the original gene_pair0_copy for related pairs
-        output_dir=OUTPUT_DIR
+        output_dir=OUTPUT_DIR,
+        site = site_url
     )
     print(f"Generated combined HTML files in: {OUTPUT_DIR}")
