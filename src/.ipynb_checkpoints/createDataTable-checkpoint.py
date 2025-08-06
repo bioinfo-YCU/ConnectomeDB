@@ -13,7 +13,6 @@ import urllib.parse
 # Suppress SettingWithCopyWarning
 warnings.simplefilter("ignore", category=UserWarning)
 
-#https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/
 site_url = "https://connectomedb.org/"
 # Other vertebrates
 species_list = [
