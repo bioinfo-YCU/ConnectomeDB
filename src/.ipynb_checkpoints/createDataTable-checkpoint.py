@@ -13,7 +13,8 @@ import urllib.parse
 # Suppress SettingWithCopyWarning
 warnings.simplefilter("ignore", category=UserWarning)
 
-
+#https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/
+site_url = "https://connectomedb.org/"
 # Other vertebrates
 species_list = [
     "mmusculus", "rnorvegicus", "drerio", "ptroglodytes", "ggallus", "sscrofa", "btaurus", 
@@ -414,10 +415,10 @@ def generate_links_with_doi(df, gene_column, pmid_column, id_column):
                 return f'<a href="{source}" target="_blank">BioRxiv</a>'
             else:
                 # If it's a single PMID, hyperlink the PMID text
-                return f'<a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/{gene}.html">{source}</a>'
+                return f'<a href="{site_url}cards/{gene}.html">{source}</a>'
         else:
             # If multiple PMIDs, show the count and hyperlink to the page
-            return f'<a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/{gene}.html" target="_blank">{len(sources)} PMIDs</a>'
+            return f'<a href="{site_url}cards/{gene}.html" target="_blank">{len(sources)} PMIDs</a>'
 
     # Process each row to generate the "PMID" column # was "PMID support"
     df["PMID"] = [
@@ -626,7 +627,7 @@ gene_pair = gene_pair.drop(columns=["Ligand Name", "Receptor Name"])
 
 # Create the links to the HTML cards
 gene_pair["LR Pair Card"] = [
-    f'<a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/cards/{ "mouse" if evidence == "not conserved" else "human" }/{lrPairOrig.replace(" ","-")}.html">{lrPair}</a>'
+    f'<a href="{site_url}cards/{ "mouse" if evidence == "not conserved" else "human" }/{lrPairOrig.replace(" ","-")}.html">{lrPair}</a>'
     for lrPairOrig, lrPair, evidence in zip(gene_pair0["LR Pair Card"], gene_pair["LR Pair Card"], gene_pair["Human evidence"])
 ]
 
