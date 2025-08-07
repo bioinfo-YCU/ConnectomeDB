@@ -18,136 +18,109 @@ header-includes: <script src='../../js/keepDropdownMenuGold.js'></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
 
 <style>
+    .dt-buttons {
+        position: relative;
+        z-index: 2; /* Your original value */
+    }
+    
+    .dt-button-collection {
+        z-index: 101; /* Your original value */
+    }
+    
+    /* Mobile-only fixes for button collection */
+    @media (max-width: 768px) {
+        .dt-button-collection {
+            z-index: 9999 !important;
+            position: fixed !important;
+            top: 10% !important; /* Move down from top to prevent cutting */
+            left: 50% !important;
+            transform: translateX(-50%) !important; /* Only horizontal centering */
+            max-height: 80vh !important;
+            max-width: 95vw !important;
+            overflow-y: auto !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+            border-radius: 4px !important;
+        }
+        
+        /* Ensure DataTable wrapper doesn't clip the dropdown */
+        .dataTables_wrapper {
+            overflow: visible !important;
+        }
+        
+        /* Center-align and make buttons wrap properly */
+        .dataTables_wrapper .dt-buttons {
+            float: none !important;
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important; /* Center align buttons */
+            gap: 5px !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow: visible !important;
+        }
+        
+        /* Make individual buttons responsive */
+        .dt-buttons .dt-button {
+            flex: 0 1 auto !important;
+            min-width: 0 !important;
+            white-space: nowrap !important;
+            font-size: 0.8rem !important;
+            padding: 0.3rem 0.5rem !important;
+        }
+        
+        .selection-counter {
+            float: right;
+            display: block;
+            margin: 10px 10px 10px 0;
+            text-align: right;
+        }
+    }
+    
+    /* Your existing styles with z-index adjustments */
     :root {
         --table-underline-offset: 1px;
         --table-underline-thickness: 1px;
         --table-line-height: 1.1;
     }
-
-    /* Apply controlled underlines using CSS variables */
+    
     table.dataTable {
         --underline-offset: var(--table-underline-offset);
         --underline-thickness: var(--table-underline-thickness);
         line-height: var(--table-line-height);
     }
-
-    /* If you want to control header and body separately */
+    
     table.dataTable thead th {
-        font-size: 90% !important; /* Header font size */
+        font-size: 90% !important;
     }
     
     table.dataTable tbody td {
-        font-size: 90% !important; /* Body font size */
+        font-size: 90% !important;
     }
     
     table.dataTable.compact tbody td {
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
     }
-
-    /* italicized placeholder */
+    
     input[type="text"]::placeholder {
         font-style: italic;
         font-size: 80%;
     }
     
     .dataTables_wrapper .dataTables_info {
-        /* color: darkgreen; */
         font-weight: bold;
         margin-left: 0px !important;
         padding-top: 8px !important;
         clear: none !important;
     }
     
-    /* Base checkbox styling (the square box) */
-    table.dataTable tbody tr.selected td.select-checkbox::after {
-        content: '✓';
-        font-size: 0.8rem; /* Keep this or adjust slightly if needed */
-        color: #333;
-        font-weight: bold;
-        position: absolute;
-        top: 50%; /* Start at 50% */
-        left: 50%; /* Keep centered horizontally */
-        transform: translate(-50%, -50%); /* Base centering */
-        line-height: 1;
-        pointer-events: none;
+    .dataTables_wrapper .dt-buttons {
+        float: left !important;
     }
     
-    table.dataTable.compact>tbody>tr.selected>td.select-checkbox:after, table.dataTable.compact>tbody>tr.selected>th.select-checkbox:after{
-        margin-top: -0.025rem;
-        margin-left: -0.05rem;
-    }
-    
-    /* Also, ensure your ::before has position: relative */
-    table.dataTable td.select-checkbox::before {
-        /* ... existing styles ... */
-        position: relative; /* Make sure this is still here */
-        /* ... existing styles ... */
-    }
-    
-    /* Styling for the cell containing the checkbox */
-    table.dataTable td.select-checkbox {
-        text-align: center;
-        vertical-align: middle;
-        padding: 0.5rem;
-        width: 3.5rem;
-        min-width: 2.5rem;
-        position: relative; /* Make sure the ::before element's relative positioning works within this */
-    }
-    
-    /* Background for selected checkbox */
-    table.dataTable tbody tr.selected td.select-checkbox::before {
-        background: #f0f8ff; /* Light blue background for selected */
-        border-color: #337ab7; /* Darker blue border for selected */
-    }
-    
-    table.dataTable.compact>tbody>tr>td.select-checkbox:before,
-    table.dataTable.compact>tbody>tr>th.select-checkbox:before {
-        margin-top: -0.3rem;
-    }
-    
-    /* Mobile responsive adjustments */
-    @media (max-width: 768px) {
-        table.dataTable td.select-checkbox {
-            padding: 0.25rem;
-            width: 2rem;
-            min-width: 1.5rem;
-        }
-
-        table.dataTable td.select-checkbox::before {
-            width: 0.8rem;
-            height: 0.8rem;
-        }
-
-        table.dataTable tbody tr.selected td.select-checkbox::after {
-            font-size: 0.7rem; /* Adjusted for smaller box */
-        }
-    }
-    
-    @media (max-width: 480px) {
-        table.dataTable td.select-checkbox {
-            padding: 0.2rem;
-            width: 1.5rem;
-            min-width: 1.2rem;
-        }
-
-        table.dataTable td.select-checkbox::before {
-            width: 0.5rem;
-            height: 0.5rem;
-        }
-
-        table.dataTable tbody tr.selected td.select-checkbox::after {
-            font-size: 0.6rem; /* Adjusted for even smaller box */
-        }
-        
-        input[type="text"]::placeholder {
-            font-size: 60% !important;
-        }
-    }
-    
-    /* Hide the default search box */
-    .dataTables_filter {
-        display: none !important;
+    #top_info_display {
+        float: none !important;
+        text-align: right;
     }
     
     .selection-counter {
@@ -161,27 +134,187 @@ header-includes: <script src='../../js/keepDropdownMenuGold.js'></script>
         background: #f9f9f9;
         border: 1px solid #ddd;
         border-radius: 4px;
-        clear: right; /* ADD THIS */
-        text-align: right; /* ADD THIS */
+        clear: right;
+        text-align: right;
     }
     
     @media (max-width: 768px) {
         .selection-counter {
-            float: right; /* CHANGED from 'none' to 'right' */
+            float: right;
             display: block;
-            margin: 10px 10px 10px 0; /* ADJUSTED margins */
-            text-align: right; /* KEEP right alignment on mobile too */
-        }
-    }
-
-    /* Mobile styling for input */
-    @media (max-width: 480px) {
-        .mobile-tiny-input {
-            font-size: 0.8rem !important;
-            padding: 5px !important;
+            margin: 10px 10px 10px 0;
+            text-align: right;
         }
     }
     
+    .top-controls-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .buttons-container {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+    
+    @media (max-width: 768px) {
+        .top-controls-container {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+    }
+    
+    .dataTables_wrapper .dt-layout-row.dt-layout-top .dt-layout-cell.dt-start {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2px;
+    }
+    
+    .custom-info-container {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .custom-info-container .fa-solid {
+        font-size: 1em;
+        color: darkgreen;
+    }
+    
+    .dataTables_wrapper .dt-buttons {
+        display: inline-flex;
+        gap: 5px;
+    }
+    
+    /* Checkbox styles remain the same */
+    table.dataTable tbody tr.selected td.select-checkbox::after {
+        content: '✓';
+        font-size: 0.8rem;
+        color: #333;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        line-height: 1;
+        pointer-events: none;
+    }
+    
+    table.dataTable.compact>tbody>tr.selected>td.select-checkbox:after, 
+    table.dataTable.compact>tbody>tr.selected>th.select-checkbox:after{
+        margin-top: -0.025rem;
+        margin-left: -0.05rem;
+    }
+    
+    table.dataTable td.select-checkbox::before {
+        position: relative;
+    }
+    
+    table.dataTable td.select-checkbox {
+        text-align: center;
+        vertical-align: middle;
+        padding: 0.5rem;
+        width: 3.5rem;
+        min-width: 2.5rem;
+        position: relative;
+    }
+    
+    table.dataTable tbody tr.selected td.select-checkbox::before {
+        background: #f0f8ff;
+        border-color: #337ab7;
+    }
+    
+    table.dataTable.compact>tbody>tr>td.select-checkbox:before,
+    table.dataTable.compact>tbody>tr>th.select-checkbox:before {
+        margin-top: -0.3rem;
+    }
+    
+    @media (max-width: 768px) {
+        table.dataTable td.select-checkbox {
+            padding: 0.25rem;
+            width: 2rem;
+            min-width: 1.5rem;
+        }
+    
+        table.dataTable td.select-checkbox::before {
+            width: 0.8rem;
+            height: 0.8rem;
+        }
+        
+        table.dataTable.compact>tbody>tr>td.select-checkbox:before,
+        table.dataTable.compact>tbody>tr>th.select-checkbox:before {
+            margin-top: -0.4rem;
+        }
+    
+        table.dataTable tbody tr.selected td.select-checkbox::after {
+            font-size: 0.7rem;
+        }
+    }
+    
+    /* Additional mobile fix for very small screens */
+    @media (max-width: 480px) {
+        .selection-counter {
+            float: left;
+            display: block;
+            text-align: left;
+            margin: 0 0 5px 0 !important;
+        }
+         .dt-button-collection {
+            z-index: 10000 !important;
+            position: fixed !important;
+            max-width: 90vw; /* Prevent it from being too wide */
+        }
+        
+    /* Make individual buttons full width on very small screens */
+        .buttons-container {
+            flex-direction: column; !important;
+            width: 100%; /* Take full width */
+            gap: 5px;
+        }
+        
+        .dt-buttons {
+            width: 100% !important; /* Full width for button container */
+            display: flex !important;
+            flex-direction: column !important; /* Stack buttons vertically */
+            gap: 5px;
+        }
+        
+        .dt-button {
+            width: 100% !important; /* Each button takes full width */
+            box-sizing: border-box;
+            white-space: nowrap !important;
+        }
+        
+        table.dataTable td.select-checkbox {
+            padding: 0.2rem;
+            width: 1.5rem;
+            min-width: 1.2rem;
+        }
+    
+        table.dataTable td.select-checkbox::before {
+            width: 0.5rem;
+            height: 0.5rem;
+        }
+    
+        table.dataTable tbody tr.selected td.select-checkbox::after {
+            font-size: 0.6rem;
+        }
+        
+        input[type="text"]::placeholder {
+            font-size: 60% !important;
+        }
+    }
+    
+    .dataTables_filter {
+        display: none !important;
+    }
 </style>
 
 <table id="marmoset-table" class="display nowrap cell-border compact" style="width:100%">
@@ -275,16 +408,16 @@ $(document).ready(function() {
         var totalColumns = columns.length + 1; // +1 for checkbox column
         
         // Only include valid positive column indices for hiding
-        var hiddenColumns = [3];
+        var hiddenColumns = [3,12,13];
         
         // Add last 2 columns to hidden list (adjust this number as needed)
         // Remember to adjust for the prepended checkbox column
-        for (var i = 2; i > 0; i--) {
-            var colIndex = totalColumns - i;
-            if (colIndex > 0 && hiddenColumns.indexOf(colIndex) === -1) {
-                hiddenColumns.push(colIndex);
-            }
-        }
+        // for (var i = 2; i > 0; i--) {
+        //     var colIndex = totalColumns - i;
+        //     if (colIndex > 0 && hiddenColumns.indexOf(colIndex) === -1) {
+        //         hiddenColumns.push(colIndex);
+        //     }
+        // }
 
         console.log('Total columns:', totalColumns);
         console.log('Hidden columns:', hiddenColumns);

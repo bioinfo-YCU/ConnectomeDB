@@ -96,17 +96,34 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     gene_pair = gene_pair.rename(columns={ligand_symbols_col: "Human Ligand Symbols",
                                           receptor_symbols_col: "Human Receptor Symbols"})
     
-    
-    gene_pair_species = gene_pair_species[[
-        "LR Pair Card",
-        f"{species}_ligand",
-        f"{species}_receptor",
-        f"{species} evidence",
-        f"{species_id} ligand",
-        f"{species_id} receptor",
-        "PMID"
-    ]]
-    
+    if species in ["Mouse", "Rat", "Frog", "Zebrafish"]:
+        gene_pair_species = gene_pair_species[[
+            "LR Pair Card",
+            f"{species}_ligand",
+            f"{species}_receptor",
+            f"{species} evidence",
+            f"{species_id} ligand",
+            f"{species_id} receptor",
+            "ENSEMBL ligand",
+            "ENSEMBL receptor",
+            "PMID"
+        ]]
+        gene_pair_species = gene_pair_species.rename(columns={
+            "ENSEMBL ligand": "Ligand ENSEMBL ID",
+            "ENSEMBL receptor": "Receptor ENSEMBL ID"
+                                         }
+                                )
+    else:
+        gene_pair_species = gene_pair_species[[
+            "LR Pair Card",
+            f"{species}_ligand",
+            f"{species}_receptor",
+            f"{species} evidence",
+            f"{species_id} ligand",
+            f"{species_id} receptor",
+            "PMID"
+        ]]
+
     
     gene_pair =gene_pair_species.merge(gene_pair,how="left", on="LR Pair Card")
     
@@ -170,6 +187,7 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     )
     
     gene_pair = gene_pair[~(gene_pair[f"{species} evidence"] == "not conserved")]
+            
     def format_symbol_aliases(symbol, aliases):
         """
         Formats symbol, old symbols, and aliases.
@@ -266,7 +284,11 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     lr_pair_card = [col for col in gene_pair.columns if ">LR Pair Card" in col][0]
     # gene_pair.columns
     gene_pair["LR Pair Card"] = gene_pair[lr_pair_card]
-    gene_pair = gene_pair[[interaction_id_col, "LR Pair Card",f"{species} LR Pair", 'Ligand Symbols', 'Receptor Symbols', ligand_loc_col, receptor_loc_col, f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Perplexity", f"{species} evidence", "Human Ligand Symbols", "Human Receptor Symbols"]]
+    if species in ["Mouse", "Rat", "Frog", "Zebrafish"]:
+        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card",f"{species} LR Pair", 'Ligand Symbols', 'Receptor Symbols', ligand_loc_col, receptor_loc_col, f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Perplexity", f"{species} evidence", "Human Ligand Symbols", "Human Receptor Symbols", "Ligand ENSEMBL ID", "Receptor ENSEMBL ID"]]
+    else:     
+        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card",f"{species} LR Pair", 'Ligand Symbols', 'Receptor Symbols', ligand_loc_col, receptor_loc_col, f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Perplexity", f"{species} evidence", "Human Ligand Symbols", "Human Receptor Symbols"]]
+        
     if species == "Mouse":
         # Linkify multiple species IDs in Ligand column
         gene_pair[f"Ligand {species_id} ID"] = gene_pair[f"Ligand {species_id} ID"].apply(
@@ -337,18 +359,17 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
         gene_pair[f"Ligand {species_id} ID"] = gene_pair['Ligand XEN ID'].apply(make_xenbase_link)
         gene_pair[f"Receptor {species_id} ID"] = gene_pair['Receptor XEN ID'].apply(make_xenbase_link)
         
-    else:
-        def make_ens_link(cell):
-            links = []
-            for eid in str(cell).split(","):
-                eid = eid.strip()
-                if eid.startswith("ENS"):
-                    url = f" http://www.ensembl.org/id/{eid}"
-                    links.append(f'<a href="{url}" target="_blank">{eid}</a>')
-            return ", ".join(links)
+    def make_ens_link(cell):
+        links = []
+        for eid in str(cell).split(","):
+            eid = eid.strip()
+            if eid.startswith("ENS"):
+                url = f"http://www.ensembl.org/id/{eid}"
+                links.append(f'<a href="{url}" target="_blank">{eid}</a>')
+        return ", ".join(links)
 
-        gene_pair[f"Ligand {species_id} ID"] = gene_pair['Ligand ENSEMBL ID'].apply(make_ens_link)
-        gene_pair[f"Receptor {species_id} ID"] = gene_pair['Receptor ENSEMBL ID'].apply(make_ens_link)
+    gene_pair[f"Ligand ENSEMBL ID"] = gene_pair['Ligand ENSEMBL ID'].apply(make_ens_link)
+    gene_pair[f"Receptor ENSEMBL ID"] = gene_pair['Receptor ENSEMBL ID'].apply(make_ens_link)
 
     
     ### tooltips 
