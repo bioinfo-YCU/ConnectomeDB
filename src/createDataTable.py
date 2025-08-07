@@ -127,6 +127,9 @@ def generate_LocToolTip(row, geneloc, loc_col):
 
 # Group the original loc_info by Ligand
 ligand_loc = fetchGSheet.ligand_loc.dropna(axis=1, how='all')
+# make location short
+ligand_loc.loc[ligand_loc["location"].str.contains("secreted", na=False), "location"] = "secreted"
+
 grouped = ligand_loc.groupby("Ligand").agg({
     "location": lambda x: ', '.join(x),
     "source": lambda x: ', '.join(x)
@@ -141,6 +144,8 @@ gene_pair['Ligand location'] = gene_pair['Ligand'].replace(mapping_loc)
 
 # Group the original loc_info by Receptor
 receptor_loc = fetchGSheet.receptor_loc.dropna(axis=1, how='all')
+# make location short
+receptor_loc.loc[receptor_loc["location"].str.contains("secreted", na=False), "location"] = "secreted"
 grouped = receptor_loc.groupby("Receptor").agg({
     "location": lambda x: ', '.join(x),
     "source": lambda x: ', '.join(x)
@@ -300,7 +305,7 @@ gene_pair['Perplexity'] = None
 ### For latest DB, skip (code saved as addOrth_temp.py)
 
 # Add
-first_columns=['LR Pair Card', 'Human LR Pair', 'Ligand', 'Receptor', 'Ligand Symbols', 'Receptor Symbols', 'Ligand Location', 'Receptor Location',	'Ligand HGNC ID', 'Receptor HGNC ID', 'Perplexity', 'Human evidence'] # 'Database Source'
+first_columns=['LR Pair Card', 'Human LR Pair', 'Ligand', 'Receptor', 'Ligand Symbols', 'Receptor Symbols', 'Ligand Location', 'Receptor Location',	'Ligand HGNC ID', 'Receptor HGNC ID', 'Perplexity', 'Human evidence', 'Ligand ENSEMBL ID', 'Receptor ENSEMBL ID'] # 'Database Source'
 
 end_columns=['PMID', 'Pair_species', 'lig_species', 'rec_species', 'ligand_orig', 'receptor_orig']
 gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns + end_columns] + end_columns]
@@ -388,7 +393,9 @@ gene_pair["Perplexity"] = gene_pair.apply(generate_perplexity_link_pmid, axis=1)
 
 # create URLs for the HGNC IDs
 
-# ligand
+# create URLs for the Ensembl
+
+
 gene_pair["Ligand HGNC ID"] = [
     '<a href="https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/{}" target="_blank">{}</a>'.format(ligand, ligand)
     for ligand in gene_pair["Ligand HGNC ID"]
@@ -399,6 +406,20 @@ gene_pair["Receptor HGNC ID"] = [
     '<a href="https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/{}" target="_blank">{}</a>'.format(receptor, receptor)
     for receptor in gene_pair["Receptor HGNC ID"]
 ]
+
+
+# ligand
+gene_pair["Ligand ENSEMBL ID"] = [
+    '<a href="http://www.ensembl.org/id/{}" target="_blank">{}</a>'.format(ligand, ligand)
+    for ligand in gene_pair["Ligand ENSEMBL ID"]
+]
+
+# receptor
+gene_pair["Receptor ENSEMBL ID"] = [
+    '<a href="http://www.ensembl.org/id/{}" target="_blank">{}</a>'.format(receptor, receptor)
+    for receptor in gene_pair["Receptor ENSEMBL ID"]
+]
+
 
 
 # Function to generate hyperlinks for the "PMID support" column
@@ -675,8 +696,9 @@ new_columns[:10] = [
 gene_pair000.columns = new_columns
 #######################################################################
 ### For latest DB, no need to limit columns
-human_columns = [col for col in gene_pair000.columns][:16]
+human_columns = [col for col in gene_pair000.columns]
 #######################################################################
+### For latest DB, no need to limit rows
 #human_gene_pair = gene_pair.iloc[:, :-36]
 # remove mouse specific ones from the datatable
 evidence_cols = [col for col in gene_pair.columns if 'Human evidence' in col]
