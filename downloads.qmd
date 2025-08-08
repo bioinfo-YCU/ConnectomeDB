@@ -4,6 +4,40 @@ title: "Downloads"
 
 ## Download the following tables:
 
+### 2025-08-11 
+
+**Humans – Homo sapiens**: 3550 LR pairs (3550 rows x 15 columns)
+
+<a href="downloads/20250811/ConnectomeDB2025_human.csv" download class="download-btn-minimal">
+    <span class="download-icon">⤓</span>
+    CSV
+</a> <a href="downloads/20250811/ConnectomeDB2025_human.xlsx" download class="download-btn-minimal">
+    <span class="download-icon">⤓</span>
+    Excel
+</a>
+
+**Mouse – Mus musculus**: 3252 LR pairs (3252 rows x 15 columns)
+
+<a href="downloads/20250811/ConnectomeDB2025_mouse.csv" download class="download-btn-minimal">
+    <span class="download-icon">⤓</span>
+    CSV
+</a> <a href="downloads/20250811/ConnectomeDB2025_mouse.xlsx" download class="download-btn-minimal">
+    <span class="download-icon">⤓</span>
+    Excel
+</a>
+
+
+**Chimp – Pan troglodytes**: 3463 LR pairs (3463 rows x 15 columns)
+
+<a href="downloads/20250811/ConnectomeDB2025_mouse.csv" download class="download-btn-minimal">
+    <span class="download-icon">⤓</span>
+    CSV
+</a> <a href="downloads/20250811/ConnectomeDB2025_mouse.xlsx" download class="download-btn-minimal">
+    <span class="download-icon">⤓</span>
+    Excel
+</a>
+
+
 ### 2025-07-01 
 
 **Humans**: 3436 LR pairs (3436 rows x 16 columns)
