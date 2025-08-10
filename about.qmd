@@ -34,7 +34,7 @@ from createDataTable import (
 
 - **`{python} f"{lrPairsCount:,}"` Manually Curated Ligand–Receptor Pairs** (Primarily Human; includes `{python} f"{numOfMouseOrth:,}"` Mouse-specific): comprehensive and most accurate with primary literature support\
 - **`{python} f"{ligandCount:,}"` Ligands** & **`{python} f"{receptorCount:,}"` Receptors**: metadata and functional annotations\
-- **Homologous Interactions**: ~98% LR pairs in mouse and in 11 other vertebrate species\
+- **Homologous Interactions**: ~97% LR pairs in mouse and in 12 other vertebrate species\
 
 <hr>
 
@@ -54,7 +54,7 @@ Accesing all parts of the online resource requires no username and no password.
 This resource was developed and is maintained by <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank" >YCU Bioinformatics Lab</a>
 and 
 <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology &amp; Genomics Lab</a>\
-**GitHub**: 
+**GitHub**: <https://github.com/bioinfo-YCU/ConnectomeDB>
 
 <hr>
 
@@ -63,14 +63,11 @@ and
 ### **Cite Us**
 
 1. *ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction*, P Liu, S Maezono, *et al.* (TBA)\
-Short description\
 PMID: [(TBA)](); DOI: [(TBA)]()
     
 2. *Predicting cell-to-cell communication networks using NATMI*, R Hou, *et al.* *Nature communications* **11(1)**, 5011, **2020**\
-Short description\
 PMID: [33024107](https://pubmed.ncbi.nlm.nih.gov/33024107/){target="_blank"}; DOI: [10.1038/s41467-020-18873-z](https://www.nature.com/articles/s41467-020-18873-z){target="_blank"}
     
 3. *A draft network of ligand–receptor-mediated multicellular signalling in human*, JA Ramilowski, *et al.* *Nature communications* **6(1)**, 7866, **2015**\
-Short description\
 PMID: [26198319](https://pubmed.ncbi.nlm.nih.gov/26198319/){target="_blank"}; DOI: [10.1038/ncomms8866](https://doi.org/10.1038/ncomms8866){target="_blank"}
 

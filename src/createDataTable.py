@@ -315,7 +315,7 @@ gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col n
 
 lrPairsCount = len(gene_pair["LR Pair Card"].unique())
 ligand = gene_pair["LR Pair Card"].str.split(' ', expand=True)[0]
-receptor = gene_pair["LR Pair Card"].str.split(' ', expand=True)[0]
+receptor = gene_pair["LR Pair Card"].str.split(' ', expand=True)[1]
 ligandCount =len(ligand.unique())
 
 receptorCount = len(receptor.unique())

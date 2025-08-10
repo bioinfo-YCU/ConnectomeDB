@@ -1,5 +1,5 @@
 ---
-title: "Terms & Conditions *(under construction)*"
+title: "{{< fa note-sticky >}} Terms & Conditions"
 header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
 ---
 
@@ -18,13 +18,15 @@ This website hosted by the Bioinformatics Laboratory at Yokohama City University
 
 ### **General Usage**
 
-*Under construction...*
+This website is intended for scientific and educational purposes only. The information provided about ligand–receptor interactions is not intended to be used for medical diagnosis, treatment, or any clinical decision-making. Users should not rely on this data for therapeutic purposes and should consult qualified healthcare professionals for medical advice.
 
 ----
 
 ### **Cookies and Privacy Policy**
 
-*Under construction...*
+This website uses cookies and similar tracking technologies to enhance your browsing experience and analyze site traffic. These tools help us understand how visitors interact with our site and improve its performance. By continuing to use this website, you consent to our use of these technologies in accordance with this policy.
+
+We respect your privacy and are committed to protecting your personal data. Any information collected through cookies or analytics tools is kept strictly confidential and is never shared with third parties.
 
 ----
 
