@@ -1,24 +1,34 @@
 ---
-title: "{{< fa circle-info >}} ConnectomeDB Methods"
+title: "{{< fa screwdriver-wrench >}} ConnectomeDB Methods"
 execute:
   echo: false
   warnings: false  # Add this line to suppress warnings globally
 header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
 ---
 
+---
 
 ### **Ligand-Receptor Interaction Modelling**
 
-ConnectomeDB models all ligand receptor pairs as simplex directional interactions.
+**ConnectomeDB models only protein-based ligand–receptor interactions. All ligand–receptor pairs are treated as simplex interactions. Direction of interactions is considered.**
 
-For heteromeric receptors and ligands, connectomeDB splits complexes into simplex pairs. E.g. IFNB1 which binds to the IFNAR1:IFNAR2 complex is modelled as two separate pairs IFNB1 ○ ⤚ IFNAR1 and  IFNB1 ○ ⤚ IFNAR2. Similarly, for a heteromeric ligand TNFSF13:TNFSF13B binding to TNFRSF17 would be split into TNFSF13 ○ ⤚ TNFRSF17 and TNFSF13B ○ ⤚ TNFRSF17.
+#### Heteromeric receptors and ligands
 
-In the case of bidirectional signalling where signals are triggered in both cells the pair is modelled as two directional interactions. E.g. CD28 ⤙ ⤚ CD86 and CD86 ⤙ ⤚ CD28.\
+ConnectomeDB splits complexes heteromeric receptors and ligands into simplex pairs. E.g. IFNB1 which binds to the IFNAR1:IFNAR2 complex is modelled as two separate pairs IFNB1--IFNAR1 and  IFNB1--IFNAR2. Similarly, for a heteromeric ligand TNFSF13:TNFSF13B binding to TNFRSF17 would be split into TNFSF13--ITNFRSF17 and TNFSF13B--ITNFRSF17.
+
+#### Bidirectional signalling 
+
+Signals riggered in both cells the pair is modelled as two directional interactions. E.g. both CD28--ID86 and CD86--CD28 interactions are reported.\
+
+#### Non-peptide ligands
+
 The current version of connectomeDB does not model signalling via non-peptide ligands.
 
 ### **Incorporation of Existing LR Pairs**
 
-Protein ligand mediated ligand-receptor pairs from our previous database releases (connectomeDB2015 and 2020) and other databases including CellTalkDB, ICELLNET_v2, CellChatDB_v2, CellPhoneDB_v5 and LIANA_consensus were downloaded (and frozen in May 2025). Non-protein ligands were removed and the complex pairs present in ICELLNET_v2, CellCHatDB_v2, CellPhoneDB_v5 and LIANA_consensus were split into singlet pairs (see [Ligand-Receptor Interaction Modelling](#ligand-receptor-interaction-modelling)) for manual curation.
+Protein ligand–mediated ligand–receptor pairs from our previous database releases *ConnectomeDB2015/2020* and from other major resources, including *CellChatDB_v2*, *CellPhoneDB_v5*, *CellTalkDB*, *ICELLNET_v2*, and *LIANA_consensus*, were downloaded and frozen in May 2025.
+
+Note: Non-protein ligands were removed, and complex protein-based pairs were split into single pairs. For further details, see **Ligand–Receptor Interaction Modelling** above.
 
 ### **Identification of Putative New LR Pairs**
 
@@ -30,7 +40,7 @@ All candidate pairs were parsed to extract gene symbols, and only those represen
 
 ### **Manual Curation of Ligand–Receptor Triplets**
 
-Each interaction in ConnectomeDB is recorded as a triplet: ligand symbol : receptor symbol : PubMed ID. Only interactions supported by primary experimental evidence are included; literature reviews are excluded, as they often overgeneralise (e.g. “Eph receptors interact with ephrins”) without specifying direct evidence for individual pairs.
+Each interaction in ConnectomeDB is recorded as a triplet: ligand symbol : receptor symbol : PubMed ID. Only valid LR interactions supported by primary experimental evidence are included; literature reviews are excluded, as they often overgeneralise (e.g. “Eph receptors interact with ephrins”) without specifying direct evidence for individual pairs.
 
 For entries from existing databases with a PubMed ID, a single curator manually assessed the cited article. If it contained primary evidence for the interaction, the triplet was retained in ConnectomeDB2025.
 
@@ -40,16 +50,21 @@ The unique triplet dataset will be publicly released in conjunction with the pub
 
 ### **Subcellular localization**
 
-The subcellular localization of ligands and receptors were annotated using Perplexity, Uniprot, The Human Protein Atlas (HPA) and manual confirmation. For HPA data, only localization information with "Enhanced", "Supported", or "Approved" reliability was considered; sublocation entries marked as "Uncertain" were excluded.
+The subcellular localization of ligands and receptors were annotated using  [Perplexity](https://www.perplexity.ai/){target="_blank"}, [UniProt](https://www.uniprot.org/){target="_blank"}, and [The Human Protein Atlas (HPA)](https://www.proteinatlas.org/){target="_blank"} and manual confirmation. For HPA data, only localization information with "Enhanced", "Supported", or "Approved" reliability was considered; sublocation entries marked as "Uncertain" were excluded.
 
-The vast majority of pairs involve ligands that are secreted or on the plasma membrane of the sending cell, interacting with a receptor on the plasma membrane of the receiving cell.
+The vast majority of ligand–receptor pairs involve ligands that are secreted or located on the plasma membrane of the sending cell, interacting with a receptor on the plasma membrane of the receiving cell. Plasma membrane–plasma membrane interactions are also considered, although they represent a minority.
 
-Note connectomeDB also incorporates some non-canonical pairs that are worth mentioning.
+Note: ConnectomeDB2025 also incorporates some non-canonical pairs that are worth mentioning.
 
-- The PENK ○ ⤚ OGFR pair involves interaction of an endogenous opioid peptide (OGF processed from PENK) that binds to OGFR which is localised to the nuclear membrane.
-
-- The S100A1 ○ ⤚ TLR4 pair involves interaction of S100A1 which is normally intracellular but released via non-canonical means upon cellular stress or damage.
+  - The PENK--OGFR pair involves interaction of an endogenous opioid peptide (OGF processed from PENK) that binds to OGFR which is localised to the nuclear membrane.\
+  - The S100A1--TLR4 pair involves interaction of S100A1 which is normally intracellular but released via non-canonical means upon cellular stress or damage.
 
 ### **Orthologous Pairs**
 
-ConnectomeDB2025 contains 3,436 ligand-receptor pairs linked to human gene symbols and 12 mouse specific pairs linked to mouse gene symbols. Human and mouse gene symbols were mapped to HGNC and MGI identifiers respectively via the BioMart at Ensembl.
+#### Original interactions
+For each literature-verified ligand–receptor pair, we recorded the species of origin for both ligand and receptor proteins. Most evidence came from human (2,511 pairs) and mouse (894 pairs), with additional support from rat (158 pairs) and other vertebrates ( 72 pairs). Cross-species experiments accounted for 1,082 pairs. Note that some pairs are supported by primarily literature in multiple species.
+
+#### Orthology mappping
+To enable analyses in other species, ligands and receptors in the original pairs were mapped to orthologues in human, mouse and 12 vertebrate species including primates: *Pan troglodytes* (chimp), *Macaca mulatta* (macaque), *Callithrix jacchus* (marmoset), *Equus caballus* (horse), *Sus scrofa* (pig), *Canis lupus* (dog), *Bos taurus* (cow), *Ovis aries* (sheep), rhodents: *Rattus norvegicus* (rat), as well as *Gallus gallus* (chicken), *Xenopus sp.* (frog) and *Danio rerio* (zebrafish). Data from the [Alliance of Genome Resources](https://www.alliancegenome.org/){target="_blank"} and [Ensembl](https://www.ensembl.org/index.html){target="_blank"} was used.
+
+**All interactions and their evidence (*Direct/Conservation*) are provided in the species-based Ligand-Receptor Browser tables.**

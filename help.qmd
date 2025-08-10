@@ -1,13 +1,9 @@
 ---
-title: "Help"
+title: "{{< fa circle-question >}} Help"
 header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
 ---
 
-## Inquiries & Feedback
+---
 
-We welcome your feedback and suggestions for improving ConnectomeDB content and would be glad to hear any ideas for further development.\
-
-**General Inquiries:** send Alistair, Jordan, and Rui an [email](mailto:alistair.forrest@gmail.com; jordanr@yokohama-cu.ac.jp; rui.hou@research.uwa.edu.au).\
-**Online Resource Issues**: fill out the [Inquiry form](https://forms.gle/m7k5vygRPdTRdaTh6){target="_blank"} 
-
-
+**Experiencing issues using this online resource? Want to provide feedback and suggestions for improving ConnectomeDB?**\
+Please fill out the [**Inquiry Form**](https://forms.gle/m7k5vygRPdTRdaTh6){target="_blank"} or email us at [**help@connectomedb.org**](mailto:help@connectomedb.org).
