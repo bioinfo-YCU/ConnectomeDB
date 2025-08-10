@@ -314,10 +314,11 @@ gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col n
 # number of unique vars (Human and Mouse both counted)
 
 lrPairsCount = len(gene_pair["LR Pair Card"].unique())
+ligand = gene_pair["LR Pair Card"].str.split(' ', expand=True)[0]
+receptor = gene_pair["LR Pair Card"].str.split(' ', expand=True)[0]
+ligandCount =len(ligand.unique())
 
-ligandCount = len(gene_pair["Ligand"].unique())
-
-receptorCount = len(gene_pair["Receptor"].unique())
+receptorCount = len(receptor.unique())
 
 
 ### Remove from here for latest DB
