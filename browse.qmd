@@ -1,0 +1,172 @@
+---
+title: "Browse Files"
+format:
+  html: default
+execute:
+  echo: false
+---
+
+```{python}
+#| echo: false
+#| output: asis
+import os
+import sys
+from pathlib import Path
+from datetime import datetime
+import humanize
+import mimetypes
+from urllib.parse import parse_qs, urlparse
+
+def get_query_params():
+    """Get query parameters from Quarto’s environment variable or sys.argv"""
+    # Try to get the query string from the Quarto environment variable
+    query_string = os.getenv("QUARTO_PROJECT_URL_QUERY", "")
+    
+    # If the environment variable is empty, try to get it from sys.argv
+    # sys.argv[1] should contain the URL in some Quarto rendering environments
+    if not query_string and len(sys.argv) > 1:
+        full_url = sys.argv[1]
+        parsed_url = urlparse(full_url)
+        query_string = parsed_url.query
+    
+    return parse_qs(query_string)
+
+def get_file_info(file_path):
+    """Get detailed file information"""
+    stat = file_path.stat()
+    mime_type, _ = mimetypes.guess_type(str(file_path))
+    
+    return {
+        "name": file_path.name,
+        "size": humanize.naturalsize(stat.st_size),
+        "size_bytes": stat.st_size,
+        "modified": datetime.fromtimestamp(stat.st_mtime).strftime("%Y-%m-%d %H:%M"),
+        "type": mime_type or "application/octet-stream",
+        "extension": file_path.suffix.lower(),
+        "path": str(file_path)
+    }
+
+def get_file_description(filename):
+    """Generate description based on filename patterns"""
+    name_lower = filename.lower()
+    
+    if 'readme' in name_lower:
+        return "Documentation and usage instructions"
+    elif name_lower.endswith('.csv'):
+        return "Comma-separated values data file"
+    elif name_lower.endswith('.tsv') or name_lower.endswith('.tab'):
+        return "Tab-separated values data file"
+    elif name_lower.endswith('.json'):
+        return "JSON format data file"
+    elif name_lower.endswith('.xml'):
+        return "XML format data file"
+    elif name_lower.endswith('.zip'):
+        return "Compressed archive file"
+    elif name_lower.endswith('.gz'):
+        return "Gzip compressed file"
+    elif name_lower.endswith('.pdf'):
+        return "PDF documentation"
+    elif name_lower.endswith('.txt'):
+        return "Plain text file"
+    elif 'license' in name_lower:
+        return "License information"
+    elif 'changelog' in name_lower or 'changes' in name_lower:
+        return "Version history and changes"
+    else:
+        return "Data file"
+
+def browse_directory(dir_name, base_path="downloads"):
+    """Browse a specific directory, handling case-insensitivity"""
+    base = Path(base_path)
+    
+    found_dir = None
+    for item in sorted(base.iterdir()):
+        if item.is_dir() and item.name.lower() == dir_name.lower():
+            found_dir = item
+            break
+            
+    if not found_dir:
+        return None, f"Directory '{dir_name}' not found."
+
+    files = []
+    subdirs = []
+    
+    for item in sorted(found_dir.iterdir()):
+        if item.is_file():
+            files.append(get_file_info(item))
+        elif item.is_dir():
+            subdir_info = {
+                "name": item.name,
+                "path": str(Path(found_dir.name) / item.name),
+                "file_count": len([f for f in item.rglob("*") if f.is_file()])
+            }
+            subdirs.append(subdir_info)
+    
+    return {
+        "name": found_dir.name,
+        "path": str(found_dir),
+        "files": files,
+        "subdirs": subdirs,
+        "total_files": len(files),
+        "total_size": sum(f["size_bytes"] for f in files)
+    }, None
+
+# Get the directory to browse
+params = get_query_params()
+current_dir = params.get('dir', [None])[0]
+
+# Set a default directory if none is provided
+if not current_dir:
+    current_dir = 'Current-Release'
+
+# Browse the directory
+dir_info, error = browse_directory(current_dir)
+
+if error:
+    print(f"""
+## Error
+
+{error}
+
+[← Back to Downloads](downloads.html)
+""")
+else:
+    print(f"""
+## Directory: {dir_info['name']}
+
+**Path:** `{dir_info['path']}`
+**Total Files:** {dir_info['total_files']}
+**Total Size:** {humanize.naturalsize(dir_info['total_size'])}
+
+[← Back to Downloads](downloads.html)
+
+---
+""")
+    
+    # Show subdirectories if any
+    if dir_info['subdirs']:
+        print("### Subdirectories\n")
+        print("| Directory | Files | Description |")
+        print("|-----------|-------|-------------|")
+        
+        for subdir in dir_info['subdirs']:
+            subdir_link = f"[{subdir['name']}](browse.html?dir={subdir['path']})"
+            print(f"| {subdir_link} | {subdir['file_count']} | Subdirectory |")
+        
+        print("\n---\n")
+    
+    # Show files
+    if dir_info['files']:
+        print("### Files\n")
+        print("| Filename | Size | Modified | Type | Description |")
+        print("|----------|------|----------|------|-------------|")
+        
+        for file_info in dir_info['files']:
+            download_link = f"[{file_info['name']}]({file_info['path']})"
+            description = get_file_description(file_info['name'])
+            file_type = file_info['extension'].upper().replace('.', '') if file_info['extension'] else 'FILE'
+            
+            print(f"| {download_link} | {file_info['size']} | {file_info['modified']} | {file_type} | {description} |")
+    else:
+        print("### No files found in this directory\n")
+```
