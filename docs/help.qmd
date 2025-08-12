@@ -5,5 +5,5 @@ header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
 
 ---
 
-**Experiencing issues using this online resource? Want to provide feedback and suggestions for improving ConnectomeDB?**\
+**Having issues with the site? Want to give feedback on ConnectomeDB or contribute knowledge—such as Ligand-Receptor pairs or new supporting primary literature for any of the existing pairs?**\
 Please fill out the [**Inquiry Form**](https://forms.gle/m7k5vygRPdTRdaTh6){target="_blank"} or email us at [**help@connectomedb.org**](mailto:help@connectomedb.org).
