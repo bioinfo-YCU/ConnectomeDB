@@ -219,9 +219,9 @@ gene_pair0_copy = gene_pair0_copy.merge(conservation, how= 'left', on = "LR Pair
 
 
 # Replace known null-like strings with NaN
-col = gene_pair0_copy["Conserved"].astype(str).str.strip().str.lower()
+col = gene_pair0_copy["Conserved"].astype(str).str.strip()
 # Replace known null-like strings with NaN
-col = col.replace(["", "na", "nan", "null", "none"], np.nan)
+col = col.replace(["", "na", "nan", "null", "none", "NA", "NAN", "NULL"], np.nan)
 # Fill any remaining NaNs with "none"
 gene_pair0_copy["Conserved"] = col.fillna("none")
 
