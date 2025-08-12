@@ -13,18 +13,6 @@ TD = format(Sys.Date(), '%d-%b-%Y')
 #### `r TD` 
 ConnectomeDB2025 interface was updated
 
-#### 22-Apr-2025 {#22-Apr-2025}
-Updated the ConnectomeDB2025 database based on frozen list
-
-#### 05-Feb-2025 {#05-Feb-2025}
-Pig, cow, and dog multispecies ortholog LR pairs were added
-
-#### 10-Jan-2025 {#10-Jan-2025}
-IDs for mouse orthologs were updated using BioMart with Ensembl Release 113 (October 2024)
-
-#### 12-Dec-2024 {#26-Dec-2024}
-ConnectomeDB2025 draft was released with 5,361 human-ligand receptor pairs (2,981 novel pairs from ConnectomeDB 2020) and support for multispecies
-
 
 
 

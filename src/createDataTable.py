@@ -90,39 +90,51 @@ gene_pair.columns = gene_pair.columns.str.strip()
 gene_pair[['Ligand', 'Receptor']] = gene_pair['LR Pair Card'].str.split(' ', n=1, expand=True)
 
 ## add Ligand/Receptor Location
+# def dedup_locations(loc_str):
+#     # Split, strip, deduplicate, and sort
+#     parts = [loc.strip() for loc in loc_str.split(',') if loc.strip()]
+#     unique_sorted = sorted(set(parts), key=str.lower)  # case-insensitive sort
+#     return unique_sorted
+
+# def generate_LocToolTip(row, geneloc, loc_col):
+#     ligand = row[loc_col]
+#     original_locations = [loc.strip() for loc in row["location"].split(',')]
+#     original_sources = [src.strip() for src in row["source"].split(',')]
+
+#     # Get deduplicated locations
+#     unique_locations = dedup_locations(row["location"])
+
+#     if len(unique_locations) == 1:
+#         # Single tooltip case
+#         location = unique_locations[0]
+#         matching_rows = geneloc[(geneloc[loc_col] == ligand) & (geneloc["location"].str.contains(location))]
+#         all_sources = matching_rows["source"].unique()
+#         sources_str = ", ".join(sorted(set(all_sources)))
+#         return f'<span title="based on {sources_str}">{location}</span>'
+#     else:
+#         # Multiple tooltips — find each (ligand, location) match in original df
+#         spans = []
+#         for loc in unique_locations:
+#             matching_rows = geneloc[
+#                 (geneloc[loc_col] == ligand) &
+#                 (geneloc["location"].str.contains(loc))
+#             ]
+#             all_sources = matching_rows["source"].unique()
+#             sources_str = ", ".join(sorted(set(all_sources)))
+#             spans.append(f'<span title="based on {sources_str}">{loc}</span>')
+#         return ", ".join(spans)
+
+# remove duplicate val per cell and prioritize "secreted"
 def dedup_locations(loc_str):
-    # Split, strip, deduplicate, and sort
+    # Split and strip
     parts = [loc.strip() for loc in loc_str.split(',') if loc.strip()]
-    unique_sorted = sorted(set(parts), key=str.lower)  # case-insensitive sort
-    return unique_sorted
-
-def generate_LocToolTip(row, geneloc, loc_col):
-    ligand = row[loc_col]
-    original_locations = [loc.strip() for loc in row["location"].split(',')]
-    original_sources = [src.strip() for src in row["source"].split(',')]
-
-    # Get deduplicated locations
-    unique_locations = dedup_locations(row["location"])
-
-    if len(unique_locations) == 1:
-        # Single tooltip case
-        location = unique_locations[0]
-        matching_rows = geneloc[(geneloc[loc_col] == ligand) & (geneloc["location"].str.contains(location))]
-        all_sources = matching_rows["source"].unique()
-        sources_str = ", ".join(sorted(set(all_sources)))
-        return f'<span title="based on {sources_str}">{location}</span>'
-    else:
-        # Multiple tooltips — find each (ligand, location) match in original df
-        spans = []
-        for loc in unique_locations:
-            matching_rows = geneloc[
-                (geneloc[loc_col] == ligand) &
-                (geneloc["location"].str.contains(loc))
-            ]
-            all_sources = matching_rows["source"].unique()
-            sources_str = ", ".join(sorted(set(all_sources)))
-            spans.append(f'<span title="based on {sources_str}">{loc}</span>')
-        return ", ".join(spans)
+    # Deduplicate while preserving order
+    seen = dict.fromkeys(parts)
+    unique_ordered = list(seen.keys())
+    # If "secreted" exists, move it to the front
+    if "secreted" in seen:
+        unique_ordered = ["secreted"] + [loc for loc in unique_ordered if loc != "secreted"]
+    return ", ".join(unique_ordered)
 
 
 # Group the original loc_info by Ligand
@@ -136,9 +148,12 @@ grouped = ligand_loc.groupby("Ligand").agg({
 }).reset_index()
 
 # Generate tooltips
-grouped["Ligand location"] = grouped.apply(lambda row: generate_LocToolTip(row, ligand_loc,loc_col="Ligand"), axis=1)
+grouped = ligand_loc.groupby("Ligand").agg({
+    "location": lambda x: dedup_locations(', '.join(x))
+}).reset_index()
+
 # create dict
-mapping_loc = dict(zip(grouped['Ligand'], grouped['Ligand location'])) 
+mapping_loc = dict(zip(grouped['Ligand'], grouped['location'])) 
 gene_pair['Ligand location'] = gene_pair['Ligand'].replace(mapping_loc)
 
 
@@ -152,9 +167,13 @@ grouped = receptor_loc.groupby("Receptor").agg({
 }).reset_index()
 
 # Generate tooltips
-grouped["Receptor location"] = grouped.apply(lambda row: generate_LocToolTip(row, receptor_loc,loc_col="Receptor"), axis=1)
+# grouped["Receptor location"] = grouped.apply(lambda row: generate_LocToolTip(row, receptor_loc,loc_col="Receptor"), axis=1)
+grouped = receptor_loc.groupby("Receptor").agg({
+    "location": lambda x: dedup_locations(', '.join(x))
+}).reset_index()
+
 # create dict
-mapping_loc = dict(zip(grouped['Receptor'], grouped['Receptor location'])) 
+mapping_loc = dict(zip(grouped['Receptor'], grouped['location'])) 
 gene_pair['Receptor location'] = gene_pair['Receptor'].replace(mapping_loc)
 
 

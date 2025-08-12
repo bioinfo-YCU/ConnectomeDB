@@ -448,10 +448,29 @@ $(document).ready(function() {
             },
             lengthMenu: [[15, 25, 50, 100, -1], ["15", "25", "50", "100", "All"]],
             buttons: [
-                'pageLength',
+                { extend: 'pageLength',
+                  text: function(dt, button, config) {
+        return 'Show ' + dt.page.len() + ' Rows';
+    }},
                 { extend: 'colvis', text: 'Display Columns' },
-                'selectAll',
-                'selectNone',
+                { extend: 'selectAll', text: 'Select All',
+            action: function(e, dt, node, config) {
+                $.fn.dataTable.ext.buttons.selectAll.action.call(this, e, dt, node, config);
+                setTimeout(function() {
+                    updateInfoDisplay();
+                }, 100);
+            }
+        },
+
+            { extend: 'selectNone', text: 'Deselect All',
+        action: function(e, dt, node, config) {
+            $.fn.dataTable.ext.buttons.selectNone.action.call(this, e, dt, node, config);
+            setTimeout(function() {
+                updateInfoDisplay();
+            }, 100);
+        }
+    },
+
                 {
                     extend: 'csvHtml5',
                     filename: 'ConnectomeDB2025_chicken',
@@ -620,14 +639,14 @@ $(document).ready(function() {
                 // Wait for DOM to be ready, then add filter
                 setTimeout(function() {
                     // Create a filter container directly above the table and headers
-                    var filterContainer = $('<div id="column-filters" style="background: white; padding-left: 0px; padding-right: 0px; padding-bottom: 10px; border: 0px solid #ddd; margin-bottom: 1px; width: 100%;"><h4 style="margin: 0 0 15px 0;">Search Ligand(s) / Receptor(s) here</h4></div>');
+                    var filterContainer = $('<div id="column-filters" style="background: white; padding-left: 0px; padding-right: 0px; padding-bottom: 10px; border: 0px solid #ddd; margin-bottom: 1px; width: 100%;"></div>');
                     $('#chicken-table').closest('.dataTables_wrapper').prepend(filterContainer);
 
                     var filterDiv = $('<div style="max-width: 100%;"></div>');
                     var label = $('<label></label>');
 
                     // Create input without datalist (no autofill)
-                    var input = $('<input type="text" placeholder="i.e. CD24, EGFR, A2M, BDKRB2, LOC395551, no human ortholog" />')
+                    var input = $('<input type="text" placeholder="Search Ligand(s) / Receptor(s): i.e. CD24, EGFR, A2M, BDKRB2, LOC395551" />')
                         .css({
                             'width': '100%',
                             'padding': '8px',
@@ -774,7 +793,7 @@ api.on('order.dt search.dt', function () {
 </script>
 ```
 
-{{< include ../hint.qmd >}}
+
 
 
 
