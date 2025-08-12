@@ -14,7 +14,9 @@ import sys
 import pandas as pd
 import warnings
 warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
-sys.path.append(os.path.abspath("src"))  # Add src directory to path
+project_root = os.path.dirname(os.getcwd())
+os.chdir(project_root)
+sys.path.append(os.path.abspath("src"))
 from createDataTable import (
   lrPairsCount,
   ligandCount,

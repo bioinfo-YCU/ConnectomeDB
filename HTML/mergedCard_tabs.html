@@ -69,6 +69,16 @@
             background-color: #d4af37;
             color: white !important;
         }
+        .navbar .dropdown-item {
+            padding: .4rem .5rem;
+        }
+
+        .dropdown-menu.show {
+          margin-top: 0px !important;
+          padding-top: 0px !important;
+          margin-bottom: 0px !important;
+          padding-bottom: 0px !important;
+        }
 
         /* Download button styling */
         .download-btn {
@@ -1075,28 +1085,49 @@
       </div>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav navbar-nav-scroll me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{{site}}about.html">
-              <span class="menu-text">About</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{site}}tutorials.html">
-              <span class="menu-text">Tutorials</span>
-            </a>
-          </li>
           <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" id="nav-menu-documentation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="menu-text">Documentation</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="nav-menu-documentation">
+              <li>
+                <a class="dropdown-item" href="{{site}}docs/policy.html">
+                  <span class="dropdown-text">Terms & Conditions</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}docs/about.html">
+                  <span class="dropdown-text">Introduction</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}docs/methods.html">
+                  <span class="dropdown-text">Methods</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}docs/tutorials.html">
+                  <span class="dropdown-text">Tutorials</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}docs/updates.html">
+                  <span class="dropdown-text">Updates</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}docs/help.html">
+                  <span class="dropdown-text">HELP</span></a>
+              </li>
+            </ul>
+          </li> 
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ligand-receptor-browser" role="link" data-bs-toggle="dropdown" aria-expanded="false">
               <span class="menu-text">Ligand-Receptor Browser</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="nav-menu-ligand-receptor-browser">
               <li>
                 <a class="dropdown-item" href="{{site}}database/human.html">
-                  <span class="dropdown-text">Human LR Pairs</span></a>
+                  <span class="dropdown-text"><strong>Human LR Pairs</strong></span></a>
               </li>
               <li>
                 <a class="dropdown-item" href="{{site}}database/mouseOrth.html">
-                  <span class="dropdown-text">Mouse Orthologs</span></a>
+                  <span class="dropdown-text"><strong>Mouse Orthologs</strong></span></a>
               </li>
               <a class="dropdown-item" href="{{site}}database/other/chimpOrth.html">
                 <span class="dropdown-text">Chimp Orthologs</span></a>
@@ -1157,13 +1188,13 @@
               </span>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="{{site}}database/human.html">
               <span class="menu-text">
                 <iconify-icon class="nav-icon" role="img" inline icon="mdi:search"></iconify-icon>
               </span>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-github" role="link" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="bi bi-github" role="img"></i>
@@ -1395,7 +1426,7 @@
     </div>   
         <div style="margin-top: 0.5em;"></div>
         <div class="nav-footer-right">
-    <p><a href="https://comp.med.yokohama-cu.ac.jp/reviewer/connectomedb/policy.html">Terms &amp; Conditions</a></p>
+    <p><a href="{{site}}docs/policy.html">Terms &amp; Conditions</a></p>
     </div>
       </div>
     </footer>

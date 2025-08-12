@@ -38,15 +38,17 @@ website:
     left:
       - text: 'Documentation'
         menu:
-         - href: policy.qmd
+         - href: docs/policy.qmd
            text: 'Terms & Conditions'
-         - href: about.qmd
+         - href: docs/about.qmd
            text: 'Introduction'
-         - href: methods.qmd
+         - href: docs/methods.qmd
            text: 'Methods'
-         - href: tutorials.qmd
+         - href: docs/tutorials.qmd
            text: 'Tutorials'
-         - href: help.qmd
+         - href: docs/updates.qmd
+           text: 'Updates'
+         - href: docs/help.qmd
            text: 'HELP'
 
            
@@ -103,11 +105,10 @@ website:
       # - href: stats.qmd
       #   text: "{{< iconify mdi:chart-bar inline size=20px >}}Statistics"
     right:
-      - url: "updates.qmd"
-        text: "{{< iconify mdi:update inline >}}"
+#       - url: "updates.qmd"
+#         text: "{{< iconify mdi:update inline >}}"
       - url: "mailto:bioinfo@yokohama-cu.ac.jp,alistair.forrest@perkins.uwa.edu.au,rui.hou@uwa.edu.au"
         text: "{{< iconify mdi:email inline >}}"
-
 
       - icon: github
         menu:
