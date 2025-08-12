@@ -2,69 +2,115 @@
 title: "Downloads"
 ---
 
-## Download the following tables:
+```{python}
+#| echo: false
+#| output: asis
 
-### 2025-08-11 
+import os
+import json
+from pathlib import Path
+from datetime import datetime
+import humanize
 
-**Humans – Homo sapiens**: 3550 LR pairs (3550 rows x 15 columns)
-
-<a href="downloads/20250811/ConnectomeDB2025_human.csv" download class="download-btn-minimal">
-    <span class="download-icon">⤓</span>
-    CSV
-</a> <a href="downloads/20250811/ConnectomeDB2025_human.xlsx" download class="download-btn-minimal">
-    <span class="download-icon">⤓</span>
-    Excel
-</a>
-
-**Mouse – Mus musculus**: 3252 LR pairs (3252 rows x 15 columns)
-
-<a href="downloads/20250811/ConnectomeDB2025_mouse.csv" download class="download-btn-minimal">
-    <span class="download-icon">⤓</span>
-    CSV
-</a> <a href="downloads/20250811/ConnectomeDB2025_mouse.xlsx" download class="download-btn-minimal">
-    <span class="download-icon">⤓</span>
-    Excel
-</a>
-
-
-**Chimp – Pan troglodytes**: 3463 LR pairs (3463 rows x 15 columns)
-
-<a href="downloads/20250811/ConnectomeDB2025_mouse.csv" download class="download-btn-minimal">
-    <span class="download-icon">⤓</span>
-    CSV
-</a> <a href="downloads/20250811/ConnectomeDB2025_mouse.xlsx" download class="download-btn-minimal">
-    <span class="download-icon">⤓</span>
-    Excel
-</a>
+def load_config():
+    """Load repository configuration"""
+    config_file = Path("JSON/config.json")
+    if config_file.exists():
+        with open(config_file, 'r') as f:
+            return json.load(f)
+    return {
+        "title": "Connectomedb Data Repository",
+        "description": "Browse and download Ligand-receptor database tables across 14 most studied species.",
+        "license": "MIT License",
+        "contact": "help@connectomedb.org",
+        "citation": "Please cite: [ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction](), P Liu, S Maezono et al. *Journal Title* **XX (YY)**, ZZZ (2025). DOI: 10.xxxx/xxxxx"
+    }
 
 
-### 2025-07-01 
+def get_directory_info(base_path="downloads"):
+    """Get information about directories and files"""
+    base = Path(base_path)
+    if not base.exists():
+        base.mkdir(parents=True, exist_ok=True)
+    directories = []
+    for item in sorted(base.iterdir()):
+        if item.is_dir():
+            # Count files in directory
+            file_count = len([f for f in item.rglob("*") if f.is_file()])
+            # Get directory size
+            total_size = sum(f.stat().st_size for f in item.rglob("*") if f.is_file())
+            # Get last modified time
+            last_modified = max([f.stat().st_mtime for f in item.rglob("*") if f.is_file()], default=0)
+            directories.append({
+                "name": item.name,
+                "path": str(item),
+                "file_count": file_count,
+                "size": humanize.naturalsize(total_size),
+                "last_modified": datetime.fromtimestamp(last_modified).strftime("%Y-%m-%d") if last_modified else "Unknown",
+                "description": get_directory_description(item.name)
+            })
+    return directories
 
-**Humans**: 3436 LR pairs (3436 rows x 16 columns)
 
-<a href="downloads/20250701/ConnectomeDB2025_human.csv" download class="download-btn-minimal">
-    <span class="download-icon">⤓</span>
-    CSV
-</a> <a href="downloads/20250701/ConnectomeDB2025_human.xlsx" download class="download-btn-minimal">
-    <span class="download-icon">⤓</span>
-    Excel
-</a>
+def get_directory_description(dir_name):
+    """Get description for common directory types"""
+    descriptions = {
+        "current-release": "The most recent and up-to-date version of the database tables",
+        "previous-release": "The previous version of the database tables",
+        "archive": "Historical versions and deprecated database tables",
+        "published-datasets": "Datasets corresponding to published research articles",
+        "supplementary": "Additional datasets and supplementary materials",
+        "tools": "Software tools and utilities for data processing",
+        "documentation": "User guides, manuals, and technical documentation",
+        "latest": "Always-current files with stable names for automated downloading"
+    }
+    return descriptions.get(dir_name.lower(), "date-versioning of the database tables")
 
-<script>
-document.querySelectorAll('.download-btn-minimal').forEach(button => {
-    button.addEventListener('click', function() {
-        this.classList.add('clicked');
-        
-        // Change text to indicate download started
-        const originalText = this.innerHTML;
-        this.innerHTML = '<span class="download-icon">⤓</span>Downloaded!';
-        
-        // Reset after 2 seconds
-        setTimeout(() => {
-            this.classList.remove('clicked');
-            this.innerHTML = originalText;
-        }, 2000);
-    });
-});
-</script>
 
+# Load configuration and directory info
+config = load_config()
+directories = get_directory_info()
+
+# Print the top-level Markdown content
+print(f"""
+## Welcome to the {config['title']}
+
+Feel free to use the file navigator below to browse and download database tables. All data provided are freely available under the **MIT License**, and are provided **WITHOUT ANY WARRANTY**. If you have any questions, please feel free to [contact us](mailto:{config['contact']}).
+
+{config['citation']}
+
+---
+
+### Available Datasets
+""")
+
+# Now, instead of printing a Markdown table, we print the data in a machine-readable format.
+# A list of dictionaries is a good choice.
+import pandas as pd
+
+# This part is a simplified version of your data creation.
+# It assumes your get_directory_info function returns a list of dictionaries.
+df = pd.DataFrame(directories)
+
+# This will print the DataFrame in a format Quarto understands for rendering tables.
+df.rename(columns={'name': 'Directory', 'file_count': 'Files', 'size': 'Size', 'last_modified': 'Last Modified', 'description': 'Description'}, inplace=True)
+
+# Generate Markdown for the directory links
+df['Directory'] = df.apply(lambda row: f"[{row['Directory']}](browse.html?dir={row['Directory']})", axis=1)
+
+print(df.to_markdown(index=False))
+
+print("""
+---
+
+### Dataset Categories
+
+The following directories contain datasets and tools available for download:
+
+- **Current Release**: The most recent and up-to-date version of the Ligand-Receptor(LR) database tables
+- **Previous Release**: The previous version of the LR database tables
+- **Archive**: Historical version of the LR database tables that are no longer actively maintained
+
+Each dataset is available in multiple formats: CSV, XLSX.
+""")
+```

@@ -2,6 +2,7 @@ project:
   type: website
   render: 
     - "*.qmd"
+    - "browse.qmd"
     - "!DT_R_ver.qmd"
     - "!index_*.qmd"
     - "!*.ipynb/"
@@ -10,9 +11,7 @@ project:
     - "!stats.qmd"
     - "!annotations/*.qmd"
     - "!database/human-trip*.qmd"
-    - "!database/human-FilterOnTop.qmd"
     - "!askAIchat.qmd"
-    - "!database/human_*.qmd"
     - "!database/qmd_template/*.qmd"
     
   post-render: 
@@ -24,6 +23,7 @@ resources:
   - images
   - HTML
   - JSON
+  - downloads
   
 website:
   title: "ConnectomeDB2025"
