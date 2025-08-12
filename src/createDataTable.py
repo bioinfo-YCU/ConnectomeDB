@@ -561,7 +561,15 @@ def add_geneToolTip(species):
     ]
 
 ## Make the Human evidence consistent
-gene_pair["Human evidence"] = gene_pair["Human evidence"].replace("CONSERVATION, DIRECT", "DIRECT, CONSERVATION")
+gene_pair["Human evidence"] = np.where(
+    gene_pair["Human evidence"].str.contains("DIRECT", na=False),
+    "Direct",
+    np.where(
+        gene_pair["Human evidence"] == "CONSERVATION",
+        "Conservation",
+        gene_pair["Human evidence"]
+    )
+)
 
 ### Remove tooltip for name for each species for now as only zebrafish has the proper names ###     
 # speciesPrime_list = ["Zebrafish"]

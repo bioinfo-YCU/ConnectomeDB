@@ -254,7 +254,15 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     gene_pair = gene_pair.groupby(grouping_cols).agg(agg_dict).reset_index()
     
     # make direct, conservation and conservation, direct the same
-    gene_pair[f"{species} evidence"] = gene_pair[f"{species} evidence"].replace("CONSERVATION, DIRECT", "DIRECT, CONSERVATION")
+    gene_pair[f"{species} evidence"] = np.where(
+    gene_pair[f"{species} evidence"].str.contains("DIRECT", na=False),
+    "Direct",
+    np.where(
+        gene_pair[f"{species} evidence"] == "CONSERVATION",
+        "Conservation",
+        gene_pair[f"{species} evidence"]
+    )
+)
     
     
     def generate_perplexity_link_pmid(row, species, species_lower): 
