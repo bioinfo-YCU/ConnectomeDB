@@ -516,7 +516,10 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
 
         buttons: [
 
-            'pageLength',
+            { extend: 'pageLength', 
+              text: function(dt, button, config) {
+        return 'Show ' + dt.page.len() + ' Rows';
+    } },
 
             { extend: 'colvis', text: 'Display Columns' },
 
@@ -805,7 +808,7 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
 
                 // Create a filter container directly above the table and headers
 
-                var filterContainer = $('<div id="column-filters" style="background: white; padding-left: 0px; padding-right: 0px; padding-bottom: 10px; border: 0px solid #ddd; margin-bottom: 1px; width: 100%;"><h4 style="margin: 0 0 15px 0;">Search Ligand(s) / Receptor(s) here</h4></div>');
+                var filterContainer = $('<div id="column-filters" style="background: white; padding-left: 0px; padding-right: 0px; padding-bottom: 10px; border: 0px solid #ddd; margin-bottom: 1px; width: 100%;"></div>');
 
                 $('#human-table').closest('.dataTables_wrapper').prepend(filterContainer);
 
@@ -843,7 +846,7 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
 
                 // Create input without datalist (no autofill)
 
-                var input = $('<input type="text" placeholder="i.e. CD24, EGFR, A2M" />') // Updated placeholder
+                var input = $('<input type="text" placeholder="Search Ligand(s) / Receptor(s): i.e. CD24, EGFR, A2M" />') // Updated placeholder
 
                     .css({
 
@@ -1050,7 +1053,6 @@ api.on('order.dt search.dt', function () {
 </script>
 ```
 
-{{< include hint.qmd >}}
 
 
 
