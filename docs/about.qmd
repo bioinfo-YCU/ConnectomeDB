@@ -44,7 +44,12 @@ from createDataTable import (
 
 Accesing all parts of the online resource requires no username and no password.
 
-**Software**: ConnectomeDB2025 is developed with <a href='https://quarto.org/' target='_blank'>Quarto 1.7+</a> and <a href='https://www.biorender.com/' target='_blank'> BioRender</a>\
+**Software**: ConnectomeDB2025 is built using a hybrid frontend. <a href='https://quarto.org/' target='_blank'>Quarto 1.7+</a> is used for interactive content and documentation, while certain modules rely on standalone HTML with Python/Jinja2 backends. Users can explore the data via two access modes: (1) species-specific pair list views, offering dynamic search and filtering by gene symbol or annotation fields, and (2) ligand–receptor pair cards, which provide detailed annotations per interaction, including ortholog coverage, aliases, subcellular localization, and literature support.
+
+To ensure responsive performance, all data tables are pre-rendered as JSON using Python, allowing fast in-browser filtering without requiring server-side computation. This setup supports static HTML generation and makes the site usable on a wide range of devices, including mobile.
+
+Some images were created using <a href='https://www.biorender.com/' target='_blank'> BioRender</a>.
+
 **OS & Browsers**: Windows 10/11 (Google Chrome, Microsoft Edge), macOS 15+ (Google Chrome, Safari), mobile devices (Google Chrome, Safari).
 
 <hr>

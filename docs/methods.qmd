@@ -18,11 +18,11 @@ ConnectomeDB splits complexes heteromeric receptors and ligands into simplex pai
 
 #### Bidirectional signalling 
 
-In the case of bidirectional signalling where signals are triggered in both cells the pair is modelled as two directional interactions. E.g. CD28-CD86 and CD86-CD28.
+In the case of bidirectional signalling where signals are triggered in both cells the pair is modelled as two directional interactions. E.g. CD28–CD86 and CD86–CD28.
 
 ### **Incorporation of Existing LR Pairs**
 
-Protein ligand–mediated ligand–receptor pairs from our previous database release 2020 and from other major resources, including CellChatDB_v2, CellPhoneDB_v5, CellTalkDB, ICELLNET_v2, and LIANA_consensus, were downloaded and frozen in May 2025.
+Protein ligand–mediated ligand–receptor pairs from our previous database release 2020 and from other major resources, including [CellChatDB_v2](http://www.cellchat.org/){target="_blank"}, [CellPhoneDB_v5](https://www.cellphonedb.org/index.html){target="_blank"}, [CellTalkDB](http://tcm.zju.edu.cn/celltalkdb){target="_blank"}, [ICELLNET_v2](https://github.com/soumelis-lab/ICELLNET){target="_blank"}, and [LIANA_consensus](https://github.com/saezlab/liana-py){target="_blank"}, were downloaded and frozen in May 2025.
 
 Note: Non-protein ligands were removed, and complex protein-based pairs were split into single pairs. For further details, see Ligand–Receptor Interaction Modelling above.
 
@@ -45,7 +45,7 @@ For interactions lacking primary evidence—due to incorrect, retracted or missi
 
 ### **Subcellular localization**
 
-The subcellular localization of ligands and receptors were annotated using [Perplexity](https://www.perplexity.ai/){target="_blank"}, [UniProt](https://www.uniprot.org/){target="_blank"}, and [The Human Protein Atlas (HPA)](https://www.proteinatlas.org/){target="_blank"} and manual curation. For HPA data, only localization information with “Enhanced”, “Supported”, or “Approved” reliability was considered; entries marked as “Uncertain” were excluded.
+The subcellular localization of ligands and receptors was annotated using [Perplexity](https://www.perplexity.ai/){target="_blank"}, [UniProt](https://www.uniprot.org/){target="_blank"}, and [The Human Protein Atlas (HPA)](https://www.proteinatlas.org/){target="_blank"} and manual curation. For HPA data, only localization information with “Enhanced”, “Supported”, or “Approved” reliability was considered; entries marked as “Uncertain” were excluded.
 
 The vast majority of ligand–receptor pairs involve ligands that are secreted or located on the plasma membrane of the sending cell, interacting with a receptor on the plasma membrane of the receiving cell. 
 
