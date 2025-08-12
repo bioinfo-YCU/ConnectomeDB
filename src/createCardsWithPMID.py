@@ -11,8 +11,8 @@ sys.path.append(os.path.abspath("src"))
 
 # Import necessary modules from your existing src files
 # Ensure createDataTable and createFunctionalAnnotTable are in your 'src' directory
-from fetchGSheet import gene_pair_mouse, conservation
-from createDataTable import pop_up_info, gene_pair0, site_url, generate_perplexity_links, gene_pair00, is_mouse_specific, grab_mouse_info
+from fetchGSheet import gene_pair_mouse, conservation, ligand_loc, receptor_loc
+from createDataTable import pop_up_info, gene_pair0, site_url, generate_perplexity_links, gene_pair00, is_mouse_specific, grab_mouse_info, dedup_locations
 from createFunctionalAnnotTable import gene_pair_annot_ligand, gene_pair_annot_receptor
 
 # Test or all
@@ -229,6 +229,63 @@ gene_pair0_copy["Conserved"] = col.fillna("none")
 # Split the "LR Pair Card" into two new columns: "Ligand" and "Receptor"
 gene_pair0_copy[["Ligand", "Receptor"]] = gene_pair0_copy["LR Pair Card"].str.split(" ", n=1, expand=True)
 
+### Adding ligand loc with source
+def append_source_to_location(row, geneloc, loc_col):
+    ligand = row[loc_col]
+    locations = [loc.strip() for loc in row["location"].split(',')]
+    sources = [src.strip() for src in row["source"].split(',')]
+
+    # Deduplicate locations while preserving order
+    unique_locations = list(dict.fromkeys(locations))
+
+    # Create a list to hold location and source pairs
+    location_with_sources = []
+    for loc in unique_locations:
+        matching_rows = geneloc[
+            (geneloc[loc_col] == ligand) &
+            (geneloc["location"].str.contains(loc))
+        ]
+        all_sources = matching_rows["source"].unique()
+        sources_str = ", ".join(sorted(set(all_sources)))
+        location_with_sources.append(f"{loc} based on {sources_str}")
+    
+    return ", ".join(location_with_sources)
+
+#### Ligand
+ligand_loc = ligand_loc.dropna(axis=1, how='all')
+
+grouped = ligand_loc.groupby("Ligand").agg({
+    "location": lambda x: dedup_locations(', '.join(x)),
+    "source": lambda x: ', '.join(x)
+}).reset_index()
+
+# Append source information to location
+grouped["Ligand Location"] = grouped.apply(
+    lambda row: append_source_to_location(row, ligand_loc, loc_col="Ligand"),
+    axis=1
+)
+
+mapping_loc = dict(zip(grouped['Ligand'], grouped['Ligand Location']))
+gene_pair0_copy['Ligand Location'] = gene_pair0_copy['Ligand'].replace(mapping_loc)
+
+#### Receptor
+ligand_loc = receptor_loc.dropna(axis=1, how='all')
+
+grouped = receptor_loc.groupby("Receptor").agg({
+    "location": lambda x: dedup_locations(', '.join(x)),
+    "source": lambda x: ', '.join(x)
+}).reset_index()
+
+# Append source information to location
+grouped["Receptor Location"] = grouped.apply(
+    lambda row: append_source_to_location(row, ligand_loc, loc_col="Receptor"),
+    axis=1
+)
+
+mapping_loc = dict(zip(grouped['Receptor'], grouped['Receptor Location']))
+gene_pair0_copy['Receptor Location'] = gene_pair0_copy['Receptor'].replace(mapping_loc)
+
+#########################################
 
 # Add Ligand/Receptor group info
 gene_pair_annot_ligand = gene_pair_annot_ligand.groupby('Ligand HGNC ID').agg(agg_func).reset_index()
