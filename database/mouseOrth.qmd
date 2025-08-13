@@ -342,23 +342,19 @@ $(document).ready(function() {
         const columns = [
   {
     "data": "Interaction ID",
-    "title": "<span title=\"Double-click header of Interaction ID to reverse sort\">Interaction ID&nbsp;</span>"
-  },
-  {
-    "data": "LR Pair Card",
-    "title": "LR Pair Card"
+    "title": "<span title=\"Unique ConnectomeDB ID for each ligand\u2013receptor pair\">Interaction ID</span>"
   },
   {
     "data": "Mouse LR Pair",
-    "title": "Mouse LR Pair"
+    "title": "<span title=\"Ligand-receptor Pair\">Mouse LR Pair</span>"
   },
   {
     "data": "Ligand Symbols",
-    "title": "Ligand Symbols"
+    "title": "<span title=\"Official gene symbol (aliases, old names)\">Ligand Symbols</span>"
   },
   {
     "data": "Receptor Symbols",
-    "title": "Receptor Symbols"
+    "title": "<span title=\"Official gene symbol (aliases, old names)\">Receptor Symbols</span>"
   },
   {
     "data": "Ligand Location",
@@ -370,15 +366,15 @@ $(document).ready(function() {
   },
   {
     "data": "Ligand MGI ID",
-    "title": "Ligand MGI ID"
+    "title": "<span title=\"Mouse Genome Informatics ID (link to MGI)\">Ligand MGI ID</span>"
   },
   {
     "data": "Receptor MGI ID",
-    "title": "Receptor MGI ID"
+    "title": "<span title=\"Mouse Genome Informatics ID (link to MGI)\">Receptor MGI ID</span>"
   },
   {
     "data": "Perplexity",
-    "title": "Perplexity"
+    "title": "<span title=\"Click the logo below to run Perplexity on the Human LR pair\">Perplexity&nbsp;</span>"
   },
   {
     "data": "Mouse evidence",
@@ -394,18 +390,18 @@ $(document).ready(function() {
   },
   {
     "data": "Ligand ENSEMBL ID",
-    "title": "Ligand ENSEMBL ID"
+    "title": "<span title=\"ENSEMBL gene ID for the ligand (link to ENSEMBL)\">Ligand ENSEMBL ID&nbsp;&nbsp;</span>"
   },
   {
     "data": "Receptor ENSEMBL ID",
-    "title": "Receptor ENSEMBL ID"
+    "title": "<span title=\"ENSEMBL gene ID for the receptor (link to ENSEMBL)\">Receptor ENSEMBL ID&nbsp;&nbsp;</span>"
   }
 ];
         console.log('Columns config:', columns);
 
         // Build header HTML - add checkbox column back
         // Set the header for the first column to 'Copy' with a tooltip
-        var headerHtml = '<tr><th title="Tick the boxes of the rows you would like to download via the buttons above">Select</th>';
+        var headerHtml = '<tr><th title="Tick boxes for rows to download via the CSV/Excel buttons">Select</th>';
         columns.forEach(function(col) {
             headerHtml += '<th>' + (col.title || col.data || '') + '</th>';
         });
@@ -416,7 +412,7 @@ $(document).ready(function() {
         var totalColumns = columns.length + 1; // +1 for checkbox column
         
         // Only include valid positive column indices for hiding
-        var hiddenColumns = [3,12,13];
+        var hiddenColumns = [11,12];
         
         // Add last 2 columns to hidden list (adjust this number as needed)
         // Remember to adjust for the prepended checkbox column
@@ -571,9 +567,9 @@ $(document).ready(function() {
                     targets: 0
                 },
                 // Adjusted for checkbox column: Original column 10 is now at index 11
-                { "className": "dt-center", "targets": [10] },
+                { "className": "dt-center", "targets": [9] },
                 // Adjusted for checkbox column: Original columns 5 and 6 are now at indices 5 and 6
-                { "width": "275px", "targets": [3,4] },
+                { "width": "275px", "targets": [2,3] },
                 { "visible": false, "targets": hiddenColumns }
             ],
             initComplete: function () {
@@ -682,16 +678,16 @@ $(document).ready(function() {
                                 if (searchTerms.length > 0) {
                                     // Update the search function to include columns 3, 4, 11, 12
                                     $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+                                        var col3Value = data[3] ? data[3].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
                                         var col4Value = data[4] ? data[4].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
-                                        var col5Value = data[5] ? data[5].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
+                                        var col11Value = data[11] ? data[11].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
                                         var col12Value = data[12] ? data[12].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
-                                        var col13Value = data[13] ? data[13].toString().replace(/<[^>]*>/g, '').toLowerCase() : '';
                                     
                                         return searchTerms.some(term =>
+                                            col3Value.includes(term) || 
                                             col4Value.includes(term) || 
-                                            col5Value.includes(term) || 
-                                            col12Value.includes(term) || 
-                                            col13Value.includes(term)
+                                            col11Value.includes(term) || 
+                                            col12Value.includes(term)
                                         );
                                     });
 
@@ -732,7 +728,7 @@ api.on('order.dt search.dt', function () {
             
             // If sorting by a column other than our search columns (4, 5, 12, 13), 
             // let DataTables handle it normally
-            if (sortColumnIndex !== 4 && sortColumnIndex !== 5 && sortColumnIndex !== 12 && sortColumnIndex !== 13) {
+            if (sortColumnIndex !== 3 && sortColumnIndex !== 4 && sortColumnIndex !== 11 && sortColumnIndex !== 12) {
                 isCustomSearchActive = false;
             }
         }
@@ -748,8 +744,8 @@ api.on('order.dt search.dt', function () {
                 const normalize = str =>
                     str ? str.toString().replace(/<[^>]*>/g, '').toLowerCase().trim() : '';
 
-                const valuesA = [normalize(rowDataA[4]), normalize(rowDataA[5]), normalize(rowDataA[12]), normalize(rowDataA[13])];
-                const valuesB = [normalize(rowDataB[4]), normalize(rowDataB[5]), normalize(rowDataB[12]), normalize(rowDataB[13])];
+                const valuesA = [normalize(rowDataA[3]), normalize(rowDataA[4]), normalize(rowDataA[11]), normalize(rowDataA[12])];
+                const valuesB = [normalize(rowDataB[3]), normalize(rowDataB[4]), normalize(rowDataB[11]), normalize(rowDataB[12])];
 
                 searchTerms.forEach(term => {
                     valuesA.forEach(value => {

@@ -9,17 +9,7 @@ header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
 
 ### HTML Tutorial
 
-Want to better understand how to use ConnectomeDB2025? Please see our [online tutorial](under_construction.qmd) *(under construction)*.
-
-
-### Video Tutorial
-
-Prefer a visual explanation? Please see our [video tutorial](under_construction.qmd) *(under construction)*.
-
-### Study your favorite LR pair
-
-Here to quickly explore your favorite LR pair? Please see [this tutorial](under_construction.qmd) *(under construction)*.
-
+Want to better understand how to use ConnectomeDB2025? Please see our [online tutorial](tutorials/index.html).
 
 
 

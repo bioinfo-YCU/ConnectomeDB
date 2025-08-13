@@ -8,7 +8,7 @@ from IPython.display import HTML, display
 import numpy as np
 import re
 from bs4 import BeautifulSoup
-from createDataTable import gene_pair, gene_pair000, human_columns, lrPairsCount
+from createDataTable import gene_pair, gene_pair000, human_columns, lrPairsCount, replace_link_text
 import warnings
 import fetchGSheet 
 
@@ -379,7 +379,15 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     gene_pair[f"Ligand ENSEMBL ID"] = gene_pair['Ligand ENSEMBL ID'].apply(make_ens_link)
     gene_pair[f"Receptor ENSEMBL ID"] = gene_pair['Receptor ENSEMBL ID'].apply(make_ens_link)
 
-    
+    interactionID_cols = [col for col in gene_pair.columns if 'Interaction ID' in col][0]
+    paircard_cols = [col for col in gene_pair.columns if 'LR Pair Card' in col][0]
+    # Apply the transformation
+    gene_pair[interactionID_cols] = gene_pair.apply(
+        lambda row: replace_link_text(row[interactionID_cols], row[paircard_cols]),
+        axis=1
+    )
+    # Drop the old LR Pair Card column
+    gene_pair = gene_pair.drop(columns=[paircard_cols])
     ### tooltips 
     gene_pair["Ligand Symbols"] = [
         f'<span title="{aliases}">{aliases}</span>'
@@ -389,6 +397,29 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
         f'<span title="{aliases}">{aliases}</span>'
         for aliases in gene_pair["Receptor Symbols"]
     ]
+    # Change the tooltips
+    gene_pair.columns = [
+    f'<span title="Ligand-receptor Pair">{col}</span>' if col == f"{species} LR Pair" else
+    f'<span title="HGNC gene symbol for the ligand">{col}</span>' if col == "Ligand" else
+    f'<span title="HGNC gene symbol for the receptor">{col}</span>' if col == "Receptor" else
+     f'<span title="Official gene symbol (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
+    f'<span title="HGNC gene symbols (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
+    f'<span title="Click the logo below to run Perplexity on the Human LR pair">{col}&nbsp;</span>' if col == "Perplexity" else
+    f'<span title="Official Gene Symbol; Hover on symbols below to show gene names">{col}&nbsp;&nbsp;&nbsp;</span>' if col in ["Ligand", "Receptor"] else
+    f'<span title="HGNC gene ID for the ligand (link to HGNC)">{col}&nbsp;&nbsp;</span>' if col == "Ligand HGNC ID" else
+    
+    f'<span title="HGNC gene ID for the receptor (link to HGNC)">{col}&nbsp;&nbsp;</span>' if col == "Receptor HGNC ID" else
+    f'<span title="ENSEMBL gene ID for the ligand (link to ENSEMBL)">{col}&nbsp;&nbsp;</span>' if col == "Ligand ENSEMBL ID" else
+    f'<span title="ENSEMBL gene ID for the receptor (link to ENSEMBL)">{col}&nbsp;&nbsp;</span>' if col == "Receptor ENSEMBL ID" else
+    f'<span title=" PubMed IDs (PMID) with Literature Evidence for LR Interaction. Click on the link for more details">{col}</span>' if col == "PMID" else
+    f'<span title="Xenbase ID (link to XEN). Click on the link for more details">{col}</span>' if col in ["Ligand XEN ID", "Receptor XEN ID"] else
+    f'<span title="Rat Genome Database ID (link to RGD). Click on the link for more details">{col}</span>' if col in ["Ligand RGD ID", "Receptor RGD ID"] else
+    f'<span title="Mouse Genome Informatics ID (link to MGI)">{col}</span>' if col in ["Ligand MGI ID", "Receptor MGI ID"]else
+    f'<span title="Zebrafish Information Network ID (link to ZFIN)">{col}</span>' if col in ["Ligand ZFIN ID", "Receptor ZFIN ID"] else
+    f'<span title="Direct: experimentally verified; Conservation: inferred from orthology">{col}</span>' if col == "Human evidence" else
+    col
+    for col in gene_pair.columns
+]
     return gene_pair
 
 

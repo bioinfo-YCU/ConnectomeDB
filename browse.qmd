@@ -31,7 +31,7 @@ def get_query_params():
     
     return parse_qs(query_string)
 
-def get_file_info(file_path):
+def get_file_info(file_path: Path):
     """Get detailed file information"""
     stat = file_path.stat()
     mime_type, _ = mimetypes.guess_type(str(file_path))
@@ -40,7 +40,7 @@ def get_file_info(file_path):
         "name": file_path.name,
         "size": humanize.naturalsize(stat.st_size),
         "size_bytes": stat.st_size,
-        "modified": datetime.fromtimestamp(stat.st_mtime).strftime("%Y-%m-%d %H:%M"),
+        "modified": datetime.fromtimestamp(stat.st_mtime).strftime("%Y-%m-%d"),
         "type": mime_type or "application/octet-stream",
         "extension": file_path.suffix.lower(),
         "path": str(file_path)
@@ -50,30 +50,36 @@ def get_file_description(filename):
     """Generate description based on filename patterns"""
     name_lower = filename.lower()
     
-    if 'readme' in name_lower:
-        return "Documentation and usage instructions"
-    elif name_lower.endswith('.csv'):
-        return "Comma-separated values data file"
-    elif name_lower.endswith('.tsv') or name_lower.endswith('.tab'):
-        return "Tab-separated values data file"
-    elif name_lower.endswith('.json'):
-        return "JSON format data file"
-    elif name_lower.endswith('.xml'):
-        return "XML format data file"
+    if 'human' in name_lower:
+        return "Homo sapiens"
+    elif 'mouse' in name_lower:
+        return "Mus musculus"
+    elif 'chimp' in name_lower:
+        return "Pan troglodytes"
+    elif 'chicken' in name_lower:
+        return "Gallus gallus"
+    elif 'pig' in name_lower:
+        return "Sus scrofa"
+    elif 'rat' in name_lower:
+        return "Rattus norvegicus"
+    elif 'cow' in name_lower:
+        return "Bos taurus"
+    elif 'dog' in name_lower:
+        return "Canis lupus familiaris"
+    elif 'horse' in name_lower:
+        return "Equus caballus"
+    elif 'sheep' in name_lower:
+        return "Ovies aries rambouillet"
+    elif 'marmoset' in name_lower:
+        return "Callithrix jacchus"
+    elif 'macaque' in name_lower:
+        return "Macaca mulatta"
+    elif 'frog' in name_lower:
+        return "Xenopus tropicalis"
+    elif 'zebrafish' in name_lower:
+        return "Danio rerio"
     elif name_lower.endswith('.zip'):
-        return "Compressed archive file"
-    elif name_lower.endswith('.gz'):
-        return "Gzip compressed file"
-    elif name_lower.endswith('.pdf'):
-        return "PDF documentation"
-    elif name_lower.endswith('.txt'):
-        return "Plain text file"
-    elif 'license' in name_lower:
-        return "License information"
-    elif 'changelog' in name_lower or 'changes' in name_lower:
-        return "Version history and changes"
-    else:
-        return "Data file"
+        return "mixed"
 
 def browse_directory(dir_name, base_path="downloads"):
     """Browse a specific directory, handling case-insensitivity and excluding hidden files/folders."""
@@ -166,11 +172,11 @@ else:
     # Show files
     if dir_info['files']:
         print("### Files\n")
-        print("| Filename | Size | Modified | Type | Description |")
+        print("| Filename | Size | Modified | Type | Species |")
         print("|----------|------|----------|------|-------------|")
         
         for file_info in dir_info['files']:
-            download_link = f"[{file_info['name']}]({file_info['path']})"
+            download_link = f"<a href='{file_info['path']}' download>{file_info['name']}</a>"
             description = get_file_description(file_info['name'])
             file_type = file_info['extension'].upper().replace('.', '') if file_info['extension'] else 'FILE'
             

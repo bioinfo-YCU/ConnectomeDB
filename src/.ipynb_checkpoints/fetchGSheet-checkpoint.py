@@ -60,6 +60,7 @@ def safe_fetch(sheet_ID, tab_name, credentials_file, delay=1.5):
 gene_pair_human = safe_fetch(sheet_ID, "FROZEN_human", credentials_file)
 gene_pair_mouse = safe_fetch(sheet_ID, "FROZEN_mouse", credentials_file)
 numOfMouseOrth = len(gene_pair_mouse[0:])
+InteractionIDs =  safe_fetch(sheet_ID, "CDB_IDS", credentials_file)
 conservation =  safe_fetch(sheet_ID, "conservation", credentials_file)
 # Combine human and mouse gene pairs
 # if not gene_pair_human.empty and not gene_pair_mouse.empty:
@@ -128,5 +129,6 @@ __all__ = [
     #'src_info',            # Single sheet
     'gene_pair_human',      # Processed gene pairs
     'gene_pair_mouse',
-    'conservation'
+    'conservation',
+    'InteractionIDs'
 ]

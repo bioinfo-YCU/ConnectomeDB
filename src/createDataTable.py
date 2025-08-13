@@ -9,6 +9,7 @@ import numpy as np
 import fetchGSheet 
 import warnings
 import urllib.parse
+import re
 
 # Suppress SettingWithCopyWarning
 warnings.simplefilter("ignore", category=UserWarning)
@@ -381,7 +382,23 @@ mouse_rows = gene_pair[gene_pair["Human evidence"].isin(["absent in human", "not
 # Concatenate the DataFrames: rows with IDs first, then rows without IDs
 gene_pair = pd.concat([human_rows, mouse_rows]).reset_index(drop=True)
 DBlength = len(gene_pair)
-gene_pair["Interaction ID"] = [f"CDB{str(i).zfill(5)}" for i in range(1, DBlength + 1)]
+
+## Create interaction ids (SKIP -- use fixed one)
+#gene_pair["Interaction ID"] = [f"CDB{str(i).zfill(5)}" for i in range(1, DBlength + 1)]
+
+# Create mapping for Interaction ID
+interaction_id_mapping = dict(zip(fetchGSheet.InteractionIDs['LR Pair Card'], fetchGSheet.InteractionIDs['Interaction ID']))
+
+# Replace values in the column based on the mapping
+gene_pair["Interaction ID"] = gene_pair["LR Pair Card"].replace(interaction_id_mapping)
+
+# Sort by interaction ID
+gene_pair = gene_pair.sort_values(
+    by='Interaction ID',
+    key=lambda col: col.str.split(':').str[1].astype(int)
+)
+
+
 
 # for creating PMIDs
 gene_pair00 = gene_pair[['LR Pair Card', 'PMID']] # was "PMID support"
@@ -679,19 +696,23 @@ gene_pair["LR Pair Card"] = [
     for lrPairOrig, lrPair, evidence in zip(gene_pair0["LR Pair Card"], gene_pair["LR Pair Card"], gene_pair["Human evidence"])
 ]
 
-
-
 # Add tooltips to the column headers
 gene_pair.columns = [
-    f'<span title="Ligand-Receptor Interacting Pair, as described in Liu et al. (PMID: XXXXXX)">{col}</span>' if col == "Human LR Pair" else
+    f'<span title="Unique ConnectomeDB ID for each ligand–receptor pair">{col}</span>' if col == "Interaction ID" else
+    f'<span title="Ligand-receptor Pair">{col}</span>' if col == "Human LR Pair" else
+    f'<span title="HGNC gene symbol for the ligand">{col}</span>' if col == "Ligand" else
+    f'<span title="HGNC gene symbol for the receptor">{col}</span>' if col == "Receptor" else
+     f'<span title="Official gene symbol (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
     f'<span title="Click the logo below to run Perplexity on the Human LR pair">{col}&nbsp;</span>' if col == "Perplexity" else
     f'<span title="Official Gene Symbol; Hover on symbols below to show gene names">{col}&nbsp;&nbsp;&nbsp;</span>' if col in ["Ligand", "Receptor"] else
-    f'<span title="HUGO Gene Nomenclature Committee (HGNC) ID. Click on the link for more details">{col}&nbsp;&nbsp;</span>' if col in ["Ligand HGNC ID", "Receptor HGNC ID"] else
+    f'<span title="HGNC gene ID for the ligand (link to HGNC)">{col}&nbsp;&nbsp;</span>' if col == "Ligand HGNC ID" else
+    
+    f'<span title="HGNC gene ID for the receptor (link to HGNC)">{col}&nbsp;&nbsp;</span>' if col == "Receptor HGNC ID" else
+    f'<span title="ENSEMBL gene ID for the ligand (link to ENSEMBL)">{col}&nbsp;&nbsp;</span>' if col  == "Ligand ENSEMBL ID" else
+    f'<span title="ENSEMBL gene ID for the receptor (link to ENSEMBL)">{col}&nbsp;&nbsp;</span>' if col == "Receptor ENSEMBL ID" else
     f'<span title=" PubMed IDs (PMID) with Literature Evidence for LR Interaction. Click on the link for more details">{col}</span>' if col == "PMID" else
-    f'<span title="Rat Genome Database (RGD) ID. Click on the link for more details">{col}</span>' if col in ["Ligand RGD ID", "Receptor RGD ID"] else
-    f'<span title="Mouse Genome Informatics (MGI) ID. Click on the link for more details">{col}</span>' if col in ["Ligand MGI ID", "Receptor MGI ID"]else
-    f'<span title="Zebrafish Information Network (ZFIN) ID. Click on the link for more details">{col}</span>' if col in ["Ligand ZFIN ID", "Receptor ZFIN ID"] else
     f'<span title="Location based on the predicted subcellular localization of the human proteome">{col}</span>' if col in ["Ligand Location", "Receptor Location"] else
+    f'<span title="Direct: experimentally verified; Conservation: inferred from orthology">{col}</span>' if col == "Human evidence" else
     f'<span title="Double-click header of {col} to reverse sort">{col}&nbsp;</span>'
     for col in gene_pair.columns
 ]
@@ -731,5 +752,22 @@ human_columns = [col for col in gene_pair000.columns]
 # remove mouse specific ones from the datatable
 evidence_cols = [col for col in gene_pair.columns if 'Human evidence' in col]
 human_gene_pair = gene_pair[~(gene_pair[evidence_cols[0]] == "not conserved")]
+
+### remove LR Pair Card and Just use Interaction ID
+# Replace visible text with Interaction ID
+def replace_link_text(interaction_id, link_html):
+    if pd.isna(link_html):
+        return interaction_id  # fallback if no link
+    return re.sub(r'>(.*?)<', f'>{interaction_id}<', str(link_html), count=1)
+interactionID_cols = [col for col in human_gene_pair.columns if 'Interaction ID' in col][0]
+paircard_cols = [col for col in human_gene_pair.columns if 'LR Pair Card' in col][0]
+# Apply the transformation
+human_gene_pair[interactionID_cols] = human_gene_pair.apply(
+    lambda row: replace_link_text(row[interactionID_cols], row[paircard_cols]),
+    axis=1
+)
+# Drop the old LR Pair Card column
+human_gene_pair = human_gene_pair.drop(columns=[paircard_cols])
+
 # add number of mouse pair cards
 numOfMouseOrth = len(gene_pair[evidence_cols][(gene_pair[evidence_cols[0]] == "not conserved")])

@@ -333,7 +333,7 @@ $.getJSON("{{ json_path }}", function(data) {
 
     // Set the header for the first column to 'Copy' with a tooltip
 
-    var headerHtml = '<tr><th title="Tick the boxes of the rows you would like to download via the buttons above">Select</th>';
+    var headerHtml = '<tr><th title="Tick boxes for rows to download via the CSV/Excel buttons">Select</th>';
 
     columns.forEach(function(col) {
 
@@ -355,7 +355,7 @@ $.getJSON("{{ json_path }}", function(data) {
 
     // become indices 4 and 5 after the checkbox column is prepended.
 
-    var hiddenColumns = [4, 5]; // Hide original columns 3 and 4
+    var hiddenColumns = [3, 4]; // Hide original columns 3 and 4
 
 
 
@@ -647,11 +647,11 @@ $.getJSON("{{ json_path }}", function(data) {
 
             // Adjusted for checkbox column: Original column 11 is index 12
 
-            { "className": "dt-center", "targets": [12] },
+            { "className": "dt-center", "targets": [11] },
 
             // Adjusted for checkbox column: Original columns 5 and 6 are now at indices 5 and 6
 
-            { "width": "275px", "targets": [5, 6] },
+            { "width": "275px", "targets": [4, 5] },
 
             { "visible": false, "targets": hiddenColumns }
 
@@ -829,23 +829,23 @@ $.getJSON("{{ json_path }}", function(data) {
 
                                     // contains values for ALL columns including the prepended checkbox column.
 
-                                    // So, original column 6 is at data[6] and original column 7 is at data[7].
+                                    // So, original column 6 is at data[5] and original column 7 is at data[7].
 
-                                    var col6Value = data[6] ? data[6].toString().replace(/<[^>]*>/g, '').toLowerCase() : ''; // Original column 6
+                                    var col5Value = data[5] ? data[5].toString().replace(/<[^>]*>/g, '').toLowerCase() : ''; // Original column 6
 
-                                    var col7Value = data[7] ? data[7].toString().replace(/<[^>]*>/g, '').toLowerCase() : ''; // Original column 7
+                                    var col6Value = data[7] ? data[7].toString().replace(/<[^>]*>/g, '').toLowerCase() : ''; // Original column 7
 
                                     console.log("Searching for:", searchTerms);
 
-                                    console.log("Column 6 value:", col6Value);
+                                    console.log("Column 6 value:", col5Value);
 
-                                    console.log("Column 7 value:", col7Value); // <<< ADD THIS LINE
+                                    console.log("Column 7 value:", col6Value); // <<< ADD THIS LINE
 
 
 
                                     return searchTerms.some(term =>
 
-                                        col6Value.includes(term) || col7Value.includes(term)
+                                        col5Value.includes(term) || col6Value.includes(term)
 
                                     );
 
@@ -907,7 +907,7 @@ api.on('order.dt search.dt', function () {
             
             // If sorting by a column other than our search columns (6 or 7), 
             // let DataTables handle it normally
-            if (sortColumnIndex !== 6 && sortColumnIndex !== 7) {
+            if (sortColumnIndex !== 5 && sortColumnIndex !== 6) {
                 isCustomSearchActive = false;
             }
         }
@@ -923,8 +923,8 @@ api.on('order.dt search.dt', function () {
                 const normalize = str =>
                     str ? str.toString().replace(/<[^>]*>/g, '').toLowerCase().trim() : '';
 
-                const valuesA = [normalize(rowDataA[6]), normalize(rowDataA[7])];
-                const valuesB = [normalize(rowDataB[6]), normalize(rowDataB[7])];
+                const valuesA = [normalize(rowDataA[5]), normalize(rowDataA[6])];
+                const valuesB = [normalize(rowDataB[5]), normalize(rowDataB[6])];
 
                 searchTerms.forEach(term => {
                     valuesA.forEach(value => {

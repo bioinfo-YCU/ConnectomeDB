@@ -107,7 +107,8 @@ website:
     right:
 #       - url: "updates.qmd"
 #         text: "{{< iconify mdi:update inline >}}"
-      - url: "help@connectomedb.org,alistair.forrest@perkins.uwa.edu.au,rui.hou@uwa.edu.au"
+      - url: "mailto:help@connectomedb.org,alistair.forrest@perkins.uwa.edu.au"
+
         text: "{{< iconify mdi:email inline >}}"
 
       - icon: github
