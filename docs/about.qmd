@@ -13,6 +13,7 @@ import os
 import sys
 import pandas as pd
 import warnings
+warnings.filterwarnings("ignore", category=pd.errors.SettingWithCopyWarning)
 warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
 project_root = os.path.dirname(os.getcwd())
 os.chdir(project_root)

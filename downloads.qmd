@@ -83,8 +83,6 @@ print(f"""
 
 Feel free to use the file navigator below to browse and download database tables. All data provided are freely available under the **MIT License**, and are provided **WITHOUT ANY WARRANTY**. If you have any questions, please feel free to [contact us](mailto:{config['contact']}).
 
-{config['citation']}
-
 ---
 
 ### Available Datasets
@@ -119,4 +117,6 @@ The following directories contain datasets and tools available for download:
 
 Each dataset is available in multiple formats: CSV, XLSX.
 """)
+
+print(f"""{config['citation']}""")
 ```

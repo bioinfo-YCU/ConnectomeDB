@@ -91,7 +91,7 @@ main {
 
 ```{=html}
 
-{{< include HTML/image_carousel_mobileNoCarousel.html >}}
+{{< include HTML/image_carousel.html >}}
 
 ```
 
