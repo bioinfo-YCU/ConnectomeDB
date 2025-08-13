@@ -76,32 +76,39 @@ def get_file_description(filename):
         return "Data file"
 
 def browse_directory(dir_name, base_path="downloads"):
-    """Browse a specific directory, handling case-insensitivity"""
+    """Browse a specific directory, handling case-insensitivity and excluding hidden files/folders."""
     base = Path(base_path)
-    
+
+    def is_visible(p):
+        return not any(part.startswith('.') for part in p.parts)
+
+    # Find directory, case-insensitive, skipping hidden
     found_dir = None
     for item in sorted(base.iterdir()):
-        if item.is_dir() and item.name.lower() == dir_name.lower():
+        if item.is_dir() and is_visible(item) and item.name.lower() == dir_name.lower():
             found_dir = item
             break
-            
+
     if not found_dir:
         return None, f"Directory '{dir_name}' not found."
 
     files = []
     subdirs = []
-    
+
     for item in sorted(found_dir.iterdir()):
+        if not is_visible(item):
+            continue
         if item.is_file():
             files.append(get_file_info(item))
         elif item.is_dir():
+            visible_files = [f for f in item.rglob("*") if f.is_file() and is_visible(f)]
             subdir_info = {
                 "name": item.name,
                 "path": str(Path(found_dir.name) / item.name),
-                "file_count": len([f for f in item.rglob("*") if f.is_file()])
+                "file_count": len(visible_files)
             }
             subdirs.append(subdir_info)
-    
+
     return {
         "name": found_dir.name,
         "path": str(found_dir),
@@ -110,6 +117,7 @@ def browse_directory(dir_name, base_path="downloads"):
         "total_files": len(files),
         "total_size": sum(f["size_bytes"] for f in files)
     }, None
+
 
 # Get the directory to browse
 params = get_query_params()
