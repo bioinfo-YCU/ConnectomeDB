@@ -28,19 +28,24 @@ def load_config():
 
 
 def get_directory_info(base_path="downloads"):
-    """Get information about directories and files"""
+    """Get information about directories and files, excluding hidden ones."""
     base = Path(base_path)
     if not base.exists():
         base.mkdir(parents=True, exist_ok=True)
     directories = []
+    
+    def is_visible(p):
+        return not any(part.startswith('.') for part in p.parts)
+    
     for item in sorted(base.iterdir()):
-        if item.is_dir():
-            # Count files in directory
-            file_count = len([f for f in item.rglob("*") if f.is_file()])
-            # Get directory size
-            total_size = sum(f.stat().st_size for f in item.rglob("*") if f.is_file())
-            # Get last modified time
-            last_modified = max([f.stat().st_mtime for f in item.rglob("*") if f.is_file()], default=0)
+        if item.is_dir() and is_visible(item):
+            # Collect visible files only
+            visible_files = [f for f in item.rglob("*") if f.is_file() and is_visible(f)]
+            
+            file_count = len(visible_files)
+            total_size = sum(f.stat().st_size for f in visible_files)
+            last_modified = max((f.stat().st_mtime for f in visible_files), default=0)
+            
             directories.append({
                 "name": item.name,
                 "path": str(item),
@@ -50,6 +55,7 @@ def get_directory_info(base_path="downloads"):
                 "description": get_directory_description(item.name)
             })
     return directories
+
 
 
 def get_directory_description(dir_name):
