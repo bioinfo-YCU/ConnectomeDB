@@ -70,4 +70,11 @@ conda activate quarto_llm_env
 python -m ipykernel install --user --name=quarto_llm_env --display-name "quarto_llm_env"
 ```
 
+### When installing new packages for environment
+Please run the following:
+
+```bash
+./update_env_yml.sh
+```
+
 
