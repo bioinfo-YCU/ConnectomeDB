@@ -14,6 +14,9 @@ DT_R_ver_files/
 # notebooks
 *.ipynb
 
+Python_test.ipynb
+/Python_test.ipynb
+
 #images
 images/
 images/*
