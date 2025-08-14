@@ -22,7 +22,7 @@ def load_config():
         "title": "Connectomedb Data Repository",
         "description": "Browse and download Ligand-receptor database tables across 14 most studied species.",
         "license": "MIT License",
-        "contact": "help@connectomedb.org",
+        "contact": "mailto:&#104;&#101;&#108;&#112;&#64;&#99;&#111;&#110;&#110;&#101;&#99;&#116;&#111;&#109;&#101;&#100;&#98;&#46;&#111;&#114;&#103;,&#97;&#108;&#105;&#115;&#116;&#97;&#105;&#114;&#46;&#102;&#111;&#114;&#114;&#101;&#115;&#116;&#64;&#112;&#101;&#114;&#107;&#105;&#110;&#115;&#46;&#117;&#119;&#97;&#46;&#101;&#100;&#117;&#46;&#97;&#117;",
         "citation": "Please cite: [ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction](), P Liu, S Maezono et al. *Journal Title* **XX (YY)**, ZZZ (2025). DOI: 10.xxxx/xxxxx"
     }
 

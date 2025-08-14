@@ -1219,15 +1219,21 @@ def generate_combined_html_files(
             
             active_class = "active" if j == 0 else ""
             tab_headers.append(f'<button class="tablinks {active_class}" onclick="openTab(event, \'tab{pmid}\')">{pmid}</button>')
+            if pmid == "https://www.biorxiv.org/content/10.1101/2024.06.01.596940v1":
+                link_html = f'<a href="{pmid}" target="_blank">Biorxiv</a>'
+            else:
+                link_html = f'<a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">PubMed</a>'
+            
             tab_contents.append(f"""
             <div id="tab{pmid}" class="tabcontent {active_class}">
                 <h2 strong>{title}</h2>
-                <div style="margin-left: 10px;">{journal}, {year}; <a href="https://pubmed.ncbi.nlm.nih.gov/{pmid}/" target="_blank">PubMed</a>, <strong>{ligand_species} {ligand_orig} — {receptor_species} {receptor_orig}</strong></div> 
+                <div style="margin-left: 10px;">{journal}, {year}; {link_html}, <strong>{ligand_species} {ligand_orig} — {receptor_species} {receptor_orig}</strong></div> 
                 <div class="abstract-wrapper">
                     <div class="abstract-content" id="abstract-content-{pmid}"><strong>ABSTRACT:</strong> {abstract}</div>
                 </div>
             </div>
             """)
+
         
         # --- Prepare other tables ---
         def get_table_data(df):
