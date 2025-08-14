@@ -81,7 +81,7 @@ directories = get_directory_info()
 print(f"""
 ## Welcome to the {config['title']}
 
-Feel free to use the file navigator below to browse and download database tables. All data provided are freely available under the **MIT License**, and are provided **WITHOUT ANY WARRANTY**. If you have any questions, please feel free to [contact us](mailto:{config['contact']}).
+Feel free to use the file navigator below to browse and download database tables. All data provided are freely available under the **MIT License**, and are provided **WITHOUT ANY WARRANTY**. If you have any questions, please feel free to [contact us]({config['contact']}).
 
 ---
 
