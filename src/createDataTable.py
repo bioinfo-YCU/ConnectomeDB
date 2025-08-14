@@ -692,9 +692,10 @@ gene_pair = gene_pair.drop(columns=["Ligand Name", "Receptor Name"])
 
 # Create the links to the HTML cards
 gene_pair["LR Pair Card"] = [
-    f'<a href="{site_url}cards/{ "mouse" if evidence == "not conserved" else "human" }/{lrPairOrig.replace(" ","-")}.html">{lrPair}</a>'
+    f'<a href="{site_url}cards/{ "mouse" if evidence == "not conserved" else "human" }/{lrPairOrig.replace(" ","-")}.html" target="_blank">{lrPair}</a>'
     for lrPairOrig, lrPair, evidence in zip(gene_pair0["LR Pair Card"], gene_pair["LR Pair Card"], gene_pair["Human evidence"])
 ]
+
 
 # Add tooltips to the column headers
 gene_pair.columns = [
@@ -703,17 +704,17 @@ gene_pair.columns = [
     f'<span title="HGNC gene symbol for the ligand">{col}</span>' if col == "Ligand" else
     f'<span title="HGNC gene symbol for the receptor">{col}</span>' if col == "Receptor" else
      f'<span title="Official gene symbol (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
-    f'<span title="Click the logo below to run Perplexity on the Human LR pair">{col}&nbsp;</span>' if col == "Perplexity" else
-    f'<span title="Official Gene Symbol; Hover on symbols below to show gene names">{col}&nbsp;&nbsp;&nbsp;</span>' if col in ["Ligand", "Receptor"] else
-    f'<span title="HGNC gene ID for the ligand (link to HGNC)">{col}&nbsp;&nbsp;</span>' if col == "Ligand HGNC ID" else
+    f'<span title="Click the logo below to run Perplexity on the Human LR pair">{col}</span>' if col == "Perplexity" else
+    f'<span title="Official Gene Symbol; Hover on symbols below to show gene names">{col}</span>' if col in ["Ligand", "Receptor"] else
+    f'<span title="HGNC gene ID for the ligand (link to HGNC)">{col}</span>' if col == "Ligand HGNC ID" else
     
-    f'<span title="HGNC gene ID for the receptor (link to HGNC)">{col}&nbsp;&nbsp;</span>' if col == "Receptor HGNC ID" else
-    f'<span title="ENSEMBL gene ID for the ligand (link to ENSEMBL)">{col}&nbsp;&nbsp;</span>' if col  == "Ligand ENSEMBL ID" else
-    f'<span title="ENSEMBL gene ID for the receptor (link to ENSEMBL)">{col}&nbsp;&nbsp;</span>' if col == "Receptor ENSEMBL ID" else
+    f'<span title="HGNC gene ID for the receptor (link to HGNC)">{col}</span>' if col == "Receptor HGNC ID" else
+    f'<span title="ENSEMBL gene ID for the ligand (link to ENSEMBL)">{col}</span>' if col  == "Ligand ENSEMBL ID" else
+    f'<span title="ENSEMBL gene ID for the receptor (link to ENSEMBL)">{col}</span>' if col == "Receptor ENSEMBL ID" else
     f'<span title=" PubMed IDs (PMID) with Literature Evidence for LR Interaction. Click on the link for more details">{col}</span>' if col == "PMID" else
     f'<span title="Location based on the predicted subcellular localization of the human proteome">{col}</span>' if col in ["Ligand Location", "Receptor Location"] else
     f'<span title="Direct: experimentally verified; Conservation: inferred from orthology">{col}</span>' if col == "Human evidence" else
-    f'<span title="Double-click header of {col} to reverse sort">{col}&nbsp;</span>'
+    f'<span title="Double-click header of {col} to reverse sort">{col}</span>'
     for col in gene_pair.columns
 ]
 

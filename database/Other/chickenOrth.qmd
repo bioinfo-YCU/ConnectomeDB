@@ -12,7 +12,7 @@ header-includes: <script src='../../js/keepDropdownMenuGold.js'></script>
 
 ```{=html}
 <!-- Injected automatically via Jinja -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
@@ -366,15 +366,15 @@ $(document).ready(function() {
   },
   {
     "data": "Ligand ENSEMBL ID",
-    "title": "<span title=\"ENSEMBL gene ID for the ligand (link to ENSEMBL)\">Ligand ENSEMBL ID&nbsp;&nbsp;</span>"
+    "title": "<span title=\"ENSEMBL gene ID for the ligand (link to ENSEMBL)\">Ligand ENSEMBL ID</span>"
   },
   {
     "data": "Receptor ENSEMBL ID",
-    "title": "<span title=\"ENSEMBL gene ID for the receptor (link to ENSEMBL)\">Receptor ENSEMBL ID&nbsp;&nbsp;</span>"
+    "title": "<span title=\"ENSEMBL gene ID for the receptor (link to ENSEMBL)\">Receptor ENSEMBL ID</span>"
   },
   {
     "data": "Perplexity",
-    "title": "<span title=\"Click the logo below to run Perplexity on the Human LR pair\">Perplexity&nbsp;</span>"
+    "title": "<span title=\"Click the logo below to run Perplexity on the Human LR pair\">Perplexity</span>"
   },
   {
     "data": "Chicken evidence",
@@ -642,7 +642,7 @@ $(document).ready(function() {
                     var label = $('<label></label>');
 
                     // Create input without datalist (no autofill)
-                    var input = $('<input type="text" placeholder="Search Ligand(s) / Receptor(s): i.e. CD24, EGFR, A2M, BDKRB2, LOC395551" />')
+                    var input = $('<input type="text" placeholder="Search Ligand(s) / Receptor(s): i.e. ACE, CD24, EGFR, BDKRB2, LOC395551" />')
                         .css({
                             'width': '100%',
                             'padding': '8px',

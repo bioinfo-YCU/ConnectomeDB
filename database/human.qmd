@@ -374,15 +374,15 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
   },
   {
     "data": "Ligand HGNC ID",
-    "title": "<span title=\"HGNC gene ID for the ligand (link to HGNC)\">Ligand HGNC ID&nbsp;&nbsp;</span>"
+    "title": "<span title=\"HGNC gene ID for the ligand (link to HGNC)\">Ligand HGNC ID</span>"
   },
   {
     "data": "Receptor HGNC ID",
-    "title": "<span title=\"HGNC gene ID for the receptor (link to HGNC)\">Receptor HGNC ID&nbsp;&nbsp;</span>"
+    "title": "<span title=\"HGNC gene ID for the receptor (link to HGNC)\">Receptor HGNC ID</span>"
   },
   {
     "data": "Perplexity",
-    "title": "<span title=\"Click the logo below to run Perplexity on the Human LR pair\">Perplexity&nbsp;</span>"
+    "title": "<span title=\"Click the logo below to run Perplexity on the Human LR pair\">Perplexity</span>"
   },
   {
     "data": "Human evidence",
@@ -390,11 +390,11 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
   },
   {
     "data": "Ligand ENSEMBL ID",
-    "title": "<span title=\"ENSEMBL gene ID for the ligand (link to ENSEMBL)\">Ligand ENSEMBL ID&nbsp;&nbsp;</span>"
+    "title": "<span title=\"ENSEMBL gene ID for the ligand (link to ENSEMBL)\">Ligand ENSEMBL ID</span>"
   },
   {
     "data": "Receptor ENSEMBL ID",
-    "title": "<span title=\"ENSEMBL gene ID for the receptor (link to ENSEMBL)\">Receptor ENSEMBL ID&nbsp;&nbsp;</span>"
+    "title": "<span title=\"ENSEMBL gene ID for the receptor (link to ENSEMBL)\">Receptor ENSEMBL ID</span>"
   }
 ];
 
@@ -842,7 +842,7 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
 
                 // Create input without datalist (no autofill)
 
-                var input = $('<input type="text" placeholder="Search Ligand(s) / Receptor(s): i.e. CD24, EGFR, A2M" />') // Updated placeholder
+                var input = $('<input type="text" placeholder="Search Ligand(s) / Receptor(s): i.e. ACE, BK-2, CD24, EGFR, kuz" />') // Updated placeholder
 
                     .css({
 
@@ -850,9 +850,9 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
 
                         'padding': '8px',
 
-                        'font-size': '1rem',
+                        'font-size': '1.1rem',
 
-                        'border': '1px solid #ccc',
+                        'border': '1px solid #666666',
 
                         'border-radius': '4px'
 

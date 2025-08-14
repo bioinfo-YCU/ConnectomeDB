@@ -404,13 +404,13 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     f'<span title="HGNC gene symbol for the receptor">{col}</span>' if col == "Receptor" else
      f'<span title="Official gene symbol (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
     f'<span title="HGNC gene symbols (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
-    f'<span title="Click the logo below to run Perplexity on the Human LR pair">{col}&nbsp;</span>' if col == "Perplexity" else
-    f'<span title="Official Gene Symbol; Hover on symbols below to show gene names">{col}&nbsp;&nbsp;&nbsp;</span>' if col in ["Ligand", "Receptor"] else
-    f'<span title="HGNC gene ID for the ligand (link to HGNC)">{col}&nbsp;&nbsp;</span>' if col == "Ligand HGNC ID" else
+    f'<span title="Click the logo below to run Perplexity on the Human LR pair">{col}</span>' if col == "Perplexity" else
+    f'<span title="Official Gene Symbol; Hover on symbols below to show gene names">{col}</span>' if col in ["Ligand", "Receptor"] else
+    f'<span title="HGNC gene ID for the ligand (link to HGNC)">{col}</span>' if col == "Ligand HGNC ID" else
     
-    f'<span title="HGNC gene ID for the receptor (link to HGNC)">{col}&nbsp;&nbsp;</span>' if col == "Receptor HGNC ID" else
-    f'<span title="ENSEMBL gene ID for the ligand (link to ENSEMBL)">{col}&nbsp;&nbsp;</span>' if col == "Ligand ENSEMBL ID" else
-    f'<span title="ENSEMBL gene ID for the receptor (link to ENSEMBL)">{col}&nbsp;&nbsp;</span>' if col == "Receptor ENSEMBL ID" else
+    f'<span title="HGNC gene ID for the receptor (link to HGNC)">{col}</span>' if col == "Receptor HGNC ID" else
+    f'<span title="ENSEMBL gene ID for the ligand (link to ENSEMBL)">{col}</span>' if col == "Ligand ENSEMBL ID" else
+    f'<span title="ENSEMBL gene ID for the receptor (link to ENSEMBL)">{col}</span>' if col == "Receptor ENSEMBL ID" else
     f'<span title=" PubMed IDs (PMID) with Literature Evidence for LR Interaction. Click on the link for more details">{col}</span>' if col == "PMID" else
     f'<span title="Xenbase ID (link to XEN). Click on the link for more details">{col}</span>' if col in ["Ligand XEN ID", "Receptor XEN ID"] else
     f'<span title="Rat Genome Database ID (link to RGD). Click on the link for more details">{col}</span>' if col in ["Ligand RGD ID", "Receptor RGD ID"] else
