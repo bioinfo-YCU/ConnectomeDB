@@ -1,3 +1,4 @@
+## Function to create json files to be used for datatable prepare qmd (Human)
 from pathlib import Path
 import sys
 import pandas as pd
