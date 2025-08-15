@@ -717,8 +717,9 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
 
     # Set to "unknown" if still missing or blank after mapping
     ligand_card_2['HGNC Gene Group'] = ligand_card_2['HGNC Gene Group'].apply(
-        lambda x: 'unknown' if pd.isna(x) or str(x).strip() == '' else x
-    )
+    lambda x: 'unknown' if pd.isna(x) or str(x).strip() in ['', 'NA',  '<a href="https://www.genenames.org/data/genegroup/#!/group/NA" target="_blank">NA</a>'] else x
+)
+
     def create_GEO_link(row):
         if row['is_mouse_specific']:
             base_link = convert_GEO_url(row, "HGNC Gene Group")
@@ -873,9 +874,10 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
     )
 
     # Set to "unknown" if still missing or blank after mapping
-    receptor_card_2['HGNC Gene Group'] = receptor_card_2['HGNC Gene Group'].apply(
-        lambda x: 'unknown' if pd.isna(x) or str(x).strip() == '' else x
-    )
+    receptor_card_2['HGNC Gene Group'] = ligand_card_2['HGNC Gene Group'].apply(
+    lambda x: 'unknown' if pd.isna(x) or str(x).strip() in ['', 'NA',  '<a href="https://www.genenames.org/data/genegroup/#!/group/NA" target="_blank">NA</a>'] else x
+)
+
     receptor_card_2["Human Cell Atlas"] = receptor_card_2.apply(create_GEO_link, axis=1)
 
     def create_ligand_ncbi_link_receptor(row):
