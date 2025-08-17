@@ -829,17 +829,17 @@ $.getJSON("{{ json_path }}", function(data) {
 
                                     // contains values for ALL columns including the prepended checkbox column.
 
-                                    // So, original column 6 is at data[5] and original column 7 is at data[7].
+                                    // So, original column 6 is at data[6] and original column 7 is at data[7].
 
                                     var col5Value = data[5] ? data[5].toString().replace(/<[^>]*>/g, '').toLowerCase() : ''; // Original column 6
 
-                                    var col6Value = data[7] ? data[7].toString().replace(/<[^>]*>/g, '').toLowerCase() : ''; // Original column 7
+                                    var col6Value = data[6] ? data[6].toString().replace(/<[^>]*>/g, '').toLowerCase() : ''; // Original column 7
 
                                     console.log("Searching for:", searchTerms);
 
-                                    console.log("Column 6 value:", col5Value);
+                                    console.log("Column 5 value:", col5Value);
 
-                                    console.log("Column 7 value:", col6Value); // <<< ADD THIS LINE
+                                    console.log("Column 6 value:", col6Value); // <<< ADD THIS LINE
 
 
 
