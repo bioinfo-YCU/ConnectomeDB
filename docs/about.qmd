@@ -70,12 +70,5 @@ and
 
 ### **Cite Us**
 
-1. *ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction*, P Liu, S Maezono, *et al.* (TBA)\
-PMID: [(TBA)](); DOI: [(TBA)]()
-    
-2. *Predicting cell-to-cell communication networks using NATMI*, R Hou, *et al.* *Nature communications* **11(1)**, 5011, **2020**\
-PMID: [33024107](https://pubmed.ncbi.nlm.nih.gov/33024107/){target="_blank"}; DOI: [10.1038/s41467-020-18873-z](https://www.nature.com/articles/s41467-020-18873-z){target="_blank"}
-    
-3. *A draft network of ligand–receptor-mediated multicellular signalling in human*, JA Ramilowski, *et al.* *Nature communications* **6(1)**, 7866, **2015**\
-PMID: [26198319](https://pubmed.ncbi.nlm.nih.gov/26198319/){target="_blank"}; DOI: [10.1038/ncomms8866](https://doi.org/10.1038/ncomms8866){target="_blank"}
+{{< include citeus.qmd >}}
 
