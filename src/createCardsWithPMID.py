@@ -874,13 +874,13 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
     )
 
     # Set to "unknown" if still missing or blank after mapping
-    receptor_card_2['HGNC Gene Group'] = ligand_card_2['HGNC Gene Group'].apply(
+    receptor_card_2['HGNC Gene Group'] = receptor_card_2['HGNC Gene Group'].apply(
     lambda x: 'unknown' if pd.isna(x) or str(x).strip() in ['', 'NA',  '<a href="https://www.genenames.org/data/genegroup/#!/group/NA" target="_blank">NA</a>'] else x
 )
 
     receptor_card_2["Human Cell Atlas"] = receptor_card_2.apply(create_GEO_link, axis=1)
 
-    def create_ligand_ncbi_link_receptor(row):
+    def create_receptor_ncbi_link_receptor(row):
         if row['is_mouse_specific']:
             base_link = convert_ncbi_url(row, "Receptor", "HGNC Gene Group")
             if base_link:
@@ -890,7 +890,7 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
         else:
             return row["HGNC Gene Group"]
 
-    receptor_card_2["HGNC Gene Group"] = receptor_card_2.apply(create_ligand_ncbi_link_receptor, axis=1)
+    receptor_card_2["HGNC Gene Group"] = receptor_card_2.apply(create_receptor_ncbi_link_receptor, axis=1)
  # Apply the uniprot mapping to 'AmiGO'
     # receptor_card_2['AmiGO'] = receptor_card_2.apply(
     #     lambda row: mapping_mouse_uniprot.get(row['Receptor MGI ID'], row['AmiGO'])
