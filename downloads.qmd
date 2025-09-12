@@ -1,5 +1,5 @@
 ---
-title: "Downloads"
+title: ""
 ---
 
 ```{python}
@@ -79,9 +79,10 @@ directories = get_directory_info()
 
 # Print the top-level Markdown content
 print(f"""
-## Welcome to the {config['title']}
+## {config['title']}
 
-Feel free to use the file navigator below to browse and download database tables. All data provided are freely available under the **MIT License**, and are provided **WITHOUT ANY WARRANTY**. If you have any questions, please feel free to [contact us]({config['contact']}).
+
+Use the file navigator below to download three database tables. All data are freely available under the MIT License and are provided AS IS, without any warranty. If you have any questions, please feel free to [contact us]({config['contact']}).
 
 ---
 
@@ -113,9 +114,8 @@ The following directories contain datasets and tools available for download:
 
 - **Current Release**: The most recent and up-to-date version of the Ligand-Receptor(LR) database tables
 - **Previous Release**: The previous version of the LR database tables
-- **Archive**: Historical version of the LR database tables that are no longer actively maintained
 
-Each dataset is available in multiple formats: CSV, XLSX.
+Each dataset is available in CSV and XLSX formats.
 """)
 
 print(f"""{config['citation']}""")
