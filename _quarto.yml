@@ -53,31 +53,31 @@ website:
          # - href: database/human-trip.qmd
          #   text: Human LR Pairs ˣ Pubmed
          - href: database/mouseOrth.qmd
-           text: '**Mouse Orthologs**'
+           text: '**Mouse LR Pairs**'
          - href: database/other/chimpOrth.qmd
-           text: 'Chimp Orthologs' 
+           text: 'Chimp LR Pairs' 
          - href: database/other/macaqueOrth.qmd
-           text: 'Macaque Orthologs' 
+           text: 'Macaque LR Pairs' 
          - href: database/other/marmosetOrth.qmd
-           text: 'Marmoset Orthologs' 
+           text: 'Marmoset LR Pairs' 
          - href: database/other/ratOrth.qmd
-           text: 'Rat Orthologs' 
+           text: 'Rat LR Pairs' 
          - href: database/other/pigOrth.qmd
-           text: 'Pig Orthologs' 
+           text: 'Pig LR Pairs' 
          - href: database/other/cowOrth.qmd
-           text: 'Cow Orthologs' 
+           text: 'Cow LR Pairs' 
          - href: database/other/dogOrth.qmd
-           text: 'Dog Orthologs' 
+           text: 'Dog LR Pairs' 
          - href: database/other/horseOrth.qmd
-           text: 'Horse Orthologs' 
+           text: 'Horse LR Pairs' 
          - href: database/other/sheepOrth.qmd
-           text: 'Sheep Orthologs' 
+           text: 'Sheep LR Pairs' 
          - href: database/other/chickenOrth.qmd
-           text: 'Chicken Orthologs' 
+           text: 'Chicken LR Pairs' 
          - href: database/other/frogOrth.qmd
-           text: 'Frog Orthologs' 
+           text: 'Frog LR Pairs' 
          - href: database/other/zebrafishOrth.qmd 
-           text: 'Zebrafish Orthologs' 
+           text: 'Zebrafish LR Pairs' 
            
       - href: downloads.qmd
         text: 'Downloads'
@@ -99,9 +99,11 @@ website:
       # - href: stats.qmd
       #   text: "{{< iconify mdi:chart-bar inline size=20px >}}Statistics"
     right:
-      - url: "mailto:&#104;&#101;&#108;&#112;&#64;&#99;&#111;&#110;&#110;&#101;&#99;&#116;&#111;&#109;&#101;&#100;&#98;&#46;&#111;&#114;&#103;,&#97;&#108;&#105;&#115;&#116;&#97;&#105;&#114;&#46;&#102;&#111;&#114;&#114;&#101;&#115;&#116;&#64;&#112;&#101;&#114;&#107;&#105;&#110;&#115;&#46;&#117;&#119;&#97;&#46;&#101;&#100;&#117;&#46;&#97;&#117;"
-        text: "{{< iconify mdi:email inline >}}"
+      - url: "https://connectomedb.org/docs/about.html#cite-us"
+        text: "{{< iconify mdi:information inline title='Citation information' >}}"
         
+      - url: "mailto:&#104;&#101;&#108;&#112;&#64;&#99;&#111;&#110;&#110;&#101;&#99;&#116;&#111;&#109;&#101;&#100;&#98;&#46;&#111;&#114;&#103;,&#97;&#108;&#105;&#115;&#116;&#97;&#105;&#114;&#46;&#102;&#111;&#114;&#114;&#101;&#115;&#116;&#64;&#112;&#101;&#114;&#107;&#105;&#110;&#115;&#46;&#117;&#119;&#97;&#46;&#101;&#100;&#117;&#46;&#97;&#117;"
+        text: "{{< iconify mdi:email inline title='Click to email directly' >}}"
 
       - icon: github
         menu:
@@ -126,15 +128,7 @@ format:
       margin-width: 0px
     
 
-header-includes: |
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // Select all navbar links that are mailto:
-      document.querySelectorAll('a[href^="mailto:"]').forEach(function(link) {
-        link.setAttribute('title', "&#104;&#101;&#108;&#112;&#64;&#99;&#111;&#110;&#110;&#101;&#99;&#116;&#111;&#109;&#101;&#100;&#98;&#46;&#111;&#114;&#103;");
-      });
-    });
-    </script>
+# header-includes: 
 #  <script src="js/checkboxAndPopUp.js"></script>
 #  <script src="js/themeSwitcher.js"></script>
 #  <script src="js/adjustTableTextColor.js"></script>
