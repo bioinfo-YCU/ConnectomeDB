@@ -5,8 +5,6 @@ header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
 
 ---
 
-**Please check the following tutorials if you would like to learn more how to use ConnectomeDB2025.**
-
 ### HTML Tutorial
 
 Want to better understand how to use ConnectomeDB2025? Please see our [online tutorial](tutorials/index.html).
