@@ -11,48 +11,7 @@ header-includes: <script src='../../js/keepDropdownMenuGold.js'></script>
 ***
 
 ```{=html}
-<style>
-.loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 300px;
-  padding: 40px 20px;
-  text-align: center;
-}
-.loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #d4af37;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 20px;
-}
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-.loading-text {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 10px;
-}
-.loading-subtext {
-  font-size: 14px;
-  color: #999;
-  font-style: italic;
-}
-</style>
 
-<div id="loading-widget" class="loading-container">
-  <div class="loading-spinner"></div>
-  <div class="loading-text">Loading Ligand-Receptor interactions database...</div>
-  <div class="loading-subtext">This may take a few moments</div>
-</div>
-
-<div id="table-content-frog" style="opacity: 0;">
 <!-- Injected automatically via Jinja -->
  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
@@ -837,9 +796,7 @@ api.on('order.dt search.dt', function () {
     });
 });
 </script>
-</div>
-t>
--->
+
 
 ```
 
