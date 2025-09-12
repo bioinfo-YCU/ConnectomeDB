@@ -57,16 +57,5 @@ header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
 {{ table_block }}
 </div>
 
-<!--
-<script>
-// TESTING ONLY - Remove when done
-document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(function() {
-    document.getElementById('loading-widget').style.display = 'none';
-    document.getElementById('table-content').style.opacity = '1';
-  }, 3000);
-});
-</script>
--->
 
 ```

@@ -48,7 +48,7 @@ def get_directory_info(base_path="downloads"):
             
             directories.append({
                 "name": item.name,
-                "path": str(item),
+                # "path": str(item),
                 "file_count": file_count,
                 "size": humanize.naturalsize(total_size),
                 "last_modified": datetime.fromtimestamp(last_modified).strftime("%Y-%m-%d") if last_modified else "Unknown",
