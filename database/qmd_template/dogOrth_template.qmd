@@ -12,38 +12,8 @@ header-includes: <script src='../../js/keepDropdownMenuGold.js'></script>
 
 ```{=html}
 
-<div id="loading-widget" class="loading-container">
-  <div class="loading-spinner"></div>
-  <div class="loading-text">Loading Ligand-Receptor interactions database...</div>
-  <div class="loading-subtext">This may take a few moments</div>
-</div>
-
-<div id="table-content-dog" style="opacity: 0;">
 <!-- Injected automatically via Jinja -->
 {{ table_block }}
-</div>
-
-<script>
-// This script waits for the actual JSON data to load, not just a fixed delay
-document.addEventListener('DOMContentLoaded', function() {
-    // The script will be triggered when the JSON actually finishes loading
-    // We'll add this to the end of the $.getJSON success callback in the table_block
-    
-    // Fallback: if nothing happens after 15 seconds, show the table anyway
-    setTimeout(function() {
-        if (document.getElementById('table-content-dog').style.opacity == '0') {
-            document.getElementById('loading-widget').style.display = 'none';
-            document.getElementById('table-content-dog').style.opacity = '1';
-        }
-    }, 15000);
-});
-
-// Function to hide loading - will be called from the DataTable initialization
-function hideLoadingShowTable() {
-    document.getElementById('loading-widget').style.display = 'none';
-    document.getElementById('table-content-dog').style.opacity = '1';
-}
-</script>
 
 ```
 
