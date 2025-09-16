@@ -156,30 +156,44 @@ else:
 
 ---
 """)
-    
+
+    # Define the custom sorting order
+    custom_order = ["all", "human", "mouse", "chimp", "macaque", "marmoset", "rat","pig", "cow", "dog", "horse", "sheep", "chicken", "frog", "zebrafish"]
+
+    def get_sort_priority(filename):
+        name_lower = filename.lower()
+        for i, keyword in enumerate(custom_order):
+            if keyword in name_lower:
+                return i
+        # Return a high number if no keyword is found to place it at the end
+        return len(custom_order)
+
+    # Sort the files using the custom priority key
+    sorted_files = sorted(dir_info['files'], key=lambda f: get_sort_priority(f['name']))
+
     # Show subdirectories if any
     if dir_info['subdirs']:
         print("### Subdirectories\n")
         print("| Directory | Files | Description |")
         print("|-----------|-------|-------------|")
-        
+
         for subdir in dir_info['subdirs']:
             subdir_link = f"[{subdir['name']}](browse.html?dir={subdir['path']})"
             print(f"| {subdir_link} | {subdir['file_count']} | Subdirectory |")
-        
+
         print("\n---\n")
-    
+
     # Show files
-    if dir_info['files']:
+    if sorted_files:
         print("### Files\n")
         print("| Filename | Size | Modified | Type | Species |")
         print("|----------|------|----------|------|-------------|")
-        
-        for file_info in dir_info['files']:
+
+        for file_info in sorted_files:  # Use the sorted list here
             download_link = f"<a href='{file_info['path']}' download>{file_info['name']}</a>"
             description = get_file_description(file_info['name'])
             file_type = file_info['extension'].upper().replace('.', '') if file_info['extension'] else 'FILE'
-            
+
             print(f"| {download_link} | {file_info['size']} | {file_info['modified']} | {file_type} | {description} |")
     else:
         print("### No files found in this directory\n")
