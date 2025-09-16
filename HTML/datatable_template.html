@@ -480,8 +480,8 @@ $.getJSON("{{ json_path }}", function(data) {
 
                         body: function(data, row, column, node) {
 
-                            // Check if this cell contains the &#128269; (🔍) symbol AND a link (Perplexity column detection)
-                            if (data && data.toString().includes('&#128269;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
+                            // Check if this cell contains the &#128172; (💬) symbol AND a link (Perplexity column detection)
+                            if (data && data.toString().includes('&#128172;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
 
                                 var $temp = $('<div>').html(data);
 
@@ -537,8 +537,8 @@ $.getJSON("{{ json_path }}", function(data) {
 
                         body: function(data, row, column, node) {
 
-                            // Check if this cell contains the &#128269; (🔍) symbol AND a link (Perplexity column detection)
-                            if (data && data.toString().includes('&#128269;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
+                            // Check if this cell contains the &#128172; (🔍) symbol AND a link (Perplexity column detection)
+                            if (data && data.toString().includes('&#128172;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
 
                                 var $temp = $('<div>').html(data);
 
@@ -592,8 +592,8 @@ $.getJSON("{{ json_path }}", function(data) {
 
             //             body: function(data, row, column, node) {
 
-            //                 // Check if this cell contains the &#128269; (🔍) symbol AND a link (Perplexity column detection)
-            //                 if (data && data.toString().includes('&#128269;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
+            //                 // Check if this cell contains the &#128172; (🔍) symbol AND a link (Perplexity column detection)
+            //                 if (data && data.toString().includes('&#128172;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
 
             //                     var $temp = $('<div>').html(data);
 
