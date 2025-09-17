@@ -1,5 +1,5 @@
 ---
-title: "Zebrafish \u2013 *Danio rerio* </span>"
+title: "Zebrafish \u2013 *Danio rerio* (2025-09-17) </span>"
 execute:
   echo: false
 format:
@@ -374,8 +374,8 @@ $(document).ready(function() {
     "title": "<span title=\"Zebrafish Information Network ID (link to ZFIN)\">Receptor ZFIN ID</span>"
   },
   {
-    "data": "Perplexity",
-    "title": "<span title=\"Click the logo below to run Perplexity on the Human LR pair\">Perplexity</span>"
+    "data": "A.I. summary",
+    "title": "<span title=\"Click the icon below to run Perplexity on the Human LR pair\">A.I. summary</span>"
   },
   {
     "data": "Zebrafish evidence",

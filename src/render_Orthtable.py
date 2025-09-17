@@ -6,16 +6,13 @@ import re
 import html
 import json
 from jinja2 import Environment, FileSystemLoader
+from datetime import datetime
 
 # === Import from createDataTable.py
 sys.path.append("src")
 import createDataTable_perSpecies
 
-import json
-import html
-import re
-from pathlib import Path
-from jinja2 import Environment, FileSystemLoader
+
 
 def process_species_table(species, species_addl_search, createDataTable_perSpecies):
     # === Paths (relative to project/)
@@ -72,6 +69,13 @@ def process_species_table(species, species_addl_search, createDataTable_perSpeci
         raise FileNotFoundError(f"Missing template file: {qmd_template}")
     
     contents = qmd_template.read_text()
+    # Add today's date to any title that ends with </span>
+    today = datetime.now().strftime("%Y-%m-%d")
+    contents = re.sub(
+        r'(title: ".*?) </span>"',
+        rf'\1 ({today}) </span>"',
+        contents
+    )
     if "{{ table_block }}" not in contents:
         raise ValueError(f"Placeholder '{{{{ table_block }}}}' not found in {qmd_template}")
 

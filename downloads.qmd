@@ -19,11 +19,11 @@ def load_config():
         with open(config_file, 'r') as f:
             return json.load(f)
     return {
-        "title": "Connectomedb Data Repository",
+        "title": "ConnectomeDB Data Repository",
         "description": "Browse and download Ligand-receptor database tables across 14 most studied species.",
         "license": "MIT License",
         "contact":  "mailto:&#104;&#101;&#108;&#112;&#64;&#99;&#111;&#110;&#110;&#101;&#99;&#116;&#111;&#109;&#101;&#100;&#98;&#46;&#111;&#114;&#103;,&#97;&#108;&#105;&#115;&#116;&#97;&#105;&#114;&#46;&#102;&#111;&#114;&#114;&#101;&#115;&#116;&#64;&#112;&#101;&#114;&#107;&#105;&#110;&#115;&#46;&#117;&#119;&#97;&#46;&#101;&#100;&#117;&#46;&#97;&#117;",
-        "citation": "Please cite: [ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction](), P Liu, S Maezono et al. *Journal Title* **XX (YY)**, ZZZ (2025). DOI: 10.xxxx/xxxxx"
+        "citation": "[ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction](), P Liu, S Maezono et al. *Journal Title* **XX (YY)**, ZZZ (2025). DOI: 10.xxxx/xxxxx"
     }
 
 def is_visible(p):
@@ -56,9 +56,9 @@ def get_directory_info(base_path="downloads"):
             
             directories.append({
                 "name": item.name,
-                "file_count": file_count,
-                "direct_file_count": len(direct_files),  # Available for debugging if needed
-                "size": humanize.naturalsize(total_size),
+                # "file_count": file_count,
+                # "direct_file_count": len(direct_files),  # Available for debugging if needed
+                # "size": humanize.naturalsize(total_size),
                 "last_modified": datetime.fromtimestamp(last_modified).strftime("%Y-%m-%d") if last_modified else "Unknown",
                 "description": get_directory_description(item.name)
             })
@@ -67,14 +67,8 @@ def get_directory_info(base_path="downloads"):
 def get_directory_description(dir_name):
     """Get description for common directory types"""
     descriptions = {
-        "current-release": "The most recent and up-to-date version of the database tables",
-        "previous-release": "The previous version of the database tables",
-        "archive": "Historical versions and deprecated database tables",
-        "published-datasets": "Datasets corresponding to published research articles",
-        "supplementary": "Additional datasets and supplementary materials",
-        "tools": "Software tools and utilities for data processing",
-        "documentation": "User guides, manuals, and technical documentation",
-        "latest": "Always-current files with stable names for automated downloading"
+        "current-release": "[[CSV]](downloads/Current-Release/CSV/index.qmd)・[[Excel]](downloads/Current-Release/XLSX/index.qmd)・[[JSON]](downloads/Current-Release/JSON/index.qmd)",
+        "previous-release": "[[CSV]](downloads/Previous-Release/CSV/index.qmd)・[[Excel]](downloads/Previous-Release/XLSX/index.qmd)・[[JSON]](downloads/Previous-Release/JSON/index.qmd)"
     }
     return descriptions.get(dir_name.lower(), "date-versioning of the database tables")
 
@@ -87,7 +81,7 @@ print(f"""
 ## {config['title']}
 
 
-Use the file navigator below to download three database tables. All data are freely available under the MIT License and are provided AS IS, without any warranty. If you have any questions, please feel free to [contact us]({config['contact']}).
+All ConnectomeDB ligand–receptor interaction data are freely available under the MIT License and are provided AS IS, without any warranty. Please use the file navigator below to browse and download the most up-to-date database tables. For previous data releases, please click [here](under_construction.qmd).
 
 ---
 
@@ -102,10 +96,8 @@ df = pd.DataFrame(directories)
 # Rename columns for display
 df.rename(columns={
     'name': 'Directory', 
-    'file_count': 'Files', 
-    'size': 'Size', 
-    'last_modified': 'Last Modified', 
-    'description': 'Description'
+    'last_modified': 'Release Date', 
+    'description': 'Downloads'
 }, inplace=True)
 
 # Generate Markdown links for the directories
@@ -113,18 +105,10 @@ df['Directory'] = df.apply(lambda row: f"[{row['Directory']}](browse.html?dir={r
 
 print(df.to_markdown(index=False))
 
-print("""
+print(f"""
 ---
-
-### Dataset Categories
-
-The following directories contain datasets and tools available for download:
-
-- **Current Release**: The most recent and up-to-date version of the Ligand-Receptor(LR) database tables
-- **Previous Release**: The previous version of the LR database tables
-
-Each dataset is available in CSV, XLSX, and JSON formats.
+If you have any questions, please feel free to [contact us]({config['contact']}). If you are using ConnectomeDB, please cite us: {config['citation']}
 """)
 
-print(f"""{config['citation']}""")
+
 ```
