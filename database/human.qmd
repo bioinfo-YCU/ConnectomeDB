@@ -1063,13 +1063,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // The script will be triggered when the JSON actually finishes loading
     // We'll add this to the end of the $.getJSON success callback in the table_block
     
-    // Fallback: if nothing happens after 2 sec, show the table anyway
+    // Fallback: if nothing happens after 5 sec, show the table anyway
     setTimeout(function() {
         if (document.getElementById('table-content').style.opacity == '0') {
             document.getElementById('loading-widget').style.display = 'none';
             document.getElementById('table-content').style.opacity = '1';
         }
-    }, 2000);
+    }, 5000);
 });
 
 // Function to hide loading - will be called from the DataTable initialization
