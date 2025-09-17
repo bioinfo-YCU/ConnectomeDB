@@ -1,7 +1,6 @@
 ---
 title: "Browse Files"
-format:
-  html: default
+format: html
 execute:
   echo: false
 ---
@@ -15,27 +14,62 @@ from pathlib import Path
 from datetime import datetime
 import humanize
 import mimetypes
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urlparse, unquote, quote
+import logging
+
+# --- LOGGING SETUP ---
+LOG_FILE = Path(os.getcwd()) / "browse_debug.log"
+logging.basicConfig(
+    filename=LOG_FILE,
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+def debug_log(message):
+    logging.info(message)
+# --- END LOGGING SETUP ---
 
 def get_query_params():
-    """Get query parameters from Quarto’s environment variable or sys.argv"""
-    # Try to get the query string from the Quarto environment variable
-    query_string = os.getenv("QUARTO_PROJECT_URL_QUERY", "")
+    query_string = ""
+    env_query_string = os.getenv("QUARTO_PROJECT_URL_QUERY", "")
+    if env_query_string:
+        debug_log(f"Detected query_string from QUARTO_PROJECT_URL_QUERY: {env_query_string}")
+        query_string = env_query_string
     
-    # If the environment variable is empty, try to get it from sys.argv
-    # sys.argv[1] should contain the URL in some Quarto rendering environments
-    if not query_string and len(sys.argv) > 1:
-        full_url = sys.argv[1]
-        parsed_url = urlparse(full_url)
+    if not query_string and len(sys.argv) > 1 and sys.argv[1] != '-f':
+        full_url_from_argv = sys.argv[1]
+        debug_log(f"Detected full_url from sys.argv[1]: {full_url_from_argv}")
+        parsed_url = urlparse(full_url_from_argv)
         query_string = parsed_url.query
+    elif len(sys.argv) > 1 and sys.argv[1] == '-f':
+        debug_log("sys.argv[1] detected as '-f', skipping for URL parsing.")
+
+    if not query_string:
+        cgi_query_string = os.getenv("QUERY_STRING", "")
+        if cgi_query_string:
+            debug_log(f"Detected query_string from QUERY_STRING env var: {cgi_query_string}")
+            query_string = cgi_query_string
+        else:
+            debug_log("No query string found in QUARTO_PROJECT_URL_QUERY, sys.argv[1], or QUERY_STRING env var.")
     
-    return parse_qs(query_string)
+    parsed_params = parse_qs(query_string)
+    if 'dir' in parsed_params and parsed_params['dir']:
+        parsed_params['dir'][0] = unquote(parsed_params['dir'][0])
+    
+    debug_log(f"Final parsed query parameters: {parsed_params}")
+    return parsed_params
+
+def is_visible(p):
+    # Exclude dotfiles, .qmd, .ipynb (and .quarto_ipynb if it's an intermediate file)
+    if p.name.startswith('.'):
+        return False
+    if p.suffix.lower() in ['.qmd', '.ipynb', '.quarto_ipynb']: # Added suffixes to exclude
+        return False
+    return True
 
 def get_file_info(file_path: Path):
-    """Get detailed file information"""
     stat = file_path.stat()
     mime_type, _ = mimetypes.guess_type(str(file_path))
-    
     return {
         "name": file_path.name,
         "size": humanize.naturalsize(stat.st_size),
@@ -43,158 +77,230 @@ def get_file_info(file_path: Path):
         "modified": datetime.fromtimestamp(stat.st_mtime).strftime("%Y-%m-%d"),
         "type": mime_type or "application/octet-stream",
         "extension": file_path.suffix.lower(),
-        "path": str(file_path)
+        # Make the path relative to the project root for downloads
+        "path": str(file_path.relative_to(Path(os.getcwd()))) 
     }
 
 def get_file_description(filename):
-    """Generate description based on filename patterns"""
     name_lower = filename.lower()
+    if 'human' in name_lower: return "Homo sapiens"
+    elif 'mouse' in name_lower: return "Mus musculus"
+    elif 'chimp' in name_lower: return "Pan troglodytes"
+    elif 'chicken' in name_lower: return "Gallus gallus"
+    elif 'pig' in name_lower: return "Sus scrofa"
+    elif 'rat' in name_lower: return "Rattus norvegicus"
+    elif 'cow' in name_lower: return "Bos taurus"
+    elif 'dog' in name_lower: return "Canis lupus familiaris"
+    elif 'horse' in name_lower: return "Equus caballus"
+    elif 'sheep' in name_lower: return "Ovies aries rambouillet"
+    elif 'marmoset' in name_lower: return "Callithrix jacchus"
+    elif 'macaque' in name_lower: return "Macaca mulatta"
+    elif 'frog' in name_lower: return "Xenopus tropicalis"
+    elif 'zebrafish' in name_lower: return "Danio rerio"
+    elif name_lower.endswith('.zip'): return "mixed"
+    else: return ""
+
+def browse_directory(dir_path, base_path="downloads"):
+    debug_log(f"browse_directory called with dir_path='{dir_path}', base_path='{base_path}'")
     
-    if 'human' in name_lower:
-        return "Homo sapiens"
-    elif 'mouse' in name_lower:
-        return "Mus musculus"
-    elif 'chimp' in name_lower:
-        return "Pan troglodytes"
-    elif 'chicken' in name_lower:
-        return "Gallus gallus"
-    elif 'pig' in name_lower:
-        return "Sus scrofa"
-    elif 'rat' in name_lower:
-        return "Rattus norvegicus"
-    elif 'cow' in name_lower:
-        return "Bos taurus"
-    elif 'dog' in name_lower:
-        return "Canis lupus familiaris"
-    elif 'horse' in name_lower:
-        return "Equus caballus"
-    elif 'sheep' in name_lower:
-        return "Ovies aries rambouillet"
-    elif 'marmoset' in name_lower:
-        return "Callithrix jacchus"
-    elif 'macaque' in name_lower:
-        return "Macaca mulatta"
-    elif 'frog' in name_lower:
-        return "Xenopus tropicalis"
-    elif 'zebrafish' in name_lower:
-        return "Danio rerio"
-    elif name_lower.endswith('.zip'):
-        return "mixed"
+    current_working_dir = Path(os.getcwd())
+    debug_log(f"Current OS working directory: {current_working_dir}")
+    debug_log(f"Is 'downloads' directory visible from CWD? {Path('downloads').is_dir()}")
 
-def browse_directory(dir_name, base_path="downloads"):
-    """Browse a specific directory, handling case-insensitivity and excluding hidden files/folders."""
-    base = Path(base_path)
+    absolute_base_path = current_working_dir / base_path
+    debug_log(f"Absolute base path for downloads: {absolute_base_path}")
+    debug_log(f"Does absolute_base_path exist? {absolute_base_path.exists()}")
+    debug_log(f"Is absolute_base_path a directory? {absolute_base_path.is_dir()}")
 
-    def is_visible(p):
-        return not any(part.startswith('.') for part in p.parts)
+    target_path = Path(absolute_base_path)
 
-    # Find directory, case-insensitive, skipping hidden
-    found_dir = None
-    for item in sorted(base.iterdir()):
-        if item.is_dir() and is_visible(item) and item.name.lower() == dir_name.lower():
-            found_dir = item
-            break
+    if dir_path and dir_path.strip() != "":
+        normalized_dir_path = dir_path.replace('\\', '/')
+        target_path = absolute_base_path / normalized_dir_path
+    
+    debug_log(f"Constructed target_path: {target_path}")
+    debug_log(f"Does target_path exist? {target_path.exists()}")
+    debug_log(f"Is target_path a directory? {target_path.is_dir()}")
 
-    if not found_dir:
-        return None, f"Directory '{dir_name}' not found."
+    if not target_path.exists():
+        debug_log(f"Error: target_path '{target_path}' does NOT exist.")
+        return None, f"Directory '{dir_path}' not found. Resolved path: '{target_path}'"
+    
+    if not target_path.is_dir():
+        debug_log(f"Error: target_path '{target_path}' is NOT a directory.")
+        return None, f"Path '{dir_path}' exists but is not a directory. Resolved path: '{target_path}'"
 
     files = []
     subdirs = []
 
-    for item in sorted(found_dir.iterdir()):
-        if not is_visible(item):
-            continue
-        if item.is_file():
-            files.append(get_file_info(item))
-        elif item.is_dir():
-            visible_files = [f for f in item.rglob("*") if f.is_file() and is_visible(f)]
-            subdir_info = {
-                "name": item.name,
-                "path": str(Path(found_dir.name) / item.name),
-                "file_count": len(visible_files)
-            }
-            subdirs.append(subdir_info)
+    try:
+        debug_log(f"Attempting to list contents of: {target_path}")
+        for item in sorted(target_path.iterdir()):
+            debug_log(f"Found item: {item.name}, is_dir: {item.is_dir()}, is_file: {item.is_file()}")
+            if not is_visible(item):
+                debug_log(f"Skipping hidden item: {item.name}")
+                continue
+            
+            if item.is_file():
+                files.append(get_file_info(item))
+            elif item.is_dir():
+                visible_files = []
+                try:
+                    for subitem in item.rglob("*"):
+                        if subitem.is_file() and is_visible(subitem):
+                            visible_files.append(subitem)
+                except Exception as e:
+                    debug_log(f"Error reading subdirectory {item.name}: {e}")
+                    continue
+                
+                # --- CRITICAL CHANGE FOR NESTED .QMDs ---
+                # Subdirectory links will now point to their respective index.html
+                # Example: Current-Release/CSV -> Current-Release/CSV/index.html
+                
+                # Construct the path relative to the *project root* for the Quarto output
+                # The generated HTML will be at downloads/Current-Release/CSV/index.html
+                if dir_path:
+                    # If we are already in a subdirectory (e.g., 'Current-Release'),
+                    # the link should be `downloads/Current-Release/CSV/index.html`
+                    subdir_link_target = Path("downloads") / Path(dir_path) / item.name / "index.html"
+                else:
+                    # If we are at the top level (e.g., initial load of browse.html with no 'dir' param,
+                    # defaulting to 'Current-Release'), the link should be `downloads/Current-Release/index.html`
+                    subdir_link_target = Path("downloads") / item.name / "index.html"
+
+                subdir_info = {
+                    "name": item.name,
+                    "link": str(subdir_link_target).replace("\\", "/"), # URL needs forward slashes
+                    "file_count": len(visible_files)
+                }
+                subdirs.append(subdir_info)
+
+    except PermissionError as e:
+        debug_log(f"Permission Error when listing directory {target_path}: {e}")
+        return None, f"Permission denied to access directory '{dir_path}'. Error: {e}"
+    except Exception as e:
+        debug_log(f"Unexpected error when listing directory {target_path}: {e}")
+        return None, f"An unexpected error occurred browsing '{dir_path}'. Error: {e}"
 
     return {
-        "name": found_dir.name,
-        "path": str(found_dir),
+        "name": target_path.name,
+        "path": str(target_path),
+        "relative_path": dir_path,
         "files": files,
         "subdirs": subdirs,
         "total_files": len(files),
-        "total_size": sum(f["size_bytes"] for f in files)
+        "total_size": sum(f["size_bytes"] for f in files) if files else 0
     }, None
 
+def get_breadcrumb_path(dir_path):
+    if not dir_path or dir_path.strip() == "":
+        return "[← Back to Downloads](downloads.html)"
+    
+    dir_path = dir_path.replace('\\', '/')
+    parts = dir_path.split('/')
+    breadcrumbs = ["[← Back to Downloads](downloads.html)"]
+    
+    current_path_segments = []
+    for i, part in enumerate(parts):
+        current_path_segments.append(part)
+        
+        # If this is the last part, it's the current directory and should point to its own index.html
+        # Otherwise, if it's an intermediate directory (like 'Current-Release' for 'Current-Release/CSV')
+        # it should point to its browse.html entry or its index.html if it exists.
+        
+        # For top-level browse pages, link to browse.html.
+        # For deeper nested subdirs, we'll link to their respective index.html (handled below)
+        
+        # This part of the breadcrumb will always point to browse.html for consistency at the top level
+        link_target = f"browse.html?dir={quote('/'.join(current_path_segments))}"
+        
+        breadcrumbs.append(f"[{part}]({link_target})")
+    
+    return " / ".join(breadcrumbs)
 
-# Get the directory to browse
+
+# --- Main Execution Logic ---
+debug_log("Starting script execution.")
 params = get_query_params()
 current_dir = params.get('dir', [None])[0]
 
-# Set a default directory if none is provided
 if not current_dir:
+    debug_log("No 'dir' parameter found, defaulting to 'Current-Release'")
     current_dir = 'Current-Release'
+else:
+    debug_log(f"'dir' parameter found: '{current_dir}'")
 
-# Browse the directory
 dir_info, error = browse_directory(current_dir)
 
 if error:
+    debug_log(f"Error encountered: {error}")
     print(f"""
 ## Error
 
 {error}
 
+**Requested path:** `{current_dir}`
+
 [← Back to Downloads](downloads.html)
 """)
 else:
+    debug_log(f"Successfully browsed directory: {dir_info['name']} at {dir_info['path']}")
+    # Adjusted breadcrumb to ensure it links to browse.html for top levels
+    breadcrumb = f"[← Back to Downloads](downloads.html) / [{dir_info['name']}](browse.html?dir={quote(current_dir)})"
+    if '/' in current_dir: # For nested paths, generate breadcrumb properly
+        breadcrumb = get_breadcrumb_path(current_dir)
+
     print(f"""
 ## Directory: {dir_info['name']}
 
 **Path:** `{dir_info['path']}`
-**Total Files:** {dir_info['total_files']}
+**Total Files:** {dir_info['total_files']} (direct files in this directory)
 **Total Size:** {humanize.naturalsize(dir_info['total_size'])}
 
-[← Back to Downloads](downloads.html)
+{breadcrumb}
 
 ---
 """)
 
-    # Define the custom sorting order
-    custom_order = ["all", "human", "mouse", "chimp", "macaque", "marmoset", "rat","pig", "cow", "dog", "horse", "sheep", "chicken", "frog", "zebrafish"]
-
+    custom_order = ["all", "human", "mouse", "chimp", "macaque", "marmoset", "rat", "pig", "cow", "dog", "horse", "sheep", "chicken", "frog", "zebrafish"]
     def get_sort_priority(filename):
         name_lower = filename.lower()
         for i, keyword in enumerate(custom_order):
-            if keyword in name_lower:
-                return i
-        # Return a high number if no keyword is found to place it at the end
+            if keyword in name_lower: return i
         return len(custom_order)
 
-    # Sort the files using the custom priority key
     sorted_files = sorted(dir_info['files'], key=lambda f: get_sort_priority(f['name']))
 
-    # Show subdirectories if any
     if dir_info['subdirs']:
         print("### Subdirectories\n")
         print("| Directory | Files | Description |")
         print("|-----------|-------|-------------|")
-
         for subdir in dir_info['subdirs']:
-            subdir_link = f"[{subdir['name']}](browse.html?dir={subdir['path']})"
-            print(f"| {subdir_link} | {subdir['file_count']} | Subdirectory |")
-
+            # Use subdir['link'] which is now pointing to index.html in the subfolder
+            subdir_link = f"[{subdir['name']}]({subdir['link']})"
+            file_count_text = f"{subdir['file_count']} files" if subdir['file_count'] > 0 else "Empty"
+            print(f"| {subdir_link} | {file_count_text} | Subdirectory |")
         print("\n---\n")
 
-    # Show files
     if sorted_files:
         print("### Files\n")
         print("| Filename | Size | Modified | Type | Species |")
         print("|----------|------|----------|------|-------------|")
-
-        for file_info in sorted_files:  # Use the sorted list here
+        for file_info in sorted_files:
             download_link = f"<a href='{file_info['path']}' download>{file_info['name']}</a>"
+            id_value = file_info['name'].replace('.', '_').replace('-', '_')
             description = get_file_description(file_info['name'])
             file_type = file_info['extension'].upper().replace('.', '') if file_info['extension'] else 'FILE'
-
             print(f"| {download_link} | {file_info['size']} | {file_info['modified']} | {file_type} | {description} |")
+        print("\n<div id='file-details'></div>\n")
     else:
         print("### No files found in this directory\n")
+        
+    if dir_info['subdirs']:
+        total_subdir_files = sum(subdir['file_count'] for subdir in dir_info['subdirs'])
+        print(f"""
+---
+
+**Summary:** {dir_info['total_files']} direct files, {len(dir_info['subdirs'])} subdirectories containing {total_subdir_files} additional files.
+""")
 ```
