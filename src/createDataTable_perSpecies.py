@@ -277,7 +277,7 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     
     
     # Apply function to the DataFrame
-    gene_pair["Perplexity"] = gene_pair.apply(
+    gene_pair["A.I. summary"] = gene_pair.apply(
         generate_perplexity_link_pmid, axis=1, args=(species, species_lower)
     )
     
@@ -293,9 +293,9 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     # gene_pair.columns
     gene_pair["LR Pair Card"] = gene_pair[lr_pair_card]
     if species in ["Mouse", "Rat", "Frog", "Zebrafish"]:
-        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card",f"{species} LR Pair", 'Ligand Symbols', 'Receptor Symbols', ligand_loc_col, receptor_loc_col, f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Perplexity", f"{species} evidence", "Human Ligand Symbols", "Human Receptor Symbols", "Ligand ENSEMBL ID", "Receptor ENSEMBL ID"]]
+        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card",f"{species} LR Pair", 'Ligand Symbols', 'Receptor Symbols', ligand_loc_col, receptor_loc_col, f"Ligand {species_id} ID", f"Receptor {species_id} ID", "A.I. summary", f"{species} evidence", "Human Ligand Symbols", "Human Receptor Symbols", "Ligand ENSEMBL ID", "Receptor ENSEMBL ID"]]
     else:     
-        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card",f"{species} LR Pair", 'Ligand Symbols', 'Receptor Symbols', ligand_loc_col, receptor_loc_col, f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Perplexity", f"{species} evidence", "Human Ligand Symbols", "Human Receptor Symbols"]]
+        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card",f"{species} LR Pair", 'Ligand Symbols', 'Receptor Symbols', ligand_loc_col, receptor_loc_col, f"Ligand {species_id} ID", f"Receptor {species_id} ID", "A.I. summary", f"{species} evidence", "Human Ligand Symbols", "Human Receptor Symbols"]]
         
     if species == "Mouse":
         # Linkify multiple species IDs in Ligand column
@@ -404,7 +404,7 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     f'<span title="HGNC gene symbol for the receptor">{col}</span>' if col == "Receptor" else
      f'<span title="Official gene symbol (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
     f'<span title="HGNC gene symbols (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
-    f'<span title="Click the logo below to run Perplexity on the Human LR pair">{col}</span>' if col == "Perplexity" else
+    f'<span title="Click the icon below to run Perplexity on the Human LR pair">{col}</span>' if col == "A.I. summary" else
     f'<span title="Official Gene Symbol; Hover on symbols below to show gene names">{col}</span>' if col in ["Ligand", "Receptor"] else
     f'<span title="HGNC gene ID for the ligand (link to HGNC)">{col}</span>' if col == "Ligand HGNC ID" else
     

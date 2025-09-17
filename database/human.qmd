@@ -1,5 +1,5 @@
 ---
-title: "Human – *Homo sapiens* </span>"
+title: "Human – *Homo sapiens* (2025-09-17) </span>"
 execute:
   echo: false
 format:
@@ -389,8 +389,8 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
     "title": "<span title=\"HGNC gene ID for the receptor (link to HGNC)\">Receptor HGNC ID</span>"
   },
   {
-    "data": "Perplexity",
-    "title": "<span title=\"Click the logo below to run Perplexity on the Human LR pair\">Perplexity</span>"
+    "data": "A.I. summary",
+    "title": "<span title=\"Click the icon below to run Perplexity on the Human LR pair\">A.I. summary</span>"
   },
   {
     "data": "Human evidence",

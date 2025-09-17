@@ -29,6 +29,23 @@ def debug_log(message):
     logging.info(message)
 # --- END LOGGING SETUP ---
 
+def load_config():
+    """Load repository configuration"""
+    config_file = Path("JSON/config.json")
+    if config_file.exists():
+        with open(config_file, 'r') as f:
+            return json.load(f)
+    return {
+        "title": "ConnectomeDB Data Repository",
+        "description": "Browse and download Ligand-receptor database tables across 14 most studied species.",
+        "license": "MIT License",
+        "contact":  "mailto:&#104;&#101;&#108;&#112;&#64;&#99;&#111;&#110;&#110;&#101;&#99;&#116;&#111;&#109;&#101;&#100;&#98;&#46;&#111;&#114;&#103;,&#97;&#108;&#105;&#115;&#116;&#97;&#105;&#114;&#46;&#102;&#111;&#114;&#114;&#101;&#115;&#116;&#64;&#112;&#101;&#114;&#107;&#105;&#110;&#115;&#46;&#117;&#119;&#97;&#46;&#101;&#100;&#117;&#46;&#97;&#117;",
+        "citation": "[ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction](), P Liu, S Maezono et al. *Journal Title* **XX (YY)**, ZZZ (2025). DOI: 10.xxxx/xxxxx"
+    }
+
+# Load configuration and directory info
+config = load_config()
+
 def get_query_params():
     query_string = ""
     env_query_string = os.getenv("QUARTO_PROJECT_URL_QUERY", "")
@@ -99,6 +116,38 @@ def get_file_description(filename):
     elif 'zebrafish' in name_lower: return "Danio rerio"
     elif name_lower.endswith('.zip'): return "mixed"
     else: return ""
+
+def get_directory_description(dirname):
+    """Get a descriptive label for directory names"""
+    name_lower = dirname.lower()
+    if name_lower == 'csv': 
+        return "Comma-separated values"
+    elif name_lower == 'tsv': 
+        return "Tab-separated values"
+    elif name_lower == 'json': 
+        return "JavaScript Object Notation"
+    elif name_lower == 'xml': 
+        return "eXtensible Markup Language"
+    elif name_lower == 'excel' or name_lower == 'xlsx': 
+        return "Excel spreadsheets"
+    elif name_lower == 'txt' or name_lower == 'text': 
+        return "Plain text files"
+    elif name_lower == 'pdf': 
+        return "Portable Document Format"
+    elif name_lower == 'images' or name_lower == 'img': 
+        return "Image files"
+    elif name_lower == 'docs' or name_lower == 'documents': 
+        return "Document files"
+    elif name_lower == 'data': 
+        return "Data files"
+    elif name_lower == 'archive' or name_lower == 'archives': 
+        return "Archive files"
+    elif name_lower == 'current-release': 
+        return "Current release files"
+    elif name_lower == 'previous-release': 
+        return "Previous release files"
+    else: 
+        return "Subdirectory"
 
 def browse_directory(dir_path, base_path="downloads"):
     debug_log(f"browse_directory called with dir_path='{dir_path}', base_path='{base_path}'")
@@ -171,7 +220,8 @@ def browse_directory(dir_path, base_path="downloads"):
                 subdir_info = {
                     "name": item.name,
                     "link": str(subdir_link_target).replace("\\", "/"), # URL needs forward slashes
-                    "file_count": len(visible_files)
+                    "file_count": len(visible_files),
+                    "description": get_directory_description(item.name)
                 }
                 subdirs.append(subdir_info)
 
@@ -252,10 +302,7 @@ else:
 
     print(f"""
 ## Directory: {dir_info['name']}
-
-**Path:** `{dir_info['path']}`
-**Total Files:** {dir_info['total_files']} (direct files in this directory)
-**Total Size:** {humanize.naturalsize(dir_info['total_size'])}
+All ConnectomeDB ligand–receptor interaction data are freely available under the MIT License and are provided AS IS, without any warranty. Please use the file navigator below to browse and download the most up-to-date database tables. For previous data releases, please click [here](under_construction.qmd).
 
 {breadcrumb}
 
@@ -279,7 +326,7 @@ else:
             # Use subdir['link'] which is now pointing to index.html in the subfolder
             subdir_link = f"[{subdir['name']}]({subdir['link']})"
             file_count_text = f"{subdir['file_count']} files" if subdir['file_count'] > 0 else "Empty"
-            print(f"| {subdir_link} | {file_count_text} | Subdirectory |")
+            print(f"| {subdir_link} | {file_count_text} | {subdir['description']} |")
         print("\n---\n")
 
     if sorted_files:
@@ -298,9 +345,9 @@ else:
         
     if dir_info['subdirs']:
         total_subdir_files = sum(subdir['file_count'] for subdir in dir_info['subdirs'])
-        print(f"""
----
-
-**Summary:** {dir_info['total_files']} direct files, {len(dir_info['subdirs'])} subdirectories containing {total_subdir_files} additional files.
-""")
+    
+    print(f"""
+        ---
+        If you have any questions, please feel free to [contact us]({config['contact']}). If you are using ConnectomeDB, please cite us: {config['citation']}
+        """)
 ```

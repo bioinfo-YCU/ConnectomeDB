@@ -1,5 +1,5 @@
 ---
-title: "Chicken \u2013 *Gallus gallus* </span>"
+title: "Chicken \u2013 *Gallus gallus* (2025-09-17) </span>"
 execute:
   echo: false
 format:
@@ -374,8 +374,8 @@ $(document).ready(function() {
     "title": "<span title=\"ENSEMBL gene ID for the receptor (link to ENSEMBL)\">Receptor ENSEMBL ID</span>"
   },
   {
-    "data": "Perplexity",
-    "title": "<span title=\"Click the logo below to run Perplexity on the Human LR pair\">Perplexity</span>"
+    "data": "A.I. summary",
+    "title": "<span title=\"Click the icon below to run Perplexity on the Human LR pair\">A.I. summary</span>"
   },
   {
     "data": "Chicken evidence",

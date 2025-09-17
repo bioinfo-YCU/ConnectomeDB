@@ -1,5 +1,5 @@
 ---
-title: "Rat \u2013 *Rattus norvegicus* </span>"
+title: "Rat \u2013 *Rattus norvegicus* (2025-09-17) </span>"
 execute:
   echo: false
 format:
@@ -374,8 +374,8 @@ $(document).ready(function() {
     "title": "<span title=\"Rat Genome Database ID (link to RGD). Click on the link for more details\">Receptor RGD ID</span>"
   },
   {
-    "data": "Perplexity",
-    "title": "<span title=\"Click the logo below to run Perplexity on the Human LR pair\">Perplexity</span>"
+    "data": "A.I. summary",
+    "title": "<span title=\"Click the icon below to run Perplexity on the Human LR pair\">A.I. summary</span>"
   },
   {
     "data": "Rat evidence",

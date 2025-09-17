@@ -318,14 +318,14 @@ grab_mouse_info = gene_pair["LR Pair Card"][gene_pair["Human evidence"].isin(["a
 grab_mouse_info = grab_mouse_info.unique()
 grab_mouse_info
 
-# Add an empty Perplexity column filled with None (just to save it's order
-gene_pair['Perplexity'] = None
+# Add an empty A.I. summary column filled with None (just to save it's order
+gene_pair['A.I. summary'] = None
 #gene_pair = gene_pair.drop(columns=["Approved symbol_x", "Approved symbol_y"])
 
 ### For latest DB, skip (code saved as addOrth_temp.py)
 
 # Add
-first_columns=['LR Pair Card', 'Human LR Pair', 'Ligand', 'Receptor', 'Ligand Symbols', 'Receptor Symbols', 'Ligand Location', 'Receptor Location',	'Ligand HGNC ID', 'Receptor HGNC ID', 'Perplexity', 'Human evidence', 'Ligand ENSEMBL ID', 'Receptor ENSEMBL ID'] # 'Database Source'
+first_columns=['LR Pair Card', 'Human LR Pair', 'Ligand', 'Receptor', 'Ligand Symbols', 'Receptor Symbols', 'Ligand Location', 'Receptor Location',	'Ligand HGNC ID', 'Receptor HGNC ID', 'A.I. summary', 'Human evidence', 'Ligand ENSEMBL ID', 'Receptor ENSEMBL ID'] # 'Database Source'
 
 end_columns=['PMID', 'Pair_species', 'lig_species', 'rec_species', 'ligand_orig', 'receptor_orig']
 gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns + end_columns] + end_columns]
@@ -426,7 +426,7 @@ def generate_perplexity_link_pmid(row):
     )
 
 # Apply function to the DataFrame
-gene_pair["Perplexity"] = gene_pair.apply(generate_perplexity_link_pmid, axis=1)
+gene_pair["A.I. summary"] = gene_pair.apply(generate_perplexity_link_pmid, axis=1)
 
 # create URLs for the HGNC IDs
 
@@ -704,7 +704,7 @@ gene_pair.columns = [
     f'<span title="HGNC gene symbol for the ligand">{col}</span>' if col == "Ligand" else
     f'<span title="HGNC gene symbol for the receptor">{col}</span>' if col == "Receptor" else
      f'<span title="Official gene symbol (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
-    f'<span title="Click the logo below to run Perplexity on the Human LR pair">{col}</span>' if col == "Perplexity" else
+    f'<span title="Click the icon below to run Perplexity on the Human LR pair">{col}</span>' if col == "A.I. summary" else
     f'<span title="Official Gene Symbol; Hover on symbols below to show gene names">{col}</span>' if col in ["Ligand", "Receptor"] else
     f'<span title="HGNC gene ID for the ligand (link to HGNC)">{col}</span>' if col == "Ligand HGNC ID" else
     

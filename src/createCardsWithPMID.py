@@ -46,7 +46,7 @@ def update_link_text_with_symbol(html_str, new_symbol):
 
 # Recreate Perplexity link
 def create_url_basic(symbol):
-          label = "Perplexity (LLM)"
+          label = "A.I. summary (LLM)"
           query = f"What diseases is {symbol} implicated in?"
           encoded_query = query.replace(" ", "%20")
           output = f'<a href="https://www.perplexity.ai/search?q={encoded_query}" target="_blank">{label}</a>' #<i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:4px;"></i>
@@ -930,14 +930,14 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
         if row['is_mouse_specific']:
             # Modify query for mouse-specific ligands
             symbol = row["Ligand"]
-            label = "Perplexity (LLM - Mouse-specific)"
+            label = "A.I. summary (LLM - Mouse-specific)"
             query = f"What diseases is {symbol} implicated in as shown in mouse models?"
             encoded_query = query.replace(" ", "%20")
             return f'<a href="https://www.perplexity.ai/search?q={encoded_query}" target="_blank">{label}</a>'
         else:
             return create_url_basic(row["Ligand"])
     
-    ligand_card_2['Perplexity'] = ligand_card_2.apply(create_ligand_perplexity_link, axis=1)
+    ligand_card_2['A.I. summary'] = ligand_card_2.apply(create_ligand_perplexity_link, axis=1)
     ligand_card_2 = ligand_card_2.drop(columns=["Ligand", "is_mouse_specific"])
     
     receptor_card_2 = receptor_card_2.rename(columns={"Receptor HGNC ID": "HGNC Gene Symbol Report"})
@@ -955,14 +955,14 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
     def create_receptor_perplexity_link(row):
         if row['is_mouse_specific']:
             symbol = row["Receptor"]
-            label = "Perplexity (LLM - Mouse-specific)"
+            label = "A.I. summary (LLM - Mouse-specific)"
             query = f"What diseases is {symbol} implicated in as shown in mouse models?"
             encoded_query = query.replace(" ", "%20")
             return f'<a href="https://www.perplexity.ai/search?q={encoded_query}" target="_blank">{label}</a>'
         else:
             return create_url_basic(row["Receptor"])
     
-    receptor_card_2['Perplexity'] = receptor_card_2.apply(create_receptor_perplexity_link, axis=1)
+    receptor_card_2['A.I. summary'] = receptor_card_2.apply(create_receptor_perplexity_link, axis=1)
     #receptor_card_2 = create_conditional_dataframes(receptor_card_2)
     
 
