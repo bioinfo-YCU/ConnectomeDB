@@ -12,6 +12,13 @@ from datetime import datetime
 sys.path.append("src")
 from createDataTable import human_gene_pair  # must return a DataFrame
 
+# === DEBUG: Print column information
+print("Original DataFrame columns:")
+for i, col in enumerate(human_gene_pair.columns):
+    print(f"  {i}: {repr(col)}")
+
+print(f"\nDataFrame shape: {human_gene_pair.shape}")
+
 # === Paths (relative to project/)
 output_json = Path("JSON/human_gene_pair.json")
 qmd_template = Path("database/qmd_template/human_template.qmd")
@@ -23,39 +30,72 @@ template_name = "datatable_template.html"
 output_json.parent.mkdir(parents=True, exist_ok=True)
 
 # === Clean column names and Save DataFrame to JSON
-# For latest on no need for this one
-#human_gene_pair = human_gene_pair.iloc[:, :-48]
 def clean_column_names_and_generate_metadata(df):
     # Extract visible column names from HTML
     def visible_text(html_string):
-        return re.sub(r'<[^>]*>', '', html.unescape(html_string)).strip()
+        cleaned = re.sub(r'<[^>]*>', '', html.unescape(html_string)).strip()
+        return cleaned
+    
+    # Create safe column names for JSON keys (no spaces, periods, special chars)
+    def make_safe_key(text):
+        # Replace spaces and periods with underscores, remove other special chars
+        safe = re.sub(r'[^a-zA-Z0-9_]', '_', text)
+        # Remove multiple underscores
+        safe = re.sub(r'_+', '_', safe)
+        # Remove leading/trailing underscores
+        safe = safe.strip('_')
+        return safe
 
     raw_columns = df.columns.tolist()
     visible_columns = [visible_text(col) for col in raw_columns]
+    safe_columns = [make_safe_key(col) for col in visible_columns]
 
-    # Rename DataFrame columns to their visible text
+    print(f"\nColumn name mapping:")
+    for i, (raw, visible, safe) in enumerate(zip(raw_columns, visible_columns, safe_columns)):
+        print(f"  {i}: HTML='{raw}' -> Visible='{visible}' -> Safe='{safe}'")
+
+    # Create a copy of the DataFrame with safe column names
     df_cleaned = df.copy()
-    df_cleaned.columns = visible_columns
+    df_cleaned.columns = safe_columns
 
-    # Create DataTables metadata with original HTML as `title`
+    print(f"\nDataFrame after renaming columns:")
+    for i, col in enumerate(df_cleaned.columns):
+        print(f"  {i}: {repr(col)}")
+
+    # Create DataTables metadata using safe column names as 'data' and HTML as 'title'
     column_metadata = [
         {
-            "data": visible,
-            "title": html_col
+            "data": safe_col,     # Use safe column name for data mapping
+            "title": raw_col      # Use original HTML for column headers
         }
-        for visible, html_col in zip(visible_columns, raw_columns)
+        for safe_col, raw_col in zip(safe_columns, raw_columns)
     ]
 
+    print(f"\nColumn metadata:")
+    for i, meta in enumerate(column_metadata):
+        print(f"  {i}: data='{meta['data']}', title='{meta['title']}'")
+
     return df_cleaned, column_metadata
+
 # === Generate DataTables column definitions
 df_cleaned, columns_metadata = clean_column_names_and_generate_metadata(human_gene_pair)
 
-# Now use df_cleaned to export to JSON
+# Export the cleaned DataFrame to JSON
 df_cleaned.to_json("JSON/human_gene_pair.json", orient="records")
 
-# And use columns_metadata as your DataTables columns
+# Check what's actually in the JSON
+with open("JSON/human_gene_pair.json", "r") as f:
+    json_data = json.load(f)
+    if json_data:
+        print(f"\nFirst record keys in JSON:")
+        for key in json_data[0].keys():
+            print(f"  {repr(key)}")
+
+# Generate columns JSON for DataTables
 columns_json = json.dumps(columns_metadata, indent=2)
 
+print(f"\nColumns JSON (first 3 entries):")
+print(json.dumps(columns_metadata[:3], indent=2))
 
 # === Jinja2 render
 env = Environment(loader=FileSystemLoader(template_dir))
@@ -84,5 +124,5 @@ if "{{ table_block }}" not in contents:
 with open(qmd_output, "w") as f:
     f.write(contents.replace("{{ table_block }}", rendered_html))
 
-print(f"✔️ Updated {qmd_output}")
-print(f"✔️ Saved JSON to {output_json}")
+print(f"✅ Updated {qmd_output}")
+print(f"✅ Saved JSON to {output_json}")

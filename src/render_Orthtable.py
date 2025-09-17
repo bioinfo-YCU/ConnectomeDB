@@ -12,8 +12,6 @@ from datetime import datetime
 sys.path.append("src")
 import createDataTable_perSpecies
 
-
-
 def process_species_table(species, species_addl_search, createDataTable_perSpecies):
     # === Paths (relative to project/)
     output_json = Path(f"JSON/{species}_gene_pair.json")  
@@ -21,41 +19,89 @@ def process_species_table(species, species_addl_search, createDataTable_perSpeci
     qmd_output = Path(f"database/{species}Orth.qmd") if species == "mouse" else Path(f"database/other/{species}Orth.qmd")
     template_dir = "HTML"
     template_name = "datatableOrth_template.html"
-
+    
     # === Create output directories if needed
     output_json.parent.mkdir(parents=True, exist_ok=True)
-
+    
     # === Clean column names and generate metadata
     def clean_column_names_and_generate_metadata(df):
+        # Extract visible column names from HTML
         def visible_text(html_string):
-            return re.sub(r'<[^>]*>', '', html.unescape(html_string)).strip()
+            cleaned = re.sub(r'<[^>]*>', '', html.unescape(html_string)).strip()
+            return cleaned
+        
+        # Create safe column names for JSON keys (no spaces, periods, special chars)
+        def make_safe_key(text):
+            # Replace spaces and periods with underscores, remove other special chars
+            safe = re.sub(r'[^a-zA-Z0-9_]', '_', text)
+            # Remove multiple underscores
+            safe = re.sub(r'_+', '_', safe)
+            # Remove leading/trailing underscores
+            safe = safe.strip('_')
+            return safe
 
         raw_columns = df.columns.tolist()
         visible_columns = [visible_text(col) for col in raw_columns]
+        safe_columns = [make_safe_key(col) for col in visible_columns]
 
+        print(f"\n{species.upper()} Column name mapping:")
+        for i, (raw, visible, safe) in enumerate(zip(raw_columns, visible_columns, safe_columns)):
+            print(f"  {i}: HTML='{raw}' -> Visible='{visible}' -> Safe='{safe}'")
+
+        # Create a copy of the DataFrame with safe column names
         df_cleaned = df.copy()
-        df_cleaned.columns = visible_columns
+        df_cleaned.columns = safe_columns
 
+        print(f"\n{species.upper()} DataFrame after renaming columns:")
+        for i, col in enumerate(df_cleaned.columns):
+            print(f"  {i}: {repr(col)}")
+
+        # Create DataTables metadata using safe column names as 'data' and HTML as 'title'
         column_metadata = [
-            {"data": visible, "title": html_col}
-            for visible, html_col in zip(visible_columns, raw_columns)
+            {
+                "data": safe_col,     # Use safe column name for data mapping
+                "title": raw_col      # Use original HTML for column headers
+            }
+            for safe_col, raw_col in zip(safe_columns, raw_columns)
         ]
-        return df_cleaned, column_metadata
 
+        print(f"\n{species.upper()} Column metadata:")
+        for i, meta in enumerate(column_metadata):
+            print(f"  {i}: data='{meta['data']}', title='{meta['title']}'")
+
+        return df_cleaned, column_metadata
+    
     # === Get the gene_pair DataFrame
     try:
         gene_pair = getattr(createDataTable_perSpecies, f"{species}_gene_pair1")
+        
+        print(f"\n{species.upper()} Original DataFrame columns:")
+        for i, col in enumerate(gene_pair.columns):
+            print(f"  {i}: {repr(col)}")
+            
     except AttributeError:
         raise ValueError(f"Missing attribute for {species}_gene_pair1 in createDataTable_perSpecies")
-
+    
     # === Clean and export to JSON
     df_cleaned, columns_metadata = clean_column_names_and_generate_metadata(gene_pair)
+    
+    # Export the cleaned DataFrame to JSON
     df_cleaned.to_json(output_json, orient="records")
+    
+    # Check what's actually in the JSON
+    with open(output_json, "r") as f:
+        json_data = json.load(f)
+        if json_data:
+            print(f"\n{species.upper()} First record keys in JSON:")
+            for key in json_data[0].keys():
+                print(f"  {repr(key)}")
+    
     columns_json = json.dumps(columns_metadata, indent=2)
-
+    
     # === Jinja2 render
     env = Environment(loader=FileSystemLoader(template_dir))
     template = env.get_template(template_name)
+    
     rendered_html = template.render(
         columns_json=columns_json,
         species=species, 
@@ -63,7 +109,7 @@ def process_species_table(species, species_addl_search, createDataTable_perSpeci
         table_id=f"{species}-table", 
         json_path=f"../JSON/{species}_gene_pair.json" if species == "mouse" else Path(f"../../JSON/{species}_gene_pair.json")
     )
-
+    
     # === Replace placeholder in .qmd
     if not qmd_template.exists():
         raise FileNotFoundError(f"Missing template file: {qmd_template}")
@@ -76,15 +122,15 @@ def process_species_table(species, species_addl_search, createDataTable_perSpeci
         rf'\1 ({today}) </span>"',
         contents
     )
+    
     if "{{ table_block }}" not in contents:
         raise ValueError(f"Placeholder '{{{{ table_block }}}}' not found in {qmd_template}")
-
+    
     qmd_output.parent.mkdir(parents=True, exist_ok=True)
     qmd_output.write_text(contents.replace("{{ table_block }}", rendered_html))
-
+    
     print(f"✔️ Updated {qmd_output}")
     print(f"✔️ Saved JSON to {output_json}")
-
 
 # === Run for each species
 species_list = ["mouse", "rat", "zebrafish", "frog", "chicken", "macaque", "pig", "dog", "cow", "chimp", "horse", "marmoset", "sheep"]

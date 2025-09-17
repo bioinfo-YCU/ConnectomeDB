@@ -1,0 +1,126 @@
+---
+title: "Previous Releases"
+---
+
+```{python}
+#| echo: false
+#| output: asis
+
+import os
+import json
+from pathlib import Path
+from datetime import datetime
+import pandas as pd
+
+def load_config():
+    """Load repository configuration"""
+    try:
+        config_file = Path("JSON/config.json")
+        if config_file.exists():
+            with open(config_file, 'r') as f:
+                return json.load(f)
+    except Exception as e:
+        print(f"<!-- Config loading error: {e} -->")
+    
+    return {
+        "title": "ConnectomeDB Previous Data Repository",
+        "description": "Browse and download Ligand-receptor database tables across 14 most studied species.",
+        "license": "MIT License",
+        "contact": "mailto:help@connectomedb.org",
+        "citation": "[ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction](), P Liu, S Maezono et al. *Journal Title* **XX (YY)**, ZZZ (2025). DOI: 10.xxxx/xxxxx"
+    }
+
+def is_visible(p):
+    """Check if a path is visible (not hidden). Only checks the immediate filename/dirname."""
+    return not p.name.startswith('.')
+
+def get_directory_description(dir_name):
+    """Get description for directory types"""
+    return f"[[CSV]](downloads/{dir_name}/CSV/index.qmd)・[[Excel]](downloads/{dir_name}/Excel/index.qmd)・[[JSON]](downloads/{dir_name}/JSON/index.qmd)"
+
+def get_previous_releases_info(base_path="downloads"):
+    """Get information about all directories except Current-Release."""
+    try:
+        base = Path(base_path)
+        if not base.exists():
+            print(f"<!-- Debug: {base_path} directory does not exist -->")
+            return []
+        
+        print(f"<!-- Debug: Found {base_path} directory -->")
+        directories = []
+        
+        for item in sorted(base.iterdir()):
+            print(f"<!-- Debug: Checking {item.name}, is_dir: {item.is_dir()}, visible: {is_visible(item)}, not Current-Release: {item.name != 'Current-Release'} -->")
+            
+            if item.is_dir() and is_visible(item) and item.name != "Current-Release":
+                print(f"<!-- Debug: Processing directory {item.name} -->")
+                
+                # Collect visible files recursively
+                all_visible_files = []
+                try:
+                    for subitem in item.rglob("*"):
+                        if subitem.is_file() and is_visible(subitem):
+                            all_visible_files.append(subitem)
+                except Exception as e:
+                    print(f"<!-- Debug: Error reading {item.name}: {e} -->")
+                
+                if all_visible_files:
+                    try:
+                        last_modified = max((f.stat().st_mtime for f in all_visible_files), default=0)
+                        last_modified_date = datetime.fromtimestamp(last_modified).strftime("%Y-%m-%d") if last_modified else "Unknown"
+                    except Exception as e:
+                        print(f"<!-- Debug: Error getting modification time for {item.name}: {e} -->")
+                        last_modified_date = "Unknown"
+                else:
+                    last_modified_date = "Unknown"
+                
+                directories.append({
+                    "name": item.name,
+                    "last_modified": last_modified_date,
+                    "description": get_directory_description(item.name)
+                })
+                print(f"<!-- Debug: Added directory {item.name} -->")
+        
+        print(f"<!-- Debug: Total directories found: {len(directories)} -->")
+        return directories
+        
+    except Exception as e:
+        print(f"<!-- Debug: Error in get_previous_releases_info: {e} -->")
+        return []
+
+# Load configuration and directory info
+config = load_config()
+previous_releases = get_previous_releases_info()
+
+# Print the top-level Markdown content
+print(f"""## {config['title']}
+
+All ConnectomeDB ligand–receptor interaction data are freely available under the MIT License and are provided AS IS, without any warranty. Please use the file navigator below to browse and download previous database tables provided for backward compatibility. For the current (<u>recommended</u>) data release, please click [here](downloads.qmd).
+
+---
+
+### Available Datasets
+""")
+
+# Create DataFrame for table display
+if previous_releases:
+    df = pd.DataFrame(previous_releases)
+    
+    # Rename columns for display
+    df.rename(columns={
+        'name': 'Directory', 
+        'last_modified': 'Release Date', 
+        'description': 'Downloads'
+    }, inplace=True)
+    
+    print(df.to_markdown(index=False))
+else:
+    print("| Directory | Release Date | Downloads |")
+    print("|-----------|--------------|-----------|")
+    print("| No previous releases available | - | - |")
+
+print(f"""
+---
+If you have any questions, please feel free to [contact us]({config['contact']}). If you are using ConnectomeDB, please cite: {config['citation']}
+""")
+```

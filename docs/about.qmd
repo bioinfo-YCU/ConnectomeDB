@@ -68,7 +68,4 @@ and
 
 <div style="margin-top: 1em;"></div>
 
-### **Cite Us**
-
-{{< include citeus.qmd >}}
 

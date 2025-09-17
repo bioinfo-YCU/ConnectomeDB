@@ -12,7 +12,7 @@ from createDataTable import gene_pair0, gene_pair#, top_pathway_df
 from fetchGSheet import gene_group
 import warnings
 
-gene_pair_annot = gene_pair0[["Interaction ID", "Human LR Pair", "Ligand Symbols",  "Receptor Symbols"]].copy() #"Cancer-related",
+gene_pair_annot = gene_pair0[["Interaction ID", "LR Pair", "Ligand Symbols",  "Receptor Symbols"]].copy() #"Cancer-related",
 ### For the latest database, skip this part
 # # Diseases
 # df= pd.read_csv("data/disease_annotations_per_pair.csv")

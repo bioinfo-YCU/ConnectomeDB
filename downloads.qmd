@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Downloads"
 ---
 
 ```{python}
@@ -19,7 +19,7 @@ def load_config():
         with open(config_file, 'r') as f:
             return json.load(f)
     return {
-        "title": "ConnectomeDB Data Repository",
+        "title": "ConnectomeDB Current Data Repository",
         "description": "Browse and download Ligand-receptor database tables across 14 most studied species.",
         "license": "MIT License",
         "contact":  "mailto:&#104;&#101;&#108;&#112;&#64;&#99;&#111;&#110;&#110;&#101;&#99;&#116;&#111;&#109;&#101;&#100;&#98;&#46;&#111;&#114;&#103;,&#97;&#108;&#105;&#115;&#116;&#97;&#105;&#114;&#46;&#102;&#111;&#114;&#114;&#101;&#115;&#116;&#64;&#112;&#101;&#114;&#107;&#105;&#110;&#115;&#46;&#117;&#119;&#97;&#46;&#101;&#100;&#117;&#46;&#97;&#117;",
@@ -30,58 +30,42 @@ def is_visible(p):
     """Check if a path is visible (not hidden). Only checks the immediate filename/dirname."""
     return not p.name.startswith('.')
 
-def get_directory_info(base_path="downloads"):
-    """Get information about directories and files, excluding hidden ones."""
+def get_current_release_info(base_path="downloads"):
+    """Get information about the Current-Release directory only."""
     base = Path(base_path)
-    if not base.exists():
-        base.mkdir(parents=True, exist_ok=True)
-    directories = []
+    current_release_path = base / "Current-Release"
     
-    for item in sorted(base.iterdir()):
-        if item.is_dir() and is_visible(item):
-            # Collect visible files recursively
-            all_visible_files = []
-            direct_files = []
-            
-            for subitem in item.rglob("*"):
-                if subitem.is_file() and is_visible(subitem):
-                    all_visible_files.append(subitem)
-                    # Check if it's a direct child file
-                    if subitem.parent == item:
-                        direct_files.append(subitem)
-            
-            file_count = len(all_visible_files)  # Total files including subdirectories
-            total_size = sum(f.stat().st_size for f in all_visible_files)
-            last_modified = max((f.stat().st_mtime for f in all_visible_files), default=0)
-            
-            directories.append({
-                "name": item.name,
-                # "file_count": file_count,
-                # "direct_file_count": len(direct_files),  # Available for debugging if needed
-                # "size": humanize.naturalsize(total_size),
-                "last_modified": datetime.fromtimestamp(last_modified).strftime("%Y-%m-%d") if last_modified else "Unknown",
-                "description": get_directory_description(item.name)
-            })
-    return directories
-
-def get_directory_description(dir_name):
-    """Get description for common directory types"""
-    descriptions = {
-        "current-release": "[[CSV]](downloads/Current-Release/CSV/index.qmd)・[[Excel]](downloads/Current-Release/XLSX/index.qmd)・[[JSON]](downloads/Current-Release/JSON/index.qmd)",
-        "previous-release": "[[CSV]](downloads/Previous-Release/CSV/index.qmd)・[[Excel]](downloads/Previous-Release/XLSX/index.qmd)・[[JSON]](downloads/Previous-Release/JSON/index.qmd)"
+    if not current_release_path.exists():
+        return None
+    
+    # Collect visible files recursively
+    all_visible_files = []
+    for subitem in current_release_path.rglob("*"):
+        if subitem.is_file() and is_visible(subitem):
+            all_visible_files.append(subitem)
+    
+    if all_visible_files:
+        last_modified = max((f.stat().st_mtime for f in all_visible_files), default=0)
+        last_modified_date = datetime.fromtimestamp(last_modified).strftime("%Y-%m-%d") if last_modified else "Unknown"
+    else:
+        last_modified_date = "Unknown"
+    
+    return {
+        "name": "Current-Release",
+        "last_modified": last_modified_date,
+        "description": "[[CSV]](downloads/Current-Release/CSV/index.qmd)・[[Excel]](downloads/Current-Release/Excel/index.qmd)・[[JSON]](downloads/Current-Release/JSON/index.qmd)"
     }
-    return descriptions.get(dir_name.lower(), "date-versioning of the database tables")
 
 # Load configuration and directory info
 config = load_config()
-directories = get_directory_info()
+current_release = get_current_release_info()
 
 # Print the top-level Markdown content
 print(f"""
 ## {config['title']}
 
 
-All ConnectomeDB ligand–receptor interaction data are freely available under the MIT License and are provided AS IS, without any warranty. Please use the file navigator below to browse and download the most up-to-date database tables. For previous data releases, please click [here](under_construction.qmd).
+All ConnectomeDB ligand–receptor interaction data are freely available under the MIT License and are provided AS IS, without any warranty. Please use the file navigator below to browse and download the most up-to-date database tables. For previous data releases, please click [here](previous_downloads.qmd).
 
 ---
 
@@ -91,23 +75,24 @@ All ConnectomeDB ligand–receptor interaction data are freely available under t
 # Create DataFrame for table display
 import pandas as pd
 
-df = pd.DataFrame(directories)
-
-# Rename columns for display
-df.rename(columns={
-    'name': 'Directory', 
-    'last_modified': 'Release Date', 
-    'description': 'Downloads'
-}, inplace=True)
-
-# Generate Markdown links for the directories
-df['Directory'] = df.apply(lambda row: f"[{row['Directory']}](browse.html?dir={row['Directory']})", axis=1)
-
-print(df.to_markdown(index=False))
+if current_release:
+    df = pd.DataFrame([current_release])
+    
+    # Rename columns for display
+    df.rename(columns={
+        'name': 'Directory', 
+        'last_modified': 'Release Date', 
+        'description': 'Downloads'
+    }, inplace=True)
+    
+    print(df.to_markdown(index=False))
+else:
+    print("| Directory | Release Date | Downloads |\n|-----------|--------------|-----------|")
+    print("| Current-Release | Not Available | Not Available |")
 
 print(f"""
 ---
-If you have any questions, please feel free to [contact us]({config['contact']}). If you are using ConnectomeDB, please cite us: {config['citation']}
+If you have any questions, please feel free to [contact us]({config['contact']}). If you are using ConnectomeDB, please cite: {config['citation']}
 """)
 
 

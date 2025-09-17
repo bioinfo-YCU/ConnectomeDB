@@ -71,8 +71,12 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
             return match.group(1).strip()
         return None
     
-    # Grab the Interaction ID and 
-    gene_pair = gene_pair.iloc[:, :9]
+    # Grab the Interaction ID and remove unnecessary columns
+    keywords = ["Evidence</span>", "A.I. summary", " HGNC ID</span>", " ENSEMBL ID</span>"]
+
+    # Keep only columns that do NOT contain any of the keywords
+    gene_pair = gene_pair.loc[:, ~gene_pair.columns.str.contains('|'.join(keywords))]
+
     # Next, drop columns at index positions 3 and 4 ("Ligand and Receptor" since we already have ligand symbols and receptor symbols)
     gene_pair = gene_pair.drop(gene_pair.columns[[3, 4]], axis=1)
     exclude_keywords = ["HGNC ID", "Location", "Human"]  # Columns containing this will not be modified
@@ -95,13 +99,14 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     receptor_symbols_col = [col for col in gene_pair.columns if "Receptor Symbols" in col][0]
     gene_pair = gene_pair.rename(columns={ligand_symbols_col: "Human Ligand Symbols",
                                           receptor_symbols_col: "Human Receptor Symbols"})
-    
+    gene_pair_species = gene_pair_species.rename(columns={f"{species} evidence": "Evidence"})
+
     if species in ["Mouse", "Rat", "Frog", "Zebrafish"]:
         gene_pair_species = gene_pair_species[[
             "LR Pair Card",
             f"{species}_ligand",
             f"{species}_receptor",
-            f"{species} evidence",
+            "Evidence",
             f"{species_id} ligand",
             f"{species_id} receptor",
             "ENSEMBL ligand",
@@ -118,11 +123,12 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
             "LR Pair Card",
             f"{species}_ligand",
             f"{species}_receptor",
-            f"{species} evidence",
+            "Evidence",
             f"{species_id} ligand",
             f"{species_id} receptor",
             "PMID"
         ]]
+    
 
     
     gene_pair =gene_pair_species.merge(gene_pair,how="left", on="LR Pair Card")
@@ -180,13 +186,13 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     
     
     
-    gene_pair[f"{species} LR Pair"] = np.where(
-        gene_pair[f"{species} evidence"] == "not conserved", 
+    gene_pair["LR Pair"] = np.where(
+        gene_pair["Evidence"] == "not conserved", 
         f"no {species_lower} ortholog",                                  
         gene_pair[f"{species}_ligand"] + " " + gene_pair[f"{species}_receptor"] 
     )
     
-    gene_pair = gene_pair[~(gene_pair[f"{species} evidence"] == "not conserved")]
+    gene_pair = gene_pair[~(gene_pair["Evidence"] == "not conserved")]
             
     def format_symbol_aliases(symbol, aliases):
         """
@@ -234,11 +240,12 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
         lambda row: format_symbol_aliases(row[f"{species}_receptor"], row['Receptor Symbols']),
         axis=1
     )
+
     # The list of columns to group by
     interaction_id_col = [col for col in gene_pair.columns if "Interaction ID" in col][0]
     
     grouping_cols = [
-        interaction_id_col, f"{species} LR Pair" #, "Ligand Symbols", "Receptor Symbols" 
+        interaction_id_col, "LR Pair" #, "Ligand Symbols", "Receptor Symbols" 
     ]
     
     aggregation_cols = [
@@ -254,13 +261,13 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     gene_pair = gene_pair.groupby(grouping_cols).agg(agg_dict).reset_index()
     
     # make direct, conservation and conservation, direct the same
-    gene_pair[f"{species} evidence"] = np.where(
-    gene_pair[f"{species} evidence"].str.contains("DIRECT", na=False),
+    gene_pair["Evidence"] = np.where(
+    gene_pair["Evidence"].str.contains("DIRECT", na=False),
     "Direct",
     np.where(
-        gene_pair[f"{species} evidence"] == "CONSERVATION",
-        "Conservation",
-        gene_pair[f"{species} evidence"]
+        gene_pair["Evidence"] == "CONSERVATION",
+        "Inferred",
+        gene_pair["Evidence"]
     )
 )
     
@@ -268,11 +275,11 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     def generate_perplexity_link_pmid(row, species, species_lower): 
         query = (
             f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-"
-            f"{row[f'{species} LR Pair']}-based-on-Pubmed-ID-"
+            f"{row['LR Pair']}-based-on-Pubmed-ID-"
             f"{row['PMID']}-in-{species_lower}"
         )
         return (
-             f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank" style="text-decoration: none;">&#128269;</a>'
+             f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank" style="text-decoration: none;">&#128172;</a>'
         )
     
     
@@ -293,9 +300,9 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     # gene_pair.columns
     gene_pair["LR Pair Card"] = gene_pair[lr_pair_card]
     if species in ["Mouse", "Rat", "Frog", "Zebrafish"]:
-        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card",f"{species} LR Pair", 'Ligand Symbols', 'Receptor Symbols', ligand_loc_col, receptor_loc_col, f"Ligand {species_id} ID", f"Receptor {species_id} ID", "A.I. summary", f"{species} evidence", "Human Ligand Symbols", "Human Receptor Symbols", "Ligand ENSEMBL ID", "Receptor ENSEMBL ID"]]
+        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card", "LR Pair", "Evidence", "A.I. summary", 'Ligand Symbols', 'Receptor Symbols', f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Ligand ENSEMBL ID", "Receptor ENSEMBL ID",  "Human Ligand Symbols", "Human Receptor Symbols",ligand_loc_col, receptor_loc_col]]
     else:     
-        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card",f"{species} LR Pair", 'Ligand Symbols', 'Receptor Symbols', ligand_loc_col, receptor_loc_col, f"Ligand {species_id} ID", f"Receptor {species_id} ID", "A.I. summary", f"{species} evidence", "Human Ligand Symbols", "Human Receptor Symbols"]]
+        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card", "LR Pair", "Evidence", "A.I. summary", 'Ligand Symbols', 'Receptor Symbols',  f"{species}_ligand", f"{species}_receptor", f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Human Ligand Symbols", "Human Receptor Symbols", ligand_loc_col, receptor_loc_col]]
         
     if species == "Mouse":
         # Linkify multiple species IDs in Ligand column
@@ -397,14 +404,20 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
         f'<span title="{aliases}">{aliases}</span>'
         for aliases in gene_pair["Receptor Symbols"]
     ]
+        # Rename Species Ligand/Receptor
+    gene_pair = gene_pair.rename(columns={
+        f"{species}_ligand": "Ligand reserved",
+        f"{species}_receptor": "Receptor reserved"
+                                         }
+                                )
     # Change the tooltips
     gene_pair.columns = [
-    f'<span title="Ligand-receptor Pair">{col}</span>' if col == f"{species} LR Pair" else
-    f'<span title="HGNC gene symbol for the ligand">{col}</span>' if col == "Ligand" else
-    f'<span title="HGNC gene symbol for the receptor">{col}</span>' if col == "Receptor" else
+    f'<span title="Ligand-receptor Pair">{col}</span>' if col == "LR Pair" else
+    f'<span title="HGNC gene symbol for the ligand">{col}</span>' if col == "Ligand reserved" else
+    f'<span title="HGNC gene symbol for the receptor">{col}</span>' if col == "Receptor reserved" else
      f'<span title="Official gene symbol (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
     f'<span title="HGNC gene symbols (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
-    f'<span title="Click the icon below to run Perplexity on the Human LR pair">{col}</span>' if col == "A.I. summary" else
+    f'<span title="Click the icon below to run Perplexity on the LR pair">{col}</span>' if col == "A.I. summary" else
     f'<span title="Official Gene Symbol; Hover on symbols below to show gene names">{col}</span>' if col in ["Ligand", "Receptor"] else
     f'<span title="HGNC gene ID for the ligand (link to HGNC)">{col}</span>' if col == "Ligand HGNC ID" else
     
@@ -420,6 +433,7 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     col
     for col in gene_pair.columns
 ]
+        
     return gene_pair
 
 
