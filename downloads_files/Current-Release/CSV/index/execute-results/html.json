@@ -1,0 +1,12 @@
+{
+  "hash": "c2894488ff829cde70d457068f162471",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"CSV Files - Current Release\"\nformat: html\n---\n\n# Comma-Separated Values Files\n\n[← Back to Current Release](../../../downloads.html)\n\n### Files\n\n| Filename | Size | Modified | Species |\n|----------|------|----------|-------------|\n| <a href='all_species_csv.zip' download>all_species_csv.zip</a> | 2.6 MB | 2025-08-14 | mixed |\n| <a href='ConnectomeDB2025_human.csv' download>ConnectomeDB2025_human.csv</a> | 1.3 MB | 2025-08-14 | Homo sapiens |\n| <a href='ConnectomeDB2025_mouse.csv' download>ConnectomeDB2025_mouse.csv</a> | 1.4 MB | 2025-08-14 | Mus musculus |\n| <a href='ConnectomeDB2025_chimp.csv' download>ConnectomeDB2025_chimp.csv</a> | 1.2 MB | 2025-08-14 | Pan troglodytes |\n| <a href='ConnectomeDB2025_macaque.csv' download>ConnectomeDB2025_macaque.csv</a> | 1.2 MB | 2025-08-14 | Macaca mulatta |\n| <a href='ConnectomeDB2025_marmoset.csv' download>ConnectomeDB2025_marmoset.csv</a> | 1.2 MB | 2025-08-14 | Callithrix jacchus |\n| <a href='ConnectomeDB2025_rat.csv' download>ConnectomeDB2025_rat.csv</a> | 1.6 MB | 2025-08-14 | Rattus norvegicus |\n| <a href='ConnectomeDB2025_pig.csv' download>ConnectomeDB2025_pig.csv</a> | 1.2 MB | 2025-08-14 | Sus scrofa |\n| <a href='ConnectomeDB2025_cow.csv' download>ConnectomeDB2025_cow.csv</a> | 1.2 MB | 2025-08-14 | Bos taurus |\n| <a href='ConnectomeDB2025_dog.csv' download>ConnectomeDB2025_dog.csv</a> | 1.2 MB | 2025-08-14 | Canis lupus familiaris |\n| <a href='ConnectomeDB2025_horse.csv' download>ConnectomeDB2025_horse.csv</a> | 1.2 MB | 2025-08-14 | Equus caballus |\n| <a href='ConnectomeDB2025_sheep.csv' download>ConnectomeDB2025_sheep.csv</a> | 1.1 MB | 2025-08-14 | Ovies aries rambouillet |\n| <a href='ConnectomeDB2025_chicken.csv' download>ConnectomeDB2025_chicken.csv</a> | 1.1 MB | 2025-08-14 | Gallus gallus |\n| <a href='ConnectomeDB2025_frog.csv' download>ConnectomeDB2025_frog.csv</a> | 1.3 MB | 2025-08-14 | Xenopus tropicalis |\n| <a href='ConnectomeDB2025_zebrafish.csv' download>ConnectomeDB2025_zebrafish.csv</a> | 2.0 MB | 2025-08-14 | Danio rerio |\n\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

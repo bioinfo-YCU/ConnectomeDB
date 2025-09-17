@@ -1,4 +1,12 @@
+---
+title: "Cite Us"
+execute:
+  echo: false
+  warnings: false  # Add this line to suppress warnings globally
+header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
+---
 
+---
 1. *ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction*, P Liu, S Maezono, *et al.* (TBA)\
 PMID: [(TBA)](); DOI: [(TBA)]()
     

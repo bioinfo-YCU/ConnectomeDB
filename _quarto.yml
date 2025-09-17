@@ -33,14 +33,17 @@ website:
     left:
       - text: 'Documentation'
         menu:
+         - href: docs/citeus.qmd
+           text: 'Cite us'
          - href: docs/policy.qmd
            text: 'Terms & Conditions'
          - href: docs/about.qmd
            text: 'Introduction'
          - href: docs/methods.qmd
            text: 'Methods'
-         - href: docs/tutorials.qmd
+         - href: "https://connectomedb.org/docs/tutorials/"
            text: 'Tutorials'
+           target: _blank
          - href: docs/updates.qmd
            text: 'Updates'
          - href: docs/help.qmd
@@ -100,9 +103,8 @@ website:
       # - href: stats.qmd
       #   text: "{{< iconify mdi:chart-bar inline size=20px >}}Statistics"
     right:
-      - url: "https://connectomedb.org/docs/about.html#cite-us"
-        text: "{{< iconify mdi:information inline title='Citation information' >}}"
-        
+      # - url: "https://connectomedb.org/docs/about.html#cite-us"
+      #   text: "{{< iconify mdi:information inline title='Citation information' >}}"
       - url: "mailto:&#104;&#101;&#108;&#112;&#64;&#99;&#111;&#110;&#110;&#101;&#99;&#116;&#111;&#109;&#101;&#100;&#98;&#46;&#111;&#114;&#103;,&#97;&#108;&#105;&#115;&#116;&#97;&#105;&#114;&#46;&#102;&#111;&#114;&#114;&#101;&#115;&#116;&#64;&#112;&#101;&#114;&#107;&#105;&#110;&#115;&#46;&#117;&#119;&#97;&#46;&#101;&#100;&#117;&#46;&#97;&#117;"
         text: "{{< iconify mdi:email inline title='Click to email directly' >}}"
 

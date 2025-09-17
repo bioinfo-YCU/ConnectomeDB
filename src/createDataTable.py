@@ -189,7 +189,7 @@ gene_pair['Receptor location'] = [value.replace("n/a", "unknown") for value in g
 hgnc_id = [col for col in gene_pair.columns if "HGNC" in col]
 hgnc_id = pd.concat([gene_pair[col] for col in hgnc_id]).unique()
 
-gene_pair['Human LR Pair'] = np.where(
+gene_pair['LR Pair'] = np.where(
     gene_pair['Human evidence'] == "not conserved", 
     "no human ortholog",                                  
     gene_pair['Homo sapiens_ligand'] + " " + gene_pair['Homo sapiens_receptor'] 
@@ -198,11 +198,12 @@ gene_pair['Human LR Pair'] = np.where(
 
 # Rename columns for better clarity
 gene_pair = gene_pair.rename(columns={
-    "LR_pair_orig": "LR Pair",
+    "LR_pair_orig": "LR Pair Orig",
     "HGNC ligand": "Ligand HGNC ID",
     "HGNC receptor": "Receptor HGNC ID",
     "ENSEMBL ligand": "Ligand ENSEMBL ID",
     "ENSEMBL receptor": "Receptor ENSEMBL ID",
+    "Human evidence": "Evidence",
     # "perplexity link": "Perplexity", # will be replaced with actual link later
     # "original source": "Database Source",
     "Ligand location": "Ligand Location",
@@ -314,7 +315,7 @@ gene_pair["Receptor Symbols"] = [
 ]
 
 # might be used later just save info for now (for mouse cards)
-grab_mouse_info = gene_pair["LR Pair Card"][gene_pair["Human evidence"].isin(["absent in human", "not conserved"])]
+grab_mouse_info = gene_pair["LR Pair Card"][gene_pair["Evidence"].isin(["absent in human", "not conserved"])]
 grab_mouse_info = grab_mouse_info.unique()
 grab_mouse_info
 
@@ -325,7 +326,7 @@ gene_pair['A.I. summary'] = None
 ### For latest DB, skip (code saved as addOrth_temp.py)
 
 # Add
-first_columns=['LR Pair Card', 'Human LR Pair', 'Ligand', 'Receptor', 'Ligand Symbols', 'Receptor Symbols', 'Ligand Location', 'Receptor Location',	'Ligand HGNC ID', 'Receptor HGNC ID', 'A.I. summary', 'Human evidence', 'Ligand ENSEMBL ID', 'Receptor ENSEMBL ID'] # 'Database Source'
+first_columns=['LR Pair Card', 'LR Pair', 'Evidence', 'A.I. summary', 'Ligand', 'Receptor', 'Ligand HGNC ID', 'Receptor HGNC ID',  'Ligand ENSEMBL ID', 'Receptor ENSEMBL ID', 'Ligand Symbols', 'Receptor Symbols', 'Ligand Location', 'Receptor Location'] # 'Database Source'
 
 end_columns=['PMID', 'Pair_species', 'lig_species', 'rec_species', 'ligand_orig', 'receptor_orig']
 gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns + end_columns] + end_columns]
@@ -376,8 +377,8 @@ has_hgnc_id = (gene_pair['Ligand HGNC ID'].astype(str).str.strip() != '') | \
               (gene_pair['Receptor HGNC ID'].astype(str).str.strip() != '')
 
 # Separate the DataFrame into two parts (human-based cards and mouse based)
-human_rows = gene_pair[~(gene_pair["Human evidence"].isin(["absent in human", "not conserved"]))]
-mouse_rows = gene_pair[gene_pair["Human evidence"].isin(["absent in human", "not conserved"])]
+human_rows = gene_pair[~(gene_pair["Evidence"].isin(["absent in human", "not conserved"]))]
+mouse_rows = gene_pair[gene_pair["Evidence"].isin(["absent in human", "not conserved"])]
 
 # Concatenate the DataFrames: rows with IDs first, then rows without IDs
 gene_pair = pd.concat([human_rows, mouse_rows]).reset_index(drop=True)
@@ -420,7 +421,7 @@ def create_url_basic(perplexity_col):
 
 # cannot use perplexity logo
 def generate_perplexity_link_pmid(row): 
-    query = f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-{row['Human LR Pair']}-based-on-Pubmed-ID-{row['PMID']}"
+    query = f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-{row['LR Pair']}-based-on-Pubmed-ID-{row['PMID']}"
     return (
          f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank" style="text-decoration: none;">&#128172;</a>'
     )
@@ -490,7 +491,7 @@ def generate_links_with_doi(df, gene_column, pmid_column, id_column):
 
 
 # Generate the links for the "PMID" column # was "PMID support"
-gene_pair = generate_links_with_doi(gene_pair, gene_column="Human LR Pair", 
+gene_pair = generate_links_with_doi(gene_pair, gene_column="LR Pair", 
                                     pmid_column="PMID", id_column= "Interaction ID")
 
 # for disease type, cancer-related and top pathways, when missing say "ask Perplexity"
@@ -505,7 +506,7 @@ def generate_perplexity_kegglinks(
         value = row.get(pathway_col, "")
         
         if pd.isna(value) or str(value).strip().lower() in ["nan", "none", "", "unknown"]:
-            pair = row["Human LR Pair"]
+            pair = row["LR Pair"]
             label = "ask Perplexity"
             query = default_query_template.format(pair=pair)
             encoded_query = urllib.parse.quote(query)
@@ -521,7 +522,7 @@ gene_pair = generate_perplexity_kegglinks(gene_pair, pathway_col="KEGG Pathway")
 def generate_perplexity_links(df, pathway_col, default_query_template):
     def create_link(row):
         pathway_value = str(row[pathway_col]).strip().lower()
-        pair = row["Human LR Pair"]
+        pair = row["LR Pair"]
         
         if pd.isna(row[pathway_col]) or pathway_value in ["nan", "none", "", "unknown"]:
             label = "ask Perplexity"
@@ -597,13 +598,13 @@ def add_geneToolTip(species):
     ]
 
 ## Make the Human evidence consistent
-gene_pair["Human evidence"] = np.where(
-    gene_pair["Human evidence"].str.contains("DIRECT", na=False),
+gene_pair["Evidence"] = np.where(
+    gene_pair["Evidence"].str.contains("DIRECT", na=False),
     "Direct",
     np.where(
-        gene_pair["Human evidence"] == "CONSERVATION",
-        "Conservation",
-        gene_pair["Human evidence"]
+        gene_pair["Evidence"] == "CONSERVATION",
+        "Inferred",
+        gene_pair["Evidence"]
     )
 )
 
@@ -693,14 +694,14 @@ gene_pair = gene_pair.drop(columns=["Ligand Name", "Receptor Name"])
 # Create the links to the HTML cards
 gene_pair["LR Pair Card"] = [
     f'<a href="{site_url}cards/{ "mouse" if evidence == "not conserved" else "human" }/{lrPairOrig.replace(" ","-")}.html" target="_blank">{lrPair}</a>'
-    for lrPairOrig, lrPair, evidence in zip(gene_pair0["LR Pair Card"], gene_pair["LR Pair Card"], gene_pair["Human evidence"])
+    for lrPairOrig, lrPair, evidence in zip(gene_pair0["LR Pair Card"], gene_pair["LR Pair Card"], gene_pair["Evidence"])
 ]
 
 
 # Add tooltips to the column headers
 gene_pair.columns = [
     f'<span title="Unique ConnectomeDB ID for each ligand–receptor pair">{col}</span>' if col == "Interaction ID" else
-    f'<span title="Ligand-receptor Pair">{col}</span>' if col == "Human LR Pair" else
+    f'<span title="Ligand-receptor Pair">{col}</span>' if col == "LR Pair" else
     f'<span title="HGNC gene symbol for the ligand">{col}</span>' if col == "Ligand" else
     f'<span title="HGNC gene symbol for the receptor">{col}</span>' if col == "Receptor" else
      f'<span title="Official gene symbol (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
@@ -713,7 +714,7 @@ gene_pair.columns = [
     f'<span title="ENSEMBL gene ID for the receptor (link to ENSEMBL)">{col}</span>' if col == "Receptor ENSEMBL ID" else
     f'<span title=" PubMed IDs (PMID) with Literature Evidence for LR Interaction. Click on the link for more details">{col}</span>' if col == "PMID" else
     f'<span title="Location based on the predicted subcellular localization of the human proteome">{col}</span>' if col in ["Ligand Location", "Receptor Location"] else
-    f'<span title="Direct: experimentally verified; Conservation: inferred from orthology">{col}</span>' if col == "Human evidence" else
+    f'<span title="Direct: experimentally verified; Conservation: inferred from orthology">{col}</span>' if col == "Evidence" else
     f'<span title="Double-click header of {col} to reverse sort">{col}</span>'
     for col in gene_pair.columns
 ]
@@ -751,7 +752,7 @@ human_columns = [col for col in gene_pair000.columns]
 ### For latest DB, no need to limit rows
 #human_gene_pair = gene_pair.iloc[:, :-36]
 # remove mouse specific ones from the datatable
-evidence_cols = [col for col in gene_pair.columns if 'Human evidence' in col]
+evidence_cols = [col for col in gene_pair.columns if 'Evidence' in col]
 human_gene_pair = gene_pair[~(gene_pair[evidence_cols[0]] == "not conserved")]
 
 ### remove LR Pair Card and Just use Interaction ID

@@ -86,7 +86,7 @@ gene_pair0_copy = gene_pair0.copy()
 
 # grab the pairs by interaction id that has human evidence that is absent in human
 # mouse_interaction_ids = gene_pair0_copy[gene_pair0_copy['Ligand'].apply(is_mouse_specific)]['Interaction ID'].tolist()
-mouse_interaction_ids = gene_pair0_copy["Interaction ID"][gene_pair0_copy["Human evidence"].isin(["absent in human", "not conserved"])]
+mouse_interaction_ids = gene_pair0_copy["Interaction ID"][gene_pair0_copy["Evidence"].isin(["absent in human", "not conserved"])]
 
 ### For for latest DB, remove for now
 # # Add Disease (specific) to cards
