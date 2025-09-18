@@ -301,8 +301,11 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     gene_pair["LR Pair Card"] = gene_pair[lr_pair_card]
     if species in ["Mouse", "Rat", "Frog", "Zebrafish"]:
         gene_pair = gene_pair[[interaction_id_col, "LR Pair Card", "LR Pair", "Evidence", "A.I. summary", 'Ligand Symbols', 'Receptor Symbols', f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Ligand ENSEMBL ID", "Receptor ENSEMBL ID",  "Human Ligand Symbols", "Human Receptor Symbols",ligand_loc_col, receptor_loc_col]]
-    else:     
-        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card", "LR Pair", "Evidence", "A.I. summary", 'Ligand Symbols', 'Receptor Symbols',  f"{species}_ligand", f"{species}_receptor", f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Human Ligand Symbols", "Human Receptor Symbols", ligand_loc_col, receptor_loc_col]]
+    else:
+        # future proofing for when there is a database we will use such as MGI
+        gene_pair["Ligand XX ID"] = "-" 
+        gene_pair["Receptor XX ID"] = "-" 
+        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card", "LR Pair", "Evidence", "A.I. summary", 'Ligand Symbols', 'Receptor Symbols',  "Ligand XX ID", "Receptor XX ID", f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Human Ligand Symbols", "Human Receptor Symbols", ligand_loc_col, receptor_loc_col]]
         
     if species == "Mouse":
         # Linkify multiple species IDs in Ligand column
@@ -404,12 +407,7 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
         f'<span title="{aliases}">{aliases}</span>'
         for aliases in gene_pair["Receptor Symbols"]
     ]
-        # Rename Species Ligand/Receptor
-    gene_pair = gene_pair.rename(columns={
-        f"{species}_ligand": "Ligand reserved",
-        f"{species}_receptor": "Receptor reserved"
-                                         }
-                                )
+
     # Change the tooltips
     gene_pair.columns = [
     f'<span title="Ligand-receptor Pair">{col}</span>' if col == "LR Pair" else
