@@ -1,5 +1,5 @@
 ---
-title: "Chimp \u2013 *Pan troglodytes* (2025-09-17) </span>"
+title: "Chimp \u2013 *Pan troglodytes* (2025-09-18) </span>"
 execute:
   echo: false
 format:
@@ -374,12 +374,12 @@ $(document).ready(function() {
     "title": "<span title=\"Official gene symbol (aliases, old names)\">Receptor Symbols</span>"
   },
   {
-    "data": "Ligand_reserved",
-    "title": "<span title=\"HGNC gene symbol for the ligand\">Ligand reserved</span>"
+    "data": "Ligand_XX_ID",
+    "title": "Ligand XX ID"
   },
   {
-    "data": "Receptor_reserved",
-    "title": "<span title=\"HGNC gene symbol for the receptor\">Receptor reserved</span>"
+    "data": "Receptor_XX_ID",
+    "title": "Receptor XX ID"
   },
   {
     "data": "Ligand_ENSEMBL_ID",
@@ -426,14 +426,24 @@ $(document).ready(function() {
         headerHtml += '</tr>';
         $('#chimp-table thead').html(headerHtml);
 
-        // Calculate hidden columns based on total column count (adjust for checkbox column)
-        var totalColumns = columns.length + 1; // +1 for checkbox column
+        // // Calculate hidden columns based on total column count (adjust for checkbox column)
+        // var totalColumns = columns.length + 1; // +1 for checkbox column
         
-        // Only include valid positive column indices for hiding
-        var hiddenColumns = [11,12];
+        // // Only include valid positive column indices for hiding
+        // var hiddenColumns = [11,12];
 
-        console.log('Total columns:', totalColumns);
-        console.log('Hidden columns:', hiddenColumns);
+        // console.log('Total columns:', totalColumns);
+        // console.log('Hidden columns:', hiddenColumns);
+        // Find column indices by name
+        var hiddenColumnNames = ["Ligand XX ID", "Receptor XX ID", 'Human_Ligand_Symbols', 'Human_Receptor_Symbols'];
+        var hiddenColumns = [];
+        columns.forEach(function(column, index) {
+            if (hiddenColumnNames.includes(column.name) || hiddenColumnNames.includes(column.title) || hiddenColumnNames.includes(column.data)) {
+                hiddenColumns.push(index + 1); // +1 to account for checkbox column
+            }
+        });
+
+        console.log('Hidden columns by name:', hiddenColumns);
 
         var table = $('#chimp-table').DataTable({
             data: data,

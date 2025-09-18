@@ -19,7 +19,7 @@ def load_config():
         with open(config_file, 'r') as f:
             return json.load(f)
     return {
-        "title": "ConnectomeDB Current Data Repository",
+        "title": "ConnectomeDB Data Repository",
         "description": "Browse and download Ligand-receptor database tables across 14 most studied species.",
         "license": "MIT License",
         "contact":  "mailto:&#104;&#101;&#108;&#112;&#64;&#99;&#111;&#110;&#110;&#101;&#99;&#116;&#111;&#109;&#101;&#100;&#98;&#46;&#111;&#114;&#103;,&#97;&#108;&#105;&#115;&#116;&#97;&#105;&#114;&#46;&#102;&#111;&#114;&#114;&#101;&#115;&#116;&#64;&#112;&#101;&#114;&#107;&#105;&#110;&#115;&#46;&#117;&#119;&#97;&#46;&#101;&#100;&#117;&#46;&#97;&#117;",
@@ -56,27 +56,100 @@ def get_current_release_info(base_path="downloads"):
         "description": "[[CSV]](downloads/Current-Release/CSV/index.qmd)・[[Excel]](downloads/Current-Release/Excel/index.qmd)・[[JSON]](downloads/Current-Release/JSON/index.qmd)"
     }
 
+def get_directory_description(dir_name):
+    """Get description for directory types"""
+    return f"[[CSV]](downloads/{dir_name}/CSV/index.qmd)・[[Excel]](downloads/{dir_name}/Excel/index.qmd)・[[JSON]](downloads/{dir_name}/JSON/index.qmd)"
+
+def get_all_releases_info(base_path="downloads"):
+    """Get information about all directories including Current-Release."""
+    try:
+        base = Path(base_path)
+        if not base.exists():
+            print(f"<!-- Debug: {base_path} directory does not exist -->")
+            return []
+        
+        print(f"<!-- Debug: Found {base_path} directory -->")
+        directories = []
+        
+        for item in sorted(base.iterdir()):
+            print(f"<!-- Debug: Checking {item.name}, is_dir: {item.is_dir()}, visible: {is_visible(item)} -->")
+            
+            if item.is_dir() and is_visible(item):
+                print(f"<!-- Debug: Processing directory {item.name} -->")
+                
+                # Collect visible files recursively
+                all_visible_files = []
+                try:
+                    for subitem in item.rglob("*"):
+                        if subitem.is_file() and is_visible(subitem):
+                            all_visible_files.append(subitem)
+                except Exception as e:
+                    print(f"<!-- Debug: Error reading {item.name}: {e} -->")
+                
+                if all_visible_files:
+                    try:
+                        last_modified = max((f.stat().st_mtime for f in all_visible_files), default=0)
+                        last_modified_date = datetime.fromtimestamp(last_modified).strftime("%Y-%m-%d") if last_modified else "Unknown"
+                    except Exception as e:
+                        print(f"<!-- Debug: Error getting modification time for {item.name}: {e} -->")
+                        last_modified_date = "Unknown"
+                else:
+                    last_modified_date = "Unknown"
+                
+                directories.append({
+                    "name": item.name,
+                    "last_modified": last_modified_date,
+                    "description": get_directory_description(item.name)
+                })
+                print(f"<!-- Debug: Added directory {item.name} -->")
+        
+        print(f"<!-- Debug: Total directories found: {len(directories)} -->")
+        
+        # Sort directories with Current-Release always first, then by last_modified date (newest first)
+        def sort_key(directory):
+            if directory["name"] == "Current-Release":
+                return (0, "")  # Always first
+            else:
+                # Convert date to sortable format, handle "Unknown" dates
+                date_str = directory["last_modified"]
+                if date_str == "Unknown":
+                    return (2, "")  # Put unknown dates at the end
+                else:
+                    return (1, date_str)  # Sort by date string (YYYY-MM-DD format sorts correctly)
+        
+        directories.sort(key=sort_key, reverse=False)
+        print(f"<!-- Debug: Directories sorted with Current-Release first -->")
+        
+        return directories
+        
+    except Exception as e:
+        print(f"<!-- Debug: Error in get_all_releases_info: {e} -->")
+        return []
+
 # Load configuration and directory info
 config = load_config()
-current_release = get_current_release_info()
+all_releases = get_all_releases_info()
 
 # Print the top-level Markdown content
 print(f"""
 ## {config['title']}
-
-
-All ConnectomeDB ligand–receptor interaction data are freely available under the MIT License and are provided AS IS, without any warranty. Please use the file navigator below to browse and download the most up-to-date database tables. For previous data releases, please click [here](previous_downloads.qmd).
-
----
-
-### Available Datasets
 """)
+
+# Intro message
+print(f"""All ConnectomeDB ligand-receptor interaction data are freely available under the MIT License 
+and are provided **AS IS**, without any warranty. Please use the file navigator below to browse 
+and download the most up-to-date database tables. If you have any questions, please feel free 
+to [contact us]({config['contact']}).
+""")
+
+print("\n---\n")
+print("### Available Datasets\n")
 
 # Create DataFrame for table display
 import pandas as pd
 
-if current_release:
-    df = pd.DataFrame([current_release])
+if all_releases:
+    df = pd.DataFrame(all_releases)
     
     # Rename columns for display
     df.rename(columns={
@@ -87,13 +160,18 @@ if current_release:
     
     print(df.to_markdown(index=False))
 else:
-    print("| Directory | Release Date | Downloads |\n|-----------|--------------|-----------|")
-    print("| Current-Release | Not Available | Not Available |")
+    print("| Directory | Release Date | Downloads |")
+    print("|-----------|--------------|-----------|")
+    print("| No previous releases available | - | - |")
+
+# Closing note
 
 print(f"""
 ---
-If you have any questions, please feel free to [contact us]({config['contact']}). If you are using ConnectomeDB, please cite: {config['citation']}
+If you are using ConnectomeDB, please cite: {config['citation']}
 """)
+
+
 
 
 ```
