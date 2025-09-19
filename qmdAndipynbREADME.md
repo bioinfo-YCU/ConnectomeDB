@@ -2,18 +2,11 @@
 
 The following scripts are always executed when qmds are being rendered via quarto:
 
-`index.qmd`: Home of the ConnectomeDB Database showcasing a Dashboard of statistics.
+`index.qmd`: Home of the ConnectomeDB Database showcasing figures from the publication.
 
-`database.qmd`: Main database (All data are being shown).
+`downloads.qmd`: Download page for the data found on the website.
 
-`database-mouseOrth.qmd`: Database is limited to those with complete LR Pair ortholog for MOUSE.
-
-`database-ratOrth.qmd`: Database is limited to those with complete LR Pair ortholog for RAT.
-
-***
-
-`index_dashboard.qmd`: Previous reiteration of the Home of the ConnectomeDB Database showcasing a Dashboard of statistics using the Quarto Dashboars format.
-
+`under_construction.qmd`: Backup page for the .
 
 ***
 

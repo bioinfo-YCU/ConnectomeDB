@@ -40,6 +40,18 @@
 
 <!-- `createCards.py`: Create Ligand-Receptor pair cards based on `cardTemplate.html` from HTML directory -->
 
+
+**The following scripts should be rerun when there is a new version of the LR DBs for downloading:**
+
+Download each of the files from website.
+
+`concatCSVXLSXspecies.py`: puts together all species by uniforming the column names (Ligand/Receptor Species ID) and adding the column "Species" in CSV and Excel
+
+`concatJSONspecies.py`: puts together all species by uniforming the column names (Ligand/Receptor Species ID) and adding the column "Species" in JSON
+
+copy the README from the other folders and tweak if necessary
+
+
 **The following scripts should be rerun when there are new LR pairs:**
 
 ### for HGNC, MGI, RGD, ZFIN databases:
