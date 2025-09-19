@@ -1312,7 +1312,7 @@
                                 {% set temp_annotations = temp_annotations + [table3_data.get("OMIM", "")] %}
                                 {% set temp_annotations = temp_annotations + [table3_data.get("Open Targets Platform", "")] %}
                                 {% set temp_annotations = temp_annotations + [table3_data.get("JensenLab DISEASES", "")] %}
-                                {% set temp_annotations = temp_annotations + [table3_data.get("A.I. summary", "")] %}
+                                {% set temp_annotations = temp_annotations + [table3_data.get("AI summary", "")] %}
                             
                                 {# Filter out all empty strings from the list #}
                                 {% set final_annotations = temp_annotations | select('ne', '') | list %}
@@ -1385,7 +1385,7 @@
                                 {% set temp_annotations = temp_annotations + [table4_data.get("OMIM", "")] %}
                                 {% set temp_annotations = temp_annotations + [table4_data.get("Open Targets Platform", "")] %}
                                 {% set temp_annotations = temp_annotations + [table4_data.get("JensenLab DISEASES", "")] %}
-                                {% set temp_annotations = temp_annotations + [table4_data.get("A.I. summary", "")] %}
+                                {% set temp_annotations = temp_annotations + [table4_data.get("AI summary", "")] %}
                             
                                 {# Filter out all empty strings from the list #}
                                 {% set final_annotations = temp_annotations | select('ne', '') | list %}

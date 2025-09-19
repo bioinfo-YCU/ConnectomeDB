@@ -319,14 +319,14 @@ grab_mouse_info = gene_pair["LR Pair Card"][gene_pair["Evidence"].isin(["absent 
 grab_mouse_info = grab_mouse_info.unique()
 grab_mouse_info
 
-# Add an empty A.I. summary column filled with None (just to save it's order
-gene_pair['A.I. summary'] = None
+# Add an empty AI summary column filled with None (just to save it's order
+gene_pair['AI summary'] = None
 #gene_pair = gene_pair.drop(columns=["Approved symbol_x", "Approved symbol_y"])
 
 ### For latest DB, skip (code saved as addOrth_temp.py)
 
 # Add
-first_columns=['LR Pair Card', 'LR Pair', 'Evidence', 'A.I. summary', 'Ligand', 'Receptor', 'Ligand HGNC ID', 'Receptor HGNC ID',  'Ligand ENSEMBL ID', 'Receptor ENSEMBL ID', 'Ligand Symbols', 'Receptor Symbols', 'Ligand Location', 'Receptor Location'] # 'Database Source'
+first_columns=['LR Pair Card', 'LR Pair', 'Evidence', 'AI summary', 'Ligand', 'Receptor', 'Ligand HGNC ID', 'Receptor HGNC ID',  'Ligand ENSEMBL ID', 'Receptor ENSEMBL ID', 'Ligand Symbols', 'Receptor Symbols', 'Ligand Location', 'Receptor Location'] # 'Database Source'
 
 end_columns=['PMID', 'Pair_species', 'lig_species', 'rec_species', 'ligand_orig', 'receptor_orig']
 gene_pair = gene_pair[first_columns + [col for col in gene_pair.columns if col not in first_columns + end_columns] + end_columns]
@@ -419,15 +419,15 @@ def create_url_basic(perplexity_col):
 #         f'<img src="https://img.icons8.com/?size=30&id=0NbBuNOxUwps&format=png&color=000000" alt="Perplexity AI" /></a>'
 #     )
 
-# cannot use perplexity logo
+# cannot use perplexity logo &#128172; will now be replaced with "Perplexity"
 def generate_perplexity_link_pmid(row): 
     query = f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-{row['LR Pair']}-based-on-Pubmed-ID-{row['PMID']}"
     return (
-         f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank" style="text-decoration: none;">&#128172;</a>'
+         f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank" style="text-decoration: none;">Perplexity</a>'
     )
 
 # Apply function to the DataFrame
-gene_pair["A.I. summary"] = gene_pair.apply(generate_perplexity_link_pmid, axis=1)
+gene_pair["AI summary"] = gene_pair.apply(generate_perplexity_link_pmid, axis=1)
 
 # create URLs for the HGNC IDs
 
@@ -705,16 +705,16 @@ gene_pair.columns = [
     f'<span title="HGNC gene symbol for the ligand">{col}</span>' if col == "Ligand" else
     f'<span title="HGNC gene symbol for the receptor">{col}</span>' if col == "Receptor" else
      f'<span title="Official gene symbol (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
-    f'<span title="Click the icon below to run Perplexity on the Human LR pair">{col}</span>' if col == "A.I. summary" else
+    f'<span title="Click the icon below to run Perplexity on the Human LR pair">{col}</span>' if col == "AI summary" else
     f'<span title="Official Gene Symbol; Hover on symbols below to show gene names">{col}</span>' if col in ["Ligand", "Receptor"] else
     f'<span title="HGNC gene ID for the ligand (link to HGNC)">{col}</span>' if col == "Ligand HGNC ID" else
     
     f'<span title="HGNC gene ID for the receptor (link to HGNC)">{col}</span>' if col == "Receptor HGNC ID" else
     f'<span title="ENSEMBL gene ID for the ligand (link to ENSEMBL)">{col}</span>' if col  == "Ligand ENSEMBL ID" else
     f'<span title="ENSEMBL gene ID for the receptor (link to ENSEMBL)">{col}</span>' if col == "Receptor ENSEMBL ID" else
-    f'<span title=" PubMed IDs (PMID) with Literature Evidence for LR Interaction. Click on the link for more details">{col}</span>' if col == "PMID" else
+    f'<span title="PubMed IDs (PMID) with Literature Evidence for LR Interaction. Click on the link for more details">{col}</span>' if col == "PMID" else
     f'<span title="Location based on the predicted subcellular localization of the human proteome">{col}</span>' if col in ["Ligand Location", "Receptor Location"] else
-    f'<span title="Direct: experimentally verified; Conservation: inferred from orthology">{col}</span>' if col == "Evidence" else
+    f'<span title="Direct: experimentally verified; Inferred: inferred from orthology">{col}</span>' if col == "Evidence" else
     f'<span title="Double-click header of {col} to reverse sort">{col}</span>'
     for col in gene_pair.columns
 ]
@@ -770,6 +770,35 @@ human_gene_pair[interactionID_cols] = human_gene_pair.apply(
 )
 # Drop the old LR Pair Card column
 human_gene_pair = human_gene_pair.drop(columns=[paircard_cols])
+
+## rename "Ligand/Receptors Symbols" to "Human Ligand/Receptors Symbols" and replace "Ligand/Receptor" with "Ligand/Receptors Symbols"
+
+keywords_to_modify = ["Ligand Symbols", "Receptor Symbols"]
+ligregOrig_sym_cols = [
+    col for col in human_gene_pair.columns 
+    if any(keyword in col for keyword in keywords_to_modify)
+]
+ligregOrig = ["Ligand", "Receptor"]
+ligregOrig_cols = [
+    col for col in human_gene_pair.columns 
+    if any(keyword in col for keyword in ligregOrig)
+]
+ligregOrig_cols= ligregOrig_cols[1:3]
+human_gene_pair.columns = [
+    f'{col.split(">")[0]}>Human {col.split(">")[1]}>'
+    if any(keyword in col for keyword in keywords_to_modify) 
+    else col
+    for col in human_gene_pair.columns
+]
+
+human_gene_pair = human_gene_pair.rename(columns={ligregOrig_cols[0]: ligregOrig_sym_cols[0], ligregOrig_cols[1]: ligregOrig_sym_cols[1]})
+keywords_to_modify = ["Human Ligand Symbols", "Human Receptor Symbols"]
+ligregOrig_sym_cols2 = [
+    col for col in human_gene_pair.columns 
+    if any(keyword in col for keyword in keywords_to_modify)
+]
+human_gene_pair[ligregOrig_sym_cols[0]] = human_gene_pair[ligregOrig_sym_cols2[0]]
+human_gene_pair[ligregOrig_sym_cols[1]] = human_gene_pair[ligregOrig_sym_cols2[1]]
 
 # add number of mouse pair cards
 numOfMouseOrth = len(gene_pair[evidence_cols][(gene_pair[evidence_cols[0]] == "not conserved")])

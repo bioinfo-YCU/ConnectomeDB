@@ -1,5 +1,5 @@
 ---
-title: "Human – *Homo sapiens* (2025-09-18) </span>"
+title: "Human – *Homo sapiens* (2025-09-19) </span>"
 execute:
   echo: false
 format:
@@ -358,19 +358,19 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
   },
   {
     "data": "Evidence",
-    "title": "<span title=\"Direct: experimentally verified; Conservation: inferred from orthology\">Evidence</span>"
+    "title": "<span title=\"Direct: experimentally verified; Inferred: inferred from orthology\">Evidence</span>"
   },
   {
-    "data": "A_I_summary",
-    "title": "<span title=\"Click the icon below to run Perplexity on the Human LR pair\">A.I. summary</span>"
+    "data": "AI_summary",
+    "title": "<span title=\"Click the icon below to run Perplexity on the Human LR pair\">AI summary</span>"
   },
   {
-    "data": "Ligand",
-    "title": "<span title=\"HGNC gene symbol for the ligand\">Ligand</span>"
+    "data": "Ligand_Symbols",
+    "title": "<span title=\"Official gene symbol (aliases, old names)\">Ligand Symbols</span>"
   },
   {
-    "data": "Receptor",
-    "title": "<span title=\"HGNC gene symbol for the receptor\">Receptor</span>"
+    "data": "Receptor_Symbols",
+    "title": "<span title=\"Official gene symbol (aliases, old names)\">Receptor Symbols</span>"
   },
   {
     "data": "Ligand_HGNC_ID",
@@ -389,12 +389,12 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
     "title": "<span title=\"ENSEMBL gene ID for the receptor (link to ENSEMBL)\">Receptor ENSEMBL ID</span>"
   },
   {
-    "data": "Ligand_Symbols",
-    "title": "<span title=\"Official gene symbol (aliases, old names)\">Ligand Symbols</span>"
+    "data": "Human_Ligand_Symbols",
+    "title": "<span title=\"Official gene symbol (aliases, old names)\">Human Ligand Symbols</span>"
   },
   {
-    "data": "Receptor_Symbols",
-    "title": "<span title=\"Official gene symbol (aliases, old names)\">Receptor Symbols</span>"
+    "data": "Human_Receptor_Symbols",
+    "title": "<span title=\"Official gene symbol (aliases, old names)\">Human Receptor Symbols</span>"
   },
   {
     "data": "Ligand_Location",
@@ -415,12 +415,12 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
     headerHtml += '</tr>';
     $('#human-table thead').html(headerHtml);
 
-    // Calculate hidden columns based on total column count (adjust for checkbox column)
+    // // Calculate hidden columns based on total column count (adjust for checkbox column)
     var totalColumns = columns.length + 1; // +1 for checkbox column
-    // The original columns 4 and 5 (indices 3 and 4 in the `columns` array)
-    // become indices 4 and 5 after the checkbox column is prepended.
-    // var hiddenColumns = [3, 4]; // Hide original columns 3 and 4
-    var hiddenColumns = []; // Hide original columns 3 and 4
+    // // The original columns 4 and 5 (indices 3 and 4 in the `columns` array)
+    // // become indices 4 and 5 after the checkbox column is prepended.
+    // // var hiddenColumns = [3, 4]; // Hide original columns 3 and 4
+    // var hiddenColumns = []; // Hide original columns 3 and 4
 
     // // NO NEED for now --- Add last 2 columns to hidden list (adjust this number as needed)
     // // Remember to adjust for the prepended checkbox column
@@ -429,12 +429,23 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
     //         hiddenColumns.push(totalColumns - i);
     //     }
     // }
+    // Find column indices by name
+    var hiddenColumnNames = ["Ligand XX ID", "Receptor XX ID", 'Human_Ligand_Symbols', 'Human_Receptor_Symbols'];
+    var hiddenColumns = [];
+    columns.forEach(function(column, index) {
+        if (hiddenColumnNames.includes(column.name) || hiddenColumnNames.includes(column.title) || hiddenColumnNames.includes(column.data)) {
+            hiddenColumns.push(index + 1); // +1 to account for checkbox column
+        }
+    });
+
+    console.log('Hidden columns by name:', hiddenColumns);
+    
 
     // Remove duplicates
-    hiddenColumns = [...new Set(hiddenColumns)];
+    // hiddenColumns = [...new Set(hiddenColumns)];
 
-    console.log('Total columns:', totalColumns);
-    console.log('Hidden columns:', hiddenColumns);
+    // console.log('Total columns:', totalColumns);
+    // console.log('Hidden columns:', hiddenColumns);
 
     var table = $('#human-table').DataTable({
         data: data,
@@ -491,8 +502,8 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
                     columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
                     format: {
                         body: function(data, row, column, node) {
-                            // Detect A.I. summary column by the chat bubble icon &#128172; instead of column position
-                            if (data && data.toString().includes('&#128172;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
+                            // Detect A.I. summary column by the chat bubble icon Perplexity instead of column position
+                            if (data && data.toString().includes('Perplexity') && data.toString().includes('<a ') && data.toString().includes('href=')) {
                                 var $temp = $('<div>').html(data);
                                 var href = $temp.find('a').attr('href');
                                 return href ? encodeURI(href) : data;
@@ -520,8 +531,8 @@ $.getJSON("../JSON/human_gene_pair.json", function(data) {
                     columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
                     format: {
                         body: function(data, row, column, node) {
-                            // Detect A.I. summary column by the chat bubble icon &#128172; instead of column position
-                            if (data && data.toString().includes('&#128172;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
+                            // Detect A.I. summary column by the chat bubble icon Perplexity instead of column position
+                            if (data && data.toString().includes('Perplexity') && data.toString().includes('<a ') && data.toString().includes('href=')) {
                                 var $temp = $('<div>').html(data);
                                 var href = $temp.find('a').attr('href');
                                 return href ? encodeURI(href) : data;

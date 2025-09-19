@@ -336,12 +336,12 @@ $.getJSON("{{ json_path }}", function(data) {
     headerHtml += '</tr>';
     $('#{{ table_id }} thead').html(headerHtml);
 
-    // Calculate hidden columns based on total column count (adjust for checkbox column)
+    // // Calculate hidden columns based on total column count (adjust for checkbox column)
     var totalColumns = columns.length + 1; // +1 for checkbox column
-    // The original columns 4 and 5 (indices 3 and 4 in the `columns` array)
-    // become indices 4 and 5 after the checkbox column is prepended.
-    // var hiddenColumns = [3, 4]; // Hide original columns 3 and 4
-    var hiddenColumns = []; // Hide original columns 3 and 4
+    // // The original columns 4 and 5 (indices 3 and 4 in the `columns` array)
+    // // become indices 4 and 5 after the checkbox column is prepended.
+    // // var hiddenColumns = [3, 4]; // Hide original columns 3 and 4
+    // var hiddenColumns = []; // Hide original columns 3 and 4
 
     // // NO NEED for now --- Add last 2 columns to hidden list (adjust this number as needed)
     // // Remember to adjust for the prepended checkbox column
@@ -350,12 +350,23 @@ $.getJSON("{{ json_path }}", function(data) {
     //         hiddenColumns.push(totalColumns - i);
     //     }
     // }
+    // Find column indices by name
+    var hiddenColumnNames = ["Ligand XX ID", "Receptor XX ID", 'Human_Ligand_Symbols', 'Human_Receptor_Symbols'];
+    var hiddenColumns = [];
+    columns.forEach(function(column, index) {
+        if (hiddenColumnNames.includes(column.name) || hiddenColumnNames.includes(column.title) || hiddenColumnNames.includes(column.data)) {
+            hiddenColumns.push(index + 1); // +1 to account for checkbox column
+        }
+    });
+
+    console.log('Hidden columns by name:', hiddenColumns);
+    
 
     // Remove duplicates
-    hiddenColumns = [...new Set(hiddenColumns)];
+    // hiddenColumns = [...new Set(hiddenColumns)];
 
-    console.log('Total columns:', totalColumns);
-    console.log('Hidden columns:', hiddenColumns);
+    // console.log('Total columns:', totalColumns);
+    // console.log('Hidden columns:', hiddenColumns);
 
     var table = $('#{{ table_id }}').DataTable({
         data: data,
@@ -412,8 +423,8 @@ $.getJSON("{{ json_path }}", function(data) {
                     columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
                     format: {
                         body: function(data, row, column, node) {
-                            // Detect A.I. summary column by the chat bubble icon &#128172; instead of column position
-                            if (data && data.toString().includes('&#128172;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
+                            // Detect A.I. summary column by the chat bubble icon Perplexity instead of column position
+                            if (data && data.toString().includes('Perplexity') && data.toString().includes('<a ') && data.toString().includes('href=')) {
                                 var $temp = $('<div>').html(data);
                                 var href = $temp.find('a').attr('href');
                                 return href ? encodeURI(href) : data;
@@ -441,8 +452,8 @@ $.getJSON("{{ json_path }}", function(data) {
                     columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
                     format: {
                         body: function(data, row, column, node) {
-                            // Detect A.I. summary column by the chat bubble icon &#128172; instead of column position
-                            if (data && data.toString().includes('&#128172;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
+                            // Detect A.I. summary column by the chat bubble icon Perplexity instead of column position
+                            if (data && data.toString().includes('Perplexity') && data.toString().includes('<a ') && data.toString().includes('href=')) {
                                 var $temp = $('<div>').html(data);
                                 var href = $temp.find('a').attr('href');
                                 return href ? encodeURI(href) : data;

@@ -72,7 +72,7 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
         return None
     
     # Grab the Interaction ID and remove unnecessary columns
-    keywords = ["Evidence</span>", "A.I. summary", " HGNC ID</span>", " ENSEMBL ID</span>"]
+    keywords = ["Evidence</span>", "AI summary", " HGNC ID</span>", " ENSEMBL ID</span>"]
 
     # Keep only columns that do NOT contain any of the keywords
     gene_pair = gene_pair.loc[:, ~gene_pair.columns.str.contains('|'.join(keywords))]
@@ -271,7 +271,7 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     )
 )
     
-    
+    # chat bubble &#128172; will now be replaced with "Perplexity"
     def generate_perplexity_link_pmid(row, species, species_lower): 
         query = (
             f"What-is-the-biological-relevance-of-the-ligand-and-receptor-pair-"
@@ -279,12 +279,12 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
             f"{row['PMID']}-in-{species_lower}"
         )
         return (
-             f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank" style="text-decoration: none;">&#128172;</a>'
+             f'<a href="https://www.perplexity.ai/search?q={query}" target="_blank" style="text-decoration: none;">Perplexity</a>'
         )
     
     
     # Apply function to the DataFrame
-    gene_pair["A.I. summary"] = gene_pair.apply(
+    gene_pair["AI summary"] = gene_pair.apply(
         generate_perplexity_link_pmid, axis=1, args=(species, species_lower)
     )
     
@@ -300,12 +300,12 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     # gene_pair.columns
     gene_pair["LR Pair Card"] = gene_pair[lr_pair_card]
     if species in ["Mouse", "Rat", "Frog", "Zebrafish"]:
-        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card", "LR Pair", "Evidence", "A.I. summary", 'Ligand Symbols', 'Receptor Symbols', f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Ligand ENSEMBL ID", "Receptor ENSEMBL ID",  "Human Ligand Symbols", "Human Receptor Symbols",ligand_loc_col, receptor_loc_col]]
+        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card", "LR Pair", "Evidence", "AI summary", 'Ligand Symbols', 'Receptor Symbols', f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Ligand ENSEMBL ID", "Receptor ENSEMBL ID",  "Human Ligand Symbols", "Human Receptor Symbols",ligand_loc_col, receptor_loc_col]]
     else:
         # future proofing for when there is a database we will use such as MGI
         gene_pair["Ligand XX ID"] = "-" 
         gene_pair["Receptor XX ID"] = "-" 
-        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card", "LR Pair", "Evidence", "A.I. summary", 'Ligand Symbols', 'Receptor Symbols',  "Ligand XX ID", "Receptor XX ID", f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Human Ligand Symbols", "Human Receptor Symbols", ligand_loc_col, receptor_loc_col]]
+        gene_pair = gene_pair[[interaction_id_col, "LR Pair Card", "LR Pair", "Evidence", "AI summary", 'Ligand Symbols', 'Receptor Symbols',  "Ligand XX ID", "Receptor XX ID", f"Ligand {species_id} ID", f"Receptor {species_id} ID", "Human Ligand Symbols", "Human Receptor Symbols", ligand_loc_col, receptor_loc_col]]
         
     if species == "Mouse":
         # Linkify multiple species IDs in Ligand column
@@ -415,19 +415,19 @@ def process_species_gene_pair(species, fetchGSheet, gene_pair):
     f'<span title="HGNC gene symbol for the receptor">{col}</span>' if col == "Receptor reserved" else
      f'<span title="Official gene symbol (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
     f'<span title="HGNC gene symbols (aliases, old names)">{col}</span>' if col in ["Ligand Symbols", "Receptor Symbols"] else
-    f'<span title="Click the icon below to run Perplexity on the LR pair">{col}</span>' if col == "A.I. summary" else
+    f'<span title="Click the icon below to run Perplexity on the LR pair">{col}</span>' if col == "AI summary" else
     f'<span title="Official Gene Symbol; Hover on symbols below to show gene names">{col}</span>' if col in ["Ligand", "Receptor"] else
     f'<span title="HGNC gene ID for the ligand (link to HGNC)">{col}</span>' if col == "Ligand HGNC ID" else
     
     f'<span title="HGNC gene ID for the receptor (link to HGNC)">{col}</span>' if col == "Receptor HGNC ID" else
     f'<span title="ENSEMBL gene ID for the ligand (link to ENSEMBL)">{col}</span>' if col == "Ligand ENSEMBL ID" else
     f'<span title="ENSEMBL gene ID for the receptor (link to ENSEMBL)">{col}</span>' if col == "Receptor ENSEMBL ID" else
-    f'<span title=" PubMed IDs (PMID) with Literature Evidence for LR Interaction. Click on the link for more details">{col}</span>' if col == "PMID" else
+    f'<span title="PubMed IDs (PMID) with Literature Evidence for LR Interaction. Click on the link for more details">{col}</span>' if col == "PMID" else
     f'<span title="Xenbase ID (link to XEN). Click on the link for more details">{col}</span>' if col in ["Ligand XEN ID", "Receptor XEN ID"] else
     f'<span title="Rat Genome Database ID (link to RGD). Click on the link for more details">{col}</span>' if col in ["Ligand RGD ID", "Receptor RGD ID"] else
     f'<span title="Mouse Genome Informatics ID (link to MGI)">{col}</span>' if col in ["Ligand MGI ID", "Receptor MGI ID"]else
     f'<span title="Zebrafish Information Network ID (link to ZFIN)">{col}</span>' if col in ["Ligand ZFIN ID", "Receptor ZFIN ID"] else
-    f'<span title="Direct: experimentally verified; Conservation: inferred from orthology">{col}</span>' if col == "Human evidence" else
+    f'<span title="Direct: experimentally verified; Inferred: inferred from orthology">{col}</span>' if col == "Evidence" else
     col
     for col in gene_pair.columns
 ]

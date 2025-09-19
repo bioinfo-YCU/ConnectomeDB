@@ -1,5 +1,5 @@
 ---
-title: "Macaque \u2013 *Macaca mulatta* (2025-09-18) </span>"
+title: "Macaque \u2013 *Macaca mulatta* (2025-09-19) </span>"
 execute:
   echo: false
 format:
@@ -359,11 +359,11 @@ $(document).ready(function() {
   },
   {
     "data": "Evidence",
-    "title": "Evidence"
+    "title": "<span title=\"Direct: experimentally verified; Inferred: inferred from orthology\">Evidence</span>"
   },
   {
-    "data": "A_I_summary",
-    "title": "<span title=\"Click the icon below to run Perplexity on the LR pair\">A.I. summary</span>"
+    "data": "AI_summary",
+    "title": "<span title=\"Click the icon below to run Perplexity on the LR pair\">AI summary</span>"
   },
   {
     "data": "Ligand_Symbols",
@@ -500,8 +500,8 @@ $(document).ready(function() {
                         columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
                         format: {
                             body: function(data, row, column, node) {
-                                // Detect A.I. summary column by the chat bubble icon &#128172; instead of column position
-                                if (data && data.toString().includes('&#128172;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
+                                // Detect A.I. summary column by the chat bubble icon Perplexity instead of column position
+                                if (data && data.toString().includes('Perplexity') && data.toString().includes('<a ') && data.toString().includes('href=')) {
                                     var $temp = $('<div>').html(data);
                                     var href = $temp.find('a').attr('href');
                                     return href ? encodeURI(href) : data;
@@ -529,8 +529,8 @@ $(document).ready(function() {
                         columns: ':visible:not(:first-child)', // Export only visible columns, excluding checkbox
                         format: {
                             body: function(data, row, column, node) {
-                                // Detect A.I. summary column by the chat bubble icon &#128172; instead of column position
-                                if (data && data.toString().includes('&#128172;') && data.toString().includes('<a ') && data.toString().includes('href=')) {
+                                // Detect A.I. summary column by the chat bubble icon Perplexity instead of column position
+                                if (data && data.toString().includes('Perplexity') && data.toString().includes('<a ') && data.toString().includes('href=')) {
                                     var $temp = $('<div>').html(data);
                                     var href = $temp.find('a').attr('href');
                                     return href ? encodeURI(href) : data;
