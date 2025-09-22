@@ -930,8 +930,8 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
         if row['is_mouse_specific']:
             # Modify query for mouse-specific ligands
             symbol = row["Ligand"]
-            label = "AI summary (LLM - Mouse-specific)"
-            query = f"What diseases is {symbol} implicated in as shown in mouse models?"
+            label = "AI summary (LLM)"
+            query = f"What diseases is {symbol} implicated in?"
             encoded_query = query.replace(" ", "%20")
             return f'<a href="https://www.perplexity.ai/search?q={encoded_query}" target="_blank">{label}</a>'
         else:
@@ -955,8 +955,8 @@ def prepare_card_dataframes(gene_pair_input_df, mouse_interaction_ids=None):
     def create_receptor_perplexity_link(row):
         if row['is_mouse_specific']:
             symbol = row["Receptor"]
-            label = "AI summary (LLM - Mouse-specific)"
-            query = f"What diseases is {symbol} implicated in as shown in mouse models?"
+            label = "AI summary (LLM)"
+            query = f"What diseases is {symbol} implicated in?"
             encoded_query = query.replace(" ", "%20")
             return f'<a href="https://www.perplexity.ai/search?q={encoded_query}" target="_blank">{label}</a>'
         else:
