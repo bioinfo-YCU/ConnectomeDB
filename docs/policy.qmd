@@ -5,36 +5,75 @@ header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
 
 ----
 
-### **Legal Disclaimer**
+### **1. Legal Disclaimer**
 
-This website hosted by the Bioinformatics Laboratory at Yokohama City University and is developed in collaboration with the Systems Biology & Genomics Lab at the Harry Perkins Institute of Medical Research, both governed by their respective legal entities. 
+This website is hosted by the **Bioinformatics Laboratory at Yokohama City University** in collaboration with the **Systems Biology & Genomics Lab at the Harry Perkins Institute of Medical Research**, both governed by their respective legal entities.
 
 <div style="border-left: 4px solid #C28840; background-color: #F5F5F5; padding: 0px 0.3em; margin: 1em 0;">
   <span class="half-break"></span>
   <strong>&#9888; Important</strong><br>
-  By accessing this site, you agree to the terms and conditions outlined below, effective from your first visit. We reserve the right to update them at any time.
+   By accessing this site, you agree to the terms and conditions outlined below, effective from your first visit. We reserve the right to update them at any time.\
+   The information provided, including ligand–receptor interactions and associated resources, is intended solely for scientific and educational purposes. It must not be used for medical diagnosis, treatment, or clinical decision-making. Users should consult qualified healthcare professionals for medical advice.
   <span class="half-break"></span>
 </div>
 
-### **General Usage**
+----
 
-This website is intended for scientific and educational purposes only. The information provided about ligand–receptor interactions is not intended to be used for medical diagnosis, treatment, or any clinical decision-making. Users should not rely on this data for therapeutic purposes and should consult qualified healthcare professionals for medical advice.
+
+### **2. General Usage**
+
+- This website is provided for **scientific research and educational purposes only**.
+
+
+- You must not use the information for therapeutic, diagnostic, or commercial purposes unless you have obtained a separate commercial License (see Section 3).
+
+
+- We provide no warranty on the accuracy, completeness, or fitness for purpose of the content, and accept no liability for loss or damage resulting from its use.
+
 
 ----
 
-### **Cookies and Privacy Policy**
+### **3. License**
 
-This website uses cookies and similar tracking technologies to enhance your browsing experience and analyze site traffic. These tools help us understand how visitors interact with our site and improve its performance. By continuing to use this website, you consent to our use of these technologies in accordance with this policy.
+**3.1 Database Content (Ligand–Receptor Interactions, Annotations, Orthology Mapping)** \
 
-We respect your privacy and are committed to protecting your personal data. Any information collected through cookies or analytics tools is kept strictly confidential and is never shared with third parties.
+- Licensed under **Creative Commons Attribution–NonCommercial 4.0 International (CC-BY-NC 4.0)**.
+
+- ✅ Free to use, share, and adapt for **non-commercial academic research and education**, with required attribution (*Liu P, Maezono S, et al., Nucleic Acids Research, Database Issue 2026* and <https://connectomedb.org>).
+
+- ❌ Commercial use (including integration into pipelines, diagnostics, platforms, or redistribution) requires a **separate commercial license**. Contact: <a href="mailto:&#104;&#101;&#108;&#112;&#64;&#99;&#111;&#110;&#110;&#101;&#99;&#116;&#111;&#109;&#101;&#100;&#98;&#46;&#111;&#114;&#103;">&#104;&#101;&#108;&#112;&#64;&#99;&#111;&#110;&#110;&#101;&#99;&#116;&#111;&#109;&#101;&#100;&#98;&#46;&#111;&#114;&#103;</a>.
+
+**3.2 Software / Website Code** \
+
+- Built using Quarto 1.7+, distributed under the **MIT License**.
+
+- Users are free to reuse and modify the website/software code in both academic and commercial contexts, provided attribution is given.
+
+**3.3 Images & Visual Materials**
+
+- Figures and diagrams were created using **BioRender**, covered under the **BioRender Academic License**.
+
+- These images are licensed for academic presentations and publications only and may not be reused for commercial purposes without BioRender’s separate commercial license.
+
 
 ----
 
-### **License**
+### **4. Cookies and Privacy Policy**
 
-This website was built using **Quarto 1.7+** under the 
-Open Source <a href='https://opensource.org/license/mit' target='_blank'>MIT License</a>.  
-The images featured on the website were created using **BioRender** under the <a href='https://www.biorender.com/academic-license' target='_blank'>BioRender Academic License</a>.
+This site uses cookies and analytics tools to:
+
+- Enhance user experience. \
+
+- Analyse site traffic and performance. \
+
+By continuing to use this website, you consent to this use. Any collected information is kept strictly confidential and not shared with third parties.
+
+
+----
+
+### **5. Governing Law**
+
+These Terms & Conditions are governed by the laws of **Japan** and **Australia**, reflecting the joint hosting and development of this website.
 
 ----
 

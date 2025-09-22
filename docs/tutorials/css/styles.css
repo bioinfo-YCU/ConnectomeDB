@@ -1,0 +1,764 @@
+/* Navbar styling from template - MUST BE AT TOP */
+body {
+    padding-top: 70px !important;
+    font-family: "Roboto Sans", sans-serif;
+    line-height: 1.6 !important;
+    color: #333 !important;
+    background-color: #f4f4f4 !important;
+}
+
+/* OVERRIDE QUARTO NAVBAR - Must be very specific */
+body .navbar,
+body header .navbar,
+body #quarto-header .navbar,
+body .navbar.navbar-expand-lg,
+body .navbar[data-bs-theme="dark"] {
+    font-family: "Roboto Sans", sans-serif;
+    background-color: #1f4eb6 !important;
+    background: #1f4eb6 !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    min-height: 65px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+/* Only target the Quarto site title text inside navbar brand */
+.navbar-brand-container.mx-auto > a.navbar-brand {
+    display: inline-block !important;
+    font-size: 1.6rem !important;
+    font-family: "Roboto Sans", sans-serif;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    cursor: pointer !important;
+
+    /* Gradient text */
+    background: linear-gradient(135deg, #ffffff 0%, #d4af37 50%, #ffffff 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: transparent !important;
+}
+
+/* Hover/focus effect for brand */
+.navbar-brand-container.mx-auto > a.navbar-brand:hover,
+.navbar-brand-container.mx-auto > a.navbar-brand:focus {
+    transform: scale(1.05) !important;
+    color: #d4af37 !important; /* fallback for non-WebKit browsers */
+}
+
+/* ==== Main Navbar Links ==== */
+.navbar .nav-link {
+    color: white !important; /* default text */
+    font-weight: bold !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.navbar .nav-link.active {
+    color: #d4af37 ; !important;
+    background-color: transparent !important;
+}
+
+/* ==== Dropdown / Submenu Links ==== */
+
+.navbar .dropdown-menu {
+    border-radius: 8px !important;      /* slightly rounded corners */
+    border: 1px solid rgba(0,0,0,0.15) !important; /* optional subtle border */
+    overflow: hidden;                    /* ensure no overflowing content */
+}
+
+.navbar .dropdown-menu a.dropdown-item {
+    color: black !important; /* default text */
+    background-color: transparent !important;
+}
+
+.navbar .dropdown-menu a.dropdown-item:hover,
+.navbar .dropdown-menu a.dropdown-item:focus,
+.navbar .dropdown-menu a.dropdown-item.active {
+    color: white !important;
+    background-color: #d4af37 !important; /* gold background on hover */
+}
+
+
+/* Submenu / nav link hover and active highlighting */
+.navbar .nav-link:hover,
+.navbar .nav-link.active,
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item.active {
+    color: #d4af37 !important;
+    background-color: #1f4eb6 !important;
+}
+
+
+
+.navbar-brand:hover,
+body .navbar-brand:hover {
+    color: #d4af37 !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+    text-decoration: none !important;
+}
+
+.navbar-brand-alt::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #d4af37 !important;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+.navbar-brand-alt:hover {
+    color: #d4af37 !important;
+}
+
+.navbar-brand-alt:hover::after {
+    width: 100%;
+}
+.navbar-brand-alt:active {
+    color: #d4af37 !important;
+    transform: scale(0.98);
+}
+.navbar-brand-alt.active::after {
+    width: 100%;
+}
+
+.navbar-brand.active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    color: #d4af37 !important;
+    background-color: rgba(212, 175, 55, 0.1) !important;
+}
+
+.navbar-brand.active::after {
+    background-color: #d4af37 !important;
+}
+
+.navbar-brand:hover::before {
+    left: 100% !important;
+}
+
+.navbar-container {
+    width: 100% !important;
+    padding-left: 25px !important;
+    padding-right: 5px !important;
+}
+
+.navbar-toggler {
+    color: #fff !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.navbar-toggler:focus {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.navbar-toggler:active,
+.navbar-toggler[aria-expanded="true"] {
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25) !important;
+}
+
+.nav-icon {
+    font-size: 20px !important;
+}
+
+/* Mobile responsive styles from template */
+@media screen and (max-width: 768px) {
+    .navbar .nav-link#nav-menu-bi-github .bi-github {
+        padding-left: 10px !important;
+    }
+    
+    .menu-text {
+        padding-left: 10px !important;
+        font-size: 1.1rem !important; 
+        
+    }
+    
+    .navbar-toggler-icon {
+        width: 1.3em !important;
+        height: 1.3em !important;
+    }
+    
+    .navbar-brand-container.mx-auto {
+        padding-top: 2px !important;
+        padding-bottom: 0px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar-brand {
+        padding-bottom: 0px !important;
+    }
+    
+    .navbar-toggler-icon {
+        padding-top: 41px !important;
+        width: 1.3em !important;
+        height: 1.3em !important;
+    }
+    
+    .nav-icon {
+        font-size: 16px !important;
+    }
+    
+    body, p {
+        font-size: 80% !important;
+    }
+    
+    .navbar-nav .dropdown-item,
+    .navbar .dropdown-item,
+    .dropdown-item,
+    .btn, button {
+        font-size: 80% !important;
+    }
+}
+
+/* Footer styling from template */
+footer {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    white-space: nowrap !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.nav-footer {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+    font-size: 1.1em !important;
+    text-align: center !important;
+    min-height: 3.5em !important;
+    color: hsl(0, 0%, 46%) !important;
+}
+
+.nav-footer a {
+    color: hsl(0, 0%, 46%) !important;
+}
+
+.nav-footer .nav-footer-left {
+    font-size: .825em !important;
+}
+
+.nav-footer .nav-footer-right {
+    font-size: .825em !important;
+}
+
+@media (min-width: 768px) {
+    .nav-footer {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        text-align: inherit !important;
+    }
+
+    .nav-footer-left, .nav-footer-right {
+        flex: 1 !important;
+    }
+
+    .nav-footer-left {
+        text-align: left !important;
+    }
+
+    .nav-footer-right {
+        text-align: right !important;
+    }
+}
+
+/* END NAVBAR STYLING - Your existing styles below */
+
+main.book-body {
+  margin-right: 0 !important;
+}
+
+/* Hide the main page title to avoid duplication with sidebar title */
+.book-body h1.title {
+  display: none !important;
+}
+
+/* Also hide any title headers on individual pages */
+#title-block-header {
+  display: none !important;
+}
+
+/* Sidebar title link styled like navbar brand - ONLY when it has text content */
+title > a:not(:empty) {
+  display: inline-block;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  /* Blue background for the title */
+  background-color: #1f4eb6 !important;
+  
+  /* Gradient text */
+  background: linear-gradient(
+    to right,
+    #ffffff 0%,
+    #d4af37 10%,
+    #ffffff 50%,
+    #d4af37 70%,
+    #ffffff 90%,
+    #d4af37 100%
+  ), #1f4eb6;
+  background-size: 100% 100%;
+  -webkit-background-clip: text, padding-box;
+  -webkit-text-fill-color: transparent;
+  background-clip: text, padding-box;
+  color: transparent !important;
+  position: relative;
+  overflow: visible;
+}
+
+/* Hide empty sidebar title links */
+.sidebar-title > a:empty {
+  display: none !important;
+}
+
+/* Hover effects - only for non-empty links */
+.sidebar-title > a:not(:empty):hover {
+  background-color: rgba(31, 78, 182, 0.8) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Active/Click effects - only for non-empty links */
+.sidebar-title > a:not(:empty).active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+  background-color: #1f4eb6 !important;
+}
+
+.sidebar-title > a.active::after {
+  background-color: #d4af37; !important;
+}
+
+/* Optional: underline animation version */
+.sidebar-title-alt {
+  display: inline-block;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 8px 12px;
+  margin-left: 0;
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  background-color: #1f4eb6;
+  border-radius: 6px;
+}
+
+.sidebar-title-alt::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #d4af37 !important;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.sidebar-title-alt:hover {
+  color: #d4af37; !important;
+  background-color: rgba(31, 78, 182, 0.8);
+}
+
+.sidebar-title-alt:hover::after {
+  width: 100%;
+}
+
+.sidebar-title-alt:active {
+  color: #d4af37; !important;
+  transform: scale(0.98);
+}
+
+.sidebar-title-alt.active::after {
+  width: 100%;
+}
+
+/* Sidebar backgrounds - NOW TRANSPARENT */
+.book-sidebar,
+.book-sidebar-wrapper,
+.sidebar {
+  background-color: transparent !important;
+}
+
+/* Chapters / links inside left sidebar - DARK TEXT for transparent background */
+.book-sidebar .nav-link,
+.book-sidebar .sidebar-item a {
+  color: #333333 !important;
+  font-weight: 600 !important;
+  font-size: 1.3rem !important;
+}
+
+/* Right-hand TOC sidebar - TRANSPARENT */
+#book-toc {
+  background-color: transparent !important;
+}
+
+/* TOC links - DARK TEXT for visibility */
+#book-toc a {
+  color: #333333 !important;
+}
+
+/* Sidebar link hover effects - keeping gold hover */
+.sidebar-item a,
+.sidebar-item a:visited {
+  color: #333333 !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 0.75rem !important; /* adds space between items */
+  display: block; /* ensures margin works as expected */
+}
+
+.sidebar-item a:hover {
+  color: #1f4eb6 !important;
+  text-decoration: none;
+}
+
+/* Active/current page link */
+.sidebar-item a.active {
+  color: #1f4eb6 !important;
+  font-weight: bold;
+}
+
+/* TOC links inside right sidebar - DARK text for visibility */
+#book-toc a,
+#book-toc a:visited {
+  color: #333333 !important;
+}
+
+#book-toc a:hover {
+  color: #1f4eb6 !important;
+}
+
+/* TOC title - DARK text */
+.sidebar .toc-actions h2, .sidebar .toc-actions .h2, .sidebar .quarto-code-links h2, .sidebar .quarto-code-links .h2, .sidebar .quarto-other-links h2, .sidebar .quarto-other-links .h2, .sidebar .quarto-alternate-notebooks h2, .sidebar .quarto-alternate-notebooks .h2, .sidebar .quarto-alternate-formats h2, .sidebar .quarto-alternate-formats .h2, .sidebar nav[role=doc-toc]>h2, .sidebar nav[role=doc-toc]>.h2 {
+  color: #333333 !important;
+  font-weight: bold !important;
+}
+
+/* TOC regular links - DARK text */
+.sidebar nav[role=doc-toc] ul>li>a,
+.sidebar nav[role=doc-toc] ul>li>ul>li>a {
+  color: #333333 !important;
+}
+
+/* TOC hover links - BLUE text */
+.sidebar nav[role=doc-toc] ul>li>a:hover,
+.sidebar nav[role=doc-toc] ul>li>ul>li>a:hover {
+  color: #1f4eb6 !important;
+}
+
+/* TOC active links - BLUE text with border */
+.sidebar nav[role=doc-toc] ul>li>a.active, 
+.sidebar nav[role=doc-toc] ul>li>ul>li>a.active {
+  border-left: 2px solid #1f4eb6;
+  color: #1f4eb6 !important;
+  font-weight: bold !important;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 250px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -125px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+.dt-button {
+  display: inline-block;
+  padding: 0.3em 0.6em;
+  border: 1px solid #999;
+  border-radius: 2px;
+  background-color: #e9e9e9;
+  color: black;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 0.9em;
+  line-height: 1.2;
+  cursor: default;
+  opacity: 0.6;
+}
+
+.selection-counter {
+  color: #1f4eb6;
+  font-weight: bold;
+  font-size: 80%;
+  margin-right: 0px;
+  padding: 5px 10px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Additional Quarto-specific styles to complement the template */
+
+/* Quarto book navigation styling - compatible with existing styles */
+.quarto-sidebar-left ul {
+    list-style: none;
+    padding: 0;
+}
+
+.quarto-sidebar-left li {
+    margin-bottom: 8px;
+}
+
+.quarto-sidebar-left a {
+    display: block;
+    padding: 8px 12px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.quarto-sidebar-left a:hover {
+    background-color: #f8f9fa;
+    color: #1f4eb6;
+}
+
+.quarto-sidebar-left a.active {
+    background-color: #1f4eb6;
+    color: white;
+}
+
+/* Quarto TOC styling - compatible with existing styles */
+.quarto-sidebar-toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.quarto-sidebar-toc li {
+    margin-bottom: 4px;
+}
+
+.quarto-sidebar-toc a {
+    display: block;
+    padding: 4px 8px;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9em;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+
+.quarto-sidebar-toc a:hover {
+    background-color: #f0f0f0;
+    color: #1f4eb6;
+}
+
+/* Code block styling */
+pre {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 16px;
+    overflow-x: auto;
+}
+
+code {
+    background-color: #f8f9fa;
+    color: #d63384;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+/* Table styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 16px 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Blockquote styling */
+blockquote {
+    border-left: 4px solid #1f4eb6;
+    background-color: #f8f9fa;
+    padding: 16px;
+    margin: 16px 0;
+    font-style: italic;
+}
+
+/* Alert/callout styling */
+.callout {
+    border: 1px solid #ddd;
+    border-left: 4px solid #1f4eb6;
+    background-color: #f8f9fa;
+    padding: 16px;
+    margin: 16px 0;
+    border-radius: 6px;
+}
+
+.callout-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #1f4eb6;
+}
+
+/* Figure and image styling */
+figure {
+    text-align: center;
+    margin: 20px 0;
+}
+
+figure img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+figcaption {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* Responsive adjustments for the book layout */
+@media (max-width: 992px) {
+    .quarto-sidebar-left {
+        width: 200px;
+    }
+    
+    .quarto-content {
+        margin-left: 200px;
+    }
+    
+    .quarto-content.has-toc {
+        margin-right: 180px;
+    }
+    
+    .quarto-sidebar-toc {
+        width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .quarto-sidebar-left {
+        width: 100%;
+        transform: translateX(-100%);
+        z-index: 1050;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+    
+    .quarto-content {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 15px;
+    }
+    
+    .quarto-sidebar-toc {
+        display: none;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .quarto-sidebar-left,
+    .quarto-sidebar-toc,
+    .nav-footer {
+        display: none !important;
+    }
+    
+    .quarto-content {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        padding-top: 0;
+        background-color: white;
+    }
+}
+
+* .nav-link {
+    color: white !important;
+    font-weight: bold !important;
+    font-size: 1.05rem !important; 
+    
+}
+
+* .nav-link:hover {
+    color: #d4af37 !important;
+}
+
+
+

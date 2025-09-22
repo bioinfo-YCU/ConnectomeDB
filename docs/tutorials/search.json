@@ -1,0 +1,182 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": " ConnectomeDB2025 ",
+    "section": "",
+    "text": "CDB2025 User Guide: Overview\nThis tutorial provides a step-by-step guide for exploring and utilizing the ConnectomeDB platform, designed for the exploration of manually reviewed high-quality ligand–receptor interactions across human and 13 additional model organisms. The database integrates our proprietary Ligand-Receptor pairs combined with annotations from Ensembl BioMart, UniProt, PubMed, and other public resources.\n\nKey features demonstrated in this tutorial include:\nFlexible multi-gene search: Query one or more genes to identify ligand–receptor pairs and their orthologs.\nCross-species ortholog mapping: Select your model organism to explore orthologous interactions across human and supported species.\nInteractive data exploration: Sort, and customize table views directly in the browser.\nBulk versioned data downloads: Access complete, date-stamped datasets for each species, ensuring reproducibility and historical reference.\nEvidence tracking: Link to supporting literature (PubMed) and functional annotations.\nThis tutorial is structured into self-contained modules so you can quickly locate the information you need—whether you are a new user looking for basic navigation help or an experienced researcher exploring advanced search and download features.\nTo learn more about the database, visit the ConnectomeDB documentation. Methods are described in detail in the Methods.\n\nNext: Ortholog Mapping Don’t know where to go next? Start here to learn how to select your model organism.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "ortholog_mapping.html",
+    "href": "ortholog_mapping.html",
+    "title": "CDB2025 User Guide: Ortholog Mapping",
+    "section": "",
+    "text": "CDB2025 User Guide: Ortholog Mapping",
+    "crumbs": [
+      "Ortholog Mapping"
+    ]
+  },
+  {
+    "objectID": "ortholog_mapping.html#purpose",
+    "href": "ortholog_mapping.html#purpose",
+    "title": "CDB2025 User Guide: Ortholog Mapping",
+    "section": "Purpose",
+    "text": "Purpose\nBefore exploring ligand–receptor interactions, you need to decide which species you want to use as your reference.\nOrtholog mapping ensures that gene names in the database are matched correctly across species, so you can search and interpret results using the organism of interest.\nThis is especially important because although majority are, not all LR pairs in this database are originally human.\nThe database includes interactions from multiple species, and each table includes Evidence column:\n\nDirect – the LR pair has experimental support in the listed species.\nInferred – the LR pair was inferred from an ortholog in another species.",
+    "crumbs": [
+      "Ortholog Mapping"
+    ]
+  },
+  {
+    "objectID": "ortholog_mapping.html#how-to-select-your-model-organism",
+    "href": "ortholog_mapping.html#how-to-select-your-model-organism",
+    "title": "CDB2025 User Guide: Ortholog Mapping",
+    "section": "How to select your model organism",
+    "text": "How to select your model organism\nTo select your model organism, follow these steps:\n\n\nGo to the Ligand-Receptor Browser on the navigation menu.\n\n\n\n\n\n\n\n\n\n\n\nChoose your target species from the drop-down menu.\n\nAvailable species include:\nHuman, Mouse, Chimpanzee, Macaque, Marmoset, Rat, Pig, Cow, Dog, Horse, Sheep (Rambouillet), Chicken, Frog, Zebrafish\n\n\n\n\n\n\n\n\n\n\n\n\nExplore the Pair-list view table of your choice.\n\nOnce selected, The {Species} LR Pair will use gene names mapped to your chosen organism along with their annotations.\n\n\n\n\n\n\n\n\n\n\nIf you hover over the middle of each column header, you can see a tooltip description of the column.\nIf you hover over the middle of each cell within the Ligand symbols, and Receptor symbols columns, you can see the official gene symbol and its aliases and previous names within parentheses.\nIf you want to make more rows visible, adjust from the default 10 to 25, 50, or 100 rows per page using the Show 15 Rows drop-down menu.\nIf you want to make more columns visible, adjust using the Display Columns drop-down menu.\nSome columns are links; Species Identifiers (i.e. HGNC, MGI, ZFIN, XEN, RGD, and XX ID) and AI summary links to external resources while Ligand-Receptor (LR) Pair Identifier (Interaction ID) links to the LR Pair Cards view.\n\nSee short clip showcasing the interactivity of the Pair-list view:\n\n\n\n\nVideo",
+    "crumbs": [
+      "Ortholog Mapping"
+    ]
+  },
+  {
+    "objectID": "ortholog_mapping.html#how-the-mapping-works",
+    "href": "ortholog_mapping.html#how-the-mapping-works",
+    "title": "CDB2025 User Guide: Ortholog Mapping",
+    "section": "How the mapping works",
+    "text": "How the mapping works\n\nOrtholog relationships are sourced from Ensembl BioMart, NCBI, HGNC Comparison of Orthology Predictions (HCOP) and species-specific databases (HGNC, MGI, RGD, ZFIN, XEN). Additional species-specific databases may be incorporated in the future to further validate orthologs. For this reason, some columns in the species-specific tables—such as “Ligand XX ID” and “Receptor XX ID”—are currently empty and represented by “-”.\nThe mapping preserves 1:1 orthologs where possible. If multiple orthologs exist, they are removed.\nGenes without orthologs are excluded from the results.",
+    "crumbs": [
+      "Ortholog Mapping"
+    ]
+  },
+  {
+    "objectID": "ortholog_mapping.html#tip",
+    "href": "ortholog_mapping.html#tip",
+    "title": "CDB2025 User Guide: Ortholog Mapping",
+    "section": "Tip",
+    "text": "Tip\nIf you’re working exclusively in human datasets, you can leave the setting as Human. If you’re in doubt, choose the organism that matches your raw data source.\n\nPrevious: Overview Get an overview of the ConnectomeDB platform tutorial.\nNext: Gene Search Look up genes in the pair list view.",
+    "crumbs": [
+      "Ortholog Mapping"
+    ]
+  },
+  {
+    "objectID": "gene_search.html",
+    "href": "gene_search.html",
+    "title": "CDB2025 User Guide: Gene Search",
+    "section": "",
+    "text": "CDB2025 User Guide: Gene Search",
+    "crumbs": [
+      "Gene Search"
+    ]
+  },
+  {
+    "objectID": "gene_search.html#purpose",
+    "href": "gene_search.html#purpose",
+    "title": "CDB2025 User Guide: Gene Search",
+    "section": "Purpose",
+    "text": "Purpose\nThe Gene Search feature in ConnectomeDB allows you to explore ligand–receptor interactions by querying specific genes. This tool is designed to help researchers quickly identify relevant interactions and their orthologs across different species, facilitating comparative studies and functional analyses. The Flexible multi-gene search allows querying one or more genes to identify ligand–receptor pairs and their orthologs.",
+    "crumbs": [
+      "Gene Search"
+    ]
+  },
+  {
+    "objectID": "gene_search.html#how-to-search-for-genes",
+    "href": "gene_search.html#how-to-search-for-genes",
+    "title": "CDB2025 User Guide: Gene Search",
+    "section": "How to search for genes",
+    "text": "How to search for genes\nTo search for specific genes and their associated ligand–receptor pairs, follow these steps:\n\n\nGo to the Ligand-Receptor Browser on the navigation menu and choose your target species from the drop-down menu. (See Ortholog Mapping for more details on how to select your model organism.)\nEnter gene symbols of interest in the search box at the top of the Pair-list view table. You can input one or more gene symbols (including official symbols, aliases, and old symbols), separated by commas. The search will return ligand–receptor pairs that match any of the specified genes.\n\n\n\n\n\n\n\n\n\n\n\nFor example, entering “calr,ERBB2” or “CALR, erbb2” will return all ligand–receptor pairs involving either CALR or ERBB2 The search bar is not case sensitive and will match gene symbols regardless of capitalization. In addition, Human gene symbols are appended to the other 13 species tables, so you can search for the ortholog human genes in any species table when available. You can also search using any aliases for the species of interest or its human ortholog.\n\n\nView the results: The Pair-list view table will display all ligand–receptor pairs that match the specified gene symbols. Each row represents a unique ligand–receptor interaction, with columns providing detailed information about the ligands, receptors, species, and evidence supporting the interaction.\nSort and customize the table: You can sort the results by clicking on the column headers, and customize the view by selecting which columns to display. This allows you to focus on the most relevant information for your research.\nDownload the results (optional): If you want to download the filtered results, you can do so directly by the following steps:\n\n\nClick on the Select All Filtered(XX) button to select all rows that match your search criteria. You can undo this action by clicking the Deselect All) button. If you do not want to select all and only want to download specific rows, you can select them manually by clicking the checkbox in the beginning of each row in the Select column. Use the information XX rows selected on the top right corner of the table to confirm how many rows you have selected. You can also confirm the rows selected at the bottom left corner of the table if there are more than 25 rows and is more convenient to look from bottom of the table. \nClick on either CSV or Excel button depending on your preferred format. Results will be downloaded as a CSV or Excel file containing the selected rows and their associated data. Only displayed columns at the time of download will be included in the downloaded file. If you wish to include additional columns, you can customize the view before downloading.\n\n\nSee the gif below for a demonstration of the search functionality:\n\n\n\n\nVideo\n\n\n\n\n\nPrevious: Ortholog Mapping Learn how to select your model organism.\nNext: LR Pair Card View Look up genes in the pair list view.",
+    "crumbs": [
+      "Gene Search"
+    ]
+  },
+  {
+    "objectID": "pair_cards.html",
+    "href": "pair_cards.html",
+    "title": "CDB2025 User Guide: LR Pair Card View",
+    "section": "",
+    "text": "CDB2025 User Guide: LR Pair Card View",
+    "crumbs": [
+      "LR Pair Card View"
+    ]
+  },
+  {
+    "objectID": "pair_cards.html#purpose",
+    "href": "pair_cards.html#purpose",
+    "title": "CDB2025 User Guide: LR Pair Card View",
+    "section": "Purpose",
+    "text": "Purpose\nThe Ligand-Receptor (LR) Pair Card View provides detailed information about specific ligand–receptor pairs, including their interactions, species, and evidence supporting the interaction. This view is designed to help researchers quickly access comprehensive data on individual ligand–receptor pairs.",
+    "crumbs": [
+      "LR Pair Card View"
+    ]
+  },
+  {
+    "objectID": "pair_cards.html#how-to-view-a-ligandreceptor-pair-card",
+    "href": "pair_cards.html#how-to-view-a-ligandreceptor-pair-card",
+    "title": "CDB2025 User Guide: LR Pair Card View",
+    "section": "How to view a ligand–receptor pair card",
+    "text": "How to view a ligand–receptor pair card\nTo view the details of a specific ligand–receptor pair, follow these steps:\n\n\nGo to the Ligand-Receptor Browser on the navigation menu and choose your target species from the drop-down menu. (See Ortholog Mapping for more details on how to select your model organism.)\nClick on the Interaction ID of the ligand–receptor pair you are interested in. This will take you to the LR Pair Card View for that specific interaction. The Interaction ID is a unique identifier for each ligand–receptor pair, and it is displayed as a link in the Pair-list view table.\nExplore the LR Pair Card: The LR Pair Card provides detailed information about the ligand–receptor interaction from top to bottom:\n\nInteraction ID: Ligand and Receptor Symbols: The unique interaction ID of the LR Pair with the official gene symbols for the ligand and receptor involved in the interaction. See (A) in the image below.\n\nLR Pair Species: The species in which the interaction has been validated or inferred. See (B) in the image below.\n\nLR Pair PMID Evidence: The PubMed ID(s) of the publications with their Abstracts and specific species for the ligand and receptor in that study. See (C) in the image below.\n\nGene-based annotations: A ligand tab and receptor tab containing gene-based annotations. See (D) in the image below. This includes:\nBasic Information\n\n\nName: The official gene name for the ligand/receptor.\n\nOther Symbols: Alternative names or symbols for the ligand/receptor.\n\nLocation: Predicted subcellular location of the ligand/receptor.\n\nHGNC Gene Symbol Report: Official gene symbol HGNC report link for the ligand/receptor.\n\nGeneCards: Link to the GeneCards database for the ligand/receptor. For a mouse card, this is replaced by MGI which links to the Mouse Genome Informatics (MGI) database.\n\nHGNC Gene Group: HGNC gene group information for the ligand/receptor. For a mouse card, this is replaced by NCBI which links to the NCBI Gene database.\nFunctional Annotations\n\nGene Ontologies: Links to the Gene Ontology (GO) terms associated with the ligand/receptor, providing insights into their biological processes, molecular functions, and cellular components.\nExpression Profiles: Links to expression profiles of the ligand/receptor in various tissues or cell types, helping to understand their functional roles.\n\nDisease Annonations: Links to disease annotations associated with the ligand/receptor, providing insights into their potential roles in various diseases. It aksi includes an AI summary (LLM) link, which opens Perplexity and answers: “Which diseases is {ligand/receptor} implicated in?”.\nInteractions with other Receptors/Ligands\n\nlist of other receptors/ligands that interact with the ligand/receptor in question, along with their interaction cards.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrevious: Gene Search Look up genes in the pair list view.\nNext: Download Data Learn how to download data from the ConnectomeDB for further analysis.",
+    "crumbs": [
+      "LR Pair Card View"
+    ]
+  },
+  {
+    "objectID": "download_data.html",
+    "href": "download_data.html",
+    "title": "CDB2025 User Guide: Download Data",
+    "section": "",
+    "text": "CDB2025 User Guide: Download Data",
+    "crumbs": [
+      "Download Data"
+    ]
+  },
+  {
+    "objectID": "download_data.html#purpose",
+    "href": "download_data.html#purpose",
+    "title": "CDB2025 User Guide: Download Data",
+    "section": "Purpose",
+    "text": "Purpose\nThe ConnectomeDB provides a comprehensive collection of ligand–receptor interactions, which can be downloaded for offline analysis or integration into your own research workflows. This page guides you through the process of downloading data from the ConnectomeDB.\n\nThe Downloads provides access to bulk downloads of the ligand–receptor interaction data, organized by species and release version. It is designed to be user-friendly, allowing you to quickly find and access the data you need.",
+    "crumbs": [
+      "Download Data"
+    ]
+  },
+  {
+    "objectID": "download_data.html#how-to-download-data",
+    "href": "download_data.html#how-to-download-data",
+    "title": "CDB2025 User Guide: Download Data",
+    "section": "How to download data",
+    "text": "How to download data\nTo download data from the ConnectomeDB, follow these steps:\n\n\nVisit the Download Page: Go to the Downloads page on the ConnectomeDB website.\n\n\n\n\n\n\n\n\n\n\n\n\nChoose the Release Version: Select the specific release version of the data you wish to download. The ConnectomeDB provides versioned datasets, allowing you to access historical data or the latest updates as needed.\n\nEach release is date-stamped, ensuring reproducibility and clarity on the data’s temporal context.\nThe latest release is labeled as “Current-Release” for easy identification.\n\nSelect the Data Format: Choose the format you prefer for downloading the data. The ConnectomeDB offers data in various formats, including CSV, Excel (XLSX) and JSON, to accommodate different analysis needs.\n\n\n\n\n\n\n\n\n\n\n\nSelect the Species: Choose the species for which you want to download the ligand–receptor interaction data. The ConnectomeDB supports multiple species, including human and 13 additional model organisms.\n\n\n\n\n\n\n\n\n\n\n\nDownload the Data: Click the Filename to save the data file to your local machine. The file will contain all ligand–receptor interactions for the selected species and release version, along with relevant annotations.\n\n\n\nIf you prefer one table/file that includes all species, you can download the all_species file in your preferred format (CSV, Excel(XLSX), or JSON). It contains 15 columns including a Species column that identifies the species for each ligand–receptor pair. The individual IDs— Ligand {HGNC/MGI/RGD/XEN/ZFIN/XX} ID —are combined into the Ligand Species ID column, and Receptor {HGNC/MGI/RGD/XEN/ZFIN/XX} ID are combined into the Receptor Species ID column. See (A) in the image below. \nFor bulk downloads, you can download a zipped folder, all_species_sep_files.zip, which contains the data tables for all 14 species in your chosen format (CSV, Excel/XLSX, or JSON). Note that this does not include the all_speciesfile. (B) in the image below. \n\n\nDownload the README: The README.txt file provides important information about the dataset, including column descriptions, data sources, and any relevant notes. It is recommended to download and review this file to better understand the structure and content of the data you are working with. See (C) in the image below.",
+    "crumbs": [
+      "Download Data"
+    ]
+  },
+  {
+    "objectID": "download_data.html#how-to-download-filtered-data",
+    "href": "download_data.html#how-to-download-filtered-data",
+    "title": "CDB2025 User Guide: Download Data",
+    "section": "How to download filtered data",
+    "text": "How to download filtered data\nIf you want to download a subset of the data based on selected rows, see Gene Search for instructions on how to filter the data by specific genes or ligand–receptor pairs. Once you have applied your filters, you can download the filtered results directly from the Pair-list view.\n\nPrevious: LR Pair Card View Look up genes in the pair list view.\nNext: User Submission Learn how to submit your own ligand–receptor pairs to the database.",
+    "crumbs": [
+      "Download Data"
+    ]
+  },
+  {
+    "objectID": "user_submission.html",
+    "href": "user_submission.html",
+    "title": "CDB2025 User Guide: User Submission",
+    "section": "",
+    "text": "CDB2025 User Guide: User Submission\nWe encourage you to contribute to the ConnectomeDB by submitting your own ligand–receptor interactions. This will help us expand the database and provide more comprehensive resources for researchers.",
+    "crumbs": [
+      "User Submission"
+    ]
+  },
+  {
+    "objectID": "user_submission.html#purpose",
+    "href": "user_submission.html#purpose",
+    "title": "CDB2025 User Guide: User Submission",
+    "section": "Purpose",
+    "text": "Purpose\nThis page is for you to submit your own ligand–receptor interactions, which will be reviewed and potentially added to the database. (to be updated soon)\nFor now, please fill out the Inquiry Form or email us at help@connectomedb.org,alistair.forrest@perkins.uwa.edu.au\n\nPrevious: Download Data Learn how to download data from the ConnectomeDB for further analysis.",
+    "crumbs": [
+      "User Submission"
+    ]
+  }
+]
