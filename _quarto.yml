@@ -19,6 +19,7 @@ resources:
   - HTML
   - JSON
   - downloads
+  - docs/tutorials
   
 website:
   title: "ConnectomeDB2025"
@@ -41,9 +42,8 @@ website:
            text: 'Introduction'
          - href: docs/methods.qmd
            text: 'Methods'
-         - href: "https://connectomedb.org/docs/tutorials/"
+         - href: docs/tutorials/
            text: 'Tutorials'
-           target: _blank
          - href: docs/updates.qmd
            text: 'Updates'
          - href: docs/help.qmd

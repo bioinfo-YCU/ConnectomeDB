@@ -1,5 +1,5 @@
 ---
-title: "Dog \u2013 *Canis lupus familiaris* (2025-09-19) </span>"
+title: "Dog \u2013 *Canis lupus familiaris* (2025-09-22) </span>"
 execute:
   echo: false
 format:

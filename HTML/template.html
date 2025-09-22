@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{GENE_NAME}} - ConnectomeDB2025</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <!-- Iconify for additional icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iconify/3.1.1/iconify.min.js"></script>
+    <!-- Font Awesome (keeping your existing icons) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- HTML2PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-top: 70px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* Custom navbar styles to match your theme */
+        .navbar {
+            background-color: #1f4eb6 !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar.navbar-expand-lg[data-bs-theme="dark"] {
+            padding-top: 0px; /* Example: increase top padding */
+            padding-bottom: 0px; /* Example: increase bottom padding */
+            background-color: #333; /* Example: change background color*/
+            
+          /* Add any other CSS properties you want to change */
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: bold !important;
+            font-size: 18px !important;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #d4af37 !important;
+        }
+
+        .navbar-brand-container.mx-auto {
+            padding-top: 8px;
+        }
+
+        .dropdown-menu {
+            background-color: white;
+            border: 0px solid #d4af37;
+        }
+
+        .dropdown-item {
+            color: black !important;
+        }
+
+        .dropdown-item:hover {
+            background-color: #d4af37;
+            color: white !important;
+        }
+        .navbar .dropdown-item {
+            padding: .4rem .5rem;
+        }
+
+        .dropdown-menu.show {
+          margin-top: 0px !important;
+          padding-top: 0px !important;
+          margin-bottom: 0px !important;
+          padding-bottom: 0px !important;
+        }
+
+        /* Download button styling */
+        .download-btn {
+            background-color: #d4af37;
+            color: black;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 15px;
+            transition: background 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background-color: #C0C0C0;
+            color: black;
+        }
+
+        /* Main content area */
+        .main-content {
+            margin: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.8em;
+            color: #1f4eb6;
+            margin-top: 10px;
+            margin-bottom: 0px;
+        }
+
+        h2 {
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 5px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 1.3em;
+            width: 100%;
+            background-color: #1f4eb6;
+            color: white;
+            margin-top: 0px;
+            margin-bottom: 5px;
+            padding: 5px;
+        }
+
+        /* Tab and Content Styles */
+        .tab {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .tab button {
+            padding-top: 6px !important;
+            padding-bottom: 6px !important;
+            padding-right: 10px !important; 
+            padding-left: 10px !important;
+            margin: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border: 1px solid black;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            flex-basis: calc(5% - 5px);
+            box-sizing: border-box;
+        }
+
+        .tab button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .tab button.active {
+            background-color: #d4af37;
+            color: black;
+            border-color: #1f4eb6;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            margin-right: 10px;
+            margin-left: 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        .tabcontent h2 {
+            line-height: 1.2;
+            text-align: left !important;
+        }
+
+        .tabcontent p {
+            font-size: 1em;
+            line-height: 1.8;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Emphasize Title and Abstract */
+        .title, .abstract {
+            background-color: #ecf0f1;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #1f4eb6;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract {
+            border-left: 5px solid #e74c3c;
+        }
+
+        .ligand-plot, .receptor-plot {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            overflow: visible;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Styles for the main collapsible section */
+        .card-full-row {
+            display: block;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
+        .card-full-row .toggle-header {
+            display: block;
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            user-select: none;
+            position: relative;
+        }
+
+        .card-full-row .toggle-header::before {
+            content: "▶";
+            display: inline-block;
+            transition: transform 0.2s ease;
+            margin-right: 8px;
+        }
+
+        .card-full-row.expanded .toggle-header::before {
+            transform: rotate(90deg);
+        }
+        
+        .card-content-flex-container {
+            display: none;
+            flex-wrap: wrap; 
+            gap: 20px;
+            padding: 20px;
+            justify-content: space-between; 
+            align-items: flex-start; 
+        }
+
+        .card-full-row.expanded .card-content-flex-container {
+            display: flex;
+        }
+        
+        .card.fifty-percent-width {
+            flex: 1 1 calc(50% - 10px); 
+            min-width: 300px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card-title { 
+            font-size: 1.2em;
+            color: white;
+            margin-top: 0;
+            margin-bottom: 10px;
+            margin-left: 0px;
+            text-align: left;
+            padding: 10px;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3px;
+            margin: 5px auto;
+        }
+
+        .card {
+            width: 49.8%; 
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        /* Custom toggle styling for cards */
+        .card .toggle-header {
+            display: flex;
+            align-items: center;
+            padding: 4px;
+            background-color: #f4f4f4;
+            border-radius: 6px;
+            cursor: pointer;
+            user-select: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+        .card .toggle-header::before {
+            content: "▶";
+            display: inline-block;
+            transition: transform 0.2s ease;
+            margin-right: 4px;
+        }
+
+        .card.expanded .toggle-header::before {
+            transform: rotate(90deg);
+        }
+
+        .card .card-content {
+            display: none;
+            padding: 8px;
+        }
+
+        .card.expanded .card-content {
+            display: block;
+        }
+
+        .card-full-row .column {
+            flex: 1;
+            margin: 0 10px;
+            font-size: 16px;
+        }
+
+        .card-full-row .column:first-child {
+            margin-left: 0;
+        }
+
+        .card-full-row .column:last-child {
+            margin-right: 0;
+        }
+
+        .card-full-row h2 {
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .column strong {
+            font-weight: bold;
+        }
+
+        .main-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border: 1px solid #ccc;
+            padding: 1rem;
+            background-color: #f9f9f9;
+        }
+
+        .sub-card {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .column-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+
+
+        .column-center {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;   
+            margin: 0;    
+        }
+
+        .metadata-title {
+            padding-left: 12px;
+        }
+
+        .ptag {
+            background-color: #ffc107;
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          white-space: nowrap; /* Prevent line breaks */
+          padding: 0.5rem 1rem; /* Adjust spacing */
+        }
+        .nav-footer {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 1rem;
+          font-size: 1.1em;
+          text-align: center;
+        }
+        
+        .nav-footer a {
+            color: hsl(0, 0%, 46%);
+        }
+        .nav-footer .nav-footer-left {
+            font-size: .825em;
+        }
+       .nav-footer .nav-footer-right {
+            font-size: .825em;
+        }
+        footer.footer div.nav-footer p:last-child {
+            margin-bottom: 0;
+        }
+        footer.footer div.nav-footer p:first-child {
+            margin-top: 0;
+        }
+
+        .pdf-only {
+            display: block;
+        }
+
+        .abstract-wrapper {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-top: 8px;
+            margin-bottom: 10px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            padding-left: 10px;
+            padding-right: 10px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        .abstract-wrapper.expanded {
+            max-height: none;
+        }
+
+        .abstract-content {
+            margin-top: 0px
+            padding: 0;
+        }
+
+        .navigation-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .nav-left,
+        .nav-right {
+            flex: 1;
+        }
+        
+        .nav-left {
+            text-align: left;
+        }
+        
+        .nav-right {
+            text-align: right;
+        }
+        
+
+        .nav-footer {
+            min-height: 3.5em;
+            color: hsl(0, 0%, 46%);
+        }
+        .navigation-footer:has(.nav-left):not(:has(.nav-right)) .nav-left {
+            text-align: left;
+        }
+        
+        .navigation-footer:has(.nav-right):not(:has(.nav-left)) .nav-right {
+            text-align: right;
+        }
+        @media (min-width: 768px) {
+          .nav-footer {
+            flex-direction: row;
+            justify-content: space-between;
+            text-align: inherit;
+          }
+        
+          .nav-footer-left, .nav-footer-right {
+            flex: 1;
+          }
+        
+          .nav-footer-left {
+            text-align: left;
+          }
+        
+          .nav-footer-right {
+            text-align: right;
+          }
+        }
+
+        /* NEW STYLES FOR LIGAND-RECEPTOR TABS */
+        .lr-tab-container {
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+
+        }
+
+        .lr-tabs {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .lr-tab-button {
+            flex: 1;
+            padding: 5px 8px;
+            background-color: #f9f9f9;
+            border: 1px solid #1f4eb6;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .lr-tab-button:hover {
+            background-color: #ecf0f1;
+        }
+
+        .lr-tab-button.active {
+            background-color: #1f4eb6;
+            color: white;
+        }
+
+        .lr-tab-content {
+            display: none;
+            background-color: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        .lr-tab-content.active {
+            display: block;
+        }
+
+        .lr-info-card {
+            display: flex;
+            flex-wrap: wrap; /* allows wrapping on smaller screens */
+            background-color: white;
+            padding: 10px;
+            padding-bottom: 0px !important;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .lr-info-card h3 {
+            background-color: #1f4eb6;
+            color: white;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+        .lr-info-columns {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;              
+            gap: 5px;
+            align-items: flex-start;
+        }
+
+        .lr-info-columns .column-left {
+            flex: 1 1 48%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 250px;
+        }
+
+        .lr-info-item {
+            margin-bottom: 0px;
+            padding: 0px 0;
+            white-space: normal !important;
+            overflow-wrap: break-word !important;
+            word-break: break-word !important;
+            width: 100%;
+        }
+
+        .lr-info-item strong {
+            display: inline-block;
+            max-width: 100%;
+            font-weight: 600;
+            margin-bottom: 0px;
+            white-space: normal !important;
+            word-break: break-word !important;
+        }
+
+        .lr-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .lr-info-item strong {
+            font-weight: bold;
+        }
+
+        .lr-functional-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+         .lr-functional-header {
+            background-color: #f4f4f4;
+            padding: 8px 12px;
+            margin: 0;
+            border-radius: 8px 8px 0 0; /* Keep top rounded */
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+
+        .lr-functional-header::before {
+            content: "▶";
+            display: inline-block;
+            transition: transform 0.2s ease;
+            margin-right: 8px;
+        }
+
+        .lr-functional-card.expanded .lr-functional-header::before {
+            transform: rotate(90deg);
+        }
+
+        .lr-functional-content {
+            display: none;
+            padding: 10px;
+        }
+
+        .lr-functional-content .lr-functional-columns {
+            display: flex;           /* Use flexbox for the columns */
+            gap: 5px;               /* Space between columns */
+            flex-wrap: wrap;       
+            align-items: flex-start; /* Align items to the top */
+            width: 100%;             /* Make sure the columns take up the full width */
+        }
+        
+        .lr-functional-content .lr-functional-columns .column-left {
+            flex: 1 1 45%;        /* Each column takes 48% of the width */
+            min-width: 250px;     /* Prevent columns from becoming too small */
+            display: flex;        /* Make sure it's a flex container */
+            flex-direction: row;  /* Align content in a single row */
+            align-items: flex-start;
+            gap: 10px;            /* Space between the items inside each column */
+        }
+
+        .lr-functional-card.expanded .lr-functional-content {
+            display: block;
+        }
+
+        .lr-interactions-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .lr-interactions-header {
+            background-color: #f4f4f4;
+            padding: 10px 15px;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            user-select: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            position: relative;
+        }
+
+        .lr-interactions-header::before {
+            content: "▶";
+            display: inline-block;
+            transition: transform 0.2s ease;
+            margin-right: 8px;
+        }
+
+        .lr-interactions-card.expanded .lr-interactions-header::before {
+            transform: rotate(90deg);
+        }
+
+        .lr-interactions-content {
+            display: none;
+            padding: 10px;
+        }
+
+        .lr-interactions-card.expanded .lr-interactions-content {
+            display: block;
+        }
+
+        .nav-icon {
+                  font-size: 20px;
+        }
+        .navbar-brand {
+              display: inline-block;
+              font-size: 1.45rem;
+              font-weight: bold;
+              padding: 0.5rem 1rem;
+              border-radius: 6px;
+              transition: all 0.3s ease;
+              cursor: pointer;
+            
+              /* Gradient text */
+              background: linear-gradient(
+                to right,
+                #ffffff 0%,
+                #d4af37 10%,
+                #ffffff 50%,
+                #d4af37 70%,
+                #ffffff 90%,
+                #d4af37 100%
+              );
+              position: relative;
+              overflow: hidden;
+              background-size: 100% 100%;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+              color: transparent !important; /* Force override */
+            }
+
+            
+            .navbar-brand:hover {
+                color: #d4af37;
+                background-color: rgba(255, 255, 255, 0.1);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+            
+            .navbar-brand.active {
+                transform: translateY(0) !important;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+                color: #d4af37 !important;
+                background-color: rgba(212, 175, 55, 0.1) !important;
+            }
+            .navbar-brand.active::after {
+                background-color: #d4af37;
+            }
+        
+            .navbar-brand:hover::before {
+                left: 100%;
+            }
+            
+            .navbar-brand-alt {
+                display: inline-block;
+                color: #fff;
+                text-decoration: none;
+                font-size: 1.5rem;
+                font-weight: bold;
+                padding: 0.5rem 1rem;
+                margin-left: 2rem;
+                position: relative;
+                transition: color 0.3s ease;
+                cursor: pointer;
+            }
+            .navbar-brand-alt::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background-color: #d4af37 !important;
+                transition: all 0.3s ease;
+                transform: translateX(-50%);
+            }
+
+            .navbar-brand-alt:hover {
+                color: #d4af37;
+            }
+            .navbar-brand-alt:hover::after {
+                width: 100%;
+            }
+            .navbar-brand-alt:active {
+                color: #d4af37;
+                transform: scale(0.98);
+            }
+            .navbar-brand-alt.active::after {
+                width: 100%;
+            }
+            .navbar-toggler {
+                color: #fff;
+                border: none !important;
+                outline: none !important;
+                box-shadow: none !important;
+                padding-left: 8px;
+                padding-right: 8px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+           .navbar-container {
+                width: 100%;
+                padding-left: 25px;
+                padding-right: 5px;
+             }
+            
+            .navbar-toggler:focus {
+                border: none !important;
+                outline: none !important;
+                box-shadow: none !important;
+            }
+            .navbar-toggler:active,
+            .navbar-toggler[aria-expanded="true"] {
+                border: 1px solid rgba(255, 255, 255, 0.3) !important;
+                box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25) !important;
+            }
+
+        /* Mobile-specific styles */
+        @media screen and (max-width: 768px) {
+            .navbar .nav-link#nav-menu-bi-github .bi-github {
+                padding-left: 10px !important;
+            }
+            .lr-tabs {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+
+            .menu-text {
+                padding-left: 10px;
+            }
+                    
+            .lr-tab-button {
+                flex: 1 1 50%;
+                max-width: 50%;
+                box-sizing: border-box;
+                white-space: wrap;
+                text-align: center;
+            }
+            
+            .lr-tab-button:first-child {
+                border-radius: 8px 8px 0 0;
+            }
+            
+            .lr-tab-button:last-child {
+                border-bottom: none;
+                border-radius: 8px 8px 0 0;
+            }
+            
+            .lr-tab-content {
+                border-radius: 8px;
+                margin-top: 10px;
+            }
+            
+            .card-container {
+                flex-direction: row !important;
+                flex-wrap: wrap !important;
+                overflow-x: auto;
+                gap: 10px;
+                padding: 10px;
+                align-items: stretch;
+            }
+            
+            .card-container > * {
+                flex: 0 0 auto;
+                min-width: 280px;
+                max-width: 320px;
+            }
+            
+            .clickable-icon {
+                color: #e67e22; 
+                margin-left: 8px;
+                font-size: 0.8em; 
+                vertical-align: middle; 
+                transition: color 0.3s ease;
+            }
+
+            .navbar-toggler-icon {
+                 width: 1.3em !important;
+                 height: 1.3em !important;
+            }
+            
+            @media screen and (max-width: 480px) {
+                .navbar-brand {
+                    padding-bottom: 0px !important;
+                }
+                .navbar-toggler-icon {
+                     padding-top: 41px !important;
+                     width: 1.3em !important;
+                     height: 1.3em !important;
+                }
+                .nav-icon {
+                    font-size: 16px;
+                }
+                    body, p {
+                        font-size: 80% !important;
+                    }
+                        
+    
+              .navbar-nav .dropdown-item,
+              .navbar .dropdown-item,
+              .dropdown-item,
+              .btn, button {
+                            font-size: 80% !important;
+                        }
+            
+              .card-container {
+                    padding: 5px;
+                    gap: 8px;
+                }
+    
+              .lr-functional-columns {
+                     display: flex;
+                     flex-direction: column;
+                     gap: 8px;
+                    }
+                
+              .column-left {
+                     width: 100% !important;
+                    }
+                    
+              .card-container > * {
+                    min-width: 250px;
+                    max-width: 280px;
+                    }
+                    
+            .metadata-title {
+                    padding-left: 8px;
+                    }
+                    
+            .ptag {
+                    padding: 3px 8px;
+                    font-size: 0.9em;
+                    }
+                    
+            footer {
+                    flex-direction: column;
+                    gap: 0px;
+                    text-align: center;
+                    }
+                    
+            .navigation-footer {
+                    flex-direction: column;
+                    gap: 0px;
+            }
+                    
+            .nav-left,
+            .nav-right {
+                    text-align: center;
+                    }
+                }
+            .navbar-brand-container.mx-auto {
+                   padding-top: 2px !important;
+                   padding-bottom: 0px !important;
+            }
+        }
+    </style>
+
+    <script>
+        function adjustTabStyle() {
+            var tabCount = document.querySelectorAll('.tab button').length;
+            var tabContainer = document.querySelector('.tab');
+
+            if (tabCount > 10) {
+                tabContainer.classList.add('small-tabs');
+            }
+        }
+
+        function openTab(evt, tabId) {
+            document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+            document.querySelectorAll(".tablinks").forEach(link => link.classList.remove("active"));
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        // NEW FUNCTION FOR LIGAND-RECEPTOR TABS
+        function openLRTab(evt, tabId) {
+            // Hide all tab contents
+            document.querySelectorAll(".lr-tab-content").forEach(tab => {
+                tab.classList.remove("active");
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll(".lr-tab-button").forEach(button => {
+                button.classList.remove("active");
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.add("active");
+            
+            // Add active class to clicked button
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Cross-browser compatible toggle function
+        function toggleCard(element) {
+            const card = element.closest('.card') || element.closest('.card-full-row') || 
+                         element.closest('.lr-functional-card') || element.closest('.lr-interactions-card');
+            if (card) {
+                card.classList.toggle('expanded');
+            }
+        }
+
+        function downloadHTML() {
+            const blob = new Blob(
+                [document.documentElement.outerHTML],
+                { type: 'text/html' }
+            );
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            let value1 = "{{ value1 }}".trim();
+            let value2 = "{{ value2 }}".trim();
+            a.download = `${value1} — ${value2}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        window.onload = function() {
+            adjustTabStyle();
+            
+            // Initialize toggle functionality for all cards
+            document.querySelectorAll('.toggle-header, .lr-functional-header, .lr-interactions-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    toggleCard(this);
+                });
+            });
+            
+            // Initialize the first Ligand-Receptor tab as active
+            const firstLRTab = document.querySelector('.lr-tab-button');
+            if (firstLRTab) {
+                firstLRTab.classList.add('active');
+                document.getElementById('ligandTab').classList.add('active');
+            }
+        };
+    </script>
+<meta property="og:title" content="– ConnectomeDB2025">
+<meta property="og:image" content="images/data1.png">
+<meta property="og:site_name" content="ConnectomeDB2025">
+<meta property="og:image:alt" content="Image 1">
+</head>
+<body>
+    <!-- New Bootstrap Navbar -->
+    <header id="quarto-header" class="headroom fixed-top">
+  <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+    <div class="navbar-container container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-brand-container mx-auto">
+        <a class="navbar-brand" href={{site}}>
+          <span class="navbar-title">ConnectomeDB2025</span>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav navbar-nav-scroll me-auto">
+          <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" id="nav-menu-documentation" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="menu-text">Documentation</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="nav-menu-documentation">
+              <li>
+                 <a class="dropdown-item" href="{{site}}docs/citeus.html">
+                  <span class="dropdown-text">Cite us</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}docs/policy.html">
+                  <span class="dropdown-text">Terms & Conditions</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}docs/about.html">
+                  <span class="dropdown-text">Introduction</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}docs/methods.html">
+                  <span class="dropdown-text">Methods</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}docs/tutorials/" target="_blank" rel="noopener noreferrer">
+                  <span class="dropdown-text">Tutorials</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}docs/updates.html">
+                  <span class="dropdown-text">Updates</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}docs/help.html">
+                  <span class="dropdown-text">Help</span></a>
+              </li>
+            </ul>
+          </li> 
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ligand-receptor-browser" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="menu-text">Ligand-Receptor Browser</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="nav-menu-ligand-receptor-browser">
+              <li>
+                <a class="dropdown-item" href="{{site}}database/human.html">
+                  <span class="dropdown-text"><strong>Human LR Pairs</strong></span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}database/mouseOrth.html">
+                  <span class="dropdown-text"><strong>Mouse LR Pairs</strong></span></a>
+              </li>
+              <a class="dropdown-item" href="{{site}}database/other/chimpOrth.html">
+                <span class="dropdown-text">Chimp LR Pairs</span></a>
+              <li>
+                <a class="dropdown-item" href="{{site}}database/other/macaqueOrth.html">
+                  <span class="dropdown-text">Macaque LR Pairs</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}database/other/marmosetOrth.html">
+                  <span class="dropdown-text">Marmoset LR Pairs</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}database/other/ratOrth.html">
+                  <span class="dropdown-text">Rat LR Pairs</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}database/other/pigOrth.html">
+                  <span class="dropdown-text">Pig LR Pairs</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}database/other/cowOrth.html">
+                  <span class="dropdown-text">Cow LR Pairs</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}database/other/dogOrth.html">
+                  <span class="dropdown-text">Dog LR Pairs</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}database/other/horseOrth.html">
+                  <span class="dropdown-text">Horse LR Pairs</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}database/other/sheepOrth.html">
+                  <span class="dropdown-text">Sheep LR Pairs</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}database/other/chickenOrth.html">
+                  <span class="dropdown-text">Chicken LR Pairs</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}database/other/frogOrth.html">
+                  <span class="dropdown-text">Frog LR Pairs</span></a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{site}}database/other/zebrafishOrth.html">
+                  <span class="dropdown-text">Zebrafish LR Pairs</span></a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item"> <a class="nav-link" href="{{site}}downloads.html"><span class="menu-text">Downloads</span></a>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-scroll ms-auto">
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="https://connectomedb.org/docs/about.html#cite-us" title="Citation information">
+              <span class="menu-text">
+                <iconify-icon class="nav-icon" role="img" inline icon="mdi:information"></iconify-icon>
+              </span>
+            </a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="mailto:&#104;&#101;&#108;&#112;&#64;&#99;&#111;&#110;&#110;&#101;&#99;&#116;&#111;&#109;&#101;&#100;&#98;&#46;&#111;&#114;&#103;,&#97;&#108;&#105;&#115;&#116;&#97;&#105;&#114;&#46;&#102;&#111;&#114;&#114;&#101;&#115;&#116;&#64;&#112;&#101;&#114;&#107;&#105;&#110;&#115;&#46;&#117;&#119;&#97;&#46;&#101;&#100;&#117;&#46;&#97;&#117;" title="Click to email directly">
+              <span class="menu-text">
+                <iconify-icon class="nav-icon" role="img" inline icon="mdi:email"></iconify-icon>
+              </span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-github" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-github" role="img"></i>
+              <span class="menu-text"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-bi-github">
+              <li><a class="dropdown-item" href="https://github.com/bioinfo-YCU/ConnectomeDB"><span class="dropdown-text">Source Code (upon publication)</span></a></li>
+              <li><a class="dropdown-item" href="https://github.com/bioinfo-YCU/ConnectomeDB"><span class="dropdown-text">Report a Bug</span></a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+    
+
+    <footer class="footer">
+      <div class="nav-footer">
+        <div class="nav-footer-left">
+    <p>©2025 <a href="https://www-user.yokohama-cu.ac.jp/~bioinfo/hp/" target="_blank">YCU Bioinformatics</a> | <a href="https://perkins.org.au/research/labs/cancer-program/systems-biology-and-genomics-overview/" target="_blank">Perkins Systems Biology &amp; Genomics</a></p>
+    </div>   
+        <div style="margin-top: 0.5em;"></div>
+        <div class="nav-footer-right">
+    <p><a href="{{site}}docs/policy.html">Terms &amp; Conditions</a></p>
+    </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+                            
