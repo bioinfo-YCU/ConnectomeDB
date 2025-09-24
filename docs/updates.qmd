@@ -1,5 +1,6 @@
 ---
 title: "{{< fa refresh >}} Resource Updates"
+header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
 ---
 
 ---
