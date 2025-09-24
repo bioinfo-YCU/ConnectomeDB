@@ -4,7 +4,7 @@ body {
     font-family: "Roboto Sans", sans-serif;
     line-height: 1.6 !important;
     color: #333 !important;
-    background-color: #f4f4f4 !important;
+    background-color: #ffffff !important;
 }
 
 /* OVERRIDE QUARTO NAVBAR - Must be very specific */
@@ -79,6 +79,8 @@ body .navbar[data-bs-theme="dark"] {
     color: white !important;
     background-color: #d4af37 !important; /* gold background on hover */
 }
+
+
 
 
 /* Submenu / nav link hover and active highlighting */
