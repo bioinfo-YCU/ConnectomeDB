@@ -1,5 +1,5 @@
 ---
-title: "Sheep \u2013 *Ovis aries rambouillet* </span>"
+title: "Sheep \u2013 *Ovis aries* </span>"
 execute:
   echo: false
 format:
