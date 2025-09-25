@@ -10,15 +10,15 @@ header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
 
 ### **Ligand-Receptor Interaction Modelling**
 
-**ConnectomeDB models ligand–receptor interactions involving peptide ligands (non-peptide ligands are excluded). All ligand–receptor pairs are treated as simplex interactions with a direction from a ligand expressing cell to a receptor expressing cell.**
+**ConnectomeDB models ligand–receptor interactions involving peptide ligands (non-peptide ligands are excluded). All ligand–receptor pairs are treated as simplex interactions with a direction from a ligand-expressing cell to a receptor-expressing cell.**
 
 #### Heteromeric receptors and ligands
 
-ConnectomeDB splits complexes heteromeric receptors and ligands into simplex pairs. E.g. IFNB1 which binds to the IFNAR1:IFNAR2 complex is modelled as two separate pairs IFNB1–IFNAR1 and IFNB1–IFNAR2. Similarly, for a heteromeric ligand TNFSF13:TNFSF13B binding to TNFRSF17 would be split into TNFSF13–TNFRSF17 and TNFSF13B–TNFRSF17.
+ConnectomeDB splits complexes heteromeric receptors and ligands into simplex pairs. E.g. IFNB1 which binds to the IFNAR1:IFNAR2 complex, is modelled as two separate pairs IFNB1–IFNAR1 and IFNB1–IFNAR2. Similarly, for a heteromeric ligand TNFSF13:TNFSF13B binding to TNFRSF17 would be split into TNFSF13–TNFRSF17 and TNFSF13B–TNFRSF17.
 
 #### Bidirectional signalling 
 
-In the case of bidirectional signalling where signals are triggered in both cells the pair is modelled as two directional interactions. E.g. CD28–CD86 and CD86–CD28.
+In the case of bidirectional signalling, where signals are triggered in both cells, the pair is modelled as two directional interactions. E.g. CD28–CD86 and CD86–CD28.
 
 ### **Incorporation of Existing LR Pairs**
 
@@ -36,7 +36,7 @@ All candidate pairs were parsed to extract gene symbols, and only those represen
 
 ### **Manual Curation of Ligand–Receptor Triplets**
 
-Each interaction in ConnectomeDB is recorded as a triplet: ligand symbol : receptor symbol : PubMed ID. Only valid LR interactions supported by primary experimental evidence are included; literature reviews are excluded, as they often overgeneralise (e.g. “Eph receptors interact with ephrins”) without specifying direct evidence for individual pairs.
+Each interaction in ConnectomeDB is recorded as a triplet: ligand symbol : receptor symbol : PubMed ID. Only valid LR interactions supported by primary experimental evidence are included; literature reviews are excluded, as they often overgeneralize (e.g. “Eph receptors interact with ephrins”) without specifying direct evidence for individual pairs.
 
 For entries from existing databases with a PubMed ID, a single curator manually assessed the cited article. If it contained primary evidence for the interaction, the triplet was retained in ConnectomeDB2025.
 
@@ -51,16 +51,16 @@ The vast majority of ligand–receptor pairs involve ligands that are secreted o
 
 Note: ConnectomeDB2025 also incorporates some non-canonical pairs that are worth mentioning.
 
-- The PENK–OGFR pair involves interaction of an endogenous opioid peptide (OGF processed from PENK) that binds to OGFR which is localised to the nuclear membrane.
+- The PENK–OGFR pair involves interaction of an endogenous opioid peptide (OGF processed from PENK) that binds to OGFR, which is localized to the nuclear membrane.
 
-- The S100A1–TLR4 pair involves interaction of S100A1 which is normally intracellular but released via non-canonical means upon cellular stress or damage.
+- The S100A1–TLR4 pair involves interaction of S100A1, which is normally intracellular but released via non-canonical means upon cellular stress or damage.
 
 ### **Orthologous Pairs**
 
 #### Original interactions
-For each literature-verified ligand–receptor pair, we recorded the species of origin for both ligand and receptor proteins. Most evidence came from human (2,511 pairs) and mouse (894 pairs), with additional support from rat (158 pairs) and other vertebrates (72 pairs). Cross-species experiments (where a ligand from one species was shown to bind to a receptor from another species) accounted for 1,082 pairs. Note that some pairs are supported by primarily literature in multiple species.
+For each literature-verified ligand–receptor pair, we recorded the species of origin for both ligand and receptor proteins, generating a total of 6,094 quintuplets of ligand : receptor : PMID : ligand_species : receptor_species. Most experimental evidence came from human or mouse proteins, supporting 3,634 and 1,017 quintuplets respectively. Additional evidence came from rat (170), chicken (29), Xenopus (21), zebrafish (19), cow (3), rabbit (1), and tetraodon (1). Notably, 1,199 pairs were supported by cross-species experiments, where the ligand and receptor were derived from different organisms (e.g. porcine RLN2 binding to human RXFP1).
 
 #### Orthology mapping
-To enable analyses in other species, ligands and receptors in the original pairs were mapped to orthologues in human, mouse and 12 vertebrate species including *Pan troglodytes* (chimp), *Macaca mulatta* (macaque), *Callithrix jacchus* (marmoset), *Equus caballus* (horse), *Sus scrofa* (pig), *Canis lupus* (dog), *Bos taurus* (cow), *Ovis aries* (sheep), *Rattus norvegicus* (rat), *Gallus gallus* (chicken), *Xenopus tropicalis* (frog) and *Danio rerio* (zebrafish). Data from the [Alliance of Genome Resources](https://www.alliancegenome.org/){target="_blank"} and [Ensembl](https://www.ensembl.org/index.html){target="_blank"} were used.
+To enable analyses in other species, ligands and receptors in the original pairs were mapped to orthologues in human, mouse and 12 vertebrate species including *Pan troglodytes* (chimp), *Macaca mulatta* (macaque), *Callithrix jacchus* (marmoset), *Equus caballus* (horse), *Sus scrofa* (pig), *Canis lupus familiaris* (dog), *Bos taurus* (cow), *Ovis aries* (sheep), *Rattus norvegicus* (rat), *Gallus gallus* (chicken), *Xenopus tropicalis* (frog) and *Danio rerio* (zebrafish). Data from the [Alliance of Genome Resources](https://www.alliancegenome.org/){target="_blank"} and [Ensembl](https://www.ensembl.org/index.html){target="_blank"} were used.
 
-**All interactions and their evidence (*Direct/Conservation*) are provided in the species-based Ligand-Receptor Browser tables.**
+**All interactions and their evidence (*Direct/Inferred*) are provided in the species-based Ligand-Receptor Browser tables.**

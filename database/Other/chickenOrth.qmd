@@ -1,5 +1,5 @@
 ---
-title: "Chicken \u2013 *Gallus gallus* (2025-09-24) </span>"
+title: "Chicken \u2013 *Gallus gallus* (2025-09-25) </span>"
 execute:
   echo: false
 format:

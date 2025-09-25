@@ -5,7 +5,7 @@ import glob
 import pandas as pd
 
 # Parent subdirectory containing CSV/ and Excel/ folders
-s_directory = "Current-Release/"
+s_directory = "CDB2025v1/"
 p_directory = "downloads/"
 directory = os.path.join(p_directory, s_directory)
 
