@@ -4,7 +4,7 @@ import glob
 import pandas as pd
 
 # Define the relative path to your JSON files
-s_directory = "Current-Release/"
+s_directory = "CDB2025v1/"
 p_directory = "downloads/"
 directory = os.path.join(p_directory, s_directory)
 
