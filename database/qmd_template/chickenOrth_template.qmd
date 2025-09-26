@@ -12,8 +12,36 @@ header-includes: <script src='../../js/keepDropdownMenuGold.js'></script>
 
 ```{=html}
 
+<div id="loading-widget-page11" class="loading-container">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Loading chicken interactions database...</div>
+  <div class="loading-subtext">This may take a few moments</div>
+</div>
+
+<div id="table-content11" style="opacity: 0;">
+
 <!-- Injected automatically via Jinja -->
 {{ table_block }}
+
+</div>
+
+<script>
+(function() {
+    function hideLoadingShowTablePage11() {
+        document.getElementById('loading-widget-page11').style.display = 'none';
+        document.getElementById('table-content11').style.opacity = '1';
+    }
+    
+    // Make it globally available
+    window.hideLoadingShowTablePage11 = hideLoadingShowTablePage11;
+    
+    // Fallback timeout
+    setTimeout(function() {
+        hideLoadingShowTablePage11();
+    }, 2000);
+})();
+</script>
+
 
 ```
 

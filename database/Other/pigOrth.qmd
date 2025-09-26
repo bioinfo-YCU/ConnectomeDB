@@ -1,5 +1,5 @@
 ---
-title: "Pig \u2013 *Sus scrofa* (2025-09-25) </span>"
+title: "Pig \u2013 *Sus scrofa* (2025-09-26) </span>"
 execute:
   echo: false
 format:
@@ -10,7 +10,16 @@ header-includes: <script src='../../js/keepDropdownMenuGold.js'></script>
 
 ***
 
+
 ```{=html}
+
+<div id="loading-widget-page6" class="loading-container">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Loading pig interactions database...</div>
+  <div class="loading-subtext">This may take a few moments</div>
+</div>
+
+<div id="table-content6" style="opacity: 0;">
 
 <!-- Injected automatically via Jinja -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -796,8 +805,24 @@ $(document).ready(function() {
 });
 </script>
 
+</div>
+
+<script>
+(function() {
+    function hideLoadingShowTablePage6() {
+        document.getElementById('loading-widget-page6').style.display = 'none';
+        document.getElementById('table-content6').style.opacity = '1';
+    }
+    
+    // Make it globally available
+    window.hideLoadingShowTablePage6 = hideLoadingShowTablePage6;
+    
+    // Fallback timeout
+    setTimeout(function() {
+        hideLoadingShowTablePage6();
+    }, 2000);
+})();
+</script>
+
+
 ```
-
-
-
-

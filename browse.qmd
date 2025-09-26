@@ -18,7 +18,7 @@ from urllib.parse import parse_qs, urlparse, unquote, quote
 import logging
 
 # --- LOGGING SETUP ---
-LOG_FILE = Path(os.getcwd()) / "browse_debug.log"
+LOG_FILE = Path(os.getcwd()) / "data/browse_debug.log"
 logging.basicConfig(
     filename=LOG_FILE,
     level=logging.INFO,

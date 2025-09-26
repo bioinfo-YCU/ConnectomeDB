@@ -1,5 +1,5 @@
 ---
-title: "Human – *Homo sapiens* (2025-09-25) </span>"
+title: "Human – *Homo sapiens* (2025-09-26) </span>"
 execute:
   echo: false
 format:

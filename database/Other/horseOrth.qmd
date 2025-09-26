@@ -1,5 +1,5 @@
 ---
-title: "Horse \u2013 *Equus caballus* (2025-09-25) </span>"
+title: "Horse \u2013 *Equus caballus* (2025-09-26) </span>"
 execute:
   echo: false
 format:
@@ -11,6 +11,14 @@ header-includes: <script src='../../js/keepDropdownMenuGold.js'></script>
 ***
 
 ```{=html}
+
+<div id="loading-widget-page9" class="loading-container">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Loading horse interactions database...</div>
+  <div class="loading-subtext">This may take a few moments</div>
+</div>
+
+<div id="table-content9" style="opacity: 0;">
 
 <!-- Injected automatically via Jinja -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -796,9 +804,27 @@ $(document).ready(function() {
 });
 </script>
 
+</div>
+
+<script>
+(function() {
+    function hideLoadingShowTablePage9() {
+        document.getElementById('loading-widget-page9').style.display = 'none';
+        document.getElementById('table-content9').style.opacity = '1';
+    }
+    
+    // Make it globally available
+    window.hideLoadingShowTablePage9 = hideLoadingShowTablePage9;
+    
+    // Fallback timeout
+    setTimeout(function() {
+        hideLoadingShowTablePage9();
+    }, 2000);
+})();
+</script>
+
 
 ```
-
 
 
 

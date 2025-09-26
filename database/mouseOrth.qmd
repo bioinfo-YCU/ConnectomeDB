@@ -1,5 +1,5 @@
 ---
-title: "Mouse \u2013 *Mus musculus* (2025-09-25) </span>"
+title: "Mouse \u2013 *Mus musculus* (2025-09-26) </span>"
 execute:
   echo: false
 format:
@@ -11,6 +11,14 @@ header-includes: <script src='../js/keepDropdownMenuGold.js'></script>
 ***
 
 ```{=html}
+
+<div id="loading-widget-page1" class="loading-container">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Loading mouse interactions database...</div>
+  <div class="loading-subtext">This may take a few moments</div>
+</div>
+
+<div id="table-content1" style="opacity: 0;">
 
 <!-- Injected automatically via Jinja -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -796,7 +804,25 @@ $(document).ready(function() {
 });
 </script>
 
+</div>
+
+<script>
+(function() {
+    function hideLoadingShowTablePage1() {
+        document.getElementById('loading-widget-page1').style.display = 'none';
+        document.getElementById('table-content1').style.opacity = '1';
+    }
+    
+    // Make it globally available
+    window.hideLoadingShowTablePage1 = hideLoadingShowTablePage1;
+    
+    // Fallback timeout
+    setTimeout(function() {
+        hideLoadingShowTablePage1();
+    }, 2000);
+})();
+</script>
+
+
 ```
-
-
 
