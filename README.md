@@ -1,5 +1,5 @@
 # ConnectomeDB
-This repository contains the scripts for creating the database website for [ConnectomeDB](https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/). Follow the instructions below to get started with the project.
+This repository contains the scripts for creating the database website for [ConnectomeDB](https://connectomedb.org/). Follow the instructions below to get started with the project.
 
 ## Prerequisites
 Before setting up the project, ensure you have the following installed:
