@@ -1,5 +1,5 @@
 # ConnectomeDB
-This repository contains the scripts for creating the database website for [ConnectomeDB](https://comp.med.yokohama-cu.ac.jp/collab/connectomeDB/). Follow the instructions below to get started with the project.
+This repository contains the scripts for creating the database website for [ConnectomeDB](https://connectomedb.org/). Follow the instructions below to get started with the project.
 
 ## Prerequisites
 Before setting up the project, ensure you have the following installed:
@@ -46,7 +46,7 @@ conda activate quarto_llm_env
 This will ensure that the correct versions of all required libraries are installed.
 
 ## Data Directory (REQUIRED)
-If you are a collaborator working on this project, please request the "data" directory from Sakura to access the necessary credentials/data. Once you have access to the data, place it within the project directory.
+Please request the "data" directory from Sakura Eri Maezono to access the necessary credentials/data via email: [help@connectomedb.org](mailto:help@connectomedb.org). Once you have access to the data, place it within the project directory.
 
 ```bash
 project-directory/
@@ -63,18 +63,16 @@ quarto render
 quarto preview
 ```
 
-### Note: to use as an env in Jupyter, make sure you add it as a new kernel
+### Note: to use as an environment in Jupyter, make sure you add it as a new kernel
 
 ```bash
 conda activate quarto_llm_env
 python -m ipykernel install --user --name=quarto_llm_env --display-name "quarto_llm_env"
 ```
 
-### When installing new packages for environment
+### When installing new packages into the Environment
 Please run the following:
 
 ```bash
 ./update_env_yml.sh
 ```
-
-
