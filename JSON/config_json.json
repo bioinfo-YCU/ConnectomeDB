@@ -1,0 +1,54 @@
+{
+  "title": "Connectomedb Data Repository",
+  "description": "Browse and download Ligand-receptor database tables across 14 most studied species.",
+  "license": "MIT License",
+    "contact":"mailto:&#104;&#101;&#108;&#112;&#64;&#99;&#111;&#110;&#110;&#101;&#99;&#116;&#111;&#109;&#101;&#100;&#98;&#46;&#111;&#114;&#103;,&#97;&#108;&#105;&#115;&#116;&#97;&#105;&#114;&#46;&#102;&#111;&#114;&#114;&#101;&#115;&#116;&#64;&#112;&#101;&#114;&#107;&#105;&#110;&#115;&#46;&#117;&#119;&#97;&#46;&#101;&#100;&#117;&#46;&#97;&#117;",
+  "citation": "Please cite: [ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction](), P Liu, S Maezono et al. *Journal Title* **XX (YY)**, ZZZ (2025). DOI: 10.xxxx/xxxxx",
+  "allowed_extensions": [
+    ".csv", ".tsv", ".json", 
+    ".xlsx", ".zip", ".md"
+  ],
+  "max_file_size": "1GB",
+  "directories": {
+    "current-release": {
+      "description": "The most recent and up-to-date version of the database tables",
+      "auto_create": true
+    },
+    "previous-release": {
+      "description": "The previous version of the database tables",
+      "auto_create": true
+    },
+    "archive": {
+      "description": "Historical versions and deprecated database tables",
+      "auto_create": true
+    },
+    "published-datasets": {
+      "description": "Database tables corresponding to published research articles",
+      "auto_create": true
+    },
+    "supplementary": {
+      "description": "Additional datasets and supplementary materials",
+      "auto_create": true
+    },
+    "tools": {
+      "description": "Software tools and utilities for data processing",
+      "auto_create": true
+    },
+    "documentation": {
+      "description": "User guides, manuals, and technical documentation",
+      "auto_create": true
+    },
+    "latest": {
+      "description": "Always-current files with stable names for automated downloading",
+      "auto_create": true
+    }
+  },
+  "file_types": {
+    ".csv": "Comma-separated values data file",
+    ".tsv": "Tab-separated values data file", 
+    ".json": "JSON format data file",
+    ".zip": "Compressed archive file",
+    ".xlsx": "Excel spreadsheet",
+    ".md": "Markdown documentation"
+  }
+}

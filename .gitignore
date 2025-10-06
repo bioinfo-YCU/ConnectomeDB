@@ -27,8 +27,8 @@ _site/*
 site_libs/
 site_libs/*
 site_libs
-JSON/
 JSON/*
+!JSON/config_json.json
 
 # R qmd--remove for now
 DT_R_ver.qmd
@@ -42,7 +42,10 @@ DT_R_ver.qmd
 build/
 develop-eggs/
 dist/
-downloads/
+downloads/**
+!downloads/**/
+!downloads/**/README.txt
+!downloads/**/index.qmd
 eggs/
 .eggs/
 lib/

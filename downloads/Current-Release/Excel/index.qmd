@@ -1,0 +1,120 @@
+---
+title: "Excel (XSLX) Files - Current Release"
+format: html
+---
+
+<style>
+/* Target the Downloads nav-link by its text content */
+.nav-link:has(.menu-text:contains("Downloads")) {
+    color: #d4af37 !important;
+}
+.nav-link:has(.menu-text:contains("Downloads")) .menu-text {
+    color: #d4af37 !important;
+}
+
+/* Alternative if :has() isn't supported */
+.navbar-nav .nav-item .nav-link[href*="downloads"]:not([class*="dropdown"]) {
+    color: #d4af37 !important;
+}
+.navbar-nav .nav-item .nav-link[href*="downloads"]:not([class*="dropdown"]) .menu-text {
+    color: #d4af37 !important;
+}
+</style>
+
+
+[← Back to All Releases](../../../downloads.html)
+
+```{python}
+#| echo: false
+#| output: asis
+import os
+from pathlib import Path
+from datetime import datetime
+import humanize
+import mimetypes
+
+# Your existing helper functions (copy them here)
+def is_visible(p):
+    # Exclude dotfiles, .qmd, .ipynb (and .quarto_ipynb if it's an intermediate file)
+    if p.name.startswith('.'):
+        return False
+    if p.suffix.lower() in ['.qmd', '.ipynb', '.quarto_ipynb']: # Added suffixes to exclude
+        return False
+    return True
+
+def get_file_info(file_path: Path):
+    stat = file_path.stat()
+    mime_type, _ = mimetypes.guess_type(str(file_path))
+    return {
+        "name": file_path.name,
+        "size": humanize.naturalsize(stat.st_size),
+        "size_bytes": stat.st_size,
+        "modified": datetime.fromtimestamp(stat.st_mtime).strftime("%Y-%m-%d"),
+        "type": mime_type or "application/octet-stream",
+        "extension": file_path.suffix.lower(),
+        # Path relative to the project root
+        "path": str(file_path.relative_to(Path(os.getcwd())))
+    }
+
+def get_file_description(filename):
+    name_lower = filename.lower()
+    if 'human' in name_lower: return "Homo sapiens"
+    elif 'mouse' in name_lower: return "Mus musculus"
+    elif 'chimp' in name_lower: return "Pan troglodytes"
+    elif 'chicken' in name_lower: return "Gallus gallus"
+    elif 'pig' in name_lower: return "Sus scrofa"
+    elif 'rat' in name_lower: return "Rattus norvegicus"
+    elif 'cow' in name_lower: return "Bos taurus"
+    elif 'dog' in name_lower: return "Canis lupus familiaris"
+    elif 'horse' in name_lower: return "Equus caballus"
+    elif 'sheep' in name_lower: return "Ovies aries"
+    elif 'marmoset' in name_lower: return "Callithrix jacchus"
+    elif 'macaque' in name_lower: return "Macaca mulatta"
+    elif 'frog' in name_lower: return "Xenopus tropicalis"
+    elif 'zebrafish' in name_lower: return "Danio rerio"
+    elif 'all_species' in name_lower: return "mixed"
+    elif name_lower.endswith('.zip'): return "mixed"
+    else: return "README"
+
+# --- Hardcoded target directory for THIS specific QMD file ---
+# It will browse the directory where this index.qmd is located.
+TARGET_DIRECTORY = Path(os.getcwd()) 
+
+files = []
+if TARGET_DIRECTORY.exists() and TARGET_DIRECTORY.is_dir():
+    # Define the custom sorting order (copy from your original browse.qmd)
+    custom_order = ["README", "all", "human", "mouse", "chimp", "macaque", "marmoset", "rat", "pig", "cow", "dog", "horse", "sheep", "chicken", "frog", "zebrafish"]
+    def get_sort_priority(filename):
+        name_stem = Path(filename).stem.lower()
+        for i, keyword in enumerate(custom_order):
+            # Exact match for README
+            if keyword == "README" and name_stem == "readme":
+                return i
+            # For others, allow fuzzy match
+            if keyword != "README" and keyword.lower() in name_stem:
+                return i
+        return len(custom_order)  # fallback: push to end
+
+    for item in sorted(TARGET_DIRECTORY.iterdir()):
+        if not is_visible(item):
+            continue
+        if item.is_file():
+            files.append(get_file_info(item))
+            
+    sorted_files = sorted(files, key=lambda f: get_sort_priority(f['name']))
+
+    # Output HTML
+    if sorted_files:
+        print("### Files\n")
+        print("| Filename | Size | Modified | Species |")
+        print("|----------|------|----------|-------------|")
+        for file_info in sorted_files:
+            download_link = f"<a href='{file_info['path']}' download>{file_info['name']}</a>"
+            description = get_file_description(file_info['name'])
+            file_type = file_info['extension'].upper().replace('.', '') if file_info['extension'] else 'FILE'
+            print(f"| {download_link} | {file_info['size']} | {file_info['modified']} | {description} |")
+    else:
+        print("### No files found in this directory.\n")
+else:
+    print(f"<p>Error: Directory '{TARGET_DIRECTORY.name}' not found or is not accessible.</p>")
+```
