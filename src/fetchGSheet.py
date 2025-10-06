@@ -8,7 +8,7 @@ import random
 from gspread.exceptions import APIError, WorksheetNotFound
 
 sheet_ID = "1XP5wBDN_orSlE8RLb2TxSclIopVO1mb_1S3ENf2qYSw"
-credentials_file = 'data/connectomedb2025-a9acdf562a84.json'
+credentials_file = 'data/connectomedb2025.json'
 
 def fetch_google_sheet_data(sheet_ID, tab_name, credentials_file, max_retries=5):
     """
