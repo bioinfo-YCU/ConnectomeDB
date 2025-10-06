@@ -204,5 +204,10 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
+# files that need to be recreated every quarto preview/render
+database/Other/*
+database/human-trip.qmd
+database/human.qmd
+database/mouseOrth.qmd
 
 /.quarto/

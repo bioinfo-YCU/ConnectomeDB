@@ -110,7 +110,7 @@ website:
 
       - icon: github
         menu:
-          - text: Source Code (upon publication)
+          - text: Source Code
             href: https://github.com/bioinfo-YCU/ConnectomeDB
           - text: Report a Bug
             href: https://github.com/bioinfo-YCU/ConnectomeDB
