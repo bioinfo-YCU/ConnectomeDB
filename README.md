@@ -46,7 +46,7 @@ conda activate quarto_llm_env
 This will ensure that the correct versions of all required libraries are installed.
 
 ## Data Directory (REQUIRED)
-Please request the "data" directory from Sakura Eri Maezono to access the necessary credentials/data via email: [help@connectomedb.org](mailto:help@connectomedb.org). Once you have access to the data, place it within the project directory.
+Please request the "data" directory from authors to access the necessary credentials/data via email: [help@connectomedb.org](mailto:help@connectomedb.org). Once you have access to the data, place it within the project directory.
 
 ```bash
 project-directory/
