@@ -19,9 +19,14 @@ DT_R_ver_files/
 Python_test.ipynb
 /Python_test.ipynb
 
-#images
+# images
 images/
 images/*
+
+# annotations
+annotations/
+annotations/*
+
 
 # output file
 _site/
@@ -35,6 +40,8 @@ JSON/*
 # R qmd--remove for now
 DT_R_ver.qmd
 *.md
+.RData
+.Rhistory
 
 # C extensions
 *.so
