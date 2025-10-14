@@ -21,7 +21,6 @@ print(f"\nDataFrame shape: {human_gene_pair.shape}")
 
 # === Paths (relative to project/)
 output_json = Path("JSON/human_gene_pair.json")
-output_json_min = Path("JSON/human_gene_pair.min.json")  # Minified version
 qmd_template = Path("database/qmd_template/human_template.qmd")
 qmd_output = Path("database/human.qmd")
 template_dir = "HTML"  # where datatable_template.html lives
@@ -81,107 +80,16 @@ def clean_column_names_and_generate_metadata(df):
 # === Generate DataTables column definitions
 df_cleaned, columns_metadata = clean_column_names_and_generate_metadata(human_gene_pair)
 
-# ========================================
-# OPTIMIZATION: Export both regular and minified JSON
-# ========================================
-
-print("\n" + "="*60)
-print("GENERATING JSON FILES")
-print("="*60)
-
-# Export regular JSON (for debugging/reference - optional)
-df_cleaned.to_json(
-    output_json, 
-    orient="records",
-    indent=2  # Pretty-printed for human readability
-)
-
-# Export MINIFIED JSON (for production use)
-df_cleaned.to_json(
-    output_json_min,
-    orient="records",
-    # NO indent parameter = minified (no whitespace)
-    # separators removes spaces after : and ,
-    force_ascii=False  # Allows Unicode characters to be smaller
-)
-
-# Calculate file sizes
-regular_size = output_json.stat().st_size / (1024 * 1024)  # MB
-minified_size = output_json_min.stat().st_size / (1024 * 1024)  # MB
-reduction = ((regular_size - minified_size) / regular_size) * 100
-
-print(f"\n📊 File Size Comparison:")
-print(f"  Regular JSON:   {regular_size:.2f} MB")
-print(f"  Minified JSON:  {minified_size:.2f} MB")
-print(f"  Size reduction: {reduction:.1f}%")
-print(f"  Saved:          {regular_size - minified_size:.2f} MB")
-
-# ========================================
-# OPTIONAL: Further optimize by shortening field names
-# ========================================
-# ⚠️ WARNING: If you enable this, you MUST update searchableColumns in your HTML template!
-
-# To enable ultra-compression with shortened field names:
-# 1. Uncomment the section below
-# 2. Update the field_mapping dictionary with ALL your column names
-# 3. Update datatableOrth_template.html line ~50:
-#    const searchableColumns = ['ls', 'rs', 'hls', 'hrs'];  // Use shortened names
-# 4. Change json_path below to use output_json_ultra instead of output_json_min
-
-"""
-print("\n" + "="*60)
-print("GENERATING ULTRA-COMPRESSED JSON (shortened field names)")
-print("="*60)
-
-# Create shorter field name mapping - ADD ALL YOUR COLUMNS HERE
-field_mapping = {
-    'Ligand_Symbols': 'ls',
-    'Receptor_Symbols': 'rs',
-    'Human_Ligand_Symbols': 'hls',
-    'Human_Receptor_Symbols': 'hrs',
-    'Ligand_XX_ID': 'lid',
-    'Receptor_XX_ID': 'rid',
-    # TODO: Add mappings for ALL your columns
-    # Find all column names by looking at the "Column name mapping" output above
-}
-
-# Apply field mapping
-df_ultra = df_cleaned.copy()
-df_ultra.columns = [field_mapping.get(col, col) for col in df_ultra.columns]
-
-# Export ultra-compressed JSON
-output_json_ultra = Path("JSON/human_gene_pair.ultra.json")
-df_ultra.to_json(output_json_ultra, orient="records", force_ascii=False)
-
-ultra_size = output_json_ultra.stat().st_size / (1024 * 1024)
-ultra_reduction = ((regular_size - ultra_size) / regular_size) * 100
-
-print(f"\n📊 Ultra-Compressed Size:")
-print(f"  Ultra JSON:     {ultra_size:.2f} MB")
-print(f"  Total reduction: {ultra_reduction:.1f}%")
-print(f"  Additional saved: {minified_size - ultra_size:.2f} MB")
-
-# Update columns_metadata for ultra-compressed version
-columns_metadata_ultra = [
-    {
-        "data": field_mapping.get(safe_col, safe_col),
-        "title": raw_col
-    }
-    for safe_col, raw_col in zip(safe_columns, raw_columns)
-]
-
-# If using ultra-compressed, update columns_json
-columns_json = json.dumps(columns_metadata_ultra, indent=2)
-"""
+# Export the cleaned DataFrame to JSON
+df_cleaned.to_json("JSON/human_gene_pair.json", orient="records")
 
 # Check what's actually in the JSON
-with open(output_json_min, "r") as f:
+with open("JSON/human_gene_pair.json", "r") as f:
     json_data = json.load(f)
     if json_data:
-        print(f"\n✅ First record keys in minified JSON:")
+        print(f"\nFirst record keys in JSON:")
         for key in json_data[0].keys():
             print(f"  {repr(key)}")
-        print(f"\n✅ Total records: {len(json_data)}")
 
 # Generate columns JSON for DataTables
 columns_json = json.dumps(columns_metadata, indent=2)
@@ -196,7 +104,7 @@ template = env.get_template(template_name)
 rendered_html = template.render(
     columns_json=columns_json,
     table_id="human-table",
-    json_path="../JSON/human_gene_pair.min.json"  # ⚠️ CHANGED: Use minified version
+    json_path="../JSON/human_gene_pair.json"  # relative to `database/human.qmd`
 )
 
 # === Inject into human.qmd at placeholder
@@ -216,6 +124,5 @@ if "{{ table_block }}" not in contents:
 with open(qmd_output, "w") as f:
     f.write(contents.replace("{{ table_block }}", rendered_html))
 
-print(f"\n✅ Updated {qmd_output}")
-print(f"✅ Saved regular JSON to {output_json}")
-print(f"✅ Saved MINIFIED JSON to {output_json_min} (← This is what the page uses)")
+print(f"✅ Updated {qmd_output}")
+print(f"✅ Saved JSON to {output_json}")

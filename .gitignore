@@ -6,6 +6,8 @@ __pycache__/
 .ipynb_checkpoints/
 **/.ipynb_checkpoints/
 .DS_Store
+_index_files/libs
+.pybiomart.sqlite
 
 # data
 data/
@@ -42,6 +44,8 @@ DT_R_ver.qmd
 *.md
 .RData
 .Rhistory
+**/.Rhistory
+**/.RData
 
 # C extensions
 *.so
@@ -222,5 +226,9 @@ database/Other/*
 database/human-trip.qmd
 database/human.qmd
 database/mouseOrth.qmd
+
+# virtual docs
+.virtual_documents/
+
 
 /.quarto/

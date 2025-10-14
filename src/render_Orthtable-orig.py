@@ -14,8 +14,7 @@ import createDataTable_perSpecies
 
 def process_species_table(species, species_addl_search, createDataTable_perSpecies):
     # === Paths (relative to project/)
-    output_json = Path(f"JSON/{species}_gene_pair.json")
-    output_json_min = Path(f"JSON/{species}_gene_pair.min.json")  # Minified version
+    output_json = Path(f"JSON/{species}_gene_pair.json")  
     qmd_template = Path(f"database/qmd_template/{species}Orth_template.qmd") 
     qmd_output = Path(f"database/{species}Orth.qmd") if species == "mouse" else Path(f"database/other/{species}Orth.qmd")
     template_dir = "HTML"
@@ -61,15 +60,14 @@ def process_species_table(species, species_addl_search, createDataTable_perSpeci
         column_metadata = [
             {
                 "data": safe_col,     # Use safe column name for data mapping
-                "title": raw_col,     # Use original HTML for column headers
-                "name": safe_col      # Add name for easier reference
+                "title": raw_col      # Use original HTML for column headers
             }
             for safe_col, raw_col in zip(safe_columns, raw_columns)
         ]
 
         print(f"\n{species.upper()} Column metadata:")
         for i, meta in enumerate(column_metadata):
-            print(f"  {i}: data='{meta['data']}', name='{meta['name']}', title='{meta['title']}'")
+            print(f"  {i}: data='{meta['data']}', title='{meta['title']}'")
 
         return df_cleaned, column_metadata
     
@@ -87,50 +85,16 @@ def process_species_table(species, species_addl_search, createDataTable_perSpeci
     # === Clean and export to JSON
     df_cleaned, columns_metadata = clean_column_names_and_generate_metadata(gene_pair)
     
-    # ========================================
-    # OPTIMIZATION: Export both regular and minified JSON
-    # ========================================
-    
-    print(f"\n{'='*60}")
-    print(f"GENERATING JSON FILES FOR {species.upper()}")
-    print(f"{'='*60}")
-    
-    # Export regular JSON (for debugging/reference - optional)
-    df_cleaned.to_json(
-        output_json, 
-        orient="records",
-        indent=2  # Pretty-printed for human readability
-    )
-    
-    # Export MINIFIED JSON (for production use)
-    df_cleaned.to_json(
-        output_json_min,
-        orient="records",
-        # NO indent parameter = minified (no whitespace)
-        force_ascii=False  # Allows Unicode characters to be smaller
-    )
-    
-    # Calculate file sizes
-    regular_size = output_json.stat().st_size / (1024 * 1024)  # MB
-    minified_size = output_json_min.stat().st_size / (1024 * 1024)  # MB
-    
-    if regular_size > 0:
-        reduction = ((regular_size - minified_size) / regular_size) * 100
-        
-        print(f"\n📊 {species.upper()} File Size Comparison:")
-        print(f"  Regular JSON:   {regular_size:.2f} MB")
-        print(f"  Minified JSON:  {minified_size:.2f} MB")
-        print(f"  Size reduction: {reduction:.1f}%")
-        print(f"  Saved:          {regular_size - minified_size:.2f} MB")
+    # Export the cleaned DataFrame to JSON
+    df_cleaned.to_json(output_json, orient="records")
     
     # Check what's actually in the JSON
-    with open(output_json_min, "r") as f:
+    with open(output_json, "r") as f:
         json_data = json.load(f)
         if json_data:
-            print(f"\n✅ {species.upper()} First record keys in minified JSON:")
+            print(f"\n{species.upper()} First record keys in JSON:")
             for key in json_data[0].keys():
                 print(f"  {repr(key)}")
-            print(f"✅ Total records: {len(json_data)}")
     
     columns_json = json.dumps(columns_metadata, indent=2)
     
@@ -138,18 +102,12 @@ def process_species_table(species, species_addl_search, createDataTable_perSpeci
     env = Environment(loader=FileSystemLoader(template_dir))
     template = env.get_template(template_name)
     
-    # Determine the correct JSON path based on species
-    if species == "mouse":
-        json_path = f"../JSON/{species}_gene_pair.min.json"  # Use minified version
-    else:
-        json_path = f"../../JSON/{species}_gene_pair.min.json"  # Use minified version
-    
     rendered_html = template.render(
         columns_json=columns_json,
         species=species, 
         species_addl_search=species_addl_search,
         table_id=f"{species}-table", 
-        json_path=json_path
+        json_path=f"../JSON/{species}_gene_pair.json" if species == "mouse" else Path(f"../../JSON/{species}_gene_pair.json")
     )
     
     # === Replace placeholder in .qmd
@@ -171,9 +129,8 @@ def process_species_table(species, species_addl_search, createDataTable_perSpeci
     qmd_output.parent.mkdir(parents=True, exist_ok=True)
     qmd_output.write_text(contents.replace("{{ table_block }}", rendered_html))
     
-    print(f"\n✅ Updated {qmd_output}")
-    print(f"✅ Saved regular JSON to {output_json}")
-    print(f"✅ Saved MINIFIED JSON to {output_json_min} (← This is what the page uses)")
+    print(f"✔️ Updated {qmd_output}")
+    print(f"✔️ Saved JSON to {output_json}")
 
 # === Run for each species
 species_list = ["mouse", "rat", "zebrafish", "frog", "chicken", "macaque", "pig", "dog", "cow", "chimp", "horse", "marmoset", "sheep"]
@@ -193,38 +150,5 @@ species_addl_search_dict = {
     "sheep": "ENSOARG00020015296, IL10RA",
 }
 
-# Track total savings
-total_regular = 0
-total_minified = 0
-
-print("\n" + "="*60)
-print("PROCESSING ALL SPECIES")
-print("="*60)
-
 for sp in species_list:
     process_species_table(sp, species_addl_search_dict[sp], createDataTable_perSpecies)
-    
-    # Add to totals
-    regular_file = Path(f"JSON/{sp}_gene_pair.json")
-    minified_file = Path(f"JSON/{sp}_gene_pair.min.json")
-    
-    if regular_file.exists() and minified_file.exists():
-        total_regular += regular_file.stat().st_size
-        total_minified += minified_file.stat().st_size
-
-# Final summary
-print("\n" + "="*60)
-print("FINAL SUMMARY - ALL SPECIES")
-print("="*60)
-total_regular_mb = total_regular / (1024 * 1024)
-total_minified_mb = total_minified / (1024 * 1024)
-total_reduction = ((total_regular - total_minified) / total_regular) * 100 if total_regular > 0 else 0
-
-print(f"\n📊 Combined File Sizes:")
-print(f"  Total Regular:   {total_regular_mb:.2f} MB")
-print(f"  Total Minified:  {total_minified_mb:.2f} MB")
-print(f"  Total Reduction: {total_reduction:.1f}%")
-print(f"  Total Saved:     {total_regular_mb - total_minified_mb:.2f} MB")
-print(f"\n💡 With gzip compression enabled on your server:")
-print(f"  Expected transfer size: ~{total_minified_mb * 0.2:.2f} MB (80% additional compression)")
-print(f"  Total reduction from original: ~{((total_regular_mb - (total_minified_mb * 0.2)) / total_regular_mb) * 100:.1f}%")
