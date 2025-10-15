@@ -7,8 +7,8 @@ header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
 ---
 
 ---
-1. *ConnectomeDB2025, a high quality manually curated ligand-receptor database for cell-to-cell communication prediction*, P Liu, S Maezono, *et al.* (TBA)\
-PMID: [(TBA)](); DOI: [(TBA)]()
+1. *connectomeDB2025: a rigorously curated, multi-species resource of experimentally supported ligand–receptor interactions*, P Liu, S Maezono, *et al.* *Nucleic Acids Research*\
+PMID: [(TBA)](); DOI: [10.1093/nar/gkaf1108](https://doi.org/10.1093/nar/gkaf1108)
     
 2. *Predicting cell-to-cell communication networks using NATMI*, R Hou, *et al.* *Nature communications* **11(1)**, 5011, **2020**\
 PMID: [33024107](https://pubmed.ncbi.nlm.nih.gov/33024107/){target="_blank"}; DOI: [10.1038/s41467-020-18873-z](https://www.nature.com/articles/s41467-020-18873-z){target="_blank"}
