@@ -20,6 +20,7 @@ resources:
   - docs/tutorials
   
 website:
+  google-analytics: "G-4XKRBGJG5E"
   title: "ConnectomeDB2025"
 
   reader-mode: false
