@@ -1,6 +1,11 @@
 # ConnectomeDB
 This repository contains the scripts for creating the database website for [ConnectomeDB](https://connectomedb.org/). Follow the instructions below to get started with the project.
 
+The website is complements the following paper:
+
+*connectomeDB2025: a rigorously curated, multi-species resource of experimentally supported ligand–receptor interactions, P Liu, S Maezono, et al. Nucleic Acids Research
+PMID: (TBA); [DOI: 10.1093/nar/gkaf1108](https://doi.org/10.1093/nar/gkaf1108)*
+
 ## Prerequisites
 Before setting up the project, ensure you have the following installed:
 
