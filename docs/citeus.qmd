@@ -7,7 +7,7 @@ header-includes: <script src='/js/keepDropdownMenuGold.js'></script>
 ---
 
 ---
-1. *connectomeDB2025: a rigorously curated, multi-species resource of experimentally supported ligand–receptor interactions*, P Liu, S Maezono, *et al.* *Nucleic Acids Research*\
+1. *connectomeDB2025: a rigorously curated, multi-species resource of experimentally supported ligand–receptor interactions*, P Liu, S Maezono, *et al.* *Nucleic Acids Research* **54(D1)**, D546–D554, **2026**\
 PMID: [41171146](https://pubmed.ncbi.nlm.nih.gov/41171146/){target="_blank"}; DOI: [10.1093/nar/gkaf1108](https://doi.org/10.1093/nar/gkaf1108){target="_blank"}
 
 2. *Predicting cell-to-cell communication networks using NATMI*, R Hou, *et al.* *Nature communications* **11(1)**, 5011, **2020**\

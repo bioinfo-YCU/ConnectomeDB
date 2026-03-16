@@ -6,6 +6,7 @@ __pycache__/
 .ipynb_checkpoints/
 **/.ipynb_checkpoints/
 .DS_Store
+**/.DS_Store
 _index_files/libs
 .pybiomart.sqlite
 
@@ -232,3 +233,5 @@ database/mouseOrth.qmd
 
 
 /.quarto/
+
+**/*.quarto_ipynb

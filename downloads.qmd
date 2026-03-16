@@ -23,7 +23,7 @@ def load_config():
         "description": "Browse and download Ligand-receptor database tables across 14 most studied species.",
         "license": "MIT License",
         "contact":  "mailto:&#104;&#101;&#108;&#112;&#64;&#99;&#111;&#110;&#110;&#101;&#99;&#116;&#111;&#109;&#101;&#100;&#98;&#46;&#111;&#114;&#103;,&#97;&#108;&#105;&#115;&#116;&#97;&#105;&#114;&#46;&#102;&#111;&#114;&#114;&#101;&#115;&#116;&#64;&#112;&#101;&#114;&#107;&#105;&#110;&#115;&#46;&#117;&#119;&#97;&#46;&#101;&#100;&#117;&#46;&#97;&#117;",
-        "citation": "*connectomeDB2025: a rigorously curated, multi-species resource of experimentally supported ligand–receptor interactions*, P Liu, S Maezono, *et al.* *Nucleic Acids Research* PMID: [41171146](https://pubmed.ncbi.nlm.nih.gov/41171146/); DOI: [10.1093/nar/gkaf1108](https://doi.org/10.1093/nar/gkaf1108)"
+        "citation": "*connectomeDB2025: a rigorously curated, multi-species resource of experimentally supported ligand–receptor interactions*, P Liu, S Maezono, *et al.* *Nucleic Acids Research* **54(D1)**, D546–D554, **2026**; PMID: [41171146](https://pubmed.ncbi.nlm.nih.gov/41171146/){target='_blank'}; DOI: [10.1093/nar/gkaf1108](https://doi.org/10.1093/nar/gkaf1108){target='_blank'}"
     }
 
 def is_visible(p):
